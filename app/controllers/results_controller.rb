@@ -1,0 +1,81 @@
+class ResultsController < ApplicationController
+  load_and_authorize_resource :tempuser, except: :rebuild
+  load_and_authorize_resource :result, through: :tempuser, except: :rebuild
+  load_and_authorize_resource only: :rebuild
+
+  def index
+  end
+
+  def show
+  end
+
+  def new
+  end
+
+  def edit
+  end
+
+  def counted
+    respond_to do |format|
+      if @result.update_attributes(total: @result.rebuild_total)
+        format.js
+      else
+        format.js
+      end
+    end
+  end
+
+  def rebuild
+    @round=Round.find(params[:round])
+    @round.results.each do |r|
+      r.update_attributes(total: r.rebuild_total)
+    end
+    @round.results.pluck(:tempuser_id).uniq.each do |id|
+      tempuser = Tempuser.find(id)
+      tempuser.update_attributes(total_result: tempuser.results.sum(:total))
+    end
+
+    (@round.forecasts.pluck(:tempuser_id).uniq - @round.results.pluck(:tempuser_id).uniq).each do |u|
+      tempuser = Tempuser.find(u)
+      r=tempuser.results.create!(round_id: @round.id)
+      r.update_attributes(total: r.rebuild_total)
+    end
+    render nothing: true
+  end
+
+  def create
+    @result.total = @result.rebuild_total
+    respond_to do |format|
+      if @result.save
+        format.html { redirect_to @result, notice: 'Result was successfully created.' }
+        format.js
+        format.json { render json: @result, status: :created, location: @result }
+      else
+        format.html { render action: "new" }
+        format.js
+        format.json { render json: @result.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @result.update_attributes(params[:result])
+        format.html { redirect_to @result, notice: 'Result was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @result.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @result.destroy
+
+    respond_to do |format|
+      format.html { redirect_to results_url }
+      format.json { head :no_content }
+    end
+  end
+end

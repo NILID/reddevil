@@ -1,0 +1,135 @@
+.page-header
+  %h1
+    = @round.title
+    - if can? :manage, @round
+      %small
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_round_path(@round), :class => 'btn'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")), round_path(@round), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+        = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, :class => 'btn' do
+          %i.icon-refresh
+          =t('results.rebuild')
+
+    .badge.badge-info
+      =t 'rounds.deadline'
+      =deadline(@round.deadline)
+-if can? :manage, Round
+  .badge.badge-info
+    =deadline(@round.deadline)
+  .badge.badge-info
+    =deadline(DateTime.now)
+
+%p= @round.content
+
+%table.table.table-condensed.rounds
+  %thead
+    %th
+    %th
+    -Tempuser.order(:username).each do |user|
+      %th.results(style="text-align:center;font-weight:100;")
+        %p
+          -if user.user
+            =link_to user.username, user_profile_path(user.user, user.user.profile)
+          -else
+            =user.username
+        -result=user.results.where(round_id: @round).first
+        -if result
+          .tip
+            .badge.badge-success=result.total
+            -if result.total > 0
+              .tip-text
+                -a,b,c,d=0, 0, 0, 0
+                -result.matches.each do |match|
+                  - if match.has_goal?
+                    -forecast=user.forecasts.where(match_id: match.id).last
+                    -if forecast
+                      -a+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal)
+                      -b+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
+                      -c+=1 if (match.check_win == forecast.check_winner)
+                      -d+=1 if (match.ending == forecast.ending)
+                %dl(class='dl-horizontal')
+                  -if a > 0
+                    %p
+                      %span.badge.badge-success + #{a}
+                      =t 'results.true_match'
+                  -if b > 0
+                    %p
+                      %span.badge.badge-success + #{b}
+                      =t 'results.true_diff'
+                  -if c > 0
+                    %p
+                      %span.badge.badge-success + #{c}
+                      =t 'results.true_winner'
+                  -if d > 0
+                    %p
+                      %span.badge.badge-success + #{d}
+                      =t 'results.true_final_end'
+
+        -else
+          .badge.badge-success 0
+
+    %th=t 'shared.mid'
+  %tbody
+    -@round.matches.each do |match|
+      %tr
+        %td.team-commands
+          .team
+            .team-name
+              =image_tag match.team1.flag(:thumb), width: '20px'
+              %span{style: (match.team1 == match.check_win) ? 'font-weight:bold' : ''} #{match.team1.title}
+            .team-goal
+              #{match.team1goal || '-'}
+          %br/
+          .team
+            .team-name
+              =image_tag match.team2.flag(:thumb), width: '20px'
+              %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : ''} #{match.team2.title}
+            .team-goal
+              #{match.team2goal || '-'}
+        %td.match-ending(style="width:4px;")
+          - if match.ending != 'basic'
+            -if match.team1 != match.winner
+              %br/
+            %span.tip
+              =t("matches.#{match.ending}_short")
+              .tip-text=t("matches.#{match.ending}")
+        -Tempuser.order(:username).each do |user|
+          -f=user.forecasts.where(match_id: match.id).first
+          -if f
+            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : ''
+            %td{style: "text-align:center", class: f_css}
+              .total
+                - if (@round.deadline < DateTime.now) || (f.tempuser.user == current_user)
+                  -if (match.team1 == f.winner) || (f.team1goal > f.team2goal)
+                    #{f.team1goal} 
+                    - if f.ending != 'basic'
+                      %span.tip
+                        %span.ending=t("matches.#{f.ending}_short")
+                        .tip-text=t("matches.#{f.ending}")
+                    \ : #{f.team2goal}
+                  -else (match.team2 == f.winner) || (f.team1goal < f.team2goal)
+                    #{f.team1goal} : #{f.team2goal}
+                    - if f.ending != 'basic'
+                      %span.tip
+                        %span.ending=t("matches.#{f.ending}_short")
+                        .tip-text=t("matches.#{f.ending}")
+                - else
+                  X : X
+              -if can? :edit, f
+                =link_to t('forecasts.edit'), edit_tempuser_forecast_path(user, f, match_id: match), class: 'btn btn-mini'
+          -else
+            %td(style="text-align:center")
+              -if user_signed_in? && ((@round.deadline > DateTime.now) && (user.user == current_user) || (current_user.role? :admin))
+                -if can? :new, Forecast
+                  =link_to t('forecasts.add'), new_tempuser_forecast_path(user, match_id: match), class: 'btn btn-mini'
+        %td.middle
+          -f= Forecast.where(match_id: match)
+          -if !f.empty?
+            -if @round.deadline < DateTime.now
+              %div.tip
+                %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
+                .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
+            -else
+              X : X
+        %td
+
+= link_to t('.back', :default => t("helpers.links.back")), rounds_path, :class => 'btn'

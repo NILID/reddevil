@@ -1,0 +1,34 @@
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+
+  after_filter :store_location
+
+  rescue_from CanCan::AccessDenied do |exception|
+    unless current_user
+      flash[:alert] = t('devise.failure.unauthenticated')
+      session[:requested_url] = request.url
+      redirect_to new_user_session_path
+    else
+      raise
+    end
+  end
+
+
+  def store_location
+      # store last url - this is needed for post-login redirect to whatever the user last visited.
+      if (request.fullpath != "/users/sign_in" &&
+          request.fullpath != "/users/sign_up" &&
+          request.fullpath != "/users/password" &&
+          request.fullpath.match("/users/password").nil? &&
+          !request.xhr?)  # don't store ajax calls
+          session[:previous_url] = request.fullpath
+      end
+  end
+
+
+  private
+  def after_sign_in_path_for(resource)
+    session[:previous_url] || root_path
+  end
+
+end

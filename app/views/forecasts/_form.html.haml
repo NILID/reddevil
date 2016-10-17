@@ -1,0 +1,40 @@
+= form_for [@tempuser, @forecast], :html => { :class => 'form-horizontal' } do |f|
+  - if @forecast.errors.any?
+    #error_explanation
+      %h5= t('shared.errors', error: plural(@forecast.errors.count, 'error'))
+      %ul
+        - @forecast.errors.full_messages.each do |msg|
+          %li= msg
+
+  -if params[:match_id] && Match.find(params[:match_id])
+    - m=Match.find(params[:match_id])
+  -else
+    - m=Match.find(@forecast.match_id)
+
+  = f.hidden_field :match_id, value: m.id
+  .control-group
+    .control-label= m.team1.title
+    .controls
+      = f.number_field :team1goal, min: 0, :class => 'number_field'
+  .control-group
+    .control-label= m.team2.title
+    .controls
+      = f.number_field :team2goal, min: 0, :class => 'number_field'
+  .control-group.winner-field(style="display:none")
+    .control-label= f.label :winner_id
+    .controls= f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+
+  .control-group
+    .control-label= f.label :ending
+    .controls
+      -Match::ENDING.each do |e|
+        = f.radio_button :ending, e, style: 'display: none', disabled: false
+      .btn-group(data-toggle="buttons-radio")
+        -Match::ENDING.each do |e|
+          = f.label "ending_#{e}", t("matches.#{e}"), class: 'btn btn-primary'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary', disable_with: t('shared.saving')
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), m.round, :class => 'btn'
+    - if params[:action] == 'edit'
+      = link_to t('shared.del'), [@tempuser, @forecast], :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn' if can? :destroy, @forecast

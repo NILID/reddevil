@@ -1,0 +1,28 @@
+=div_for(@album, class: 'page-header') do
+  %h1
+    = @album.title
+    -if user_signed_in?
+      =link_to like_album_path(@album), method: :post, remote: true do
+        %i{class: current_user.likes?(@album) ? 'icon-star' : 'icon-star-empty'}
+    %small=link_to @album.parent.title, @album.parent if @album.parent
+
+
+.ny-block
+  -@albums.each do |album|
+    %p
+      =link_to album.title, album
+      -if can? :manage, album
+        = link_to t('shared.edit'), edit_album_path(album)
+        = link_to t('shared.del'), album, :method => :delete, :data => { :confirm => t('shared.sure') }
+
+%ul.playlist= render @album.songs, showalbum: false
+
+- if can? :manage, @album
+  = link_to t('shared.edit'), edit_album_path(@album)
+  \|
+= link_to t('shared.back'), albums_path
+\|
+- if can? :new, Song
+  = link_to t('songs.add'), new_album_song_path(@album)
+  \|
+= link_to t('albums.add'), new_album_path(:parent_id => @album) if can? :new, Album

@@ -1,0 +1,9 @@
+= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, class: 'form-horizontal' }) do |f|
+  %fielset
+    %legend Выслать повторно письмо подтверждения регистрации
+    = devise_error_messages!
+    .control-group
+      = f.label :email, class: 'control-label'
+      .controls= f.email_field :email, :autofocus => true
+    .controls= f.submit "Прислать письмо", class: 'btn'
+= render "users/shared/links"

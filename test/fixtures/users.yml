@@ -1,0 +1,14 @@
+da:
+  email: da@mail.me
+  roles_mask: 2
+  encrypted_password: 014e0b5df251442f39b7bbda50ef1e7cdbca06ce0f07b450abb233981ef60aeb6491c39276f385996
+
+admin:
+  email: admin@mail.me
+  roles_mask: 1
+  encrypted_password: 014e0b5df251442f39b7bbda50ef1e7cdbca06ce0f07b450abb233981ef60aeb6491c39276f385996
+
+vasya:
+  email: vasya@mail.me
+  roles_mask: 2
+  encrypted_password: 014e0b5df251442f39b7bbda50ef1e7cdbca06ce0f07b450abb233981ef60aeb6491c39276f385996

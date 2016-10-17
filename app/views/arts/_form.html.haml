@@ -1,0 +1,18 @@
+= form_for @art, html: {class: 'form-horizontal'} do |f|
+  - if @art.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@art.errors.count, "error")} prohibited this art from being saved:"
+      %ul
+        - @art.errors.full_messages.each do |msg|
+          %li= msg
+
+  .control-group
+    .controls
+      #datetimepicker1.input-append.date
+        =#f.date_select :deadline, default: {hour: 16, minute: 0}
+        =f.text_field :deadline, "data-format" => 'dd.MM.yyyy hh:mm:ss'
+        %span.add-on
+          %i.icon-th
+
+  .form-actions
+    = f.submit class: 'btn'

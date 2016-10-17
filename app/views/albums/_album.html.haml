@@ -1,0 +1,12 @@
+= content_tag_for(:li, album) do
+  %span.title
+    -if user_signed_in?
+      =link_to like_album_path(album), method: :post, remote: true, class: 'icon-star-link' do
+        %i{class: current_user.likes?(album) ? 'icon-star' : 'icon-star-empty'}
+
+    = link_to album.title, list_album_path(album), remote: true
+    = link_to t('shared.show'), album
+  -if can? :manage, album
+    %span.sec-links
+      = link_to t('shared.edit'), edit_album_path(album)
+      = link_to t('shared.del'), album, :method => :delete, :data => { :confirm => t('shared.sure') }

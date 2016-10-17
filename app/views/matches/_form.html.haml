@@ -1,0 +1,25 @@
+= form_for [@round, @match] do |f|
+  - if @match.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@match.errors.count, "error")} prohibited this match from being saved:"
+      %ul
+        - @match.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :team1_id
+    = f.select(:team1_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
+  .field
+    = f.label :team2_id
+    = f.select(:team2_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
+  .field
+    = f.label :team1goal
+    = f.number_field :team1goal
+  .field
+    = f.label :team2goal
+    = f.number_field :team2goal
+  .field
+    = f.label :ending
+    = f.select(:ending, Match::ENDING.collect {|e| [ t(e),  e]})
+  .actions
+    = f.submit 'Save'

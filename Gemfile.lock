@@ -1,0 +1,294 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    actionmailer (3.2.22.2)
+      actionpack (= 3.2.22.2)
+      mail (~> 2.5.4)
+    actionpack (3.2.22.2)
+      activemodel (= 3.2.22.2)
+      activesupport (= 3.2.22.2)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      journey (~> 1.0.4)
+      rack (~> 1.4.5)
+      rack-cache (~> 1.2)
+      rack-test (~> 0.6.1)
+      sprockets (~> 2.2.1)
+    activemodel (3.2.22.2)
+      activesupport (= 3.2.22.2)
+      builder (~> 3.0.0)
+    activerecord (3.2.22.2)
+      activemodel (= 3.2.22.2)
+      activesupport (= 3.2.22.2)
+      arel (~> 3.0.2)
+      tzinfo (~> 0.3.29)
+    activeresource (3.2.22.2)
+      activemodel (= 3.2.22.2)
+      activesupport (= 3.2.22.2)
+    activesupport (3.2.22.2)
+      i18n (~> 0.6, >= 0.6.4)
+      multi_json (~> 1.0)
+    acts-as-taggable-on (2.4.1)
+      rails (>= 3, < 5)
+    addressable (2.3.6)
+    ancestry (2.1.0)
+      activerecord (>= 3.0.0)
+    arel (3.0.3)
+    atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
+    birthday (0.3.1.1)
+      activerecord
+      activesupport
+    bootstrap_forms (4.0.1)
+    builder (3.0.4)
+    cancancan (1.10.1)
+    ckeditor (4.0.6)
+      mime-types
+      orm_adapter
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    clockwork (0.7.4)
+      activesupport
+      tzinfo
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
+    coffee-rails (3.2.2)
+      coffee-script (>= 2.2.0)
+      railties (~> 3.2.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
+    commonjs (0.2.7)
+    cookiejar (0.3.0)
+    daemons (1.1.9)
+    delayed_job (4.0.1)
+      activesupport (>= 3.0, < 4.2)
+    delayed_job_active_record (4.0.1)
+      activerecord (>= 3.0, < 4.2)
+      delayed_job (>= 3.0, < 4.1)
+    devise (3.2.2)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    devise-russian (2.0.1.1)
+      devise
+    em-http-request (1.0.3)
+      addressable (>= 2.2.3)
+      cookiejar
+      em-socksify
+      eventmachine (>= 1.0.0.beta.4)
+      http_parser.rb (>= 0.5.3)
+    em-socksify (0.3.0)
+      eventmachine (>= 1.0.0.beta.4)
+    erubis (2.7.0)
+    eventmachine (1.0.3)
+    execjs (2.0.2)
+    fancybox2-rails (0.2.8)
+      railties (>= 3.1.0, < 5.0)
+    faye (1.1.1)
+      cookiejar (>= 0.3.0)
+      em-http-request (>= 0.3.0)
+      eventmachine (>= 0.12.0)
+      faye-websocket (>= 0.9.1)
+      multi_json (>= 1.0.0)
+      rack (>= 1.0.0)
+      websocket-driver (>= 0.5.1)
+    faye-rails (2.0.1)
+      eventmachine (~> 1.0.0)
+      faye (~> 1.1.1)
+    faye-websocket (0.9.2)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
+    haml (4.0.4)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
+    hike (1.2.3)
+    holidays (3.3.0)
+    http_parser.rb (0.6.0)
+    i18n (0.7.0)
+    jcrop-rails (1.0.3)
+      railties (~> 3.0)
+      thor (~> 0.14)
+    journey (1.0.4)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+    jquery-rails (3.0.4)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
+    jquery-ui-rails (4.0.2)
+      jquery-rails
+      railties (>= 3.1.0)
+    json (1.8.3)
+    less (2.4.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.4.2)
+      actionpack (>= 3.1)
+      less (~> 2.4.0)
+    libv8 (3.3.10.4)
+    mail (2.5.4)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    meta-tags (1.5.0)
+      actionpack
+    mime-types (1.25.1)
+    multi_json (1.12.0)
+    nested_form (0.3.2)
+    orm_adapter (0.4.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+    polyamorous (1.3.0)
+      activerecord (>= 3.0)
+    polyglot (0.3.5)
+    rack (1.4.7)
+    rack-cache (1.6.1)
+      rack (>= 0.4)
+    rack-ssl (1.3.4)
+      rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rails (3.2.22.2)
+      actionmailer (= 3.2.22.2)
+      actionpack (= 3.2.22.2)
+      activerecord (= 3.2.22.2)
+      activeresource (= 3.2.22.2)
+      activesupport (= 3.2.22.2)
+      bundler (~> 1.0)
+      railties (= 3.2.22.2)
+    rails-i18n (3.0.1)
+      i18n (~> 0.5)
+      rails (>= 3.0.0, < 4.0.0)
+    railties (3.2.22.2)
+      actionpack (= 3.2.22.2)
+      activesupport (= 3.2.22.2)
+      rack-ssl (~> 1.3.2)
+      rake (>= 0.8.7)
+      rdoc (~> 3.4)
+      thor (>= 0.14.6, < 2.0)
+    rake (11.1.2)
+    ransack (1.7.0)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.2)
+    rdoc (3.12.2)
+      json (~> 1.4)
+    readmorejs-rails (0.0.12)
+      railties (>= 3.2, < 5.0)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
+    sass (3.2.12)
+    sass-rails (3.2.6)
+      railties (~> 3.2.0)
+      sass (>= 3.1.10)
+      tilt (~> 1.3)
+    socialization (1.1.0)
+      activerecord
+    soundmanager2-rails (2.97.20150601)
+    sprockets (2.2.3)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.8)
+    therubyracer (0.10.2)
+      libv8 (~> 3.3.10)
+    thin (1.6.2)
+      daemons (>= 1.0.9)
+      eventmachine (>= 1.0.0)
+      rack (>= 1.0.0)
+    thor (0.19.1)
+    thread_safe (0.1.3)
+      atomic
+    tilt (1.4.1)
+    tooltipster-rails (3.2.6)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
+    turbo-sprockets-rails3 (0.3.14)
+      railties (> 3.2.8, < 4.0.0)
+      sprockets (>= 2.2.0)
+    turbolinks (2.5.3)
+      coffee-rails
+    twitter-bootstrap-rails (2.2.8)
+      actionpack (>= 3.1)
+      execjs
+      rails (>= 3.1)
+      railties (>= 3.1)
+    tzinfo (0.3.50)
+    uglifier (2.2.1)
+      execjs (>= 0.3.0)
+      multi_json (~> 1.0, >= 1.0.2)
+    warden (1.2.3)
+      rack (>= 1.0)
+    websocket-driver (0.5.1)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.1)
+    will_paginate (3.0.5)
+    will_paginate-bootstrap (0.2.5)
+      will_paginate (>= 3.0.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  acts-as-taggable-on
+  ancestry
+  birthday (= 0.3.1.1)
+  bootstrap_forms
+  cancancan
+  ckeditor (= 4.0.6)
+  clockwork
+  coffee-rails (~> 3.2.1)
+  daemons
+  delayed_job_active_record
+  devise
+  devise-russian
+  fancybox2-rails
+  faye-rails (~> 2.0)
+  friendly_id
+  haml-rails
+  holidays (= 3.3.0)
+  jcrop-rails
+  jquery-fileupload-rails
+  jquery-rails
+  jquery-turbolinks
+  jquery-ui-rails
+  less-rails
+  meta-tags
+  nested_form
+  paperclip
+  rails (= 3.2.22.2)
+  rails-i18n (~> 3.0.0)
+  ransack
+  readmorejs-rails
+  russian
+  sass-rails (~> 3.2.3)
+  socialization
+  soundmanager2-rails
+  sqlite3
+  therubyracer (= 0.10.2)
+  thin
+  tooltipster-rails
+  turbo-sprockets-rails3
+  turbolinks
+  twitter-bootstrap-rails
+  uglifier (>= 1.0.3)
+  will_paginate (~> 3.0)
+  will_paginate-bootstrap (< 1.0.0)

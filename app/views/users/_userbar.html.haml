@@ -1,0 +1,13 @@
+%ul.nav.pull-right
+  -if user_signed_in?
+    %li{class: (params[:controller] == 'rounds') ? 'active' : ''}
+      = link_to rounds_path do
+        %i.icon-list
+        =t 'shared.sport'
+
+  - if user_signed_in?
+    %li= link_to (current_user.profile.login? ? current_user.profile.login : current_user.email), [current_user, current_user.profile]
+    %li= link_to t('devise.logout'), destroy_user_session_path, method: :delete
+  - else
+    %li= link_to t('devise.login'), new_user_session_path
+    %li= link_to t('devise.signup'), new_user_registration_path

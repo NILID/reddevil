@@ -1,0 +1,17 @@
+- model_class = Note
+.page-header
+  %h4
+    =t '.title', :default => model_class.model_name.human.titleize
+    -if @note.status == 'done'
+      %span.label.label-success= t ("notes.#{@note.status}")
+    -elsif @note.status == 'failed'
+      %span.label.label-important= t ("notes.#{@note.status}")
+    -else
+      %span.label.label-info= t ("notes.#{@note.status}")
+
+%p= @note.content
+
+-if can? :manage, Note
+  .form-actions
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_note_path(@note), :class => 'btn'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), note_path(@note), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

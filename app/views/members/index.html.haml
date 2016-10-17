@@ -1,0 +1,49 @@
+- model_class = Member
+.page-header
+  %h1=t 'member.title'
+%table.table.table-striped.ny-block
+
+  %thead
+    %tr
+      %th
+      %th= sort_link @q, :surname, model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:short_number)
+      %th= model_class.human_attribute_name(:email)
+
+
+      -if can? :manage, Member
+        %th=t '.actions', :default => t("helpers.actions")
+
+  %tbody
+
+    - @members.each_with_index do |member, index|
+      =content_tag_for(:tr, member) do
+        %td=index+1
+        %td
+          %span.membername
+            =member.full_name
+            -if member.phone.present? || member.birth.present?
+              %span.icon.showinfo.icon-chevron-down
+          -if member.phone.present? || member.birth.present?
+            .hidden_info
+              -if member.phone
+                %p
+                  %span.icon.icon-phone
+                  =number_to_phone(member.phone, area_code: true)
+              -if member.birth
+                %p
+                  %span.icon.icon-gift
+                  = show_birth member
+        %td
+          =member.short_number
+        %td
+          %span.icon.icon-email
+          =mail_to member.email
+
+
+        -if can? :manage, member
+          %td
+            = link_to t('.edit', :default => t("helpers.links.edit")), edit_member_path(member), :class => 'btn btn-mini'
+            = link_to t('.destroy', :default => t("helpers.links.destroy")), member_path(member), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_member_path, :class => 'btn btn-primary' if can? :create, Member

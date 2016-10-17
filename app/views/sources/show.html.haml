@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b File:
+  = @source.file
+%p
+  %b Work:
+  = @source.work
+
+= link_to 'Edit', edit_source_path(@source)
+\|
+= link_to 'Back', sources_path

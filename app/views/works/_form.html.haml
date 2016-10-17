@@ -1,0 +1,30 @@
+= nested_form_for [@art, @work], :html => { :class => 'form-horizontal' } do |f|
+  - if @work.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@work.errors.count, "error")} prohibited this work from being saved:"
+      %ul
+        - @work.errors.full_messages.each do |msg|
+          %li= msg
+
+  .control-group
+    = f.label :desc, class: 'control-label'
+    .controls= f.text_area :desc, :class => 'input-xxlarge', rows: 3
+
+  = f.fields_for :sources do |source_form|
+    .control-group.well.well-small
+      = source_form.label :file, class: 'control-label'
+      .controls
+        = source_form.file_field :file, :class => 'text_field'
+        = image_tag source_form.object.file(:thumb), class: 'img-polaroid' if source_form.object.file?
+        = source_form.link_to_remove t('shared.del')
+      .controls
+        = source_form.label :hide, class: 'checkbox' do
+          = source_form.check_box :hide
+          =t 'slides.hide'
+
+
+  = f.link_to_add t('slides.add'), :sources
+
+
+  .form-actions
+    = f.submit (params[:action] == 'new' ? t('work.to_create') : t('work.to_save')), class: 'btn'

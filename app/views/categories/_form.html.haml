@@ -1,0 +1,23 @@
+= form_for @category, :html => { :class => 'form-horizontal' } do |f|
+  - if @category.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@category.errors.count, "error")} prohibited this album from being saved:"
+      %ul
+        - @category.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.hidden_field :parent_id
+
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, autofocus: true, :class => 'text_field'
+
+    .controls
+      =f.label :hidden, class: 'checkbox' do
+        = f.check_box :hidden
+        =t 'categories.hide'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), categories_path, :class => 'btn'

@@ -1,0 +1,11 @@
+.team-commands {
+  text-align:right;width:160px;
+  .team{clear:both;}
+  .team-name {
+    float:left;
+    img {border: 1px solid #999}
+    line-height:30px;
+  }
+  .team-goal {float:right;font-weight:600;}
+  .team-name,.team-goal {line-height:25px}
+}

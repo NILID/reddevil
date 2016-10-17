@@ -1,0 +1,48 @@
+@import 'mixins';
+
+body {
+
+background: #eee;
+
+}
+
+#wrapper {min-height:100%;position:relative;
+
+
+/*NEW YEAR  background: #52b2d8*/
+
+}
+
+.main-content {padding-bottom:200px;}
+footer {
+  position:absolute;bottom:0;left:0;height:200px;
+  /*NEW YEAR  background:url(newbg.jpg) no-repeat center bottom;*/
+  width:100%;
+}
+
+.birthday-block {
+  hr {margin: 0 0 10px 0}
+}
+
+.sec-links {display:none;}
+
+.nav-tabs > .active {
+  & > a, & > a:hover, & > a:focus {outline:none}
+}
+
+.tip-text {display:none;}
+.tip {cursor: help}
+
+.matthew {background: url(matthew.gif);display:block;width:480px;height:270px;margin:40px auto}
+
+.fucking_error {color:#999;font-size:48px;}
+
+#top-link-block{
+  &.affix-top {position:absolute;bottom:-82px;left:10px;}
+  &.affix {position:fixed;bottom:18px;left:10px}
+  &:hover a, &:focus a, & a:active, & a:visited, & a:link {text-decoration:none;}
+}
+
+.nav-reddevil {
+  .slide-link.hide {@include opacity(0.5)}
+}

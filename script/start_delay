@@ -1,0 +1,2 @@
+bundle exec clockworkd -c clockwork.rb start
+RAILS_ENV=development script/delayed_job start

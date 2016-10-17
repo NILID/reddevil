@@ -1,0 +1,31 @@
+=content_for :sidebar do
+  =search_form_for(@q, url: albums_path) do |f|
+    .controls
+      .input-prepend
+        %span.add-on
+          %i.icon-search
+        =f.text_field :file_file_name_cont, placeholder: t('shared.search'), class: 'search_field'
+
+%p.text-right
+  %span.label.label-info
+    = plural(Song.count, 'song')
+    (#{number_to_human_size(Song.sum(:file_file_size))})
+
+.ny-block
+  %ul.nav.nav-tabs#song_tabs
+    -if params[:q]
+      %li= link_to t('songs.find'), '#find_songs', "data-toggle" => 'tab'
+    %li= link_to t('albums.all'), '#main_songs', "data-toggle" => 'tab'
+    %li= link_to t('albums.newer'), '#new_songs', "data-toggle" => 'tab'
+    %li= link_to t('albums.add'), new_album_path if can? :new, Album
+
+  .tab-content
+    -if params[:q]
+      %ul.playlist.tab-pane.fade#find_songs=render @songs, showalbum: true
+
+    %ul.mainlist.tab-pane.fade#main_songs=render @albums
+    %ul.playlist.tab-pane.fade#new_songs
+      .endless=render @new_songs, showalbum: true
+
+      =will_paginate @new_songs
+

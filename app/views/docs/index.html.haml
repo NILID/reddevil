@@ -1,0 +1,33 @@
+-content_for :sidebar do
+  .ny-block
+    %h4
+      =link_to t('categories.title'), docs_path
+      - if can? :manage, Category
+        = link_to categories_path, :class => 'btn btn-mini' do
+          %i.icon-cog
+
+    -if user_signed_in?
+      =search_form_for(@q, url: docs_path ) do |f|
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-search
+            =f.text_field :title_cont, placeholder: t('shared.search'), class: 'search_field'
+
+    =#nested_messages Category.first.subtree.arrange(order: 'created_at desc')
+    = arranged_tree_as_list(@categories, {:list_style => :boostrap_list_group}) do |category|
+      = link_to(docs_path(by_category: category.id), remote: true, class: "slide-link #{category.hidden? ? 'hide' : ''}") do
+        =category.title
+
+
+#doc-list.ny-block
+  - model_class = Doc
+  .page-header
+    %h4
+      =t 'docs.title'
+      %span.category-info=t('docs.in_category', category: @cat.title) if @cat
+
+      - if can? :manage, Doc
+        %small= link_to t('.new', :default => t("helpers.links.new")), new_doc_path, :class => 'btn btn-primary'
+
+  =render @docs

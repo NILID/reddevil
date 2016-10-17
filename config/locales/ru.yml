@@ -1,0 +1,266 @@
+ru:
+  shared:
+    title: Главная
+    music: Музыка
+    art: Арт
+    more: дальше
+    chat: Чат
+    show: Показать
+    back: Назад
+    info: Инфо
+    birthdays: Скоро дни рождения
+    birthday: Скоро день рождения
+    birthdays_today: Сегодня дни рождения
+    birthday_today: Сегодня день рождения
+    birthdays_tomorrow: Завтра день рождения
+    birthdays_yesterday: Вчера был день рождения
+    birthdays_prevyesterday: Позавчера был день рождения
+    errors: Невозможно сохранить (%{error})
+    edit: Редактировать
+    create: Создать
+    del: Удалить
+    sure: Вы уверены?
+    add: Добавить
+    save: Сохранить
+    today: Сегодня
+    tomorrow: Завтра
+    repeat: Повторить
+    up: вверх
+    search: Поиск
+    sport: Спорт
+    mid: среднее
+    saving: Сохранение...
+    rating: Рейтинг знатоков
+  devise:
+    logout: Выйти
+    login: Войти
+    sign: Вход
+    signup: Регистрация
+    tosignup: Зарегистрироваться
+    forgot: Забыли пароль?
+    remember: Запомнить меня
+    sendmepassword: Выслать письмо с подтверждением сброса пароля
+    no_confirm: Не получили письмо с подтверждением регистрации?
+  notes:
+    title: Заметки по работе сайта
+    creating: Создание заметки
+    editing: Редактирование заметки
+    new: новая
+    failed: отклонено
+    done: выполнено
+  mirrors:
+    dont_add: "Не вошли:"
+    import: Импорт
+  art:
+    create: Создание артблока
+    edit: Редактирование артблока
+    new_artblock: Новый артблок
+    empty: Участник пока не добавил свои работы
+    you_empty: Вы пока не добавили свои работы
+    already_exist: с такой же датой уже создан
+    was_created: Артблок был создан
+    was_updated: Артблок был обновлен
+  member:
+    title: Сотрудники
+    add: Новый сотрудник
+    edit: Редактирование сотрудника
+    turn: исполняется
+    willturn: исполнится
+    turned: исполнилось
+  matches:
+    add: Добавить матч
+    basic: основное время
+    basic_short: О
+    overtime: дополнительное время
+    overtime_short: Д
+    penalty: пенальти
+    penalty_short: П
+  albums:
+    title: Альбомы
+    add: Добавить альбом
+    favorites: Избранное
+    all: Вся коллекция
+    newer: Последние добавленные
+  results:
+    true_winner: угадал победителя
+    true_diff: угадал разницу мячей
+    true_match: угадал результат матча
+    true_final_end: угадал время исхода матча
+    rebuild: Пересчитать
+  docs:
+    title: Документы
+    last_docs: Последние документы
+    download: Ознакомиться
+    all: Весь список
+    creating: Создание документа
+    editing: Редактирование документа
+    in_category: в категории "%{category}"
+  comments:
+    no_more: Не может быть пустым, или больше 2000 символов
+    send: Отправить
+    says: сказал
+  teams:
+    add: Добавить команду
+    select_team: Выбрать команду
+  rounds:
+    add: Добавить раунд
+    deadline: "Дэдлайн:"
+  songs:
+    title: Песни
+    add: Добавить песню
+    like: Добавить в избранное
+    unlike: Убрать из избранного
+  categories:
+    title: Категории
+    add_subcategory: Добавить подкатегорию
+    select_category: == Выберите категорию ==
+    creating: Создание категории
+    editing: Редактирование категории
+    hide: Скрыть
+  profiles:
+    editing: Редактирование профиля
+    edit: Редактировать профиль
+  mailer:
+    birthday: День Рождения!
+  forecasts:
+    add: cоздать
+    edit: изменить
+    creating: Создание прогноза
+    editing: Редактирование прогноза
+    already_voted: Вы уже проголосовали
+    already_end: Уже закончился
+  slides:
+    add: Добавить слайд
+    hide: Ограниченный предосмотр
+  work:
+    edit: Редактирование работы
+    create: Создание работы
+    to_save: Сохранить работу
+    to_create: Создать работу
+    was_created: Работы были созданы
+    was_updated: Работы были обновлены
+  message:
+    title: Сообщения
+    info_html: <b>Сообщения</b> отображаются на главной странице, могут служить для оповещения пользователей о важных событиях. Может отображаться сразу несколько штук.
+    edit: Редактирование сообщения
+    create: Создание сообщения
+    was_created: Сообщение было создано
+    was_updated: Сообщение были обновлено
+    close: скрыто
+  helpers:
+    actions: Действия
+    links:
+      edit: Редактировать
+      back: Назад
+      destroy: Удалить
+      new: Добавить
+      cancel: Отмена
+      show: Показать
+  activerecord:
+    models:
+      member: участник
+      user: пользователь
+      comment: сообщение
+      profile: профиль
+      work: работа
+      source: слайд
+      art: артблок
+      doc: документ
+      category: категория
+      note: заметка
+      message: сообщение
+      match: матч
+      round: раунд
+      team: команда
+      forecast: прогноз
+    attributes:
+      message:
+        title: Название
+        content: Текст сообщения
+        close: Скрытие
+      art:
+        deadline: Дедлайн
+      round:
+        title: Название
+        close: Скрытность
+        content: Описание
+      forecast:
+        winner_id: Победитель
+        ending: Завершение матча
+        team1goal: Голы первой команды
+        team2goal: Голы второй команды
+        match_id: Матч
+      match:
+        team1_id: Первая команда
+        team2_id: Вторая команда
+        team1goal: Голы первой команды
+        team2goal: Голы второй команды
+      work:
+        desc: Описание
+      team:
+        title: Название
+        content: Описание
+        type_id: Тип
+        flag: Флаг
+      category:
+        title: Название
+        hidden: Архивное
+      doc:
+        title: Название
+        desc: Описание
+        file: Документ
+        category: Категория
+      note:
+        content: Описание
+        status: Статус
+        created_at: Создано
+      source:
+        file: Слайд
+      member:
+        name: Имя
+        surname: Фамилия
+        patronymic: Отчество
+        birth: Дата рождения
+        phone: Номер телефона
+        short_number: Доб. номер
+      user:
+        password: Пароль
+        password_confirmation: Повторите пароль
+      comment:
+        body: Текст сообщения
+      profile:
+       login: Логин
+       avatar: Аватар
+  date:
+    formats:
+      very_short: "%d %B"
+      short: "%d %B %Y"
+  plural:
+    song_1: композиция
+    song_2: композиции
+    song_10: композиций
+    album_1: альбом
+    album_2: альбома
+    album_10: альбомов
+    year_1: год
+    year_2: года
+    year_10: лет
+    error_1: ошибка
+    error_2: ошибки
+    error_10: ошибок
+    match_1: матч
+    match_2: матча
+    match_10: матчей
+    forecast_1: прогноз
+    forecast_2: прогноза
+    forecast_10: прогнозов
+    user_1: участник
+    user_2: участника
+    user_10: участников
+
+  will_paginate:
+    next_label: Следующее
+    previous_label: Предыдущее
+  time:
+    formats:
+      short: %d %B %Y

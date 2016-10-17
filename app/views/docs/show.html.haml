@@ -1,0 +1,22 @@
+- model_class = Doc
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:title) + ':'
+  %br
+  = @doc.title
+%p
+  %strong= model_class.human_attribute_name(:desc) + ':'
+  %br
+  = @doc.desc
+%p
+  %strong= model_class.human_attribute_name(:file_file_name) + ':'
+  %br
+  = @doc.file_file_name
+
+-if can? :manage, @doc
+  .form-actions
+    = link_to t('.back', :default => t("helpers.links.back")), docs_path, :class => 'btn'
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_doc_path(@doc), :class => 'btn'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), doc_path(@doc), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

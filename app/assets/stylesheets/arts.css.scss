@@ -1,0 +1,20 @@
+@import 'mixins';
+
+.art-titleblock {
+  background: #ddd;
+  @include linear-gradient(rgba(200, 200, 200, 0.5), rgba(255, 255, 255, 0.01), bottom, top);
+  border-bottom: none;
+  line-height:30px;
+}
+
+.art-title {
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
+  padding-top:14px;
+  color: #aaa;
+  font-size: 15px;
+  font-weight:600
+}
+
+.devilgallery {
+  .img-polaroid {margin-bottom:10px;margin-right:10px}
+}

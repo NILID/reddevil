@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Desc:
+  = @work.desc
+%p
+  %b Art:
+  = @work.art
+
+= link_to 'Edit', edit_work_path(@work)
+\|
+= link_to 'Back', works_path

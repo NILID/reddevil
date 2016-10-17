@@ -1,0 +1,6 @@
+$('#doc-list').html('<%= j render @docs%>')
+<%if @cat%>
+  $('.category-info').html('<%= j I18n.t('docs.in_category', category: @cat.title)%>')
+<%else%>
+  $('.category-info').html()
+<%end%>

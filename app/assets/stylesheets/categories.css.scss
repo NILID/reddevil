@@ -1,0 +1,8 @@
+@import 'mixins';   
+
+.category.redhide{@include opacity(0.5)}
+
+.nav-children{margin-left:20px;}
+.slide-block {display:none;}
+
+.nav-reddevil .nav{margin-bottom:0px;}

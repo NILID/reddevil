@@ -1,0 +1,54 @@
+= nested_form_for @round, :html => { :class => 'form-horizontal' } do |f|
+  - if @round.errors.any?
+    .alert.alert-error
+      %h4= "#{pluralize(@round.errors.count, "error")} prohibited this work from being saved:"
+      %ul
+        - @round.errors.full_messages.each do |msg|
+          %li= msg
+
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+  .control-group
+    = f.label :content, :class => 'control-label'
+    .controls
+      = f.text_field :content, :class => 'text_field'
+  .control-group
+    .controls
+      #datetimeround.input-append.date
+        =#f.date_select :deadline, default: {hour: 16, minute: 0}
+        =f.text_field :deadline, "data-format" => 'dd.MM.yyyy hh:mm:ss'
+        %span.add-on
+          %i.icon-th
+
+  .control-group
+    = f.label :close, :class => 'control-label'
+    .controls
+      = f.check_box :close, :class => 'check_box'
+
+  = f.fields_for :matches do |m|
+    .control-group.well.well-small
+      = m.label :team1_id
+      = m.select(:team1_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+
+      = m.label :team2_id
+      = m.select(:team2_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+
+      = m.label :winner
+      = m.select(:winner_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+
+      = m.label :team1goal
+      = m.number_field :team1goal
+
+      = m.label :team2goal
+      = m.number_field :team2goal
+
+      = m.label :ending
+      = m.select(:ending, Match::ENDING.collect {|e| [ t(e),  e]})
+
+  = f.link_to_add t('matches.add'), :matches
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), rounds_path, :class => 'btn'

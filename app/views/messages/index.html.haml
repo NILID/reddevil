@@ -1,0 +1,31 @@
+- model_class = Message
+
+-content_for :sidebar do
+  .well=t 'message.info_html'
+
+.page-header
+  %h1
+    =t 'message.title'
+    = link_to t('.new', :default => t("helpers.links.new")), new_message_path, :class => 'btn btn-primary' if can? :manage, Message
+%table.table
+  %thead
+    %tr
+      %th
+      %th
+  %tbody
+    - @messages.each do |message|
+      %tr
+        %td
+          .well
+            %b= message.title
+            %p= message.content
+            %p
+              =l message.created_at
+        -if can? :manage, Message
+          %td
+            = link_to t('.edit', :default => t("helpers.links.edit")), edit_message_path(message), :class => 'btn btn-mini'
+            = link_to t('.destroy', :default => t("helpers.links.destroy")), message_path(message), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+            -if message.close?
+              %h3
+                %span.label.label-important= t 'message.close'
+

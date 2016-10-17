@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+classic:
+  title: HIM
+  slug: him
+
+metal:
+  title: Metal
+  slug: metal

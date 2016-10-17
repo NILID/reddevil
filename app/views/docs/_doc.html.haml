@@ -1,0 +1,11 @@
+=div_for doc, class: 'well well-small' do
+  %h6
+    = doc.title
+    %span.text-right
+      -if doc.category
+        %span.label.label-info=doc.category.title
+  %p= simple_format doc.desc
+  = link_to t('docs.download'), doc.file.url, :class => 'btn btn-mini btn-primary', target: '_blank'
+  - if can? :manage, Doc
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_doc_path(doc), :class => 'btn btn-mini'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), doc_path(doc), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

@@ -1,0 +1,11 @@
+= form_for @tempuser, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :username, :class => 'control-label'
+    .controls= f.text_field :username, :class => 'text_field'
+
+  .control-group
+    = f.label :user_id, :class => 'control-label'
+    .controls= f.select(:user_id, User.order(:email).collect {|u| [ u.email,  u.id]}, { include_blank: t('tempusers.select_user') } )
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), tempusers_path, :class => 'btn'

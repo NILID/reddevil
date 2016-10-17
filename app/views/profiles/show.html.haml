@@ -1,0 +1,19 @@
+.page-header
+  %h3
+    -if @user.tempuser
+      = @user.tempuser.username
+      (#{@user.profile.login? ? @user.profile.login : @user.email})
+    -else
+      = @user.profile.login? ? @user.profile.login : @user.email
+    %small=link_to t('profiles.edit'), edit_user_profile_path(@user) if can? :edit, @user.profile
+
+
+=image_tag @user.profile.avatar.url(:medium), class: 'thumbnail'
+
+-if can? :make_role, @user
+  =form_for(@user, url: make_role_user_path(@user), html: {method: :post}) do |f|
+    -User::ROLES.each do |role|
+      %p
+        =check_box_tag "user[roles][]", role, @user.role?(role)
+        =label_tag role
+    =f.submit

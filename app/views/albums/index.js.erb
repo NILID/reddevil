@@ -1,0 +1,6 @@
+$('.endless').append('<%= j render @new_songs, showalbum: true %>');
+<% if @new_songs.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate(@new_songs, page_links: false) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %> 

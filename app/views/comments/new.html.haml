@@ -1,0 +1,8 @@
+=content_for :js do
+  =javascript_include_tag 'faye'
+
+= render 'form'
+#comments.panel.panel-default
+  .panel-body
+    %ul.media-list
+      = render @comments

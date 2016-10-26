@@ -111,6 +111,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    high_voltage (3.0.0)
     hike (1.2.3)
     holidays (3.3.0)
     http_parser.rb (0.6.0)
@@ -264,6 +265,7 @@ DEPENDENCIES
   faye-rails (~> 2.0)
   friendly_id
   haml-rails
+  high_voltage
   holidays (= 3.3.0)
   jcrop-rails
   jquery-fileupload-rails

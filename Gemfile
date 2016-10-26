@@ -10,6 +10,8 @@ gem 'thin'
 
 gem 'sqlite3'
 
+gem 'high_voltage'
+
 gem 'holidays', '3.3.0'
 
 gem 'ckeditor', '4.0.6'

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :comments, dependent: :delete_all
   has_many :works
+  has_many :events
   has_one :profile, :dependent => :destroy
   has_one :tempuser
   ROLES = %w[admin user moderator editor test]
@@ -43,6 +44,10 @@ class User < ActiveRecord::Base
 
   def has_group?(group)
     groups.include?(group.to_s)
+  end
+
+  def start_time
+    self.created_at.change(year: 2016)
   end
 
   private

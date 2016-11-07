@@ -1,0 +1,6 @@
+.page-header
+  %h1= @event.title
+%p
+  = @event.content
+
+= link_to t('shared.edit'), edit_user_event_path(@user, @event) if can? :manage, @event

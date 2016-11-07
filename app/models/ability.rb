@@ -14,6 +14,7 @@ class Ability
     can :read, :all
     can :rebuild, Result
     cannot :read, [Art, Work, Forecast]
+    can :list, [Event]
 
     if user.role? :user
       can [:new, :create], Note

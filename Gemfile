@@ -7,6 +7,7 @@ gem 'rails', '3.2.22.2'
 #gem 'pg'
 
 gem 'thin'
+gem 'momentjs-rails'
 
 gem 'sqlite3'
 
@@ -63,10 +64,9 @@ gem 'will_paginate', '~> 3.0'
 
 gem 'turbo-sprockets-rails3'
 
-gem 'jquery-turbolinks'
-gem 'turbolinks'
-
-gem 'faye-rails', '~> 2.0'
+# gem 'jquery-turbolinks'
+# gem 'turbolinks'
+# gem 'faye-rails', '~> 2.0'
 
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
@@ -79,7 +79,7 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', '0.10.2', :platforms => :ruby
-  
+
   gem 'uglifier', '>= 1.0.3'
   gem 'tooltipster-rails'
   #gem 'jcrop-rails-v2'
@@ -95,7 +95,7 @@ gem 'jquery-ui-rails'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder'
 
 
 # Use unicorn as the app server

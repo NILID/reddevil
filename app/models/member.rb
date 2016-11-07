@@ -15,4 +15,8 @@ class Member < ActiveRecord::Base
     self.birth.strftime('%m')
   end
 
+  def start_time
+    self.birth.change(year: DateTime.now.year)
+  end
+
 end

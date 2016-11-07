@@ -1,0 +1,16 @@
+.navbar
+  .navbar-inner
+    .container
+      %a.brand(href="/") REDDEVIL
+      %ul.nav
+        %li{class: (params[:controller] == 'members') ? 'active' : ''}= link_to t('member.title'), members_path
+        %li{class: ((params[:controller] == 'main') && (params[:action] == 'calendar')) ? 'active' : ''}= link_to t('shared.calendar'), calendar_path
+        %li{class: (params[:controller] == 'docs') ? 'active' : ''}=link_to t('docs.title'), docs_path
+        -if user_signed_in?
+          %li{class: (params[:controller] == 'albums') || (params[:controller] == 'songs') ? 'active' : ''}= link_to t('shared.music'), albums_path
+        -if can? :read, Art
+          %li{class: (params[:controller] == 'arts') ? 'active' : ''}= link_to t('shared.art'), arts_path
+        -if can? :manage, Message
+          %li{class: (params[:controller] == 'messages') ? 'active' : ''}= link_to t('message.title'), messages_path
+      =render 'users/userbar'
+

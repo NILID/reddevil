@@ -11,7 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery-fileupload
@@ -22,9 +21,6 @@
 //= require soundmanager2-nodebug-jsmin
 //= require page-player
 //= require optional-page-player-metadata
-//= require jquery.tooltipster.min.js
-//= require polling
-//= require comments
-//= require turbolinks
+//= require moment
 //= require fancybox
 //= require_tree .

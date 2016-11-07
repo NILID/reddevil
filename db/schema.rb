@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160809071308) do
+ActiveRecord::Schema.define(:version => 20161107070824) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(:version => 20160809071308) do
     t.datetime "updated_at",        :null => false
     t.integer  "category_id"
   end
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "follows", :force => true do |t|
     t.string   "follower_type"

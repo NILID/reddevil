@@ -5,6 +5,7 @@
         .alert.alert-info
           %h5=message.title
           %p= simple_format message.content
+
 .row
   -if !@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?
     .span6{class: (@holidays_today.empty? && @holidays_tomorrow.empty?) ? 'offset3' : ''}

@@ -1,5 +1,11 @@
 Birthday::Application.routes.draw do
 
+  resources :events, only: [:list] do
+    collection do
+      get 'list'
+    end
+  end
+
   scope 'sport' do
     resources :rounds do
       resources :matches
@@ -57,6 +63,7 @@ Birthday::Application.routes.draw do
       post 'make_role'
     end
     resource :profile, only: [:edit, :update, :show]
+    resources :events
   end
 
   resources :albums do
@@ -76,6 +83,7 @@ Birthday::Application.routes.draw do
 
   resources :members, except: [:show]
 
+  get 'calendar' => 'main#calendar'
   get 'mirror' => 'main#mirror'
   post 'import' => 'main#import'
   get 'nextsong' => 'main#nextsong'

@@ -7,37 +7,33 @@ class Ability
 
 
     #everybody
-    cannot [:manage, :read], Message
+    cannot [:manage, :read], [Message, Folder, Dataset]
     can [:new, :create], Note
     cannot [:edit, :update], Profile
     cannot :read, Doc, category: {hidden: true}
     can :read, :all
     can :rebuild, Result
-    cannot :read, [Art, Work, Forecast]
+    cannot :read, [Art, Work, Forecast, Song, Album, Round, Forecast]
     can :list, [Event]
 
     if user.role? :user
-      can [:new, :create], Note
-      can :manage, [Song, Album]
       can [:edit, :update], Profile, user: {id: user.id}
-      can :like, Song
       can :read, :all
-
-      cannot [:read], Forecast
       can [:destroy, :edit, :update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.tempuser.user_id == user.id)
       end
-      can [:new, :create], Forecast, tempuser: {user_id: user.id}
 
       cannot :read, Doc, category: {hidden: true}
-      can [:favorites, :list], Album
+
       cannot [:manage, :read], Message
+      cannot :read, [Song, Album, Art, Work, Forecast, Round]
+      can [:favorites], Subscribe
     end
 
     ################# MODERATOR USER
     if user.role? :moderator
       can :manage, [Doc, Category]
-      can [:new, :create], [Art, Note]
+      can [:new, :create], [Art]
       can [:new, :create], Work, art: {closed?: false}
       can [:edit, :update, :destroy], Work, user: {id: user.id}, art: {closed?: false}
       can :manage, Source, work: {user_id: user.id}
@@ -48,49 +44,40 @@ class Ability
     end
 
     if user.role? :admin
-      cannot [:read], Forecast
+
       can [:read], Forecast do |f|
         (f.round.deadline < DateTime.now) || (f.tempuser.user_id == user.id)
       end
 
       can [:read, :manage], :all
+      can [:import], Subscribe
+      cannot [:read, :manage], [Dataset, Folder]
 
-      can :list, Album
-      can :like, Song
       can :counted, Result
 #      can :read, Material, groups_mask: user.groups_mask
       cannot [:edit, :update], Art do |art|
         art.closed?
       end
-      can [:make_role], User
+      can :make_role, User
+      cannot :read, [Art, Work, Song, Album, Round, Forecast]
     end
 
+    if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
+      can [:manage, :read], Folder, user: {id: user.id}
+      can [:manage, :read], Dataset, folder: {user_id: user.id}
+    end
 
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details:
-    # https://github.com/bryanrite/cancancan/wiki/Defining-Abilities
+    if user.has_group? :lab193
+      can [:manage, :read], [Song, Album, Art, Work]
+      can [:read], [Art, Work, Round]
+      can :like, Song
+      can [:favorites, :list], Album
+
+      can [:new, :create], Forecast, tempuser: {user_id: user.id}
+    end
+
+    if user.has_group? :sellers
+      can [:manage, :read], [Purchase]
+    end
   end
 end

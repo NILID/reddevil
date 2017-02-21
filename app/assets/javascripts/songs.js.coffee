@@ -1,12 +1,18 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   if $('.pagination').length
     $(window).scroll ->
       url = $('.pagination .next_page').attr('href')
       if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
-        $('.pagination').text("Load songs...")
+        $('.pagination').text("Load items...")
         $.getScript(url)
     $(window).scroll() 
+
+  if $('.paginator').length
+    $(window).scroll ->
+      url = $('.paginator .next_page').attr('href')
+      if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
+        $('.paginator').text("Load items...")
+        $.getScript(url)
+    $(window).scroll() 
+
 

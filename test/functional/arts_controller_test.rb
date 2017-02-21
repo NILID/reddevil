@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ArtsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @art = arts(:one)
   end

@@ -1,0 +1,7 @@
+.control-group
+  = f.label element, class: 'control-label'
+  .controls
+    .input-append.date
+      =f.text_field element, class: 'datepicker', value: (f.object[element].strftime('%d.%m.%Y') if f.object[element])
+      %span.add-on
+        %i.icon-th

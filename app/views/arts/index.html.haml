@@ -37,6 +37,4 @@
             =render art.works.where(user_id: user_id).first
   .row.text-center= will_paginate @arts, renderer: BootstrapPagination::Rails
 
-%span#top-link-block
-  =link_to('#top', class: 'well well-small', onclick: "$('html,body').animate({scrollTop:0},'slow');return false;") do
-    %i.icon.icon-chevron-up
+=render 'main/toplink'

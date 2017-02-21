@@ -1,13 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  tempuser: 
-  match: 
+  tempuser: one
+  match: one
   team1goal: 1
   team2goal: 1
 
 two:
-  tempuser: 
-  match: 
+  tempuser: one
+  match: two
   team1goal: 1
   team2goal: 1

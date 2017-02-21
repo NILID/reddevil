@@ -1,5 +1,4 @@
 $ ->
-
   soundManager.defaultOptions =
     loops: 1
 
@@ -13,6 +12,7 @@ $ ->
 
   $("a.fancybox").fancybox()
 
+  $('.dropdown-toggle').dropdown()
 
   $('.slide-link').click ->
     $(this).next('ul').children('.slide-block').slideToggle()
@@ -51,3 +51,14 @@ $ ->
 
   if $(window).height() + 100 < $(document).height()
     $('#top-link-block').removeClass('hidden').affix offset: top: 100
+
+  $(".best_in_place").best_in_place()
+
+  $.extend $.fn.datepicker.defaults,
+    format: 'yyyy-mm-dd'
+    language: "ru"
+    firstDate: 1
+
+  $('#changecolor').colorpicker().on 'changeColor', (e) ->
+    $('body')[0].style.backgroundColor = e.color.toString('rgba')
+    return

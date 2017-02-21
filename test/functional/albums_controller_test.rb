@@ -5,8 +5,8 @@ class AlbumsControllerTest < ActionController::TestCase
 
   setup do
     @album = albums(:metal)
-    @user=users(:da)
-    @admin=users(:admin)
+    @user  = users(:da)
+    @admin = users(:admin)
   end
 
   test "should get index" do

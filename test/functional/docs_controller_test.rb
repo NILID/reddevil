@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class DocsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @doc = docs(:one)
   end

@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ItemsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @item = items(:one)
   end

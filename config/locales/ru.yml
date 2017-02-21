@@ -3,6 +3,7 @@ ru:
     title: Главная
     music: Музыка
     art: Арт
+    close: Закрыть
     more: дальше
     chat: Чат
     show: Показать
@@ -16,22 +17,43 @@ ru:
     birthdays_tomorrow: Завтра день рождения
     birthdays_yesterday: Вчера был день рождения
     birthdays_prevyesterday: Позавчера был день рождения
-    errors: Невозможно сохранить (%{error})
+    errors: '%{error} допущена при заполнении формы:'
     edit: Редактировать
+    media: Медиа
     create: Создать
+    phonebook: Телефонная книга
     del: Удалить
     sure: Вы уверены?
     add: Добавить
+    sort: 'cортировать: '
     save: Сохранить
     today: Сегодня
     tomorrow: Завтра
     repeat: Повторить
+    cancel: Отмена
+    import: Импорт
     up: вверх
     search: Поиск
     sport: Спорт
     mid: среднее
+    hidden: (скрыто)
     saving: Сохранение...
     rating: Рейтинг знатоков
+    building: Внимание! Данный функционал находится в стадии разработки, возможны ошибки, недочеты и другие неожиданные пакости!
+  folder:
+    new: Создать папку
+    new_title: Новая папка
+    edit_title: Редактирование папки
+    already_exist_in_folder: В текущей директории уже существует папка с таким названием.
+  dataset:
+    title: Диск
+    new: Создать файл
+    help: В разделе "Диск" вы можете загружать и хранить документы. Все документы, которые вы загружаете, по умолчанию доступны только вам. В настоящее время функционал ограниченный.
+    new_title: Новый файл
+    edit_title: Редактирование файла
+    empty: Пустая папка
+    empty_root: Пусто
+    already_exist_in_folder: В текущей директории уже существует файл с таким названием.
   devise:
     logout: Выйти
     login: Войти
@@ -42,6 +64,17 @@ ru:
     remember: Запомнить меня
     sendmepassword: Выслать письмо с подтверждением сброса пароля
     no_confirm: Не получили письмо с подтверждением регистрации?
+  purchases:
+    title: Закупки
+    basic_info: общая информация
+    ask_price: запрос и сравнение цен
+    info_share: информационный обмен
+    erp: ерп
+    buy_depart: отдел закупок
+    dogovor_depart: договорной отдел
+    payment: оплата
+    delivery: поставка
+    result: итог
   notes:
     title: Заметки по работе сайта
     creating: Создание заметки
@@ -49,6 +82,12 @@ ru:
     new: новая
     failed: отклонено
     done: выполнено
+  subscribes:
+    search: Абонент
+    import: Импорт справочника
+    not_found: Не найдено абонентов по запросу
+    actual_date: по состоянию на 12 декабря 2016
+    choose_departament: == Выберите отдел ==
   mirrors:
     dont_add: "Не вошли:"
     import: Импорт
@@ -68,6 +107,15 @@ ru:
     turn: исполняется
     willturn: исполнится
     turned: исполнилось
+    ages: Возраст
+    min: минимальный
+    max: максимальный
+    total: общий
+    medium: средний
+    month_stat: месяца рождения
+    dayname_stat: дни рождения
+  users:
+    has_groups: Относится к группам
   matches:
     add: Добавить матч
     basic: основное время
@@ -174,13 +222,49 @@ ru:
       round: раунд
       team: команда
       forecast: прогноз
+      folder: папка
+      dataset: файл
     attributes:
       message:
         title: Название
         content: Текст сообщения
         close: Скрытие
+        purchase: Закупка
+      dataset:
+        title: Название
+        src: Файл
+      folder:
+        title: Название
       art:
         deadline: Дедлайн
+      purchase:
+        title: предмет закупки
+        price: сумма, руб
+        provider: поставщик
+        doc: тема/счёт
+        user_id: исполнитель
+        startdate: старт закупки
+        zkpdate: зкп
+        kp: кп
+        zsc_kp: зсц, кп
+        nmc: нмц
+        aztz: аз/тз/оеп
+        conclusion_expert: заключение экспертной группы
+        analytic: аналитическая справка
+        conclusion_pdtk: заключение пдтк / разрешение ио
+        erp: заказ (гид, номенклатура, контрагент, счёт/договор)
+        request: заявка / закупочная документация / публикация
+        bidding: торги
+        committee: закупочная комиссия (зк), протокол зк, озеп, озд
+        contract_request: запрос обоснование
+        contract_project: проект договора
+        contract: договор
+        prepay_date: аванс, дата
+        prepay_sum: аванс, сумма
+        warmth_date: постоплата, дата
+        warmth_sum: постоплата, сумма
+        proxy: доверенность
+        delivery: поставка
       round:
         title: Название
         close: Скрытность
@@ -214,9 +298,18 @@ ru:
       note:
         content: Описание
         status: Статус
+        review: Пояснение
         created_at: Создано
       source:
         file: Слайд
+      subscribe:
+        fullname: ФИО
+        departament: Код подразд.
+        position: Должность
+        place: Место нахождения
+        phone_inter: телефон внутренний
+        phone_city: телефон городской
+        email: E-mail
       member:
         name: Имя
         surname: Фамилия
@@ -231,7 +324,11 @@ ru:
         body: Текст сообщения
       profile:
        login: Логин
+       name: Имя
+       surname: Фамилия
+       patronymic: Отчество
        avatar: Аватар
+       background_color: Фон сайта
   date:
     formats:
       very_short: "%d %B"
@@ -258,10 +355,15 @@ ru:
     user_1: участник
     user_2: участника
     user_10: участников
-
+    subscribe_1: абонент
+    subscribe_2: абонента
+    subscribe_10: абонентов
+    member_1: сотрудник
+    member_2: сотрудника
+    member_10: сотрудников
   will_paginate:
     next_label: Следующее
     previous_label: Предыдущее
   time:
     formats:
-      short: %d %B %Y
+      short: '%d %B %Y'

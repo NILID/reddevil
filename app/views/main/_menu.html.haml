@@ -3,14 +3,42 @@
     .container
       %a.brand(href="/") REDDEVIL
       %ul.nav
-        %li{class: (params[:controller] == 'members') ? 'active' : ''}= link_to t('member.title'), members_path
-        %li{class: ((params[:controller] == 'main') && (params[:action] == 'calendar')) ? 'active' : ''}= link_to t('shared.calendar'), calendar_path
-        %li{class: (params[:controller] == 'docs') ? 'active' : ''}=link_to t('docs.title'), docs_path
-        -if user_signed_in?
-          %li{class: (params[:controller] == 'albums') || (params[:controller] == 'songs') ? 'active' : ''}= link_to t('shared.music'), albums_path
-        -if can? :read, Art
-          %li{class: (params[:controller] == 'arts') ? 'active' : ''}= link_to t('shared.art'), arts_path
+        %li{class: (params[:controller] == 'members') ? 'active' : nil}= link_to t('member.title'), members_path
+        %li{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}= link_to t('shared.calendar'), calendar_path
+        %li{class: (params[:controller] == 'docs') ? 'active' : nil}=link_to t('docs.title'), docs_path
+        %li{class: (params[:controller] == 'subscribes') ? 'active' : nil}=link_to t('shared.phonebook'), subscribes_path
         -if can? :manage, Message
-          %li{class: (params[:controller] == 'messages') ? 'active' : ''}= link_to t('message.title'), messages_path
-      =render 'users/userbar'
+          %li{class: (params[:controller] == 'messages') ? 'active' : nil}= link_to t('message.title'), messages_path
+        -if can? :manage, Purchase
+          %li{class: (params[:controller] == 'purchases') ? 'active' : nil}= link_to t('purchases.title'), purchases_path
+        -if user_signed_in?
+          %li{style: 'background: #ccffcc;', class: (%w(datasets folders).include? params[:controller]) ? 'active' : nil}
+            = link_to t('dataset.title'), [current_user, Folder]
 
+      %ul.nav.pull-right
+        -if (can? :read, Round) || (can? :read, Album) || (can? :read, Art)
+          %li.dropdown
+            = link_to '#', class: 'dropdown-toggle', role: 'button', 'data-toggle' => 'dropdown', id: 'dropmedia' do
+              %i.icon-list
+              =t 'shared.media'
+            %ul.dropdown-menu(role='menu' aria-labelledby='dropmedia')
+              -if can? :read, Album
+                %li
+                  = link_to albums_path do
+                    %i.icon-music
+                    &nbsp;
+                    =t('shared.music')
+              -if can? :read, Art
+                %li
+                  = link_to arts_path do
+                    %i.icon-picture
+                    &nbsp;
+                    = t('shared.art')
+              -if can? :read, Round
+                %li
+                  = link_to rounds_path do
+                    %i.icon-time
+                    &nbsp;
+                    = t('shared.sport')
+
+        = render 'users/userbar'

@@ -1,31 +1,28 @@
 -content_for :sidebar do
-  
-  =link_to notes_path(:'q[status_eq]' => :done) do
-    %span.label.label-success
-      %b=@notes_all.where('status = "done"').count
-      = t "notes.done"
 
-  %br/
   =link_to notes_path(:'q[status_eq]' => :new) do
     %span.label.label-info
-      %b=@notes_all.where('status = "new"').count
+      %b=@notes_all_count['new']
       = t "notes.new"
+  %br/
+
+  =link_to notes_path(:'q[status_eq]' => :done) do
+    %span.label.label-success
+      %b=@notes_all_count['done']
+      = t "notes.done"
 
   %br/
   =link_to notes_path(:'q[status_eq]' => :failed) do
     %span.label.label-important
-      %b=@notes_all.where('status = "failed"').count
+      %b=@notes_all_count['failed']
       = t "notes.failed"
-
-
 
 - model_class = Note
 .page-header
   %h4
     =t 'notes.title'
-    %small
-      = link_to(new_note_path, class: 'btn') do
-        %i.icon.icon-plus
+    = link_to(new_note_path, class: 'btn btn-primary') do
+      %i.icon.icon-plus
 %table.table.table-striped
   %thead
     %tr
@@ -34,19 +31,23 @@
       %th= model_class.human_attribute_name(:status)
       %th= model_class.human_attribute_name(:created_at)
       -if can? :manage, Note
-        %th=t '.actions', :default => t("helpers.actions")
+        %th=t '.actions', default: t('helpers.actions')
   %tbody
     - @notes.each do |note|
       %tr{class: if note.status == 'failed'; 'error'; elsif note.status == 'done'; 'success'; else; 'info'; end}
         %td= link_to note.id, note
-        %td= simple_format truncate(note.content, length: 200, omission: '...')
         %td
-          -if note.status == 'done'
-            %span.label.label-success= t "notes.#{note.status}"
+          = simple_format truncate(note.content, length: 200, omission: '...')
+          -if note.review?
+            .well.well-small= simple_format note.review
+        %td
+          -label_css_class = if note.status == 'done'
+            -'label-success'
           -elsif note.status == 'failed'
-            %span.label.label-important= t "notes.#{note.status}"
+            -'label-important'
           -else
-            %span.label.label-info= t "notes.#{note.status}"
+            -'label-info'
+          %span.label{class: label_css_class}= t "notes.#{note.status}"
         %td.span2=Russian.strftime(note.created_at, "%d %B")
         -if can? :manage, Note
           %td

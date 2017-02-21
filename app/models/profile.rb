@@ -15,7 +15,7 @@ class Profile < ActiveRecord::Base
 
   validates_attachment :avatar, content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
-  attr_accessible :avatar, :crop_x, :crop_y, :crop_w, :crop_h, :login
+  attr_accessible :avatar, :crop_x, :crop_y, :crop_w, :crop_h, :login, :background_color, :name, :surname, :patronymic
 
   #for crop
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
@@ -27,6 +27,14 @@ class Profile < ActiveRecord::Base
   def avatar_geometry(style = :original)
     @geometry ||= {}
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+  end
+
+  def fullname
+    "#{surname} #{name} #{patronymic}"
+  end
+
+  def surname_name
+    "#{surname} #{name}"
   end
 
 end

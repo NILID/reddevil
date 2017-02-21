@@ -1,6 +1,6 @@
 %h1=t 'songs.add'
 
-= form_for [@album, @song], :html => { multipart: true, :class => 'form-horizontal' }  do |f|
+= form_for [@album, @song], html: { class: 'form-horizontal' }  do |f|
   - if @song.errors.any?
     #error_explanation
       %h2= "#{pluralize(@song.errors.count, "error")} prohibited this song from being saved:"

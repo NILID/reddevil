@@ -5,6 +5,18 @@ class MembersController < ApplicationController
     @q = @members.search(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
+    @members_all = Member.all
+    @member_ages = []
+    @members_all.each {|m| @member_ages << m.age}
+
+    members_birth_months=[]
+    @members_all.each {|m| members_birth_months << m.birth.strftime("%m")}
+    @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
+
+    members_birth_days=[]
+    @members_all.each {|m| members_birth_days << m.birth.strftime("%w")}
+    @members_birth_days = (
+    members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
   end
 
   def new

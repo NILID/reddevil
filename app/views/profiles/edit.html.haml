@@ -1,9 +1,27 @@
 .page-header
   %h3=t 'profiles.editing'
 
-= form_for [@user, @profile], html: {layout: 'form-horizontal'} do |f|
-  = f.label :login
-  = f.text_field :login
-  = f.label :avatar
-  = f.file_field :avatar
-  .form-actions= f.submit
+= form_for [@user, @profile], html: {class: 'form-horizontal'} do |f|
+  .control-group
+    = f.label :login, class: 'control-label'
+    .controls= f.text_field :login, autofocus: true
+  .control-group
+    = f.label :surname, class: 'control-label'
+    .controls= f.text_field :surname
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls= f.text_field :name
+  .control-group
+    = f.label :patronymic, class: 'control-label'
+    .controls= f.text_field :patronymic
+  .control-group
+    = f.label :avatar, class: 'control-label'
+    .controls= f.file_field :avatar
+  .control-group
+    = f.label :background_color, class: 'control-label'
+    .controls
+      #changecolor.input-append.colorpicker-component
+        =f.text_field :background_color, value: @profile.background_color, class: 'form-control'
+        %span.add-on
+          %i
+  .form-actions= f.submit class: 'btn'

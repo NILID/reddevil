@@ -11,10 +11,10 @@ class MainController < ApplicationController
     @bdusers_yesterday=Member.find_births_for(yesterday).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
     @bdusers_prevyesterday=Member.find_births_for(yesterday - 1.day).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
     @bdusers_tomorrow=@bduser.find_births_for(tomorrow).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
-    @bdusers_month=@bduser.find_births_for(tomorrow + 1.day, now + 1.month).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
+    @bdusers_month=@bduser.find_births_for(tomorrow + 1.day, now + 1.month).group_by {|u| [(u.birth.month < DateTime.now.month ? 1 : 0), u.birth.strftime("%m"), u.birth.strftime("%d")]}
     @holidays_today=Holidays.on(now, :ru)
     @holidays_tomorrow=Holidays.on(tomorrow, :ru)
-    @docs=Doc.order("created_at desc").limit(5)
+    @docs=Doc.order('created_at desc').limit(5)
   end
 
   def mirror

@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class RoundsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @round = rounds(:one)
   end

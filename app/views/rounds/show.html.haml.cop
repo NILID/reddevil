@@ -29,7 +29,7 @@
         -@round.matches.each do |match|
           -f=user.forecasts.where(match_id: match.id).first
           -if f
-            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : ''
+            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : nil
             %td{style: "text-align:center", class: f_css}
               #{f.team1goal} : #{f.team2goal}
               -if can? :manage, Forecast

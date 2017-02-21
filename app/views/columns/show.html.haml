@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @column.name
+%p
+  %b Type:
+  = @column.type
+%p
+  %b Year:
+  = @column.year
+
+= link_to 'Edit', edit_column_path(@column)
+\|
+= link_to 'Back', columns_path

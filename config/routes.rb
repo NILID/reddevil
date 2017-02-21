@@ -1,5 +1,30 @@
 Birthday::Application.routes.draw do
 
+  resources :columns
+
+  resources :years do
+    resources :purchases do
+      member do
+        get :get_form
+      end
+    end
+  end
+
+  resources :purchases do
+    member do
+      get :get_form
+    end
+  end
+
+  resources :subscribes, path: 'phonebook' do
+    collection do
+      post :import
+      get :favorites
+    end
+    member {post :like}
+  end
+
+
   resources :events, only: [:list] do
     collection do
       get 'list'
@@ -28,9 +53,9 @@ Birthday::Application.routes.draw do
   resources :messages
 
 
-#  %w( 404 422 500).each do |code|
-#    get code, to: 'errors#show', code: code
-#  end
+  %w(404 422 500).each do |code|
+    get code, to: 'errors#show', code: code
+  end
 
   resources :notes
 
@@ -64,6 +89,9 @@ Birthday::Application.routes.draw do
     end
     resource :profile, only: [:edit, :update, :show]
     resources :events
+    resources :folders do
+      resources :datasets
+    end
   end
 
   resources :albums do

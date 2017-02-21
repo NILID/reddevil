@@ -1,0 +1,22 @@
+@import 'mixins';
+
+.folder, .dataset {
+  display:inline-block;
+  width:48px;
+  float:left;
+  margin:10px;
+  font-size:10px;
+  height:80px;
+  word-break: break-all;
+}
+
+.i-folder, .i-file {
+  display:inline-block;
+  width:48px;
+  height:48px;
+  &.new {@include opacity(0.5)}
+  &.new:hover {@include opacity(0.8)}
+}
+
+.i-folder{background-image: url(icon-folder.png);}
+.i-file {background-image: url(icon-file.png);}

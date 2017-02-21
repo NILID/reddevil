@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class TeamsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @team = teams(:one)
   end

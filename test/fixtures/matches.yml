@@ -1,13 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  team1: 
-  team2: 
+  team1: one
+  team2: two
   team1goal: 1
   team2goal: 1
+  round: one
 
 two:
-  team1: 
-  team2: 
+  team1: one
+  team2: two
   team1goal: 1
   team2goal: 1
+  round: two

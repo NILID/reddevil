@@ -1,0 +1,17 @@
+=content_tag_for(:tr, subscribe) do
+  -if user_signed_in?
+    %td
+      = link_to like_subscribe_path(subscribe), :method => :post, remote: true, class: 'icon-star-link' do
+        %i{class: current_user.likes?(subscribe) ? 'icon-star' : 'icon-star-empty'}
+      -if can? :edit, subscribe
+        = link_to edit_subscribe_path(subscribe) do
+          %i.icon-cog
+  %td
+    %p= subscribe.fullname
+    %p.muted= subscribe.position
+  %td
+    %p.label= subscribe.departament
+    %p= subscribe.place
+  %td= subscribe.phone_inter
+  %td= subscribe.phone_city
+  %td= mail_to subscribe.email

@@ -1,7 +1,19 @@
-.container
-  %table
+%div
+  %table.table
+    %thead
+      %th
+      %th
+      %th
+      %th
+      %th
     -@users.each_with_index do |user, index|
       %tr
         %td= index+=1
-        %td= link_to user.email, [user, user.profile]
+        %td
+          %span.badge{class: user.online? ? 'badge-success' : ''}
+            .i{class: user.confirmed? ? 'icon-ok' : 'icon-remove'}
+        %td
+          = link_to user.email, user_profile_path(user)
+          .muted=user.profile.fullname
+        %td= l user.updated_at,  format: :long
         %td= link_to t('profiles.edit'), edit_user_profile_path(user) if can? :edit, user.profile

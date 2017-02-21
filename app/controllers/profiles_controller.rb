@@ -10,15 +10,14 @@ class ProfilesController < ApplicationController
   end
 
   def update
-
     if @profile.update_attributes(params[:profile])
       #if params[:profile][:avatar].present?
       #    render :crop
       #else
-        redirect_to [@user, @profile], notice: t('profile.was_updated')
+        redirect_to user_profile_path(@profile), notice: t('profile.was_updated')
       #end
     else
-     render :new
+     render :edit
     end
 
   end

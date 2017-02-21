@@ -19,7 +19,7 @@ class MembersControllerTest < ActionController::TestCase
     sign_in @admin
     ability = Ability.new(@admin)
     assert ability.can? :new, Member
-  
+
     get :new
     assert_response :success
   end
@@ -152,6 +152,4 @@ class MembersControllerTest < ActionController::TestCase
     end
     assert_redirected_to new_user_session_path
   end
-
-
 end

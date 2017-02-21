@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @message = messages(:one)
   end

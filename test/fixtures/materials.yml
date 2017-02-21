@@ -1,13 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
   title: MyString
   content: MyText
-  group_mask: 1
+  groups_mask: 1
   user: 
 
 two:
   title: MyString
   content: MyText
-  group_mask: 1
+  groups_mask: 1
   user: 

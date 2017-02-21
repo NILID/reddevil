@@ -1,13 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  title: MyString
+  title: MyString1
   content: MyString
   type: 
-  flag: 
+  flag_file_name: fixture_file_upload('files/rails.png', 'image/png')
 
 two:
-  title: MyString
+  title: MyString2
   content: MyString
   type: 
-  flag: 
+  flag_file_name: fixture_file_upload('files/rails.png', 'image/png')

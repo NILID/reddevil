@@ -1,18 +1,47 @@
 - model_class = Member
 .page-header
-  %h1=t 'member.title'
+  %h1
+    =t 'member.title'
+    = link_to t('.new', default: t('helpers.links.new')), new_member_path, class: 'btn btn-primary' if can? :create, Member
+
+=content_for :sidebar do
+  .well
+    =#pie_chart Member.group(:name).count, donut: true, library: {labels: 'hide'}
+    %h5= t 'member.ages'
+    %hr
+    %dl
+      %dt.muted= t 'member.total'
+      %dd= plural(total = @member_ages.inject(:+), 'year')
+      %dt.muted= t 'member.min'
+      %dd= plural(@member_ages.min, 'year')
+      %dt.muted= t 'member.max'
+      %dd= plural(@member_ages.max, 'year')
+      %dt.muted= t 'member.medium'
+      %dd= plural(total / @member_ages.length, 'year')
+      %dt.muted= t 'member.month_stat'
+      %dd
+        -@members_birth_months.each do |month|
+          =I18n.t("date.standalone_month_names")[month[0].to_i]
+          (#{month[1]})#{(', ' if month != @members_birth_months.last)}
+      %dt.muted= t 'member.dayname_stat'
+      %dd
+        -@members_birth_days.each do |day|
+          =I18n.t("date.standalone_day_names")[day[0].to_i]
+          (#{day[1]})#{(', ' if day != @members_birth_days.last)}
+
+
 %table.table.table-striped.ny-block
 
   %thead
     %tr
       %th
-      %th= sort_link @q, :surname, model_class.human_attribute_name(:name)
+      %th= sort_link @q, :surname, model_class.human_attribute_name(:surname)
       %th= model_class.human_attribute_name(:short_number)
       %th= model_class.human_attribute_name(:email)
 
 
       -if can? :manage, Member
-        %th=t '.actions', :default => t("helpers.actions")
+        %th=t '.actions', default: t('helpers.actions')
 
   %tbody
 
@@ -40,10 +69,7 @@
           %span.icon.icon-email
           =mail_to member.email
 
-
         -if can? :manage, member
           %td
             = link_to t('.edit', :default => t("helpers.links.edit")), edit_member_path(member), :class => 'btn btn-mini'
             = link_to t('.destroy', :default => t("helpers.links.destroy")), member_path(member), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
-
-= link_to t('.new', :default => t("helpers.links.new")), new_member_path, :class => 'btn btn-primary' if can? :create, Member

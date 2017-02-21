@@ -1,0 +1,12 @@
+= form_for object, remote: true, html: { class: 'form-horizontal' } do |f|
+  .modal-body
+    - if type == 'date'
+      = render 'datefield', f: f, element: element
+    - else
+      .control-group
+        = f.label element, class: 'control-label'
+        .controls= (%w(int price).include? type) ? (f.number_field :warmth_sum, class: 'number_field') : (f.text_field element)
+
+  .modal-footer
+    %button.btn(data-dismiss='modal' aria-hidden='true')= t 'shared.close'
+    = f.submit nil, class: 'btn btn-primary'

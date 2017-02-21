@@ -9,6 +9,16 @@ gem 'rails', '3.2.22.2'
 gem 'thin'
 gem 'momentjs-rails'
 
+gem 'roo'
+gem 'roo-xls'
+gem 'nokogiri', '1.6.8.1'
+
+gem 'best_in_place'
+
+gem 'chartkick'
+gem 'groupdate'
+gem 'hightop'
+
 gem 'sqlite3'
 
 gem 'high_voltage'
@@ -27,10 +37,6 @@ gem 'birthday', '0.3.1.1'
 gem 'soundmanager2-rails'
 
 gem 'socialization'
-
-gem 'delayed_job_active_record'
-gem "daemons"
-gem 'clockwork'
 
 gem 'ancestry'
 
@@ -64,8 +70,8 @@ gem 'will_paginate', '~> 3.0'
 
 gem 'turbo-sprockets-rails3'
 
-# gem 'jquery-turbolinks'
-# gem 'turbolinks'
+#gem 'jquery-turbolinks'
+#gem 'turbolinks'
 # gem 'faye-rails', '~> 2.0'
 
 gem 'less-rails'
@@ -73,6 +79,15 @@ gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
+group :development do
+  gem 'quiet_assets'
+end
+
+group :production do
+  gem 'passenger'
+end
+
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

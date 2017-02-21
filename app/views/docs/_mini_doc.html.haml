@@ -1,6 +1,5 @@
 -doc=mini_doc
-=div_for doc do
-  %dl.dl-horizontal
-    %dt(style="color:#666;font-weight:100")=l doc.created_at, format: :short
-    %dd= link_to doc.title, doc.file.url, target: '_blank'
+=content_tag_for(:tr, doc) do
+  %td.muted=l doc.created_at, format: :short
+  %td= link_to doc.title, doc.file.url, target: '_blank'
 

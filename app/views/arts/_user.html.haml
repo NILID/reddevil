@@ -1,0 +1,42 @@
+.container
+
+  .row
+    .span6.text-center
+      =image_tag @dima.profile.avatar(:thumb)
+      %h4=@dima.profile.login
+    .span6.text-center
+      =image_tag @ilya.profile.avatar(:thumb)
+      %h4=@ilya.profile.login
+  .row.text-center
+    .span2.pagination
+      -if can? :new, Art
+        = link_to(new_art_path, class: 'btn btn-mini') do
+          %i.icon.icon-plus
+          =t('art.new_artblock')
+    .span8= will_paginate @arts, renderer: BootstrapPagination::Rails
+  - @arts.each do |art|
+    =div_for art, class: 'row' do
+      .span12
+        .page-header.text-center.art-titleblock.ny-block
+          .art-title= arttime art.deadline
+          .actions
+            = link_to t('shared.edit'), edit_art_path(art) if can? :edit, art
+            = link_to t('shared.del'), art, :method => :delete, :data => { :confirm => t('shared.sure') } if can? :destroy, art
+    .row-fluid
+      -[1, 2].each do |user_id|
+        .span6.well.well-small.ny-block
+          -if art.works.where(user_id: user_id).empty?
+            %p.text-center
+              -if user_signed_in? && (current_user.id == user_id)
+                =t('art.you_empty')
+              -else
+                =t('art.empty')
+              -if (can? :new, Work) && (current_user.id == user_id) && !art.closed?
+                (#{link_to t('shared.add'), new_art_work_path(art)})
+          -else
+            =render art.works.where(user_id: user_id).first
+  .row.text-center= will_paginate @arts, renderer: BootstrapPagination::Rails
+
+%span#top-link-block
+  =link_to('#top', class: 'well well-small', onclick: "$('html,body').animate({scrollTop:0},'slow');return false;") do
+    %i.icon.icon-chevron-up

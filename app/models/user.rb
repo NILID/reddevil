@@ -7,16 +7,25 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+  delegate :login, to: :profile
+
+  attr_accessible :groups, :roles, as: :admin
   # attr_accessible :title, :body
   after_create :set_role
 
   has_many :comments, dependent: :delete_all
   has_many :works
   has_many :events
-  has_one :profile, :dependent => :destroy
+  has_many :purchases
+  has_many :folders
+  has_one :profile, dependent: :destroy
   has_one :tempuser
-  ROLES = %w[admin user moderator editor test]
+  ROLES = %w(admin user moderator editor test)
+
+  scope :online,     lambda { where('updated_at > ?', 10.minutes.ago)}
+  scope :sellers,    lambda {with_group(:sellers)}
+  scope :with_group, lambda {|group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
@@ -30,7 +39,7 @@ class User < ActiveRecord::Base
     roles.include? role.to_s
   end
 
-  GROUPS = %w[other lab193 test]
+  GROUPS = %w[luch lab193 test sellers]
 
   def groups=(groups)
     self.groups_mask = (groups & GROUPS).map { |p| 2**GROUPS.index(p) }.inject(0, :+)
@@ -50,11 +59,14 @@ class User < ActiveRecord::Base
     self.created_at.change(year: 2016)
   end
 
+  def online?
+    updated_at > 10.minutes.ago
+  end
+
   private
 
   def set_role
     self.update_attribute(:roles_mask, 2)
     self.build_profile
   end
-
 end

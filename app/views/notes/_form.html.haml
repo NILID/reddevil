@@ -1,14 +1,18 @@
-= form_for @note, :html => { :class => 'form-horizontal' } do |f|
+= form_for @note, html: { class: 'form-horizontal' } do |f|
   .control-group
-    = f.label :content, :class => 'control-label'
-    .controls
-      = f.text_area :content, autofocus: true, :class => 'text_area span10', rows: 6
+    = f.label :content, class: 'control-label'
+    .controls= f.text_area :content, autofocus: true, class: 'text_area span10', rows: 6
+
   -if can? :manage, Note
     .control-group
-      = f.label :status, :class => 'control-label'
-      .controls
-        = f.select :status, Note::STATUS
+      = f.label :status, class: 'control-label'
+      .controls= f.select :status, Note::STATUS
+
+    .control-group
+      = f.label :review, class: 'control-label'
+      .controls= f.text_area :review, class: 'text_area span10', rows: 6
+
 
   .form-actions
-    = f.submit t('shared.save'), :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), notes_path, :class => 'btn'
+    = f.submit t('shared.save'), class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), notes_path, class: 'btn'

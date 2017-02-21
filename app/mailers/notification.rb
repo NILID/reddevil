@@ -5,4 +5,9 @@ class Notification < ActionMailer::Base
     mail(to: email, subject: t('mailer.birthday'), template_name: 'birthday')
   end
 
+  def welcome(email)
+    mail(to: email, subject: 'welcome', template_name: 'welcome')
+  end
+
+
 end

@@ -4,7 +4,7 @@
       .birthday-block.well.well-small
         -bbb = @bduser.group_by{ |u| [u.birth.month, u.birth.day]}
         -bbb.keys.sort.each_with_index do |bday, index|
-          -checkclass = (Time.now.day == bday) ? 'alert alert-success' : ''
+          -checkclass = (Time.now.day == bday) ? 'alert alert-success' : nil
           -if (bday.first >= Time.now.month) || (bday.first == (Time.now + 1.month).month)
             -if bday.second == Time.now.day && bday.first== Time.now.month
               -if index == 0
@@ -14,7 +14,7 @@
                 =render user, bdclass: checkclass
 
         -bbb.keys.sort.each_with_index do |bday, index|
-          -checkclass = (Time.now.day == bday) ? 'alert alert-success' : ''
+          -checkclass = (Time.now.day == bday) ? 'alert alert-success' : nil
           -if (bday.first >= Time.now.month) || (bday.first == (Time.now + 1.month).month)
             -if bday.second == (Time.now + 1.day).day
               -if index == 0
@@ -24,7 +24,7 @@
                 =render user, bdclass: checkclass
 
         -bbb.keys.sort.each_with_index do |bday, index|
-          -checkclass = (Time.now.day == bday) ? 'alert alert-success' : ''
+          -checkclass = (Time.now.day == bday) ? 'alert alert-success' : nil
           -if (bday.first >= Time.now.month) || (bday.first == (Time.now + 1.month).month)
             -if (bday.second == Time.now.day && bday.first== (Time.now+1.month).month) || ((bday.second != (Time.now+ 1.day).day) && (bday.second > Time.now.day)) || ((bday.first == (Time.now + 1.month).month) && (bday.second < Time.now.day) && (bday.second <= (Time.now + 1.month).day))
               -if index == 0

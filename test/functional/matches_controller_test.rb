@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class MatchesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @match = matches(:one)
   end

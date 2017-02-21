@@ -1,0 +1,62 @@
+- model_class = Subscribe
+- count = @subscribes.count
+
+=content_for :sidebar do
+
+  =search_form_for @q, url: subscribes_path do |f|
+    =f.text_field :fullname_cont, placeholder: t('subscribes.search')
+    =f.select :departament_eq, options_for_select(Subscribe.uniq.order(:departament).pluck(:departament), selected: (params[:q][:departament_eq] if params[:q]), include_blank: false), {prompt: t('subscribes.choose_departament')}
+    =f.submit t('shared.search'), class: 'btn'
+
+  -if can? :import, Subscribe
+    =link_to t('subscribes.import'), '#import', class: 'btn btn-primary', role: 'button', 'data-toggle' => 'modal'
+    #import.modal.hide.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+      =form_tag import_subscribes_path, multipart: true do
+        .modal-header
+          %h3#myModalLabel= t('subscribes.import')
+          %button.close(data-dismiss="modal" aria-hidden='true')
+        .modal-body=file_field_tag :file
+        .modal-footer
+          %button.btn(data-dismiss="modal" aria-hidden='true')=t('shared.cancel')
+          =submit_tag t('shared.import'), class: 'btn btn-primary'
+
+
+  -if user_signed_in?
+    -current_count=current_user.likees(Subscribe).count
+    .well.sidebar-nav.favorites-panel{'data-spy' => 'affix', class: (current_count == 0) ? 'hidden' : nil}
+      %ul.nav.nav-list
+        %li.nav-header.hidden Sidebar
+        %li= link_to t('albums.favorites'), favorites_subscribes_path, remote: true
+        %p
+          %span.likees-count=plural current_count, 'subscribe'
+
+
+%p.muted.text-right=t 'subscribes.actual_date'
+
+.page-header
+  %h1
+    =t 'shared.phonebook'
+    %small
+      = count > 0 ?  plural(count, 'subscribe') : t('subscribes.not_found')
+      = link_to 'new', new_subscribe_path, class: 'btn btn-mini' if can? :manage, Subscribe
+
+-if count > 0
+  .pagination.pagination-small
+    %ul
+      -(('А'..'Я').to_a - %w(Й Ь Ъ Ы)).each do |letter|
+        %li= link_to letter, subscribes_path(q: {fullname_start: letter})
+  %table.table.table-striped.well
+
+    %thead
+      %tr
+        -if user_signed_in?
+          %th
+        %th= sort_link @q, :fullname, model_class.human_attribute_name(:fullname)
+        %th= sort_link @q, :departament, model_class.human_attribute_name(:departament)
+        %th= model_class.human_attribute_name(:phone_inter)
+        %th= model_class.human_attribute_name(:phone_city)
+        %th= model_class.human_attribute_name(:email)
+    %tbody#phonebook.endless= render(partial: 'subscribe', collection: @subscribes)
+    .hidden= will_paginate @subscribes, class: 'paginator'
+
+= render 'main/toplink'

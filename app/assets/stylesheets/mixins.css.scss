@@ -47,7 +47,10 @@
   -moz-transform:rotate($val);
   -o-transform:rotate($val);
   -ms-transform:rotate($val);
-  transform:rotate($val);}
+  transform:rotate($val);
+  filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  }
 
 /**********************************
 @include opacity(0.3)

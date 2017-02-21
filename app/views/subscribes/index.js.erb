@@ -1,0 +1,6 @@
+$('.endless').append('<%= j render @subscribes %>');
+<% if @subscribes.next_page %>
+  $('.paginator').replaceWith('<%= j will_paginate(@subscribes, page_links: false, class: 'paginator') %>');
+<% else %>
+  $('.paginator').remove();
+<% end %> 

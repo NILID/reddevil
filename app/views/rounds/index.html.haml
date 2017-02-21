@@ -1,10 +1,10 @@
 -content_for :sidebar do
   %h3=t 'shared.rating'
   %table.table.table-hover
-    -@tempusers.each do |t|
+    -@profiles.each do |p|
       %tr
-        %td=t.username
-        %td=t.total_result
+        %td=p.surname_name
+        %td=p.total_result
 
 
 - if can? :manage, Round

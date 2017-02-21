@@ -1,0 +1,26 @@
+.page-header
+  %h1
+    =t @folder.title
+    %small
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_folder_path(@user, @folder), :class => 'btn btn-mini'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), [@user, @folder], :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-mini'
+
+%p
+  = link_to [@user, Folder], class: 'btn' do
+    %i.icon.icon-th-large
+  = link_to (@folder.parent_id? ? [@user, @folder.parent] : [@user, Folder]), class: 'btn' do
+    %i.icon.icon-chevron-left
+  = link_to new_user_folder_path(@user, parent_id: @folder.id), class: 'btn' do
+    %i.icon.icon-folder-open
+    =t 'folder.new'
+  = link_to new_user_folder_dataset_path(@user, @folder), class: 'btn' do
+    %i.icon.icon-file
+    =t 'dataset.new'
+
+.well
+  - if @folder.has_children? || !@folder.datasets.empty?
+    = render @folder_children
+    = render @folder_datasets
+  - else
+    %h6.muted.text-center=t 'dataset.empty'
+  .clear

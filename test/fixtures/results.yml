@@ -1,13 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
   total: 1
   user: 
-  tempuser: 
-  round: 
+  tempuser: one
+  round: one
 
 two:
   total: 1
   user: 
-  tempuser: 
-  round: 
+  tempuser: two
+  round: two

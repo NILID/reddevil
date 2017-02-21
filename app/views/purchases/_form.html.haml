@@ -1,0 +1,42 @@
+= form_for @purchase, :html => { class: 'form-horizontal' } do |f|
+  .control-group
+    = f.label :title, class: 'control-label'
+    .controls= f.text_field :title, class: 'text_field'
+  .control-group
+    = f.label :price, class: 'control-label'
+    .controls= f.text_field :price, class: 'text_field'
+  .control-group
+    = f.label :provider, class: 'control-label'
+    .controls= f.text_field :provider, class: 'text_field'
+  .control-group
+    = f.label :doc, class: 'control-label'
+    .controls= f.text_field :doc, class: 'text_field'
+
+  -if params[:action] == 'edit'
+    .control-group
+      = f.label :user_id, class: 'control-label'
+      .controls= f.select :user_id, options_from_collection_for_select(User.sellers, :id, :login, @purchase.user_id)
+
+  -[:startdate, :zkpdate, :kp, :zsc_kp, :nmc, :aztz, :conclusion_expert, :analytic, :conclusion_pdtk, :erp, :request, :bidding, :committee, :contract_request, :contract_project, :contract, :prepay_date].each do |element|
+    =render 'datefield', f: f, element: element
+
+  .control-group
+    = f.label :prepay_sum, class: 'control-label'
+    .controls= f.number_field :prepay_sum, class: 'number_field'
+  = render 'datefield', f: f, element: :warmth_date
+  .control-group
+    = f.label :warmth_sum, class: 'control-label'
+    .controls= f.number_field :warmth_sum, class: 'number_field'
+  = render 'datefield', f: f, element: :proxy
+
+  .control-group
+    = f.label :delivery, class: 'control-label'
+    .controls
+      .input-append.date
+        =f.text_field :delivery, class: 'datepicker', value: (f.object.delivery.strftime('%d.%m.%Y') if f.object.delivery)
+        %span.add-on
+          %i.icon-th
+
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('shared.cancel'), purchases_path, class: 'btn'

@@ -1,0 +1,69 @@
+class SubscribesController < ApplicationController
+  load_and_authorize_resource except: [:import, :index, :favorites]
+
+  def import
+    Subscribe.destroy_all
+    Subscribe.import(params[:file])
+    redirect_to subscribes_url, notice: 'File imported'
+  end
+
+  def index
+    @q = Subscribe.search(params[:q])
+    @subscribes = @q.result(distinct: true).order(:fullname).page(params[:page]).per_page(25)
+  end
+
+  def favorites
+    @subscribes = current_user.likees(Subscribe, sort: (:fullname))
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def like
+    current_user.toggle_like!(@subscribe)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def show
+  end
+
+  def new
+  end
+
+  def edit
+  end
+
+  def create
+    respond_to do |format|
+      if @subscribe.save
+        format.html { redirect_to subscribes_url, notice: 'Subscribe was successfully created.' }
+        format.json { render json: @subscribe, status: :created, location: @subscribe }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @subscribe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @subscribe.update_attributes(params[:subscribe])
+        format.html { redirect_to subscribes_url, notice: 'Subscribe was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @subscribe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @subscribe.destroy
+    respond_to do |format|
+      format.html { redirect_to subscribes_url }
+      format.json { head :no_content }
+    end
+  end
+end

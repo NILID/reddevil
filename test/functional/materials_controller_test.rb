@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class MaterialsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @material = materials(:one)
   end

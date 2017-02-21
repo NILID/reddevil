@@ -1,34 +1,25 @@
 class DocsController < ApplicationController
   load_and_authorize_resource
   layout  'main', only: [:edit, :new]
+  
+  before_filter :set_categories, only: [:edit, :new, :create, :update]
 
   def index
     if params[:by_category]
       @cat=Category.find(params[:by_category])
       if @cat
-        @q=Doc.where(category_id: @cat.subtree_ids).search(params[:q])
+        @q=Doc.where(category_id: (@cat.hidden ? @cat.subtree_ids : @cat.subtree.public.pluck(:id))).search(params[:q])
         @docs=@q.result(distinct: true).all(order: :title)
       else
         @q=Doc.search(params[:q])
         @docs=[]
       end
     else
-      arr=[]
-      Category.where(hidden: true)
-      cat=Category.where(hidden: true)
-      cat_hidden= cat.each {|c| arr << c.children}
-      if arr.nil?
-        cats= Category.select(:id) - arr[0].select(:id) - cat.select(:id)
-      else
-        cats= Category.select(:id) - cat.select(:id)
-      end
-      if params[:q]
-        @q=Doc.search(params[:q])
-        @docs=@q.result(distinct: true).all(order: :title)
-      else
-        @q=Doc.where(category_id: cats).search(params[:q])
-        @docs = @q.result(distinct: true).all(order: :title)
-      end
+      hidden = []
+      Category.all.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
+      
+      @q = params[:q] ? Doc.search(params[:q]) : Doc.where(category_id: hidden).search(params[:q])
+      @docs = @q.result(distinct: true).all(order: :title)
     end
     @categories = Category.arrange(order: :title)
 
@@ -39,14 +30,11 @@ class DocsController < ApplicationController
 
   end
 
-  def show
-  end
+  def show; end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     respond_to do |format|
@@ -80,4 +68,24 @@ class DocsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  private
+
+    def ancestry_options(items, &block)
+      return ancestry_options(items){|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"} unless block_given?
+
+      result = []
+      items.map do |item, sub_items|
+        result << [yield(item), item.id]
+        result += ancestry_options(sub_items, &block)
+      end
+
+      result
+    end
+
+  def set_categories
+    @categories = ancestry_options(Category.scoped.arrange(order: :title)) {|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"}
+  end
+
 end

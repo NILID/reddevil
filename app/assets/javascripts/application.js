@@ -10,10 +10,15 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//require jquery-fileupload
+
+
+
 //= require jquery
+//= require best_in_place
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require jquery-fileupload
+//= require best_in_place.jquery-ui
 //= require jcrop
 //= require readmore
 //= require twitter/bootstrap
@@ -23,4 +28,6 @@
 //= require optional-page-player-metadata
 //= require moment
 //= require fancybox
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .

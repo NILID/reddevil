@@ -26,11 +26,8 @@
     %th
     -Tempuser.order(:username).each do |user|
       %th.results(style="text-align:center;font-weight:100;")
-        %p
-          -if user.user
-            =link_to user.username, user_profile_path(user.user, user.user.profile)
-          -else
-            =user.username
+        %p=user.user ? link_to(user.username, user_profile_path(user.user)) : user.username
+
         -result=user.results.where(round_id: @round).first
         -if result
           .tip
@@ -75,14 +72,14 @@
           .team
             .team-name
               =image_tag match.team1.flag(:thumb), width: '20px'
-              %span{style: (match.team1 == match.check_win) ? 'font-weight:bold' : ''} #{match.team1.title}
+              %span{style: (match.team1 == match.check_win) ? 'font-weight:bold' : nil} #{match.team1.title}
             .team-goal
               #{match.team1goal || '-'}
           %br/
           .team
             .team-name
               =image_tag match.team2.flag(:thumb), width: '20px'
-              %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : ''} #{match.team2.title}
+              %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : nil} #{match.team2.title}
             .team-goal
               #{match.team2goal || '-'}
         %td.match-ending(style="width:4px;")
@@ -95,7 +92,7 @@
         -Tempuser.order(:username).each do |user|
           -f=user.forecasts.where(match_id: match.id).first
           -if f
-            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : ''
+            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : nil
             %td{style: "text-align:center", class: f_css}
               .total
                 - if (@round.deadline < DateTime.now) || (f.tempuser.user == current_user)

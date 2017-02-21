@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class NotesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @note = notes(:one)
+    @user  = users(:da)
+    @admin = users(:admin)
   end
 
   test "should get index" do
@@ -30,16 +34,27 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    sign_in @admin
+    ability = Ability.new(@admin)
+
+
     get :edit, id: @note
     assert_response :success
   end
 
   test "should update note" do
+    sign_in @admin
+    ability = Ability.new(@admin)
+
+
     put :update, id: @note, note: { content: @note.content, status: @note.status }
     assert_redirected_to note_path(assigns(:note))
   end
 
   test "should destroy note" do
+    sign_in @admin
+    ability = Ability.new(@admin)
+
     assert_difference('Note.count', -1) do
       delete :destroy, id: @note
     end

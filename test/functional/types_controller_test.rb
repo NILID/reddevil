@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class TypesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @type = types(:one)
   end

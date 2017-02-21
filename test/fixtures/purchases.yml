@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  price: 1.5
+  provider: MyString
+  doc: MyString
+  user: 
+  startdate: 2017-01-18
+  zkpdate: 2017-01-18
+  kp: 2017-01-18
+  zsc_kp: 2017-01-18
+  nmc: 2017-01-18
+  aztz: 2017-01-18
+  conclusion_expert: 2017-01-18
+  analytic: 2017-01-18
+  conclusion_pdtk: 2017-01-18
+  request: 2017-01-18
+  bidding: 2017-01-18
+  committee: 2017-01-18
+  contract_request: 2017-01-18
+  contract_project: 2017-01-18
+  contract: 2017-01-18
+  prepay_date: 2017-01-18
+  prepay_sum: 1
+  warmth_date: 2017-01-18
+  warmth_sum: 1
+  proxy: 2017-01-18
+  delivery: 2017-01-18
+
+two:
+  title: MyString
+  price: 1.5
+  provider: MyString
+  doc: MyString
+  user: 
+  startdate: 2017-01-18
+  zkpdate: 2017-01-18
+  kp: 2017-01-18
+  zsc_kp: 2017-01-18
+  nmc: 2017-01-18
+  aztz: 2017-01-18
+  conclusion_expert: 2017-01-18
+  analytic: 2017-01-18
+  conclusion_pdtk: 2017-01-18
+  request: 2017-01-18
+  bidding: 2017-01-18
+  committee: 2017-01-18
+  contract_request: 2017-01-18
+  contract_project: 2017-01-18
+  contract: 2017-01-18
+  prepay_date: 2017-01-18
+  prepay_sum: 1
+  warmth_date: 2017-01-18
+  warmth_sum: 1
+  proxy: 2017-01-18
+  delivery: 2017-01-18

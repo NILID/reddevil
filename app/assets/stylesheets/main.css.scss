@@ -1,13 +1,17 @@
 @import 'mixins';
 
-body {
-
-background: #eee;
-
-}
+body {background: #dbf1fc}
 
 #wrapper {min-height:100%;position:relative;
 
+#error_explanation {
+  @extend .alert;
+  @extend .alert-error;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
 
 /*NEW YEAR  background: #52b2d8*/
 
@@ -46,3 +50,7 @@ footer {
 .nav-reddevil {
   .slide-link.hide {@include opacity(0.5)}
 }
+
+.lowercase {text-transform: lowercase}
+.nowrap {white-space: nowrap}
+.clear {clear:both}

@@ -1,0 +1,5 @@
+$('#purchase_<%=@purchase.id%>').replaceWith("<%=j render @purchase, purchase_counter: 0%>");
+$('.modal').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+$('#purchase_<%=@purchase.id%>').effect('highlight', {}, 1000);

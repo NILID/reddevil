@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 
   def make_role
     respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to [@user, @user.profile], notice: t('user.was_updated') }
+      if @user.update_attributes(params[:user], {as: :admin})
+        format.html { redirect_to user_profile_path(@user), notice: t('user.was_updated') }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

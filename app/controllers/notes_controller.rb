@@ -2,9 +2,9 @@ class NotesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @notes_all=@notes
+    @notes_all_count=@notes.group(:status).count
     @q = @notes.search(params[:q])
-    @notes = @q.result(distinct: true)
+    @notes = params[:q] ? @q.result(distinct: true) : @q.result(distinct: true).where(status: 'new')
   end
 
   def new

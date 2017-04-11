@@ -1,13 +1,17 @@
-= form_for @purchase, :html => { class: 'form-horizontal' } do |f|
+= nested_form_for [@year, @purchase], html: { class: 'form-horizontal' } do |f|
+
   .control-group
     = f.label :title, class: 'control-label'
     .controls= f.text_field :title, class: 'text_field'
+
   .control-group
     = f.label :price, class: 'control-label'
-    .controls= f.text_field :price, class: 'text_field'
+    .controls= f.number_field :price, class: 'number_field', step: 0.01, min: 0
+
   .control-group
     = f.label :provider, class: 'control-label'
     .controls= f.text_field :provider, class: 'text_field'
+
   .control-group
     = f.label :doc, class: 'control-label'
     .controls= f.text_field :doc, class: 'text_field'
@@ -17,26 +21,33 @@
       = f.label :user_id, class: 'control-label'
       .controls= f.select :user_id, options_from_collection_for_select(User.sellers, :id, :login, @purchase.user_id)
 
-  -[:startdate, :zkpdate, :kp, :zsc_kp, :nmc, :aztz, :conclusion_expert, :analytic, :conclusion_pdtk, :erp, :request, :bidding, :committee, :contract_request, :contract_project, :contract, :prepay_date].each do |element|
-    =render 'datefield', f: f, element: element
+  %hr/
 
-  .control-group
-    = f.label :prepay_sum, class: 'control-label'
-    .controls= f.number_field :prepay_sum, class: 'number_field'
-  = render 'datefield', f: f, element: :warmth_date
-  .control-group
-    = f.label :warmth_sum, class: 'control-label'
-    .controls= f.number_field :warmth_sum, class: 'number_field'
-  = render 'datefield', f: f, element: :proxy
+  = f.fields_for :columnships do |c|
+    .control-group
+      = c.label :data, c.object.column.name, class: 'control-label'
+      .controls
+        - case c.object.column.column_type
+        - when 'integer'
+          = c.number_field :data, class: 'number_field', min: 0
+        - when 'price'
+          = c.number_field :data, class: 'number_field', step: 0.01, min: 0
+        - when 'datetime'
+          = c.text_field :data, class: 'datepicker', value: (c.object.data.to_datetime.strftime('%d.%m.%Y') if c.object.data.present?)
+        - when 'string'
+          = c.text_field :data, class: 'text_field'
+        - else
+          = c.text_area :data, class: 'text_field'
 
-  .control-group
-    = f.label :delivery, class: 'control-label'
-    .controls
-      .input-append.date
-        =f.text_field :delivery, class: 'datepicker', value: (f.object.delivery.strftime('%d.%m.%Y') if f.object.delivery)
-        %span.add-on
-          %i.icon-th
+  = f.fields_for :deliveries do |c|
+    .control-group
+      .controls
+        = c.label :doc
+        = c.text_field :doc, class: 'datepicker', value: (c.object.doc.to_datetime.strftime('%d.%m.%Y') if c.object.doc.present?)
+        = c.label :delivery
+        = c.text_field :delivery, class: 'datepicker', value: (c.object.delivery.to_datetime.strftime('%d.%m.%Y') if c.object.delivery.present?)
+  = f.link_to_add t('columns.add'), :deliveries
 
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
-    = link_to t('shared.cancel'), purchases_path, class: 'btn'
+    = link_to t('shared.cancel'), [@year, Purchase], class: 'btn'

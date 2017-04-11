@@ -1,11 +1,19 @@
-= form_for object, remote: true, html: { class: 'form-horizontal' } do |f|
+= nested_form_for [year, purchase], remote: true, html: { class: 'form-horizontal' } do |f|
   .modal-body
-    - if type == 'date'
-      = render 'datefield', f: f, element: element
-    - else
-      .control-group
-        = f.label element, class: 'control-label'
-        .controls= (%w(int price).include? type) ? (f.number_field :warmth_sum, class: 'number_field') : (f.text_field element)
+
+    = f.fields_for :columnships, @columnship do |c|
+      - if c.object.column.column_type == 'datetime'
+        = render partial: 'datefield', locals: {c: c}
+      - else
+        .control-group
+          = c.label :data, c.object.column.name, class: 'control-label'
+          .controls
+            -if c.object.column.column_type == 'int'
+              = c.number_field :data, class: 'number_field', min: 0
+            -elsif c.object.column.column_type == 'price'
+              = c.number_field :data, class: 'number_field', step: 0.01, min: 0
+            -else
+              = c.text_field :data
 
   .modal-footer
     %button.btn(data-dismiss='modal' aria-hidden='true')= t 'shared.close'

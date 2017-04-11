@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ColumnsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @column = columns(:one)
   end

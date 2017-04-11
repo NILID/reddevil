@@ -3,11 +3,11 @@ class AlbumsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @albums=@albums.order(:title).roots
-    @new_songs=Song.order("created_at DESC").page(params[:page]).per_page(20)
-    @q=Song.search(params[:q])
+    @albums = @albums.order(:title).roots
+    @new_songs = Song.order('created_at DESC').page(params[:page]).per_page(20)
+    @q = Song.search(params[:q])
     if params[:q]
-      @songs=@q.result(distinct: true).all(order: :file_file_name)
+      @songs = @q.result(distinct: true).all(order: :file_file_name)
     end
   end
 

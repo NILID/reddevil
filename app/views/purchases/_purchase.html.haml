@@ -1,20 +1,35 @@
 =content_tag_for(:tr, purchase) do
   %td= purchase_counter + 1
   %td.main-title
-    = link_to purchase.title, purchase
-    .btn-group.purchase-actions
-      = link_to edit_purchase_path(purchase), class: 'btn btn-mini', title: t('shared.edit') do
-        %i.icon.icon-cog
-      = link_to purchase_path(purchase), :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger' do
-        %i.icon.icon-trash
-  %td.nowrap= render 'purchase_formblock', purchase: purchase, attr: 'price', type: 'price'
-  %td= render 'purchase_formblock', purchase: purchase, attr: 'provider', type: 'string'
-  %td= render 'purchase_formblock', purchase: purchase, attr: 'doc', type: 'string'
-  %td= purchase.user.profile.login if purchase.user
-  -%w(startdate zkpdate kp zsc_kp nmc aztz conclusion_expert analytic conclusion_pdtk erp request bidding committee contract_request contract_project contract prepay_date).each do |attr|
-    %td.nowrap= render 'purchase_formblock', purchase: purchase, attr: attr, type: 'date'
-  %td= render 'purchase_formblock', purchase: purchase, attr: 'prepay_sum', type: 'int'
-  %td.nowrap= render 'purchase_formblock', purchase: purchase, attr: 'warmth_date', type: 'date'
-  %td= render 'purchase_formblock', purchase: purchase, attr: 'warmth_sum', type: 'int'
-  %td.nowrap= render 'purchase_formblock', purchase: purchase, attr: 'proxy', type: 'date'
-  %td.nowrap= render 'purchase_formblock', purchase: purchase, attr: 'delivery', type: 'date'
+    .tip
+      = render 'purchase_attr', year: @year, purchase: purchase, attr: :title, type: 'string'
+      .tip-text
+        .pull-left
+          .btn-group.purchase-actions
+            = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-mini', title: t('shared.edit') do
+              %i.icon.icon-cog
+            = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger' do
+              %i.icon.icon-trash
+        .pull-right=purchase.user.profile.surname
+        .clear
+        %hr
+        %dl.dl-horizontal
+          %dt= Purchase.human_attribute_name(:price)
+          %dd= number_to_currency(purchase.price, precision: 2, delimiter: ' ', unit: nil) || t('shared.empty')
+          %dt= Purchase.human_attribute_name(:provider)
+          %dd= purchase.provider
+          %dt= Purchase.human_attribute_name(:doc)
+          %dd= purchase.doc
+
+  -purchase.columnships.each do |c|
+    %td{class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil}= render 'purchase_formblock', columnship: c
+  - if !purchase.deliveries.pluck(:id).empty?
+    = render partial: 'purchases/delivery', locals: {purchase: purchase, delivery: purchase.deliveries.last}
+  -else
+    -[1, 2].each_with_index do |i, index|
+      %td
+        .purchase-actions
+          = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-mini', remote: true do
+            %i.icon.icon-cog
+        -if index == 0
+          .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden="false" id="dialog_delivery_#{purchase.id}")

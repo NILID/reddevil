@@ -47,7 +47,7 @@ gem 'cancancan'
 gem 'rails-i18n', '~> 3.0.0'
 
 gem 'devise'
-gem 'devise-russian'
+#gem 'devise-russian'
 gem 'russian'
 
 gem 'nested_form'

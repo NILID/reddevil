@@ -1,0 +1,10 @@
+.control-group
+  .controls
+    .input-prepend
+      %span.add-on= c.label :name
+      = c.text_field :name
+    .input-prepend
+      %span.add-on= c.label :column_type
+      = c.select :column_type, Year::TYPES, { include_blank: t('categories.select_category') }
+    = c.link_to_remove class: 'btn btn-small btn-danger' do
+      %i.icon.icon-remove

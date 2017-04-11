@@ -1,8 +1,14 @@
-= form_for @year, :html => { :class => 'form-horizontal' } do |f|
+= nested_form_for @year, html: { class: 'form-horizontal' } do |f|
   .control-group
-    = f.label :year, :class => 'control-label'
+    = f.label :year, class: 'control-label'
     .controls
-      = f.text_field :year, :class => 'text_field'
+      = f.text_field :year, class: 'text_field'
+
+  = f.fields_for :columns do |c|
+    = render partial: 'columns/column_field', locals: {c: c}
+
+  = f.link_to_add t('columns.add'), :columns
+
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), years_path, :class => 'btn'
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('shared.cancel'), :back, class: 'btn'

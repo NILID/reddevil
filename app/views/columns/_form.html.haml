@@ -1,4 +1,4 @@
-= form_for @column do |f|
+= form_for [@year, @column] do |f|
   - if @column.errors.any?
     #error_explanation
       %h2= "#{pluralize(@column.errors.count, "error")} prohibited this column from being saved:"
@@ -10,10 +10,7 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :type
-    = f.text_field :type
-  .field
-    = f.label :year
-    = f.text_field :year
+    = f.label :column_type
+    = f.select(:column_type, Year::TYPES, { include_blank: t('categories.select_category') } )
   .actions
     = f.submit 'Save'

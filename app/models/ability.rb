@@ -77,7 +77,7 @@ class Ability
     end
 
     if user.has_group? :sellers
-      can [:manage, :read], [Purchase]
+      can [:manage, :read], [Purchase, Year]
     end
   end
 end

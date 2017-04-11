@@ -1,56 +1,57 @@
 class PurchasesController < ApplicationController
   before_filter :authenticate_user!
   layout 'main'
+  load_and_authorize_resource :year
+  load_and_authorize_resource :purchase, through: :year, except: [:new_form]
 
   def index
-    @purchases = Purchase.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @purchases }
-    end
   end
 
   def show
-    @purchase = Purchase.find(params[:id])
+  end
 
+  def get_miniform
+    @attr = params[:attr]
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @purchase }
+      format.js
     end
   end
 
+
   def get_form
-    @purchase = Purchase.find(params[:id])
-    @element = params[:element]
-    @type = params[:type]
+    @columnship = Columnship.find(params[:columnship])
 
     respond_to do |format|
       format.js
     end
-
   end
 
-  def new
-    @purchase = Purchase.new
-
+  def get_delivery_form
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @purchase }
+      format.js
     end
   end
 
+  def new_form
+    @purchase = @year.purchases.create(user_id: current_user.id)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def new
+  end
+
   def edit
-    @purchase = Purchase.find(params[:id])
   end
 
   def create
-    @purchase = Purchase.new(params[:purchase])
     @purchase.user = current_user
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to purchases_url, notice: 'Purchase was successfully created.' }
+        format.html { redirect_to [@year, Purchase], notice: 'Purchase was successfully created.' }
         format.json { render json: @purchase, status: :created, location: @purchase }
       else
         format.html { render action: "new" }
@@ -60,11 +61,9 @@ class PurchasesController < ApplicationController
   end
 
   def update
-    @purchase = Purchase.find(params[:id])
-
     respond_to do |format|
       if @purchase.update_attributes(params[:purchase])
-        format.html { redirect_to purchases_url, notice: 'Purchase was successfully updated.' }
+        format.html { redirect_to [@year, Purchase], notice: 'Purchase was successfully updated.' }
         format.json { respond_with_bip(@purchase) }
         format.js
       else
@@ -76,11 +75,10 @@ class PurchasesController < ApplicationController
   end
 
   def destroy
-    @purchase = Purchase.find(params[:id])
     @purchase.destroy
 
     respond_to do |format|
-      format.html { redirect_to purchases_url }
+      format.html { redirect_to [@year, Purchase] }
       format.json { head :no_content }
     end
   end

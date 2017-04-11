@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def store_location
       # store last url - this is needed for post-login redirect to whatever the user last visited.
       if (request.fullpath != '/users/sign_in' &&
@@ -26,8 +25,8 @@ class ApplicationController < ActionController::Base
       end
   end
 
-
   private
+
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
   end
@@ -35,5 +34,4 @@ class ApplicationController < ActionController::Base
   def user_activity
     current_user.try :touch
   end
-
 end

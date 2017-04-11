@@ -1,18 +1,14 @@
 Birthday::Application.routes.draw do
 
-  resources :columns
-
   resources :years do
+    resources :columns
     resources :purchases do
       member do
         get :get_form
+        get :get_miniform
+        get :get_delivery_form
+        post :new_form
       end
-    end
-  end
-
-  resources :purchases do
-    member do
-      get :get_form
     end
   end
 

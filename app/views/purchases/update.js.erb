@@ -1,4 +1,4 @@
-$('#purchase_<%=@purchase.id%>').replaceWith("<%=j render @purchase, purchase_counter: 0%>");
+$('#purchase_<%=@purchase.id%>').replaceWith("<%=j render @purchase, purchase_counter: @year.purchases.where('id < ?', @purchase.id).pluck(:id).count%>");
 $('.modal').modal('hide');
 $('body').removeClass('modal-open');
 $('.modal-backdrop').remove();

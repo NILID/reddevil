@@ -12,12 +12,12 @@
   - @columns.each do |column|
     %tr
       %td= column.name
-      %td= column.type
+      %td= column.column_type
       %td= column.year
-      %td= link_to 'Show', column
-      %td= link_to 'Edit', edit_column_path(column)
-      %td= link_to 'Destroy', column, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Show', [@year, column]
+      %td= link_to 'Edit', edit_year_column_path(@year, column)
+      %td= link_to 'Destroy', [@year, column], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Column', new_column_path
+= link_to 'New Column', new_year_column_path(@year)

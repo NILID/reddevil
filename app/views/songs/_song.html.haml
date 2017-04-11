@@ -1,13 +1,14 @@
-=content_tag_for(:li, song) do
-  = link_to song.clean_filename, song.file.url
-  - if user_signed_in?
-    = link_to like_album_song_path(song.album, song), :method => :post, remote: true, class: 'icon-star-link' do
-      %i{class: current_user.likes?(song) ? 'icon-star' : 'icon-star-empty'}
-  - if showalbum
-    (#{link_to song.album.title, song.album})
-  = link_to '#repeat', class: 'repeat-link inactive', "data-repeat" => 'true', title: t('shared.repeat') do
-    %i.icon.icon-repeat
-  - if user_signed_in?
-    %span.sec-links
-      -if params[:action] != 'list' && params[:action] != 'favorites'
-        = link_to t('shared.del'), [song.album, song], :method => :delete, data: { confirm: t('shared.sure') } if can? :destroy, song
+-if song.file?
+  =content_tag_for(:li, song) do
+    = link_to song.clean_filename, song.file.url
+    - if user_signed_in?
+      = link_to like_album_song_path(song.album, song), :method => :post, remote: true, class: 'icon-star-link' do
+        %i{class: current_user.likes?(song) ? 'icon-star' : 'icon-star-empty'}
+    - if showalbum
+      (#{link_to song.album.title, song.album})
+    = link_to '#repeat', class: 'repeat-link inactive', "data-repeat" => 'true', title: t('shared.repeat') do
+      %i.icon.icon-repeat
+    - if user_signed_in?
+      %span.sec-links
+        -if params[:action] != 'list' && params[:action] != 'favorites'
+          = link_to t('shared.del'), [song.album, song], :method => :delete, data: { confirm: t('shared.sure') } if can? :destroy, song

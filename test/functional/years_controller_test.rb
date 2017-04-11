@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class YearsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @year = years(:one)
   end

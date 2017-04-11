@@ -1,0 +1,22 @@
+-content_for :delivery_info do
+  .tip-text
+    %dl.dl-horizontal
+      %dt= Delivery.human_attribute_name(:doc)
+      %dd= Delivery.human_attribute_name(:delivery)
+      %hr
+      -purchase.deliveries.each do |d|
+        %dt= short_date_year d.doc
+        %dd= short_date_year d.delivery
+
+
+-[delivery.doc, delivery.delivery].each_with_index do |d, index|
+  %td.nowrap
+    -if current_user && (current_user.has_group? :sellers)
+      %span.tip
+        = link_to short_date(d), get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link', remote: true
+        = yield :delivery_info
+    -else
+      = short_date_year(d)
+
+    -if index == 0
+      .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden='false' id="dialog_delivery_#{purchase.id}")

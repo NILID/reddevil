@@ -38,7 +38,7 @@ $ ->
       $(this).toggleClass('active inactive')
       s.play loops: 0
 
-  $('.readmore').readmore 
+  $('.readmore').readmore
     speed: 75
     moreLink: '<i class="icon icon-arrow-down">'
     lessLink: '<i class="icon icon-arrow-up">'

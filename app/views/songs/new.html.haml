@@ -1,4 +1,4 @@
-%h1=t 'songs.add'
+%h3= t 'songs.add'
 
 = form_for [@album, @song], html: { class: 'form-horizontal' }  do |f|
   - if @song.errors.any?
@@ -8,13 +8,12 @@
         - @song.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :file
-    = f.file_field :file, :class => 'text_field'
-  .actions
-    = f.submit 'Save'
-
-=link_to 'back', @album
+  .control-group
+    = f.label :title, class: 'control-label'
+    .controls= f.text_field :title
+  .control-group
+    = f.label :file, class: 'control-label'
+    .controls= f.file_field :file, class: 'text_field'
+  .form-actions
+    = f.submit t('shared.save'), class: 'btn btn-primary'
+    = link_to t('shared.cancel'), @album, class: 'btn'

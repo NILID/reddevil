@@ -13,6 +13,4 @@ module ApplicationHelper
    def deadline(time)
      Russian.strftime(time, "%A  %d.%m.%Y %H:%M")
    end
-
-
 end

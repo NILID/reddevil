@@ -22,11 +22,13 @@ ru:
     media: Медиа
     create: Создать
     phonebook: Телефонная книга
+    empty: не указано
     del: Удалить
     sure: Вы уверены?
     add: Добавить
     sort: 'cортировать: '
     save: Сохранить
+    waiting: подождите...
     today: Сегодня
     tomorrow: Завтра
     repeat: Повторить
@@ -54,6 +56,8 @@ ru:
     empty: Пустая папка
     empty_root: Пусто
     already_exist_in_folder: В текущей директории уже существует файл с таким названием.
+  deliveries:
+    title: Поставка
   devise:
     logout: Выйти
     login: Войти
@@ -75,6 +79,7 @@ ru:
     payment: оплата
     delivery: поставка
     result: итог
+    add_new: Добавить закупку
   notes:
     title: Заметки по работе сайта
     creating: Создание заметки
@@ -82,6 +87,8 @@ ru:
     new: новая
     failed: отклонено
     done: выполнено
+  columns:
+    add: Добавить поле
   subscribes:
     search: Абонент
     import: Импорт справочника
@@ -130,6 +137,8 @@ ru:
     favorites: Избранное
     all: Вся коллекция
     newer: Последние добавленные
+    creating: Создание альбома
+    editing: Редактирование альбома
   results:
     true_winner: угадал победителя
     true_diff: угадал разницу мячей
@@ -181,6 +190,10 @@ ru:
   slides:
     add: Добавить слайд
     hide: Ограниченный предосмотр
+  years:
+    title: Периоды закупок
+    editing: Редактирование периода
+    creating: Создание периода
   work:
     edit: Редактирование работы
     create: Создание работы
@@ -224,12 +237,24 @@ ru:
       forecast: прогноз
       folder: папка
       dataset: файл
+      purchase: закупка
+      year: период
+      column: поле
     attributes:
+      album:
+        title: Название
+        songs: Песни
       message:
         title: Название
         content: Текст сообщения
         close: Скрытие
         purchase: Закупка
+      delivery:
+        doc: Доверенность
+        delivery: Поставка
+      column:
+        name: Название
+        column_type: Тип
       dataset:
         title: Название
         src: Файл
@@ -323,12 +348,17 @@ ru:
       comment:
         body: Текст сообщения
       profile:
-       login: Логин
-       name: Имя
-       surname: Фамилия
-       patronymic: Отчество
-       avatar: Аватар
-       background_color: Фон сайта
+        login: Логин
+        name: Имя
+        surname: Фамилия
+        patronymic: Отчество
+        avatar: Аватар
+        background_color: Фон сайта
+      year:
+        year: Период
+      song:
+        title: Название
+        file: Файл
   date:
     formats:
       very_short: "%d %B"
@@ -361,6 +391,9 @@ ru:
     member_1: сотрудник
     member_2: сотрудника
     member_10: сотрудников
+    purchase_1: закупка
+    purchase_2: закупки
+    purchase_10: закупок
   will_paginate:
     next_label: Следующее
     previous_label: Предыдущее

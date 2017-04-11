@@ -30,4 +30,5 @@
 //= require fancybox
 //= require Chart.bundle
 //= require chartkick
+//= require jquery.tooltipster.min.js
 //= require_tree .

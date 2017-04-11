@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161107070824) do
+ActiveRecord::Schema.define(:version => 20170321051601) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
 
+  create_table "columns", :force => true do |t|
+    t.string   "name"
+    t.string   "column_type"
+    t.integer  "year_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "columns", ["year_id"], :name => "index_columns_on_year_id"
+
+  create_table "columnships", :force => true do |t|
+    t.integer "column_id"
+    t.integer "purchase_id"
+    t.text    "data"
+    t.text    "desc"
+  end
+
+  add_index "columnships", ["column_id"], :name => "index_columnships_on_column_id"
+  add_index "columnships", ["purchase_id"], :name => "index_columnships_on_purchase_id"
+
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -58,6 +78,21 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
   add_index "conversations", ["recipient_id"], :name => "index_conversations_on_recipient_id"
   add_index "conversations", ["sender_id"], :name => "index_conversations_on_sender_id"
 
+  create_table "datasets", :force => true do |t|
+    t.string   "title"
+    t.string   "src_file_name"
+    t.string   "src_content_type"
+    t.integer  "src_file_size"
+    t.datetime "src_updated_at"
+    t.integer  "user_id"
+    t.integer  "folder_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "datasets", ["folder_id"], :name => "index_datasets_on_folder_id"
+  add_index "datasets", ["user_id"], :name => "index_datasets_on_user_id"
+
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
     t.integer  "attempts",   :default => 0, :null => false
@@ -73,6 +108,16 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "deliveries", :force => true do |t|
+    t.datetime "doc"
+    t.datetime "delivery"
+    t.integer  "purchase_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "deliveries", ["purchase_id"], :name => "index_deliveries_on_purchase_id"
 
   create_table "docs", :force => true do |t|
     t.string   "title"
@@ -97,6 +142,17 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
+  create_table "folders", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "ancestry"
+  end
+
+  add_index "folders", ["ancestry"], :name => "index_folders_on_ancestry"
+  add_index "folders", ["user_id"], :name => "index_folders_on_user_id"
 
   create_table "follows", :force => true do |t|
     t.string   "follower_type"
@@ -214,6 +270,7 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
     t.string   "status",     :default => "new"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.text     "review"
   end
 
   create_table "profiles", :force => true do |t|
@@ -223,9 +280,50 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "background_color",    :default => "#aecdf2"
+    t.string   "name"
+    t.string   "surname"
+    t.string   "patronymic"
+    t.integer  "total_result",        :default => 0
   end
+
+  create_table "purchases", :force => true do |t|
+    t.string  "title"
+    t.float   "price"
+    t.string  "provider"
+    t.string  "doc"
+    t.integer "user_id"
+    t.date    "startdate"
+    t.date    "zkpdate"
+    t.date    "kp"
+    t.date    "zsc_kp"
+    t.date    "nmc"
+    t.date    "aztz"
+    t.date    "conclusion_expert"
+    t.date    "analytic"
+    t.date    "conclusion_pdtk"
+    t.date    "erp"
+    t.date    "request"
+    t.date    "bidding"
+    t.date    "committee"
+    t.date    "contract_request"
+    t.date    "contract_project"
+    t.date    "contract"
+    t.date    "prepay_date"
+    t.integer "prepay_sum"
+    t.date    "warmth_date"
+    t.integer "warmth_sum"
+    t.date    "proxy"
+    t.date    "delivery"
+    t.integer "year_id"
+    t.string  "status"
+    t.string  "status_color"
+  end
+
+  add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"
+  add_index "purchases", ["year_id"], :name => "index_purchases_on_year_id"
 
   create_table "results", :force => true do |t|
     t.integer  "total",       :default => 0
@@ -264,6 +362,18 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
 
 # Could not dump table "sources" because of following StandardError
 #   Unknown type 'false' for column 'hidden'
+
+  create_table "subscribes", :force => true do |t|
+    t.string   "fullname"
+    t.string   "departament"
+    t.text     "position"
+    t.string   "place"
+    t.string   "phone_inter"
+    t.string   "phone_city"
+    t.string   "email"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "teams", :force => true do |t|
     t.string   "title"
@@ -334,5 +444,14 @@ ActiveRecord::Schema.define(:version => 20161107070824) do
 
   add_index "works", ["art_id"], :name => "index_works_on_art_id"
   add_index "works", ["user_id"], :name => "index_works_on_user_id"
+
+  create_table "years", :force => true do |t|
+    t.string   "year"
+    t.string   "slug",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "years", ["slug"], :name => "index_years_on_slug", :unique => true
 
 end

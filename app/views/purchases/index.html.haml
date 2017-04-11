@@ -1,54 +1,32 @@
 - model_class = Purchase
 
-.rowwww
-  .span1222
+.row
+  .span
     .alert.alert-info= t 'shared.building'
 
     .page-header
-      %h1
-        =t 'purchases.title'
-        %small= link_to t('.new', :default => t("helpers.links.new")), new_purchase_path, :class => 'btn btn-primary'
+      %h3
+        = t 'purchases.title'
+        -if can? :manage, @year
+          %small
+            = link_to t('shared.edit'), edit_year_path(@year), class: 'btn btn-mini'
+            = link_to t('shared.del'), @year, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
 
     .purchases-table.well
       %table.table.table-bordered.table-hover.table-condensed
         %thead.header
           %tr
-            %th(colspan='7')=t 'purchases.basic_info'
-            %th(colspan='5')=t 'purchases.ask_price'
-            %th(colspan='3')=t 'purchases.info_share'
-            %th(colspan='1')=t 'purchases.erp'
-            %th(colspan='3')=t 'purchases.buy_depart'
-            %th(colspan='3')=t 'purchases.dogovor_depart'
-            %th(colspan='4')=t 'purchases.payment'
-            %th(colspan='2')=t 'purchases.delivery'
-
+            %th(rowspan='2') №
+            %th(rowspan='2')= model_class.human_attribute_name(:title)
+            - @year.columns.each do |column|
+              %th(rowspan='2')= column.name
+            %th(colspan='2')=t 'deliveries.title'
           %tr
-            %th №
-            %th= model_class.human_attribute_name(:title)
-            %th= model_class.human_attribute_name(:price)
-            %th= model_class.human_attribute_name(:provider)
-            %th= model_class.human_attribute_name(:doc)
-            %th= model_class.human_attribute_name(:user_id)
-            %th= model_class.human_attribute_name(:startdate)
-            %th= model_class.human_attribute_name(:zkpdate)
-            %th= model_class.human_attribute_name(:kp)
-            %th= model_class.human_attribute_name(:zsc_kp)
-            %th= model_class.human_attribute_name(:nmc)
-            %th= model_class.human_attribute_name(:aztz)
-            %th= model_class.human_attribute_name(:conclusion_expert)
-            %th= model_class.human_attribute_name(:analytic)
-            %th= model_class.human_attribute_name(:conclusion_pdtk)
-            %th= model_class.human_attribute_name(:erp)
-            %th= model_class.human_attribute_name(:request)
-            %th= model_class.human_attribute_name(:bidding)
-            %th= model_class.human_attribute_name(:committee)
-            %th= model_class.human_attribute_name(:contract_request)
-            %th= model_class.human_attribute_name(:contract_project)
-            %th= model_class.human_attribute_name(:contract)
-            %th= model_class.human_attribute_name(:prepay_date)
-            %th= model_class.human_attribute_name(:prepay_sum)
-            %th= model_class.human_attribute_name(:warmth_date)
-            %th= model_class.human_attribute_name(:warmth_sum)
-            %th= model_class.human_attribute_name(:proxy)
-            %th= model_class.human_attribute_name(:delivery)
+            %th= Delivery.human_attribute_name(:doc)
+            %th= Delivery.human_attribute_name(:delivery)
+
         %tbody= render partial: 'purchase', collection: @purchases
+      = link_to new_form_year_purchase_path(@year, Purchase), method: :post, remote: true, disable_with: t('shared.waiting'), class: 'btn btn-primary btn-small' do
+        %i.icon.icon-plus
+        &nbsp;
+        =t('purchases.add_new')

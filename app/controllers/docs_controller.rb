@@ -1,7 +1,7 @@
 class DocsController < ApplicationController
   load_and_authorize_resource
   layout  'main', only: [:edit, :new]
-  
+
   before_filter :set_categories, only: [:edit, :new, :create, :update]
 
   def index
@@ -17,7 +17,7 @@ class DocsController < ApplicationController
     else
       hidden = []
       Category.all.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
-      
+
       @q = params[:q] ? Doc.search(params[:q]) : Doc.where(category_id: hidden).search(params[:q])
       @docs = @q.result(distinct: true).all(order: :title)
     end

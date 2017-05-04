@@ -20,7 +20,7 @@
     .control-label= m.team2.title
     .controls
       = f.number_field :team2goal, min: 0, :class => 'number_field'
-  .control-group.winner-field.hidden
+  .control-group#winner-field
     .control-label= f.label :winner_id
     .controls= f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
@@ -31,7 +31,7 @@
         = f.radio_button :ending, e, class: 'hidden', disabled: false
       .btn-group(data-toggle="buttons-radio")
         -Match::ENDING.each do |e|
-          = f.label "ending_#{e}", t("matches.#{e}"), class: 'btn btn-primary'
+          = f.label "ending_#{e}", t("matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"), class: 'btn btn-primary'
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary', disable_with: t('shared.saving')

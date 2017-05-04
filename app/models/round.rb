@@ -1,9 +1,10 @@
 class Round < ActiveRecord::Base
-  attr_accessible :close, :content, :title, :matches_attributes, :deadline
+  attr_accessible :close, :content, :title, :matches_attributes, :deadline, :type_id
 
   has_many :matches
   has_many :forecasts, through: :matches
   has_many :results
+  belongs_to :type
 
   accepts_nested_attributes_for :matches, :allow_destroy => true #not requied 
 

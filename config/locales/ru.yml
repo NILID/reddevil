@@ -133,6 +133,8 @@ ru:
     overtime_short: Д
     penalty: пенальти
     penalty_short: П
+    bullit: буллиты
+    bullit_short: Б
   albums:
     title: Альбомы
     add: Добавить альбом

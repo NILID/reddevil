@@ -17,6 +17,7 @@
   - @rounds.each do |round|
     .page-header
       %h3= link_to round.title, round
+      %p= round.content
       %p.muted
         %span=plural round.matches.count, 'match'
         &#149;

@@ -85,6 +85,9 @@ gem 'twitter-bootstrap-rails'
 # in production environments by default.
 group :development do
   gem 'quiet_assets'
+  gem 'better_errors', '< 2'
+  gem 'binding_of_caller'
+  gem 'bullet', '< 5.5.0'
 end
 
 group :production do

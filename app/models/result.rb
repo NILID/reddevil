@@ -16,8 +16,8 @@ class Result < ActiveRecord::Base
         #check diff
         i+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
         #check winner
-#        i+=1 if ((match.team1goal > match.team2goal) == (forecast.team1goal > forecast.team2goal)) && !match.winner_id?
-#        i+=1 if ((match.winner == forecast.winner) && match.winner_id?)
+        # i+=1 if ((match.team1goal > match.team2goal) == (forecast.team1goal > forecast.team2goal)) && !match.winner_id?
+        # i+=1 if ((match.winner == forecast.winner) && match.winner_id?)
         i+=1 if (match.check_win == forecast.check_winner)
         #check final end
         i+=1 if (match.ending == forecast.ending)

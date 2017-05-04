@@ -38,11 +38,19 @@ GEM
     best_in_place (3.1.0)
       actionpack (>= 3.2)
       railties (>= 3.2)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     birthday (0.3.1.1)
       activerecord
       activesupport
     bootstrap_forms (4.0.1)
     builder (3.0.4)
+    bullet (5.4.3)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     cancancan (1.10.1)
     chartkick (2.1.1)
     ckeditor (4.0.6)
@@ -52,6 +60,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -61,6 +70,7 @@ GEM
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
     daemons (1.1.9)
+    debug_inspector (0.0.2)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -230,6 +240,7 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    uniform_notifier (1.10.0)
     warden (1.2.3)
       rack (>= 1.0)
     will_paginate (3.0.5)
@@ -246,8 +257,11 @@ DEPENDENCIES
   acts-as-taggable-on
   ancestry
   best_in_place
+  better_errors (< 2)
+  binding_of_caller
   birthday (= 0.3.1.1)
   bootstrap_forms
+  bullet (< 5.5.0)
   cancancan
   chartkick
   ckeditor (= 4.0.6)

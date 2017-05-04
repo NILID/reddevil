@@ -1,8 +1,10 @@
 $ ->
 
+  $('#winner-field').hide()
+
   if $("#forecast_team1goal").val() != '' && $("#forecast_team2goal").val() != ''
     if $("#forecast_team1goal").val() == $("#forecast_team2goal").val()
-      $('form .winner-field').show()
+      $('#winner-field').show()
 
       basic =$("form input#forecast_ending_basic")
       basic_label =$("form .btn-group label[for='forecast_ending_basic']")
@@ -28,7 +30,7 @@ $ ->
         basic_label.addClass('active')
 
     else
-      $('form .winner-field').hide()
+      $('#winner-field').hide()
 
       basic =$("form input#forecast_ending_basic")
       basic_label =$("form .btn-group label[for='forecast_ending_basic']")
@@ -61,7 +63,7 @@ $ ->
     $val1 = $("#forecast_team1goal").val()
     $val2 = $("#forecast_team2goal").val()
     if $val1 == $val2
-      $('form .winner-field').slideDown()
+      $('#winner-field').slideDown()
 
       basic =$("form input#forecast_ending_basic")
       basic_label =$("form .btn-group label[for='forecast_ending_basic']")
@@ -88,7 +90,7 @@ $ ->
 
 
     else
-      $('form .winner-field').slideUp()
+      $('#winner-field').slideUp()
       $("select#forecast_winner_id").val('')
 
       basic =$("form input#forecast_ending_basic")

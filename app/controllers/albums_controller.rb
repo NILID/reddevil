@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
 
   def index
     @albums = @albums.order(:title).roots
-    @new_songs = Song.order('created_at DESC').page(params[:page]).per_page(20)
+    @new_songs = Song.includes(:album).order('created_at DESC').page(params[:page]).per_page(20)
     @q = Song.search(params[:q])
     if params[:q]
       @songs = @q.result(distinct: true).all(order: :file_file_name)

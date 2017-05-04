@@ -19,7 +19,7 @@
   %thead
     %th
     %th
-    -Tempuser.order(:username).each do |user|
+    - @tempusers.each do |user|
       %th.results(style="text-align:center;font-weight:100;")
         %p=user.user ? link_to(user.username, user_profile_path(user.user)) : user.username
 

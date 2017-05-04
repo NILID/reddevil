@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170321051601) do
+ActiveRecord::Schema.define(:version => 20170504122233) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -67,16 +67,6 @@ ActiveRecord::Schema.define(:version => 20170321051601) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "conversations", :force => true do |t|
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "conversations", ["recipient_id"], :name => "index_conversations_on_recipient_id"
-  add_index "conversations", ["sender_id"], :name => "index_conversations_on_sender_id"
 
   create_table "datasets", :force => true do |t|
     t.string   "title"
@@ -233,10 +223,10 @@ ActiveRecord::Schema.define(:version => 20170321051601) do
     t.string   "surname"
     t.string   "patronymic"
     t.date     "birth"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "email"
-    t.integer  "phone"
+    t.integer  "phone",        :limit => 8
     t.string   "short_number"
   end
 
@@ -345,6 +335,7 @@ ActiveRecord::Schema.define(:version => 20170321051601) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.datetime "deadline"
+    t.integer  "type_id"
   end
 
   create_table "songs", :force => true do |t|
@@ -360,8 +351,18 @@ ActiveRecord::Schema.define(:version => 20170321051601) do
 
   add_index "songs", ["album_id"], :name => "index_songs_on_album_id"
 
-# Could not dump table "sources" because of following StandardError
-#   Unknown type 'false' for column 'hidden'
+  create_table "sources", :force => true do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "work_id"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "hide",              :default => false
+  end
+
+  add_index "sources", ["work_id"], :name => "index_sources_on_work_id"
 
   create_table "subscribes", :force => true do |t|
     t.string   "fullname"

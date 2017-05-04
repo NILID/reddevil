@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('#song_tabs a:first').tab('show');
+  $('.nav-tabs a:first').tab('show');

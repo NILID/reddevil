@@ -1,0 +1,1 @@
+Holidays.cache_between(Time.now, 2.years.from_now, :ru, :observed)

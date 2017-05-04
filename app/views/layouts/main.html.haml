@@ -16,17 +16,15 @@
     = render 'users/user_style' if user_signed_in?
 
   %body
-    #wrapper
-      =render 'main/menu'
-      .container.main-content
-        = bootstrap_flash
-        = yield
-      %footer
-        .container
-          .row
-            .span6
-              %p &copy; LUCH 2014-2017
-            .span6.text-right
-              =link_to notes_path do
-                %i.icon.icon-cog
-                =t 'notes.title'
+    = render 'main/menu'
+    .container.main-content
+      = bootstrap_flash
+      = yield
+    %footer.container
+      .row
+        .span6
+          %p &copy; LUCH 2014-2017
+        .span6.text-right
+          = link_to notes_path do
+            %i.icon.icon-cog
+            = t 'notes.title'

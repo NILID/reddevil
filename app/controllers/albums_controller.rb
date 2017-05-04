@@ -12,12 +12,12 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @albums=@album.children.order(:title)
+    @albums = @album.children.order(:title)
   end
 
   def favorites
-    @songs=current_user.likees(Song)#.order(:created_at)
-    @albums=current_user.likees(Album)
+    @songs = current_user.likees(Song)#.order(:created_at)
+    @albums = current_user.likees(Album)
   end
 
   def like

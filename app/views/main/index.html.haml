@@ -3,43 +3,42 @@
     .span12
       -@messages.each do |message|
         .alert.alert-info
-          %h5=message.title
+          %h5= message.title
           %p= simple_format message.content
 
 .row
   -if !@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?
     .span6{class: (@holidays_today.empty? && @holidays_tomorrow.empty?) ? 'offset3' : nil}
       .birthday-block.well.well-small.ny-block
-        -if !@bdusers_prevyesterday.empty?
+        - if !@bdusers_prevyesterday.empty?
           %h5= t 'shared.birthdays_prevyesterday'
+          - @bdusers_prevyesterday.keys.sort.each do |u|
+            = render @bdusers_prevyesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
           %hr
-          -@bdusers_prevyesterday.keys.sort.each do |u|
-            =render @bdusers_prevyesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
 
         -if !@bdusers_yesterday.empty?
           %h5= t 'shared.birthdays_yesterday'
+          - @bdusers_yesterday.keys.sort.each do |u|
+            = render @bdusers_yesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
           %hr
-          -@bdusers_yesterday.keys.sort.each do |u|
-            =render @bdusers_yesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
 
         -if !@bdusers_today.empty?
           %h5= @bdusers_today.keys.count>1 ? t('shared.birthdays_today') : t('shared.birthday_today')
+          - @bdusers_today.keys.sort.each do |u|
+            = render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
           %hr
-          -@bdusers_today.keys.sort.each do |u|
-            =render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
 
         -if !@bdusers_tomorrow.empty?
           %h5= t 'shared.birthdays_tomorrow'
+          - @bdusers_tomorrow.keys.sort.each do |u|
+            = render @bdusers_tomorrow[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
           %hr
-          -@bdusers_tomorrow.keys.sort.each do |u|
-            =render @bdusers_tomorrow[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
 
         -if !@bdusers_month.empty?
           %h5= @bdusers_month.keys.count>1 ? t('shared.birthdays') : t('shared.birthday')
-          %hr
-          -@bdusers_month.keys.sort.each do |u|
-            =render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
-  -else
+          - @bdusers_month.keys.sort.each do |u|
+            = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
+  - else
     .span3
 
   -if !@holidays_today.empty? || !@holidays_tomorrow.empty?
@@ -48,17 +47,16 @@
         - if !@holidays_today.empty?
           %h5
             = t 'shared.today'
-            %small= Russian.strftime(DateTime.now, "%d %B")
+            %small= Russian.strftime(DateTime.now, '%d %B')
+          - @holidays_today.each do |h|
+            %p.alert.alert-success= h[:name]
           %hr
-          -@holidays_today.each do |h|
-            %p.alert.alert-success=h[:name]
         - if !@holidays_tomorrow.empty?
           %h5
             = t 'shared.tomorrow'
-            %small= Russian.strftime(DateTime.tomorrow, "%d %B")
-          %hr
-          -@holidays_tomorrow.each do |h|
-            %p=h[:name]
+            %small= Russian.strftime(DateTime.tomorrow, '%d %B')
+          - @holidays_tomorrow.each do |h|
+            %p= h[:name]
 
 .row
   .span6.offset3

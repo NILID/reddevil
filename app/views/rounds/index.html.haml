@@ -1,18 +1,17 @@
--content_for :sidebar do
+- content_for :sidebar do
   %h3=t 'shared.rating'
   %table.table.table-hover
-    -@profiles.each do |p|
+    -@profiles.each do |profile|
       %tr
-        %td=p.surname_name
-        %td=p.total_result
-
+        %td= profile.surname_name
+        %td= profile.total_result
 
 - if can? :manage, Round
-  %small= link_to t('rounds.add'), new_round_path, :class => 'btn'
+  %small= link_to t('rounds.add'), new_round_path, class: 'btn'
 - if can? :manage, Team
-  %small= link_to t('teams.add'), new_team_path, :class => 'btn'
+  %small= link_to t('teams.add'), new_team_path, class: 'btn'
 - if can? :manage, Tempuser
-  %small= link_to 'tempusers', tempusers_path, :class => 'btn'
+  %small= link_to 'tempusers', tempusers_path, class: 'btn'
 
 %table.table.table-striped
   - @rounds.each do |round|
@@ -25,5 +24,5 @@
         &#149;
         %span=plural round.forecasts.pluck(:tempuser_id).uniq.count, 'user'
       - if can? :manage, round
-        = link_to t('.edit', :default => t("helpers.links.edit")), edit_round_path(round), :class => 'btn btn-mini'
-        = link_to t('.destroy', :default => t("helpers.links.destroy")), round_path(round), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+        = link_to t('shared.edit'), edit_round_path(round), class: 'btn btn-mini'
+        = link_to t('shared.del'), round_path(round), :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn btn-mini btn-danger'

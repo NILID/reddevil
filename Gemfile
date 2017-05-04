@@ -6,6 +6,8 @@ gem 'rails', '3.2.22.2'
 
 #gem 'pg'
 
+gem 'mysql2', '0.3.10'
+
 gem 'thin'
 gem 'momentjs-rails'
 
@@ -49,6 +51,8 @@ gem 'rails-i18n', '~> 3.0.0'
 gem 'devise'
 #gem 'devise-russian'
 gem 'russian'
+
+gem 'yaml_db'
 
 gem 'nested_form'
 

@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   load_and_authorize_resource
+  layout 'main'
 
   def index
     @q = @members.search(params[:q])

@@ -1,4 +1,4 @@
-= nested_form_for @round, :html => { :class => 'form-horizontal' } do |f|
+= nested_form_for @round, html: { class: 'form-horizontal' } do |f|
   - if @round.errors.any?
     .alert.alert-error
       %h4= "#{pluralize(@round.errors.count, "error")} prohibited this work from being saved:"
@@ -8,24 +8,22 @@
 
   .control-group
     = f.label :title, :class => 'control-label'
-    .controls
-      = f.text_field :title, :class => 'text_field'
+    .controls= f.text_field :title, :class => 'text_field'
   .control-group
     = f.label :content, :class => 'control-label'
-    .controls
-      = f.text_field :content, :class => 'text_field'
+    .controls= f.text_field :content, :class => 'text_field'
   .control-group
     .controls
       #datetimeround.input-append.date
         =#f.date_select :deadline, default: {hour: 16, minute: 0}
-        =f.text_field :deadline, "data-format" => 'dd.MM.yyyy hh:mm:ss'
+        = f.text_field :deadline, "data-format" => 'dd.MM.yyyy hh:mm:ss'
         %span.add-on
           %i.icon-th
 
   .control-group
-    = f.label :close, :class => 'control-label'
+    = f.label :close, class: 'control-label'
     .controls
-      = f.check_box :close, :class => 'check_box'
+      = f.check_box :close, class: 'check_box'
 
   = f.fields_for :matches do |m|
     .control-group.well.well-small

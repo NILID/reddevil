@@ -10,7 +10,5 @@ class Source < ActiveRecord::Base
     path: ":rails_root/public/system/sources/:attachment/:id/:style/:filename",
     url: "/system/sources/:attachment/:id/:style/:filename"
 
-  validates :file, :attachment_presence => true  
-
-
+  validates :file, :attachment_presence => true
 end

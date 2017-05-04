@@ -1,4 +1,6 @@
 $ ->
+  Chartkick.configure language: 'ru'
+
   soundManager.defaultOptions =
     loops: 1
 
@@ -62,3 +64,4 @@ $ ->
   $('#changecolor').colorpicker().on 'changeColor', (e) ->
     $('body')[0].style.backgroundColor = e.color.toString('rgba')
     return
+

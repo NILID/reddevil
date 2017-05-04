@@ -16,35 +16,32 @@
     = render 'users/user_style' if user_signed_in?
 
   %body
-    #wrapper
-      =render 'main/menu'
-
-      .container-fluid.main-content
-
-        .row-fluid
-          .span3
-            =yield :sidebar
-            -if user_signed_in? && (params[:controller] == 'albums' || params[:controller] == 'songs')
-              .well.sidebar-nav.favorites-panel{"data-spy" => 'affix', class: (current_user.likees(Song).count + current_user.likees(Album).count) == 0 ? 'hidden' : nil}
+    = render 'main/menu'
+    .container-fluid.main-content
+      .row-fluid
+        .span3
+          .row-fluid
+            .span12= yield :sidebar
+          -if user_signed_in? && (params[:controller] == 'albums' || params[:controller] == 'songs')
+            .row-fluid
+              .span3.well.sidebar-nav.favorites-panel{'data-spy' => 'affix', class: (current_user.likees(Song).count + current_user.likees(Album).count) == 0 ? 'hidden' : nil}
                 %ul.nav.nav-list
                   %li.nav-header.hidden Sidebar
                   %li
                     = link_to favorites_albums_path do
                       = t('albums.favorites')
                       %p
-                        %span.likees-album-count=plural current_user.likees(Album).count, 'album'
-                        %span.likees-count=plural current_user.likees(Song).count, 'song'
+                        %span.likees-album-count= plural current_user.likees(Album).count, 'album'
+                        %span.likees-count= plural current_user.likees(Song).count, 'song'
+        .span9
+          =# bootstrap_flash
+          = yield
 
-          .span9
-            =# bootstrap_flash
-            = yield
-
-      %footer
-        .container
-          .row
-            .span6
-              %p &copy; LUCH 2014-2017
-            .span6.text-right
-              =link_to notes_path do
-                %i.icon.icon-cog
-                =t 'notes.title'
+    %footer.container
+      .row
+        .span6
+          %p &copy; LUCH 2014-2017
+        .span6.text-right
+          = link_to notes_path do
+            %i.icon.icon-cog
+            = t 'notes.title'

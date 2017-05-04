@@ -123,6 +123,7 @@ GEM
     momentjs-rails (2.15.1)
       railties (>= 3.1)
     multi_json (1.12.1)
+    mysql2 (0.3.10)
     nested_form (0.3.2)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -234,6 +235,9 @@ GEM
     will_paginate (3.0.5)
     will_paginate-bootstrap (0.2.5)
       will_paginate (>= 3.0.3)
+    yaml_db (0.5.0)
+      rails (>= 3.0, < 5.1)
+      rake (>= 0.8.7)
 
 PLATFORMS
   ruby
@@ -264,6 +268,7 @@ DEPENDENCIES
   less-rails
   meta-tags
   momentjs-rails
+  mysql2 (= 0.3.10)
   nested_form
   nokogiri (= 1.6.8.1)
   paperclip
@@ -288,6 +293,7 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   will_paginate (~> 3.0)
   will_paginate-bootstrap (< 1.0.0)
+  yaml_db
 
 BUNDLED WITH
    1.14.3

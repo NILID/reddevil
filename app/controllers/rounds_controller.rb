@@ -10,6 +10,7 @@ class RoundsController < ApplicationController
 
   def show
     @tempusers = Tempuser.order(:username).includes(:user)
+    @round_matches = @round.matches.includes([:team1, :team2])
   end
 
   def new

@@ -30,8 +30,8 @@
       -Match::ENDING.each do |e|
         = f.radio_button :ending, e, class: 'hidden', disabled: false
       .btn-group(data-toggle='buttons-radio')
-        -Match::ENDING.each do |e|
-          = f.label "ending_#{e}", t("matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"), class: 'btn btn-primary'
+        - Match::ENDING.each do |e|
+          = f.label "ending_#{e}", t("matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"), class: "btn btn-primary #{(@forecast && @forecast.ending == e) ? 'current' : nil}"
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary', disable_with: t('shared.saving')

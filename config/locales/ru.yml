@@ -351,6 +351,7 @@ ru:
       user:
         password: Пароль
         password_confirmation: Повторите пароль
+        confirmation_token: Код подтверждения
       comment:
         body: Текст сообщения
       profile:

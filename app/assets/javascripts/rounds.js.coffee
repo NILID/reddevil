@@ -3,119 +3,100 @@ $ ->
   $('#winner-field').hide()
 
   if $("#forecast_team1goal").val() != '' && $("#forecast_team2goal").val() != ''
+    basic =$("form input#forecast_ending_basic")
+    basic_label =$("form .btn-group label[for='forecast_ending_basic']")
+    overtime =$("form input#forecast_ending_overtime")
+    overtime_label =$("form .btn-group label[for='forecast_ending_overtime']")
+    penalty =$("form input#forecast_ending_penalty")
+    penalty_label =$("form .btn-group label[for='forecast_ending_penalty']")
+
     if $("#forecast_team1goal").val() == $("#forecast_team2goal").val()
       $('#winner-field').show()
 
-      basic =$("form input#forecast_ending_basic")
-      basic_label =$("form .btn-group label[for='forecast_ending_basic']")
       basic_label.addClass('disabled')
       basic.attr('disabled', 'disabled')
-      if basic.is(":checked")
-        basic_label.addClass('active')
+      basic_label.removeClass('active')
+      basic.attr('checked', false)
 
-      overtime =$("form input#forecast_ending_overtime")
-      overtime_label =$("form .btn-group label[for='forecast_ending_overtime']")
       overtime_label.addClass('disabled')
+      basic_label.removeClass('active')
       overtime.attr('disabled', 'disabled')
-      if overtime.is(":checked")
-        overtime_label.addClass('active')
+      overtime.attr('checked', false)
 
-      penalty =$("form input#forecast_ending_penalty")
-      penalty_label =$("form .btn-group label[for='forecast_ending_penalty']")
-      penalty_label.removeClass('disabled')
+      penalty_label.addClass('disabled')
+      penalty_label.addClass('active')
       penalty.removeAttr('disabled')
-      if penalty.is(":checked")
-        penalty_label.addClass('active')
-      else
-        basic_label.addClass('active')
-
+      penalty.attr('checked', 'checked')
     else
       $('#winner-field').hide()
 
-      basic =$("form input#forecast_ending_basic")
-      basic_label =$("form .btn-group label[for='forecast_ending_basic']")
-
+      if basic_label.is('.current')
+        basic_label.addClass('active')
+        basic.attr('checked', 'checked')
       basic_label.removeClass('disabled')
       basic.removeAttr('disabled')
-      if $("form input#forecast_ending_basic").is(":checked")
-        $("form .btn-group label[for='forecast_ending_basic']").addClass('active')
 
-
-      overtime =$("form input#forecast_ending_overtime")
-      overtime_label =$("form .btn-group label[for='forecast_ending_overtime']")
+      if overtime_label.is('.current')
+        overtime_label.addClass('active')
+        overtime.attr('checked', 'checked')
       overtime_label.removeClass('disabled')
       overtime.removeAttr('disabled')
-      if overtime.is(":checked")
-        overtime_label.addClass('active')
 
-      penalty =$("form input#forecast_ending_penalty")
-      penalty_label =$("form .btn-group label[for='forecast_ending_penalty']")
       penalty_label.addClass('disabled')
+      penalty_label.removeClass('active')
       penalty.attr('disabled', 'disabled')
-      if penalty.is(":checked")
-        penalty_label.addClass('active')
-      else
-        basic_label.addClass('active')
-
+      penalty.attr('checked', false)
 
 
   $('form input.number_field').change (event) ->
     $val1 = $("#forecast_team1goal").val()
     $val2 = $("#forecast_team2goal").val()
+
+    basic =$("form input#forecast_ending_basic")
+    basic_label =$("form .btn-group label[for='forecast_ending_basic']")
+    overtime =$("form input#forecast_ending_overtime")
+    overtime_label =$("form .btn-group label[for='forecast_ending_overtime']")
+    penalty =$("form input#forecast_ending_penalty")
+    penalty_label =$("form .btn-group label[for='forecast_ending_penalty']")
+
     if $val1 == $val2
       $('#winner-field').slideDown()
 
-      basic =$("form input#forecast_ending_basic")
-      basic_label =$("form .btn-group label[for='forecast_ending_basic']")
       basic_label.addClass('disabled')
+      basic_label.removeClass('active')
       basic.attr('disabled', 'disabled')
-      if basic.is(":checked")
-        basic_label.addClass('active')
+      basic.attr('checked', false)
 
-      overtime =$("form input#forecast_ending_overtime")
-      overtime_label =$("form .btn-group label[for='forecast_ending_overtime']")
       overtime_label.addClass('disabled')
+      overtime_label.removeClass('active')
       overtime.attr('disabled', 'disabled')
-      if overtime.is(":checked")
-        overtime_label.addClass('active')
+      overtime.attr('checked', false)
 
-      penalty =$("form input#forecast_ending_penalty")
-      penalty_label =$("form .btn-group label[for='forecast_ending_penalty']")
-      penalty_label.removeClass('disabled')
       penalty.removeAttr('disabled')
-      if penalty.is(":checked")
-        penalty_label.addClass('active')
-      else
-        basic_label.addClass('active')
-
-
+      penalty_label.addClass('active')
+      penalty_label.addClass('disabled')
+      penalty.prop('checked', true)
     else
       $('#winner-field').slideUp()
       $("select#forecast_winner_id").val('')
 
-      basic =$("form input#forecast_ending_basic")
-      basic_label =$("form .btn-group label[for='forecast_ending_basic']")
       basic_label.removeClass('disabled')
       basic.removeAttr('disabled')
-      if basic.is(":checked")
+      if basic_label.is('.current') && penalty_label.not('.current') && overtime_label.not('.active') && basic_label.is('.acitve')
         basic_label.addClass('active')
+        basic.attr('checked', 'checked')
+        overtime_label.removeClass('active')
 
-      overtime =$("form input#forecast_ending_overtime")
-      overtime_label =$("form .btn-group label[for='forecast_ending_overtime']")
       overtime_label.removeClass('disabled')
       overtime.removeAttr('disabled')
-      if overtime.is(":checked")
+      if overtime_label.is('.current') && penalty_label.not('.current') && basic_label.not('.active') && overtime_label.is('.acitve')
         overtime_label.addClass('active')
+        overtime.attr('checked', 'checked')
+        basic_label.removeClass('active')
 
-      penalty =$("form input#forecast_ending_penalty")
-      penalty_label =$("form .btn-group label[for='forecast_ending_penalty']")
-      penalty_label.addClass('disabled')
+      penalty_label.removeClass('active')
       penalty.attr('disabled', 'disabled')
-      if penalty.is(":checked")
-        penalty_label.addClass('active')
-      else
-        basic_label.addClass('active')
-
+      penalty.attr('checked', false)
 
   $('#datetimeround input').datetimepicker
     language: "ru"

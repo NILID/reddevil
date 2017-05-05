@@ -82,7 +82,7 @@
               %br/
             %span.tip
               =t("matches.#{(match.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : match.ending}_short")
-              .tip-text=t("matches.#{match.ending}")
+              .tip-text=t("matches.#{(@round.type_id == 2 && match.ending == 'penalty') ? 'bullit' : 'penalty'}")
         -Tempuser.order(:username).each do |user|
           -f=user.forecasts.where(match_id: match.id).first
           -if f
@@ -95,14 +95,14 @@
                     - if f.ending != 'basic'
                       %span.tip
                         %span.ending=t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
-                        .tip-text=t("matches.#{f.ending}")
+                        .tip-text=t("matches.#{(@round.type_id == 2 && f.ending == 'penalty') ? 'bullit' : 'penalty'}")
                     \ : #{f.team2goal}
                   -else (match.team2 == f.winner) || (f.team1goal < f.team2goal)
                     #{f.team1goal} : #{f.team2goal}
                     - if f.ending != 'basic'
                       %span.tip
                         %span.ending=t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
-                        .tip-text=t("matches.#{f.ending}")
+                        .tip-text=t("matches.#{(@round.type_id == 2 && f.ending == 'penalty') ? 'bullit' : 'penalty'}")
                 - else
                   X : X
               -if can? :edit, f

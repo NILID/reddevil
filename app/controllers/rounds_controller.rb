@@ -5,7 +5,7 @@ class RoundsController < ApplicationController
 
   def index
     @rounds = @rounds.order('created_at desc')
-    @profiles = Profile.order('total_result desc')
+    @tempusers = Tempuser.order('total_result desc')
   end
 
   def show

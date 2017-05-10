@@ -1,10 +1,10 @@
 - content_for :sidebar do
   %h3=t 'shared.rating'
   %table.table.table-hover
-    -@profiles.each do |profile|
+    -@tempusers.each do |tempuser|
       %tr
-        %td= profile.surname_name
-        %td= profile.total_result
+        %td= tempuser.username
+        %td= tempuser.total_result
 
 - if can? :manage, Round
   %small= link_to t('rounds.add'), new_round_path, class: 'btn'

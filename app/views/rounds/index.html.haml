@@ -1,29 +1,47 @@
-- content_for :sidebar do
-  %h3=t 'shared.rating'
-  %table.table.table-hover
-    -@tempusers.each do |tempuser|
-      %tr
-        %td= tempuser.username
-        %td= tempuser.total_result
+.row
+  .span4
+    %h3=t 'shared.rating'
+    %table.table.table-hover
+      %thead
+        %tr
+          %td
+          %td
+            = link_to rounds_path(sort: 'current') do
+              ЧМХ 2017
+              - if params[:sort] != 'total'
+                %i.icon.icon-chevron-down
+          %td
+            = link_to rounds_path(sort: 'total') do
+              Общий
+              - if params[:sort] == 'total'
+                %i.icon.icon-chevron-down
+      -@tempusers.each do |tempuser, round_result|
+        %tr
+          %td= tempuser.username
+          %td= round_result
+          %td
+            = tempuser.total_result
+            =# (tempuser.total_result.to_f / tempuser.forecasts.count).round(2)
 
-- if can? :manage, Round
-  %small= link_to t('rounds.add'), new_round_path, class: 'btn'
-- if can? :manage, Team
-  %small= link_to t('teams.add'), new_team_path, class: 'btn'
-- if can? :manage, Tempuser
-  %small= link_to 'tempusers', tempusers_path, class: 'btn'
+  .span8
+    - if can? :manage, Round
+      %small= link_to t('rounds.add'), new_round_path, class: 'btn'
+    - if can? :manage, Team
+      %small= link_to t('teams.add'), new_team_path, class: 'btn'
+    - if can? :manage, Tempuser
+      %small= link_to 'tempusers', tempusers_path, class: 'btn'
 
-%table.table.table-striped
-  - @rounds.each do |round|
-    .page-header
-      %h3= link_to round.title, round
-      %p= round.content
-      %p.muted
-        %span=plural round.matches.count, 'match'
-        &#149;
-        %span=plural round.forecasts.count, 'forecast'
-        &#149;
-        %span=plural round.forecasts.pluck(:tempuser_id).uniq.count, 'user'
-      - if can? :manage, round
-        = link_to t('shared.edit'), edit_round_path(round), class: 'btn btn-mini'
-        = link_to t('shared.del'), round_path(round), :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn btn-mini btn-danger'
+    %table.table.table-striped
+      - @rounds.each do |round|
+        .page-header
+          %h4= link_to round.title, round
+          %p= round.content
+          %p.muted
+            %span=plural round.matches.count, 'match'
+            &#149;
+            %span=plural round.forecasts.count, 'forecast'
+            &#149;
+            %span=plural round.forecasts.pluck(:tempuser_id).uniq.count, 'user'
+          - if can? :manage, round
+            = link_to t('shared.edit'), edit_round_path(round), class: 'btn btn-mini'
+            = link_to t('shared.del'), round_path(round), :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn btn-mini btn-danger'

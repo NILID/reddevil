@@ -33,6 +33,10 @@ class RoundsController < ApplicationController
       if @round.save
         format.html { redirect_to @round, notice: 'Round was successfully created.' }
         format.json { render json: @round, status: :created, location: @round }
+
+        Tempuser.with_user.each do |tempuser|
+          Notification.new_round(tempuser.user, @round).deliver
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @round.errors, status: :unprocessable_entity }

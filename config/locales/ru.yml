@@ -184,6 +184,7 @@ ru:
     edit: Редактировать профиль
   mailer:
     birthday: День Рождения!
+    new_round: Новый раунд прогнозов - "%{round_name}"
   forecasts:
     add: cоздать
     edit: изменить

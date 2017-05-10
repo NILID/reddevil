@@ -15,11 +15,11 @@
   .control-group
     .control-label= m.team1.title
     .controls
-      = f.number_field :team1goal, min: 0, :class => 'number_field'
+      = f.number_field :team1goal, min: 0, class: 'number_field'
   .control-group
     .control-label= m.team2.title
     .controls
-      = f.number_field :team2goal, min: 0, :class => 'number_field'
+      = f.number_field :team2goal, min: 0, class: 'number_field'
   .control-group#winner-field
     .control-label= f.label :winner_id
     .controls= f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )

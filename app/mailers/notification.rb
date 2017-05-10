@@ -5,8 +5,11 @@ class Notification < ActionMailer::Base
     mail(to: email, subject: t('mailer.birthday'), template_name: 'birthday')
   end
 
-  def welcome(email)
-    mail(to: email, subject: 'welcome', template_name: 'welcome')
+  def new_round(user, round)
+    @user = user
+    @profile = @user.profile
+    @round = round
+    mail(to: @user.email, subject: I18n.t('mailer.new_round', round_name: @round.title), template_name: 'new_round')
   end
 
 

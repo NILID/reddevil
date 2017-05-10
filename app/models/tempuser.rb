@@ -7,4 +7,7 @@ class Tempuser < ActiveRecord::Base
   belongs_to :user
 
   validates :username, presence: true
+
+  scope :with_user, lambda { where('user_id IS NOT NULL') }
+
 end

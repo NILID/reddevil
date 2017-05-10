@@ -86,7 +86,7 @@
         -@tempusers.each do |user|
           -f=user.forecasts.where(match_id: match.id).first
           -if f
-            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : nil
+            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) && (match.ending == f.ending) ? 'success' : nil
             %td{style: "text-align:center", class: f_css}
               .total
                 - if (@round.deadline < DateTime.now) || (f.tempuser.user == current_user)

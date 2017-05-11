@@ -8,7 +8,6 @@ gem 'rails', '3.2.22.2'
 
 gem 'mysql2', '0.3.10'
 
-gem 'thin'
 gem 'momentjs-rails'
 
 gem 'roo'
@@ -84,6 +83,7 @@ gem 'twitter-bootstrap-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
+  gem 'thin'
   gem 'quiet_assets'
   gem 'better_errors', '< 2'
   gem 'binding_of_caller'

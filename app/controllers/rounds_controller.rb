@@ -15,6 +15,8 @@ class RoundsController < ApplicationController
     else
       Hash[@tempusers.sort_by{|k, v| v}.reverse]
     end
+    # for test
+    # Notification.new_round(User.where(email: 'dailyin@luch.podolsk.ru').first, Round.last).deliver
   end
 
   def show

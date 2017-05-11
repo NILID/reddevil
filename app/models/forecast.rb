@@ -36,6 +36,7 @@ class Forecast < ActiveRecord::Base
 
   validate :check_match, :on => :create
   validate :check_deadline, :on => :create
+  validate :check_ending
 
   private
 
@@ -47,5 +48,10 @@ class Forecast < ActiveRecord::Base
     errors.add(:match_id, I18n.t('forecasts.already_end')) if Match.find(match_id).round.deadline < DateTime.now
   end
 
-
+  def check_ending
+    errors.add(:ending, I18n.t('forecasts.overtime_diff')) if ending == 'overtime' \
+                                                         && !([1, -1].include? (team1goal - team2goal)) \
+                                                         && Match.find(match_id).round.type_id == 2
+    # type_id == hockey
+  end
 end

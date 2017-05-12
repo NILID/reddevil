@@ -15,6 +15,11 @@
 
 %p= @round.content
 
+= link_to round_path(@round, format: 'pdf'), class: 'btn', target: '_blank' do
+  =t 'rounds.download'
+  %i.icon.icon-download-alt
+  PDF
+
 %table.table.table-condensed.rounds
   %thead
     %th

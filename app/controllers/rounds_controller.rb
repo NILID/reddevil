@@ -22,6 +22,10 @@ class RoundsController < ApplicationController
   def show
     @tempusers = Tempuser.order(:username).includes(:user)
     @round_matches = @round.matches.includes([:team1, :team2])
+    respond_to do |format|
+      format.html
+      format.pdf{ render pdf: @round.title, orientation: 'Landscape' }
+    end
   end
 
   def new

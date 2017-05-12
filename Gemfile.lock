@@ -243,9 +243,11 @@ GEM
     uniform_notifier (1.10.0)
     warden (1.2.3)
       rack (>= 1.0)
+    wicked_pdf (1.1.0)
     will_paginate (3.0.5)
     will_paginate-bootstrap (0.2.5)
       will_paginate (>= 3.0.3)
+    wkhtmltopdf-binary (0.12.3.1)
     yaml_db (0.5.0)
       rails (>= 3.0, < 5.1)
       rake (>= 0.8.7)
@@ -305,8 +307,10 @@ DEPENDENCIES
   turbo-sprockets-rails3
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  wicked_pdf
   will_paginate (~> 3.0)
   will_paginate-bootstrap (< 1.0.0)
+  wkhtmltopdf-binary
   yaml_db
 
 BUNDLED WITH

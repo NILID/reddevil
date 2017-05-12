@@ -27,4 +27,12 @@ class Member < ActiveRecord::Base
     return age
   end
 
+  def self.to_xls(options = {})
+    CSV.generate(options) do |csv|
+      csv << ['#', I18n.t('member.fullname')]
+      all.each_with_index do |member, index|
+        csv << [index+1, member.full_name]
+      end
+    end
+  end
 end

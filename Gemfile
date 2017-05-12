@@ -10,6 +10,9 @@ gem 'mysql2', '0.3.10'
 
 gem 'momentjs-rails'
 
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 gem 'roo'
 gem 'roo-xls'
 gem 'nokogiri', '1.6.8.1'

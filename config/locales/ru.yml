@@ -110,6 +110,7 @@ ru:
     was_updated: Артблок был обновлен
   member:
     title: Сотрудники
+    title_list: Список сотрудников
     add: Новый сотрудник
     edit: Редактирование сотрудника
     turn: исполняется
@@ -123,6 +124,9 @@ ru:
     month_stat: Месяца рождения
     dayname_stat: Дни рождения
     name_stat: Имена
+    fullname: ФИО
+    download_list: Скачать список
+    other_text: Примечание
   users:
     has_groups: Относится к группам
   matches:

@@ -125,7 +125,6 @@ ru:
     dayname_stat: Дни рождения
     name_stat: Имена
     fullname: ФИО
-    download_list: Скачать список
     other_text: Примечание
   users:
     has_groups: Относится к группам

@@ -9,13 +9,13 @@
       .tab-content
         .tab-pane#users_info.active
           %p.pull-right
-            = t 'member.download_list'
-            = link_to members_path(format: 'pdf'), class: 'label label-info' do
-              %i.icon.icon-download-alt
-              PDF
-            = link_to members_path(format: 'xls'), class: 'label label-info' do
-              %i.icon.icon-download-alt
-              Excel
+            %span.btn-group
+              = link_to members_path(format: 'pdf'), class: 'btn', target: '_blank' do
+                %i.icon.icon-download-alt
+                PDF
+              = link_to members_path(format: 'xls'), class: 'btn' do
+                %i.icon.icon-download-alt
+                Excel
           %table.table.table-striped.ny-block
             %thead
               %tr

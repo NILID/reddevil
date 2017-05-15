@@ -22,12 +22,12 @@ class Ability
       can [:destroy, :edit, :update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.tempuser.user_id == user.id)
       end
-
       cannot :read, Doc, category: {hidden: true}
 
       cannot [:manage, :read], Message
       cannot :read, [Song, Album, Art, Work, Forecast, Round]
       can [:favorites], Subscribe
+      cannot :download, Round, finish: false
     end
 
     ################# MODERATOR USER
@@ -44,7 +44,6 @@ class Ability
     end
 
     if user.role? :admin
-
       can [:read], Forecast do |f|
         (f.round.deadline < DateTime.now) || (f.tempuser.user_id == user.id)
       end
@@ -60,6 +59,7 @@ class Ability
       end
       can :make_role, User
       cannot :read, [Art, Work, Song, Album, Round, Forecast]
+      cannot :download, Round, finish: false
     end
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)

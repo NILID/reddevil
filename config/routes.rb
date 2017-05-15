@@ -29,6 +29,7 @@ Birthday::Application.routes.draw do
 
   scope 'sport' do
     resources :rounds do
+      member {get :download}
       resources :matches
     end
     resources :tempusers do

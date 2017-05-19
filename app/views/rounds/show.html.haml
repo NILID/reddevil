@@ -72,7 +72,7 @@
       - teams = (matches.map {|m| m.forecasts.where(tempuser_id: current_user.tempuser).map {|f| f.check_winner}.reduce(:merge) })
       - miss_teams = (matches.map {|m| m.forecasts.where(tempuser_id: current_user.tempuser).map {|f| f.check_second}.reduce(:merge) })
       = render partial: 'match', collection: (@round_matches - hidden_matches)
-      - if teams.first && teams.last
+      - if teams.first && teams.last && miss_teams.first && miss_teams.last
         %tr
           %td(colspan=16)
             %h4= t 'rounds.final'

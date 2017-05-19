@@ -51,6 +51,8 @@ class Forecast < ActiveRecord::Base
         self.match.team1
       elsif team1goal > team2goal
         self.match.team2
+      elsif winner_id
+        ([self.match.team1, self.match.team2] - [winner]).first
       else
         nil
       end

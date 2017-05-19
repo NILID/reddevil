@@ -10,7 +10,7 @@ class Forecast < ActiveRecord::Base
   validates :team1goal, :team2goal, presence: true
 
   validates :winner_id, presence: true, if: :check_draw?
-#  validates :match_id, presence: true, if: :check_draw?
+  validates :match_id, presence: true, if: :check_draw?
 
   def remove_winner_forecast
     f = Forecast.find(self)

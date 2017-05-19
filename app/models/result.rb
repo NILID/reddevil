@@ -25,5 +25,4 @@ class Result < ActiveRecord::Base
     end
     i
   end
-
 end

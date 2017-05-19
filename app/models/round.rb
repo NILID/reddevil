@@ -20,4 +20,9 @@ class Round < ActiveRecord::Base
     deadline < DateTime.now
   end
 
+
+  def allow_empty?
+    empty_match?
+  end
+
 end

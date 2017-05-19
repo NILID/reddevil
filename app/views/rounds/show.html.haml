@@ -66,67 +66,20 @@
 
     %th=t 'shared.mid'
   %tbody
-    -@round_matches.each do |match|
-      %tr
-        %td.team-commands
-          .team
-            .team-name
-              =image_tag match.team1.flag(:thumb), width: '20px'
-              %span{style: (match.team1 == match.check_win) ? 'font-weight:bold' : nil} #{match.team1.title}
-            .team-goal
-              #{match.team1goal || '-'}
-          %br/
-          .team
-            .team-name
-              =image_tag match.team2.flag(:thumb), width: '20px'
-              %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : nil} #{match.team2.title}
-            .team-goal
-              #{match.team2goal || '-'}
-        %td.match-ending(style="width:4px;")
-          - if match.ending != 'basic'
-            -if match.team1 != match.winner
-              %br/
-            %span.tip
-              =t("matches.#{(match.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : match.ending}_short")
-              .tip-text=t("matches.#{(@round.type_id == 2 && match.ending == 'penalty') ? 'bullit' : match.ending}")
-        -@tempusers.each do |user|
-          -f=user.forecasts.where(match_id: match.id).first
-          -if f
-            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) && (match.ending == f.ending) && ((%w[overtime basic].include? match.ending) || (match.ending == 'penalty' && match.winner == f.winner)) ? 'success' : nil
-            %td{style: "text-align:center", class: f_css}
-              .total
-                - if (@round.deadline < DateTime.now) || (f.tempuser.user == current_user)
-                  - if (match.team1 == f.winner) || (f.team1goal > f.team2goal)
-                    #{f.team1goal} 
-                    - if f.ending != 'basic'
-                      %span.tip
-                        %span.ending=t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
-                        .tip-text= t("matches.#{(@round.type_id == 2 && f.ending == 'penalty') ? 'bullit' : f.ending}")
-                    \ : #{f.team2goal}
-                  - else (match.team2 == f.winner) || (f.team1goal < f.team2goal)
-                    #{f.team1goal} : #{f.team2goal}
-                    - if f.ending != 'basic'
-                      %span.tip
-                        %span.ending=t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
-                        .tip-text= t("matches.#{(@round.type_id == 2 && f.ending == 'penalty') ? 'bullit' : f.ending}")
-                - else
-                  X : X
-              -if can? :edit, f
-                = link_to t('forecasts.edit'), edit_tempuser_forecast_path(user, f, match_id: match), class: 'btn btn-mini'
-          -else
-            %td(style="text-align:center")
-              -if user_signed_in? && ((@round.deadline > DateTime.now) && (user.user == current_user) || (current_user.role? :admin))
-                -if can? :new, Forecast
-                  = link_to t('forecasts.add'), new_tempuser_forecast_path(user, match_id: match), class: 'btn btn-mini'
-        %td.middle
-          - f=Forecast.where(match_id: match)
-          - unless f.empty?
-            -if @round.deadline < DateTime.now
-              %div.tip
-                %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
-                .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
-            -else
-              X : X
-        %td
+    - hidden_matches = @round_matches.where('matches.desc is null or matches.desc <> ?', '')
+    - matches = @round_matches - hidden_matches
+    - teams = (matches.map {|m| m.forecasts.where(tempuser_id: current_user.tempuser).map {|f| f.check_winner}.reduce(:merge) })
+    - miss_teams = (matches.map {|m| m.forecasts.where(tempuser_id: current_user.tempuser).map {|f| f.check_second}.reduce(:merge) })
+    = render partial: 'match', collection: (@round_matches - hidden_matches)
+    %tr
+      %td(colspan=16)
+        %h4= t 'rounds.final'
+    - hidden_matches.where('team1_id = ? AND team2_id = ?', teams.first.id, teams.last.id).where(desc: 'final').each do |match|
+      = render partial: 'match', locals: {match: match}
+    %tr
+      %td(colspan=16)
+        %h4= t 'rounds.final_third'
+    - hidden_matches.where('team1_id = ? AND team2_id = ?', miss_teams.first.id, miss_teams.last.id).where(desc: '3final').each do |match|
+      = render partial: 'match', locals: {match: match}
 
 = link_to t('shared.back'), rounds_path, class: 'btn'

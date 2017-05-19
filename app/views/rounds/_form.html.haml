@@ -44,6 +44,10 @@
       = m.label :team2_id
       = m.select(:team2_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
+      - if @round.allow_empty?
+        = m.label :desc
+        = m.select(:desc, Match::TYPES.collect {|type| [ t(type),  type]}, { include_blank: 'select desc' })
+
       = m.label :winner
       = m.select(:winner_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 

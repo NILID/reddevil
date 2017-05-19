@@ -6,10 +6,11 @@ class Match < ActiveRecord::Base
   has_many :forecasts
 #  has_one :team1, class_name: 'Team', foreign_key: 'team1_id'
 #  has_one :team2, class_name: 'Team', foreign_key: 'team2_id'
-  attr_accessible :team1goal, :team2goal, :team1_id, :team2_id, :winner_id, :ending
+  attr_accessible :team1goal, :team2goal, :team1_id, :team2_id, :winner_id, :ending, :desc
 
   validates :team1_id, :team2_id, presence: true
   ENDING=%w(basic overtime penalty)
+  TYPES = %w(final 3final)
 
   belongs_to :round
 

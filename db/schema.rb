@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170510053135) do
+ActiveRecord::Schema.define(:version => 20170519053347) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20170510053135) do
     t.datetime "updated_at",                      :null => false
     t.integer  "winner_id"
     t.string   "ending",     :default => "basic"
+    t.string   "desc"
   end
 
   add_index "matches", ["round_id"], :name => "index_matches_on_round_id"
@@ -331,11 +332,12 @@ ActiveRecord::Schema.define(:version => 20170510053135) do
   create_table "rounds", :force => true do |t|
     t.string   "title"
     t.string   "content"
-    t.boolean  "close",      :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "close",       :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.datetime "deadline"
     t.integer  "type_id"
+    t.boolean  "empty_match", :default => false
   end
 
   create_table "songs", :force => true do |t|

@@ -12,6 +12,8 @@ class RoundsController < ApplicationController
     @tempusers = (Tempuser.all.map {|t, result| {t => Round.tagged_with(tag).sum { |r| r.results.where(tempuser_id: t).sum(:total) }}}.reduce(:merge))
     @tempusers = if params[:sort] == 'total'
       Hash[@tempusers.sort_by{|k, v| k.total_result}.reverse]
+    elsif  params[:sort] == 'ratio'
+      Hash[@tempusers.sort_by{|k, v| k.ratio}.reverse]
     else
       Hash[@tempusers.sort_by{|k, v| v}.reverse]
     end

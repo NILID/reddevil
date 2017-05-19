@@ -36,6 +36,12 @@
     .controls
       = f.check_box :close, class: 'check_box'
 
+  .control-group
+    = f.label :empty_match, class: 'control-label'
+    .controls
+      = f.check_box :empty_match, class: 'check_box'
+
+
   = f.fields_for :matches do |m|
     .control-group.well.well-small
       = m.label :team1_id

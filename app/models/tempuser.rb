@@ -11,7 +11,7 @@ class Tempuser < ActiveRecord::Base
   scope :with_user, lambda { where('user_id IS NOT NULL') }
 
   def ratio
-    (self.total_result.to_f / self.forecasts.count.to_f).round(2)
+    (self.total_result.to_f / self.forecasts.count.to_f).round(4)
   end
 
 end

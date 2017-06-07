@@ -9,10 +9,10 @@ class SubstratesController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  end
+
+  def remote_show
+    respond_to :js
   end
 
   def new
@@ -38,10 +38,10 @@ class SubstratesController < ApplicationController
     respond_to do |format|
       if @substrate.update_attributes(params[:substrate])
         format.html { redirect_to substrates_url, notice: t('substrates.was_updated') }
-        format.json { respond_with_bip(@substrate) }
+        format.json { render json: @substrate }
       else
         format.html { render action: 'edit' }
-        format.js { respond_with_bip(@substrate) }
+        format.json { respond_with_bip(@substrate) }
       end
     end
   end

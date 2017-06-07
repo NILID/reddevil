@@ -21,13 +21,13 @@
     %tbody
       - @substrates.each_with_index do |substrate, index|
         = content_tag_for(:tr, substrate, class: "substrate-title #{substrate.state_css}") do
+          %td= index+1
           %td
-            = index+1
-            .substrates-actions
+            = link_to substrate.title, substrate
+            %span.substrates-actions
               - if can? :manage, Substrate
                 = link_to edit_substrate_path(substrate), class: 'btn-small btn' do
                   %span.icon.icon-pencil
-          %td= link_to substrate.title, substrate
           %td= substrate.drawing
           %td= substrate.number
           %td

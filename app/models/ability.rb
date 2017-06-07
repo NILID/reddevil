@@ -60,6 +60,7 @@ class Ability
       can :make_role, User
       cannot :read, [Art, Work, Song, Album, Round, Forecast]
       cannot :download, Round, finish: false
+      can :remote_show, Substrate
     end
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
@@ -68,7 +69,7 @@ class Ability
     end
 
     if user.role? :drawing
-      can :manage, Substrate
+      can [:manage, :remote_show], Substrate
     end
 
     if user.has_group? :lab193

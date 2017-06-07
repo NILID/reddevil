@@ -3,9 +3,7 @@
   th {white-space:nowrap}
   th.big-tr {width:400px;}
   .substrate-title {
-    position:relative;
-
-    .substrates-actions {display:none;position:absolute;top:0;left:0}
-    &:hover .substrates-actions {display:block}
+    .substrates-actions {display:none;position:absolute;margin-left:5px;}
+    &:hover .substrates-actions {display:inline-block;}
   }
 }

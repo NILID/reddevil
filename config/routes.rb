@@ -1,6 +1,10 @@
 Birthday::Application.routes.draw do
 
-  resources :substrates
+  resources :substrates do
+    member do
+      get :remote_show
+    end
+  end
 
 
   resources :years do

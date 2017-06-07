@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-  layout "main"
+  layout 'main'
 
   def index
     @messages=Message.where(close: false)

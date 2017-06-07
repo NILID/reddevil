@@ -25,7 +25,7 @@ class Ability
       cannot :read, Doc, category: {hidden: true}
 
       cannot [:manage, :read], Message
-      cannot :read, [Song, Album, Art, Work, Forecast, Round]
+      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate]
       can [:favorites], Subscribe
       cannot :download, Round, finish: false
     end
@@ -65,6 +65,10 @@ class Ability
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can [:manage, :read], Folder, user: {id: user.id}
       can [:manage, :read], Dataset, folder: {user_id: user.id}
+    end
+
+    if user.role? :drawing
+      can :manage, Substrate
     end
 
     if user.has_group? :lab193

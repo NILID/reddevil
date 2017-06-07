@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170519053347) do
+ActiveRecord::Schema.define(:version => 20170607062840) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -377,6 +377,19 @@ ActiveRecord::Schema.define(:version => 20170519053347) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "substrates", :force => true do |t|
+    t.string   "title"
+    t.string   "drawing"
+    t.string   "number"
+    t.string   "state"
+    t.integer  "user_id"
+    t.text     "desc"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "substrates", ["user_id"], :name => "index_substrates_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

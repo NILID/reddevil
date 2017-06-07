@@ -1,0 +1,25 @@
+- model_class = Substrate
+.page-header
+  %h2
+    = model_class.model_name.human.titleize
+    = '№ ' + @substrate.number
+
+%dl.dl-horizontal
+  %dt= model_class.human_attribute_name(:title)
+  %dd= @substrate.title
+  %dt= model_class.human_attribute_name(:drawing)
+  %dd= @substrate.drawing
+  %dt= model_class.human_attribute_name(:state)
+  %dd= @substrate.state
+  - if @substrate.desc?
+    %dt= model_class.human_attribute_name(:desc)
+    %dd= @substrate.desc
+  - if @substrate.user
+    %dt= model_class.human_attribute_name(:user_id)
+    %dd= link_to @substrate.user.profile.surname, user_profile_path(@substrate.user)
+
+
+.form-actions
+  = link_to t('shared.back'), substrates_path, class: 'btn'
+  = link_to t('shared.edit'), edit_substrate_path(@substrate), class: 'btn'
+  = link_to t('shared.del'), substrate_path(@substrate), method: 'delete', data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

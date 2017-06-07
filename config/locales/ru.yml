@@ -90,6 +90,12 @@ ru:
     done: выполнено
   columns:
     add: Добавить поле
+  substrates:
+    title: Подложки
+    add_title: Новая подложка
+    edit_title: Редактирование подложки
+    was_created: Вы создали подложку
+    was_updated: Вы обновили подложку
   subscribes:
     search: Абонент
     import: Импорт справочника
@@ -253,6 +259,7 @@ ru:
       folder: папка
       dataset: файл
       purchase: закупка
+      substrate: Подложка
       year: период
       column: поле
     attributes:
@@ -309,6 +316,13 @@ ru:
         title: Название
         close: Скрытность
         content: Описание
+      substrate:
+        title: Наименование
+        drawing: Чертеж
+        number: Зав. номер
+        state: Состояние
+        desc: Примечание
+        user_id: Фамилия
       forecast:
         winner_id: Победитель
         ending: Завершение матча

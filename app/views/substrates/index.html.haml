@@ -1,0 +1,35 @@
+- model_class = Substrate
+.page-header
+  %h2
+    =t 'substrates.title'
+    %small
+      = link_to new_substrate_path, class: 'btn btn-primary btn-small' do
+        %i.icon.icon-plus
+        &nbsp;
+        = t('shared.add')
+.well
+  %table.table.table-bordered.table-striped.table-substrates.table-hover
+    %thead
+      %tr
+        %th №
+        %th= sort_link @q, :title, model_class.human_attribute_name(:title)
+        %th= sort_link @q, :drawing, model_class.human_attribute_name(:drawing)
+        %th= sort_link @q, :number, model_class.human_attribute_name(:number)
+        %th.big-tr= sort_link @q, :state, model_class.human_attribute_name(:state)
+        %th.big-tr= model_class.human_attribute_name(:desc)
+        %th= sort_link @q, :user_id, model_class.human_attribute_name(:user_id)
+    %tbody
+      - @substrates.each_with_index do |substrate, index|
+        %tr.substrate-title
+          %td
+            = index+1
+            .substrates-actions
+              - if can? :manage, Substrate
+                = link_to edit_substrate_path(substrate), class: 'btn-small btn' do
+                  %span.icon.icon-pencil
+          %td= link_to substrate.title, substrate
+          %td= substrate.drawing
+          %td= substrate.number
+          %td= substrate.state
+          %td= substrate.desc
+          %td= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user

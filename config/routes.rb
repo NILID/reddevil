@@ -1,5 +1,8 @@
 Birthday::Application.routes.draw do
 
+  resources :substrates
+
+
   resources :years do
     resources :columns
     resources :purchases do

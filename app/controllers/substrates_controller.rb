@@ -35,6 +35,7 @@ class SubstratesController < ApplicationController
   end
 
   def update
+    @substrate.user = current_user
     respond_to do |format|
       if @substrate.update_attributes(params[:substrate])
         format.html { redirect_to substrates_url, notice: t('substrates.was_updated') }

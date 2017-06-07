@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $('.best_in_place').bind 'ajax:success', ->
+    substrate_id = $(this).data('place-success')
+    $.get "substrates/" + substrate_id, (data) ->
+      a =1

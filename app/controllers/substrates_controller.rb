@@ -9,6 +9,10 @@ class SubstratesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -34,10 +38,10 @@ class SubstratesController < ApplicationController
     respond_to do |format|
       if @substrate.update_attributes(params[:substrate])
         format.html { redirect_to substrates_url, notice: t('substrates.was_updated') }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@substrate) }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @substrate.errors, status: :unprocessable_entity }
+        format.js { respond_with_bip(@substrate) }
       end
     end
   end

@@ -96,6 +96,14 @@ ru:
     edit_title: Редактирование подложки
     was_created: Вы создали подложку
     was_updated: Вы обновили подложку
+    select: == Выберите состояние ==
+    states:
+      polishing: Полировка
+      coating: Покрытие
+      defect: Забраковано
+      aspart: В составе изделия
+      control: Контролируется
+      depot: На складе
   subscribes:
     search: Абонент
     import: Импорт справочника

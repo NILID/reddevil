@@ -2,7 +2,7 @@
   = f.text_field :title, class: 'text_field input-xxlarge'
   = f.text_field :drawing, class: 'text_field input-xxlarge'
   = f.text_field :number, class: 'text_field input-xxlarge'
-  = f.text_field :state, class: 'text_field input-xxlarge'
+  = f.select :state, Substrate::STATES.collect {|state| [ t("substrates.states.#{state}"), state]}, {include_blank: t('substrates.select')}
   = f.text_area :desc, class: 'text_area input-xxlarge', rows: 4
   .form-actions
     = f.submit t('shared.save'), class: 'btn btn-primary'

@@ -6,4 +6,19 @@
     .substrates-actions {display:none;position:absolute;margin-left:5px;}
     &:hover .substrates-actions {display:inline-block;}
   }
+
+  td.substrate-state {
+    padding:0;
+    padding-left:5px;
+    text-aling:center;
+    vertical-align:middle
+  }
+
 }
+select.substrate-select {
+  width:88px;
+  border: none;
+  padding: 0;
+  margin:0;
+}
+

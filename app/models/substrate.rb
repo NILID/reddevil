@@ -20,4 +20,23 @@ class Substrate < ActiveRecord::Base
       nil
     end
   end
+
+  def self.to_xls(options = {})
+    CSV.generate(options) do |csv|
+      csv << ['#', Substrate.human_attribute_name(:title),
+                    Substrate.human_attribute_name(:drawing),
+                    Substrate.human_attribute_name(:number),
+                    Substrate.human_attribute_name(:state),
+                    Substrate.human_attribute_name(:desc),
+                    Substrate.human_attribute_name(:user_id)]
+      all.each_with_index do |substrate, index|
+        csv << [index+1, substrate.title,
+                         substrate.drawing,
+                         substrate.number,
+                         I18n.t("substrates.states.#{substrate.state}"),
+                         substrate.desc,
+                         (substrate.user.profile.surname if substrate.user)]
+      end
+    end
+  end
 end

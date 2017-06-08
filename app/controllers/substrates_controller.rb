@@ -6,6 +6,11 @@ class SubstratesController < ApplicationController
     #@substrates =  @substrates.includes(:user)
     @q = @substrates.search(params[:q])
     @substrates = @q.result(distinct: true).includes(:user)
+    respond_to do |format|
+      format.html
+      format.xls{ send_data @substrates.to_xls }
+      format.pdf{ render pdf: 'Substrates', orientation: 'Landscape' }
+    end
   end
 
   def show

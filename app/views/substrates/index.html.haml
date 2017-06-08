@@ -30,8 +30,6 @@
                   %span.icon.icon-pencil
           %td= substrate.drawing
           %td= substrate.number
-          %td
-            = best_in_place substrate, :state, as: :select, collection: Substrate::STATES.collect {|state| [ state, t("substrates.states.#{state}")]}, inner_class: 'input-medium', data: {place_success: substrate.id}
-            =#, t("substrates.states.#{substrate.state}")
+          %td= best_in_place substrate, :state, as: :select, collection: Substrate::STATES.collect {|state| [ state, t("substrates.states.#{state}")]}, inner_class: 'input-medium', data: {place_success: substrate.id}
           %td= substrate.desc
-          %td= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user
+          %td.substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user

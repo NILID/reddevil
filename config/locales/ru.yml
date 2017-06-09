@@ -137,6 +137,7 @@ ru:
     medium: средний
     month_stat: Месяца рождения
     dayname_stat: Дни рождения
+    birthday_of: День рождения %{name}
     name_stat: Имена
     fullname: ФИО
     other_text: Примечание

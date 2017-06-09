@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   load_and_authorize_resource :event, through: :user, except: [:list]
 
   def list
-
   end
 
   def index

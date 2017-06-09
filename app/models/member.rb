@@ -1,10 +1,17 @@
 class Member < ActiveRecord::Base
+
+  has_many :holidays
+
   attr_accessible :birth, :name, :patronymic, :surname, :email, :phone, :short_number
 
   acts_as_birthday :birth
 
   def full_name
     "#{surname} #{name} #{patronymic}"
+  end
+
+  def petrovich_fullname
+    Petrovich(lastname: surname, firstname: name,  middlename: patronymic).to(:genitive).to_s
   end
 
   def mday

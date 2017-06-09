@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  start: 2017-06-09
+  end: 2017-06-09
+
+two:
+  user: 
+  start: 2017-06-09
+  end: 2017-06-09

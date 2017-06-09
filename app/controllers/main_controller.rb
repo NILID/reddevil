@@ -22,4 +22,7 @@ class MainController < ApplicationController
     @mirrors=Mirror.all
   end
 
+  def relax
+  end
+
 end

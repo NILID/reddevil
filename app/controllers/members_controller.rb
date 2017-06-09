@@ -20,6 +20,7 @@ class MembersController < ApplicationController
     members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
     respond_to do |format|
       format.html
+      format.json
       format.xls{ send_data @members.to_xls }
       format.pdf{ render pdf: 'Members' }
     end

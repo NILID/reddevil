@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170607062840) do
+ActiveRecord::Schema.define(:version => 20170609071047) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -169,6 +169,16 @@ ActiveRecord::Schema.define(:version => 20170607062840) do
   add_index "forecasts", ["match_id"], :name => "index_forecasts_on_match_id"
   add_index "forecasts", ["tempuser_id"], :name => "index_forecasts_on_tempuser_id"
   add_index "forecasts", ["winner_id"], :name => "index_forecasts_on_winner_id"
+
+  create_table "holidays", :force => true do |t|
+    t.integer  "member_id"
+    t.date     "start"
+    t.date     "end"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "holidays", ["member_id"], :name => "index_holidays_on_member_id"
 
   create_table "items", :force => true do |t|
     t.string   "file_file_name"

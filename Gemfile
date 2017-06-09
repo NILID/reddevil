@@ -10,6 +10,8 @@ gem 'mysql2', '0.3.10'
 
 gem 'momentjs-rails'
 
+gem 'petrovich', '~> 1.0'
+
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 

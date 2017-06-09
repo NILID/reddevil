@@ -9,7 +9,11 @@ $ ->
     eventSources: [
       '/members.json'
       '/events/list.json'
+      '/relax.json'
     ]
+    eventRender: (event, element) ->
+      $(element).tooltip
+        title: event.tooltip,container: "body"
     #eventMouseover: (calEvent, jsEvent, view) ->
     #   alert 'Event' + calEvent.title
     defaultView: 'month'

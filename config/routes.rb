@@ -6,7 +6,6 @@ Birthday::Application.routes.draw do
     end
   end
 
-
   resources :years do
     resources :columns
     resources :purchases do
@@ -27,12 +26,18 @@ Birthday::Application.routes.draw do
     member {post :like}
   end
 
-
   resources :events, only: [:list] do
     collection do
       get 'list'
     end
   end
+
+  resources :holidays, only: [:list] do
+    collection do
+      get 'list'
+    end
+  end
+
 
   scope 'sport' do
     resources :rounds do
@@ -113,9 +118,12 @@ Birthday::Application.routes.draw do
     end
   end
 
-  resources :members, except: [:show]
+  resources :members, except: [:show] do
+    resources :holidays, except: [:holidays]
+  end
 
   get 'calendar' => 'main#calendar'
+  get 'relax' => 'main#relax'
   get 'mirror' => 'main#mirror'
   post 'import' => 'main#import'
   get 'nextsong' => 'main#nextsong'

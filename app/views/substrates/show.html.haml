@@ -9,8 +9,10 @@
   %dd= @substrate.title
   %dt= model_class.human_attribute_name(:drawing)
   %dd= @substrate.drawing
+  %dt= model_class.human_attribute_name(:theme)
+  %dd= @substrate.theme
   %dt= model_class.human_attribute_name(:state)
-  %dd= @substrate.state
+  %dd= t "substrates.states.#{@substrate.state}"
   - if @substrate.desc?
     %dt= model_class.human_attribute_name(:desc)
     %dd= @substrate.desc

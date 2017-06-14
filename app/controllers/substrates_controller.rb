@@ -3,9 +3,8 @@ class SubstratesController < ApplicationController
   layout 'main'
 
   def index
-    #@substrates =  @substrates.includes(:user)
     @q = @substrates.search(params[:q])
-    @substrates = @q.result(distinct: true).includes(:user)
+    @substrates = @q.result(distinct: true).includes(user: [:profile])
     respond_to do |format|
       format.html
       format.xls{ send_data @substrates.to_xls }

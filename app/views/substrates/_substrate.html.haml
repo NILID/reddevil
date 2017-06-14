@@ -10,5 +10,6 @@
   %td= substrate.drawing
   %td= substrate.number
   %td.substrate-state= best_in_place substrate, :state, as: :select, collection: Substrate::STATES.collect {|state| [ state, t("substrates.states.#{state}")]}, inner_class: 'substrate-select', data: {place_success: substrate.id}, class: 'remote-link'
+  %td= substrate.theme
   %td= substrate.desc
   %td.substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user

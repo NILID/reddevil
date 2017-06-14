@@ -331,6 +331,7 @@ ru:
         number: Зав. номер
         state: Состояние
         desc: Примечание
+        theme: Тема
         user_id: Фамилия
       forecast:
         winner_id: Победитель

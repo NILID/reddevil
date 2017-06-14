@@ -1,6 +1,6 @@
 class Substrate < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :desc, :drawing, :number, :state, :title
+  attr_accessible :desc, :drawing, :number, :state, :title, :theme
 
   STATES = %w(polishing coating defect aspart control depot).freeze
   def state_css
@@ -27,6 +27,7 @@ class Substrate < ActiveRecord::Base
                     Substrate.human_attribute_name(:drawing),
                     Substrate.human_attribute_name(:number),
                     Substrate.human_attribute_name(:state),
+                    Substrate.human_attribute_name(:theme),
                     Substrate.human_attribute_name(:desc),
                     Substrate.human_attribute_name(:user_id)]
       all.each_with_index do |substrate, index|
@@ -34,6 +35,7 @@ class Substrate < ActiveRecord::Base
                          substrate.drawing,
                          substrate.number,
                          I18n.t("substrates.states.#{substrate.state}"),
+                         substrate.theme,
                          substrate.desc,
                          (substrate.user.profile.surname if substrate.user)]
       end

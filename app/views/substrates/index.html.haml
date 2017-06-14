@@ -1,21 +1,20 @@
 - model_class = Substrate
-.page-header
-  %h2
-    = t 'substrates.title'
-    %small
-      = link_to new_substrate_path, class: 'btn btn-primary btn-small' do
-        %i.icon.icon-plus
-        &nbsp;
-        = t('shared.add')
 .well
-  %p.pull-right
-    %span.btn-group
-      = link_to substrates_path(format: 'pdf'), class: 'btn', target: '_blank' do
-        %i.icon.icon-download-alt
-        PDF
-      = link_to substrates_path(format: 'xls'), class: 'btn' do
-        %i.icon.icon-download-alt
-        Excel
+  .page-header
+    %h2
+      = t 'substrates.title'
+      %small
+        = link_to new_substrate_path, class: 'btn btn-primary btn-small', style: 'vertical-align:middle' do
+          %i.icon.icon-plus
+          &nbsp;
+          = t 'shared.add'
+        %span.btn-group.pull-right
+          = link_to substrates_path(format: 'pdf'), class: 'btn btn-small', target: '_blank' do
+            %i.icon.icon-download-alt
+            PDF
+          = link_to substrates_path(format: 'xls'), class: 'btn btn-small' do
+            %i.icon.icon-download-alt
+            Excel
   %table.table.table-bordered.table-striped.table-substrates.table-hover
     %thead
       %tr

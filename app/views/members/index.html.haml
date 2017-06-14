@@ -52,7 +52,7 @@
                   -if can? :manage, member
                     %td
                       = link_to t('shared.edit'), edit_member_path(member), class: 'btn btn-mini'
-                      = link_to t('shared.del'), member_path(member), :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn btn-mini btn-danger'
+                      = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
 
         .tab-pane#statitics
           .stat-ages
@@ -68,7 +68,7 @@
                   = plural(total / @member_ages.length, 'year')
 
             - a={}.tap{ |h| Member.all.each { |m| h["#{m.surname} #{m.name}"] = m.age}}
-            = bar_chart a.sort_by {|_key, value| value}, height: '700px'
+            = bar_chart a.sort_by {|_key, value| value}, height: '700px', label: t('member.ages')
 
           %hr/
 
@@ -79,7 +79,7 @@
                 %span.label.label-info
                   = I18n.t("date.standalone_day_names")[day[0].to_i]
                   %span.badge.badge-warning= day[1]
-            = line_chart Member.group_by_day_of_week(:birth, format: "%A").count
+            = line_chart Member.group_by_day_of_week(:birth, format: "%A").count, label: t('member.birth_count')
 
           %hr/
 
@@ -91,7 +91,7 @@
                   = I18n.t("date.standalone_month_names")[month[0].to_i]
                   %span.badge.badge-warning= month[1]
 
-            = column_chart Member.group_by_month_of_year(:birth, format: "%b").count, xtitle: "Месяц", ytitle: "Количество человек"
+            = column_chart Member.group_by_month_of_year(:birth, format: "%b").count, xtitle: 'Месяц', ytitle: 'Количество человек', label: t('member.birth_count')
 
           %hr/
 

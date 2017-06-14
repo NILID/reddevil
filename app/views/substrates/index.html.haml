@@ -23,7 +23,7 @@
         %th= sort_link @q, :drawing, model_class.human_attribute_name(:drawing)
         %th= sort_link @q, :number, model_class.human_attribute_name(:number)
         %th= sort_link @q, :state, model_class.human_attribute_name(:state)
-        %th= model_class.human_attribute_name(:theme)
+        %th= sort_link @q, :theme, model_class.human_attribute_name(:theme)
         %th.big-tr= model_class.human_attribute_name(:desc)
         %th= sort_link @q, :user_id, model_class.human_attribute_name(:user_id)
     %tbody= render @substrates

@@ -5,6 +5,10 @@ class SongsController < ApplicationController
   def new
   end
 
+  def download
+    send_data @song.file.path, filename: @song.file_file_name
+  end
+
   def create
     respond_to do |format|
       if @song.save

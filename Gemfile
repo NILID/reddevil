@@ -6,6 +6,8 @@ gem 'rails', '3.2.22.2'
 
 #gem 'pg'
 
+gem 'rubyzip'
+
 gem 'mysql2', '0.3.10'
 
 gem 'momentjs-rails'

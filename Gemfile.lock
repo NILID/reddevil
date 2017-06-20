@@ -298,6 +298,7 @@ DEPENDENCIES
   readmorejs-rails
   roo
   roo-xls
+  rubyzip
   russian
   sass-rails (~> 3.2.3)
   socialization

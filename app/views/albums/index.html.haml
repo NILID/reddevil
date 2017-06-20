@@ -14,10 +14,10 @@
 .ny-block
   %ul.nav.nav-tabs#song_tabs
     -if params[:q]
-      %li= link_to t('songs.find'), '#find_songs', 'data-toggle' => 'tab'
-    %li= link_to t('albums.all'), '#main_songs', 'data-toggle' => 'tab'
-    %li= link_to t('albums.newer'), '#new_songs', 'data-toggle' => 'tab'
-    %li= link_to t('albums.add'), new_album_path if can? :new, Album
+      %li= link_to t('songs.find'), '#find_songs', data: {toggle: 'tab'}
+    %li= link_to t('albums.all'), '#main_songs', data: {toggle: 'tab'}
+    %li= link_to t('albums.newer'), '#new_songs', data: {toggle: 'tab'}
+    %li= link_to t('albums.add'), new_album_path, data: {toggle: 'tab'} if can? :new, Album
 
   .tab-content
     -if params[:q]

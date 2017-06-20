@@ -110,10 +110,12 @@ Birthday::Application.routes.draw do
     member do
       get 'list'
       post 'like'
+      get 'download'
     end
     resources :songs, except: [:edit, :update, :show, :index] do
       member do
         post 'like'
+        get 'download'
       end
     end
   end

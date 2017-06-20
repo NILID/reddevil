@@ -73,7 +73,7 @@ class Ability
     end
 
     if user.has_group? :lab193
-      can [:manage, :read], [Song, Album, Art, Work]
+      can [:manage, :read, :download], [Song, Album, Art, Work]
       can [:read], [Art, Work, Round]
       can :like, Song
       can [:favorites, :list], Album

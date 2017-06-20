@@ -1,3 +1,4 @@
-$('#album_<%=@album.id%>:not(.opened-album)').append('<%=j render 'albums/list', album: @album%>');
+$('#album_<%=@album.id%>:not(.opened-album)').append('<%=j content_tag(:div, render("albums/list", album: @album), class: 'slide-block') %>');
+$('#album_<%=@album.id%> .slide-block').slideToggle();
 $('#album_<%=@album.id%>.opened-album ul').fadeOut().html();
 $('#album_<%=@album.id%>').toggleClass('opened-album');

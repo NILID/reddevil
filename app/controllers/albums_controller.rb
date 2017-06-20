@@ -15,6 +15,25 @@ class AlbumsController < ApplicationController
     @albums = @album.children.order(:title)
   end
 
+  def download
+    filename = @album.title
+    temp_file = Tempfile.new(filename)
+    begin
+      Zip::OutputStream.open(temp_file) { |zos|  }
+      Zip::File.open(temp_file.path, Zip::File::CREATE) do |zipfile|
+        @album.songs.each do |song|
+          zipfile.add(Russian.translit(song.file_file_name), song.file.path) if song.file.exists?
+        end
+      end
+
+      zip_data = File.read(temp_file.path)
+      send_data(zip_data, type: 'application/zip', filename: filename + '.zip')
+    ensure
+      temp_file.close
+      temp_file.unlink
+    end
+  end
+
   def favorites
     @songs = current_user.likees(Song)#.order(:created_at)
     @albums = current_user.likees(Album)

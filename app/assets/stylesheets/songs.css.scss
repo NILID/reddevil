@@ -13,22 +13,26 @@
   li.active & {color: #fff}
 }
 
-li.song {line-height:20px;}
+li.song {
+  line-height:20px;
+}
 
 .icon-star-link {
   float:left;
   margin: 2px 5px 0 0;
   &:hover, &:visited, &:link, a:active {text-decoration:none;outline:none}
 }
-
 .icon-star {color: #ff9900;}
-.icon-star-empty {
-  @include opacity(0.15);
-  @include transition(opacity 0.2s ease-in-out);
-  li.song:hover &, li.album:hover > .title &, .breadcrumb:hover &{
-    @include opacity(0.8);
-    @include transition(opacity 0.2s)
-    }
+
+li.song, li.album, .breadcrumb{
+  i {
+    @include opacity(0.15);
+    @include transition(opacity 0.2s ease-in-out);
+  }
+}
+li.song:hover i, li.album:hover > .title i, .breadcrumb:hover i{
+  @include opacity(0.8);
+  @include transition(opacity 0.2s)
 }
 
 .repeat-link{

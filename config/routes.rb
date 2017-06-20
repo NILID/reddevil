@@ -4,6 +4,9 @@ Birthday::Application.routes.draw do
     member do
       get :remote_show
     end
+    collection do
+      post :sort
+    end
   end
 
   resources :years do

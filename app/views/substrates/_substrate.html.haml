@@ -1,7 +1,11 @@
 - index = substrate_counter + 1
-= content_tag_for(:tr, substrate, class: "substrate-title #{substrate.state_css}") do
-  %td= index
-  %td
+= content_tag_for(:tr, substrate, class: "#{substrate.state_css}") do
+  %td(style="position:relative")
+    = index
+    .handle-box
+      .handle
+        %i.icon-move.icon-white
+  %td.substrate-title
     = link_to substrate.title, substrate
     %span.substrates-actions
       - if can? :manage, Substrate

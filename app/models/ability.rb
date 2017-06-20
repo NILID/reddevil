@@ -69,7 +69,7 @@ class Ability
     end
 
     if user.role? :drawing
-      can [:manage, :remote_show], Substrate
+      can [:manage, :remote_show, :sort], Substrate
     end
 
     if user.has_group? :lab193

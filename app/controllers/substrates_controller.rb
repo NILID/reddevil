@@ -4,7 +4,7 @@ class SubstratesController < ApplicationController
 
   def index
     @q = @substrates.search(params[:q])
-    @substrates = @q.result(distinct: true).includes(user: [:profile])
+    @substrates = @q.result(distinct: true).includes(user: [:profile]).order(:place)
     respond_to do |format|
       format.html
       format.xls{ send_data @substrates.to_xls }
@@ -13,6 +13,13 @@ class SubstratesController < ApplicationController
   end
 
   def show
+  end
+
+  def sort
+    params[:substrate].each_with_index do |id, index|
+      Substrate.where(id: id).update_all({ place: index + 1 })
+    end
+    render nothing: true
   end
 
   def remote_show

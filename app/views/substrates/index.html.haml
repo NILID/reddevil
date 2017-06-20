@@ -26,4 +26,4 @@
         %th= sort_link @q, :theme, model_class.human_attribute_name(:theme)
         %th.big-tr= model_class.human_attribute_name(:desc)
         %th= sort_link @q, :user_id, model_class.human_attribute_name(:user_id)
-    %tbody= render @substrates
+    %tbody#substrates{  data: {  update_url: sort_substrates_url } }= render @substrates

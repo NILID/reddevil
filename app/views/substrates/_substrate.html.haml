@@ -24,7 +24,7 @@
         - states = Substrate::STATES.collect {|state| [ state, t("substrates.states.#{state}")]}
       = best_in_place substrate, :state, as: :select, collection: states, inner_class: 'substrate-select', data: {place_success: substrate.id}, class: 'remote-link'
     - else
-      = t "#{substrate.states}.states.#{substrate.state}"
+      = t "#{substrate.category}s.states.#{substrate.state}"
   %td= substrate.theme
   %td= substrate.desc
   %td.substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user

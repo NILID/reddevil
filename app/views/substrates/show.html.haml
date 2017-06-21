@@ -16,7 +16,7 @@
     %dd= @substrate.theme
   - if @substrate.state?
     %dt= model_class.human_attribute_name(:state)
-    %dd= t "substrates.states.#{@substrate.state}"
+    %dd= t "#{@substrate.category}s.states.#{@substrate.state}"
   - if @substrate.desc?
     %dt= model_class.human_attribute_name(:desc)
     %dd= @substrate.desc

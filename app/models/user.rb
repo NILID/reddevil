@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :folders
   has_one :profile, dependent: :destroy
   has_one :tempuser
-  ROLES = %w(admin user moderator editor test drawing)
+  ROLES = %w(admin user moderator editor test drawing mirrors)
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago)}
   scope :sellers,    lambda {with_group(:sellers)}

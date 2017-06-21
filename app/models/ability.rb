@@ -14,6 +14,7 @@ class Ability
     can :read, :all
     can :rebuild, Result
     cannot :read, [Art, Work, Forecast, Song, Album, Round, Forecast]
+    cannot :mirrors, Substrate
     can :list, [Event]
 
     if user.role? :user
@@ -70,6 +71,10 @@ class Ability
 
     if user.role? :drawing
       can [:manage, :remote_show, :sort], Substrate
+    end
+
+    if user.role? :mirrors
+      can [:mirrors], Substrate
     end
 
     if user.has_group? :lab193

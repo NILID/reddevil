@@ -2,7 +2,7 @@ class Substrate < ActiveRecord::Base
   belongs_to :user
   attr_accessible :desc, :drawing, :number, :state, :title, :theme
 
-  STATES = %w(polishing coating defect aspart control depot).freeze
+  STATES = %w(polishing coating not_coating defect aspart control depot).freeze
   def state_css
     if state?
       if %w(polishing coating control).include? state

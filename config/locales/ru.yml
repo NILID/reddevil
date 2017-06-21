@@ -102,6 +102,7 @@ ru:
     states:
       polishing: Полировка
       coating: Покрытие
+      not_coating: Без покрытия
       defect: Забраковано
       aspart: В составе изделия
       control: Контролируется

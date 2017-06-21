@@ -49,6 +49,43 @@
     &.defect:hover > td {
       background-color: #ffbc98
     }
+
+
+    /* MIRRORS COLOR */
+    $mirror_color: rgba(255, 248, 170, 0.6);
+    &.mirror_defect {background-color: #ffccb0}
+    &.mirror_build_body {background-color: change-color($mirror_color, $red: 240)}
+    &.mirror_spring_install {background-color: change-color($mirror_color, $red: 230)}
+    &.mirror_spring_measure {background-color: change-color($mirror_color, $red: 220)}
+    &.mirror_actuator_install {background-color: change-color($mirror_color, $red: 210)}
+    &.mirror_tension_install {background-color: change-color($mirror_color, $red: 200)}
+    &.mirror_jolting {background-color: change-color($mirror_color, $red: 190)}
+    &.mirror_pushers_clue {background-color: change-color($mirror_color, $red: 180)}
+    &.mirror_optics_clue {background-color: change-color($mirror_color, $red: 170)}
+    &.mirror_finish_build {background-color: change-color($mirror_color, $red: 160)}
+    /* ---------------- two blue */
+    &.mirror_control {background-color: change-color($mirror_color, $red: 160, $blue: 170)}
+    &.mirror_mirror_measure {background-color: change-color($mirror_color, $red: 160, $blue: 195)}
+    &.mirror_depot {background-color: change-color($mirror_color, $red: 160, $blue: 225)}
+    &.mirror_sent {background-color: change-color($mirror_color, $red: 160, $blue: 255)}
+
+    /* HOVER MIRRORS COLOR */
+    &.mirror_defect:hover > td {background-color:darken(#ffccb0, 5)}
+    &.mirror_build_body:hover > td {background-color: change-color($mirror_color, $red: 240, $alpha: 1)}
+    &.mirror_spring_install:hover > td {background-color: change-color($mirror_color, $red: 230, $alpha: 1)}
+    &.mirror_spring_measure:hover > td {background-color: change-color($mirror_color, $red: 220, $alpha: 1)}
+    &.mirror_actuator_install:hover > td {background-color: change-color($mirror_color, $red: 210, $alpha: 1)}
+    &.mirror_tension_install:hover > td {background-color: change-color($mirror_color, $red: 200, $alpha: 1)}
+    &.mirror_jolting:hover > td {background-color: change-color($mirror_color, $red: 190, $alpha: 1)}
+    &.mirror_pushers_clue:hover > td {background-color: change-color($mirror_color, $red: 180, $alpha: 1)}
+    &.mirror_optics_clue:hover > td {background-color: change-color($mirror_color, $red: 170, $alpha: 1)}
+    &.mirror_finish_build:hover > td {background-color: change-color($mirror_color, $red: 160, $alpha: 1)}
+    /* ---------------- two blue */
+    &.mirror_control:hover > td {background-color: change-color($mirror_color, $red: 160, $blue: 170, $alpha: 1)}
+    &.mirror_mirror_measure:hover > td {background-color: change-color($mirror_color, $red: 160, $blue: 195, $alpha: 1)}
+    &.mirror_depot:hover > td {background-color: change-color($mirror_color, $red: 160, $blue: 225, $alpha: 1)}
+    &.mirror_sent:hover > td {background-color: change-color($mirror_color, $red: 160, $blue: 255, $alpha: 1)}
+
   }
 
   td{vertical-align:middle;}

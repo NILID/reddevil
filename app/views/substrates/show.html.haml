@@ -5,14 +5,18 @@
     = '№ ' + @substrate.number
 
 %dl.dl-horizontal
-  %dt= model_class.human_attribute_name(:title)
-  %dd= @substrate.title
-  %dt= model_class.human_attribute_name(:drawing)
-  %dd= @substrate.drawing
-  %dt= model_class.human_attribute_name(:theme)
-  %dd= @substrate.theme
-  %dt= model_class.human_attribute_name(:state)
-  %dd= t "substrates.states.#{@substrate.state}"
+  - if @substrate.title?
+    %dt= model_class.human_attribute_name(:title)
+    %dd= @substrate.title
+  - if @substrate.drawing?
+    %dt= model_class.human_attribute_name(:drawing)
+    %dd= @substrate.drawing
+  - if @substrate.theme?
+    %dt= model_class.human_attribute_name(:theme)
+    %dd= @substrate.theme
+  - if @substrate.state?
+    %dt= model_class.human_attribute_name(:state)
+    %dd= t "substrates.states.#{@substrate.state}"
   - if @substrate.desc?
     %dt= model_class.human_attribute_name(:desc)
     %dd= @substrate.desc
@@ -22,7 +26,7 @@
 
 
 .form-actions
-  = link_to t('shared.back'), substrates_path, class: 'btn'
+  = link_to t('shared.back'), :back, class: 'btn'
   -if can? :manage, @substrate
     = link_to t('shared.edit'), edit_substrate_path(@substrate), class: 'btn'
     = link_to t('shared.del'), substrate_path(@substrate), method: 'delete', data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

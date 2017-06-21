@@ -1,4 +1,9 @@
 .well
   .page-header
-    %h2= t 'substrates.add_title'
+    %h2
+      -if params[:category] == 'mirror'
+        = t 'mirrors.add_title'
+      -else
+        = t 'substrates.add_title'
+
   = render partial: 'form'

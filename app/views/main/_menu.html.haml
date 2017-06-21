@@ -18,9 +18,11 @@
           %li{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
             = link_to t('purchases.title'), years_path
         -if can? :read, Substrate
-          %li{class: params[:controller] == 'substrates' ? 'active' : nil}
+          %li{class: params[:controller] == 'substrates'&& params[:action] != 'mirrors' ? 'active' : nil}
             = link_to t('substrates.title'), substrates_path
-
+        -if can? :mirrors, Substrate
+          %li{class: params[:controller] == 'substrates' && params[:action] == 'mirrors'  ? 'active' : nil}
+            = link_to t('mirrors.title'), mirrors_substrates_path
 
       %ul.nav.pull-right
         -if (can? :read, Round) || (can? :read, Album) || (can? :read, Art)

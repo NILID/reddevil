@@ -2,18 +2,21 @@
 .well
   .page-header
     %h2
-      = t 'substrates.title'
+      - if params[:action] == 'mirrors'
+        = t 'mirrors.title'
+      - else
+        = t 'substrates.title'
       %small
         - if can? :manage, Substrate
-          = link_to new_substrate_path, class: 'btn btn-primary btn-small', style: 'vertical-align:middle' do
+          = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-small', style: 'vertical-align:middle' do
             %i.icon.icon-plus
             &nbsp;
             = t 'shared.add'
         %span.btn-group.pull-right
-          = link_to substrates_path(format: 'pdf'), class: 'btn btn-small', target: '_blank' do
+          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-small', target: '_blank' do
             %i.icon.icon-download-alt
             PDF
-          = link_to substrates_path(format: 'xls'), class: 'btn btn-small' do
+          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'xls') : substrates_path(format: 'xls')), class: 'btn btn-small' do
             %i.icon.icon-download-alt
             Excel
   %table.table.table-bordered.table-substrates.table-hover

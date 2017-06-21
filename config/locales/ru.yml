@@ -114,8 +114,28 @@ ru:
     actual_date: по состоянию на 12 декабря 2016
     choose_departament: == Выберите отдел ==
   mirrors:
+    add_title: Новое зеркало
+    edit_title: Редактирование зеркала
+    was_created: Вы создали зеркало
+    was_updated: Вы обновили зеркало
+    title: Зеркала
     dont_add: "Не вошли:"
     import: Импорт
+    states:
+      mirror_defect: Брак
+      mirror_build_body: Сборка корпуса
+      mirror_spring_install: Установка пружин(ы)
+      mirror_spring_measure: Измерение хар-к пружины
+      mirror_actuator_install: Установка актюаторов
+      mirror_tension_install: Установка натяжения
+      mirror_jolting: Тряска
+      mirror_pushers_clue: Приклейка толкателей
+      mirror_optics_clue: Приклейка оптики
+      mirror_finish_build: Финишная сборка
+      mirror_control: Юстировка
+      mirror_mirror_measure: Измерение хар-к зеркала
+      mirror_depot: На складе
+      mirror_sent: Отправлено
   art:
     create: Создание артблока
     edit: Редактирование артблока

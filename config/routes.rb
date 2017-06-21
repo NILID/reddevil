@@ -5,6 +5,7 @@ Birthday::Application.routes.draw do
       get :remote_show
     end
     collection do
+      get :mirrors
       post :sort
     end
   end

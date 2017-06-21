@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170620111059) do
+ActiveRecord::Schema.define(:version => 20170621084935) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -399,6 +399,7 @@ ActiveRecord::Schema.define(:version => 20170620111059) do
     t.datetime "updated_at", :null => false
     t.string   "theme"
     t.integer  "place"
+    t.string   "category",   :null => false
   end
 
   add_index "substrates", ["user_id"], :name => "index_substrates_on_user_id"

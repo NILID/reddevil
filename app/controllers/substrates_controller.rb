@@ -4,13 +4,24 @@ class SubstratesController < ApplicationController
 
   def index
     @q = @substrates.search(params[:q])
-    @substrates = @q.result(distinct: true).includes(user: [:profile]).order(:place)
+    @substrates = @q.result(distinct: true).where(category: 'substrate').includes(user: [:profile]).order(:place)
     respond_to do |format|
       format.html
       format.xls{ send_data @substrates.to_xls }
       format.pdf{ render pdf: 'Substrates', orientation: 'Landscape' }
     end
   end
+
+  def mirrors
+    @q = @substrates.search(params[:q])
+    @substrates = @q.result(distinct: true).where(category: 'mirror').includes(user: [:profile]).order(:place)
+    respond_to do |format|
+      format.html{ render template: 'substrates/index'}
+      format.xls{ send_data @substrates.to_xls }
+      format.pdf{ render pdf: 'Substrates', template: 'substrates/index', orientation: 'Landscape' }
+    end
+  end
+
 
   def show
   end
@@ -36,7 +47,9 @@ class SubstratesController < ApplicationController
     @substrate.user = current_user
     respond_to do |format|
       if @substrate.save
-        format.html { redirect_to substrates_url, notice: t('substrates.was_created') }
+        url = @substrate.category == 'mirror' ? mirrors_substrates_url : substrates_url
+
+        format.html { redirect_to url, notice: t("#{@substrate.category}s.was_created") }
         format.json { render json: @substrate, status: :created, location: @substrate }
       else
         format.html { render action: 'new' }
@@ -46,10 +59,12 @@ class SubstratesController < ApplicationController
   end
 
   def update
-    @substrate.user = current_user
+    @substrate.user = current_user unless current_user.role? :admin
     respond_to do |format|
       if @substrate.update_attributes(params[:substrate])
-        format.html { redirect_to substrates_url, notice: t('substrates.was_updated') }
+        url = @substrate.category == 'mirror' ? mirrors_substrates_url : substrates_url
+
+        format.html { redirect_to url, notice: t("#{@substrate.category}s.was_updated") }
         format.json { render json: @substrate }
       else
         format.html { render action: 'edit' }
@@ -63,7 +78,8 @@ class SubstratesController < ApplicationController
     @substrate.destroy
 
     respond_to do |format|
-      format.html { redirect_to substrates_url }
+      url = @substrate.category == 'mirror' ? mirrors_substrates_url : substrates_url
+      format.html { redirect_to url }
       format.json { head :no_content }
     end
   end

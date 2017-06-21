@@ -8,9 +8,9 @@ class Substrate < ActiveRecord::Base
       if %w(polishing coating control).include? state
         'warning'
       elsif state == 'not_coating'
-        'warning-orange'
+        'not-coating'
       elsif state == 'defect'
-        'error'
+        'defect'
       elsif state == 'aspart'
         'info'
       elsif state == 'depot'

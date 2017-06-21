@@ -25,7 +25,7 @@ class Ability
       cannot :read, Doc, category: {hidden: true}
 
       cannot [:manage, :read], Message
-      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate]
+      cannot :read, [Song, Album, Art, Work, Forecast, Round]
       can [:favorites], Subscribe
       cannot :download, Round, finish: false
     end

@@ -4,10 +4,11 @@
     %h2
       = t 'substrates.title'
       %small
-        = link_to new_substrate_path, class: 'btn btn-primary btn-small', style: 'vertical-align:middle' do
-          %i.icon.icon-plus
-          &nbsp;
-          = t 'shared.add'
+        - if can? :manage, Substrate
+          = link_to new_substrate_path, class: 'btn btn-primary btn-small', style: 'vertical-align:middle' do
+            %i.icon.icon-plus
+            &nbsp;
+            = t 'shared.add'
         %span.btn-group.pull-right
           = link_to substrates_path(format: 'pdf'), class: 'btn btn-small', target: '_blank' do
             %i.icon.icon-download-alt
@@ -15,7 +16,7 @@
           = link_to substrates_path(format: 'xls'), class: 'btn btn-small' do
             %i.icon.icon-download-alt
             Excel
-  %table.table.table-bordered.table-striped.table-substrates.table-hover
+  %table.table.table-bordered.table-substrates.table-hover
     %thead
       %tr
         %th №

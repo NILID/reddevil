@@ -36,10 +36,17 @@
       .handle-box {@include opacity(1);}
     }
 
-    &.warning-orange > td {
+    &.not-coating > td {
+      background-color: #f2dede
+    }
+    &.not-coating:hover > td {
+      background-color: #f2cfcf
+    }
+
+    &.defect > td {
       background-color: #ffccb0
     }
-    &.warning-orange:hover > td {
+    &.defect:hover > td {
       background-color: #ffbc98
     }
   }

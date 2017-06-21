@@ -35,6 +35,13 @@
     &:hover {
       .handle-box {@include opacity(1);}
     }
+
+    &.warning-orange > td {
+      background-color: #ffccb0
+    }
+    &.warning-orange:hover > td {
+      background-color: #ffbc98
+    }
   }
 
   td{vertical-align:middle;}

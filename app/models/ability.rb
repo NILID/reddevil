@@ -18,7 +18,7 @@ class Ability
     can :list, [Event]
 
     if user.role? :user
-      can [:edit, :update], Profile, user: {id: user.id}
+      can [:edit, :update], Profile, user_id: user.id
       can :read, :all
       can [:destroy, :edit, :update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.tempuser.user_id == user.id)
@@ -70,11 +70,13 @@ class Ability
     end
 
     if user.role? :drawing
-      can [:manage, :remote_show, :sort], Substrate
+      can [:index, :new, :create], Substrate
+      can [:destroy, :edit, :update, :show, :remote_show], Substrate, category: 'substrate'
     end
 
     if user.role? :mirrors
-      can [:mirrors], Substrate
+      can [:mirrors, :new, :create], Substrate
+      can [:destroy, :edit, :update, :show, :remote_show], Substrate, category: 'mirror'
     end
 
     if user.has_group? :lab193

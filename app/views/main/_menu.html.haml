@@ -17,7 +17,7 @@
         -if can? :manage, Purchase
           %li{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
             = link_to t('purchases.title'), years_path
-        -if can? :read, Substrate
+        -if can? :index, Substrate
           %li{class: params[:controller] == 'substrates'&& params[:action] != 'mirrors' ? 'active' : nil}
             = link_to t('substrates.title'), substrates_path
         -if can? :mirrors, Substrate

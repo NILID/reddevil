@@ -4,20 +4,20 @@
 = content_tag_for(:tr, substrate, class: css_class) do
   %td(style="position:relative")
     = index
-    - if can? :manage, Substrate
+    - if can? :edit, Substrate
       .handle-box
         .handle
           %i.icon-move.icon-white
   %td.substrate-title
     = link_to substrate.title, substrate
     %span.substrates-actions
-      - if can? :manage, Substrate
+      - if can? :edit, Substrate
         = link_to edit_substrate_path(substrate), class: 'btn-small btn' do
           %span.icon.icon-pencil
   %td= substrate.drawing
   %td= substrate.number
   %td.substrate-state
-    - if can? :manage, Substrate
+    - if can? :edit, Substrate
       - if substrate.category == 'mirror'
         - states = Substrate::MIRROR_STATES.collect {|state| [ state, t("mirrors.states.#{state}")]}
       - else

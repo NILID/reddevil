@@ -2,7 +2,7 @@
   %h3
     = @profile.fullname
     (#{@profile.login? ? @profile.login : @user.email})
-    %small=link_to t('profiles.edit'), edit_user_profile_path(@user) if can? :edit, @profile
+    %small= link_to t('profiles.edit'), edit_user_profile_path(@user) if can? :edit, @profile
 
 .row
   .span1= image_tag @profile.avatar.url(:medium), class: 'thumbnail pull-left'

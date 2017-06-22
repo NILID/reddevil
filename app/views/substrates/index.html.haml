@@ -1,18 +1,32 @@
 - model_class = Substrate
 .well
+  .pull-right
+    - if params[:action] == 'mirrors'
+      - User.with_role(:mirrors).each do |u|
+        = link_to user_profile_path(u), title: u.profile.surname do
+          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'img-circle img-circle-bordered'
+
+    - else
+      - User.with_role(:drawing).each do |u|
+        = link_to user_profile_path(u), title: u.profile.surname do
+          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'img-circle img-circle-bordered'
+  .clearfix
   .page-header
+
     %h2
       - if params[:action] == 'mirrors'
         = t 'mirrors.title'
       - else
         = t 'substrates.title'
       %small
-        - if can? :manage, Substrate
+        - if can? :new, Substrate
           = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-small', style: 'vertical-align:middle' do
             %i.icon.icon-plus
             &nbsp;
             = t 'shared.add'
         %span.btn-group.pull-right
+
+
           = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-small', target: '_blank' do
             %i.icon.icon-download-alt
             PDF

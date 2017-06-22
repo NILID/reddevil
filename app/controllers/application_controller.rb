@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  after_filter :store_location
+#  after_filter :store_location
   after_filter :user_activity
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -14,22 +14,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def store_location
-      # store last url - this is needed for post-login redirect to whatever the user last visited.
-      if (request.fullpath != '/users/sign_in' &&
-          request.fullpath != '/users/sign_up' &&
-          request.fullpath != '/users/password' &&
-          request.fullpath.match('/users/password').nil? &&
-          !request.xhr?)  # don't store ajax calls
-          session[:previous_url] = request.fullpath
-      end
-  end
+  # def store_location
+  #      # store last url - this is needed for post-login redirect to whatever the user last visited.
+  #      if (request.fullpath != '/users/sign_in' &&
+  #            request.fullpath != '/users/sign_up' &&
+  #            request.fullpath != '/users/password' &&
+  #            !request.fullpath.match('/users/password') &&
+  #            !request.fullpath.match('/users/confirmation') &&
+  #            !request.xhr?)  # don't store ajax calls
+  #          session[:previous_url] = request.fullpath
+  #      end
+  #  end
 
   private
 
-  def after_sign_in_path_for(resource)
-    session[:previous_url] || root_path
-  end
+  # def after_sign_in_path_for(resource)
+  #   session[:previous_url] || root_path
+  # end
+
 
   def user_activity
     current_user.try :touch

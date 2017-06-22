@@ -1,11 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  user: 
+  member:
   start: 2017-06-09
   end: 2017-06-09
 
 two:
-  user: 
+  member:
   start: 2017-06-09
   end: 2017-06-09

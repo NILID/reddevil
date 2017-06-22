@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class SubstratesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @substrate = substrates(:one)
   end

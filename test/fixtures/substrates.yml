@@ -4,6 +4,7 @@ one:
   number: MyString
   state: MyString
   theme: MyString
+  category: mirror
   user: 
   desc: MyText
 
@@ -13,5 +14,6 @@ two:
   number: MyString
   state: MyString
   theme: MyString
+  category: substrate
   user: 
   desc: MyText

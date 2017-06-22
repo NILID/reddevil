@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class HolidaysControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @holiday = holidays(:one)
   end

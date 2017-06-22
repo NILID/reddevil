@@ -7,11 +7,11 @@ class Ability
 
 
     #everybody
-    cannot [:manage, :read], [Message, Folder, Dataset]
+    can :read, :all
+    cannot [:manage, :read], [Message, Folder, Dataset, Substrate]
     can [:new, :create], Note
     cannot [:edit, :update], Profile
     cannot :read, Doc, category: {hidden: true}
-    can :read, :all
     can :rebuild, Result
     cannot :read, [Art, Work, Forecast, Song, Album, Round, Forecast]
     cannot :mirrors, Substrate
@@ -26,7 +26,7 @@ class Ability
       cannot :read, Doc, category: {hidden: true}
 
       cannot [:manage, :read], Message
-      cannot :read, [Song, Album, Art, Work, Forecast, Round]
+      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate]
       can [:favorites], Subscribe
       cannot :download, Round, finish: false
     end

@@ -27,4 +27,6 @@
       = t "#{substrate.category}s.states.#{substrate.state}"
   %td= substrate.theme
   %td= substrate.desc
-  %td.substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user
+  %td
+    .substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user
+    %small.substrate_date= l substrate.updated_at, format: :short

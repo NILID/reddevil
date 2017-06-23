@@ -1,0 +1,12 @@
+da_profile:
+  name: Da
+  user: da
+admin_profile:
+  name: ADmin
+  user: admin
+vasya_profile:
+  name: Vasya
+  user: vasya
+seller_profile:
+  name: Seller
+  user: seller

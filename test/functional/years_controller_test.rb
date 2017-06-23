@@ -5,13 +5,40 @@ class YearsControllerTest < ActionController::TestCase
 
   setup do
     @year = years(:one)
+    @user = users(:da)
+    @admin = users(:admin)
+    @seller = users(:seller)
   end
 
-  test "should get index" do
+  test "not reg user should not get index" do
     get :index
+
+    assert_redirected_to new_user_session_url
+    assert_nil assigns(:years)
+  end
+
+  test "admin should get index" do
+    sign_in @admin
+    ability = Ability.new(@admin)
+    assert ability.can? :index, Year
+
+    get :index
+
     assert_response :success
     assert_not_nil assigns(:years)
   end
+
+  test "seller should get index" do
+    sign_in @seller
+    ability = Ability.new(@seller)
+    assert ability.can? :index, Year
+
+    get :index
+
+    assert_response :success
+    assert_not_nil assigns(:years)
+  end
+
 
   test "should get new" do
     get :new

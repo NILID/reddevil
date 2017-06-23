@@ -1,6 +1,7 @@
 class Profile < ActiveRecord::Base
 
   belongs_to :member
+  belongs_to :user
 
   has_attached_file :avatar,
     styles: {

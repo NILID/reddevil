@@ -8,7 +8,7 @@ class Ability
 
     #everybody
     can :read, :all
-    cannot [:manage, :read], [Message, Folder, Dataset, Substrate]
+    cannot [:manage, :read], [Message, Folder, Dataset, Substrate, Year]
     can [:new, :create], Note
     cannot [:edit, :update], Profile
     cannot :read, Doc, category: {hidden: true}
@@ -71,12 +71,12 @@ class Ability
 
     if user.role? :drawing
       can [:index, :new, :create], Substrate
-      can [:destroy, :edit, :update, :show, :remote_show], Substrate, category: 'substrate'
+      can [:destroy, :edit, :update, :show, :remote_show, :sort], Substrate, category: 'substrate'
     end
 
     if user.role? :mirrors
       can [:mirrors, :new, :create], Substrate
-      can [:destroy, :edit, :update, :show, :remote_show], Substrate, category: 'mirror'
+      can [:destroy, :edit, :update, :show, :remote_show, :sort], Substrate, category: 'mirror'
     end
 
     if user.has_group? :lab193

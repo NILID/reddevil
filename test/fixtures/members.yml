@@ -1,13 +1,23 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: MyString
+da_member:
+  name: Da
   surname: MyString
   patronymic: MyString
   birth: 2014-04-17
 
-two:
-  name: MyString
+admin_member:
+  name: ADmin
+  surname: MyString
+  patronymic: MyString
+  birth: 2014-04-17
+
+vasya_member:
+  name: Vasya
+  surname: MyString
+  patronymic: MyString
+  birth: 2014-04-17
+
+seller_member:
+  name: Seller
   surname: MyString
   patronymic: MyString
   birth: 2014-04-17

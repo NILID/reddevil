@@ -1,11 +1,13 @@
-one:
+russia:
   title: MyString1
   content: MyString
   type: 
   flag_file_name: fixture_file_upload('files/rails.png', 'image/png')
+  type: one
 
-two:
+england:
   title: MyString2
   content: MyString
   type: 
   flag_file_name: fixture_file_upload('files/rails.png', 'image/png')
+  type: one

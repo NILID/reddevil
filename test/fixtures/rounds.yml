@@ -1,11 +1,13 @@
 one:
-  title: MyString
+  title: Round one
   content: MyString
   close: false
   deadline: DateTime.now
+  type: one
 
 two:
-  title: MyString
+  title: Round two
   content: MyString
   close: false
   deadline: DateTime.now
+  type: one

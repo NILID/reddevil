@@ -4,7 +4,7 @@ class TeamsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    @team = teams(:one)
+    @team = teams(:russia)
   end
 
   test "should get index" do

@@ -83,7 +83,7 @@ Birthday::Application.routes.draw do
 
 
   resources :arts do
-    resources :works
+    resources :works, except: [:index, :show]
   end
 
 

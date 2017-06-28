@@ -10,3 +10,15 @@ vasya_profile:
 seller_profile:
   name: Seller
   user: seller
+lab_profile:
+  name: lab
+  user: lab
+moder_profile:
+  name: Moder
+  user: moder
+art_profile:
+  name: Art
+  user: art
+twoart_profile:
+  name: Two Art
+  user: two_art

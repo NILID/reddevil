@@ -95,10 +95,10 @@ group :development do
   gem 'better_errors', '< 2'
   gem 'binding_of_caller'
   gem 'bullet', '< 5.5.0'
-  gem 'minitest-rails', '~> 1.0'
 end
 
 group :test do
+  gem 'minitest-rails', '~> 1.0'
   gem 'test-unit', '~> 3.0'
 end
 

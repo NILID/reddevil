@@ -4,12 +4,6 @@ class WorksController < ApplicationController
   load_and_authorize_resource :art
   load_and_authorize_resource :work, through: :art
 
-  def index
-  end
-
-  def show
-  end
-
   def new
   end
 

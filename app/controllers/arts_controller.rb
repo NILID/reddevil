@@ -4,9 +4,9 @@ class ArtsController < ApplicationController
 
 
   def index
-    @dima=User.find(1)
-    @ilya=User.find(2)
-    @arts=@arts.order('deadline desc').paginate(page: params[:page], per_page: 10)
+    @dima = User.where(id: 1)
+    @ilya = User.where(id: 2)
+    @arts = @arts.order('deadline desc').paginate(page: params[:page], per_page: 10)
   end
 
   def show

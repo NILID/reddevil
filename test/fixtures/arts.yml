@@ -1,5 +1,5 @@
 one:
-  deadline: Datetime.now
+  deadline: <%=DateTime.now + 4.weeks%>
 
-two:
-  deadline: Datetime.now
+closed_art:
+  deadline: <%=DateTime.now - 4.weeks%>

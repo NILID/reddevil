@@ -21,3 +21,9 @@ seller_member:
   surname: MyString
   patronymic: MyString
   birth: 2014-04-17
+
+art_member:
+  name: Art
+  surname: Art
+  patronymic: MyString
+  birth: 2014-04-17

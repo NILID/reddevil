@@ -25,8 +25,7 @@ class Ability
       end
       cannot :read, Doc, category: {hidden: true}
 
-      cannot [:manage, :read], Message
-      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate]
+      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate, Year, Message]
       can [:favorites], Subscribe
       cannot :download, Round, finish: false
     end
@@ -34,10 +33,6 @@ class Ability
     ################# MODERATOR USER
     if user.role? :moderator
       can :manage, [Doc, Category]
-      can [:new, :create], [Art]
-      can [:new, :create], Work, art: {closed?: false}
-      can [:edit, :update, :destroy], Work, user: {id: user.id}, art: {closed?: false}
-      can :manage, Source, work: {user_id: user.id}
     end
 
     if user.role? :editor
@@ -50,6 +45,7 @@ class Ability
       end
 
       can [:read, :manage], :all
+      cannot :manage, Work
       can [:import], Subscribe
       cannot [:read, :manage], [Dataset, Folder]
 
@@ -79,8 +75,16 @@ class Ability
       can [:destroy, :edit, :update, :show, :remote_show, :sort], Substrate, category: 'mirror'
     end
 
+    if user.has_group? :art
+      can :read, [Art, Work]
+      can [:new, :create], Art
+      can [:new, :create], Work, art: {closed?: false}
+      can [:edit, :update, :destroy], Work, user: {id: user.id}, art: {closed?: false}
+      can :manage, Source, work: {user_id: user.id}
+    end
+
     if user.has_group? :lab193
-      can [:manage, :read, :download], [Song, Album, Art, Work]
+      can [:manage, :read, :download], [Song, Album]
       can [:read], [Art, Work, Round]
       can :like, Song
       can [:favorites, :list], Album

@@ -1,6 +1,6 @@
 class Art < ActiveRecord::Base
   attr_accessible :deadline
-  has_many :works, dependent: :destroy 
+  has_many :works, dependent: :destroy
 
   validates :deadline, presence: true
 

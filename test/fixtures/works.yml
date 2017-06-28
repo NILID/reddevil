@@ -1,7 +1,14 @@
 one:
   desc: MyText
   art: one
+  user: art
 
 two:
   desc: MyText
-  art: two
+  art: one
+  user: two_art
+
+closed_work:
+  desc: MyText
+  art: closed_art
+  user: art

@@ -1,7 +1,7 @@
 = form_for @material do |f|
   - if @material.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@material.errors.count, "error")} prohibited this material from being saved:"
+      %h2= t 'shared.errors', error: plural(@material.errors.count, 'error')
       %ul
         - @material.errors.full_messages.each do |msg|
           %li= msg

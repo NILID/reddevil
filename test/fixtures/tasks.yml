@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  user: 
+  machine: 
+  start_time: 2017-06-29 08:29:58
+  end_time: 2017-06-29 08:29:58
+  complete: 1
+
+two:
+  title: MyString
+  user: 
+  machine: 
+  start_time: 2017-06-29 08:29:58
+  end_time: 2017-06-29 08:29:58
+  complete: 1

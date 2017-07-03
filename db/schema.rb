@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170621084935) do
+ActiveRecord::Schema.define(:version => 20170629052958) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -199,6 +199,12 @@ ActiveRecord::Schema.define(:version => 20170621084935) do
 
   add_index "likes", ["likeable_id", "likeable_type"], :name => "fk_likeables"
   add_index "likes", ["liker_id", "liker_type"], :name => "fk_likes"
+
+  create_table "machines", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "matches", :force => true do |t|
     t.integer  "team1_id"
@@ -420,6 +426,20 @@ ActiveRecord::Schema.define(:version => 20170621084935) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "machine_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "complete",   :default => 0, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "tasks", ["machine_id"], :name => "index_tasks_on_machine_id"
+  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "teams", :force => true do |t|
     t.string   "title"

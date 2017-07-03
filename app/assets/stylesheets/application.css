@@ -16,6 +16,8 @@
  *= require bootstrap_and_overrides
  *= require page-player
  *= require demo
+ *= require jquery.ui.all
+ *= require simple_calendar
  *= require optional-annotations
  *= require optional-themes
  *= require tooltipster

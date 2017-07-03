@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :substrates
   has_many :folders
+  has_many :tasks
   has_one :profile, dependent: :destroy
   has_one :tempuser
   ROLES = %w(admin user moderator editor test drawing mirrors)
@@ -42,8 +43,8 @@ class User < ActiveRecord::Base
     roles.include? role.to_s
   end
 
-  GROUPS = %w[luch lab193 test sellers art]
-  #             1    2     4      8     16
+  GROUPS = %w[luch lab193 test sellers art machine]
+  #             1    2     4      8     16    32
 
   def groups=(groups)
     self.groups_mask = (groups & GROUPS).map { |p| 2**GROUPS.index(p) }.inject(0, :+)

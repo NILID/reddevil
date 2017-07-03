@@ -45,6 +45,7 @@ ru:
     rating: Рейтинг знатоков
     building: Внимание! Данный функционал находится в стадии разработки, возможны ошибки, недочеты и другие неожиданные пакости!
     stat: Статистика
+    production: Производство
   folder:
     new: Создать папку
     new_title: Новая папка
@@ -166,6 +167,7 @@ ru:
     fullname: ФИО
     other_text: Примечание
   users:
+    title: Пользователи
     has_groups: Относится к группам
   matches:
     add: Добавить матч
@@ -217,6 +219,15 @@ ru:
     add: Добавить песню
     like: Добавить в избранное
     unlike: Убрать из избранного
+  tasks:
+    check_time_failed: Задача не может быть запланирована на те же даты, что и другие задачи.
+    check_less_time_failed: не может произойти раньше, чем дата начала.
+    standstill: Простой
+    update_tasks_help: При смене даты завершения автоматически произойдет смещение сроков следующих задач.
+    add_task: Создание задачи
+    edit_task: Редактирование задачи
+    was_created: Вы создали задачу
+    was_updated: Вы обновили задачу
   categories:
     title: Категории
     add_subcategory: Добавить подкатегорию
@@ -244,6 +255,8 @@ ru:
   slides:
     add: Добавить слайд
     hide: Ограниченный предосмотр
+  machines:
+    title: Покрытие
   years:
     title: Периоды закупок
     editing: Редактирование периода
@@ -295,6 +308,8 @@ ru:
       substrate: Подложка
       year: период
       column: поле
+      task: задача
+      machine: установка
     attributes:
       album:
         title: Название
@@ -398,6 +413,13 @@ ru:
         phone_inter: телефон внутренний
         phone_city: телефон городской
         email: E-mail
+      task:
+        title: Наименование
+        user_id: Исполнитель
+        start_time: Дата начала
+        end_time: Дата завершения
+        complete: Процент завершения
+        update_tasks_flag: Обновить задачи
       member:
         name: Имя
         surname: Фамилия

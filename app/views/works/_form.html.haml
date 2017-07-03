@@ -1,7 +1,7 @@
 = nested_form_for [@art, @work], :html => { :class => 'form-horizontal' } do |f|
   - if @work.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@work.errors.count, "error")} prohibited this work from being saved:"
+      %h2= t 'shared.errors', error: plural(@work.errors.count, 'error')
       %ul
         - @work.errors.full_messages.each do |msg|
           %li= msg

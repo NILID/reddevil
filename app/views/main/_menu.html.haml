@@ -11,18 +11,24 @@
           = link_to t('docs.title'), docs_path
         %li{class: (params[:controller] == 'subscribes') ? 'active' : nil}
           = link_to t('shared.phonebook'), subscribes_path
-        -if can? :manage, Message
-          %li{class: (params[:controller] == 'messages') ? 'active' : nil}
-            = link_to t('message.title'), messages_path
         -if can? :manage, Purchase
           %li{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
             = link_to t('purchases.title'), years_path
-        -if can? :index, Substrate
-          %li{class: params[:controller] == 'substrates'&& params[:action] != 'mirrors' ? 'active' : nil}
-            = link_to t('substrates.title'), substrates_path
-        -if can? :mirrors, Substrate
-          %li{class: params[:controller] == 'substrates' && params[:action] == 'mirrors'  ? 'active' : nil}
-            = link_to t('mirrors.title'), mirrors_substrates_path
+
+        -if (can? :index, Substrate) || (can? :mirrors, Substrate) || (can? :index, Machine)
+          %li.dropdown{class: params[:controller] == 'substrates' ? 'active' : nil}
+            = link_to '#', class: 'dropdown-toggle', role: 'button', 'data-toggle' => 'dropdown', id: 'dropproduction' do
+              %i.icon-wrench
+              =t 'shared.production'
+
+            %ul.dropdown-menu(role='menu' aria-labelledby='dropproduction')
+              -if can? :index, Substrate
+                %li= link_to t('substrates.title'), substrates_path
+              -if can? :mirrors, Substrate
+                %li= link_to t('mirrors.title'), mirrors_substrates_path
+              -if can? :index, Machine
+                %li= link_to t('machines.title'), machines_path
+
 
       %ul.nav.pull-right
         -if (can? :read, Round) || (can? :read, Album) || (can? :read, Art)
@@ -31,6 +37,21 @@
               %i.icon-list
               =t 'shared.media'
             %ul.dropdown-menu(role='menu' aria-labelledby='dropmedia')
+              -if can? :manage, Message
+                %li
+                  = link_to messages_path do
+                    %i.icon-envelope
+                    &nbsp;
+                    = t('message.title')
+
+              -if can? :manage, User
+                %li
+                  = link_to users_path do
+                    %i.icon-user
+                    &nbsp;
+                    = t('users.title')
+                %li.divider
+
               -if can? :read, Album
                 %li
                   = link_to albums_path do

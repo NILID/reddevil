@@ -1,5 +1,9 @@
 Birthday::Application.routes.draw do
 
+  resources :machines do
+    resources :tasks
+  end
+
   resources :substrates do
     member do
       get :remote_show

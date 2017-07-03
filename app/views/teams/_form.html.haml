@@ -1,7 +1,7 @@
 = form_for @team, :html => { :class => 'form-horizontal' } do |f|
   - if @team.errors.any?
     .alert.alert-error
-      %h4= "#{pluralize(@team.errors.count, "error")} prohibited this work from being saved:"
+      %h4= t 'shared.errors', error: plural(@team.errors.count, 'error')
       %ul
         - @team.errors.full_messages.each do |msg|
           %li= msg

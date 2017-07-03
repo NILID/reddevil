@@ -8,7 +8,7 @@ class Ability
 
     #everybody
     can :read, :all
-    cannot [:manage, :read], [Message, Folder, Dataset, Substrate, Year]
+    cannot [:manage, :read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
     can [:new, :create], Note
     cannot [:edit, :update], Profile
     cannot :read, Doc, category: {hidden: true}
@@ -95,5 +95,11 @@ class Ability
     if user.has_group? :sellers
       can [:manage, :read], [Purchase, Year]
     end
+
+    if user.has_group? :machine
+      can :read, Machine
+      can [:manage, :read], Task
+    end
+
   end
 end

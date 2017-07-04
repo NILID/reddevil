@@ -15,6 +15,7 @@ class SubstratesController < ApplicationController
   def mirrors
     @q = @substrates.search(params[:q])
     @substrates = @q.result(distinct: true).where(category: 'mirror').includes(user: [:profile]).order(:place)
+    @substrates_sub = Substrate.where(category: 'substrate').order(:title, :number, :drawing)
     respond_to do |format|
       format.html{ render template: 'substrates/index'}
       format.xls{ send_data @substrates.to_xls }

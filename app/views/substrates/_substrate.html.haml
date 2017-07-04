@@ -22,14 +22,12 @@
         - states = Substrate::MIRROR_STATES.collect {|state| [ state, t("mirrors.states.#{state}")]}
       - else
         - states = Substrate::STATES.collect {|state| [ state, t("substrates.states.#{state}")]}
-      = best_in_place substrate, :state, as: :select, collection: states, inner_class: 'substrate-select', data: {place_success: substrate.id}, class: 'remote-link'
+      = best_in_place substrate, :state, as: :select, collection: states, inner_class: 'substrate-select', data: {place_success: substrate.id}, class: 'remote-link', place_holder: '...'
     - else
       = t "#{substrate.category}s.states.#{substrate.state}"
   %td= substrate.theme
   - if params[:action] == 'mirrors'
-    %td
-      - if substrate.child
-        = link_to "#{substrate.child.title} #{(substrate.child.number? ? '№' : '') + substrate.child.number} #{substrate.child.drawing? ? ('(' + substrate.child.drawing + ')') : ''}", substrate.child
+    %td= best_in_place substrate, :substrate_id, as: :select, collection: @substrates_sub.collect {|s| [s.id, s.child_title]}, inner_class: 'substrate-select', class: 'remote-link', place_holder: '...'
   %td= substrate.desc
   %td
     .substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user

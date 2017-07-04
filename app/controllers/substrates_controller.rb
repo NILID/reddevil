@@ -38,12 +38,22 @@ class SubstratesController < ApplicationController
   end
 
   def new
+    if params[:category] == 'mirror'
+      @substrates = Substrate.where(category: 'substrate').includes(user: [:profile]).order(:place)
+    end
   end
 
   def edit
+    if params[:category] == 'mirror' || @substrate.category == 'mirror'
+      @substrates = Substrate.where(category: 'substrate').includes(user: [:profile]).order(:title, :number, :drawing)
+    end
   end
 
   def create
+    if params[:category] == 'mirror'
+      @substrates = Substrate.where(category: 'substrate').includes(user: [:profile]).order(:title, :number, :drawing)
+    end
+
     @substrate.user = current_user
     respond_to do |format|
       if @substrate.save

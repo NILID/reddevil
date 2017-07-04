@@ -26,6 +26,10 @@
     - else
       = t "#{substrate.category}s.states.#{substrate.state}"
   %td= substrate.theme
+  - if params[:action] == 'mirrors'
+    %td
+      - if substrate.child
+        = link_to "#{substrate.child.title} #{(substrate.child.number? ? '№' : '') + substrate.child.number} #{substrate.child.drawing? ? ('(' + substrate.child.drawing + ')') : ''}", substrate.child
   %td= substrate.desc
   %td
     .substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user

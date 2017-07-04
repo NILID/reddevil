@@ -95,11 +95,13 @@ ru:
     add: Добавить поле
   substrates:
     title: Подложки
+    one_title: Подложка
     add_title: Новая подложка
     edit_title: Редактирование подложки
     was_created: Вы создали подложку
     was_updated: Вы обновили подложку
     select: == Выберите состояние ==
+    select_substrate: == Выберите подложку ==
     states:
       polishing: Полировка
       coating: Покрытие
@@ -372,6 +374,8 @@ ru:
         desc: Примечание
         theme: Тема
         user_id: Фамилия
+        substrate_id: Подложка
+
       forecast:
         winner_id: Победитель
         ending: Завершение матча

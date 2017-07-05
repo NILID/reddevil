@@ -1,7 +1,14 @@
 require 'test_helper'
 
 class TempuserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def setup
+    @tempuser = tempusers(:one)
+  end
+
+  test 'tempuser must have username' do
+    @tempuser.username = ''
+    assert !@tempuser.valid?
+    assert_not_empty @tempuser.errors[:username]
+  end
 end

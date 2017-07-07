@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   load_and_authorize_resource
 
+  layout 'main'
+
   def index
     @users = @users.includes(:profile)
   end

@@ -103,6 +103,7 @@ Birthday::Application.routes.draw do
   resources :users, only: [:index] do
     member do
       post 'make_role'
+      get 'edit_roles'
     end
     resource :profile, only: [:edit, :update, :show]
     resources :events

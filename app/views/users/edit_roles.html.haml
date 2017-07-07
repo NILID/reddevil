@@ -1,0 +1,22 @@
+.row
+  .span8
+    .well
+      .page-header
+        %h3=t 'users.edit_roles', username: @user.profile.fullname
+
+      = form_for(@user, url: make_role_user_path(@user), html: {method: :post, class: 'form-horizontal'}) do |f|
+        .control-group
+          .control-label= t 'users.roles'
+          .controls
+            -User::ROLES.each do |role|
+              = label_tag class: 'checkbox' do
+                = check_box_tag "user[roles][]", role, @user.role?(role)
+                = role
+        .control-group
+          .control-label= t 'users.groups'
+          .controls
+            -User::GROUPS.each do |group|
+              =label_tag class: 'checkbox' do
+                =check_box_tag "user[groups][]", group, @user.has_group?(group)
+                =group
+        .form-actions= f.submit class: 'btn'

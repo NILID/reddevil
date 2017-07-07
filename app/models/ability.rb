@@ -54,7 +54,7 @@ class Ability
       cannot [:edit, :update], Art do |art|
         art.closed?
       end
-      can :make_role, User
+      can [:make_role, :edit_roles], User
       cannot :read, [Art, Work, Song, Album, Round, Forecast]
       cannot :download, Round, finish: false
       can :remote_show, Substrate

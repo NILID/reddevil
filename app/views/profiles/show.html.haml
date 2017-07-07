@@ -2,28 +2,17 @@
   %h3
     = @profile.fullname
     (#{@profile.login? ? @profile.login : @user.email})
-    %small= link_to t('profiles.edit'), edit_user_profile_path(@user) if can? :edit, @profile
+    %small
+      = link_to t('profiles.edit'), edit_user_profile_path(@user) if can? :edit, @profile
+      - if can? :edit_roles, @user
+        = link_to t('users.to_edit_roles'), edit_roles_user_path(@user) if can? :edit, @profile
 
 .row
-  .span1= image_tag @profile.avatar.url(:medium), class: 'thumbnail pull-left'
+  .span2= image_tag @profile.avatar.url(:medium), class: 'thumbnail pull-left'
 
-  .span11
+  .span10
     %dl.dl-horizontal
       %dt=t 'users.has_groups'
       %dd
         -@user.groups.each do |group|
           %span.label.label-info=t "user.groups.#{group}"
-
-    -if can? :make_role, @user
-      =form_for(@user, url: make_role_user_path(@user), html: {method: :post, class: 'form-horizontal'}) do |f|
-        %h4 roles
-        -User::ROLES.each do |role|
-          %p
-            =check_box_tag "user[roles][]", role, @user.role?(role)
-            =label_tag role
-        %h4 groups
-        -User::GROUPS.each do |group|
-          %p
-            =check_box_tag "user[groups][]", group, @user.has_group?(group)
-            =label_tag group, t("user.groups.#{group}")
-        =f.submit class: 'btn'

@@ -171,7 +171,11 @@ ru:
     other_text: Примечание
   users:
     title: Пользователи
-    has_groups: Относится к группам
+    has_groups: 'Относится к группам:'
+    to_edit_roles: Настроить доступ
+    edit_roles: Настройка доступа пользователя %{username}
+    roles: Роли
+    groups: Группы
   matches:
     add: Добавить матч
     basic: основное время

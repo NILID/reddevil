@@ -283,6 +283,8 @@ ru:
     was_created: Сообщение было создано
     was_updated: Сообщение были обновлено
     close: скрыто
+  symbols:
+    number: №
   helpers:
     actions: Действия
     links:

@@ -36,7 +36,7 @@ class Member < ActiveRecord::Base
 
   def self.to_xls(options = {})
     CSV.generate(options) do |csv|
-      csv << ['#', I18n.t('member.fullname')]
+      csv << [I18n.t('symbols.number'), I18n.t('member.fullname')]
       all.each_with_index do |member, index|
         csv << [index+1, member.full_name]
       end

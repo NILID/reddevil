@@ -46,12 +46,12 @@ class Substrate < ActiveRecord::Base
   end
 
   def child_title
-    title+ ' ' + (number? ? '#'.to_s : '') + number + (drawing? ? (' (' + drawing + ')') : '')
+    title + ' ' + (number? ? I18n.t('symbols.number') : '') + number + (drawing? ? (' (' + drawing + ')') : '')
   end
 
   def self.to_xls(options = {})
     CSV.generate(options) do |csv|
-      csv << ['#', Substrate.human_attribute_name(:title),
+      csv << [I18n.t('symbols.number'), Substrate.human_attribute_name(:title),
                     Substrate.human_attribute_name(:drawing),
                     Substrate.human_attribute_name(:number),
                     Substrate.human_attribute_name(:state),

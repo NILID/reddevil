@@ -5,7 +5,7 @@ $ ->
       if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
         $('.pagination').text("Load items...")
         $.getScript(url)
-    $(window).scroll() 
+    $(window).scroll()
 
   if $('.paginator').length
     $(window).scroll ->
@@ -13,6 +13,4 @@ $ ->
       if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
         $('.paginator').text("Load items...")
         $.getScript(url)
-    $(window).scroll() 
-
-
+    $(window).scroll()

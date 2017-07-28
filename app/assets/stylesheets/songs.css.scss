@@ -13,15 +13,17 @@
   li.active & {color: #fff}
 }
 
+.song-icons {
+  i {
+    margin: 2px 5px 0 0;
+    &:hover, &:visited, &:link, a:active {text-decoration:none;outline:none}
+  }
+}
+
 li.song {
   line-height:20px;
 }
 
-.icon-star-link {
-  float:left;
-  margin: 2px 5px 0 0;
-  &:hover, &:visited, &:link, a:active {text-decoration:none;outline:none}
-}
 .icon-star {color: #ff9900;}
 
 li.song, li.album, .breadcrumb{

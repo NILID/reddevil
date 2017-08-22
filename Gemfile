@@ -97,6 +97,8 @@ group :development do
   gem 'better_errors', '< 2'
   gem 'binding_of_caller'
   gem 'bullet', '< 5.5.0'
+
+  gem 'rails_best_practices'
 end
 
 group :test do

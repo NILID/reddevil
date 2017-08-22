@@ -24,7 +24,11 @@ class Substrate < ActiveRecord::Base
                     mirror_sent
                   ).freeze
 
+
   CATEGORIES = %w(substrate mirror).freeze
+
+  scope :not_defect, -> { where('state NOT IN (?)', %w(defect)) }
+
   def state_css
     if state?
       if %w(polishing coating control).include? state

@@ -15,7 +15,7 @@ class SubstratesController < ApplicationController
   def mirrors
     @q = @substrates.search(params[:q])
     @substrates = @q.result(distinct: true).where(category: 'mirror').includes(user: [:profile]).order(:place)
-    @substrates_sub = Substrate.where(category: 'substrate').order(:title, :number, :drawing)
+    @substrates_sub = Substrate.where(category: 'substrate').not_defect.order(:drawing)
     respond_to do |format|
       format.html{ render template: 'substrates/index'}
       format.xls{ send_data @substrates.to_xls }
@@ -40,19 +40,19 @@ class SubstratesController < ApplicationController
 
   def new
     if params[:category] == 'mirror'
-      @substrates = Substrate.where(category: 'substrate').includes(user: [:profile]).order(:place)
+      @substrates = Substrate.where(category: 'substrate').not_defect.includes(user: [:profile]).order(:drawing)
     end
   end
 
   def edit
     if params[:category] == 'mirror' || @substrate.category == 'mirror'
-      @substrates = Substrate.where(category: 'substrate').includes(user: [:profile]).order(:title, :number, :drawing)
+      @substrates = Substrate.where(category: 'substrate').not_defect.includes(user: [:profile]).order(:drawing)
     end
   end
 
   def create
     if params[:category] == 'mirror'
-      @substrates = Substrate.where(category: 'substrate').includes(user: [:profile]).order(:title, :number, :drawing)
+      @substrates = Substrate.where(category: 'substrate').not_defect.includes(user: [:profile]).order(:drawing)
     end
 
     @substrate.user = current_user

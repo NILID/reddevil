@@ -1,8 +1,8 @@
 class AddDeviseconfirmToUsers < ActiveRecord::Migration
   def change
-    ##confirm
+    ## confirm
 
-    #add_column :tempusers, :total_result, :integer, default: 0  
+    # add_column :tempusers, :total_result, :integer, default: 0
     add_column :users, :confirmation_token, :string
     add_column :users, :confirmed_at, :datetime
     add_column :users, :confirmation_sent_at, :datetime

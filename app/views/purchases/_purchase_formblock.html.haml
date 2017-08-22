@@ -1,5 +1,5 @@
--if columnship.data.present?
-  -object_property = if (columnship.column.column_type == 'date')
+-if columnship.data?
+  - object_property = if (columnship.column.column_type == 'date')
     - short_date columnship.data
   -elsif columnship.column.column_type == 'price'
     - number_to_currency(columnship.data, precision: 2, delimiter: ' ', unit: nil)

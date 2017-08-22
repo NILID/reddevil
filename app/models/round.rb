@@ -8,7 +8,7 @@ class Round < ActiveRecord::Base
 
   acts_as_taggable
 
-  accepts_nested_attributes_for :matches, :allow_destroy => true #not requied 
+  accepts_nested_attributes_for :matches, :allow_destroy => true # not requied
 
   validates :title, presence: true
 
@@ -19,7 +19,6 @@ class Round < ActiveRecord::Base
   def finish
     deadline < DateTime.now
   end
-
 
   def allow_empty?
     empty_match?

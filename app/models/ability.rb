@@ -66,12 +66,12 @@ class Ability
     end
 
     if user.role? :drawing
-      can [:index, :new, :create], Substrate
+      can [:index, :new, :create, :get_form], Substrate
       can [:destroy, :edit, :update, :show, :remote_show, :sort], Substrate, category: 'substrate'
     end
 
     if user.role? :mirrors
-      can [:mirrors, :new, :create], Substrate
+      can [:mirrors, :new, :create, :get_form], Substrate
       can [:destroy, :edit, :update, :show, :remote_show, :sort], Substrate, category: 'mirror'
     end
 

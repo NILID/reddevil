@@ -14,8 +14,8 @@ class SubstratesController < ApplicationController
 
   def mirrors
     @q = @substrates.search(params[:q])
-    @substrates = @q.result(distinct: true).where(category: 'mirror').includes(user: [:profile]).order(:place)
-    @substrates_sub = Substrate.where(category: 'substrate').not_defect.order(:drawing)
+    @substrates = @q.result(distinct: true).where(category: 'mirror').includes(:child, user: [:profile]).order(:place)
+
     respond_to do |format|
       format.html{ render template: 'substrates/index'}
       format.xls{ send_data @substrates.to_xls }
@@ -23,6 +23,13 @@ class SubstratesController < ApplicationController
     end
   end
 
+  def get_form
+    @substrates = Substrate.not_defect.alone_substrates + (@substrate.substrate_id ? [@substrate.child] : [])
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def show
   end
@@ -40,13 +47,13 @@ class SubstratesController < ApplicationController
 
   def new
     if params[:category] == 'mirror'
-      @substrates = Substrate.where(category: 'substrate').not_defect.includes(user: [:profile]).order(:drawing)
+      @substrates = Substrate.not_defect.alone_substrates + (@substrate.substrate_id ? [@substrate.child] : [])
     end
   end
 
   def edit
     if params[:category] == 'mirror' || @substrate.category == 'mirror'
-      @substrates = Substrate.where(category: 'substrate').not_defect.includes(user: [:profile]).order(:drawing)
+      @substrates = Substrate.not_defect.alone_substrates + (@substrate.substrate_id ? [@substrate.child] : [])
     end
   end
 
@@ -77,9 +84,11 @@ class SubstratesController < ApplicationController
 
         format.html { redirect_to url, notice: t("#{@substrate.category}s.was_updated") }
         format.json { render json: @substrate }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { respond_with_bip(@substrate) }
+        format.js
       end
     end
   end

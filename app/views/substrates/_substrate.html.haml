@@ -27,7 +27,11 @@
       = t "#{substrate.category}s.states.#{substrate.state}"
   %td= substrate.theme
   - if params[:action] == 'mirrors'
-    %td= best_in_place substrate, :substrate_id, as: :select, collection: @substrates_sub.collect {|s| [s.id, s.child_title]}.insert(0, ['', '...']), inner_class: 'substrate-select', class: 'remote-link', place_holder: '...'
+    %td
+      = link_to get_form_substrate_path(substrate), data: {target: "#dialog_#{substrate.id}_child", toggle: 'modal'}, class: 'modal-link', remote: true do
+        %span.child-title= substrate.child_title
+      .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden='false' id="dialog_#{substrate.id}_child")
+
   %td= substrate.desc
   %td
     .substrate_user= link_to substrate.user.profile.surname, user_profile_path(substrate.user) if substrate.user

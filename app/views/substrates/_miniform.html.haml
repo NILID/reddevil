@@ -1,0 +1,14 @@
+- unless @substrates.empty?
+
+  = form_for substrate, remote: true, html: { class: 'form-horizontal' } do |f|
+    .modal-body
+      = f.select :substrate_id, @substrates.collect {|s| [s.full_title, s.id]}, {include_blank: t('substrates.select_substrate')}
+
+    .modal-footer
+      %button.btn(data-dismiss='modal' aria-hidden='true')= t 'shared.close'
+      = f.submit t('shared.save'), class: 'btn btn-primary'
+- else
+  .modal-body
+    = t 'substrates.empty'
+  .modal-footer
+    %button.btn(data-dismiss='modal' aria-hidden='true')= t 'shared.close'

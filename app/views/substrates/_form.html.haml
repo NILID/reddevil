@@ -12,7 +12,7 @@
     - states = Substrate::STATES.collect {|state| [t("substrates.states.#{state}"), state]}
   = f.select :state, states, {include_blank: t('substrates.select')}
   - if @substrate.category == 'mirror' || params[:category] == 'mirror'
-    = f.select :substrate_id, @substrates.collect {|s| [s.child_title, s.id]}, {include_blank: t('substrates.select_substrate')}
+    = f.select :substrate_id, @substrates.collect {|s| [s.full_title, s.id]}, {include_blank: t('substrates.select_substrate')}, disabled: @substrates.empty?
   = f.text_field :theme, class: 'text_field input-xxlarge'
   = f.text_area :desc, class: 'text_area input-xxlarge', rows: 4
   .form-actions

@@ -29,6 +29,10 @@ class Substrate < ActiveRecord::Base
 
   scope :not_defect, -> { where('state NOT IN (?)', %w(defect)) }
 
+  def self.alone_substrates
+    where(category: 'substrate').where(Substrate.arel_table[:id].not_in(Substrate.where(category: 'mirror').order(:drawing).pluck(:substrate_id).uniq! - [nil]))
+  end
+
   def state_css
     if state?
       if %w(polishing coating control).include? state
@@ -49,8 +53,12 @@ class Substrate < ActiveRecord::Base
     end
   end
 
-  def child_title
+  def full_title
     title + ' ' + (number? ? I18n.t('symbols.number') : '') + number + (drawing? ? (' (' + drawing + ')') : '')
+  end
+
+  def child_title
+    substrate_id? ? child.full_title : '...'
   end
 
   def self.to_xls(options = {})

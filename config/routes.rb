@@ -7,6 +7,7 @@ Birthday::Application.routes.draw do
   resources :substrates do
     member do
       get :remote_show
+      get :get_form
     end
     collection do
       get :mirrors

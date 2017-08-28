@@ -1,0 +1,5 @@
+$('#substrate_<%=@substrate.id%>').find('.child-title').text("<%=j @substrate.child_title%>");
+$('.modal').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+$('#substrate_<%=@substrate.id%> .child-title').effect('highlight', {}, 1000);

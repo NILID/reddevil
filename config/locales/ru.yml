@@ -103,6 +103,7 @@ ru:
     was_updated: Вы обновили подложку
     select: == Выберите состояние ==
     select_substrate: == Выберите подложку ==
+    empty: На данный момент нет свободных подложек.
     states:
       polishing: Полировка
       coating: Покрытие

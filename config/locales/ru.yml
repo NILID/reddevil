@@ -246,6 +246,7 @@ ru:
   profiles:
     editing: Редактирование профиля
     edit: Редактировать профиль
+    was_updated: Вы обновили профиль
   mailer:
     birthday: День Рождения!
     new_round: Новый раунд прогнозов - "%{round_name}"

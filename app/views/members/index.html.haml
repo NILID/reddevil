@@ -1,9 +1,9 @@
 .row
   .span12
     .well
-      %ul.nav.nav-tabs#member_info(data-toggle="tab")
-        %li.active= link_to t('member.title'), '#users_info', 'data-toggle' => 'tab'
-        %li= link_to t('shared.stat'), '#statitics', 'data-toggle' => 'tab'
+      %ul.nav.nav-tabs#member_info
+        %li.active= link_to t('member.title'), '#users_info', data: { toggle: 'tab' }
+        %li= link_to t('shared.stat'), '#statitics', data: { toggle: 'tab' }
         - if can? :create, Member
           %li= link_to t('shared.add'), new_member_path
       .tab-content
@@ -23,7 +23,7 @@
                 %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
                 %th= Member.human_attribute_name(:short_number)
                 %th= Member.human_attribute_name(:email)
-                -if can? :manage, Member
+                - if can? :manage, Member
                   %th= t '.actions', default: t('helpers.actions')
             %tbody
               - @members.each_with_index do |member, index|

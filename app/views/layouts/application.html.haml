@@ -24,7 +24,7 @@
             .span12= yield :sidebar
           -if user_signed_in? && (params[:controller] == 'albums' || params[:controller] == 'songs')
             .row-fluid
-              .span3.well.sidebar-nav.favorites-panel{'data-spy' => 'affix', class: (current_user.likees(Song).count + current_user.likees(Album).count) == 0 ? 'hidden' : nil}
+              .span3.well.sidebar-nav.favorites-panel{data: { spy: 'affix' }, class: (current_user.likees(Song).count + current_user.likees(Album).count) == 0 ? 'hidden' : nil}
                 %ul.nav.nav-list
                   %li.nav-header.hidden Sidebar
                   %li

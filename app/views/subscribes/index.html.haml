@@ -9,33 +9,32 @@
     =f.submit t('shared.search'), class: 'btn'
 
   -if can? :import, Subscribe
-    =link_to t('subscribes.import'), '#import', class: 'btn btn-primary', role: 'button', 'data-toggle' => 'modal'
+    = link_to t('subscribes.import'), '#import', class: 'btn btn-primary', role: 'button', data: { toggle: 'modal' }
     #import.modal.hide.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
       =form_tag import_subscribes_path, multipart: true do
         .modal-header
           %h3#myModalLabel= t('subscribes.import')
           %button.close(data-dismiss="modal" aria-hidden='true')
-        .modal-body=file_field_tag :file
+        .modal-body= file_field_tag :file
         .modal-footer
-          %button.btn(data-dismiss="modal" aria-hidden='true')=t('shared.cancel')
-          =submit_tag t('shared.import'), class: 'btn btn-primary'
+          %button.btn(data-dismiss="modal" aria-hidden='true')= t 'shared.cancel'
+          = submit_tag t('shared.import'), class: 'btn btn-primary'
 
 
-  -if user_signed_in?
-    -current_count=current_user.likees(Subscribe).count
-    .well.sidebar-nav.favorites-panel{'data-spy' => 'affix', class: (current_count == 0) ? 'hidden' : nil}
+  - if user_signed_in?
+    - current_count=current_user.likees(Subscribe).count
+    .well.sidebar-nav.favorites-panel{data: { spy: 'affix' }, class: (current_count == 0) ? 'hidden' : nil}
       %ul.nav.nav-list
         %li.nav-header.hidden Sidebar
         %li= link_to t('albums.favorites'), favorites_subscribes_path, remote: true
         %p
           %span.likees-count=plural current_count, 'subscribe'
 
-
-%p.muted.text-right=t 'subscribes.actual_date'
+%p.muted.text-right= t 'subscribes.actual_date'
 
 .page-header
   %h1
-    =t 'shared.phonebook'
+    = t 'shared.phonebook'
     %small
       = count > 0 ?  plural(count, 'subscribe') : t('subscribes.not_found')
       = link_to 'new', new_subscribe_path, class: 'btn btn-mini' if can? :manage, Subscribe

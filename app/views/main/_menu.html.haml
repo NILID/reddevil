@@ -17,7 +17,7 @@
 
         -if (can? :index, Substrate) || (can? :mirrors, Substrate) || (can? :index, Machine)
           %li.dropdown{class: params[:controller] == 'substrates' ? 'active' : nil}
-            = link_to '#', class: 'dropdown-toggle', role: 'button', 'data-toggle' => 'dropdown', id: 'dropproduction' do
+            = link_to '#', class: 'dropdown-toggle', role: 'button', data: { toggle: 'dropdown' }, id: 'dropproduction' do
               %i.icon-wrench
               =t 'shared.production'
 
@@ -33,7 +33,7 @@
       %ul.nav.pull-right
         -if (can? :read, Round) || (can? :read, Album) || (can? :read, Art)
           %li.dropdown
-            = link_to '#', class: 'dropdown-toggle', role: 'button', 'data-toggle' => 'dropdown', id: 'dropmedia' do
+            = link_to '#', class: 'dropdown-toggle', role: 'button', data: { toggle: 'dropdown' }, id: 'dropmedia' do
               %i.icon-list
               =t 'shared.media'
             %ul.dropdown-menu(role='menu' aria-labelledby='dropmedia')

@@ -27,7 +27,7 @@
     .controls
       #datetimeround.input-append.date
         =#f.date_select :deadline, default: {hour: 16, minute: 0}
-        = f.text_field :deadline, "data-format" => 'dd.MM.yyyy hh:mm:ss'
+        = f.text_field :deadline, data: { format: 'dd.MM.yyyy hh:mm:ss' }
         %span.add-on
           %i.icon-th
 

@@ -1,9 +1,9 @@
-%li.media.comment{"data-id" => comment.id}
+%li.media.comment{ data: { id: comment.id } }
   = image_tag comment.user.profile.avatar(:thumb), class: 'pull-left'
   .media-body
     %h4.media-heading
       = comment.user.profile.login? ? comment.user.profile.login : comment.user.email
-      =t('comments.says')
+      = t 'comments.says'
       %small.text-muted
         [#{comment.created_at.strftime('%-d %B %Y, %H:%M:%S')}]
     %p= comment.body

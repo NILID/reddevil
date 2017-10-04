@@ -9,7 +9,7 @@
     = link_to download_album_song_path(song.album, song), target: '_blank', title: t('shared.download') do
       %i.icon-download-alt
       = t 'shared.download'
-    = link_to '#repeat', class: 'repeat-link inactive', "data-repeat" => 'true', title: t('shared.repeat') do
+    = link_to '#repeat', class: 'repeat-link inactive', data: { repeat: 'true' }, title: t('shared.repeat') do
       %i.icon.icon-repeat
     - if user_signed_in?
       %span.sec-links

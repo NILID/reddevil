@@ -22,13 +22,14 @@
       .span5
         / The global progress bar
         .progress.progress-success.progress-striped.active.fade
-          .bar{:style => "width:0%;"}
+          .bar{style: 'width:0%;'}
     / The loading indicator is shown during image processing
     .fileupload-loading
     %br/
     / The table listing the files available for upload/download
     %table.table.table-striped
-      %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
+      %tbody.files{ data: { target: '#modal-gallery', toggle: 'modal-gallery' } }
+
 :javascript
   var fileUploadErrors = {
   maxFileSize: 'File is too big',

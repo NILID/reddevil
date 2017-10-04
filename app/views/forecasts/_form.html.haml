@@ -27,9 +27,9 @@
   .control-group
     .control-label= f.label :ending
     .controls
-      -Match::ENDING.each do |e|
+      - Match::ENDING.each do |e|
         = f.radio_button :ending, e, class: 'hidden', disabled: false
-      .btn-group(data-toggle='buttons-radio')
+      .btn-group{ data: { toggle: 'buttons-radio' } }
         - Match::ENDING.each do |e|
           = f.label "ending_#{e}", t("matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"), class: "btn btn-primary #{(@forecast && @forecast.ending == e) ? 'current' : nil}"
 

@@ -1,10 +1,11 @@
 $('#doc-list').html('<%= j render @docs%>');
-<%if @cat%>
+$('#docs-count').html('<%= @docs.size%>');
+<% if @cat %>
   $('.category-info').html('<%= j I18n.t('docs.in_category', category: @cat.title)%>');
   $('.nav-reddevil li').removeClass('active');
   $("#category_<%=@cat.id%>").closest('li').addClass('active');
-<%else%>
+<% else %>
   $('.category-info').html();
-<%end%>
+<% end %>
 
 

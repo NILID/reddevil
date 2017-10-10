@@ -92,6 +92,7 @@ ru:
     new: новая
     failed: отклонено
     done: выполнено
+    later: отложено
   columns:
     add: Добавить поле
   substrates:

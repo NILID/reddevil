@@ -6,7 +6,7 @@ class DocsController < ApplicationController
 
   def index
     if params[:by_category]
-      @cat=Category.find(params[:by_category])
+      @cat=Category.where(id: params[:by_category]).first
       if @cat
         @q=Doc.where(category_id: (@cat.hidden ? @cat.subtree_ids : @cat.subtree.public.pluck(:id))).search(params[:q])
         @docs=@q.result(distinct: true).all(order: :title)

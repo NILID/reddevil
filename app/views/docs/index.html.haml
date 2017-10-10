@@ -1,12 +1,12 @@
 -content_for :sidebar do
   .ny-block
     %h4
-      =link_to t('categories.title'), docs_path
+      = link_to t('categories.title'), docs_path
       - if can? :manage, Category
         = link_to categories_path, :class => 'btn btn-mini' do
           %i.icon-cog
 
-    =search_form_for(@q, url: docs_path ) do |f|
+    = search_form_for(@q, url: docs_path ) do |f|
       .controls
         .input-prepend
           %span.add-on
@@ -14,9 +14,9 @@
           =f.text_field :title_cont, placeholder: t('shared.search'), class: 'search_field'
 
     =#nested_messages Category.first.subtree.arrange(order: 'created_at desc')
-    = arranged_tree_as_list(@categories, {:list_style => :boostrap_list_group}) do |category|
-      = link_to(docs_path(by_category: category.id), remote: true, class: "slide-link #{category.hidden? || (!category.parent.nil? && category.parent.hidden?) ? 'hide' : nil}") do
-        =category.title
+    = arranged_tree_as_list(@categories) do |category|
+      = link_to(docs_path(by_category: category.id), remote: true, id: dom_id(category), class: "slide-link#{category.hidden? || (!category.parent.nil? && category.parent.hidden?) ? ' hide' : nil}") do
+        = category.title
 
 
 .ny-block

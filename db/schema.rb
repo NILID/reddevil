@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20171011054415) do
+ActiveRecord::Schema.define(:version => 20171011081657) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -282,7 +282,10 @@ ActiveRecord::Schema.define(:version => 20171011054415) do
     t.string   "screenshot_content_type"
     t.integer  "screenshot_file_size"
     t.datetime "screenshot_updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"

@@ -10,9 +10,11 @@
     = t '.title', :default => model_class.model_name.human.titleize
     %span.label{class: "label-#{label_css_classes[@note.status.to_sym]}"}= t "notes.#{@note.status}"
 
+- if @note.user && user_signed_in? && current_user.role?(:admin)
+  %strong= @note.user.profile.surname_name + ':'
 %p= @note.content
 
--if can? :manage, Note
+- if can? :manage, Note
   .form-actions
-    = link_to t('shared.edit'), edit_note_path(@note), :class => 'btn'
-    = link_to t('shared.del'), note_path(@note), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+    = link_to t('shared.edit'), edit_note_path(@note), class: 'btn'
+    = link_to t('shared.del'), note_path(@note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

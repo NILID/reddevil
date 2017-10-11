@@ -15,7 +15,7 @@
         %td= holiday.start
         %td= holiday.end
         %td
-          = link_to t('shared.edit'), edit_member_holiday_path(@member, holiday), :class => 'btn btn-mini'
-          = link_to t('shared.del'), [@member, holiday], :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+          = link_to t('shared.edit'), edit_member_holiday_path(@member, holiday), class: 'btn btn-mini'
+          = link_to t('shared.del'), [@member, holiday], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
 
 = link_to t('.new', :default => t("helpers.links.new")), new_member_holiday_path(@member), :class => 'btn btn-primary'

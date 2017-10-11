@@ -2,9 +2,9 @@ class NotesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @notes_all_count=@notes.group(:status).count
+    @notes_all_count = @notes.group(:status).count
     @q = @notes.search(params[:q])
-    @notes = params[:q] ? @q.result(distinct: true) : @q.result(distinct: true).where(status: 'new')
+    @notes = params[:q] ? @q.result(distinct: true).includes(:user) : @q.result(distinct: true).where(status: 'new').includes(:user)
   end
 
   def new
@@ -14,6 +14,7 @@ class NotesController < ApplicationController
   end
 
   def create
+    @note.user = current_user || nil
     respond_to do |format|
       if @note.save
         Notification.new_note(@note).deliver

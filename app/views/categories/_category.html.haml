@@ -1,9 +1,9 @@
-=content_tag_for(:li, category, class: "#{(category.root? ? 'well' : '') + (category.hidden? ? ' redhide' : '')}") do
+= content_tag_for(:li, category, class: "#{(category.root? ? 'well' : '') + (category.hidden? ? ' redhide' : '')}") do
   %p
     %span= category.title
     %span
       = link_to t('categories.add_subcategory'), new_category_path(parent_id: category.id), class: 'btn btn-mini'
       = link_to t('shared.edit'), edit_category_path(category), class: 'btn btn-mini'
-      = link_to t('shared.del'), category_path(category), :method => :delete, data: { confirm: t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, class: 'btn btn-mini btn-danger'
+      = link_to t('shared.del'), category_path(category), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
 
   %ul=render category.children

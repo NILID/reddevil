@@ -1,4 +1,6 @@
 class Note < ActiveRecord::Base
+  belongs_to :user
+
   attr_accessible :content, :status, :review, :screenshot
 
   STATUS = %w(new failed done later)

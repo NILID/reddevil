@@ -1,6 +1,5 @@
+- model_class = Task
 .well
-
-  - model_class = Task
   .page-header
     %h3= @task.title
   %p
@@ -28,4 +27,4 @@
     = link_to t('.back', :default => t("helpers.links.back")), machines_path, :class => 'btn'
     - if can? :manage, @task
       = link_to t('shared.edit'), edit_machine_task_path(@machine, @task), :class => 'btn'
-      = link_to t('shared.del'), [@machine, @task], :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+      = link_to t('shared.del'), [@machine, @task], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

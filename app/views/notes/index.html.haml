@@ -34,6 +34,8 @@
             = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
               %i.icon.icon-picture
         %td
+          - if note.user && user_signed_in? && current_user.role?(:admin)
+            %strong= note.user.profile.surname_name + ':'
           = simple_format truncate(note.content, length: 200, omission: '...')
           - if note.review?
             .well.well-small= simple_format note.review
@@ -42,5 +44,5 @@
         %td.span2= Russian.strftime(note.created_at, "%d %B")
         - if can? :manage, Note
           %td
-            = link_to t('shared.edit'), edit_note_path(note), :class => 'btn btn-mini'
-            = link_to t('shared.del'), note_path(note), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+            = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-mini'
+            = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'

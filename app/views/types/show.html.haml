@@ -9,5 +9,5 @@
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), types_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_type_path(@type), :class => 'btn'
+  = link_to t('shared.edit'), edit_type_path(@type), :class => 'btn'
   = link_to t('shared.del'), type_path(@type), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

@@ -16,6 +16,8 @@ class NotesController < ApplicationController
   def create
     respond_to do |format|
       if @note.save
+        Notification.new_note(@note).deliver
+
         format.html { redirect_to notes_url, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
       else

@@ -12,5 +12,8 @@ class Notification < ActionMailer::Base
     mail(to: @user.email, subject: I18n.t('mailer.new_round', round_name: @round.title), template_name: 'new_round')
   end
 
-
+  def new_note(note)
+    @note = note
+    mail(to: 'dailyin@luch.podolsk.ru', subject: I18n.t('mailer.new_note'), template_name: 'new_note')
+  end
 end

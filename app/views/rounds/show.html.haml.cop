@@ -3,7 +3,7 @@
     = @round.title
     - if can? :manage, @round
       %small
-        = link_to t('.edit', :default => t("helpers.links.edit")), edit_round_path(@round), :class => 'btn'
+        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn'
         = link_to t('shared.del'), round_path(@round), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 %p= @round.content
 

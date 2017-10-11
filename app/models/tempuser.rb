@@ -13,5 +13,4 @@ class Tempuser < ActiveRecord::Base
   def ratio
     (self.total_result.to_f / self.forecasts.count.to_f).round(4)
   end
-
 end

@@ -23,5 +23,4 @@ class Song < ActiveRecord::Base
   def clean_filename
     File.basename self.file_file_name, File.extname(self.file_file_name).downcase
   end
-
 end

@@ -4,7 +4,6 @@ class Task < ActiveRecord::Base
   attr_accessible :complete, :end_time, :start_time, :title, :update_tasks_flag
   attr_writer :update_tasks_flag
 
-
   validates :title, presence: true
   validates :complete, numericality: { only_integer: true,
                                            less_than_or_equal_to: 100,
@@ -30,7 +29,6 @@ class Task < ActiveRecord::Base
       end
     end
   end
-
 
   private
 

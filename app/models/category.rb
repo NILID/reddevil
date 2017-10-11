@@ -6,5 +6,4 @@ class Category < ActiveRecord::Base
 
   validates :title, presence: true
   scope :public, -> {where(hidden: false)}
-
 end

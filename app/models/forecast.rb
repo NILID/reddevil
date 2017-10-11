@@ -89,5 +89,4 @@ class Forecast < ActiveRecord::Base
                                                          && Match.find(match_id).round.type_id == 2
     # type_id == hockey
   end
-
 end

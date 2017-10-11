@@ -1,8 +1,7 @@
-- model_class = Year
 .page-header
   %h3
-    =t 'years.title'
-    -if can? :new, Year
+    = t 'years.title'
+    - if can? :new, Year
       %small= link_to t('.new', :default => t("helpers.links.new")), new_year_path, :class => 'btn btn-small btn-primary'
 - @years.each do |year|
   .well

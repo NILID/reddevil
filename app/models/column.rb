@@ -15,5 +15,4 @@ class Column < ActiveRecord::Base
         p.columnships.create(column_id: self.id)
       end
     end
-
 end

@@ -152,6 +152,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    paperclip-i18n (4.3.0)
     passenger (5.1.2)
       rack
       rake (>= 0.8.1)
@@ -315,6 +316,7 @@ DEPENDENCIES
   nested_form
   nokogiri (= 1.6.8.1)
   paperclip
+  paperclip-i18n
   passenger
   petrovich (~> 1.0)
   quiet_assets

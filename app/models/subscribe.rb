@@ -6,9 +6,9 @@ class Subscribe < ActiveRecord::Base
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     (1..spreadsheet.last_row).each do |i|
-#      unless Subscribe.where(fullname: spreadsheet.cell(i, 1)).first
+        # unless Subscribe.where(fullname: spreadsheet.cell(i, 1)).first
         subscribe = Subscribe.new
-        #subscribe.attributes = row.to_hash.slice(*accessible_attributes)
+        # subscribe.attributes = row.to_hash.slice(*accessible_attributes)
         subscribe.fullname = spreadsheet.cell(i, 1)
         subscribe.departament = spreadsheet.cell(i, 2)
         subscribe.position = spreadsheet.cell(i, 3)
@@ -17,7 +17,7 @@ class Subscribe < ActiveRecord::Base
         subscribe.phone_city = spreadsheet.cell(i, 6)
         subscribe.email = spreadsheet.cell(i, 7)
         subscribe.save!
-#      end
+        # end
     end
   end
 
@@ -27,5 +27,4 @@ class Subscribe < ActiveRecord::Base
     else raise 'unknown file type: #{file.original_filename}'
     end
   end
-
 end

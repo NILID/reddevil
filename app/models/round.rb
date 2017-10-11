@@ -23,5 +23,4 @@ class Round < ActiveRecord::Base
   def allow_empty?
     empty_match?
   end
-
 end

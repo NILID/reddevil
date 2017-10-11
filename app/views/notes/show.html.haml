@@ -1,13 +1,13 @@
+- label_css_classes = { new: 'info', done: 'success', failed: 'important', later: 'warning' }
 - model_class = Note
+
+- content_for :sidebar do
+  = link_to image_tag(@note.screenshot.url(:medium), class: 'img-polaroid'), @note.screenshot.url(:original), class: 'fancybox thumnbail'
+
 .page-header
   %h4
-    =t '.title', :default => model_class.model_name.human.titleize
-    -if @note.status == 'done'
-      %span.label.label-success= t ("notes.#{@note.status}")
-    -elsif @note.status == 'failed'
-      %span.label.label-important= t ("notes.#{@note.status}")
-    -else
-      %span.label.label-info= t ("notes.#{@note.status}")
+    = t '.title', :default => model_class.model_name.human.titleize
+    %span.label{class: "label-#{label_css_classes[@note.status.to_sym]}"}= t "notes.#{@note.status}"
 
 %p= @note.content
 

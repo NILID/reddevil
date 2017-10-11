@@ -1,5 +1,4 @@
 class Member < ActiveRecord::Base
-
   has_many :holidays
 
   attr_accessible :birth, :name, :patronymic, :surname, :email, :phone, :short_number

@@ -36,5 +36,4 @@ class Dataset < ActiveRecord::Base
   def check_uniq_title
     errors.add(:src, I18n.t('dataset.already_exist_in_folder')) if self.folder.datasets.pluck(:src_file_name).include? self.src_file_name
   end
-
 end

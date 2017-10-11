@@ -12,15 +12,15 @@ class Result < ActiveRecord::Base
       if match.has_goal?
         forecast=self.tempuser.forecasts.where(match_id: match.id).last
         if forecast
-          #check result
+          # check result
           i+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal)
-          #check diff
+          # check diff
           i+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
-          #check winner
+          # check winner
           # i+=1 if ((match.team1goal > match.team2goal) == (forecast.team1goal > forecast.team2goal)) && !match.winner_id?
           # i+=1 if ((match.winner == forecast.winner) && match.winner_id?)
           i+=1 if (match.check_win == forecast.check_winner)
-          #check final end
+          # check final end
           i+=1 if (match.ending == forecast.ending)
         end
       end

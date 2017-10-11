@@ -19,5 +19,4 @@ class Folder < ActiveRecord::Base
       errors.add(:title, I18n.t('folder.already_exist_in_folder')) if self.siblings.pluck(:title).include? self.title
     end
   end
-
 end

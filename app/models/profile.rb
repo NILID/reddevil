@@ -37,5 +37,4 @@ class Profile < ActiveRecord::Base
   def surname_name
     "#{surname} #{name}"
   end
-
 end

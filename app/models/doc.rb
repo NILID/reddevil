@@ -11,14 +11,11 @@ class Doc < ActiveRecord::Base
   validates :file, :attachment_presence => true
   validates :title, presence: true
 
-
-
-#  def self.search(search)
-#    if search
-#      where('title LIKE ?', "%#{search}%")
-#    else
-#      scoped
-#    end
-#  end
-
+  # def self.search(search)
+  #   if search
+  #     where('title LIKE ?', "%#{search}%")
+  #   else
+  #     scoped
+  #   end
+  # end
 end

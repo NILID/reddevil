@@ -12,6 +12,4 @@ class Year < ActiveRecord::Base
   TYPES = %w(string datetime integer price text references)
 
   accepts_nested_attributes_for :columns, allow_destroy: true
-
-
 end

@@ -5,8 +5,7 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
 
-
-    #everybody
+    # everybody
     can :read, :all
     cannot [:manage, :read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
     can [:new, :create], Note
@@ -100,6 +99,5 @@ class Ability
       can :read, Machine
       can [:manage, :read], Task
     end
-
   end
 end

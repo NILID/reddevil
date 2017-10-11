@@ -14,9 +14,10 @@
     = t 'notes.title'
     = link_to(new_note_path, class: 'btn btn-primary') do
       %i.icon.icon-plus
-%table.table.table-striped
+%table.table.table-striped.table-condensed
   %thead
     %tr
+      %th
       %th
       %th= model_class.human_attribute_name(:content)
       %th= model_class.human_attribute_name(:status)
@@ -27,6 +28,10 @@
     - @notes.each do |note|
       %tr{ class: label_css_classes[note.status.to_sym] }
         %td= link_to note.id, note
+        %td
+          - if note.screenshot?
+            = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
+              %i.icon.icon-picture
         %td
           = simple_format truncate(note.content, length: 200, omission: '...')
           - if note.review?

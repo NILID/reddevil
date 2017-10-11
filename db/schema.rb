@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170704053235) do
+ActiveRecord::Schema.define(:version => 20171011054415) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -274,10 +274,14 @@ ActiveRecord::Schema.define(:version => 20170704053235) do
 
   create_table "notes", :force => true do |t|
     t.text     "content"
-    t.string   "status",     :default => "new"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.string   "status",                  :default => "new"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.text     "review"
+    t.string   "screenshot_file_name"
+    t.string   "screenshot_content_type"
+    t.integer  "screenshot_file_size"
+    t.datetime "screenshot_updated_at"
   end
 
   create_table "profiles", :force => true do |t|

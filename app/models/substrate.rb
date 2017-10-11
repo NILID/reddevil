@@ -3,7 +3,7 @@ class Substrate < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :mirror
-  #has_one :substrate_child
+  # has_one :substrate_child
   belongs_to :child, class_name: 'Substrate', foreign_key: :substrate_id
 
   STATES = %w(polishing coating not_coating defect aspart control depot).freeze

@@ -15,6 +15,4 @@ class Material < ActiveRecord::Base
    def has_group?(group)
      groups.include?(group.to_s)
    end
-
-
 end

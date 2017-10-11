@@ -385,7 +385,6 @@ ru:
         theme: Тема
         user_id: Фамилия
         substrate_id: Подложка
-
       forecast:
         winner_id: Победитель
         ending: Завершение матча
@@ -417,6 +416,9 @@ ru:
         status: Статус
         review: Пояснение
         created_at: Создано
+        screenshot: Скриншот
+        screenshot_file_size: Размер файла
+        screenshot_content_type: Тип изображения
       source:
         file: Слайд
       subscribe:

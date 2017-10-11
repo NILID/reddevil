@@ -29,4 +29,4 @@
       = f.date_select :birth, :class => 'date_select', include_blank: true, start_year: 1930, end_year: Time.now.year-15
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), members_path, :class => 'btn'
+    = link_to t('shared.cancel'), members_path, class: 'btn'

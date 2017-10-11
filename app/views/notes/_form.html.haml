@@ -17,13 +17,12 @@
   - if can? :manage, Note
     .control-group
       = f.label :status, class: 'control-label'
-      .controls= f.select :status, Note::STATUS
+      .controls= f.select :status, options_for_select(Note::STATUS.collect { |s| [t("notes.#{s}"), s]}, @note.status)
 
     .control-group
       = f.label :review, class: 'control-label'
       .controls= f.text_area :review, class: 'text_area span10', rows: 6
 
-
   .form-actions
     = f.submit t('shared.save'), class: 'btn btn-primary'
-    = link_to t('.cancel', default: t("helpers.links.cancel")), notes_path, class: 'btn'
+    = link_to t('shared.cancel'), notes_path, class: 'btn'

@@ -18,6 +18,6 @@
         - if can? :manage, type
           %td
             = link_to t('.edit', :default => t("helpers.links.edit")), edit_type_path(type), :class => 'btn btn-mini'
-            = link_to t('.destroy', :default => t("helpers.links.destroy")), type_path(type), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+            = link_to t('shared.del'), type_path(type), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
 

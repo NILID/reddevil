@@ -34,7 +34,7 @@
           = f.label "ending_#{e}", t("matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"), class: "btn btn-primary #{(@forecast && @forecast.ending == e) ? 'current' : nil}"
 
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary', disable_with: t('shared.saving')
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), m.round, :class => 'btn'
+    = f.submit nil, class: 'btn btn-primary', disable_with: t('shared.saving')
+    = link_to t('shared.cancel'), m.round, class: 'btn'
     - if params[:action] == 'edit'
-      = link_to t('shared.del'), [@tempuser, @forecast], :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn' if can? :destroy, @forecast
+      = link_to t('shared.del'), [@tempuser, @forecast], :method => :delete, :data => { confirm: t('shared.sure') }, class: 'btn' if can? :destroy, @forecast

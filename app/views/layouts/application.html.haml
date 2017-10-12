@@ -10,8 +10,8 @@
     /[if lt IE 9]
       = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js'
     = favicon_link_tag
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag    'application', media: 'all', data: { turbolinks_track: true }
+    = javascript_include_tag 'application', data: { turbolinks_track: true }
     = yield :js
     = render 'users/user_style' if user_signed_in?
 

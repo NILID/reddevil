@@ -20,12 +20,13 @@
               Общий
               - if params[:sort] == 'total'
                 %i.icon.icon-chevron-down
-      -@tempusers.each do |tempuser, round_result|
-        %tr
-          %td= tempuser.username
-          %td= round_result
-          %td= (tempuser.total_result.to_f / tempuser.forecasts.count.to_f).round(3)
-          %td= tempuser.total_result
+      - if @tempusers
+        - @tempusers.each do |tempuser, round_result|
+          %tr
+            %td= tempuser.username
+            %td= round_result
+            %td= (tempuser.total_result.to_f / tempuser.forecasts.count.to_f).round(3)
+            %td= tempuser.total_result
 
   .span7
     - if can? :manage, Round

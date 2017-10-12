@@ -2,10 +2,13 @@
 
 body {background: #dbf1fc}
 
-#wrapper {min-height:100%;position:relative;
+#wrapper {
+  min-height:100%;
+  position:relative;
   #error_explanation {
-    @extend .alert;
-    @extend .alert-error;
+    /*!!!!!!!!!!!! @extend .alert;
+      @extend .alert-error;
+    */
     ul {
       list-style: none;
       margin: 0 0 18px 0;

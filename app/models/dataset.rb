@@ -7,9 +7,9 @@ class Dataset < ActiveRecord::Base
       url: "/system/files/:user_id/:folder_id/:basename.:extension",
       path: ":rails_root/public/system/files/:user_id/:folder_id/:basename.:extension"
 
-
   validates :src, attachment_presence: true
-  validate :check_uniq_title, :on => :create
+  validate :check_uniq_title, on: :create
+  do_not_validate_attachment_file_type :src
 
   Paperclip.interpolates :folder_id do |attachment, style|
     attachment.instance.folder_id

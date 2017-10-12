@@ -8,8 +8,10 @@ class Doc < ActiveRecord::Base
   has_attached_file :file,
       path: ":rails_root/public/system/docs/:attachment/:id/:style/:filename",
       url: "/system/docs/:attachment/:id/:style/:filename"
-  validates :file, :attachment_presence => true
+
   validates :title, presence: true
+  validates_attachment :file, presence: true
+  do_not_validate_attachment_file_type :file
 
   # def self.search(search)
   #   if search

@@ -19,9 +19,7 @@ class ProfilesController < ApplicationController
         redirect_to user_profile_path(@profile), notice: t('profiles.was_updated')
       #end
     else
-     render :edit
+      render :edit
     end
-
   end
-
 end

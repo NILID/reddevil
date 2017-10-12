@@ -1,9 +1,9 @@
 class Folder < ActiveRecord::Base
-  belongs_to :user
-  attr_accessible :title, :parent_id
-  has_many :datasets, dependent: :destroy
-
   has_ancestry cache_depth: true
+
+  belongs_to :user
+  attr_accessible :title, :parent_id, :ancestry
+  has_many :datasets, dependent: :destroy
 
   validates :title, presence: true
 

@@ -18,11 +18,7 @@ class MainController < ApplicationController
   end
 
   def mirror
-    @item=Item.find(params[:m]) if params[:m] && Item.find_by_id(params[:m])
-    @mirrors=Mirror.all
+    @item = Item.find(params[:m]) if params[:m] && Item.where(id: params[:m]).first
+    @mirrors = Mirror.all
   end
-
-  def relax
-  end
-
 end

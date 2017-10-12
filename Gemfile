@@ -1,14 +1,16 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.22.5'
+gem 'rails', '4.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'pg'
+# gem 'pg'
+
+gem 'protected_attributes'
 
 gem 'rubyzip'
 
-gem 'mysql2', '0.3.10'
+gem 'mysql2', '0.3.21'
 
 gem 'momentjs-rails'
 
@@ -26,6 +28,7 @@ gem 'nokogiri', '1.6.8.1'
 gem 'best_in_place'
 
 gem 'chartkick'
+# gem 'highcharts-rails'
 gem 'groupdate'
 gem 'hightop'
 
@@ -37,12 +40,8 @@ gem 'holidays', '3.3.0'
 
 gem 'ckeditor', '4.0.6'
 
-gem 'birthday', '0.3.1.1'
+gem 'birthday', '0.3.1'
 #, :git => 'http://github.com/kented/birthday'
-
-#gem 'chartkick'
-#gem 'highcharts-rails'
-#gem 'groupdate'
 
 gem 'soundmanager2-rails'
 
@@ -54,7 +53,7 @@ gem 'friendly_id'
 
 gem 'cancancan'
 
-gem 'rails-i18n', '~> 3.0.0'
+gem 'rails-i18n'
 
 gem 'devise'
 #gem 'devise-russian'
@@ -66,7 +65,7 @@ gem 'nested_form'
 
 gem 'will_paginate-bootstrap', '< 1.0.0'
 
-gem 'paperclip'
+gem 'paperclip', '~> 4.2'
 gem 'paperclip-i18n'
 
 gem 'meta-tags', :require => 'meta_tags'
@@ -81,10 +80,8 @@ gem 'ransack'
 
 gem 'will_paginate', '~> 3.0'
 
-gem 'turbo-sprockets-rails3'
-
-#gem 'jquery-turbolinks'
-#gem 'turbolinks'
+# gem 'jquery-turbolinks'
+# gem 'turbolinks'
 # gem 'faye-rails', '~> 2.0'
 
 gem 'less-rails'
@@ -103,8 +100,8 @@ group :development do
 end
 
 group :test do
-  gem 'minitest-rails', '~> 1.0'
-  gem 'test-unit', '~> 3.0'
+  gem 'minitest-rails'
+  gem 'test-unit'
 end
 
 group :production do
@@ -112,20 +109,17 @@ group :production do
 end
 
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+gem 'sass-rails',   '~> 5.0'
+gem 'coffee-rails', '~> 4.1.0'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', '0.10.2', :platforms => :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
-  gem 'tooltipster-rails'
-  #gem 'jcrop-rails-v2'
-  gem 'jcrop-rails'
-  gem 'fancybox2-rails'
-  gem 'readmorejs-rails'
-end
+gem 'uglifier', '>= 1.3.0'
+gem 'tooltipster-rails'
+gem 'jcrop-rails-v2'
+gem 'fancybox2-rails'
+gem 'readmorejs-rails'
 
 gem "jquery-fileupload-rails"
 gem 'jquery-rails'
@@ -134,14 +128,29 @@ gem 'jquery-ui-rails'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-gem 'jbuilder'
+gem 'jbuilder', '~> 2.0'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'mime-types', '< 3', require: false
 
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
 
-# To use debugger
-# gem 'debugger'
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+end
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+end

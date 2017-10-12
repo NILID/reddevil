@@ -17,7 +17,7 @@ class NotesController < ApplicationController
     @note.user = current_user || nil
     respond_to do |format|
       if @note.save
-        Notification.new_note(@note).deliver
+        Notification.new_note(@note).deliver_now
 
         format.html { redirect_to notes_url, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }

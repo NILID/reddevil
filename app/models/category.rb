@@ -5,5 +5,5 @@ class Category < ActiveRecord::Base
   has_many :docs
 
   validates :title, presence: true
-  scope :public, -> {where(hidden: false)}
+  scope :publics, -> {where(hidden: false)}
 end

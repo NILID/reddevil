@@ -1,4 +1,4 @@
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, class: 'form-horizontal' }) do |f|
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
 
   %fieldset
     %legend Смените ваш пароль
@@ -6,10 +6,10 @@
     = devise_error_messages!
     = f.hidden_field :reset_password_token
     .control-group
-      = f.label :password, "Новый пароль", class: 'control-label'
-      .controls= f.password_field :password, :autofocus => true
+      = f.label :password, 'Новый пароль', class: 'control-label'
+      .controls= f.password_field :password, autofocus: true, autocomplete: 'off'
     .control-group
-      = f.label :password_confirmation, "Подвердите пароль", class: 'control-label'
-      .controls= f.password_field :password_confirmation
-    .controls= f.submit "Сменить пароль"
+      = f.label :password_confirmation, 'Подвердите пароль', class: 'control-label'
+      .controls= f.password_field :password_confirmation, autocomplete: 'off'
+    .controls= f.submit 'Сменить пароль'
 = render "users/shared/links"

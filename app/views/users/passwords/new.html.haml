@@ -5,7 +5,7 @@
     .control-group
       = f.label :email, class: 'control-label'
       .controls
-        = f.email_field :email, :autofocus => true
+        = f.email_field :email, autofocus: true
     .controls
       = f.submit t('devise.sendmepassword'), class: 'btn'
 = render "users/shared/links"

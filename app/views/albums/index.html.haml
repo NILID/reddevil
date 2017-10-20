@@ -20,11 +20,11 @@
     %li= link_to t('albums.add'), new_album_path, data: {toggle: 'tab'} if can? :new, Album
 
   .tab-content
-    -if params[:q]
-      %ul.playlist.tab-pane.fade#find_songs=render @songs, showalbum: true
+    - if params[:q]
+      %ul.playlist.tab-pane.fade#find_songs= render @songs, showalbum: true
 
-    %ul.mainlist.tab-pane.fade#main_songs=render @albums
+    %ul.mainlist.tab-pane.fade#main_songs= render @albums
     %ul.playlist.tab-pane.fade#new_songs
-      .endless=render @new_songs, showalbum: true
+      .endless= render @new_songs, showalbum: true
 
       = will_paginate @new_songs

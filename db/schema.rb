@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012110244) do
+ActiveRecord::Schema.define(version: 20171109075000) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20171012110244) do
   end
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
+
+  create_table "categoryships", force: :cascade do |t|
+    t.integer "doc_id",      limit: 4
+    t.integer "category_id", limit: 4
+  end
+
+  add_index "categoryships", ["category_id"], name: "index_categoryships_on_category_id", using: :btree
+  add_index "categoryships", ["doc_id"], name: "index_categoryships_on_doc_id", using: :btree
 
   create_table "columns", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -540,4 +548,6 @@ ActiveRecord::Schema.define(version: 20171012110244) do
 
   add_index "years", ["slug"], name: "index_years_on_slug", unique: true, using: :btree
 
+  add_foreign_key "categoryships", "categories"
+  add_foreign_key "categoryships", "docs"
 end

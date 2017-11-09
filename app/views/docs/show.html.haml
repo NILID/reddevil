@@ -1,19 +1,26 @@
 - model_class = Doc
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.titleize
+  %h1
+    =t '.title', :default => model_class.model_name.human.titleize
+
+    %small
+      - unless @doc.categories.empty?
+        - @doc.categories.each do |g|
+          %span.label.label-info><= g.title
 
 %p
   %strong= model_class.human_attribute_name(:title) + ':'
   %br
   = @doc.title
-%p
-  %strong= model_class.human_attribute_name(:desc) + ':'
-  %br
+- if @doc.desc?
+  %p
+    %strong= model_class.human_attribute_name(:desc) + ':'
+    %br
   = @doc.desc
 %p
-  %strong= model_class.human_attribute_name(:file_file_name) + ':'
+  %strong= model_class.human_attribute_name(:file) + ':'
   %br
-  = @doc.file_file_name
+  = link_to t('docs.download'), @doc.file.url, class: 'btn btn-mini btn-primary', target: '_blank'
 
 -if can? :manage, @doc
   .form-actions

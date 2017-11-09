@@ -10,7 +10,7 @@ class Ability
     cannot [:manage, :read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
     can [:new, :create], Note
     cannot [:edit, :update], Profile
-    cannot :read, Doc, category: {hidden: true}
+    # cannot :read, Doc, category: {hidden: true}
     can :rebuild, Result
     cannot :read, [Art, Work, Forecast, Song, Album, Round, Forecast, Type]
     cannot :mirrors, Substrate
@@ -22,7 +22,7 @@ class Ability
       can [:destroy, :edit, :update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.tempuser.user_id == user.id)
       end
-      cannot :read, Doc, category: {hidden: true}
+      # cannot :read, Doc, category: {hidden: true}
 
       cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate, Year, Message, Type]
       can [:favorites], Subscribe

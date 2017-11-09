@@ -1,25 +1,27 @@
 class DocsController < ApplicationController
   load_and_authorize_resource
-  layout  'main', only: [:edit, :new]
+  layout 'main', only: [:edit, :new]
 
   before_filter :set_categories, only: [:edit, :new, :create, :update]
 
   def index
     if params[:by_category]
-      @cat=Category.where(id: params[:by_category]).first
+      @cat = Category.where(id: params[:by_category]).first
       if @cat
-        @q=Doc.where(category_id: (@cat.hidden ? @cat.subtree_ids : @cat.subtree.publics.pluck(:id))).search(params[:q])
-        @docs=@q.result(distinct: true).order(:title)
+        # @q = Doc.where(category_id: (@cat.hidden ? @cat.subtree_ids : @cat.subtree.publics.pluck(:id))).search(params[:q])
+        @q = @cat.docs.search(params[:q])
+        @docs = @q.result(distinct: true).order(:title)
       else
-        @q=Doc.search(params[:q])
-        @docs=[]
+        @q = Doc.search(params[:q])
+        @docs = []
       end
     else
       hidden = []
       Category.all.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
 
-      @q = params[:q] ? Doc.search(params[:q]) : Doc.where(category_id: hidden).search(params[:q])
-      @docs = @q.result(distinct: true).includes(:category).order(:title)
+      # @q = params[:q] ? Doc.search(params[:q]) : Doc.where(category_id: hidden).search(params[:q])
+      @q = params[:q] ? Doc.search(params[:q]) : Doc.search(params[:q])
+      @docs = @q.result(distinct: true).includes(:categories).order(:title)
     end
     @categories = Category.arrange(order: :title)
 
@@ -27,7 +29,6 @@ class DocsController < ApplicationController
       format.html
       format.js
     end
-
   end
 
   def show; end

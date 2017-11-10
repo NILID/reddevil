@@ -18,5 +18,5 @@
   &.new:hover {@include opacity(0.8)}
 }
 
-.i-folder{background-image: url(icon-folder.png);}
-.i-file {background-image: url(icon-file.png);}
+.i-folder{background-image: assert_url(icon-folder.png);}
+.i-file {background-image: assert_url(icon-file.png);}

@@ -181,7 +181,7 @@ ul.playlist.bubblegum.use-peak li .peak .r {
 
 ul.playlist.shiny li.sm2_paused,
 ul.playlist.shiny li.sm2_playing {
- background-image:url(top-highlight.png);
+ background-image:assert_url('top-highlight.png');
  background-repeat:repeat-x;
  background-position:0px -1px;
  _background-image:none; /* can't be bothered with IE 6. */

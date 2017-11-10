@@ -1,29 +1,20 @@
 - model_class = Doc
 .page-header
-  %h1
-    =t '.title', :default => model_class.model_name.human.titleize
+  %h2
+    = @doc.title
 
     %small
       - unless @doc.categories.empty?
         - @doc.categories.each do |g|
           %span.label.label-info><= g.title
 
-%p
-  %strong= model_class.human_attribute_name(:title) + ':'
-  %br
-  = @doc.title
 - if @doc.desc?
-  %p
-    %strong= model_class.human_attribute_name(:desc) + ':'
-    %br
-  = @doc.desc
-%p
-  %strong= model_class.human_attribute_name(:file) + ':'
-  %br
-  = link_to t('docs.download'), @doc.file.url, class: 'btn btn-mini btn-primary', target: '_blank'
+  .save-wspace.well
+    %p= @doc.desc
+%p= link_to t('docs.download'), @doc.file.url, class: 'btn btn-primary', target: '_blank'
 
--if can? :manage, @doc
+- if can? :manage, @doc
   .form-actions
-    = link_to t('.back', :default => t("helpers.links.back")), docs_path, :class => 'btn'
-    = link_to t('shared.edit'), edit_doc_path(@doc), :class => 'btn'
+    = link_to t('.back', default: t("helpers.links.back")), docs_path, class: 'btn'
+    = link_to t('shared.edit'), edit_doc_path(@doc), class: 'btn'
     = link_to t('shared.del'), doc_path(@doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

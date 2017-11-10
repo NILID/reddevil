@@ -7,7 +7,8 @@
           = link_to(docs_path(by_category: g.id), remote: true) do
             %span.label.label-info.label-pad><= g.title
 
-  %p= simple_format doc.desc
+  .save-wspace
+    %p= simple_format doc.desc
   = link_to t('docs.download'), doc.file.url, class: 'btn btn-mini btn-primary', target: '_blank'
   - if can? :manage, Doc
     = link_to t('shared.edit'), edit_doc_path(doc), class: 'btn btn-mini'

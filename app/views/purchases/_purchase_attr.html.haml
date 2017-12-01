@@ -1,12 +1,12 @@
--if purchase[attr].present?
-  -object_property = if (type == 'date')
+- if purchase[attr].present?
+  - object_property = if (type == 'date')
     - short_date purchase[attr]
-  -elsif type == 'price'
-    - number_to_currency(purchase[attr], precision: 2, delimiter: ' ', unit: nil)
-  -else
+  - elsif type == 'price'
+    - number_to_currency(purchase[attr], precision: 2, delimiter: ' ')
+  - else
     - purchase[attr]
--else
-  -object_property = content_tag(:div, content_tag(:i, '',  class: 'icon icon-plus'), class: 'btn btn-mini purchase-actions')
--if current_user && (current_user.has_group? :sellers)
+- else
+  - object_property = content_tag(:div, content_tag(:i, '',  class: 'icon icon-plus'), class: 'btn btn-mini purchase-actions')
+- if current_user && (current_user.has_group? :sellers)
   = link_to object_property, get_miniform_year_purchase_path(@year, purchase, attr: attr), data: {target: "#dialog_#{purchase.id}_#{attr}", toggle: 'modal'}, class: 'modal-link', remote: true
   .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden="false" id="dialog_#{purchase.id}_#{attr}")

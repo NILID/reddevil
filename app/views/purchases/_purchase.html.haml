@@ -15,7 +15,7 @@
         %hr
         %dl.dl-horizontal
           %dt= Purchase.human_attribute_name(:price)
-          %dd= number_to_currency(purchase.price, precision: 2, delimiter: ' ', unit: nil) || t('shared.empty')
+          %dd= purchase.price? ? number_to_currency(purchase.price, precision: 2, delimiter: ' ') : t('shared.empty')
           %dt= Purchase.human_attribute_name(:provider)
           %dd= purchase.provider
           %dt= Purchase.human_attribute_name(:doc)

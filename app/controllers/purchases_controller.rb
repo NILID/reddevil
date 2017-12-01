@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_filter :authenticate_user!
   layout 'main'
-  load_and_authorize_resource :year
+  load_and_authorize_resource :year, find_by: :slug
   load_and_authorize_resource :purchase, through: :year, except: [:new_form]
 
   def index

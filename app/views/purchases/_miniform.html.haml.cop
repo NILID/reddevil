@@ -1,6 +1,6 @@
 = form_for [@year, purchase], remote: true, html: { class: 'form-horizontal' } do |f|
   .modal-body
-    - if type == 'date'
+    - if type == 'datetime'
       = render 'datefield', f: f, element: element
     - else
       .control-group

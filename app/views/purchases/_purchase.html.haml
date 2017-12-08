@@ -1,35 +1,36 @@
-=content_tag_for(:tr, purchase) do
+= content_tag_for(:tr, purchase) do
   %td= purchase_counter + 1
   %td.main-title
-    .tip
-      = render 'purchase_attr', year: @year, purchase: purchase, attr: :title, type: 'string'
-      .tip-text
-        .pull-left
-          .btn-group.purchase-actions
-            = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-mini', title: t('shared.edit') do
-              %i.icon.icon-cog
-            = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger' do
-              %i.icon.icon-trash
-        .pull-right=purchase.user.profile.surname
-        .clear
-        %hr
-        %dl.dl-horizontal
-          %dt= Purchase.human_attribute_name(:price)
-          %dd= purchase.price? ? number_to_currency(purchase.price, precision: 2, delimiter: ' ') : t('shared.empty')
-          %dt= Purchase.human_attribute_name(:provider)
-          %dd= purchase.provider
-          %dt= Purchase.human_attribute_name(:doc)
-          %dd= purchase.doc
+    .pull-left= render 'purchase_attr', year: @year, purchase: purchase, attr: :title, type: 'string'
+    .pull-right
+      .btn.btn-small.tip.icon.icon-question
+        .tip-text
+          .pull-left
+            .btn-group.purchase-actions
+              = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-mini', title: t('shared.edit') do
+                %i.icon.icon-cog
+              = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger' do
+                %i.icon.icon-trash
+          .pull-right=purchase.user.profile.surname
+          .clear
+          %hr
+          %dl.dl-horizontal
+            %dt= Purchase.human_attribute_name(:price)
+            %dd= purchase.price? ? number_to_currency(purchase.price, precision: 2, delimiter: ' ') : t('shared.empty')
+            %dt= Purchase.human_attribute_name(:provider)
+            %dd= purchase.provider || t('shared.empty')
+            %dt= Purchase.human_attribute_name(:doc)
+            %dd= purchase.doc || t('shared.empty')
 
-  -purchase.columnships.each do |c|
+  - purchase.columnships.each do |c|
     %td{class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil}= render 'purchase_formblock', columnship: c
   - if !purchase.deliveries.pluck(:id).empty?
-    = render partial: 'purchases/delivery', locals: {purchase: purchase, delivery: purchase.deliveries.last}
-  -else
-    -[1, 2].each_with_index do |i, index|
+    = render partial: 'purchases/delivery', locals: { purchase: purchase, delivery: purchase.deliveries.last }
+  - else
+    - [1, 2].each_with_index do |i, index|
       %td
         .purchase-actions
           = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-mini', remote: true do
             %i.icon.icon-cog
-        -if index == 0
+        - if index == 0
           .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden="false" id="dialog_delivery_#{purchase.id}")

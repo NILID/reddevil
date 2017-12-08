@@ -1,12 +1,12 @@
--if columnship.data?
+- if columnship.data?
   - object_property = if (columnship.column.column_type == 'date')
     - short_date columnship.data
-  -elsif columnship.column.column_type == 'price'
+  - elsif columnship.column.column_type == 'price'
     - number_to_currency(columnship.data, precision: 2, delimiter: ' ')
-  -else
+  - else
     - columnship.data
 -else
-  -object_property = content_tag(:div, content_tag(:i, '',  class: 'icon icon-plus'), class: 'btn btn-mini purchase-actions')
--if current_user && (current_user.has_group? :sellers)
+  - object_property = content_tag(:div, content_tag(:i, '',  class: 'icon icon-plus'), class: 'btn btn-mini purchase-actions')
+- if current_user && ((current_user.has_group? :sellers) || (current_user.role? :admin))
   = link_to object_property, get_form_year_purchase_path(@year, columnship.purchase, columnship: columnship), data: {target: "#dialog_#{columnship.purchase_id}_#{columnship.column.id}", toggle: 'modal'}, class: 'modal-link', remote: true
   .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden="false" id="dialog_#{columnship.purchase_id}_#{columnship.column.id}")

@@ -27,5 +27,5 @@
 //= require fancybox
 //= require Chart.bundle
 //= require chartkick
-//= require tooltipster.main.min
+//= require tooltipster.bundle
 //= require_tree .

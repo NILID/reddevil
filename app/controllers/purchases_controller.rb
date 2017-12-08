@@ -5,6 +5,7 @@ class PurchasesController < ApplicationController
   load_and_authorize_resource :purchase, through: :year, except: [:new_form]
 
   def index
+    @purchases = @purchases.includes(:user, :deliveries, columnships: [:column, :purchase])
   end
 
   def show

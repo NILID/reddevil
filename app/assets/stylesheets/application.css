@@ -22,7 +22,7 @@
  *= require simple_calendar
  *= require optional-annotations
  *= require optional-themes
- *= require tooltipster.main.min
+ *= require tooltipster.bundle
  *= require plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css
  *= require_tree .
  */

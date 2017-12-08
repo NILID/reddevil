@@ -10,12 +10,13 @@
 
 
 - [delivery.doc, delivery.delivery].each_with_index do |d, index|
-  %td.nowrap.tip
-    - if current_user && ((current_user.has_group? :sellers) || (current_user.role? :admin))
-      = link_to short_date_year(d), get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link', remote: true
-    - else
-      = short_date_year(d)
-    = yield :delivery_info
+  %td.nowrap
+    .tip
+      - if current_user && ((current_user.has_group? :sellers) || (current_user.role? :admin))
+        = link_to short_date_year(d), get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link', remote: true
+      - else
+        = short_date_year(d)
+      = yield :delivery_info
 
     - if index == 0
       .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden='false' id="dialog_delivery_#{purchase.id}")

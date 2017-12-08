@@ -347,7 +347,7 @@ ru:
       art:
         deadline: Дедлайн
       purchase:
-        title: предмет закупки
+        title: Общая информация
         price: сумма, руб
         provider: поставщик
         doc: тема/счёт

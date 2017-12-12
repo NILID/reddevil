@@ -1,7 +1,10 @@
 %td.nowrap
   .tip
     - [delivery.doc, delivery.delivery].each_with_index do |d, index|
-      = link_to_if (current_user && ((current_user.has_group? :sellers) || (current_user.role? :admin))), short_date(d), get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link', remote: true
+      - if d
+        = link_to_if (current_user && ((current_user.has_group? :sellers) || (current_user.role? :admin))), short_date(d), get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link', remote: true
+      - else
+        ?
       - if index == 0
         \ -
         .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden='false' id="dialog_delivery_#{purchase.id}")

@@ -23,14 +23,13 @@
             %dd= purchase.doc || t('shared.empty')
 
   - purchase.columnships.each do |c|
-    %td{class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil}= render 'purchase_formblock', columnship: c
+    %td{class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil}
+      = render 'purchase_formblock', columnship: c
   - if !purchase.deliveries.pluck(:id).empty?
     = render partial: 'purchases/delivery', locals: { purchase: purchase, delivery: purchase.deliveries.last }
   - else
-    - [1, 2].each_with_index do |i, index|
-      %td
-        .purchase-actions
-          = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-mini', remote: true do
-            %i.icon.icon-cog
-        - if index == 0
-          .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden="false" id="dialog_delivery_#{purchase.id}")
+    %td
+      .purchase-actions
+        = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-mini', remote: true do
+          %i.icon.icon-cog
+      .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden="false" id="dialog_delivery_#{purchase.id}")

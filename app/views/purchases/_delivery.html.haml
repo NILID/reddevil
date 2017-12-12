@@ -1,13 +1,3 @@
-- content_for :delivery_info do
-  .tip-text
-    %dl.dl-horizontal
-      %dt= Delivery.human_attribute_name(:doc)
-      %dd= Delivery.human_attribute_name(:delivery)
-      %hr
-      - purchase.deliveries.each do |d|
-        %dt= short_date d.doc
-        %dd= short_date d.delivery
-
 %td.nowrap
   .tip
     - [delivery.doc, delivery.delivery].each_with_index do |d, index|
@@ -15,4 +5,11 @@
       - if index == 0
         \ -
         .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden='false' id="dialog_delivery_#{purchase.id}")
-    = yield :delivery_info
+    .tip-text
+      %dl.dl-horizontal
+        %dt= Delivery.human_attribute_name(:doc)
+        %dd= Delivery.human_attribute_name(:delivery)
+        %hr
+        - purchase.deliveries.each do |d|
+          %dt= short_date d.doc
+          %dd= short_date d.delivery

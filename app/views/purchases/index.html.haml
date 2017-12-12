@@ -16,17 +16,14 @@
       %table.table.table-bordered.table-hover.table-condensed
         %thead.header
           %tr
-            %th(rowspan='2') №
-            %th(rowspan='2')= model_class.human_attribute_name(:title)
+            %th №
+            %th= model_class.human_attribute_name(:title)
             - @year.columns.each do |column|
-              %th(rowspan='2')= column.name
-            %th(colspan='2')=t 'deliveries.title'
-          %tr
-            %th= Delivery.human_attribute_name(:doc)
-            %th= Delivery.human_attribute_name(:delivery)
+              %th= column.name
+            %th= t 'deliveries.title'
 
         %tbody= render partial: 'purchase', collection: @purchases
       = link_to new_form_year_purchase_path(@year, Purchase), method: :post, remote: true, disable_with: t('shared.waiting'), class: 'btn btn-primary btn-small' do
         %i.icon.icon-plus
         &nbsp;
-        =t('purchases.add_new')
+        = t('purchases.add_new')

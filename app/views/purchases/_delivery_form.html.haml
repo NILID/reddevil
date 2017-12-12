@@ -2,12 +2,16 @@
   .modal-body
 
     = f.fields_for :deliveries do |c|
-      .input-prepend
-        .add-on= c.label :doc
-        = c.text_field :doc, class: 'datepicker span2', value: (c.object.doc.to_datetime.strftime('%d.%m.%Y') if c.object.doc.present?)
-      .input-prepend
-        .add-on= c.label :delivery
-        = c.text_field :delivery, class: 'datepicker span2', value: (c.object.delivery.to_datetime.strftime('%d.%m.%Y') if c.object.delivery.present?)
+      .row
+        .span12
+          .input-prepend
+            .add-on= c.label :doc
+            = c.text_field :doc, class: 'datepicker span2', value: (c.object.doc.to_datetime.strftime('%d.%m.%Y') if c.object.doc.present?)
+          .input-prepend
+            .add-on= c.label :delivery
+            = c.text_field :delivery, class: 'datepicker span2', value: (c.object.delivery.to_datetime.strftime('%d.%m.%Y') if c.object.delivery.present?)
+      .row
+        .span12= c.link_to_remove t('columns.remove')
       %hr
     = f.link_to_add t('columns.add'), :deliveries
 

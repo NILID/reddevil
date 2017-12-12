@@ -96,6 +96,7 @@ ru:
     later: отложено
   columns:
     add: Добавить поле
+    remove: Удалить поле
   substrates:
     title: Подложки
     one_title: Подложка
@@ -347,7 +348,7 @@ ru:
       art:
         deadline: Дедлайн
       purchase:
-        title: Общая информация
+        title: Название
         price: сумма, руб
         provider: поставщик
         doc: тема/счёт

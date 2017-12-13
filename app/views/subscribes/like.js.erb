@@ -5,5 +5,5 @@
 <%else%>
   $(".favorites-panel").addClass('hidden');
 <%end%>
-$("#<%=dom_id @subscribe%> i").toggleClass('icon-star icon-star-empty');
+$("#<%=dom_id @subscribe%> i").toggleClass('glyphicon-star glyphicon-star-empty');
 $(".favorites-panel .likees-count").html("<%=j plural count_subscribes, 'subscribe'%>");

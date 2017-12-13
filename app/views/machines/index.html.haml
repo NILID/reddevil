@@ -3,17 +3,17 @@
 
 - @machines.each do |machine|
   .row
-    .span12.well
+    .col-md-12.well
       .row
-        .span6
+        .col-md-6
           %p
             .page-header
               %h5
                 = link_to machine.title, machine
                 %small
                 - if can? :manage, machine
-                  = link_to t('shared.edit'), edit_machine_path(machine), class: 'btn btn-mini'
-                  = link_to t('shared.del'), machine_path(machine), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+                  = link_to t('shared.edit'), edit_machine_path(machine), class: 'btn btn-default btn-xs'
+                  = link_to t('shared.del'), machine_path(machine), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
           %table.table.table-striped.table-hover.table-machines
             %thead
@@ -33,14 +33,14 @@
                   %td= l task.end_time, format: :short
                   %td= task.complete.to_s + '%'
                   %td
-                    = link_to edit_machine_task_path(machine, task), class: 'btn btn-mini btn-task-edit' do
-                      %i.icon.icon-pencil
+                    = link_to edit_machine_task_path(machine, task), class: 'btn btn-default btn-xs btn-task-edit' do
+                      %i.glyphicon.glyphicon-pencil
               -if can? :new, Task
                 %tr
                   %td(colspan=6)
-                    = link_to new_machine_task_path(machine), class: 'btn' do
-                      %i.icon-plus
-        .span6
+                    = link_to new_machine_task_path(machine), class: 'btn btn-default' do
+                      %i.glyphicon.glyphicon-plus
+        .col-md-6
           %div{class: "calendar_view_#{machine.id}"}
           :javascript
             $(".calendar_view_#{machine.id}").fullCalendar({

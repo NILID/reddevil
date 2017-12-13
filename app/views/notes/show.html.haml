@@ -1,9 +1,9 @@
-- label_css_classes = { new: 'info', done: 'success', failed: 'important', later: 'warning' }
+- label_css_classes = { new: 'info', done: 'success', failed: 'danger', later: 'warning' }
 - model_class = Note
 
 - if @note.screenshot?
   - content_for :sidebar do
-    = link_to image_tag(@note.screenshot.url(:medium), class: 'img-polaroid'), @note.screenshot.url(:original), class: 'fancybox thumnbail'
+    = link_to image_tag(@note.screenshot.url(:medium), class: 'img-thumbnail'), @note.screenshot.url(:original), class: 'fancybox thumnbail'
 
 .page-header
   %h4
@@ -15,6 +15,6 @@
 %p= @note.content
 
 - if can? :manage, Note
-  .form-actions
-    = link_to t('shared.edit'), edit_note_path(@note), class: 'btn'
+  .form-group
+    = link_to t('shared.edit'), edit_note_path(@note), class: 'btn btn-default'
     = link_to t('shared.del'), note_path(@note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

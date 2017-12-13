@@ -20,18 +20,16 @@
         = t 'substrates.title'
       %small
         - if can? :new, Substrate
-          = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-small', style: 'vertical-align:middle' do
-            %i.icon.icon-plus
+          = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-sm', style: 'vertical-align:middle' do
+            %i.glyphicon.glyphicon-plus
             &nbsp;
             = t 'shared.add'
         %span.btn-group.pull-right
-
-
-          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-small', target: '_blank' do
-            %i.icon.icon-download-alt
+          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-default btn-sm', target: '_blank' do
+            %i.glyphicon.glyphicon-download-alt
             PDF
-          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'xls') : substrates_path(format: 'xls')), class: 'btn btn-small' do
-            %i.icon.icon-download-alt
+          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'xls') : substrates_path(format: 'xls')), class: 'btn btn-default btn-sm' do
+            %i.glyphicon.glyphicon-download-alt
             Excel
   %table.table.table-bordered.table-substrates.table-hover
     %thead

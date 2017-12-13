@@ -63,14 +63,14 @@ gem 'yaml_db'
 
 gem 'nested_form'
 
-gem 'will_paginate-bootstrap', '< 1.0.0'
+gem 'will_paginate-bootstrap'
 
 gem 'paperclip', '~> 4.2'
 gem 'paperclip-i18n'
 
 gem 'meta-tags', :require => 'meta_tags'
 
-gem 'bootstrap_forms'
+gem 'bootstrap_form'
 
 gem 'acts-as-taggable-on'
 

@@ -2,19 +2,19 @@
   %h1
     =t @folder.title
     %small
-      = link_to t('shared.edit'), edit_user_folder_path(@user, @folder), :class => 'btn btn-mini'
-      = link_to t('shared.del'), [@user, @folder], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-mini'
+      = link_to t('shared.edit'), edit_user_folder_path(@user, @folder), :class => 'btn btn-default btn-xs'
+      = link_to t('shared.del'), [@user, @folder], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-xs'
 
 %p
-  = link_to [@user, Folder], class: 'btn' do
-    %i.icon.icon-th-large
-  = link_to (@folder.parent_id? ? [@user, @folder.parent] : [@user, Folder]), class: 'btn' do
-    %i.icon.icon-chevron-left
-  = link_to new_user_folder_path(@user, parent_id: @folder.id), class: 'btn' do
-    %i.icon.icon-folder-open
+  = link_to [@user, Folder], class: 'btn btn-default' do
+    %i.glyphicon.glyphicon-th-large
+  = link_to (@folder.parent_id? ? [@user, @folder.parent] : [@user, Folder]), class: 'btn btn-default' do
+    %i.glyphicon.glyphicon-chevron-left
+  = link_to new_user_folder_path(@user, parent_id: @folder.id), class: 'btn btn-default' do
+    %i.glyphicon.glyphicon-folder-open
     =t 'folder.new'
-  = link_to new_user_folder_dataset_path(@user, @folder), class: 'btn' do
-    %i.icon.icon-file
+  = link_to new_user_folder_dataset_path(@user, @folder), class: 'btn btn-default' do
+    %i.glyphicon.glyphicon-file
     =t 'dataset.new'
 
 .well
@@ -22,5 +22,5 @@
     = render @folder_children
     = render @folder_datasets
   - else
-    %h6.muted.text-center=t 'dataset.empty'
+    %h6.text-muted.text-center=t 'dataset.empty'
   .clear

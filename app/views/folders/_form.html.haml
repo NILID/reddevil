@@ -3,9 +3,9 @@
 
   -if params[:parent_id] || params[:folder]
     = f.hidden_field :parent_id, value: params[:parent_id] || params[:folder][:parent_id]
-  .control-group
+  .form-group
     = f.label :title, class: 'control-label'
-    .controls= f.text_field :title, class: 'text_field'
-  .form-actions
+    = f.text_field :title, class: 'text_field form-control'
+  .form-group
     = f.submit submit_title, class: 'btn btn-primary'
-    = link_to t('shared.cancel'), [@user, Folder], class: 'btn'
+    = link_to t('shared.cancel'), [@user, Folder], class: 'btn btn-default'

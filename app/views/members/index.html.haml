@@ -1,20 +1,20 @@
 .row
-  .span12.well
+  .col-md-12.well
     .row
-      .span10
+      .col-md-10
         %ul.nav.nav-tabs#member_info
           %li.active= link_to t('member.title'), '#users_info', data: { toggle: 'tab' }
           %li= link_to t('shared.stat'), '#statitics', data: { toggle: 'tab' }
           - if can? :create, Member
             %li= link_to t('shared.add'), new_member_path
-      .span2
+      .col-md-2
         %p.pull-right
           %span.btn-group
-            = link_to members_path(format: 'pdf'), class: 'btn', target: '_blank' do
-              %i.icon.icon-download-alt
+            = link_to members_path(format: 'pdf'), class: 'btn btn-default', target: '_blank' do
+              %i.glyphicon.glyphicon-download-alt
               PDF
-            = link_to members_path(format: 'xls'), class: 'btn' do
-              %i.icon.icon-download-alt
+            = link_to members_path(format: 'xls'), class: 'btn btn-default' do
+              %i.glyphicon.glyphicon-download-alt
               Excel
     .tab-content
       .tab-pane#users_info.active
@@ -35,25 +35,25 @@
                   %span.membername
                     = member.full_name
                     - if member.phone? || member.birth?
-                      %span.icon.showinfo.icon-chevron-down
+                      %span.showinfo.glyphicon.glyphicon-chevron-down
                   - if member.phone? || member.birth?
                     .hidden_info
                       - if member.phone?
                         %p
-                          %span.icon.icon-phone
+                          %span.glyphicon.glyphicon-phone
                           =number_to_phone(member.phone, area_code: true)
                       - if member.birth?
                         %p
-                          %span.icon.icon-gift
+                          %span.glyphicon.glyphicon-gift
                           = show_birth member
                 %td= member.short_number
                 %td
-                  %span.icon.icon-email
+                  %span.glyphicon.glyphicon-email
                   = mail_to member.email
                 - if can? :manage, member
                   %td
-                    = link_to t('shared.edit'), edit_member_path(member), class: 'btn btn-mini'
-                    = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+                    = link_to t('shared.edit'), edit_member_path(member), class: 'btn btn-default btn-xs'
+                    = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
       - unless @members.pluck(:id).empty?
         .tab-pane#statitics
@@ -77,7 +77,7 @@
           .stat-days
             %h3= t 'member.dayname_stat'
             %p
-              -@members_birth_days.each do |day|
+              - @members_birth_days.each do |day|
                 %span.label.label-info
                   = I18n.t("date.standalone_day_names")[day[0].to_i]
                   %span.badge.badge-warning= day[1]

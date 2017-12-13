@@ -1,9 +1,9 @@
 = content_for :sidebar do
   = search_form_for(@q, url: albums_path) do |f|
-    .controls
-      .input-prepend
-        %span.add-on
-          %i.icon-search
+    .form-control
+      .input-group
+        %span.input-group-addon
+          %i.glyphicon.glyphicon-search
         = f.text_field :file_file_name_cont, placeholder: t('shared.search'), class: 'search_field'
 
 %p.text-right

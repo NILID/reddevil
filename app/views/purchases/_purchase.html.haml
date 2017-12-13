@@ -3,14 +3,14 @@
   %td.main-title
     .pull-left= render 'purchase_attr', year: @year, purchase: purchase, attr: :title, type: 'string'
     .pull-right
-      .btn.btn-small.tip.icon.icon-question
+      %span.tip.glyphicon.glyphicon-asterisk
         .tip-text
           .pull-left
             .btn-group.purchase-actions
-              = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-mini', title: t('shared.edit') do
-                %i.icon.icon-cog
-              = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger' do
-                %i.icon.icon-trash
+              = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-default btn-xs', title: t('shared.edit') do
+                %i.glyphicon.glyphicon-cog
+              = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger' do
+                %i.glyphicon.glyphicon-trash
           .pull-right=purchase.user.profile.surname
           .clear
           %hr
@@ -30,6 +30,6 @@
   - else
     %td
       .purchase-actions
-        = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-mini', remote: true do
-          %i.icon.icon-cog
-      .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden="false" id="dialog_delivery_#{purchase.id}")
+        = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-default btn-xs', remote: true do
+          %i.glyphicon.glyphicon-cog
+      .modal.fade(tabIndex='-1' role='dialog' id="dialog_delivery_#{purchase.id}")

@@ -1,27 +1,23 @@
 = form_for @team, :html => { :class => 'form-horizontal' } do |f|
   - if @team.errors.any?
-    .alert.alert-error
+    .alert.alert-danger
       %h4= t 'shared.errors', error: plural(@team.errors.count, 'error')
       %ul
         - @team.errors.full_messages.each do |msg|
           %li= msg
 
-  .control-group
+  .form-group
     = f.label :title, :class => 'control-label'
-    .controls
-      = f.text_field :title, :class => 'text_field'
-  .control-group
+    = f.text_field :title, :class => 'text_field form-control'
+  .form-group
     = f.label :content, :class => 'control-label'
-    .controls
-      = f.text_field :content, :class => 'text_field'
-  .control-group
+    = f.text_field :content, :class => 'text_field form-control'
+  .form-group
     = f.label :type_id, :class => 'control-label'
-    .controls
-      = f.select(:type_id, Type.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
-  .control-group
+    = f.select(:type_id, Type.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
+  .form-group
     = f.label :flag, :class => 'control-label'
-    .controls
-      = f.file_field :flag, :class => 'text_field'
-  .form-actions
+    = f.file_field :flag, :class => 'text_field form-control'
+  .form-group
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('shared.cancel'), teams_path, :class => 'btn'
+    = link_to t('shared.cancel'), teams_path, :class => 'btn btn-default'

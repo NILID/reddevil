@@ -8,12 +8,12 @@
         - @song.errors.full_messages.each do |msg|
           %li= msg
 
-  .control-group
+  .form-group
     = f.label :title, class: 'control-label'
-    .controls= f.text_field :title
-  .control-group
+    = f.text_field :title, class: 'form-control'
+  .form-group
     = f.label :file, class: 'control-label'
-    .controls= f.file_field :file, class: 'text_field'
-  .form-actions
+    = f.file_field :file, class: 'text_field form-control'
+  .form-group
     = f.submit t('shared.save'), class: 'btn btn-primary'
-    = link_to t('shared.cancel'), @album, class: 'btn'
+    = link_to t('shared.cancel'), @album, class: 'btn btn-default'

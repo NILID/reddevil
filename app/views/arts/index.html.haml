@@ -1,30 +1,30 @@
 .container
 
   .row
-    .span6.text-center
+    .col-md-6.text-center
       =image_tag @dima.profile.avatar(:thumb)
       %h4=@dima.profile.login
-    .span6.text-center
+    .col-md-6.text-center
       =image_tag @ilya.profile.avatar(:thumb)
       %h4=@ilya.profile.login
   .row.text-center
-    .span2.pagination
+    .col-md-2.pagination
       -if can? :new, Art
-        = link_to(new_art_path, class: 'btn btn-mini') do
-          %i.icon.icon-plus
-          =t('art.new_artblock')
-    .span8= will_paginate @arts, renderer: BootstrapPagination::Rails
+        = link_to(new_art_path, class: 'btn btn-default btn-xs') do
+          %i.glyphicon.glyphicon-plus
+          = t 'art.new_artblock'
+    .col-md-8= will_paginate @arts, renderer: BootstrapPagination::Rails
   - @arts.each do |art|
     =div_for art, class: 'row' do
-      .span12
+      .col-md-12
         .page-header.text-center.art-titleblock.ny-block
           .art-title= arttime art.deadline
           .actions
             = link_to t('shared.edit'), edit_art_path(art) if can? :edit, art
             = link_to t('shared.del'), art, :method => :delete, :data => { :confirm => t('shared.sure') } if can? :destroy, art
-    .row-fluid
-      -[1, 2].each do |user_id|
-        .span6.well.well-small.ny-block
+    .row
+      - [1, 2].each do |user_id|
+        .col-md-6.well.well-small.ny-block
           -if art.works.where(user_id: user_id).empty?
             %p.text-center
               -if user_signed_in? && (current_user.id == user_id)

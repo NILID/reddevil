@@ -1,12 +1,10 @@
 = form_for [@member, @holiday], :html => { :class => 'form-horizontal' } do |f|
-  .control-group
+  .form-group
     = f.label :start, :class => 'control-label'
-    .controls
-      = f.date_select :start, :class => 'date_select'
-  .control-group
+    = f.date_select :start, :class => 'date_select form-control'
+  .form-group
     = f.label :end, :class => 'control-label'
-    .controls
-      = f.date_select :end, :class => 'date_select'
-  .form-actions
+    = f.date_select :end, :class => 'date_select form-control'
+  .form-group
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('shared.cancel'), [@member, Holiday], :class => 'btn'
+    = link_to t('shared.cancel'), [@member, Holiday], :class => 'btn btn-default'

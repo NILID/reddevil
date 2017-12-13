@@ -43,12 +43,12 @@
           - else
             X : X
         -if can? :edit, f
-          = link_to t('forecasts.edit'), edit_tempuser_forecast_path(user, f, match_id: match), class: 'btn btn-mini'
+          = link_to t('forecasts.edit'), edit_tempuser_forecast_path(user, f, match_id: match), class: 'btn btn-default btn-xs'
     -else
       %td(style="text-align:center")
         -if user_signed_in? && ((@round.deadline > DateTime.now) && (user.user == current_user) || (current_user.role? :admin))
           -if can? :new, Forecast
-            = link_to t('forecasts.add'), new_tempuser_forecast_path(user, match_id: match), class: 'btn btn-mini'
+            = link_to t('forecasts.add'), new_tempuser_forecast_path(user, match_id: match), class: 'btn btn-default btn-xs'
   %td.middle
     - f=Forecast.where(match_id: match)
     - unless f.empty?

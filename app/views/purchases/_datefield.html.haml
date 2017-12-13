@@ -1,8 +1,6 @@
-.control-group
-  = c.label :data, c.object.column.name, class: 'control-label'
-  .controls
-    .input-append.date
-      =# c.object.data.to_datetime
-      = c.text_field :data, class: 'datepicker', value: (c.object.data.to_datetime.strftime('%d.%m.%Y') if c.object.data.present?)
-      %span.add-on
-        %i.icon-th
+=# c.object.data.to_datetime
+= c.text_field :data,
+  prepend: content_tag(:i, '', class: 'glyphicon glyphicon-calendar'),
+  class: 'datepicker',
+  label: c.object.column.name,
+  value: (c.object.data.to_datetime.strftime('%d.%m.%Y') if c.object.data.present?)

@@ -3,10 +3,10 @@
     = @round.title
     - if can? :manage, @round
       %small
-        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn'
+        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn btn-default'
         = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
-        = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn' do
-          %i.icon-refresh
+        = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-default' do
+          %i.glyphicon.glyphicon-refresh
           =t('results.rebuild')
 
     .badge.badge-info
@@ -16,9 +16,9 @@
 %p= @round.content
 
 - if can? :download, @round
-  = link_to download_round_path(@round, format: 'pdf'), class: 'btn', target: '_blank' do
+  = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-default', target: '_blank' do
     = t 'rounds.download'
-    %i.icon.icon-download-alt
+    %i.glyphicon.glyphicon-download-alt
     PDF
 
 %table.table.table-condensed.rounds
@@ -88,4 +88,4 @@
     - else
       = render partial: 'match', collection: @round_matches
 
-= link_to t('shared.back'), rounds_path, class: 'btn'
+= link_to t('shared.back'), rounds_path, class: 'btn btn-default'

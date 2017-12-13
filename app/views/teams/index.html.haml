@@ -19,7 +19,7 @@
         %td= image_tag team.flag(:thumb)
         - if can? :manage, team
           %td
-            = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-mini'
-            = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+            = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-default btn-xs'
+            = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
 

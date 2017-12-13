@@ -3,23 +3,23 @@
   = form_for [@user, @folder, Dataset.new], :html => { :multipart => true, :id => "fileupload"  } do |f|
     / The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload
     .row.fileupload-buttonbar
-      .span7
+      .col-md-7
         / The fileinput-button span is used to style the file input field as button
         %span.btn.btn-success.fileinput-button
-          %i.icon-plus.icon-white
+          %i.glyphicon.glyphicon-plus.icon-white
           %span Add files...
           = f.file_field :src
         %button.btn.btn-primary.start{:type => "submit"}
-          %i.icon-upload.icon-white
+          %i.glyphicon.glyphicon-upload.icon-white
           %span Start upload
         %button.btn.btn-warning.cancel{:type => "reset"}
-          %i.icon-ban-circle.icon-white
+          %i.glyphicon.glyphicon-ban-circle.icon-white
           %span Cancel upload
         %button.btn.btn-danger.delete{:type => "button"}
-          %i.icon-trash.icon-white
+          %i.glyphicon.glyphicon-trash.icon-white
           %span Delete
         %input.toggle{:type => "checkbox"}/
-      .span5
+      .col-md-5
         / The global progress bar
         .progress.progress-success.progress-striped.active.fade
           .bar{style: 'width:0%;'}
@@ -48,7 +48,7 @@
     <td class="name"><span>{%=file.name%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     {% if (file.error) { %}
-    <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+    <td class="error" colspan="2"><span class="label label-danger">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
     {% } else if (o.files.valid && !i) { %}
     <td>
     <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
@@ -79,7 +79,7 @@
     <td></td>
     <td class="name"><span>{%=file.name%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-    <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+    <td class="error" colspan="2"><span class="label label-danger">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
     {% } else { %}
     <td class="preview">{% if (file.thumbnail_url) { %}
     <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>

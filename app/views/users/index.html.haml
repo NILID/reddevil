@@ -11,9 +11,9 @@
         %td= index+=1
         %td
           %span.badge{class: user.online? ? 'badge-success' : ''}
-            .i{class: user.confirmed? ? 'icon-ok' : 'icon-remove'}
+            .i.glyphicon{class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove'}
         %td
           = link_to user.email, user_profile_path(user)
-          .muted=user.profile.fullname
+          .text-muted=user.profile.fullname
         %td= l user.updated_at,  format: :long
         %td= link_to t('profiles.edit'), edit_user_profile_path(user) if can? :edit, user.profile

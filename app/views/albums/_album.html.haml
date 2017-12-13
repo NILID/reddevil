@@ -1,14 +1,14 @@
 = content_tag_for(:li, album) do
   %span.title
     = link_to like_album_path(album), method: :post, remote: true, class: 'icon-star-link' do
-      %i{class: current_user.likes?(album) ? 'icon-star' : 'icon-star-empty'}
+      %i.glyphicon{class: current_user.likes?(album) ? 'glyphicon-star' : 'glyphicon-star-empty'}
     - unless album.songs.pluck(:id).empty?
       = link_to download_album_path(album), target: '_blank', title: t('shared.download') do
-        %i.icon-download-alt
+        %i.glyphicon.glyphicon-download-alt
 
     = link_to album.title, list_album_path(album), remote: true
     = link_to album do
-      %i.icon-arrow-right
+      %i.glyphicon.glyphicon-arrow-right
   - if can? :manage, album
     %span.sec-links
       = link_to t('shared.edit'), edit_album_path(album)

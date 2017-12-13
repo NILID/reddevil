@@ -3,7 +3,7 @@
     = @round.title
     - if can? :manage, @round
       %small
-        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn'
+        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn btn-default'
         = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
 %p= @round.content
 
@@ -49,4 +49,4 @@
             .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
 
 
-= link_to t('.back', :default => t("helpers.links.back")), rounds_path, :class => 'btn'
+= link_to t('.back', :default => t("helpers.links.back")), rounds_path, :class => 'btn btn-default'

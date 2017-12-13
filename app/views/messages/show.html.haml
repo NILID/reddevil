@@ -15,7 +15,7 @@
   %br
   = @message.close
 
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), messages_path, :class => 'btn'
-  = link_to t('shared.edit'), edit_message_path(@message), :class => 'btn'
+.form-group
+  = link_to t('.back', :default => t("helpers.links.back")), messages_path, :class => 'btn btn-default'
+  = link_to t('shared.edit'), edit_message_path(@message), :class => 'btn btn-default'
   = link_to t('shared.del'), message_path(@message), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

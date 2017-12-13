@@ -1,18 +1,18 @@
 =content_for :sidebar do
   .well
-    %p.muted= t 'dataset.help'
+    %p.text-muted= t 'dataset.help'
 
 .page-header
   %h2= t 'dataset.title'
 
 %p
-  = link_to new_user_folder_path(@user), class: 'btn' do
-    %i.icon.icon-folder-open
+  = link_to new_user_folder_path(@user), class: 'btn btn-default' do
+    %i.glyphicon.glyphicon-folder-open
     =t 'folder.new'
 
 .well
   - if !@folders.empty?
     = render @folders.roots
   - else
-    %h6.muted.text-center=t 'dataset.empty_root'
+    %h6.text-muted.text-center=t 'dataset.empty_root'
   .clear

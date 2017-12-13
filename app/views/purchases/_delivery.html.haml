@@ -7,7 +7,7 @@
         ?
       - if index == 0
         \ -
-        .modal.hide.fade(tabIndex='-1' role='dialog' aria-hidden='false' id="dialog_delivery_#{purchase.id}")
+        .modal.fade(tabIndex='-1' role='dialog' id="dialog_delivery_#{purchase.id}")
     .tip-text
       %dl.dl-horizontal
         %dt= Delivery.human_attribute_name(:doc)

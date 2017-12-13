@@ -1,7 +1,7 @@
 %p=work.desc
 .devilgallery.text-center
   - work.sources.each do |s|
-    =link_to (image_tag (s.hide ? 'censored.jpg' : s.file.url(:thumb)), class: 'img-polaroid'), s.file.url(:large), class: 'fancybox thumnbail', rel: "gallery_#{work.id}"
+    =link_to (image_tag (s.hide ? 'censored.jpg' : s.file.url(:thumb)), class: 'img-thumbnail'), s.file.url(:large), class: 'fancybox thumnbail', rel: "gallery_#{work.id}"
 %p
   = link_to t('shared.edit'), edit_art_work_path(work.art, work) if can? :edit, work
   = link_to t('shared.del'), [work.art, work], :method => :delete, :data => { :confirm => t('shared.sure') } if can? :destroy, work

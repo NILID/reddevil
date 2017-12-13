@@ -1,28 +1,11 @@
-= form_for @note, html: { class: 'form-horizontal' } do |f|
-  - if @note.errors.any?
-    .alert.alert-error
-      %h4= t 'shared.errors', error: plural(@note.errors.count, 'error')
-      %ul
-        - @note.errors.full_messages.each do |msg|
-          %li= msg
-
-  .control-group
-    = f.label :content, class: 'control-label'
-    .controls= f.text_area :content, autofocus: true, class: 'text_area span10', rows: 6
-
-  .control-group
-    = f.label :screenshot, class: 'control-label'
-    .controls= f.file_field :screenshot
+= bootstrap_form_for @note, layout: :horizontal do |f|
+  = f.text_area :content, autofocus: true, rows: 6
+  = f.file_field :screenshot
 
   - if can? :manage, Note
-    .control-group
-      = f.label :status, class: 'control-label'
-      .controls= f.select :status, options_for_select(Note::STATUS.collect { |s| [t("notes.#{s}"), s]}, @note.status)
+    = f.select :status, options_for_select(Note::STATUS.collect { |s| [t("notes.#{s}"), s]}, @note.status)
+    = f.text_area :review, rows: 6
 
-    .control-group
-      = f.label :review, class: 'control-label'
-      .controls= f.text_area :review, class: 'text_area span10', rows: 6
-
-  .form-actions
-    = f.submit t('shared.save'), class: 'btn btn-primary'
-    = link_to t('shared.cancel'), notes_path, class: 'btn'
+  = f.form_group do
+    = f.primary t('shared.save')
+    = link_to t('shared.cancel'), notes_path, class: 'btn btn-default'

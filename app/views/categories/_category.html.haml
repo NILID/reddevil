@@ -2,8 +2,8 @@
   %p
     %span= category.title
     %span
-      = link_to t('categories.add_subcategory'), new_category_path(parent_id: category.id), class: 'btn btn-mini'
-      = link_to t('shared.edit'), edit_category_path(category), class: 'btn btn-mini'
-      = link_to t('shared.del'), category_path(category), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+      = link_to t('categories.add_subcategory'), new_category_path(parent_id: category.id), class: 'btn btn-default btn-xs'
+      = link_to t('shared.edit'), edit_category_path(category), class: 'btn btn-default btn-xs'
+      = link_to t('shared.del'), category_path(category), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
   %ul=render category.children

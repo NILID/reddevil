@@ -3,9 +3,9 @@
     = link_to song.clean_filename, song.file.url
     %span.song-icons.pull-left
       = link_to like_album_song_path(song.album, song), :method => :post, remote: true, class: 'icon-star-link', title: t('shared.add_favorite') do
-        %i.icon-like-song{class: current_user.likes?(song) ? 'icon-star' : 'icon-star-empty'}
+        %i.glyphicon.icon-like-song{class: current_user.likes?(song) ? 'glyphicon-star' : 'glyphicon-star-empty'}
       = link_to download_album_song_path(song.album, song), target: '_blank', title: t('shared.download') do
-        %i.icon-download-alt
+        %i.glyphicon-download-alt
     - if showalbum
       (#{link_to song.album.title, song.album})
     - if user_signed_in?

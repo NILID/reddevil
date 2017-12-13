@@ -1,4 +1,4 @@
-- label_css_classes = { new: 'info', done: 'success', failed: 'important', later: 'warning' }
+- label_css_classes = { new: 'info', done: 'success', failed: 'danger', later: 'warning' }
 - model_class = Note
 
 - content_for :sidebar do
@@ -13,8 +13,8 @@
   %h4
     = t 'notes.title'
     %small
-      = link_to(new_note_path, class: 'btn btn-small btn-primary') do
-        %i.icon.icon-plus
+      = link_to(new_note_path, class: 'btn btn-sm btn-primary') do
+        %i.glyphicon.glyphicon-plus
 %table.table.table-striped.table-condensed
   %thead
     %tr
@@ -32,7 +32,7 @@
         %td
           - if note.screenshot?
             = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
-              %i.icon.icon-picture
+              %i.glyphicon.glyphicon-picture
         %td
           - if note.user && user_signed_in? && current_user.role?(:admin)
             %strong= note.user.profile.surname_name + ':'
@@ -41,8 +41,8 @@
             .well.well-small= simple_format note.review
         %td
           %span.label{class: "label-#{label_css_classes[note.status.to_sym]}"}= t "notes.#{note.status}"
-        %td.span2= Russian.strftime(note.created_at, "%d %B")
+        %td.col-md-2= Russian.strftime(note.created_at, "%d %B")
         - if can? :manage, Note
           %td
-            = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-mini'
-            = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+            = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-default btn-xs'
+            = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'

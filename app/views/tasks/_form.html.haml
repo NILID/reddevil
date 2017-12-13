@@ -1,46 +1,46 @@
 = form_for [@machine, @task], html: { class: 'form-horizontal' } do |f|
   - if @task.errors.any?
-    .alert.alert-error
+    .alert.alert-danger
       %p= t 'shared.errors', error: plural(@task.errors.count, 'error')
       %ul
         - @task.errors.full_messages.each do |msg|
           %li= msg
 
-  .control-group
+  .form-group
     = f.label :title, :class => 'control-label'
-    .controls
-      = f.text_field :title, :class => 'text_field'
-  .control-group
+    = f.text_field :title, :class => 'text_field form-control'
+  .form-group
     = f.label :start_time, :class => 'control-label'
-    .controls
-      .input-append.date
+    .form-control
+      .form-group.date
         = f.text_field :start_time, class: 'datepicker', value: (f.object.start_time.to_datetime.strftime('%d.%m.%Y') if f.object.start_time.present?)
-        %span.add-on
-          %i.icon-th
+        %span.input-group-addon
+          %i.glyphicon.glyphicon-th
 
-  .control-group
+  .form-group
     = f.label :end_time, :class => 'control-label'
-    .controls
-      .input-append.date
+    .form-control
+      .form-group.date
         = f.text_field :end_time, class: 'datepicker', value: (f.object.end_time.to_datetime.strftime('%d.%m.%Y') if f.object.end_time.present?)
-        %span.add-on
-          %i.icon-th
-  .control-group
+        %span.input-group-addon
+          %i.glyphicon.glyphicon-th
+  .form-group
     = f.label :complete, class: 'control-label'
-    .controls
+    .form-control
       .row
-        .span6
+        .col-md-6
           %p.text-success
             %span#progress_amount_show= @task.complete
             \ %
           = f.hidden_field :complete, id: 'progress_amount'
           #progress_slider{data: {amount: @task.complete}}
-  .control-group
-    = f.label :update_tasks_flag, class: 'control-label'
-    .controls
-      = f.check_box :update_tasks_flag, checked: false
-      %span.help-block= t 'tasks.update_tasks_help'
+  .form-group
+    .checkbox
+      = f.label do
+        = f.check_box :update_tasks_flag, checked: false
+        update_tasks_flag
+    %span.help-block= t 'tasks.update_tasks_help'
 
-  .form-actions
+  .form-group
     = f.submit t('shared.save'), class: 'btn btn-primary'
-    = link_to t('shared.cancel'), machines_path, class: 'btn'
+    = link_to t('shared.cancel'), machines_path, class: 'btn btn-default'

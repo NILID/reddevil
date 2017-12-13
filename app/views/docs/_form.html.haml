@@ -1,25 +1,12 @@
-= form_for @doc, html: { class: 'form-horizontal' } do |f|
-  - if @doc.errors.any?
-    #error_explanation
-      %h2= t 'shared.errors', error: plural(@doc.errors.count, 'error')
-      %ul
-        - @doc.errors.full_messages.each do |msg|
-          %li= msg
-  .control-group
-    = f.label :title, class: 'control-label'
-    .controls= f.text_field :title, autofocus: true, class: 'span10'
-  .control-group
-    = f.label :desc, class: 'control-label'
-    .controls= f.text_area :desc, class: 'span10', rows: 4
-  .control-group
-    .controls= f.file_field :file, class: 'text_field'
-  .control-group
-    = f.label :category, class: 'control-label'
-    .controls
-      = f.select(:category_tokens, @categories, { include_blank: t('categories.select_category') }, { multiple: true, size: 10 } )
-      %span.help-block= t 'shared.multiple_select_helper_html'
+= bootstrap_form_for @doc, layout: :horizontal do |f|
+  = f.text_field :title, autofocus: true
+  = f.text_area :desc, rows: 4
+  = f.file_field :file
+  = f.select :category_tokens,
+    @categories,
+    { include_blank: t('categories.select_category'), help: t('shared.multiple_select_helper_html') },
+    { multiple: true, size: 10 }
 
-
-  .form-actions
-    = f.submit class: 'btn btn-primary'
-    = link_to t('shared.cancel'), docs_path, class: 'btn'
+  = f.form_group do
+    = f.primary
+    = link_to t('shared.cancel'), docs_path, class: 'btn btn-default'

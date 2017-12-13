@@ -16,6 +16,7 @@
  *= require jquery.Jcrop
  *= require fancybox
  *= require bootstrap_and_overrides
+ *= require rails_bootstrap_forms
  *= require page-player
  *= require demo
  *= require jquery.ui.all

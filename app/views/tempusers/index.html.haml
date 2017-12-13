@@ -12,8 +12,8 @@
         %td= tempuser.username
         - if can? :manage, tempuser
           %td
-            = link_to t('shared.edit'), edit_tempuser_path(tempuser), :class => 'btn btn-mini'
-            = link_to t('shared.del'), tempuser_path(tempuser), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+            = link_to t('shared.edit'), edit_tempuser_path(tempuser), :class => 'btn btn-default btn-xs'
+            = link_to t('shared.del'), tempuser_path(tempuser), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
 -if can? :manage, Tempuser
   = link_to t('.new', :default => t("helpers.links.new")), new_tempuser_path, :class => 'btn btn-primary'

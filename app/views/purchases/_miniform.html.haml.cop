@@ -3,10 +3,10 @@
     - if type == 'datetime'
       = render 'datefield', f: f, element: element
     - else
-      .control-group
+      .form-group
         = f.label element, class: 'control-label'
-        .controls= (%w(int price).include? type) ? (f.number_field :warmth_sum, class: 'number_field') : (f.text_field element)
+        = (%w(int price).include? type) ? (f.number_field :warmth_sum, class: 'number_field form-control') : (f.text_field element, class: 'form-control')
 
   .modal-footer
-    %button.btn(data-dismiss='modal' aria-hidden='true')= t 'shared.close'
+    %button.btn.btn-default(data-dismiss='modal' aria-hidden='true')= t 'shared.close'
     = f.submit nil, class: 'btn btn-primary'

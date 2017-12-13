@@ -8,14 +8,14 @@
 
   = f.hidden_field :parent_id
 
-  .control-group
+  .form-group
     = f.label :title, class: 'control-label'
-    .controls= f.text_field :title
+    = f.text_field :title, class: 'form-control'
 
-  .control-group
+  .form-group
     = f.label :songs, class: 'control-label'
-    .controls= file_field_tag "songs[]", type: :file, multiple: true
+    = file_field_tag "songs[]", type: :file, multiple: true, class: 'form-control'
 
-  .form-actions
+  .form-group
     = f.submit t('shared.save'), class: 'btn btn-primary'
-    = link_to t('shared.cancel'), :back, class: 'btn'
+    = link_to t('shared.cancel'), :back, class: 'btn btn-default'

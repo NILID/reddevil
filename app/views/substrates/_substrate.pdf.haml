@@ -5,8 +5,8 @@
     = link_to substrate.title, substrate
     %span.substrates-actions
       - if can? :manage, Substrate
-        = link_to edit_substrate_path(substrate), class: 'btn-small btn' do
-          %span.icon.icon-pencil
+        = link_to edit_substrate_path(substrate), class: 'btn-sm btn btn-default' do
+          %span.glyphicon.glyphicon-pencil
   %td= substrate.drawing
   %td= substrate.number
   %td.substrate-state= best_in_place substrate, :state, as: :select, collection: Substrate::STATES.collect {|state| [ state, t("substrates.states.#{state}")]}, inner_class: 'substrate-select', data: {place_success: substrate.id}, class: 'remote-link'

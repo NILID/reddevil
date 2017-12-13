@@ -14,7 +14,7 @@
     = f.text_area :content
   .field
     = f.label :groups_mask
-    -User::GROUPS.each_with_index do |p, index|
+    - User::GROUPS.each_with_index do |p, index|
       = check_box_tag "material[groups][#{p}]", p, ((@material.groups && (@material.groups.include? p)) ? true : false), {:name => "material[groups][]", validate: true}
       = label_tag "material[groups][#{p}]" do
         %span.text= t("profile.purpose.#{p}")

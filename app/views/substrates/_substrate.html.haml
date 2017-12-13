@@ -7,13 +7,13 @@
     - if can? :edit, Substrate
       .handle-box
         .handle
-          %i.icon-move.icon-white
+          %i.glyphicon.glyphicon-move.icon-white
   %td.substrate-title
     = link_to substrate.title, substrate
     %span.substrates-actions
       - if can? :edit, Substrate
-        = link_to edit_substrate_path(substrate), class: 'btn-small btn' do
-          %span.icon.icon-pencil
+        = link_to edit_substrate_path(substrate), class: 'btn-sm btn btn-default' do
+          %span.glyphicon.glyphicon-pencil
   %td= substrate.drawing
   %td= substrate.number
   %td.substrate-state

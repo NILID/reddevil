@@ -17,7 +17,7 @@
         %td= type.title
         - if can? :manage, type
           %td
-            = link_to t('shared.edit'), edit_type_path(type), :class => 'btn btn-mini'
-            = link_to t('shared.del'), type_path(type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+            = link_to t('shared.edit'), edit_type_path(type), :class => 'btn btn-default btn-xs'
+            = link_to t('shared.del'), type_path(type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
 

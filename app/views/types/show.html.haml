@@ -7,7 +7,7 @@
   %br
   = @type.title
 
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), types_path, :class => 'btn'
-  = link_to t('shared.edit'), edit_type_path(@type), :class => 'btn'
+.form-group
+  = link_to t('.back', :default => t("helpers.links.back")), types_path, class: 'btn btn-default'
+  = link_to t('shared.edit'), edit_type_path(@type), class: 'btn btn-default'
   = link_to t('shared.del'), type_path(@type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

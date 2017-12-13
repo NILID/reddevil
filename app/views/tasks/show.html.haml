@@ -23,8 +23,8 @@
     %br
     = @task.complete.to_s + '%'
 
-  .form-actions
-    = link_to t('.back', :default => t("helpers.links.back")), machines_path, :class => 'btn'
+  .form-group
+    = link_to t('.back', :default => t("helpers.links.back")), machines_path, class: 'btn btn-default'
     - if can? :manage, @task
-      = link_to t('shared.edit'), edit_machine_task_path(@machine, @task), :class => 'btn'
+      = link_to t('shared.edit'), edit_machine_task_path(@machine, @task), class: 'btn btn-default'
       = link_to t('shared.del'), [@machine, @task], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

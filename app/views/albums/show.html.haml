@@ -10,7 +10,7 @@
     = @album.title
     - if user_signed_in?
       = link_to like_album_path(@album), method: :post, remote: true do
-        %i{class: current_user.likes?(@album) ? 'icon-star' : 'icon-star-empty'}
+        %i.glyphicon{class: current_user.likes?(@album) ? 'glyphicon-star' : 'glyphicon-star-empty'}
 
 .ny-block
   -@albums.each do |album|

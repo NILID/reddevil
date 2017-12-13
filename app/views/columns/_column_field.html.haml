@@ -1,10 +1,11 @@
-.control-group
-  .controls
-    .input-prepend
-      %span.add-on= c.label :name
-      = c.text_field :name
-    .input-prepend
-      %span.add-on= c.label :column_type
-      = c.select :column_type, Year::TYPES, { include_blank: t('categories.select_category') }
-    = c.link_to_remove class: 'btn btn-small btn-danger' do
-      %i.icon.icon-remove
+.row
+  = c.form_group do
+    .col-md-6
+      = c.text_field :name, prepend: Column.human_attribute_name(:name), hide_label: true
+    .col-md-4
+      = c.select :column_type,
+        Year::TYPES,
+        { include_blank: t('categories.select_category'), prepend: Column.human_attribute_name(:column_type), hide_label: true }
+    .col-md-2
+      = c.link_to_remove class: 'btn btn-sm btn-danger' do
+        %i.glyphicon.glyphicon-remove

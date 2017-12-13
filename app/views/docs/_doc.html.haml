@@ -9,7 +9,7 @@
 
   .save-wspace
     %p= simple_format doc.desc
-  = link_to t('docs.download'), doc.file.url, class: 'btn btn-mini btn-primary', target: '_blank'
+  = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
   - if can? :manage, Doc
-    = link_to t('shared.edit'), edit_doc_path(doc), class: 'btn btn-mini'
-    = link_to t('shared.del'), doc_path(doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-mini btn-danger'
+    = link_to t('shared.edit'), edit_doc_path(doc), class: 'btn btn-default btn-xs'
+    = link_to t('shared.del'), doc_path(doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'

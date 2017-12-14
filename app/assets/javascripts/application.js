@@ -14,7 +14,7 @@
 //= require jquery
 //= require best_in_place
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery-ui
 //= require best_in_place.jquery-ui
 //= require jquery.Jcrop
 //= require readmore

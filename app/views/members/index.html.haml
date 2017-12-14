@@ -1,15 +1,15 @@
 .row
   .col-md-12.well
     .row
-      .col-md-10
+      .col-md-8
         %ul.nav.nav-tabs#member_info
           %li.active= link_to t('member.title'), '#users_info', data: { toggle: 'tab' }
           %li= link_to t('shared.stat'), '#statitics', data: { toggle: 'tab' }
           - if can? :create, Member
             %li= link_to t('shared.add'), new_member_path
-      .col-md-2
-        %p.pull-right
-          %span.btn-group
+      .col-md-4
+        .pull-right
+          .btn-group
             = link_to members_path(format: 'pdf'), class: 'btn btn-default', target: '_blank' do
               %i.glyphicon.glyphicon-download-alt
               PDF
@@ -41,7 +41,7 @@
                       - if member.phone?
                         %p
                           %span.glyphicon.glyphicon-phone
-                          =number_to_phone(member.phone, area_code: true)
+                          = number_to_phone(member.phone, area_code: true)
                       - if member.birth?
                         %p
                           %span.glyphicon.glyphicon-gift

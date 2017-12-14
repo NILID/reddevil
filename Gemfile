@@ -1,9 +1,6 @@
 source 'http://rubygems.org'
 gem 'rails', '4.2.10'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 # gem 'pg'
 
 gem 'protected_attributes'
@@ -87,18 +84,6 @@ gem 'will_paginate', '~> 3.0'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :development do
-  gem 'thin'
-  gem 'quiet_assets'
-  gem 'better_errors', '< 2'
-  gem 'binding_of_caller'
-  gem 'bullet', '< 5.5.0'
-
-  gem 'rails_best_practices'
-end
-
 group :test do
   gem 'minitest-rails'
   gem 'test-unit'
@@ -107,7 +92,6 @@ end
 group :production do
   gem 'passenger'
 end
-
 
 gem 'sass-rails',   '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -153,4 +137,11 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'thin'
+  gem 'quiet_assets'
+  gem 'better_errors', '< 2'
+  gem 'binding_of_caller'
+  gem 'bullet', '< 5.5.0'
+  gem 'rails_best_practices'
 end

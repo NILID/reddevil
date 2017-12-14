@@ -1,23 +1,15 @@
-= form_for @material do |f|
-  - if @material.errors.any?
-    #error_explanation
-      %h2= t 'shared.errors', error: plural(@material.errors.count, 'error')
-      %ul
-        - @material.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
-    = f.label :groups_mask
+= bootstrap_form_for @material, layout: :horizontal do |f|
+  = f.text_field :title
+  = f.text_area :content
+  = f.form_group do
     - User::GROUPS.each_with_index do |p, index|
-      = check_box_tag "material[groups][#{p}]", p, ((@material.groups && (@material.groups.include? p)) ? true : false), {:name => "material[groups][]", validate: true}
-      = label_tag "material[groups][#{p}]" do
-        %span.text= t("profile.purpose.#{p}")
-    = hidden_field_tag "materials[groups][]", ""
-  .actions
-    = f.submit 'Save'
+      .checkbox
+        = check_box_tag "material[groups][#{p}]",
+          p,
+          ((@material.groups && (@material.groups.include? p)) ? true : false),
+          { name: "material[groups][]", validate: true }
+        = label_tag "material[groups][#{p}]" do
+          %span.text= t("profile.purpose.#{p}")
+  = hidden_field_tag "materials[groups][]", ""
+  = f.form_group do
+    = f.primary

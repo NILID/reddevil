@@ -4,19 +4,16 @@
       .page-header
         %h3=t 'users.edit_roles', username: @user.profile.fullname
 
-      = form_for(@user, url: make_role_user_path(@user), html: {method: :post, class: 'form-horizontal'}) do |f|
-        .form-group
-          .control-label= t 'users.roles'
-          .checkbox
-            - User::ROLES.each do |role|
-              = label_tag do
-                = check_box_tag "user[roles][]", role, @user.role?(role)
-                = role
-        .form-group
-          .control-label= t 'users.groups'
-          .form-control
-            - User::GROUPS.each do |group|
-              = label_tag class: 'checkbox' do
-                = check_box_tag "user[groups][]", group, @user.has_group?(group)
-                = group
-        .form-group= f.submit class: 'btn btn-default'
+      = bootstrap_form_for(@user, url: make_role_user_path(@user), layout: :horizontal, html: { method: :post }) do |f|
+        = f.form_group do
+          - User::ROLES.each do |role|
+            = label_tag do
+              = check_box_tag "user[roles][]", role, @user.role?(role)
+              = role
+        = f.form_group do
+          - User::GROUPS.each do |group|
+            = label_tag class: 'checkbox' do
+              = check_box_tag "user[groups][]", group, @user.has_group?(group)
+              = group
+        = f.form_group do
+          = f.primary

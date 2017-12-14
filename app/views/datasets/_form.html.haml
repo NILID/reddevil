@@ -1,9 +1,5 @@
-= form_for [@user, @folder, @dataset], html: {class: 'form-horizontal' } do |f|
-  = render 'main/error', object: @dataset
-
-  .form-group
-    = f.label :src, class: 'control-label'
-    = f.file_field :src, class: 'text_field form-control'
-  .form-group
-    = f.submit submit_title, class: 'btn btn-primary'
+= bootstrap_form_for [@user, @folder, @dataset], layout: :horizontal do |f|
+  = f.file_field :src
+  = f.form_group do
+    = f.primary submit_title
     = link_to t('shared.cancel'), [@user, @folder], class: 'btn btn-default'

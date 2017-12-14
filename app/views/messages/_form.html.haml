@@ -1,15 +1,9 @@
-= form_for @message, :html => { :class => 'form-horizontal' } do |f|
-  .form-group
-    = f.label :title, :class => 'control-label'
-    = f.text_field :title, :class => 'text_field form-control'
-  .form-group
-    = f.label :content, :class => 'control-label'
-    = f.text_area :content, :class => 'text_area form-control'
-  .form-group
+= bootstrap_form_for @message, layout: :horizontal do |f|
+  = f.text_field :title
+  = f.text_area :content
+  = f.form_group do
     .checkbox
-      = f.label do
-        = f.check_box :close
-        'close'
-  .form-group
-    = f.submit nil, :class => 'btn btn-primary'
+      = f.check_box :close
+  = f.form_group do
+    = f.primary
     = link_to t('shared.cancel'), messages_path, :class => 'btn btn-default'

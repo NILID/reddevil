@@ -1,7 +1,5 @@
-= form_for @type, :html => { :class => 'form-horizontal' } do |f|
-  .form-group
-    = f.label :title, :class => 'control-label'
-    = f.text_field :title, :class => 'text_field form-control'
-  .form-group
-    = f.submit nil, :class => 'btn btn-primary'
+= bootstrap_form_for @type, layout: :horizontal do |f|
+  = f.text_field :title
+  = f.form_group do
+    = f.primary
     = link_to t('shared.cancel'), types_path, class: 'btn btn-default'

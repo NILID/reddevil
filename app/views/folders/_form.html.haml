@@ -1,11 +1,7 @@
-= form_for [@user, @folder], html: { class: 'form-horizontal' } do |f|
-  =render 'main/error', object: @folder
-
+= bootstrap_form_for [@user, @folder], layout: :horizontal do |f|
   -if params[:parent_id] || params[:folder]
     = f.hidden_field :parent_id, value: params[:parent_id] || params[:folder][:parent_id]
-  .form-group
-    = f.label :title, class: 'control-label'
-    = f.text_field :title, class: 'text_field form-control'
-  .form-group
-    = f.submit submit_title, class: 'btn btn-primary'
+  = f.text_field :title
+  = f.form_group do
+    = f.primary submit_title
     = link_to t('shared.cancel'), [@user, Folder], class: 'btn btn-default'

@@ -1,27 +1,13 @@
-= form_for @subscribe, :html => { class: 'form-horizontal' } do |f|
+= bootstrap_form_for @subscribe, layout: :horizontal do |f|
 
-  .form-group
-    = f.label :fullname, class: 'control-label'
-    = f.text_field :fullname, class: 'text_field form-control'
-  .form-group
-    = f.label :departament, class: 'control-label'
-    = f.text_field :departament, class: 'text_field form-control'
-  .form-group
-    = f.label :position, class: 'control-label'
-    = f.text_area :position, class: 'text_field form-control'
-  .form-group
-    = f.label :place, class: 'control-label'
-    = f.text_field :place, class: 'text_field form-control'
-  .form-group
-    = f.label :phone_inter, class: 'control-label'
-    = f.text_field :phone_inter, class: 'text_field form-control'
-  .form-group
-    = f.label :phone_city, class: 'control-label'
-    = f.text_field :phone_city, class: 'text_field form-control'
-  .form-group
-    = f.label :email, class: 'control-label'
-    = f.text_field :email, class: 'text_field form-control'
+  = f.text_field :fullname
+  = f.text_field :departament
+  = f.text_area :position
+  = f.text_field :place
+  = f.text_field :phone_inter
+  = f.text_field :phone_city
+  = f.text_field :email
 
-  .form-group
-    = f.submit nil, class: 'btn btn-primary'
+  = f.form_group do
+    = f.primary
     = link_to t('shared.cancel'), subscribes_path, class: 'btn btn-default'

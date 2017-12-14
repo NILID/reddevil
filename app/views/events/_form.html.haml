@@ -1,22 +1,7 @@
-= form_for [@user, @event] do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2= t 'shared.errors', error: plural(@event.errors.count, 'error')
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
-    = f.label :start_date
-    = f.datetime_select :start_date
-  .field
-    = f.label :end_date
-    = f.datetime_select :end_date
-  .actions
-    = f.submit 'Save'
+= bootstrap_form_for [@user, @event], layout: :horizontal do |f|
+  = f.text_field :title
+  = f.text_area :content
+  = f.datetime_select :start_date
+  = f.datetime_select :end_date
+  = f.form_group do
+    = f.primary

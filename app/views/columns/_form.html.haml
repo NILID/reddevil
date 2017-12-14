@@ -1,16 +1,5 @@
-= form_for [@year, @column] do |f|
-  - if @column.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@column.errors.count, "error")} prohibited this column from being saved:"
-      %ul
-        - @column.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :column_type
-    = f.select(:column_type, Year::TYPES, { include_blank: t('categories.select_category') } )
-  .actions
-    = f.submit 'Save'
+= bootstrap_form_for [@year, @column], layout: :horizontal do |f|
+  = f.text_field :name
+  = f.select(:column_type, Year::TYPES, { include_blank: t('categories.select_category') } )
+  = f.form_group do
+    = f.primary

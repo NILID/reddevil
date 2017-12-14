@@ -1,18 +1,13 @@
 .row
-  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal col-md-6' }) do |f|
-
-    %fieldset
-      %legend Смените ваш пароль
-
-      = devise_error_messages!
+  .col-md-8
+    .page-header
+      %h4 Смените ваш пароль
+    = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, html: { method: :put}) do |f|
       = f.hidden_field :reset_password_token
-      .form-group
-        = f.label :password, 'Новый пароль', class: 'control-label'
-        = f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control'
-      .form-group
-        = f.label :password_confirmation, 'Подвердите пароль', class: 'control-label'
-        = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
-      .form-group= f.submit 'Сменить пароль'
+      = f.password_field :password, autofocus: true, autocomplete: 'off'
+      = f.password_field :password_confirmation, autocomplete: 'off'
+      = f.form_group do
+        = f.primary 'Сменить пароль'
 
 .row
   .col-md-6= render "users/shared/links"

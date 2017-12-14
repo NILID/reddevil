@@ -1,21 +1,10 @@
-= form_for @album, html: {class: 'form-horizontal', multipart: true} do |f|
-  - if @album.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@album.errors.count, "error")} prohibited this album from being saved:"
-      %ul
-        - @album.errors.full_messages.each do |msg|
-          %li= msg
-
+= bootstrap_form_for @album, layout: :horizontal, html: { multipart: true } do |f|
   = f.hidden_field :parent_id
 
-  .form-group
-    = f.label :title, class: 'control-label'
-    = f.text_field :title, class: 'form-control'
+  = f.text_field :title
+  = f.form_group do
+    = file_field_tag "songs[]", type: :file, multiple: true
 
-  .form-group
-    = f.label :songs, class: 'control-label'
-    = file_field_tag "songs[]", type: :file, multiple: true, class: 'form-control'
-
-  .form-group
-    = f.submit t('shared.save'), class: 'btn btn-primary'
+  = f.form_group do
+    = f.primary t('shared.save')
     = link_to t('shared.cancel'), :back, class: 'btn btn-default'

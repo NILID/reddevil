@@ -7,8 +7,7 @@
     %h4 Preview
     %div(style="width:100px; height:100px; overflow:hidden;")
       = image_tag @profile.avatar.url(:large), id: "preview", style: 'max-width: none'
-= form_for [@user, @profile] do |f|
+= bootstrap_form_for [@user, @profile], layout: :horizontal do |f|
   - %w[x y w h].each do |attribute|
     = f.hidden_field "crop_#{attribute}"
-  .actions
-    = f.submit "Crop"
+  = f.primary 'Crop'

@@ -21,7 +21,7 @@
       %td= match.team1goal
       %td= match.team2goal
       %td= link_to 'Show', [@round, match]
-      -if can? :manage, match
+      - if can? :manage, match
         %td= link_to 'Edit', edit_round_match_path(@round, match)
         %td= link_to 'Destroy', [@round, match], :method => :delete, :data => { :confirm => 'Are you sure?' }
 

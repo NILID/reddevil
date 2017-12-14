@@ -1,5 +1,5 @@
 class ColumnsController < ApplicationController
-  load_and_authorize_resource :year
+  load_and_authorize_resource :year, find_by: :slug
   load_and_authorize_resource :column, through: :year
 
   def index

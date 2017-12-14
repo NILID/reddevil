@@ -42,6 +42,6 @@ class Task < ActiveRecord::Base
     end
 
     def check_valid_time
-      errors.add(:end_time, I18n.t('tasks.check_less_time_failed')) if (start_time > end_time)
+      errors.add(:end_time, I18n.t('tasks.check_less_time_failed')) if start_time && end_time && (start_time > end_time)
     end
 end

@@ -9,7 +9,7 @@
       options_for_select(Subscribe.uniq.order(:departament).pluck(:departament), selected: (params[:q][:departament_eq] if params[:q]), include_blank: false),
       { prompt: t('subscribes.choose_departament'), hide_label: true }
 
-    = f.submit t('shared.search'), class: 'btn btn-default'
+    = f.primary t('shared.search')
 
   -if can? :import, Subscribe
     = link_to t('subscribes.import'), '#import', class: 'btn btn-primary', role: 'button', data: { toggle: 'modal', target: '#import' }

@@ -1,11 +1,10 @@
 .row
-  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, class: 'form-horizontal col-md-6' }) do |f|
-    %fieldset
-      %legend=t 'devise.forgot'
-      = devise_error_messages!
-      .form-group
-        = f.label :email, class: 'control-label'
-        = f.email_field :email, autofocus: true, class: 'form-control'
-      .form-group= f.submit t('devise.sendmepassword'), class: 'btn btn-default'
+  .col-md-8
+    .page-header
+      %h4= t 'devise.forgot'
+    = bootstrap_form_for(resource, :as => resource_name, :url => password_path(resource_name), layout: :horizontal, html: { :method => :post }) do |f|
+      = f.email_field :email, autofocus: true
+      = f.form_group do
+        = f.primary t('devise.sendmepassword')
 .row
   .col-md-6= render "users/shared/links"

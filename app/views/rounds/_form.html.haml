@@ -1,73 +1,37 @@
-= nested_form_for @round, html: { class: 'form-horizontal' } do |f|
-  - if @round.errors.any?
-    .alert.alert-danger
-      %h4= "#{pluralize(@round.errors.count, "error")} prohibited this work from being saved:"
-      %ul
-        - @round.errors.full_messages.each do |msg|
-          %li= msg
+= bootstrap_nested_form_for @round, layout: :horizontal do |f|
+  = f.text_field :title
+  = f.text_field :content
+  = f.text_field :tag_list
+  = f.select(:type_id, Type.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
 
-  .form-group
-    = f.label :title, :class => 'control-label'
-    = f.text_field :title, :class => 'text_field form-control'
-  .form-group
-    = f.label :content, :class => 'control-label'
-    = f.text_field :content, :class => 'text_field form-control'
+  #datetimeround.date
+    =#f.date_select :deadline, default: {hour: 16, minute: 0}
+    = f.text_field :deadline, append: content_tag(:span, '', class: 'glyphicon glyphicon-th'), data: { format: 'dd.MM.yyyy hh:mm:ss' }
 
-  .form-group
-    = f.label :tag_list, :class => 'control-label'
-    = f.text_field :tag_list, :class => 'text_field form-control'
+  = f.form_group do
+    .checkbox= f.check_box :close
 
-  .form-group
-    = f.label :type_id, :class => 'control-label'
-    .form-control
-      = f.select(:type_id, Type.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
-
-  .form-group
-    .form-control
-      #datetimeround.form-group.date
-        =#f.date_select :deadline, default: {hour: 16, minute: 0}
-        = f.text_field :deadline, data: { format: 'dd.MM.yyyy hh:mm:ss' }
-        %span.input-group-addon
-          %i.glyphicon.glyphicon-th
-
-  .form-group
-    .checkbox
-      = f.label do
-        = f.check_box :close
-        close
-
-  .form-group
-    .checkbox
-      = f.label do
-        = f.check_box :empty_match
-        empty_match
+  = f.form_group do
+    .checkbox= f.check_box :empty_match
 
   = f.fields_for :matches do |m|
     .form-group.well.well-small
-      = m.label :team1_id
       = m.select(:team1_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
-
-      = m.label :team2_id
       = m.select(:team2_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
       - if @round.allow_empty?
-        = m.label :desc
         = m.select(:desc, Match::TYPES.collect {|type| [ t(type),  type]}, { include_blank: 'select desc' })
 
-      = m.label :winner
       = m.select(:winner_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
-      = m.label :team1goal
       = m.number_field :team1goal
 
-      = m.label :team2goal
       = m.number_field :team2goal
 
-      = m.label :ending
       = m.select(:ending, Match::ENDING.collect {|e| [ t(e),  e]})
 
   = f.link_to_add t('matches.add'), :matches
 
-  .form-group
-    = f.submit nil, :class => 'btn btn-primary'
+  = f.form_group do
+    = f.primary
     = link_to t('shared.cancel'), rounds_path, class: 'btn btn-default'

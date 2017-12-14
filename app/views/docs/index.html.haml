@@ -11,8 +11,11 @@
         append: content_tag(:span, '', class: 'glyphicon glyphicon-search')
 
     = arranged_tree_as_list(@categories) do |category|
-      = link_to(docs_path(by_category: category.id), remote: true, id: dom_id(category), class: "slide-link#{category.hidden? || (!category.parent.nil? && category.parent.hidden?) ? ' hide' : nil}") do
-        = category.title
+      = link_to category.title,
+        docs_path(by_category: category.id),
+        remote: true,
+        id: dom_id(category),
+        class: "slide-link #{category.hidden? || (!category.parent.nil? && category.parent.hidden?) ? ' hide' : nil}"
 
 .ny-block
   .page-header

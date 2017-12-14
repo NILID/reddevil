@@ -43,11 +43,10 @@
       = count > 0 ?  plural(count, 'subscribe') : t('subscribes.not_found')
       = link_to 'new', new_subscribe_path, class: 'btn btn-default btn-xs' if can? :manage, Subscribe
 
--if count > 0
-  .pagination.pagination-small
-    %ul
-      -(('А'..'Я').to_a - %w(Й Ь Ъ Ы)).each do |letter|
-        %li= link_to letter, subscribes_path(q: {fullname_start: letter})
+- if count > 0
+  %p.btn-group(role='group')
+    - (('А'..'Я').to_a - %w(Й Ь Ъ Ы)).each do |letter|
+      = link_to letter, subscribes_path(q: {fullname_start: letter}), class: 'btn btn-default btn-xs'
   %table.table.table-striped.well
 
     %thead

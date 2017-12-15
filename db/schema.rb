@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109075000) do
+ActiveRecord::Schema.define(version: 20171215055833) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -313,36 +313,38 @@ ActiveRecord::Schema.define(version: 20171109075000) do
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.string  "title",             limit: 255
-    t.float   "price",             limit: 24
-    t.string  "provider",          limit: 255
-    t.string  "doc",               limit: 255
-    t.integer "user_id",           limit: 4
-    t.date    "startdate"
-    t.date    "zkpdate"
-    t.date    "kp"
-    t.date    "zsc_kp"
-    t.date    "nmc"
-    t.date    "aztz"
-    t.date    "conclusion_expert"
-    t.date    "analytic"
-    t.date    "conclusion_pdtk"
-    t.date    "erp"
-    t.date    "request"
-    t.date    "bidding"
-    t.date    "committee"
-    t.date    "contract_request"
-    t.date    "contract_project"
-    t.date    "contract"
-    t.date    "prepay_date"
-    t.integer "prepay_sum",        limit: 4
-    t.date    "warmth_date"
-    t.integer "warmth_sum",        limit: 4
-    t.date    "proxy"
-    t.date    "delivery"
-    t.integer "year_id",           limit: 4
-    t.string  "status",            limit: 255
-    t.string  "status_color",      limit: 255
+    t.string   "title",             limit: 255
+    t.float    "price",             limit: 24
+    t.string   "provider",          limit: 255
+    t.string   "doc",               limit: 255
+    t.integer  "user_id",           limit: 4
+    t.date     "startdate"
+    t.date     "zkpdate"
+    t.date     "kp"
+    t.date     "zsc_kp"
+    t.date     "nmc"
+    t.date     "aztz"
+    t.date     "conclusion_expert"
+    t.date     "analytic"
+    t.date     "conclusion_pdtk"
+    t.date     "erp"
+    t.date     "request"
+    t.date     "bidding"
+    t.date     "committee"
+    t.date     "contract_request"
+    t.date     "contract_project"
+    t.date     "contract"
+    t.date     "prepay_date"
+    t.integer  "prepay_sum",        limit: 4
+    t.date     "warmth_date"
+    t.integer  "warmth_sum",        limit: 4
+    t.date     "proxy"
+    t.date     "delivery"
+    t.integer  "year_id",           limit: 4
+    t.string   "status",            limit: 255
+    t.string   "status_color",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree

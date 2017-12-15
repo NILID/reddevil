@@ -36,7 +36,13 @@
           %th= t 'deliveries.title'
 
       %tbody= render partial: 'purchase', collection: @purchases
+  .pull-left
     = link_to new_form_year_purchase_path(@year, Purchase), method: :post, remote: true, disable_with: t('shared.waiting'), class: 'btn btn-primary btn-sm' do
       %i.glyphicon.glyphicon-plus
       &nbsp;
       = t 'purchases.add_new'
+  - if @last_redaction
+    .pull-right.text-right
+      %p= t('purchases.last_editing_html', user: content_tag(:strong, @last_redaction.user.profile.surname, id: 'last-purchase-user' ))
+      %p#last-purchase-date= deadline(@last_redaction.user.updated_at)
+  .clearfix

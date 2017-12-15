@@ -1,4 +1,6 @@
 $('#purchase_<%=@purchase.id%>').replaceWith("<%=j render @purchase, purchase_counter: @year.purchases.where('id < ?', @purchase.id).pluck(:id).count%>");
+$('#last-purchase-user').html("<%=j @purchase.user.profile.surname %>");
+$('#last-purchase-date').html("<%=j deadline(@purchase.updated_at) %>");
 $('.modal').modal('hide');
 $('body').removeClass('modal-open');
 $('.modal-backdrop').remove();

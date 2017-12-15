@@ -87,6 +87,7 @@ ru:
     delivery: поставка
     result: итог
     add_new: Добавить закупку
+    last_editing_html: 'Последняя редакция: %{user}'
     sort_by:
       title: наименованию
       user: исполнителю

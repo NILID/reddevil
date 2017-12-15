@@ -48,6 +48,7 @@ ru:
     stat: Статистика
     production: Производство
     multiple_select_helper_html: Можно выделить несколько категорий, для этого достаточно при выборе зажать клавишу <span class="label label-info">Ctrl</span>
+    sort_by: Сортировать по
   folder:
     new: Создать папку
     new_title: Новая папка
@@ -86,6 +87,11 @@ ru:
     delivery: поставка
     result: итог
     add_new: Добавить закупку
+    sort_by:
+      title: наименованию
+      user: исполнителю
+      price: стоимости
+      doc: теме/счету
   notes:
     title: Заметки по работе сайта
     creating: Создание заметки
@@ -348,8 +354,8 @@ ru:
       art:
         deadline: Дедлайн
       purchase:
-        title: Название
-        price: сумма, руб
+        title: название
+        price: стоимость
         provider: поставщик
         doc: тема/счёт
         user_id: исполнитель

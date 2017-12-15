@@ -2,14 +2,14 @@ class PurchasesController < ApplicationController
   before_filter :authenticate_user!
   layout 'main'
   load_and_authorize_resource :year, find_by: :slug
-  load_and_authorize_resource :purchase, through: :year, except: [:new_form]
+  load_and_authorize_resource :purchase, through: :year, except: [:new_form, :index]
 
   def index
-    @purchases = @purchases.includes(:user, :deliveries, columnships: [:column, :purchase])
+    @q = @year.purchases.ransack(params[:q])
+    @purchases = @q.result.includes(:user, :deliveries, columnships: [:column, :purchase])
   end
 
-  def show
-  end
+  def show; end
 
   def get_miniform
     @attr = params[:attr]
@@ -41,11 +41,9 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @purchase.user = current_user

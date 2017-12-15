@@ -15,6 +15,8 @@ class Purchase < ActiveRecord::Base
    :status, :status_color,
    :columnships_attributes, :deliveries_attributes
 
+  attr_accessor :rorder
+
   after_create :build_columnships
 
   private

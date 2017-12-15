@@ -17,9 +17,8 @@
 
   %body
     = render 'main/menu'
-    .container.main-content
-      = bootstrap_flash
-      = yield
+    .container= bootstrap_flash
+    .nocontainer= yield
     %footer.container
       .row
         .col-md-6

@@ -20,7 +20,7 @@
     .col-md-5.col-sm-6.col-lg-4
       = bootstrap_form_for(@q, url: year_purchases_path(@year), method: :get) do |f|
         = f.select :sorts,
-          options_for_select({ t('purchases.sort_by.title') => :title, t('purchases.sort_by.user') => :user_id, t('purchases.sort_by.price') => :price, t('purchases.sort_by.doc') => :doc}.collect { |c| c }, params[:q] ? params[:q][:sorts] : []),
+          options_for_select({ t('purchases.sort_by.title') => :title, t('purchases.sort_by.user') => :user_id, t('purchases.sort_by.price') => :price, t('purchases.sort_by.doc') => :doc, t('purchases.sort_by.provider') => :provider}.collect { |c| c }, params[:q] ? params[:q][:sorts] : []),
           hide_label: true,
           prepend: t('shared.sort_by'),
           append: (f.primary 'OK')

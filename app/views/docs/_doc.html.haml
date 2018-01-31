@@ -8,12 +8,6 @@
 
     .doc-bottom.clearfix
       .pull-left
-        - unless doc.categories.empty?
-          - doc.categories.each do |g|
-            = link_to(docs_path(by_category: g.id), remote: true) do
-              %span.label.label-default.label-pad><= g.title
-
-      .pull-right
         = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
         - if can? :manage, Doc
           .btn-group
@@ -28,3 +22,10 @@
                 = link_to doc_path(doc), method: :delete, data: { confirm: t('shared.sure') } do
                   %i.glyphicon.glyphicon-trash
                   = t 'shared.del'
+
+      .pull-right
+        - unless doc.categories.empty?
+          - doc.categories.each do |g|
+            = link_to(docs_path(by_category: g.id), remote: true) do
+              %span.label.label-default.label-pad><= g.title
+

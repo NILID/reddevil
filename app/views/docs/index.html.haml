@@ -17,14 +17,17 @@
         id: dom_id(category),
         class: "slide-link #{category.hidden? || (!category.parent.nil? && category.parent.hidden?) ? ' hide' : nil}"
 
-.ny-block
-  .page-header
-    %h4
-      = t 'docs.title'
-      %span.category-info= t('docs.in_category', category: @cat.title) if @cat
-      %span.badge#docs-count= @docs.count
+.well
+  .row
+    .col-xs-6
+      %h4
+        = t 'docs.title'
+        %small
+          %span.category-info= t('docs.in_category', category: @cat.title) if @cat
+          %span.badge#docs-count= @docs.count
 
-      - if can? :manage, Doc
+    - if can? :manage, Doc
+      .col-xs-6.text-right
         %small= link_to t('.new', default: t('helpers.links.new')), new_doc_path, class: 'btn btn-primary'
 
-  #doc-list= render @docs
+#doc-list= render @docs

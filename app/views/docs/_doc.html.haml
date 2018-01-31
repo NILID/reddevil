@@ -1,14 +1,30 @@
-= div_for doc, class: 'well well-small' do
-  %strong= doc.title
-  %span.text-right
-    - unless doc.categories.empty?
-      - doc.categories.each do |g|
-        = link_to(docs_path(by_category: g.id), remote: true) do
-          %span.label.label-default.label-pad><= g.title
+= div_for doc, class: 'panel panel-default' do
+  .panel-heading
+    = doc.title
+  .panel-body
 
-  %p.save-wspace
-    %small= simple_format doc.desc
-  = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
-  - if can? :manage, Doc
-    = link_to t('shared.edit'), edit_doc_path(doc), class: 'btn btn-default btn-xs'
-    = link_to t('shared.del'), doc_path(doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+    %p.save-wspace
+      %small= simple_format doc.desc
+
+    .doc-bottom.clearfix
+      .pull-left
+        - unless doc.categories.empty?
+          - doc.categories.each do |g|
+            = link_to(docs_path(by_category: g.id), remote: true) do
+              %span.label.label-default.label-pad><= g.title
+
+      .pull-right
+        = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
+        - if can? :manage, Doc
+          .btn-group
+            %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+              %i.glyphicon.glyphicon-cog
+            %ul.dropdown-menu
+              %li
+                = link_to edit_doc_path(doc) do
+                  %i.glyphicon.glyphicon-pencil
+                  = t 'shared.edit'
+              %li
+                = link_to doc_path(doc), method: :delete, data: { confirm: t('shared.sure') } do
+                  %i.glyphicon.glyphicon-trash
+                  = t 'shared.del'

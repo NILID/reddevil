@@ -1,14 +1,13 @@
 = div_for doc, class: 'well well-small' do
-  %h6
-    = doc.title
-    %span.text-right
-      - unless doc.categories.empty?
-        - doc.categories.each do |g|
-          = link_to(docs_path(by_category: g.id), remote: true) do
-            %span.label.label-info.label-pad><= g.title
+  %strong= doc.title
+  %span.text-right
+    - unless doc.categories.empty?
+      - doc.categories.each do |g|
+        = link_to(docs_path(by_category: g.id), remote: true) do
+          %span.label.label-default.label-pad><= g.title
 
-  .save-wspace
-    %p= simple_format doc.desc
+  %p.save-wspace
+    %small= simple_format doc.desc
   = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
   - if can? :manage, Doc
     = link_to t('shared.edit'), edit_doc_path(doc), class: 'btn btn-default btn-xs'

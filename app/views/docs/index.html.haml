@@ -22,7 +22,7 @@
     %h4
       = t 'docs.title'
       %span.category-info= t('docs.in_category', category: @cat.title) if @cat
-      %small#docs-count= @docs.count
+      %span.badge#docs-count= @docs.count
 
       - if can? :manage, Doc
         %small= link_to t('.new', default: t('helpers.links.new')), new_doc_path, class: 'btn btn-primary'

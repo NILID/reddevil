@@ -4,10 +4,12 @@ class Song < ActiveRecord::Base
   belongs_to :album
   attr_accessible :file, :title
 
-  has_attached_file :file,
+  has_attached_file :file, validate_media_type: false,
      url: "/system/music/:album_title/:basename.:extension",
      path: ":rails_root/public/system/music/:album_title/:basename.:extension"
 
+  validates_attachment :file, presence: true
+  do_not_validate_attachment_file_type :file
   Paperclip.interpolates :album_title do |attachment, style|
     url=''
     attachment.instance.album_title.each_with_index do |album, index|

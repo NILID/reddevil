@@ -30,4 +30,4 @@
 - if can? :new, Song
   = link_to t('songs.add'), new_album_song_path(@album)
   \|
-= link_to t('albums.add'), new_album_path(parent_id: @album) if can? :new, Album
+= link_to t('albums.add'), new_album_path(parent_id: @album.id) if can? :new, Album

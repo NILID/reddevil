@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
-  load_and_authorize_resource find_by: :slug
   before_filter :authenticate_user!
+  load_and_authorize_resource find_by: :slug
 
   def index
     @albums = @albums.order(:title).roots
@@ -55,7 +55,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new(parent_id: params[:parent_id])
+    @album.parent_id = params[:parent_id]
   end
 
   def edit

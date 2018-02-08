@@ -62,7 +62,7 @@ gem 'nested_form'
 
 gem 'will_paginate-bootstrap'
 
-gem 'paperclip', '~> 4.2'
+gem 'paperclip'
 gem 'paperclip-i18n'
 
 gem 'meta-tags', :require => 'meta_tags'

@@ -31,3 +31,10 @@ table.rounds{
   .tip b{color: #3993cd;border-bottom: 1px dashed #3993cd;}
   .ending {color: #999;}
 }
+
+.minify-radio .radio {
+  height: 0;
+  padding:0;
+  margin: 0;
+  min-height: 0;
+}

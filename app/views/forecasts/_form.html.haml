@@ -13,12 +13,11 @@
     = f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
   = f.form_group :ending do
-    .hidden
+    .btn-group.minify-radio{ data: { toggle: 'buttons' }}
       - Match::ENDING.each do |e|
-        = f.radio_button :ending, e, disabled: false, inline: true, hide_label: true
-    .btn-group{ data: { toggle: 'buttons-radio' } }
-      - Match::ENDING.each do |e|
-        = f.label "ending_#{e}", t("matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"), class: "btn btn-primary #{(@forecast && @forecast.ending == e) ? 'current' : nil}"
+        %label.btn.btn-primary{ class: "#{ (@forecast && @forecast.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast && @forecast.ending == e) ? 'current' : nil}" }
+          = f.radio_button :ending, e, disabled: false, autocomplete: 'off'
+          = t "matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
 
   = f.form_group do
     = f.primary

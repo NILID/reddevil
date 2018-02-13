@@ -5,18 +5,23 @@ class Forecast < ActiveRecord::Base
   has_one :round, through: :match
   attr_accessible :team1goal, :team2goal, :match_id, :user_id, :winner_id, :ending
 
-  before_update :remove_winner_forecast
+#  before_update :remove_winner_forecast
 
   validates :team1goal, :team2goal, presence: true
 
   validates :winner_id, presence: true, if: :check_draw?
   validates :match_id, presence: true, if: :check_draw?
+  validate :check_match, :on => :create
+#  validate :check_deadline, :on => :create
+  validate :check_ending
+  validate :check_overtime
+
 
   def remove_winner_forecast
-    f = Forecast.find(self)
+    f = Forecast.where(id: self).first
     if (f.team1goal > f.team2goal) != (team1goal > team2goal)
       self.match.round.matches.where('matches.desc is null or matches.desc <> ?', '').each do |match|
-        match.forecasts.where('user_id = ? ', self.user_id).destroy_all
+        match.forecasts.where(user_id: self.user_id).destroy_all
       end
     end
   end
@@ -60,12 +65,6 @@ class Forecast < ActiveRecord::Base
       nil
     end
   end
-
-
-  validate :check_match, :on => :create
-#  validate :check_deadline, :on => :create
-  validate :check_ending
-  validate :check_overtime
 
   private
 

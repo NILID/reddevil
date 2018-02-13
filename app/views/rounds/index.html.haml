@@ -42,11 +42,11 @@
           %h4= link_to round.title, round
           %p= round.content
           %p.text-muted
-            %span=plural round.matches.count, 'match'
+            %span= plural round.matches.count, 'match'
             &#149;
-            %span=plural round.forecasts.count, 'forecast'
+            %span= plural round.forecasts.count, 'forecast'
             &#149;
-            %span=plural round.forecasts.pluck(:user_id).uniq.count, 'user'
+            %span= plural round.forecasts.pluck(:user_id).uniq.count, 'user'
           - if can? :manage, round
             = link_to t('shared.edit'), edit_round_path(round), class: 'btn btn-default btn-xs'
             = link_to t('shared.del'), round_path(round), :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn btn-xs btn-danger'

@@ -27,13 +27,15 @@
     %th
     - @users.each do |user|
       %th.results(style="text-align:center;font-weight:100;")
-        %p= link_to user.profile.surname, [user, :profile]
+        %p
+          = link_to [user, :profile] do
+            = user.profile.surname || user.email.split('@').first
 
         - result = user.results.where(round_id: @round).first
         - if result
           .tip
             .badge.badge-success= result.total
-            -if result.total > 0
+            - if result.total > 0
               .tip-text
                 - a,b,c,d = 0, 0, 0, 0
                 - result.matches.each do |match|

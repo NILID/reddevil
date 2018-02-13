@@ -7,16 +7,16 @@ class RoundsController < ApplicationController
 
   def index
     @rounds = @rounds.order('created_at desc')
-    # @tempusers = Tempuser.order('total_result desc')
+    # @users = User.order('total_result desc')
     tag = 'чмх2017'
-    @tempusers = (Tempuser.all.map { |t, result| { t => Round.tagged_with(tag).map { |r| r.results.where(tempuser_id: t).sum(:total) } } }).reduce(:merge)
-    if @tempusers
-      @tempusers = if params[:sort] == 'total'
-        Hash[@tempusers.sort_by{|k, v| k.total_result}.reverse]
+    @users = (User.all.includes(:profile).map { |user, result| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) } } }).reduce(:merge)
+    if @users
+      @users = if params[:sort] == 'total'
+        Hash[@users.sort_by{|k, v| k.profile.total_result}.reverse]
       elsif  params[:sort] == 'ratio'
-        Hash[@tempusers.sort_by{|k, v| k.ratio}.reverse]
+        Hash[@users.sort_by{|k, v| k.ratio}.reverse]
       else
-        Hash[@tempusers.sort_by{|k, v| v}.reverse]
+        Hash[@users.sort_by{|k, v| v}.reverse]
       end
     end
     # for test
@@ -24,12 +24,12 @@ class RoundsController < ApplicationController
   end
 
   def show
-    @tempusers = Tempuser.order(:username).includes(:user)
+    @users = User.includes(:profile).order('profiles.surname')
     @round_matches = @round.matches.includes([:team1, :team2])
   end
 
   def download
-    @tempusers = Tempuser.order(:username).includes(:user)
+    @users = User.includes(:profile).order('profiles.surname')
     @round_matches = @round.matches.includes([:team1, :team2])
     respond_to do |format|
       format.pdf{ render pdf: @round.title, orientation: 'Landscape' }
@@ -48,9 +48,9 @@ class RoundsController < ApplicationController
         format.html { redirect_to @round, notice: 'Round was successfully created.' }
         format.json { render json: @round, status: :created, location: @round }
 
-        Tempuser.with_user.each do |tempuser|
-          Notification.new_round(tempuser.user, @round).deliver_now
-        end
+        # TODO
+        # Move to model
+        User.all.each { |user| Notification.new_round(user, @round).deliver_now }
       else
         format.html { render action: "new" }
         format.json { render json: @round.errors, status: :unprocessable_entity }

@@ -1,13 +1,7 @@
 class ResultsController < ApplicationController
-  load_and_authorize_resource :tempuser, except: :rebuild
-  load_and_authorize_resource :result, through: :tempuser, except: :rebuild
+  load_and_authorize_resource :user, except: :rebuild
+  load_and_authorize_resource :result, through: :user, except: :rebuild
   load_and_authorize_resource only: :rebuild
-
-  def index
-  end
-
-  def show
-  end
 
   def new
   end
@@ -30,14 +24,14 @@ class ResultsController < ApplicationController
     @round.results.each do |r|
       r.update_attributes(total: r.rebuild_total)
     end
-    @round.results.pluck(:tempuser_id).uniq.each do |id|
-      tempuser = Tempuser.find(id)
-      tempuser.update_attributes(total_result: tempuser.results.sum(:total))
+    @round.results.pluck(:user_id).uniq.each do |user_id|
+      user = User.where(id: user_id).first
+      user.profile.update_attributes(total_result: user.results.sum(:total))
     end
 
-    (@round.forecasts.pluck(:tempuser_id).uniq - @round.results.pluck(:tempuser_id).uniq).each do |u|
-      tempuser = Tempuser.find(u)
-      r=tempuser.results.create!(round_id: @round.id)
+    (@round.forecasts.pluck(:user_id).uniq - @round.results.pluck(:user_id).uniq).each do |u|
+      user = User.where(id: user_id).first
+      r=user.results.create!(round_id: @round.id)
       r.update_attributes(total: r.rebuild_total)
     end
     render nothing: true

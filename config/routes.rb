@@ -53,9 +53,9 @@ Birthday::Application.routes.draw do
       member {get :download}
       resources :matches
     end
-    resources :tempusers do
+    resources :users do
       resources :forecasts, except: [:index, :show]
-      resources :results do
+      resources :results, except: [:show, :index] do
         member do
           post 'counted'
         end

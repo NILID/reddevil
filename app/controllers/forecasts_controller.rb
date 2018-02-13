@@ -1,6 +1,6 @@
 class ForecastsController < ApplicationController
-  load_and_authorize_resource :tempuser
-  load_and_authorize_resource :forecast, through: :tempuser
+  load_and_authorize_resource :user
+  load_and_authorize_resource :forecast, through: :user
 
   def new
   end

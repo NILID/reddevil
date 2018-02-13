@@ -1,16 +1,14 @@
 class Result < ActiveRecord::Base
   belongs_to :user
-  belongs_to :tempuser
   belongs_to :round
   has_many :matches, through: :round
   attr_accessible :total, :round_id
-
 
   def rebuild_total
     i = 0
     self.matches.each do |match|
       if match.has_goal?
-        forecast=self.tempuser.forecasts.where(match_id: match.id).last
+        forecast=self.user.forecasts.where(match_id: match.id).last
         if forecast
           # check result
           i+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal)

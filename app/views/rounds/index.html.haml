@@ -20,21 +20,21 @@
               Общий
               - if params[:sort] == 'total'
                 %i.glyphicon.glyphicon-chevron-down
-      - if @tempusers
-        - @tempusers.each do |tempuser, round_result|
+      - @users.each do |user, round_result|
+        - user_forecasts_count = user.forecasts.count
+        - user_total_result = user.profile.total_result
+        - if user_forecasts_count > 0
           %tr
-            %td= tempuser.username
+            %td= user.profile.surname || user.email
             %td= round_result.sum
-            %td= (tempuser.total_result.to_f / tempuser.forecasts.count.to_f).round(3)
-            %td= tempuser.total_result
+            %td= (user_total_result.to_f / user_forecasts_count.to_f).round(3)
+            %td= user_total_result
 
   .col-md-7
     - if can? :manage, Round
       %small= link_to t('rounds.add'), new_round_path, class: 'btn btn-default'
     - if can? :manage, Team
       %small= link_to t('teams.add'), new_team_path, class: 'btn btn-default'
-    - if can? :manage, Tempuser
-      %small= link_to 'tempusers', tempusers_path, class: 'btn btn-default'
 
     %table.table.table-striped
       - @rounds.each do |round|
@@ -46,7 +46,7 @@
             &#149;
             %span=plural round.forecasts.count, 'forecast'
             &#149;
-            %span=plural round.forecasts.pluck(:tempuser_id).uniq.count, 'user'
+            %span=plural round.forecasts.pluck(:user_id).uniq.count, 'user'
           - if can? :manage, round
             = link_to t('shared.edit'), edit_round_path(round), class: 'btn btn-default btn-xs'
             = link_to t('shared.del'), round_path(round), :method => :delete, :data => { :confirm => t('shared.sure') }, class: 'btn btn-xs btn-danger'

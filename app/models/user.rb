@@ -18,12 +18,13 @@ class User < ActiveRecord::Base
   has_many :works
   has_many :events
   has_many :purchases
+  has_many :forecasts
+  has_many :results
   has_many :substrates
   has_many :folders
   has_many :tasks
   has_many :notes
   has_one :profile, dependent: :destroy
-  has_one :tempuser
   ROLES = %w(admin user moderator editor test drawing mirrors)
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago)}
@@ -67,6 +68,10 @@ class User < ActiveRecord::Base
 
   def online?
     updated_at > 10.minutes.ago
+  end
+
+  def ratio
+    (self.profile.total_result.to_f / self.forecasts.count.to_f).round(4)
   end
 
   private

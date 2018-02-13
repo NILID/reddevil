@@ -25,9 +25,9 @@
   %thead
     %th
     %th
-    - @tempusers.each do |user|
+    - @users.each do |user|
       %th.results(style="text-align:center;font-weight:100;")
-        %p=user.user ? link_to(user.username, user_profile_path(user.user)) : user.username
+        %p= link_to user.profile.surname, [user, :profile]
 
         - result = user.results.where(round_id: @round).first
         - if result
@@ -69,8 +69,8 @@
     -if @round.allow_empty?
       - hidden_matches = @round_matches.where('matches.desc is null or matches.desc <> ?', '')
       - matches = @round_matches - hidden_matches
-      - teams = (matches.map {|m| m.forecasts.where(tempuser_id: current_user.tempuser).map {|f| f.check_winner}.reduce(:merge) })
-      - miss_teams = (matches.map {|m| m.forecasts.where(tempuser_id: current_user.tempuser).map {|f| f.check_second}.reduce(:merge) })
+      - teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_winner}.reduce(:merge) })
+      - miss_teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_second}.reduce(:merge) })
       = render partial: 'match', collection: (@round_matches - hidden_matches)
       - if teams.first && teams.last && miss_teams.first && miss_teams.last
         %tr

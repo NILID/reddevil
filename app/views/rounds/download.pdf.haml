@@ -18,9 +18,9 @@
       %thead
         %th
         %th
-        - @tempusers.each do |user|
+        - @users.each do |user|
           %th.results(style="text-align:center;font-weight:100;")
-            %p=user.username
+            %p=user.profile.surname
       %tbody
         -@round_matches.each do |match|
           %tr
@@ -31,7 +31,7 @@
               - if match.ending != 'basic'
                 -if match.team1 != match.winner
                   %br/
-            -@tempusers.each do |user|
+            -@users.each do |user|
               -f=user.forecasts.where(match_id: match.id).first
               -if f
                 -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) && (match.ending == f.ending) ? 'success' : nil

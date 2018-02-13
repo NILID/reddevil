@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213054837) do
+ActiveRecord::Schema.define(version: 20180213060239) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -486,16 +486,6 @@ ActiveRecord::Schema.define(version: 20180213054837) do
   end
 
   add_index "teams", ["type_id"], name: "index_teams_on_type_id", using: :btree
-
-  create_table "tempusers", force: :cascade do |t|
-    t.string   "username",     limit: 255
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "user_id",      limit: 4
-    t.integer  "total_result", limit: 4,   default: 0
-  end
-
-  add_index "tempusers", ["user_id"], name: "index_tempusers_on_user_id", using: :btree
 
   create_table "types", force: :cascade do |t|
     t.string   "title",      limit: 255

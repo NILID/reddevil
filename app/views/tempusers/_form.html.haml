@@ -1,6 +1,0 @@
-= bootstrap_form_for @tempuser, layout: :horizontal do |f|
-  = f.text_field :username
-  = f.select(:user_id, User.order(:email).collect {|u| [ u.email,  u.id]}, { include_blank: t('tempusers.select_user') } )
-  = f.form_group do
-    = f.primary
-    = link_to t('shared.cancel'), tempusers_path, :class => 'btn btn-default'

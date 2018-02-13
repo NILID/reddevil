@@ -1,4 +1,4 @@
-= bootstrap_form_for [@tempuser, @forecast], layout: :horizontal do |f|
+= bootstrap_form_for [@user, @forecast], layout: :horizontal do |f|
   -if params[:match_id] && Match.find(params[:match_id])
     - m=Match.find(params[:match_id])
   -else
@@ -24,4 +24,4 @@
     = f.primary
     = link_to t('shared.cancel'), m.round, class: 'btn btn-default'
     - if params[:action] == 'edit'
-      = link_to t('shared.del'), [@tempuser, @forecast], :method => :delete, :data => { confirm: t('shared.sure') }, class: 'btn btn-default' if can? :destroy, @forecast
+      = link_to t('shared.del'), [@user, @forecast], :method => :delete, :data => { confirm: t('shared.sure') }, class: 'btn btn-default' if can? :destroy, @forecast

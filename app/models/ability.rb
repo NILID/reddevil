@@ -20,7 +20,7 @@ class Ability
       can [:edit, :update], Profile, user_id: user.id
       can :read, :all
       can [:destroy, :edit, :update], Forecast do |f|
-        (f.round.deadline > DateTime.now) && (f.tempuser.user_id == user.id)
+        (f.round.deadline > DateTime.now) && (f.user_id == user.id)
       end
       # cannot :read, Doc, category: {hidden: true}
 
@@ -40,7 +40,7 @@ class Ability
 
     if user.role? :admin
       can [:read], Forecast do |f|
-        (f.round.deadline < DateTime.now) || (f.tempuser.user_id == user.id)
+        (f.round.deadline < DateTime.now) || (f.user_id == user.id)
       end
 
       can [:read, :manage], :all
@@ -88,7 +88,7 @@ class Ability
       can :like, Song
       can [:favorites, :list], Album
 
-      can [:new, :create], Forecast, tempuser: {user_id: user.id}
+      can [:new, :create], Forecast, user: {id: user.id}
     end
 
     if user.has_group? :sellers

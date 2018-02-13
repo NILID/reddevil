@@ -1,10 +1,9 @@
 class Forecast < ActiveRecord::Base
-  belongs_to :tempuser
   belongs_to :user
   belongs_to :match
   belongs_to :winner, class_name: "Team"
   has_one :round, through: :match
-  attr_accessible :team1goal, :team2goal, :match_id, :tempuser_id, :winner_id, :ending
+  attr_accessible :team1goal, :team2goal, :match_id, :user_id, :winner_id, :ending
 
   before_update :remove_winner_forecast
 
@@ -17,7 +16,7 @@ class Forecast < ActiveRecord::Base
     f = Forecast.find(self)
     if (f.team1goal > f.team2goal) != (team1goal > team2goal)
       self.match.round.matches.where('matches.desc is null or matches.desc <> ?', '').each do |match|
-        match.forecasts.where('tempuser_id = ? ', self.tempuser_id).destroy_all
+        match.forecasts.where('user_id = ? ', self.user_id).destroy_all
       end
     end
   end
@@ -71,7 +70,7 @@ class Forecast < ActiveRecord::Base
   private
 
   def check_match
-    errors.add(:match_id, I18n.t('forecasts.already_voted')) if !Forecast.where("match_id =? and tempuser_id =?", match_id, tempuser_id).empty?
+    errors.add(:match_id, I18n.t('forecasts.already_voted')) if !Forecast.where("match_id =? and user_id =?", match_id, user_id).empty?
   end
 
   def check_deadline

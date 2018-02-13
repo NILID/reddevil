@@ -24,7 +24,7 @@
         - @tempusers.each do |tempuser, round_result|
           %tr
             %td= tempuser.username
-            %td= round_result
+            %td= round_result.sum
             %td= (tempuser.total_result.to_f / tempuser.forecasts.count.to_f).round(3)
             %td= tempuser.total_result
 

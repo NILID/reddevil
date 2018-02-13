@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   delegate :login, to: :profile
 
-  attr_accessible :groups, :roles, as: :admin
+  attr_accessible :groups, :roles, :sport_flag, as: :admin
   # attr_accessible :title, :body
   after_create :set_role
 
@@ -71,7 +71,8 @@ class User < ActiveRecord::Base
   end
 
   def ratio
-    (self.profile.total_result.to_f / self.forecasts.count.to_f).round(4)
+    forecasts_count = self.forecasts.count
+    forecasts_count > 0 ? (self.profile.total_result.to_f / forecasts_count.to_f).round(4) : 0
   end
 
   private

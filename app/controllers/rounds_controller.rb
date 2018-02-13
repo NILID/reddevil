@@ -8,8 +8,9 @@ class RoundsController < ApplicationController
   def index
     @rounds = @rounds.order('created_at desc')
     # @users = User.order('total_result desc')
-    tag = 'чмх2017'
-    @users = (User.all.includes(:profile).map { |user, result| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) } } }).reduce(:merge)
+    tag = 'ои2018'
+    #tag = 'чмх2017'
+    @users = (User.where(sport_flag: true).includes(:profile).map { |user| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) }.sum } }).reduce(:merge)
     if @users
       @users = if params[:sort] == 'total'
         Hash[@users.sort_by{|k, v| k.profile.total_result}.reverse]
@@ -24,7 +25,7 @@ class RoundsController < ApplicationController
   end
 
   def show
-    @users = User.includes(:profile).order('profiles.surname')
+    @users = User.where(sport_flag: true).includes(:profile).order('profiles.surname')
     @round_matches = @round.matches.includes([:team1, :team2])
   end
 
@@ -50,7 +51,7 @@ class RoundsController < ApplicationController
 
         # TODO
         # Move to model
-        User.all.each { |user| Notification.new_round(user, @round).deliver_now }
+        User.where(sport_flag: true).all.each { |user| Notification.new_round(user, @round).deliver_now }
       else
         format.html { render action: "new" }
         format.json { render json: @round.errors, status: :unprocessable_entity }

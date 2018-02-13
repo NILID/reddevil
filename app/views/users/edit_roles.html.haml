@@ -15,5 +15,10 @@
             = label_tag class: 'checkbox' do
               = check_box_tag "user[groups][]", group, @user.has_group?(group)
               = group
+
+        = f.form_group do
+          = label_tag class: 'checkbox' do
+            = f.check_box :sport_flag
+
         = f.form_group do
           = f.primary

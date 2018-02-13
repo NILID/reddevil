@@ -16,7 +16,8 @@ class Profile < ActiveRecord::Base
 
   validates_attachment :avatar, content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
-  attr_accessible :avatar, :crop_x, :crop_y, :crop_w, :crop_h, :login, :background_color, :name, :surname, :patronymic, :total_result
+  attr_accessible :avatar, :crop_x, :crop_y, :crop_w, :crop_h, :login, :background_color,
+                  :name, :surname, :patronymic, :total_result
 
   #for crop
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h

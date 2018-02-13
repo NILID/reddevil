@@ -9,7 +9,7 @@ class RoundsController < ApplicationController
     @rounds = @rounds.order('created_at desc')
     # @tempusers = Tempuser.order('total_result desc')
     tag = 'чмх2017'
-    @tempusers = (Tempuser.all.map {|t, result| {t => Round.tagged_with(tag).sum { |r| r.results.where(tempuser_id: t).sum(:total) }}}.reduce(:merge))
+    @tempusers = (Tempuser.all.map { |t, result| { t => Round.tagged_with(tag).map { |r| r.results.where(tempuser_id: t).sum(:total) } } }).reduce(:merge)
     if @tempusers
       @tempusers = if params[:sort] == 'total'
         Hash[@tempusers.sort_by{|k, v| k.total_result}.reverse]

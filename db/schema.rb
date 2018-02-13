@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213051654) do
+ActiveRecord::Schema.define(version: 20180213054837) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -173,10 +173,12 @@ ActiveRecord::Schema.define(version: 20180213051654) do
     t.datetime "updated_at",                                null: false
     t.integer  "winner_id",   limit: 4
     t.string   "ending",      limit: 255, default: "basic"
+    t.integer  "user_id",     limit: 4
   end
 
   add_index "forecasts", ["match_id"], name: "index_forecasts_on_match_id", using: :btree
   add_index "forecasts", ["tempuser_id"], name: "index_forecasts_on_tempuser_id", using: :btree
+  add_index "forecasts", ["user_id"], name: "index_forecasts_on_user_id", using: :btree
   add_index "forecasts", ["winner_id"], name: "index_forecasts_on_winner_id", using: :btree
 
   create_table "holidays", force: :cascade do |t|
@@ -552,4 +554,5 @@ ActiveRecord::Schema.define(version: 20180213051654) do
 
   add_foreign_key "categoryships", "categories"
   add_foreign_key "categoryships", "docs"
+  add_foreign_key "forecasts", "users"
 end

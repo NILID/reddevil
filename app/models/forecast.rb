@@ -1,5 +1,6 @@
 class Forecast < ActiveRecord::Base
   belongs_to :tempuser
+  belongs_to :user
   belongs_to :match
   belongs_to :winner, class_name: "Team"
   has_one :round, through: :match

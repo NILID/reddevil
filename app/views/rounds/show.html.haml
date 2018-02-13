@@ -68,7 +68,7 @@
 
     %th=t 'shared.mid'
   %tbody
-    -if @round.allow_empty?
+    - if @round.allow_empty?
       - hidden_matches = @round_matches.where('matches.desc is null or matches.desc <> ?', '')
       - matches = @round_matches - hidden_matches
       - teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_winner}.reduce(:merge) })

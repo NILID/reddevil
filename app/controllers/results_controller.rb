@@ -30,7 +30,7 @@ class ResultsController < ApplicationController
     end
 
     (@round.forecasts.pluck(:user_id).uniq - @round.results.pluck(:user_id).uniq).each do |u|
-      user = User.where(id: user_id).first
+      user = User.where(id: u).first
       r=user.results.create!(round_id: @round.id)
       r.update_attributes(total: r.rebuild_total)
     end

@@ -194,6 +194,8 @@ ru:
     basic_short: О
     overtime: дополнительное время
     overtime_short: Д
+    overtime_hockey: овертайм
+    overtime_short_hockey: ОТ
     penalty: пенальти
     penalty_short: П
     bullit: буллиты

@@ -18,12 +18,17 @@
       -if match.team1 != match.winner
         %br/
       %span.tip
-        =t("matches.#{(match.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : match.ending}_short")
-        .tip-text=t("matches.#{(@round.type_id == 2 && match.ending == 'penalty') ? 'bullit' : match.ending}")
-  -@users.each do |user|
-    -f=user.forecasts.where(match_id: match.id).first
-    -if f
-      -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) && (match.ending == f.ending) && ((%w[overtime basic].include? match.ending) || (match.ending == 'penalty' && match.winner == f.winner)) ? 'success' : nil
+        - if match.ending == 'penalty'
+          = t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
+          .tip-text=t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+        - elsif match.ending == 'overtime'
+          = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
+          .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
+
+  - @users.each do |user|
+    - f = user.forecasts.where(match_id: match.id).first
+    - if f
+      - f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) && (match.ending == f.ending) && ((%w[overtime basic].include? match.ending) || (match.ending == 'penalty' && match.winner == f.winner)) ? 'success' : nil
       %td{style: "text-align:center", class: f_css}
         .total
           - if (@round.deadline < DateTime.now) || (f.user == current_user)
@@ -31,15 +36,23 @@
               #{f.team1goal}
               - if f.ending != 'basic'
                 %span.tip
-                  %span.ending=t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
-                  .tip-text= t("matches.#{(@round.type_id == 2 && f.ending == 'penalty') ? 'bullit' : f.ending}")
+                  - if f.ending == 'penalty'
+                    %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
+                    .tip-text=t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+                  - elsif f.ending == 'overtime'
+                    %span.ending= t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
+                    .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
               \ : #{f.team2goal}
             - else (match.team2 == f.winner) || (f.team1goal < f.team2goal)
               #{f.team1goal} : #{f.team2goal}
               - if f.ending != 'basic'
                 %span.tip
-                  %span.ending=t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
-                  .tip-text= t("matches.#{(@round.type_id == 2 && f.ending == 'penalty') ? 'bullit' : f.ending}")
+                  - if f.ending == 'penalty'
+                    %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
+                    .tip-text=t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+                  - elsif f.ending == 'overtime'
+                    %span.ending= t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
+                    .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
           - else
             X : X
         -if can? :edit, f
@@ -50,12 +63,12 @@
           -if can? :new, user => Forecast
             = link_to t('forecasts.add'), new_user_forecast_path(user, match_id: match), class: 'btn btn-default btn-xs'
   %td.middle
-    - f=Forecast.where(match_id: match)
+    - f = Forecast.where(match_id: match)
     - unless f.empty?
-      -if @round.deadline < DateTime.now
+      - if @round.deadline < DateTime.now
         %div.tip
           %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
           .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
-      -else
+      - else
         X : X
   %td

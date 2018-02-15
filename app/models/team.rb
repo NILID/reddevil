@@ -10,4 +10,6 @@ class Team < ActiveRecord::Base
     url: "/system/teams/:attachment/:id/:style/:filename"
 
   validates :title, presence: true
+
+  validates_attachment :flag, content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 end

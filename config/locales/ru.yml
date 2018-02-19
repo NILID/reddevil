@@ -265,6 +265,7 @@ ru:
     new_round: Новый раунд прогнозов - "%{round_name}"
     new_note: Новая заметка по работе сайта
   forecasts:
+    count_tip: всего прогнозов
     add: cоздать
     edit: изменить
     creating: Создание прогноза

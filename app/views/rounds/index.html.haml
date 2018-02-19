@@ -23,11 +23,14 @@
       - @users.each do |user, round_result|
         - user_forecasts_count = user.forecasts.count
         - user_total_result = user.profile.total_result
+        - matches_count = Match.count
         - if user_forecasts_count > 0
           %tr
             %td= user.profile.surname || user.email
             %td= round_result
-            %td= (user_total_result.to_f / user_forecasts_count.to_f).round(3)
+            %td
+              = (user_total_result.to_f / user_forecasts_count.to_f).round(3)
+              %span.text-muted.has-tooltip{ data: {toggle: 'tooltip', title: t('forecasts.count_tip')} }= user_forecasts_count
             %td= user_total_result
 
   .col-md-7

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213072233) do
+ActiveRecord::Schema.define(version: 20180222050312) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -516,6 +516,7 @@ ActiveRecord::Schema.define(version: 20180213072233) do
     t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
     t.boolean  "sport_flag",                         default: true
+    t.integer  "forecasts_count",        limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

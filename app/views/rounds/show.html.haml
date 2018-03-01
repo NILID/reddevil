@@ -74,19 +74,18 @@
       - teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_winner}.reduce(:merge) })
       - miss_teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_second}.reduce(:merge) })
       = render partial: 'match', collection: (@round_matches - hidden_matches)
-      - if teams.first && teams.last && miss_teams.first && miss_teams.last
-        %tr
-          %td(colspan=16)
-            %h4= t 'rounds.final'
-        -# hidden_matches.where('team1_id = ? AND team2_id = ?', teams.first.id, teams.last.id).where(desc: 'final').each do |match|
-        - hidden_matches.where(desc: 'final').each do |match|
-          = render partial: 'match', locals: {match: match}
-        %tr
-          %td(colspan=16)
-            %h4= t 'rounds.final_third'
-        -# hidden_matches.where('team1_id = ? AND team2_id = ?', miss_teams.first.id, miss_teams.last.id).where(desc: '3final').each do |match|
-        - hidden_matches.where(desc: '3final').each do |match|
-          = render partial: 'match', locals: {match: match}
+      %tr
+        %td(colspan=16)
+          %h4= t 'rounds.final'
+      -# hidden_matches.where('team1_id = ? AND team2_id = ?', teams.first.id, teams.last.id).where(desc: 'final').each do |match|
+      - hidden_matches.where(desc: 'final').each do |match|
+        = render partial: 'match', locals: {match: match}
+      %tr
+        %td(colspan=16)
+          %h4= t 'rounds.final_third'
+      -# hidden_matches.where('team1_id = ? AND team2_id = ?', miss_teams.first.id, miss_teams.last.id).where(desc: '3final').each do |match|
+      - hidden_matches.where(desc: '3final').each do |match|
+        = render partial: 'match', locals: {match: match}
     - else
       = render partial: 'match', collection: @round_matches
 

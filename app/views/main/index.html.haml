@@ -49,7 +49,7 @@
             = t 'shared.today'
             %small= Russian.strftime(DateTime.now, '%d %B')
           - @holidays_today.each do |h|
-            %p.alert.alert-success= h[:name]
+            %p.text-success= h[:name]
           %hr
         - if !@holidays_tomorrow.empty?
           %h4

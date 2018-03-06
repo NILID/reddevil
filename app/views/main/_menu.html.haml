@@ -6,7 +6,9 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'REDDEVIL', root_path, class: 'navbar-brand'
+      = link_to root_path, class: 'navbar-brand' do
+        %span.brand-letter>< R
+        %span>< EDDEVIL
     .collapse.navbar-collapse#reddevil-collapse
       %ul.nav.navbar-nav
         %li{class: (params[:controller] == 'members') ? 'active' : nil}

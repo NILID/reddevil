@@ -456,6 +456,7 @@ ru:
         patronymic: Отчество
         birth: Дата рождения
         phone: Номер телефона
+        work_phone: Рабочий моб.телефон
         short_number: Доб. номер
       user:
         password: Пароль

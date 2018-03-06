@@ -23,6 +23,7 @@
             %tr
               %th
               %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
+              %th= Member.human_attribute_name(:work_phone)
               %th= Member.human_attribute_name(:short_number)
               %th= Member.human_attribute_name(:email)
               - if can? :manage, Member
@@ -46,6 +47,9 @@
                         %p
                           %span.glyphicon.glyphicon-gift
                           = show_birth member
+                %td
+                  - if member.work_phone?
+                    = number_to_phone(member.work_phone, area_code: true)
                 %td= member.short_number
                 %td
                   %span.glyphicon.glyphicon-email

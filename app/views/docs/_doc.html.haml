@@ -1,13 +1,19 @@
-= div_for doc, class: 'panel panel-default' do
-  .panel-heading
-    = doc.title
-  .panel-body
+= div_for doc, class: 'panel-group', role: 'tablist' do
+  .panel.panel-default
+    .panel-heading(role='tab' id="collapse_list_#{doc.id}")
+      .panel-title
+        = link_to doc.title, "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }
+    - if doc.desc?
+      .panel-collapse.collapse{id: "collapse_#{doc.id}", style: 'height:0px', role: 'tabpanel', aria: { labelledby: "collapse_#{doc.id}", expanded: 'false' }}
+        .panel-body
+          %p.save-wspace
+            %small= simple_format doc.desc
 
-    %p.save-wspace
-      %small= simple_format doc.desc
-
-    .doc-bottom.clearfix
+    .panel-footer.clearfix
       .pull-left
+        - if doc.desc?
+          = link_to "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }, class: 'btn btn-xs btn-default' do
+            = t('docs.about')
         = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
         - if can? :manage, Doc
           .btn-group

@@ -5,6 +5,7 @@ ru:
     art: Арт
     close: Закрыть
     more: дальше
+    more_info: Подробнее
     chat: Чат
     show: Показать
     calendar: Календарь
@@ -217,7 +218,8 @@ ru:
   docs:
     title: Документы
     last_docs: Последние документы
-    download: Ознакомиться
+    download: Просмотреть
+    about: О документе
     all: Весь список
     creating: Создание документа
     editing: Редактирование документа

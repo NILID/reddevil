@@ -2,7 +2,9 @@
 
 .category.redhide{@include opacity(0.5)}
 
-.nav-children{margin-left:20px;}
+.nav-pills > li.nav-children {
+  &, & + li.nav-children{margin-left:20px;}
+}
 
 .nav-pills > li.slide-block {display: none;}
 

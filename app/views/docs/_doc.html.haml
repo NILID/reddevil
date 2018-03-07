@@ -11,10 +11,11 @@
 
     .panel-footer.clearfix
       .pull-left
+        = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
         - if doc.desc?
           = link_to "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }, class: 'btn btn-xs btn-default' do
             = t('docs.about')
-        = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
+
         - if can? :manage, Doc
           .btn-group
             %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

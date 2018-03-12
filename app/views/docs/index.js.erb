@@ -4,6 +4,10 @@ $('#docs-count').html('<%= @docs.size%>');
   $('.category-info').html('<%= j I18n.t('docs.in_category', category: @cat.title)%>');
   $('.nav-reddevil li').removeClass('active');
   $("#category_<%=@cat.id%>").closest('li').addClass('active');
+<% elsif @nocat %>
+  $('.category-info').html('<%= j I18n.t('docs.no_cats')%>');
+  $('.nav-reddevil li').removeClass('active');
+  $("#categories_hidden").closest('li').addClass('active');
 <% else %>
   $('.category-info').html();
 <% end %>

@@ -18,7 +18,7 @@ class MainController < ApplicationController
 
     @holidays_today    = Holidays.on(now, :ru)
     @holidays_tomorrow = Holidays.on(tomorrow, :ru)
-    @docs = Doc.order('created_at desc').limit(5)
+    @docs = Doc.where(show_last_flag: true).order('created_at desc').limit(5)
   end
 
   def mirror

@@ -224,6 +224,8 @@ ru:
     creating: Создание документа
     editing: Редактирование документа
     in_category: в категории "%{category}"
+    show_inlast: 'Показывать в "Последних документах"'
+    no_cats: без категории
   comments:
     no_more: Не может быть пустым, или больше 2000 символов
     send: Отправить
@@ -426,7 +428,7 @@ ru:
         title: Название
         desc: Описание
         file: Документ
-        category: Категория
+        category_tokens: Категории
       note:
         content: Описание
         status: Статус

@@ -8,5 +8,8 @@
     { multiple: true, size: 10 }
 
   = f.form_group do
+    = f.check_box :show_last_flag, label: t('docs.show_inlast')
+
+  = f.form_group do
     = f.primary
     = link_to t('shared.cancel'), docs_path, class: 'btn btn-default'

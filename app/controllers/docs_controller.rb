@@ -14,6 +14,12 @@ class DocsController < ApplicationController
         @q = Doc.search(params[:q])
         @docs = []
       end
+    elsif params[:no_category]
+      @q = Doc.search(params[:q])
+      docs = @q.result(distinct: true).order(:title)
+      @docs = []
+      docs.map { |d| @docs << d if d.categories.empty? }
+      @nocat = true
     else
       hidden = []
       Category.all.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}

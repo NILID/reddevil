@@ -1,5 +1,5 @@
 class Doc < ActiveRecord::Base
-  attr_accessible :desc, :title, :file, :category_id, :category_tokens
+  attr_accessible :desc, :title, :file, :category_tokens, :show_last_flag
 
   has_many :categoryships, dependent: :destroy
   has_many :categories, through: :categoryships

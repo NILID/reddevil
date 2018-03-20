@@ -1,3 +1,5 @@
+- set_meta_tags title: t('shared.music')
+
 = content_for :sidebar do
   = bootstrap_form_for(@q, url: albums_path, html: { method: :get }) do |f|
     = f.text_field :file_file_name_cont, prepend: content_tag(:span, '', class: 'glyphicon glyphicon-search'), placeholder: t('shared.search'), hide_label: true

@@ -460,7 +460,7 @@ ru:
         patronymic: Отчество
         birth: Дата рождения
         phone: Номер телефона
-        work_phone: Рабочий моб.телефон
+        work_phone: Рабочий моб/тел
         short_number: Доб. номер
       user:
         password: Пароль

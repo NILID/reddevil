@@ -1,7 +1,9 @@
+- set_meta_tags title: t('shared.phonebook')
+
 - model_class = Subscribe
 - count = @subscribes.count
 
-=content_for :sidebar do
+= content_for :sidebar do
 
   = bootstrap_form_for(@q, url: subscribes_path, method: :get) do |f|
     = f.text_field :fullname_cont, placeholder: t('subscribes.search'), hide_label: true

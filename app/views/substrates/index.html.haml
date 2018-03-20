@@ -1,3 +1,10 @@
+- if params[:action] == 'mirrors'
+  - page_title = t('mirrors.title')
+- else
+  - page_title = t('substrates.title')
+
+- set_meta_tags title: page_title
+
 - model_class = Substrate
 .well
   .pull-right
@@ -14,10 +21,7 @@
   .page-header
 
     %h2
-      - if params[:action] == 'mirrors'
-        = t 'mirrors.title'
-      - else
-        = t 'substrates.title'
+      = page_title
       %small
         - if can? :new, Substrate
           = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-sm', style: 'vertical-align:middle' do

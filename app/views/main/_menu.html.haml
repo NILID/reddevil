@@ -52,14 +52,14 @@
                   = link_to messages_path do
                     %i.glyphicon.glyphicon-envelope
                     &nbsp;
-                    = t('message.title')
+                    = t 'message.title'
 
               -if can? :manage, User
                 %li
                   = link_to users_path do
                     %i.glyphicon.glyphicon-user
                     &nbsp;
-                    = t('users.title')
+                    = t 'users.title'
                 %li.divider
 
               -if can? :read, Album
@@ -67,7 +67,7 @@
                   = link_to albums_path do
                     %i.glyphicon.glyphicon-music
                     &nbsp;
-                    =t('shared.music')
+                    = t 'shared.music'
               -if can? :read, Art
                 %li
                   = link_to arts_path do

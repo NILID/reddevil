@@ -1,4 +1,6 @@
--if @messages
+- set_meta_tags title: t('shared.title')
+
+- if @messages
   .row
     .col-md-12
       -@messages.each do |message|
@@ -16,25 +18,24 @@
             = render @bdusers_prevyesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
           %hr
 
-        -if !@bdusers_yesterday.empty?
+        - if !@bdusers_yesterday.empty?
           %h4= t 'shared.birthdays_yesterday'
           - @bdusers_yesterday.keys.sort.each do |u|
             = render @bdusers_yesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
           %hr
 
-        -if !@bdusers_today.empty?
+        - if !@bdusers_today.empty?
           %h4= @bdusers_today.keys.count>1 ? t('shared.birthdays_today') : t('shared.birthday_today')
           - @bdusers_today.keys.sort.each do |u|
             = render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
-          %hr
 
-        -if !@bdusers_tomorrow.empty?
+        - if !@bdusers_tomorrow.empty?
           %h4= t 'shared.birthdays_tomorrow'
           - @bdusers_tomorrow.keys.sort.each do |u|
             = render @bdusers_tomorrow[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
           %hr
 
-        -if !@bdusers_month.empty?
+        - if !@bdusers_month.empty?
           %h4= @bdusers_month.keys.count>1 ? t('shared.birthdays') : t('shared.birthday')
           - @bdusers_month.keys.sort.each do |u|
             = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false

@@ -144,7 +144,7 @@ GEM
       sprockets (> 2, < 4)
       tilt
     libv8 (3.16.14.19)
-    loofah (2.2.0)
+    loofah (2.2.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -312,7 +312,7 @@ GEM
       railties (>= 3.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.7)
+    uglifier (4.1.8)
       execjs (>= 0.3.0, < 3)
     uniform_notifier (1.10.0)
     warden (1.2.7)

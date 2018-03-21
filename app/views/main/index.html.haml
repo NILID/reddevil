@@ -45,14 +45,14 @@
   -if !@holidays_today.empty? || !@holidays_tomorrow.empty?
     .col-md-6
       .birthday-block.well.well-small.ny-block
-        - if !@holidays_today.empty?
+        - unless @holidays_today.empty?
           %h4
             = t 'shared.today'
             %small= Russian.strftime(DateTime.now, '%d %B')
           - @holidays_today.each do |h|
             %p.text-success= h[:name]
           %hr
-        - if !@holidays_tomorrow.empty?
+        - unless @holidays_tomorrow.empty?
           %h4
             = t 'shared.tomorrow'
             %small= Russian.strftime(DateTime.tomorrow, '%d %B')

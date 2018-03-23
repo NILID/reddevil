@@ -7,6 +7,7 @@
         %ul.nav.nav-tabs#member_info
           %li.active= link_to t('member.title'), '#users_info', data: { toggle: 'tab' }
           %li= link_to t('shared.stat'), '#statitics', data: { toggle: 'tab' }
+          %li= link_to t('shared.archive'), '#archive', data: { toggle: 'tab' }
           - if can? :create, Member
             %li= link_to t('shared.add'), new_member_path
       .col-md-4
@@ -19,49 +20,54 @@
               %i.glyphicon.glyphicon-download-alt
               Excel
     .tab-content
-      .tab-pane#users_info.active
-        %table.table.table-striped.ny-block
-          %thead
-            %tr
-              %th
-              %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
-              %th= Member.human_attribute_name(:work_phone)
-              %th= Member.human_attribute_name(:short_number)
-              %th= Member.human_attribute_name(:email)
-              - if can? :manage, Member
-                %th= t '.actions', default: t('helpers.actions')
-          %tbody
-            - @members.each_with_index do |member, index|
-              = content_tag_for(:tr, member) do
-                %td= index+1
-                %td
-                  %span.membername
-                    = member.full_name
-                    - if member.phone? || member.birth?
-                      %span.showinfo.glyphicon.glyphicon-chevron-down
-                  - if member.phone? || member.birth?
-                    .hidden_info
-                      - if member.phone?
-                        %p
-                          %span.glyphicon.glyphicon-phone
-                          = number_to_phone(member.phone, area_code: true)
-                      - if member.birth?
-                        %p
-                          %span.glyphicon.glyphicon-gift
-                          = show_birth member
-                %td
-                  - if member.work_phone?
-                    = number_to_phone(member.work_phone, area_code: true)
-                %td= member.short_number
-                %td
-                  %span.glyphicon.glyphicon-email
-                  = mail_to member.email
-                - if can? :manage, member
+      - %w[users_info archive].each do |tab_name|
+        .tab-pane{id: tab_name, class: (tab_name == 'users_info' ? 'active' : nil) }
+          - if tab_name == 'archive'
+            %p.bg-info
+              .alert.alert-info= t 'member.archive'
+          %table.table.table-striped.ny-block
+            %thead
+              %tr
+                %th
+                %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
+                %th= Member.human_attribute_name(:work_phone)
+                %th= Member.human_attribute_name(:short_number)
+                %th= Member.human_attribute_name(:email)
+                - if can? :manage, Member
+                  %th= t '.actions', default: t('helpers.actions')
+            %tbody
+              - list = (tab_name == 'archive') ? @members_archive : @members_list
+              - list.each_with_index do |member, index|
+                = content_tag_for(:tr, member) do
+                  %td= index+1
                   %td
-                    = link_to t('shared.edit'), edit_member_path(member), class: 'btn btn-default btn-xs'
-                    = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+                    %span.membername
+                      = member.full_name
+                      - if member.phone? || member.birth?
+                        %span.showinfo.glyphicon.glyphicon-chevron-down
+                    - if member.phone? || member.birth?
+                      .hidden_info
+                        - if member.phone?
+                          %p
+                            %span.glyphicon.glyphicon-phone
+                            = number_to_phone(member.phone, area_code: true)
+                        - if member.birth?
+                          %p
+                            %span.glyphicon.glyphicon-gift
+                            = show_birth member
+                  %td
+                    - if member.work_phone?
+                      = number_to_phone(member.work_phone, area_code: true)
+                  %td= member.short_number
+                  %td
+                    %span.glyphicon.glyphicon-email
+                    = mail_to member.email
+                  - if can? :manage, member
+                    %td
+                      = link_to t('shared.edit'), edit_member_path(member), class: 'btn btn-default btn-xs'
+                      = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
-      - unless @members.pluck(:id).empty?
+      - unless @members_list.pluck(:id).empty?
         .tab-pane#statitics
           .stat-ages
             %h3= t 'member.ages'
@@ -75,7 +81,7 @@
                 %span.badge.badge-warning
                   = plural(total / @member_ages.length, 'year')
 
-            - a = Member.order(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
+            - a = @members_list.reorder(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
             = bar_chart a, height: '700px', label: t('member.ages')
 
 
@@ -88,26 +94,26 @@
                 %span.label.label-info
                   = I18n.t("date.standalone_day_names")[day[0].to_i]
                   %span.badge.badge-warning= day[1]
-            = line_chart Member.group_by_day_of_week(:birth, format: "%A").count, label: t('member.birth_count')
+            = line_chart @members_list.group_by_day_of_week(:birth, format: "%A").count, label: t('member.birth_count')
 
           %hr/
 
           .stat-month
             %h3= t 'member.month_stat'
             %p
-              -@members_birth_months.each do |month|
+              - @members_birth_months.each do |month|
                 %span.label.label-info
                   = I18n.t("date.standalone_month_names")[month[0].to_i]
                   %span.badge.badge-warning= month[1]
 
-            = column_chart Member.group_by_month_of_year(:birth, format: "%b").count, xtitle: 'Месяц', ytitle: 'Количество человек', label: t('member.birth_count')
+            = column_chart @members_list.group_by_month_of_year(:birth, format: "%b").count, xtitle: 'Месяц', ytitle: 'Количество человек', label: t('member.birth_count')
 
           %hr/
 
           .stat-names
             %h3= t 'member.name_stat'
             %p
-              - member_count = Member.group(:name).count
+              - member_count = @members_list.group(:name).count
               - member_count.sort_by {|_key, value| value}.reverse.first(3).each do |m|
                 %span.label.label-info
                   = m[0]

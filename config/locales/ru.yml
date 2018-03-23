@@ -2,6 +2,7 @@ ru:
   shared:
     title: Главная
     music: Музыка
+    archive: Архив
     art: Арт
     close: Закрыть
     more: дальше
@@ -182,6 +183,7 @@ ru:
     name_stat: Имена
     fullname: ФИО
     other_text: Примечание
+    archive: Здесь представлен список бывших сотрудников.
   users:
     title: Пользователи
     has_groups: 'Относится к группам:'
@@ -462,6 +464,7 @@ ru:
         phone: Номер телефона
         work_phone: Рабочий моб/тел
         short_number: Доб. номер
+        archive_flag: Архив
       user:
         password: Пароль
         password_confirmation: Повторите пароль

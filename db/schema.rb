@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312052045) do
+ActiveRecord::Schema.define(version: 20180323114737) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -251,12 +251,13 @@ ActiveRecord::Schema.define(version: 20180312052045) do
     t.string   "surname",      limit: 255
     t.string   "patronymic",   limit: 255
     t.date     "birth"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "email",        limit: 255
     t.integer  "phone",        limit: 8
     t.string   "short_number", limit: 255
     t.integer  "work_phone",   limit: 8
+    t.boolean  "archive_flag",             default: false, null: false
   end
 
   create_table "mentions", force: :cascade do |t|

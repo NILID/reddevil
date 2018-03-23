@@ -1,9 +1,12 @@
 class Member < ActiveRecord::Base
   has_many :holidays
 
-  attr_accessible :birth, :name, :patronymic, :surname, :email, :phone, :short_number, :work_phone
+  attr_accessible :birth, :name, :patronymic, :surname, :email, :phone, :short_number, :work_phone, :archive_flag
 
   acts_as_birthday :birth
+
+  scope :shown, -> { where(archive_flag: false) }
+  scope :archive, -> { where(archive_flag: true) }
 
   def full_name
     "#{surname} #{name} #{patronymic}"

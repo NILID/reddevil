@@ -1,4 +1,4 @@
-json.array!(@members) do |member|
+json.array!(@members_list) do |member|
   json.extract! member, :id, :full_name
   json.title member.full_name
   json.tooltip t('member.birthday_of', name: member.petrovich_fullname)

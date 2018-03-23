@@ -8,5 +8,7 @@
   = f.email_field :email
   = f.date_select :birth, include_blank: true, start_year: 1930, end_year: Time.now.year-15
   = f.form_group do
+    = f.check_box :archive_flag
+  = f.form_group do
     = f.primary
     = link_to t('shared.cancel'), members_path, class: 'btn btn-default'

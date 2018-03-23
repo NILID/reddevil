@@ -6,7 +6,7 @@ class MembersController < ApplicationController
     @q = @members.shown.search(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @members_list = @q.result(distinct: true)
-    @members_archive = @members.archive
+    @members_archive = @members.archive.order(:surname)
     @member_ages = []
     @members_list.each {|m| @member_ages << m.age}
 

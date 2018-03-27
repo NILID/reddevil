@@ -29,6 +29,9 @@ class MembersController < ApplicationController
   def new
   end
 
+  def holidays
+  end
+
   def edit
   end
 

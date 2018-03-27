@@ -1,7 +1,9 @@
 class Member < ActiveRecord::Base
-  has_many :holidays
+  has_many :vacations
 
-  attr_accessible :birth, :name, :patronymic, :surname, :email, :phone, :short_number, :work_phone, :archive_flag
+  attr_accessible :birth, :name, :patronymic, :surname, :email, :phone, :short_number, :work_phone, :archive_flag, :vacations_attributes
+
+  accepts_nested_attributes_for :vacations
 
   acts_as_birthday :birth
 

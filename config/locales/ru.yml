@@ -67,6 +67,9 @@ ru:
     already_exist_in_folder: В текущей директории уже существует файл с таким названием.
   deliveries:
     title: Поставка
+  vacations:
+    index: Сейчас в отпуске
+    until: (выходит %{date})
   devise:
     logout: Выйти
     login: Войти
@@ -184,6 +187,7 @@ ru:
     fullname: ФИО
     other_text: Примечание
     archive: Здесь представлен список бывших сотрудников.
+    vacation: Отпуск
   users:
     title: Пользователи
     has_groups: 'Относится к группам:'

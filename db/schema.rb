@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323114737) do
+ActiveRecord::Schema.define(version: 20180327103347) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -180,16 +180,6 @@ ActiveRecord::Schema.define(version: 20180323114737) do
   add_index "forecasts", ["tempuser_id"], name: "index_forecasts_on_tempuser_id", using: :btree
   add_index "forecasts", ["user_id"], name: "index_forecasts_on_user_id", using: :btree
   add_index "forecasts", ["winner_id"], name: "index_forecasts_on_winner_id", using: :btree
-
-  create_table "holidays", force: :cascade do |t|
-    t.integer  "member_id",  limit: 4
-    t.date     "start"
-    t.date     "end"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "holidays", ["member_id"], name: "index_holidays_on_member_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "file_file_name",    limit: 255
@@ -526,6 +516,16 @@ ActiveRecord::Schema.define(version: 20180323114737) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  create_table "vacations", force: :cascade do |t|
+    t.datetime "startdate",            null: false
+    t.datetime "enddate",              null: false
+    t.integer  "member_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "vacations", ["member_id"], name: "index_vacations_on_member_id", using: :btree
+
   create_table "works", force: :cascade do |t|
     t.text     "desc",       limit: 65535
     t.integer  "art_id",     limit: 4
@@ -549,4 +549,5 @@ ActiveRecord::Schema.define(version: 20180323114737) do
   add_foreign_key "categoryships", "categories"
   add_foreign_key "categoryships", "docs"
   add_foreign_key "forecasts", "users"
+  add_foreign_key "vacations", "members"
 end

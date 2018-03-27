@@ -32,7 +32,7 @@ Birthday::Application.routes.draw do
       post :import
       get :favorites
     end
-    member {post :like}
+    member { post :like }
   end
 
   resources :events, only: [:list] do
@@ -40,13 +40,6 @@ Birthday::Application.routes.draw do
       get 'list'
     end
   end
-
-  resources :holidays, only: [:list] do
-    collection do
-      get 'list'
-    end
-  end
-
 
   scope 'sport' do
     resources :rounds do
@@ -131,7 +124,9 @@ Birthday::Application.routes.draw do
   end
 
   resources :members, except: [:show] do
-    resources :holidays, except: [:holidays]
+    member do
+      get :holidays
+    end
   end
 
   get 'calendar' => 'main#calendar'

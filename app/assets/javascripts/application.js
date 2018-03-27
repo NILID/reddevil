@@ -18,6 +18,7 @@
 //= require best_in_place.jquery-ui
 //= require jquery.Jcrop
 //= require readmore
+//= require cocoon
 //= require twitter/bootstrap
 //= require jquery_nested_form
 //= require soundmanager2-nodebug-jsmin

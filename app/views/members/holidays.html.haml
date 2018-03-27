@@ -1,0 +1,8 @@
+= bootstrap_form_for @member, layout: :horizontal do |f|
+  = f.fields_for :vacations do |vacation|
+    = render 'vacation_fields', f: vacation
+  = f.form_group do
+    = link_to_add_association t('vacations.add'), f, :vacations, class: 'btn btn-default'
+  = f.form_group do
+    = f.primary
+    = link_to t('shared.cancel'), members_path, class: 'btn btn-default'

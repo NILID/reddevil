@@ -65,6 +65,7 @@
                   - if can? :manage, member
                     %td
                       = link_to t('shared.edit'), edit_member_path(member), class: 'btn btn-default btn-xs'
+                      = link_to t('member.vacation'), holidays_member_path(member), class: 'btn btn-default btn-xs'
                       = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
       - unless @members_list.pluck(:id).empty?

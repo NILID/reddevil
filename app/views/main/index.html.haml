@@ -59,8 +59,23 @@
           - @holidays_tomorrow.each do |h|
             %p= h[:name]
 
-.row
-  .col-md-12
-    .well.well-small.ny-block
-      %h4= t 'docs.last_docs'
-      %table.table.table-condensed.table-hover= render partial: 'docs/mini_doc', collection: @docs
+- unless @vacations.empty?
+  .row
+    .col-xs-12.col-md-6.col-md-offset-3
+      .well.well-small.ny-block
+        .row
+          .col-xs-2.col-md-3
+            = image_tag 'umbrella.png', class: 'img-responsive'
+          .col-xs-10.col-md-9
+            %h4= t 'vacations.index'
+            - @vacations.each do |v|
+              %p
+                = v.member.full_name
+                #{t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))}
+
+- unless @docs.empty?
+  .row
+    .col-md-12
+      .well.well-small.ny-block
+        %h4= t 'docs.last_docs'
+        %table.table.table-condensed.table-hover= render partial: 'docs/mini_doc', collection: @docs

@@ -1,4 +1,3 @@
-
 /*!
 FullCalendar Scheduler v1.4.0
 Docs & License: http://fullcalendar.io/scheduler/

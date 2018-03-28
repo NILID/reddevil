@@ -20,9 +20,7 @@ class MainController < ApplicationController
 
     @holidays_today    = Holidays.on(now, :ru)
     @holidays_tomorrow = Holidays.on(tomorrow, :ru)
-    # @docs = Doc.where(show_last_flag: true).order('updated_at desc').limit(5)
-    # @docs = Doc.where(show_last_flag: true).group_by_day(:updated_at, last: 10).order(updated_at: :desc)
-    @docs = Doc.where(show_last_flag: true).group_by_day(:updated_at, last: 10).order(updated_at: :desc) + Doc.where(show_last_flag: true).group_by_day(:created_at, last: 10).order(updated_at: :desc)
+    @docs = Doc.where(show_last_flag: true).where('updated_at >=?', now - 10.days).order(updated_at: :desc) + Doc.where(show_last_flag: true).group_by_day(:created_at, last: 10).order(updated_at: :desc)
     @docs.uniq!
   end
 

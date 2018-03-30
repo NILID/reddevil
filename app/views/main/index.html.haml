@@ -68,11 +68,12 @@
             - @vacations.each do |v|
               %p
                 = v.member.full_name
-                #{t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))}
+                = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
 
 - unless @docs.empty?
   .row
-    .col-md-12
+    .col-xs-12
       .well.well-small.ny-block
         %h4= t 'docs.last_docs'
-        %table.table.table-condensed.table-hover= render partial: 'docs/mini_doc', collection: @docs
+        = render partial: 'docs/mini_doc', collection: @docs
+        .clearfix

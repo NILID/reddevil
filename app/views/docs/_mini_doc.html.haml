@@ -1,5 +1,4 @@
 - doc = mini_doc
-= content_tag_for(:tr, doc) do
-  %td.text-muted.nowrap= l doc.updated_at, format: :short
-  %td= link_to doc.title, doc.file.url, target: '_blank'
-
+= content_tag_for(:div, doc, class: 'col-xs-12') do
+  .col-xs-3.col-sm-2.text-muted.nowrap.text-right= l doc.updated_at, format: :short
+  .col-xs-9.col-sm-10= link_to doc.title, doc.file.url, target: '_blank'

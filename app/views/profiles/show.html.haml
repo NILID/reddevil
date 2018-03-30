@@ -10,9 +10,10 @@
         = link_to t('users.to_edit_roles'), edit_roles_user_path(@user)
 
 .row
-  .col-md-2= image_tag @profile.avatar.url(:medium), class: 'thumbnail pull-left'
+  .col-md-3
+    = image_tag @profile.avatar.url(:medium), class: 'thumbnail img-responsive'
 
-  .col-md-10
+  .col-md-9
     %dl.dl-horizontal
       %dt=t 'users.has_groups'
       %dd

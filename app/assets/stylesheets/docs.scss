@@ -13,3 +13,8 @@
 .doc .panel-title {
   font-size: 14px;
 }
+
+.doc-item {
+  & {margin-bottom: 5px}
+  &:hover {background: rgb(225, 225, 225)}
+}

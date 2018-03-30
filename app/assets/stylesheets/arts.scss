@@ -11,8 +11,10 @@
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
   padding-top:14px;
   color: #aaa;
-  font-size: 15px;
-  font-weight:600
+  font: {
+    size: 15px;
+    weight: 600;
+  }
 }
 
 .devilgallery {

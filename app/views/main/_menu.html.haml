@@ -54,7 +54,7 @@
                     &nbsp;
                     = t 'message.title'
 
-              -if can? :manage, User
+              - if can? :manage, User
                 %li
                   = link_to users_path do
                     %i.glyphicon.glyphicon-user
@@ -62,25 +62,25 @@
                     = t 'users.title'
                 %li.divider
 
-              -if can? :read, Album
+              - if can? :read, Album
                 %li
                   = link_to albums_path do
                     %i.glyphicon.glyphicon-music
                     &nbsp;
                     = t 'shared.music'
-              -if can? :read, Art
+              - if can? :read, Art
                 %li
                   = link_to arts_path do
                     %i.glyphicon.glyphicon-picture
                     &nbsp;
                     = t('shared.art')
-              -if can? :read, Round
+              - if can? :read, Round
                 %li
                   = link_to rounds_path do
                     %i.glyphicon.glyphicon-time
                     &nbsp;
                     = t('shared.sport')
-              -if user_signed_in?
+              - if user_signed_in?
                 %li
                   = link_to [current_user, Folder] do
                     %i.glyphicon.glyphicon-hdd

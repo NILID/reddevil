@@ -30,11 +30,10 @@
               %tr
                 %th
                 %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
-                %th= Member.human_attribute_name(:work_phone)
-                %th= Member.human_attribute_name(:short_number)
-                %th= Member.human_attribute_name(:email)
-                - if can? :manage, Member
-                  %th= t '.actions', default: t('helpers.actions')
+                - unless tab_name == 'archive'
+                  %th= Member.human_attribute_name(:work_phone)
+                  %th= Member.human_attribute_name(:short_number)
+                  %th= Member.human_attribute_name(:email)
             %tbody
               - list = (tab_name == 'archive') ? @members_archive : @members_list
               - list.each_with_index do |member, index|
@@ -55,18 +54,23 @@
                           %p
                             %span.glyphicon.glyphicon-gift
                             = show_birth member
-                  %td
-                    - if member.work_phone?
-                      = number_to_phone(member.work_phone, area_code: true)
-                  %td= member.short_number
-                  %td
-                    %span.glyphicon.glyphicon-email
-                    = mail_to member.email
+                  - unless tab_name == 'archive'
+                    %td
+                      - if member.work_phone?
+                        = number_to_phone(member.work_phone, area_code: true)
+                    %td= member.short_number
+                    %td
+                      %span.glyphicon.glyphicon-email
+                      = mail_to member.email
                   - if can? :manage, member
                     %td
-                      = link_to t('shared.edit'), edit_member_path(member), class: 'btn btn-default btn-xs'
-                      = link_to t('member.vacation'), holidays_member_path(member), class: 'btn btn-default btn-xs'
-                      = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+                      .btn-group
+                        %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                          %i.glyphicon.glyphicon-cog
+                        %ul.dropdown-menu
+                          %li= link_to t('shared.edit'), edit_member_path(member)
+                          %li= link_to t('member.vacation'), holidays_member_path(member)
+                          %li= link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }
 
       - unless @members_list.pluck(:id).empty?
         .tab-pane#statitics

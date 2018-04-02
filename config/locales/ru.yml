@@ -312,7 +312,7 @@ ru:
       show: Показать
   activerecord:
     models:
-      member: участник
+      member: сотрудник
       user: пользователь
       comment: сообщение
       profile: профиль

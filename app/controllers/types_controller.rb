@@ -1,6 +1,5 @@
 class TypesController < ApplicationController
-
-  layout "main"
+  layout 'main'
 
   load_and_authorize_resource
 
@@ -19,7 +18,7 @@ class TypesController < ApplicationController
   def create
     respond_to do |format|
       if @type.save
-        format.html { redirect_to @type, notice: 'Type was successfully created.' }
+        format.html { redirect_to @type, notice: t('flash.was_created', item: Type.model_name.human) }
         format.json { render json: @type, status: :created, location: @type }
       else
         format.html { render action: "new" }
@@ -31,7 +30,7 @@ class TypesController < ApplicationController
   def update
     respond_to do |format|
       if @type.update_attributes(params[:type])
-        format.html { redirect_to @type, notice: 'Type was successfully updated.' }
+        format.html { redirect_to @type, notice: t('flash.was_updated', item: Type.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -44,7 +43,7 @@ class TypesController < ApplicationController
     @type.destroy
 
     respond_to do |format|
-      format.html { redirect_to types_url }
+      format.html { redirect_to types_url, notice: t('flash.was_destroyed', item: Type.model_name.human) }
       format.json { head :no_content }
     end
   end

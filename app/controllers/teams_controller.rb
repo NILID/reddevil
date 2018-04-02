@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  layout "main"
+  layout 'main'
 
   load_and_authorize_resource
 
@@ -16,14 +16,13 @@ class TeamsController < ApplicationController
   end
 
   def create
-
    respond_to do |format|
      if @team.save
-         format.html { redirect_to teams_url, notice: 'Team was successfully created.' }
-         format.json { render json: @team, status: :created, location: @team }
-    else
-         format.html { render action: "new" }
-         format.json { render json: @team.errors, status: :unprocessable_entity }
+       format.html { redirect_to teams_url, notice: t('flash.was_created', item: Team.model_name.human) }
+       format.json { render json: @team, status: :created, location: @team }
+     else
+       format.html { render action: "new" }
+       format.json { render json: @team.errors, status: :unprocessable_entity }
      end
     end
   end
@@ -31,7 +30,7 @@ class TeamsController < ApplicationController
   def update
     respond_to do |format|
       if @team.update_attributes(params[:team])
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
+        format.html { redirect_to @team, notice: t('flash.was_updated', item: Team.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -44,7 +43,7 @@ class TeamsController < ApplicationController
     @team.destroy
 
     respond_to do |format|
-      format.html { redirect_to teams_url }
+      format.html { redirect_to teams_url, notice: t('flash.was_destroyed', item: Team.model_name.human) }
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,4 @@
 class ErrorsController < ApplicationController
-
   layout 'main'
 
   def show
@@ -12,5 +11,4 @@ class ErrorsController < ApplicationController
   def status_code
     params[:code] || 500
   end
-
 end

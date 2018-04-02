@@ -41,7 +41,7 @@ class ResultsController < ApplicationController
     @result.total = @result.rebuild_total
     respond_to do |format|
       if @result.save
-        format.html { redirect_to @result, notice: 'Result was successfully created.' }
+        format.html { redirect_to @result, notice: t('flash.was_created', item: Result.model_name.human) }
         format.js
         format.json { render json: @result, status: :created, location: @result }
       else
@@ -55,7 +55,7 @@ class ResultsController < ApplicationController
   def update
     respond_to do |format|
       if @result.update_attributes(params[:result])
-        format.html { redirect_to @result, notice: 'Result was successfully updated.' }
+        format.html { redirect_to @result, notice: t('flash.was_updated', item: Result.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -68,7 +68,7 @@ class ResultsController < ApplicationController
     @result.destroy
 
     respond_to do |format|
-      format.html { redirect_to results_url }
+      format.html { redirect_to results_url, notice: t('flash.was_destroyed', item: Result.model_name.human) }
       format.json { head :no_content }
     end
   end

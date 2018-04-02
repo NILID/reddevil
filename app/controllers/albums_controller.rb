@@ -68,7 +68,7 @@ class AlbumsController < ApplicationController
           params[:songs].each { |song| @album.songs.create(file: song)}
         end
 
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
+        format.html { redirect_to @album, notice: t('flash.was_created', item: Album.model_name.human) }
         format.json { render json: @album, status: :created, location: @album }
       else
         format.html { render action: "new" }
@@ -84,7 +84,7 @@ class AlbumsController < ApplicationController
           params[:songs].each { |song| @album.songs.create(file: song)}
         end
 
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+        format.html { redirect_to @album, notice: t('flash.was_updated', item: Album.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -97,7 +97,7 @@ class AlbumsController < ApplicationController
     @album.destroy
 
     respond_to do |format|
-      format.html { redirect_to albums_url }
+      format.html { redirect_to albums_url, notice: t('flash.was_destroyed', item: Album.model_name.human) }
       format.json { head :no_content }
     end
   end

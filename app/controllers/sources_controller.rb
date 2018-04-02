@@ -16,7 +16,7 @@ class SourcesController < ApplicationController
   def create
     respond_to do |format|
       if @source.save
-        format.html { redirect_to @source, notice: 'Source was successfully created.' }
+        format.html { redirect_to @source, notice: t('flash.was_created', item: Source.model_name.human) }
         format.json { render json: @source, status: :created, location: @source }
       else
         format.html { render action: "new" }
@@ -28,7 +28,7 @@ class SourcesController < ApplicationController
   def update
     respond_to do |format|
       if @source.update_attributes(params[:source])
-        format.html { redirect_to @source, notice: 'Source was successfully updated.' }
+        format.html { redirect_to @source, notice: t('flash.was_updated', item: Source.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -41,7 +41,7 @@ class SourcesController < ApplicationController
     @source.destroy
 
     respond_to do |format|
-      format.html { redirect_to sources_url }
+      format.html { redirect_to sources_url, notice: t('flash.was_destroyed', item: Source.model_name.human) }
       format.json { head :no_content }
     end
   end

@@ -55,7 +55,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to [@year, Purchase], notice: 'Purchase was successfully created.' }
+        format.html { redirect_to [@year, Purchase], notice: t('flash.was_created', item: Purchase.model_name.human) }
         format.json { render json: @purchase, status: :created, location: @purchase }
       else
         format.html { render action: "new" }
@@ -67,7 +67,7 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update_attributes(params[:purchase])
-        format.html { redirect_to [@year, Purchase], notice: 'Purchase was successfully updated.' }
+        format.html { redirect_to [@year, Purchase], notice: t('flash.was_updated', item: Purchase.model_name.human) }
         format.json { respond_with_bip(@purchase) }
         format.js
       else
@@ -82,7 +82,7 @@ class PurchasesController < ApplicationController
     @purchase.destroy
 
     respond_to do |format|
-      format.html { redirect_to [@year, Purchase] }
+      format.html { redirect_to [@year, Purchase], notice: t('flash.was_destroyed', item: Purchase.model_name.human) }
       format.json { head :no_content }
     end
   end

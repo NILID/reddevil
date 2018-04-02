@@ -14,7 +14,7 @@ class WorksController < ApplicationController
     @work.user = current_user
     respond_to do |format|
       if @work.save
-        format.html { redirect_to arts_url, notice: t('work.was_created') }
+        format.html { redirect_to arts_url, notice: t('flash.was_created', item: Work.model_name.human) }
         format.json { render json: @work, status: :created, location: @work }
       else
         format.html { render action: "new" }
@@ -26,7 +26,7 @@ class WorksController < ApplicationController
   def update
     respond_to do |format|
       if @work.update_attributes(params[:work])
-        format.html { redirect_to arts_url, notice: t('work.was_updated') }
+        format.html { redirect_to arts_url, notice: t('flash.was_updated', item: Work.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -39,7 +39,7 @@ class WorksController < ApplicationController
     @work.destroy
 
     respond_to do |format|
-      format.html { redirect_to arts_url }
+      format.html { redirect_to arts_url, notice: t('flash.was_destroyed', item: Work.model_name.human) }
       format.json { head :no_content }
     end
   end

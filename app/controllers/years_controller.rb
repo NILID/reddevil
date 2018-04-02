@@ -16,7 +16,7 @@ class YearsController < ApplicationController
   def create
     respond_to do |format|
       if @year.save
-        format.html { redirect_to [@year, Purchase], notice: 'Year was successfully created.' }
+        format.html { redirect_to [@year, Purchase], notice: t('flash.was_created', item: Year.model_name.human) }
         format.json { render json: @year, status: :created, location: @year }
       else
         format.html { render action: "new" }
@@ -28,7 +28,7 @@ class YearsController < ApplicationController
   def update
     respond_to do |format|
       if @year.update_attributes(params[:year])
-        format.html { redirect_to [@year, Purchase], notice: 'Year was successfully updated.' }
+        format.html { redirect_to [@year, Purchase], notice: t('flash.was_updated', item: Year.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -41,7 +41,7 @@ class YearsController < ApplicationController
     @year.destroy
 
     respond_to do |format|
-      format.html { redirect_to years_url }
+      format.html { redirect_to years_url, notice: t('flash.was_destroyed', item: Year.model_name.human) }
       format.json { head :no_content }
     end
   end

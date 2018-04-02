@@ -19,7 +19,7 @@ class NotesController < ApplicationController
       if @note.save
         Notification.new_note(@note).deliver_now
 
-        format.html { redirect_to notes_url, notice: 'Note was successfully created.' }
+        format.html { redirect_to notes_url, notice: t('flash.was_created', item: Note.model_name.human) }
         format.json { render json: @note, status: :created, location: @note }
       else
         format.html { render action: "new" }
@@ -31,7 +31,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update_attributes(params[:note])
-        format.html { redirect_to notes_url, notice: 'Note was successfully updated.' }
+        format.html { redirect_to notes_url, notice: t('flash.was_updated', item: Note.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -44,7 +44,7 @@ class NotesController < ApplicationController
     @note.destroy
 
     respond_to do |format|
-      format.html { redirect_to notes_url }
+      format.html { redirect_to notes_url, notice: t('flash.was_destroyed', item: Note.model_name.human) }
       format.json { head :no_content }
     end
   end

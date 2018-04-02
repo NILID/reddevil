@@ -17,7 +17,10 @@
 
   %body
     = render 'main/menu'
+
     .container-fluid.main-content
+      .row
+        .col-xs-12= bootstrap_flash
       .row
         .col-md-3
           .row
@@ -33,7 +36,6 @@
                         %span.likees-album-count= plural current_user.likees(Album).count, 'album'
                         %span.likees-count= plural current_user.likees(Song).count, 'song'
         .col-md-9
-          =# bootstrap_flash
           = yield
 
     %footer.container

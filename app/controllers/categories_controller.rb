@@ -16,10 +16,9 @@ class CategoriesController < ApplicationController
   end
 
   def create
-
     respond_to do |format|
       if @category.save
-        format.html { redirect_to categories_url, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_url, notice: t('flash.was_created', item: Category.model_name.human) }
         format.json { render json: @category, status: :created, location: @category }
       else
         format.html { render action: "new" }
@@ -32,7 +31,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to categories_url, notice: 'Category was successfully updated.' }
+        format.html { redirect_to categories_url, notice: t('flash.was_updated', item: Category.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -45,7 +44,7 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to categories_url }
+      format.html { redirect_to categories_url, notice: t('flash.was_destroyed', item: Category.model_name.human) }
       format.json { head :no_content }
     end
   end

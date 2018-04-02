@@ -21,7 +21,7 @@ class EventsController < ApplicationController
   def create
     respond_to do |format|
       if @event.save
-        format.html { redirect_to [@user, @event], notice: 'Event was successfully created.' }
+        format.html { redirect_to [@user, @event], notice: t('flash.was_created', item: Event.model_name.human) }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to [@user, @event], notice: 'Event was successfully updated.' }
+        format.html { redirect_to [@user, @event], notice: t('flash.was_updated', item: Event.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to [@user, Event] }
+      format.html { redirect_to [@user, Event], notice: t('flash.was_destroyed', item: Event.model_name.human) }
       format.json { head :no_content }
     end
   end

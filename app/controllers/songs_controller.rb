@@ -12,7 +12,7 @@ class SongsController < ApplicationController
   def create
     respond_to do |format|
       if @song.save
-        format.html { redirect_to @album, notice: 'Song was successfully created.' }
+        format.html { redirect_to @album, notice: t('flash.was_created', item: Song.model_name.human) }
         format.json { render json: @song, status: :created, location: @song }
       else
         format.html { render action: "new" }
@@ -32,7 +32,7 @@ class SongsController < ApplicationController
     @song.destroy
 
     respond_to do |format|
-      format.html { redirect_to @album }
+      format.html { redirect_to @album, notice: t('flash.was_destroyed', item: Song.model_name.human) }
       format.json { head :no_content }
     end
   end

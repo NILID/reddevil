@@ -38,7 +38,7 @@ class SubscribesController < ApplicationController
   def create
     respond_to do |format|
       if @subscribe.save
-        format.html { redirect_to subscribes_url, notice: 'Subscribe was successfully created.' }
+        format.html { redirect_to subscribes_url, notice: t('flash.was_created', item: Subscribe.model_name.human) }
         format.json { render json: @subscribe, status: :created, location: @subscribe }
       else
         format.html { render action: "new" }
@@ -50,7 +50,7 @@ class SubscribesController < ApplicationController
   def update
     respond_to do |format|
       if @subscribe.update_attributes(params[:subscribe])
-        format.html { redirect_to subscribes_url, notice: 'Subscribe was successfully updated.' }
+        format.html { redirect_to subscribes_url, notice: t('flash.was_updated', item: Subscribe.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -62,7 +62,7 @@ class SubscribesController < ApplicationController
   def destroy
     @subscribe.destroy
     respond_to do |format|
-      format.html { redirect_to subscribes_url }
+      format.html { redirect_to subscribes_url, notice: t('flash.was_destroyed', item: Subscribe.model_name.human) }
       format.json { head :no_content }
     end
   end

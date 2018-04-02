@@ -18,10 +18,10 @@ class DatasetsController < ApplicationController
   end
 
   def create
-    @dataset.user=current_user
+    @dataset.user = current_user
     respond_to do |format|
       if @dataset.save
-        format.html { redirect_to [@user, @folder], notice: 'Dataset was successfully created.' }
+        format.html { redirect_to [@user, @folder], notice: t('flash.was_created', item: Dataset.model_name.human) }
         format.json { render json: @dataset, status: :created, location: @dataset }
       else
         format.html { render action: "new" }
@@ -33,7 +33,7 @@ class DatasetsController < ApplicationController
   def update
     respond_to do |format|
       if @dataset.update_attributes(params[:dataset])
-        format.html { redirect_to [@user, @folder], notice: 'Dataset was successfully updated.' }
+        format.html { redirect_to [@user, @folder], notice: t('flash.was_updated', item: Dataset.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -46,7 +46,7 @@ class DatasetsController < ApplicationController
     @dataset.destroy
 
     respond_to do |format|
-      format.html { redirect_to [@user, @folder] }
+      format.html { redirect_to [@user, @folder], notice: t('flash.was_destroyed', item: Dataset.model_name.human) }
       format.json { head :no_content }
     end
   end

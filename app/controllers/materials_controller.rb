@@ -16,7 +16,7 @@ class MaterialsController < ApplicationController
   def create
     respond_to do |format|
       if @material.save
-        format.html { redirect_to @material, notice: 'Material was successfully created.' }
+        format.html { redirect_to @material, notice: t('flash.was_created', item: Material.model_name.human) }
         format.json { render json: @material, status: :created, location: @material }
       else
         format.html { render action: "new" }
@@ -28,7 +28,7 @@ class MaterialsController < ApplicationController
   def update
     respond_to do |format|
       if @material.update_attributes(params[:material])
-        format.html { redirect_to @material, notice: 'Material was successfully updated.' }
+        format.html { redirect_to @material, notice: t('flash.was_updated', item: Material.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -41,7 +41,7 @@ class MaterialsController < ApplicationController
     @material.destroy
 
     respond_to do |format|
-      format.html { redirect_to materials_url }
+      format.html { redirect_to materials_url, notice: t('flash.was_destroyed', item: Material.model_name.human) }
       format.json { head :no_content }
     end
   end

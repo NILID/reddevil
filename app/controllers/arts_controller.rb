@@ -21,7 +21,7 @@ class ArtsController < ApplicationController
   def create
     respond_to do |format|
       if @art.save
-        format.html { redirect_to arts_url, notice: t('art.was_created') }
+        format.html { redirect_to arts_url, notice: t('flash.was_created', item: Art.model_name.human) }
         format.json { render json: @art, status: :created, location: @art }
       else
         format.html { render action: "new" }
@@ -33,7 +33,7 @@ class ArtsController < ApplicationController
   def update
     respond_to do |format|
       if @art.update_attributes(params[:art])
-        format.html { redirect_to arts_url, notice: t('art.was_updated') }
+        format.html { redirect_to arts_url, notice: t('flash.was_updated', item: Art.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -46,7 +46,7 @@ class ArtsController < ApplicationController
     @art.destroy
 
     respond_to do |format|
-      format.html { redirect_to arts_url }
+      format.html { redirect_to arts_url, notice: t('flash.was_destroyed', item: Art.model_name.human) }
       format.json { head :no_content }
     end
   end

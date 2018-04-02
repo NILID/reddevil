@@ -15,10 +15,9 @@ class MatchesController < ApplicationController
   end
 
   def create
-
     respond_to do |format|
       if @match.save
-        format.html { redirect_to [@round, @match], notice: 'Match was successfully created.' }
+        format.html { redirect_to [@round, @match], notice: t('flash.was_created', item: Match.model_name.human) }
         format.json { render json: @match, status: :created, location: @match }
       else
         format.html { render action: "new" }
@@ -30,7 +29,7 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update_attributes(params[:match])
-        format.html { redirect_to [@round, @match], notice: 'Match was successfully updated.' }
+        format.html { redirect_to [@round, @match], notice: t('flash.was_updated', item: Match.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -40,11 +39,10 @@ class MatchesController < ApplicationController
   end
 
   def destroy
-    @match = Match.find(params[:id])
     @match.destroy
 
     respond_to do |format|
-      format.html { redirect_to [@round, Match] }
+      format.html { redirect_to [@round, Match], notice: t('flash.was_destroyed', item: Match.model_name.human) }
       format.json { head :no_content }
     end
   end

@@ -17,7 +17,7 @@ class ColumnsController < ApplicationController
   def create
     respond_to do |format|
       if @column.save
-        format.html { redirect_to [@year, @column], notice: 'Column was successfully created.' }
+        format.html { redirect_to [@year, @column], notice: t('flash.was_created', item: Column.model_name.human) }
         format.json { render json: @column, status: :created, location: @column }
       else
         format.html { render action: "new" }
@@ -29,7 +29,7 @@ class ColumnsController < ApplicationController
   def update
     respond_to do |format|
       if @column.update_attributes(params[:column])
-        format.html { redirect_to [@year, @column], notice: 'Column was successfully updated.' }
+        format.html { redirect_to [@year, @column], notice: t('flash.was_updated', item: Column.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -42,7 +42,7 @@ class ColumnsController < ApplicationController
     @column.destroy
 
     respond_to do |format|
-      format.html { redirect_to [@year, Column] }
+      format.html { redirect_to [@year, Column], notice: t('flash.was_destroyed', item: Column.model_name.human) }
       format.json { head :no_content }
     end
   end

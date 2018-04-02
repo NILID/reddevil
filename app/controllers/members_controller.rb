@@ -38,7 +38,7 @@ class MembersController < ApplicationController
   def create
     respond_to do |format|
       if @member.save
-        format.html { redirect_to members_url, notice: 'Member was successfully created.' }
+        format.html { redirect_to members_url, notice: t('flash.was_created', item: Member.model_name.human) }
         format.json { render json: @member, status: :created, location: @member }
       else
         format.html { render action: "new" }
@@ -50,7 +50,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update_attributes(params[:member])
-        format.html { redirect_to members_url, notice: 'Member was successfully updated.' }
+        format.html { redirect_to members_url, notice: t('flash.was_updated', item: Member.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -63,7 +63,7 @@ class MembersController < ApplicationController
     @member.destroy
 
     respond_to do |format|
-      format.html { redirect_to members_url }
+      format.html { redirect_to members_url, notice: t('flash.was_destroyed', item: Member.model_name.human) }
       format.json { head :no_content }
     end
   end

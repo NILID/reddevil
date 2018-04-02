@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
   def create
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to @message, notice: t('flash.was_created', item: Message.model_name.human) }
         format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render action: "new" }
@@ -29,7 +29,7 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update_attributes(params[:message])
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to @message, notice: t('flash.was_updated', item: Message.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -42,7 +42,7 @@ class MessagesController < ApplicationController
     @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to messages_url }
+      format.html { redirect_to messages_url, notice: t('flash.was_destroyed', item: Message.model_name.human) }
       format.json { head :no_content }
     end
   end

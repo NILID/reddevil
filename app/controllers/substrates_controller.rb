@@ -67,7 +67,7 @@ class SubstratesController < ApplicationController
       if @substrate.save
         url = @substrate.category == 'mirror' ? mirrors_substrates_url : substrates_url
 
-        format.html { redirect_to url, notice: t("#{@substrate.category}s.was_created") }
+        format.html { redirect_to url, notice: t('flash.was_created', item: Substrate.model_name.human) }
         format.json { render json: @substrate, status: :created, location: @substrate }
       else
         format.html { render action: 'new' }
@@ -82,7 +82,7 @@ class SubstratesController < ApplicationController
       if @substrate.update_attributes(params[:substrate])
         url = @substrate.category == 'mirror' ? mirrors_substrates_url : substrates_url
 
-        format.html { redirect_to url, notice: t("#{@substrate.category}s.was_updated") }
+        format.html { redirect_to url, notice: t('flash.was_updated', item: Substrate.model_name.human) }
         format.json { render json: @substrate }
         format.js
       else
@@ -99,7 +99,7 @@ class SubstratesController < ApplicationController
 
     respond_to do |format|
       url = @substrate.category == 'mirror' ? mirrors_substrates_url : substrates_url
-      format.html { redirect_to url }
+      format.html { redirect_to url, notice: t('flash.was_destroyed', item: Substrate.model_name.human) }
       format.json { head :no_content }
     end
   end

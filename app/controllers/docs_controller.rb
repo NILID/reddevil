@@ -44,7 +44,7 @@ class DocsController < ApplicationController
   def create
     respond_to do |format|
       if @doc.save
-        format.html { redirect_to docs_url, notice: 'Doc was successfully created.' }
+        format.html { redirect_to docs_url, notice: t('flash.was_created', item: Doc.model_name.human) }
         format.json { render json: @doc, status: :created, location: @doc }
       else
         format.html { render action: "new" }
@@ -56,7 +56,7 @@ class DocsController < ApplicationController
   def update
     respond_to do |format|
       if @doc.update_attributes(params[:doc])
-        format.html { redirect_to docs_url, notice: 'Doc was successfully updated.' }
+        format.html { redirect_to docs_url, notice: t('flash.was_updated', item: Doc.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -69,7 +69,7 @@ class DocsController < ApplicationController
     @doc.destroy
 
     respond_to do |format|
-      format.html { redirect_to docs_url }
+      format.html { redirect_to docs_url, notice: t('flash.was_destroyed', item: Doc.model_name.human) }
       format.json { head :no_content }
     end
   end

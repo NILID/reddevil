@@ -124,6 +124,10 @@ Birthday::Application.routes.draw do
   end
 
   resources :members, except: [:show] do
+    collection do
+      get :archive
+      get :stat
+    end
     member do
       get :holidays
     end

@@ -1,2 +1,2 @@
 $ ->
-  $('.nav-tabs a:first').tab('show');
+  $('.song-tabs a:first').tab('show');

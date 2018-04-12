@@ -5,25 +5,35 @@ class MembersController < ApplicationController
   def index
     @q = @members.shown.search(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
-    @members_list = @q.result(distinct: true)
-    @members_archive = @members.archive.order(:surname)
-    @member_ages = []
-    @members_list.each {|m| @member_ages << m.age}
+    @members = @q.result(distinct: true)
 
-    members_birth_months=[]
-    @members_list.each {|m| members_birth_months << m.birth.strftime("%m")}
-    @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
-
-    members_birth_days=[]
-    @members_list.each {|m| members_birth_days << m.birth.strftime("%w")}
-    @members_birth_days = (
-    members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
     respond_to do |format|
       format.html
       format.json
-      format.xls{ send_data @members_list.to_xls }
+      format.xls{ send_data @members.to_xls }
       format.pdf{ render pdf: 'Members' }
     end
+  end
+
+  def stat
+    @member_ages = []
+    @members.each {|m| @member_ages << m.age}
+
+    members_birth_months=[]
+    @members.each {|m| members_birth_months << m.birth.strftime("%m")}
+    @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
+
+    members_birth_days=[]
+    @members.each {|m| members_birth_days << m.birth.strftime("%w")}
+    @members_birth_days = (
+    members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
+
+  end
+
+  def archive
+    @q = @members.archive.search(params[:q])
+    @q.sorts = 'surname' if @q.sorts.empty?
+    @members = @q.result(distinct: true)
   end
 
   def new

@@ -1,0 +1,50 @@
+.tab-content
+  .tab-pane.active
+    - if params[:action] == 'archive'
+      %p.bg-info
+        .alert.alert-info= t 'member.archive'
+    %table.table.table-striped.ny-block
+      %thead
+        %tr
+          %th
+          %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
+          - unless params[:action] == 'archive'
+            %th= Member.human_attribute_name(:work_phone)
+            %th= Member.human_attribute_name(:short_number)
+            %th= Member.human_attribute_name(:email)
+      %tbody
+        - members.each_with_index do |member, index|
+          = content_tag_for(:tr, member) do
+            %td= index+1
+            %td
+              %span.membername
+                = member.full_name
+                - if member.phone? || member.birth?
+                  %span.showinfo.glyphicon.glyphicon-chevron-down
+              - if member.phone? || member.birth?
+                .hidden_info
+                  - if member.phone?
+                    %p
+                      %span.glyphicon.glyphicon-phone
+                      = number_to_phone(member.phone, area_code: true)
+                  - if member.birth?
+                    %p
+                      %span.glyphicon.glyphicon-gift
+                      = show_birth member
+            - unless params[:action] == 'archive'
+              %td
+                - if member.work_phone?
+                  = number_to_phone(member.work_phone, area_code: true)
+              %td= member.short_number
+              %td
+                %span.glyphicon.glyphicon-email
+                = mail_to member.email
+            - if can? :manage, member
+              %td
+                .btn-group
+                  %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                    %i.glyphicon.glyphicon-cog
+                  %ul.dropdown-menu
+                    %li= link_to t('shared.edit'), edit_member_path(member)
+                    %li= link_to t('member.vacation'), holidays_member_path(member)
+                    %li= link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }

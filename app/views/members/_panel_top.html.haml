@@ -1,0 +1,17 @@
+.row
+  .col-md-8
+    %ul.nav.nav-tabs#member_info
+      %li{ class: (params[:action] == 'index' ? 'active' : nil) }= link_to t('member.title'), members_path
+      %li{ class: params[:action] == 'stat' ? 'active' : nil }= link_to t('shared.stat'), stat_members_path
+      %li{ class: params[:action] == 'archive' ? 'active' : nil }= link_to t('shared.archive'), archive_members_path
+      - if can? :create, Member
+        %li= link_to t('shared.add'), new_member_path
+  .col-md-4
+    .pull-right
+      .btn-group
+        = link_to members_path(format: 'pdf'), class: 'btn btn-default', target: '_blank' do
+          %i.glyphicon.glyphicon-download-alt
+          PDF
+        = link_to members_path(format: 'xls'), class: 'btn btn-default' do
+          %i.glyphicon.glyphicon-download-alt
+          Excel

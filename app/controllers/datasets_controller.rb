@@ -4,7 +4,6 @@ class DatasetsController < ApplicationController
   load_and_authorize_resource :folder
   load_and_authorize_resource :dataset, through: :folder
 
-
   def index
   end
 

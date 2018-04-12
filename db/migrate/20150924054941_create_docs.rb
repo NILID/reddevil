@@ -4,6 +4,7 @@ class CreateDocs < ActiveRecord::Migration
       t.string :title
       t.text :desc
       t.attachment :file
+      t.boolean :show_last_flag, default: true
 
       t.timestamps
     end

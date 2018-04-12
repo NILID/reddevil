@@ -7,9 +7,14 @@ class CreateSubstrates < ActiveRecord::Migration
       t.string :state
       t.references :user
       t.text :desc
+      t.string :theme
+      t.integer :place
+      t.string :category, null: false
+      t.integer :substrate_id, default: nil
 
       t.timestamps
     end
+    add_index :substrates, :substrate_id
     add_index :substrates, :user_id
   end
 end

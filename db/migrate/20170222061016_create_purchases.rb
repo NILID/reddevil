@@ -29,6 +29,10 @@ class CreatePurchases < ActiveRecord::Migration
       t.date :proxy, default: nil
       t.date :delivery, default: nil
       t.references :year
+      t.string :status
+      t.string :status_color
+
+      t.timestamps
     end
     add_index :purchases, :user_id
     add_index :purchases, :year_id

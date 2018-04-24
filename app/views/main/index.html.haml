@@ -8,9 +8,9 @@
           %h4= message.title
           %p= simple_format message.content
 
-.row
+.row.masonry(data-columns='1')
   - if !@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?
-    .col-md-6
+    %div
       .birthday-block.well.well-small.ny-block
         - if !@bdusers_prevyesterday.empty?
           %h4= t 'shared.birthdays_prevyesterday'
@@ -41,7 +41,7 @@
             = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
 
   - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
-    .col-md-6
+    %div
       .birthday-block.well.well-small.ny-block
         - unless @holidays_today.empty?
           %h4
@@ -58,7 +58,7 @@
             %p= h[:name]
 
   - unless @vacations.empty?
-    .col-md-6
+    %div
       .well.well-small.ny-block
         .row
           .col-xs-2.col-md-3

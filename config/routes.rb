@@ -44,7 +44,11 @@ Birthday::Application.routes.draw do
   scope 'sport' do
     resources :rounds do
       member {get :download}
-      resources :matches
+      resources :matches do
+        member do
+          get :get_results
+        end
+      end
     end
     resources :users do
       resources :forecasts, except: [:index, :show]

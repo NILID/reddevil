@@ -14,6 +14,12 @@ class MatchesController < ApplicationController
   def edit
   end
 
+  def get_results
+    @results = (Match.where(team1_id: [@match.team1, @match.team2], team2_id: [@match.team1, @match.team2])
+                    .joins(:round)
+                    .where(rounds: {type_id: @round.type_id}) - [@match])
+  end
+
   def create
     respond_to do |format|
       if @match.save

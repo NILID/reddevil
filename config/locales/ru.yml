@@ -205,6 +205,8 @@ ru:
     penalty_short: П
     bullit: буллиты
     bullit_short: Б
+    old_results: Результаты прошлых встреч
+    your_old_result: Ваш прогноз
   albums:
     title: Альбомы
     add: Добавить альбом

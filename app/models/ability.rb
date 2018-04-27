@@ -85,6 +85,7 @@ class Ability
 
     if user.has_group? :lab193
       can [:manage, :read, :download], [Song, Album]
+      can [:get_results], Match
       can [:read], [Art, Work, Round]
       can :like, Song
       can [:favorites, :list], Album

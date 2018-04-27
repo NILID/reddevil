@@ -13,6 +13,8 @@
         %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : nil} #{match.team2.title}
       .team-goal
         #{match.team2goal || '-'}
+
+
   %td.match-ending(style="width:4px;")
     - if match.ending != 'basic'
       - if match.team1 != match.winner
@@ -72,3 +74,10 @@
         %div.tip
           %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
           .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
+  - else
+    %td
+      - results = (Match.where(team1_id: [match.team1, match.team2], team2_id: [match.team1, match.team2]).joins(:round).where(rounds: {type_id: @round.type_id}).pluck(:id) - [match.id]).count
+      - if results > 0
+        = link_to get_results_round_match_path(@round, match), data: {target: "#dialog_match_#{match.id}", toggle: 'modal'}, class: 'modal-link btn btn-success btn-xs', remote: true do
+          %span.glyphicon.glyphicon-info-sign
+        .modal.fade(tabIndex='-1' role='dialog' id="dialog_match_#{match.id}")

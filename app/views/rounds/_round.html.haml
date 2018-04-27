@@ -1,0 +1,29 @@
+.panel{ class: round.deadline > DateTime.now ? 'panel-info' : 'panel-default' }
+  .panel-heading
+    = link_to round.title, round
+    - if can? :manage, round
+      .btn-group.pull-right
+        %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+          %i.glyphicon.glyphicon-cog
+        %ul.dropdown-menu
+          %li
+            = link_to edit_round_path(round) do
+              %i.glyphicon.glyphicon-pencil
+              = t 'shared.edit'
+          %li
+            = link_to round_path(round), method: :delete, data: { confirm: t('shared.sure') } do
+              %i.glyphicon.glyphicon-trash
+              = t 'shared.del'
+
+  .panel-body
+    %p= round.content
+    %p.text-muted
+      %span= plural round.matches.count, 'match'
+      &#149;
+      %span= plural round.forecasts.count, 'forecast'
+      &#149;
+      %span= plural round.forecasts.pluck(:user_id).uniq.count, 'user'
+      &#149;
+      %span
+        = t 'rounds.deadline'
+        = deadline(round.deadline)

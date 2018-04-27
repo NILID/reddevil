@@ -4,6 +4,7 @@ class TeamsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @teams = @teams.order(:title).includes(:type)
   end
 
   def show

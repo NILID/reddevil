@@ -7,10 +7,7 @@
       .row
         .col-xs-4
           .label.label-primary
-            - if @round.deadline > DateTime.now
-              = t 'rounds.deadline', date: deadline(@round.deadline)
-            - else
-              = t 'rounds.deadline_off'
+            = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
 
         .col-xs-8
           .pull-right
@@ -74,7 +71,8 @@
               - else
                 .badge.badge-success 0
 
-          %th= t 'shared.mid'
+          - if @round.check_finish?
+            %th= t 'shared.mid'
         %tbody
           - if @round.allow_empty?
             - hidden_matches = @round_matches.where('matches.desc is null or matches.desc <> ?', '')

@@ -16,7 +16,7 @@ class Round < ActiveRecord::Base
     "#{id}-#{title.parameterize}"
   end
 
-  def finish
+  def check_finish?
     deadline < DateTime.now
   end
 

@@ -27,7 +27,7 @@ class Ability
 
       cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate, Year, Message, Type]
       can [:favorites], Subscribe
-      cannot :download, Round, finish: false
+      cannot :download, Round, check_finish?: false
     end
 
     ################# MODERATOR USER
@@ -56,7 +56,7 @@ class Ability
       end
       can [:make_role, :edit_roles], User
       cannot :read, [Art, Work, Song, Album, Round, Forecast]
-      cannot :download, Round, finish: false
+      cannot :download, Round, check_finish?: false
       can :remote_show, Substrate
     end
 

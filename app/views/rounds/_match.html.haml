@@ -2,25 +2,25 @@
   %td.team-commands
     .team
       .team-name
-        = image_tag match.team1.flag(:thumb), width: '20px'
+        = image_tag match.team1.flag(:thumb)
         %span{style: (match.team1 == match.check_win) ? 'font-weight:bold' : nil} #{match.team1.title}
       .team-goal
         #{match.team1goal || '-'}
     %br/
     .team
       .team-name
-        = image_tag match.team2.flag(:thumb), width: '20px'
+        = image_tag match.team2.flag(:thumb)
         %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : nil} #{match.team2.title}
       .team-goal
         #{match.team2goal || '-'}
   %td.match-ending(style="width:4px;")
     - if match.ending != 'basic'
-      -if match.team1 != match.winner
+      - if match.team1 != match.winner
         %br/
       %span.tip
         - if match.ending == 'penalty'
           = t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
-          .tip-text=t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+          .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
         - elsif match.ending == 'overtime'
           = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
           .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
@@ -42,7 +42,7 @@
                 %span.tip
                   - if f.ending == 'penalty'
                     %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
-                    .tip-text=t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+                    .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
                   - elsif f.ending == 'overtime'
                     %span.ending= t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
                     .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
@@ -53,7 +53,7 @@
                 %span.tip
                   - if f.ending == 'penalty'
                     %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
-                    .tip-text=t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+                    .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
                   - elsif f.ending == 'overtime'
                     %span.ending= t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
                     .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
@@ -65,13 +65,10 @@
           - if can? :new, user => Forecast
             = link_to new_user_forecast_path(user, match_id: match), class: 'btn btn-primary btn-xs' do
               %span.glyphicon.glyphicon-plus{ title: t('forecasts.add') }
-  %td.middle
-    - f = Forecast.where(match_id: match)
-    - unless f.empty?
-      - if @round.deadline < DateTime.now
+  - if @round.check_finish?
+    %td.middle
+      - f = Forecast.where(match_id: match)
+      - unless f.empty?
         %div.tip
           %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
           .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
-      - else
-        X : X
-  %td

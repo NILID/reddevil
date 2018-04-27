@@ -3,9 +3,13 @@
   .team{clear:both;}
   .team-name {
     float:left;
-    img {border: 1px solid #999}
+    img {
+      border: 1px solid #999;
+      width: 20px;
+    }
     line-height:30px;
   }
   .team-goal {float:right;font-weight:600;}
-  .team-name,.team-goal {line-height:25px}
+  .team-name,
+  .team-goal {line-height:25px}
 }

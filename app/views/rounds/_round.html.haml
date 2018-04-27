@@ -1,4 +1,6 @@
-.panel{ class: round.deadline > DateTime.now ? 'panel-info' : 'panel-default' }
+- check_deadline = round.deadline > DateTime.now
+
+.panel{ class: check_deadline ? 'panel-info' : 'panel-default' }
   .panel-heading
     = link_to round.title, round
     - if can? :manage, round
@@ -25,5 +27,7 @@
       %span= plural round.forecasts.pluck(:user_id).uniq.count, 'user'
       &#149;
       %span
-        = t 'rounds.deadline'
-        = deadline(round.deadline)
+        - if check_deadline
+          = t 'rounds.deadline', date: deadline(round.deadline)
+        - else
+          = t 'rounds.deadline_off'

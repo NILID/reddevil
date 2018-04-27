@@ -37,9 +37,9 @@
               %td= user_total_result
 
   .col-md-7
-    - if can? :manage, Round
-      %small= link_to t('rounds.add'), new_round_path, class: 'btn btn-default'
-    - if can? :manage, Team
-      %small= link_to t('teams.add'), new_team_path, class: 'btn btn-default'
+    - if (can? :manage, Round) && (can? :manage, Team)
+      %p
+        %small= link_to t('rounds.add'), new_round_path, class: 'btn btn-default'
+        %small= link_to t('teams.add'), new_team_path, class: 'btn btn-default'
 
     = render @rounds

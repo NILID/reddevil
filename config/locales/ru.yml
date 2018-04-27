@@ -239,7 +239,8 @@ ru:
     select_team: Выбрать команду
   rounds:
     add: Добавить раунд
-    deadline: "Дэдлайн:"
+    deadline: "Дэдлайн: %{date}"
+    deadline_off: Приём заявок завершен.
     download: Скачать список прогнозов
     final: Финал
     final_third: 3 место
@@ -271,8 +272,8 @@ ru:
     new_note: Новая заметка по работе сайта
   forecasts:
     count_tip: всего прогнозов
-    add: cоздать
-    edit: изменить
+    add: cоздать прогноз
+    edit: изменить прогноз
     creating: Создание прогноза
     editing: Редактирование прогноза
     already_voted: Вы уже проголосовали

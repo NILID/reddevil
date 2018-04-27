@@ -1,92 +1,100 @@
-.page-header
-  %h3
-    = @round.title
-    - if can? :manage, @round
-      %small
-        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn btn-default'
-        = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
-        = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-default' do
-          %i.glyphicon.glyphicon-refresh
-          =t('results.rebuild')
+.row
+  .col-xs-12
+    %h3
+      = @round.title
+  .col-xs-12
+    .well.well-sm
+      .row
+        .col-xs-4
+          .label.label-primary
+            - if @round.deadline > DateTime.now
+              = t 'rounds.deadline', date: deadline(@round.deadline)
+            - else
+              = t 'rounds.deadline_off'
 
-    .badge.badge-info
-      = t 'rounds.deadline'
-      = deadline(@round.deadline)
+        .col-xs-8
+          .pull-right
+            %p
+              - if can? :download, @round
+                = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-default btn-sm', target: '_blank' do
+                  = t 'rounds.download'
+                  %i.glyphicon.glyphicon-download-alt
+                  PDF
 
-%p= @round.content
+              - if can? :manage, @round
+                = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-default btn-sm' do
+                  %i.glyphicon.glyphicon-refresh
+                  = t 'results.rebuild'
 
-- if can? :download, @round
-  = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-default', target: '_blank' do
-    = t 'rounds.download'
-    %i.glyphicon.glyphicon-download-alt
-    PDF
+                = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-default btn-sm'
+                = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'
 
-%table.table.table-condensed.rounds
-  %thead
-    %th
-    %th
-    - @users.each do |user|
-      %th.results(style="text-align:center;font-weight:100;")
-        %p
-          = link_to [user, :profile] do
-            = user.profile.surname || user.email.split('@').first
+      %table.table.table-condensed.rounds
+        %thead
+          %th
+          %th
+          - @users.each do |user|
+            %th.results(style="text-align:center;font-weight:100;")
+              %p
+                = link_to [user, :profile] do
+                  = user.profile.surname || user.email.split('@').first
 
-        - result = user.results.where(round_id: @round).first
-        - if result
-          .tip
-            .badge.badge-success= result.total
-            - if result.total > 0
-              .tip-text
-                - a,b,c,d = 0, 0, 0, 0
-                - result.matches.each do |match|
-                  - if match.has_goal?
-                    - forecast=user.forecasts.where(match_id: match.id).last
-                    - if forecast
-                      - a+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal)
-                      - b+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
-                      - c+=1 if (match.check_win == forecast.check_winner)
-                      - d+=1 if (match.ending == forecast.ending)
-                %dl(class='dl-horizontal')
-                  -if a > 0
-                    %p
-                      %span.badge.badge-success + #{a}
-                      = t 'results.true_match'
-                  -if b > 0
-                    %p
-                      %span.badge.badge-success + #{b}
-                      = t 'results.true_diff'
-                  -if c > 0
-                    %p
-                      %span.badge.badge-success + #{c}
-                      = t 'results.true_winner'
-                  -if d > 0
-                    %p
-                      %span.badge.badge-success + #{d}
-                      = t 'results.true_final_end'
-        -else
-          .badge.badge-success 0
+              - result = user.results.where(round_id: @round).first
+              - if result
+                .tip
+                  .badge.badge-success= result.total
+                  - if result.total > 0
+                    .tip-text
+                      - a,b,c,d = 0, 0, 0, 0
+                      - result.matches.each do |match|
+                        - if match.has_goal?
+                          - forecast=user.forecasts.where(match_id: match.id).last
+                          - if forecast
+                            - a+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal)
+                            - b+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
+                            - c+=1 if (match.check_win == forecast.check_winner)
+                            - d+=1 if (match.ending == forecast.ending)
+                      %dl.dl-horizontal
+                        - if a > 0
+                          %p
+                            %span.badge.badge-success + #{a}
+                            = t 'results.true_match'
+                        - if b > 0
+                          %p
+                            %span.badge.badge-success + #{b}
+                            = t 'results.true_diff'
+                        - if c > 0
+                          %p
+                            %span.badge.badge-success + #{c}
+                            = t 'results.true_winner'
+                        - if d > 0
+                          %p
+                            %span.badge.badge-success + #{d}
+                            = t 'results.true_final_end'
+              - else
+                .badge.badge-success 0
 
-    %th=t 'shared.mid'
-  %tbody
-    - if @round.allow_empty?
-      - hidden_matches = @round_matches.where('matches.desc is null or matches.desc <> ?', '')
-      - matches = @round_matches - hidden_matches
-      - teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_winner}.reduce(:merge) })
-      - miss_teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_second}.reduce(:merge) })
-      = render partial: 'match', collection: (@round_matches - hidden_matches)
-      %tr
-        %td(colspan=16)
-          %h4= t 'rounds.final'
-      -# hidden_matches.where('team1_id = ? AND team2_id = ?', teams.first.id, teams.last.id).where(desc: 'final').each do |match|
-      - hidden_matches.where(desc: 'final').each do |match|
-        = render partial: 'match', locals: {match: match}
-      %tr
-        %td(colspan=16)
-          %h4= t 'rounds.final_third'
-      -# hidden_matches.where('team1_id = ? AND team2_id = ?', miss_teams.first.id, miss_teams.last.id).where(desc: '3final').each do |match|
-      - hidden_matches.where(desc: '3final').each do |match|
-        = render partial: 'match', locals: {match: match}
-    - else
-      = render partial: 'match', collection: @round_matches
+          %th= t 'shared.mid'
+        %tbody
+          - if @round.allow_empty?
+            - hidden_matches = @round_matches.where('matches.desc is null or matches.desc <> ?', '')
+            - matches = @round_matches - hidden_matches
+            - teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_winner}.reduce(:merge) })
+            - miss_teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_second}.reduce(:merge) })
+            = render partial: 'match', collection: (@round_matches - hidden_matches)
+            %tr
+              %td(colspan=16)
+                %h4= t 'rounds.final'
+            -# hidden_matches.where('team1_id = ? AND team2_id = ?', teams.first.id, teams.last.id).where(desc: 'final').each do |match|
+            - hidden_matches.where(desc: 'final').each do |match|
+              = render partial: 'match', locals: {match: match}
+            %tr
+              %td(colspan=16)
+                %h4= t 'rounds.final_third'
+            -# hidden_matches.where('team1_id = ? AND team2_id = ?', miss_teams.first.id, miss_teams.last.id).where(desc: '3final').each do |match|
+            - hidden_matches.where(desc: '3final').each do |match|
+              = render partial: 'match', locals: {match: match}
+          - else
+            = render partial: 'match', collection: @round_matches
 
-= link_to t('shared.back'), rounds_path, class: 'btn btn-default'
+      = link_to t('shared.back'), rounds_path, class: 'btn btn-default'

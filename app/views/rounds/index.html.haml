@@ -10,12 +10,13 @@
             %td
             %td
               = link_to rounds_path(sort: 'current') do
-                ОИ 2018
+                ЧМХ 2018
                 - if params[:sort] == 'current' || !params[:sort]
                   %i.glyphicon.glyphicon-chevron-down
             %td
               = link_to rounds_path(sort: 'ratio') do
-                Kf
+                К
+                %sub>< эф
                 - if params[:sort] == 'ratio'
                   %i.glyphicon.glyphicon-chevron-down
             %td
@@ -24,17 +25,31 @@
                 - if params[:sort] == 'total'
                   %i.glyphicon.glyphicon-chevron-down
         - @users.each do |user, round_result|
-          - user_forecasts_count = user.forecasts.count
-          - user_total_result = user.profile.total_result
-          - matches_count = Match.count
-          - if user_forecasts_count > 0
+          - user_ratio = user.ratio(@match_finished)
+          - if user_ratio[:forecasts_count] > 0
             %tr
               %td= user.profile.surname || user.email
               %td= round_result
               %td
-                = (user_total_result.to_f / user_forecasts_count.to_f).round(3)
-                %span.text-muted.has-tooltip{ data: {toggle: 'tooltip', title: t('forecasts.count_tip')} }= user_forecasts_count
-              %td= user_total_result
+                = user_ratio[:ratio_count]
+                %span.text-muted.has-tooltip{ data: {toggle: 'tooltip', title: t('forecasts.count_tip')} }= user_ratio[:forecasts_count]
+              %td= user.profile.total_result
+
+    .well.well-sm
+      %h3= t 'shared.stat'
+      %table.table.table-hover.table-condensed
+        %tr
+          %td= t 'matches.count'
+          %td= @matches.size
+        %tr
+          %td= t 'matches.finished'
+          %td= @match_finished.size
+        %tr
+          %td= t 'forecasts.count_users'
+          %td= @forecasts.size
+        %tr
+          %td= t 'forecasts.count_users_finished'
+          %td= @forecasts_finished.size
 
   .col-md-7
     - if (can? :manage, Round) && (can? :manage, Team)

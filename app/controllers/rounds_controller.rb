@@ -7,15 +7,21 @@ class RoundsController < ApplicationController
 
   def index
     @rounds = @rounds.order('created_at desc')
+    @rounds_finished = @rounds.finished.pluck(:id)
+    @forecasts = Forecast.all
+    @matches = Match.all
+    @match_finished = @matches.where(round_id: @rounds_finished).pluck(:id)
+    @forecasts_finished = @forecasts.where(match_id: @match_finished).pluck(:id)
     # @users = User.order('total_result desc')
-    tag = 'ои2018'
+    #tag = 'ои2018'
     #tag = 'чмх2017'
+    tag = 'чмх2018'
     @users = (User.where(sport_flag: true).includes(:profile).map { |user| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) }.sum } }).reduce(:merge)
     if @users
       @users = if params[:sort] == 'total'
         Hash[@users.sort_by{|k, v| k.profile.total_result}.reverse]
       elsif  params[:sort] == 'ratio'
-        Hash[@users.sort_by{|k, v| k.ratio}.reverse]
+        Hash[@users.sort_by{|k, v| k.ratio(@match_finished)[:ratio_count]}.reverse]
       else
         Hash[@users.sort_by{|k, v| v}.reverse]
       end

@@ -194,6 +194,7 @@ ru:
     roles: Роли
     groups: Группы
   matches:
+    count: Количество матчей
     add: Добавить матч
     basic: основное время
     basic_short: О
@@ -207,6 +208,7 @@ ru:
     bullit_short: Б
     old_results: Результаты прошлых встреч
     your_old_result: Ваш прогноз
+    finished: Завершенных матчей
   albums:
     title: Альбомы
     add: Добавить альбом
@@ -274,6 +276,8 @@ ru:
     new_note: Новая заметка по работе сайта
   forecasts:
     count_tip: всего прогнозов
+    count_users: Количество прогнозов
+    count_users_finished: Завершенные прогнозы
     add: cоздать прогноз
     edit: изменить прогноз
     creating: Создание прогноза

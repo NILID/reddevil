@@ -69,7 +69,7 @@ class Forecast < ActiveRecord::Base
   private
 
   def check_match
-    errors.add(:match_id, I18n.t('forecasts.already_voted')) if !Forecast.where("match_id =? and user_id =?", match_id, user_id).empty?
+    errors.add(:match_id, I18n.t('forecasts.already_voted')) if !Forecast.where(match_id: match_id, user_id: user_id).empty?
   end
 
   def check_deadline

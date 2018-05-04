@@ -70,9 +70,10 @@ class User < ActiveRecord::Base
     updated_at > 10.minutes.ago
   end
 
-  def ratio
-    forecasts_count = self.forecasts.count
-    forecasts_count > 0 ? (self.profile.total_result.to_f / forecasts_count.to_f).round(4) : 0
+  def ratio(match_finished)
+    forecasts_count = self.forecasts.where(match_id: match_finished).pluck(:id).size
+    ratio = forecasts_count > 0 ? (self.profile.total_result.to_f / forecasts_count.to_f).round(3) : 0
+    { forecasts_count: forecasts_count, ratio_count: ratio }
   end
 
   private

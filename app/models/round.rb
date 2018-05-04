@@ -1,7 +1,7 @@
 class Round < ActiveRecord::Base
   attr_accessible :close, :content, :title, :matches_attributes, :deadline, :type_id, :tag_list, :empty_match
 
-  has_many :matches
+  has_many :matches, dependent: :delete_all
   has_many :forecasts, through: :matches
   has_many :results
   belongs_to :type
@@ -11,6 +11,9 @@ class Round < ActiveRecord::Base
   accepts_nested_attributes_for :matches, :allow_destroy => true # not requied
 
   validates :title, presence: true
+
+  scope :finished, -> { where('deadline < ?', DateTime.now) }
+  scope :unfinished, -> { where.not('deadline < ?', DateTime.now) }
 
   def to_param
     "#{id}-#{title.parameterize}"

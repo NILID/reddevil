@@ -1,4 +1,5 @@
 - check_deadline = round.check_finish?
+- matches_count = round.matches.pluck(:id).size
 
 .panel{ class: check_deadline ? 'panel-default' : 'panel-info' }
   .panel-heading
@@ -18,12 +19,14 @@
               = t 'shared.del'
 
   .panel-body
-    %p= round.content
-    %p.text-muted
-      %span= plural round.matches.count, 'match'
+    %span.text-muted
+      %span= plural matches_count, 'match'
       &#149;
       %span= plural round.forecasts.count, 'forecast'
       &#149;
       %span= plural round.forecasts.pluck(:user_id).uniq.count, 'user'
       &#149;
       %span= check_deadline ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(round.deadline))
+  - if !check_deadline && (matches_count != round.forecasts.where(user_id: current_user.id).pluck(:id).size)
+    .panel-footer.text-danger
+      = t 'forecasts.empty', count_days: distance_of_time_in_words(round.deadline, Time.zone.now)

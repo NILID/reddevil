@@ -31,8 +31,9 @@
               %td= user.profile.surname || user.email
               %td= round_result
               %td
-                = user_ratio[:ratio_count]
-                %span.text-muted.has-tooltip{ data: {toggle: 'tooltip', title: t('forecasts.count_tip')} }= user_ratio[:forecasts_count]
+                %p
+                  = user_ratio[:ratio_count]
+                  %span.text-muted.has-tooltip{ data: { toggle: 'tooltip', title: t('forecasts.count_tip') } }= user_ratio[:forecasts_count]
               %td= user.profile.total_result
 
     .well.well-sm

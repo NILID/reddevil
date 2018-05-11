@@ -16,6 +16,7 @@ class MembersController < ApplicationController
   end
 
   def stat
+    @members = @members.shown
     @member_ages = []
     @members.each {|m| @member_ages << m.age}
 

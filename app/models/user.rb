@@ -76,6 +76,11 @@ class User < ActiveRecord::Base
     { forecasts_count: forecasts_count, ratio_count: ratio }
   end
 
+  def set_win_count!
+    count = Forecast.where(user_id: id, full_guess: true).pluck(:id).size
+    update_attribute(:win_forecasts_count, count)
+  end
+
   private
 
   def set_role

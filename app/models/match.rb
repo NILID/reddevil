@@ -1,4 +1,6 @@
 class Match < ActiveRecord::Base
+  after_update :check_guess
+
   belongs_to :team1, class_name: 'Team'
   belongs_to :team2, class_name: 'Team'
   belongs_to :winner, class_name: 'Team'
@@ -32,5 +34,11 @@ class Match < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  private
+
+  def check_guess
+    forecasts.each { |f| f.check_guess! }
   end
 end

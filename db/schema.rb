@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327103347) do
+ActiveRecord::Schema.define(version: 20180515073625) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 20180327103347) do
     t.integer  "winner_id",   limit: 4
     t.string   "ending",      limit: 255, default: "basic"
     t.integer  "user_id",     limit: 4
+    t.boolean  "full_guess",              default: false
   end
 
   add_index "forecasts", ["match_id"], name: "index_forecasts_on_match_id", using: :btree
@@ -509,6 +510,7 @@ ActiveRecord::Schema.define(version: 20180327103347) do
     t.datetime "locked_at"
     t.boolean  "sport_flag",                         default: true
     t.integer  "forecasts_count",        limit: 4
+    t.integer  "win_forecasts_count",    limit: 4,   default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -12,6 +12,7 @@ class RoundsController < ApplicationController
     @matches = Match.all
     @match_finished = @matches.where(round_id: @rounds_finished).pluck(:id)
     @forecasts_finished = @forecasts.where(match_id: @match_finished).pluck(:id)
+
     # @users = User.order('total_result desc')
     #tag = 'ои2018'
     #tag = 'чмх2017'
@@ -20,6 +21,8 @@ class RoundsController < ApplicationController
     if @users
       @users = if params[:sort] == 'total'
         Hash[@users.sort_by{|k, v| k.profile.total_result}.reverse]
+      elsif params[:sort] == 'win'
+        Hash[@users.sort_by{|k, v| k.win_forecasts_count}.reverse]
       elsif  params[:sort] == 'ratio'
         Hash[@users.sort_by{|k, v| k.ratio(@match_finished)[:ratio_count]}.reverse]
       else

@@ -66,6 +66,13 @@ class Forecast < ActiveRecord::Base
     end
   end
 
+  def check_guess!
+    if match.team1goal == team1goal && match.team2goal == team2goal
+      update_attribute(:full_guess, true)
+      user.set_win_count!
+    end
+  end
+
   private
 
   def check_match

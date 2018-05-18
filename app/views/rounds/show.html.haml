@@ -26,10 +26,6 @@
 
                 = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-default btn-sm'
                 = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'
-      - if @round.content?
-        .row
-          .col-xs-12
-            .alert.alert-info= @round.content
 
       %table.table.table-condensed.rounds
         %thead
@@ -84,9 +80,15 @@
 
             = render partial: 'match', collection: (@round_matches - hidden_matches)
 
+            - if @round.content? && !@round.check_finish?
+              %tr
+                %td(colspan=17)
+                  .col-xs-6.alert.alert-danger.col-xs-offset-3
+                    = @round.content
+
             - %w[final 3final].each do |type|
               %tr
-                %td(colspan=16)
+                %td(colspan=17)
                   %h4= t "rounds.#{type}"
               - hidden_matches.where(desc: type).each do |match|
                 = render partial: 'match', locals: { match: match }

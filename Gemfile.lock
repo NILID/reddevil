@@ -40,7 +40,7 @@ GEM
     ancestry (3.0.2)
       activerecord (>= 3.2.0)
     arel (6.0.4)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     best_in_place (3.1.1)
       actionpack (>= 3.2)
       railties (>= 3.2)
@@ -87,7 +87,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubis (2.7.0)
-    eventmachine (1.2.6)
+    eventmachine (1.2.7)
     execjs (2.7.0)
     fancybox2-rails (0.2.8)
       railties (>= 3.1.0, < 5.0)
@@ -174,7 +174,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     paperclip-i18n (4.3.0)
-    passenger (5.3.0)
+    passenger (5.3.1)
       rack
       rake (>= 0.8.1)
     petrovich (1.1.1)
@@ -291,7 +291,7 @@ GEM
     temple (0.8.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
-    test-unit (3.2.7)
+    test-unit (3.2.8)
       power_assert
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)

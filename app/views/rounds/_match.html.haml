@@ -60,7 +60,8 @@
                     %span.ending= t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
                     .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
           - else
-            X : X
+            - unless @round.empty_match && match.desc?
+              X : X
     - else
       %td.text-center
         - if (user_signed_in? && ((@round.deadline > DateTime.now)) || (current_user.role? :admin))

@@ -6,8 +6,9 @@
     .well.well-sm
       .row
         .col-xs-4
-          .label.label-primary
-            = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
+          %p
+            .label.label-primary
+              = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
 
         .col-xs-8
           .pull-right
@@ -25,6 +26,10 @@
 
                 = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-default btn-sm'
                 = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'
+      - if @round.content?
+        .row
+          .col-xs-12
+            .alert.alert-info= @round.content
 
       %table.table.table-condensed.rounds
         %thead
@@ -76,22 +81,15 @@
         %tbody
           - if @round.allow_empty?
             - hidden_matches = @round_matches.where('matches.desc is null or matches.desc <> ?', '')
-            - matches = @round_matches - hidden_matches
-            - teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_winner}.reduce(:merge) })
-            - miss_teams = (matches.map {|m| m.forecasts.where(user_id: current_user).map {|f| f.check_second}.reduce(:merge) })
+
             = render partial: 'match', collection: (@round_matches - hidden_matches)
-            %tr
-              %td(colspan=16)
-                %h4= t 'rounds.final'
-            -# hidden_matches.where('team1_id = ? AND team2_id = ?', teams.first.id, teams.last.id).where(desc: 'final').each do |match|
-            - hidden_matches.where(desc: 'final').each do |match|
-              = render partial: 'match', locals: {match: match}
-            %tr
-              %td(colspan=16)
-                %h4= t 'rounds.final_third'
-            -# hidden_matches.where('team1_id = ? AND team2_id = ?', miss_teams.first.id, miss_teams.last.id).where(desc: '3final').each do |match|
-            - hidden_matches.where(desc: '3final').each do |match|
-              = render partial: 'match', locals: {match: match}
+
+            - %w[final 3final].each do |type|
+              %tr
+                %td(colspan=16)
+                  %h4= t "rounds.#{type}"
+              - hidden_matches.where(desc: type).each do |match|
+                = render partial: 'match', locals: { match: match }
           - else
             = render partial: 'match', collection: @round_matches
 

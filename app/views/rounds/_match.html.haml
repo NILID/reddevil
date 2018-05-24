@@ -77,7 +77,7 @@
           .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
   - else
     %td
-      - results = (Match.where(team1_id: [match.team1, match.team2], team2_id: [match.team1, match.team2]).joins(:round).where(rounds: {type_id: @round.type_id}).pluck(:id) - [match.id]).count
+      - results = (Match.where(team1_id: [match.team1, match.team2], team2_id: [match.team1, match.team2]).joins(:round).where(rounds: {type_id: @round.type_id}).where('deadline < ?', DateTime.now).pluck(:id) - [match.id]).count
       - if results > 0
         = link_to get_results_round_match_path(@round, match), data: {target: "#dialog_match_#{match.id}", toggle: 'modal'}, class: 'modal-link btn btn-success btn-xs', remote: true do
           %span.glyphicon.glyphicon-info-sign

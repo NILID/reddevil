@@ -60,9 +60,6 @@ GEM
     byebug (10.0.2)
     cancancan (2.2.0)
     chartkick (2.3.4)
-    ckeditor (4.0.6)
-      mime-types
-      orm_adapter
     climate_control (0.2.0)
     cocoon (1.2.11)
     code_analyzer (0.4.8)
@@ -339,13 +336,12 @@ DEPENDENCIES
   best_in_place
   better_errors (< 2)
   binding_of_caller
-  birthday (= 0.3.1)
+  birthday
   bootstrap_form
   bullet (< 5.5.0)
   byebug
   cancancan
   chartkick
-  ckeditor (= 4.0.6)
   cocoon
   coffee-rails (~> 4.1.0)
   devise

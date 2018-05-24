@@ -37,10 +37,7 @@ gem 'high_voltage'
 
 gem 'holidays', '3.3.0'
 
-gem 'ckeditor', '4.0.6'
-
-gem 'birthday', '0.3.1'
-#, :git => 'http://github.com/kented/birthday'
+gem 'birthday'
 
 gem 'soundmanager2-rails'
 

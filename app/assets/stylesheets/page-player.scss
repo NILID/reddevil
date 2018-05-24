@@ -15,7 +15,7 @@ ul.use-spectrum li.sm2_playing .spectrum-container {
 ul.use-spectrum .spectrum-box {
  position:relative;
  width:255px;
- padding:2px 0px;
+ padding:2px 0;
  height:1.2em;
  overflow:hidden;
 }
@@ -34,9 +34,8 @@ ul.use-spectrum .spectrum-box .spectrum {
 
 ul.playlist ul.mainlist {
  list-style-type:none;
- margin:0px;
- padding:0px;
-
+ margin:0;
+ padding:0;
 }
 
 ul.playlist li, ul.mainlist li {
@@ -44,7 +43,7 @@ ul.playlist li, ul.mainlist li {
  position:relative;
  display:block;
  width:auto;
- padding:0.25em 0.5em 0.25em 0.5em;
+ padding:0.25em 0.5em;
  border:none;
  -webkit-transition-property: hover;
  -webkit-transition: background-color 0.15s ease-in-out;
@@ -213,7 +212,7 @@ ul.playlist li:hover .timing {
 
 ul.playlist li .timing div.sm2_timing {
  margin:0px;
- padding:0px;
+ padding:0;
  margin-top:-1em;
 }
 

@@ -25,6 +25,8 @@
 //= require page-player
 //= require optional-page-player-metadata
 //= require moment
+//= require moment/ru
+//= require bootstrap-datetimepicker
 //= require fancybox
 //= require Chart.bundle
 //= require chartkick

@@ -2,11 +2,11 @@
   = f.text_field :title
   = f.text_field :content
   = f.text_field :tag_list
-  = f.select(:type_id, Type.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
+  = f.select :type_id,
+    Type.order(:title).collect { |t| [t.title,  t.id] },
+    { include_blank: t('categories.select_category') }
 
-  #datetimeround.date
-    =#f.date_select :deadline, default: {hour: 16, minute: 0}
-    = f.text_field :deadline, append: content_tag(:span, '', class: 'glyphicon glyphicon-th'), data: { format: 'dd.MM.yyyy hh:mm:ss' }
+  .date= f.text_field :deadline, id: 'datetimeround'
 
   = f.form_group do
     .checkbox= f.check_box :close

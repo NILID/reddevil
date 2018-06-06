@@ -20,6 +20,7 @@ class Round < ActiveRecord::Base
   end
 
   def check_finish?
+#    binding.pry
     deadline < DateTime.now
   end
 

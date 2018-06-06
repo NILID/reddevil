@@ -84,6 +84,6 @@ $ ->
       penalty.attr('disabled', 'disabled')
       penalty.attr('checked', false)
 
-  $('#datetimeround input').datetimepicker
-    language: "ru"
-    format: "dd.MM.yyyy hh:mm"
+  $('#datetimeround').datetimepicker
+    locale: "ru"
+    format: "YYYY-MM-DD HH:mm:ss"

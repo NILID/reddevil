@@ -9,8 +9,6 @@ gem 'rubyzip'
 
 gem 'mysql2', '0.3.21'
 
-gem 'momentjs-rails'
-
 gem 'cocoon'
 
 gem 'petrovich', '~> 1.0'
@@ -82,6 +80,8 @@ gem 'will_paginate', '~> 3.0'
 
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails'
 
 group :test do
   gem 'minitest-rails'

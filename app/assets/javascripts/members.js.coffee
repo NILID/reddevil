@@ -8,6 +8,7 @@ $ ->
     #theme: true
     eventSources: [
       '/members.json'
+      '/members/get_holidays.json'
       '/events/list.json'
       '/relax.json'
     ]

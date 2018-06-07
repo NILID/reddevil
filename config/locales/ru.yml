@@ -187,6 +187,7 @@ ru:
     other_text: Примечание
     archive: Здесь представлен список бывших сотрудников.
     vacation: Отпуска
+    in_holiday: '%{member} в отпуске'
   users:
     title: Пользователи
     has_groups: 'Относится к группам:'

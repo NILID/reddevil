@@ -24,7 +24,7 @@ li.song {
   line-height:20px;
 }
 
-.icon-star {color: #ff9900;}
+.glyphicon-star {color: #ff9900;}
 
 li.song, li.album, .breadcrumb{
   i {
@@ -38,12 +38,13 @@ li.song:hover i, li.album:hover > .title i, .breadcrumb:hover i{
 }
 
 .repeat-link{
-  .icon-repeat {
+  .glyphicon-repeat {
     @include opacity(0);
     @include transition(opacity 0.2s ease-in-out);
   }
-  li.sm2_playing & .icon-repeat {@include opacity(0.2)}
-  li.sm2_playing &:hover .icon-repeat, li.sm2_playing &.active .icon-repeat{
+  li.sm2_playing & .glyphicon-repeat {@include opacity(0.2)}
+  li.sm2_playing &:hover .glyphicon-repeat,
+  li.sm2_playing &.active .glyphicon-repeat{
     @include opacity(0.8);
     }
 }

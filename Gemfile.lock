@@ -39,6 +39,8 @@ GEM
       activerecord (>= 4.0)
     ancestry (3.0.2)
       activerecord (>= 3.2.0)
+    animate-rails (1.0.10)
+      rails
     arel (6.0.4)
     bcrypt (3.1.12)
     best_in_place (3.1.1)
@@ -335,6 +337,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   ancestry
+  animate-rails
   best_in_place
   better_errors (< 2)
   binding_of_caller

@@ -1,7 +1,7 @@
 $ ->
   $('body').on 'click', '.membername', ->
     $(this).parentsUntil('.member').find('.hidden_info').slideToggle()
-    $(this).parentsUntil('.member').find('.showinfo').toggleClass('icon-chevron-down icon-chevron-up')
+    $(this).parentsUntil('.member').find('.showinfo').toggleClass('glyphicon-chevron-up glyphicon-chevron-down')
 
   $('#calendar').fullCalendar
     locale: "ru"

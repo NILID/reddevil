@@ -15,6 +15,12 @@ class MembersController < ApplicationController
     end
   end
 
+  def holidays
+    @q = @members.shown.search(params[:q])
+    @q.sorts = 'surname' if @q.sorts.empty?
+    @members = @q.result(distinct: true)
+  end
+
   def stat
     @members = @members.shown
     @member_ages = []
@@ -40,7 +46,7 @@ class MembersController < ApplicationController
   def new
   end
 
-  def holidays
+  def manage_holidays
   end
 
   def edit

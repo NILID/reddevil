@@ -73,7 +73,8 @@ ru:
     title: Поставка
   vacations:
     index: Сейчас в отпуске
-    until: (выходит %{date})
+    until: (отпуск до %{date})
+    edit: Указать отпуск
   devise:
     logout: Выйти
     login: Войти
@@ -185,7 +186,7 @@ ru:
     fullname: ФИО
     other_text: Примечание
     archive: Здесь представлен список бывших сотрудников.
-    vacation: Отпуск
+    vacation: Отпуска
   users:
     title: Пользователи
     has_groups: 'Относится к группам:'

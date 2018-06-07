@@ -131,9 +131,10 @@ Birthday::Application.routes.draw do
     collection do
       get :archive
       get :stat
+      get :holidays
     end
     member do
-      get :holidays
+      get :manage_holidays
     end
   end
 

@@ -46,5 +46,5 @@
                     %i.glyphicon.glyphicon-cog
                   %ul.dropdown-menu
                     %li= link_to t('shared.edit'), edit_member_path(member)
-                    %li= link_to t('member.vacation'), holidays_member_path(member)
+                    %li= link_to t('member.vacation'), manage_holidays_member_path(member)
                     %li= link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }

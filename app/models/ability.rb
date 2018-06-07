@@ -7,7 +7,7 @@ class Ability
 
     # everybody
     can :read, :all
-    can [:archive, :stat], Member
+    can [:archive, :stat, :holidays], Member
     cannot [:manage, :read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
     can [:new, :create], Note
     cannot [:edit, :update], Profile

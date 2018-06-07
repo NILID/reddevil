@@ -2,6 +2,7 @@
   .col-md-8
     %ul.nav.nav-tabs#member_info
       %li{ class: (params[:action] == 'index' ? 'active' : nil) }= link_to t('member.title'), members_path
+      %li{ class: params[:action] == 'holidays' ? 'active' : nil }= link_to t('member.vacation'), holidays_members_path
       %li{ class: params[:action] == 'stat' ? 'active' : nil }= link_to t('shared.stat'), stat_members_path
       %li{ class: params[:action] == 'archive' ? 'active' : nil }= link_to t('shared.archive'), archive_members_path
       - if can? :create, Member

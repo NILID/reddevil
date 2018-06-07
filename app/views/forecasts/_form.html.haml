@@ -1,15 +1,13 @@
-= bootstrap_form_for [@user, @forecast], layout: :horizontal, html: { data: { draw: @forecast.round.draw }, class: 'forecast-form' } do |f|
-  - if params[:match_id] && Match.find(params[:match_id])
-    - m = Match.find(params[:match_id])
-  - else
-    - m = Match.find(@forecast.match_id)
+- m = Match.where(id: params[:match_id] ? params[:match_id] : @forecast.match_id).first
+
+= bootstrap_form_for [@user, @forecast], layout: :horizontal, html: { data: { draw: m.round.draw }, class: 'forecast-form' } do |f|
 
   = f.hidden_field :match_id, value: m.id
 
   = f.number_field :team1goal, min: 0, class: 'number_field form-control', label: m.team1.title
   = f.number_field :team2goal, min: 0, class: 'number_field form-control', label: m.team2.title
 
-  - unless @forecast.round.draw
+  - unless m.round.draw
     #winner-field
       = f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
@@ -24,4 +22,5 @@
     = f.primary
     = link_to t('shared.cancel'), m.round, class: 'btn btn-default'
     - if params[:action] == 'edit'
-      = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-default' if can? :destroy, @forecast
+      .pull-right
+        = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast

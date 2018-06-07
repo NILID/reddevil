@@ -1,7 +1,7 @@
 - model_class = Team
 .page-header
   %h1
-    = t '.title', :default => model_class.model_name.human.pluralize.titleize
+    = t 'teams.title'
     -if can? :manage, Team
       %small= link_to t('.new', :default => t("helpers.links.new")), new_team_path, :class => 'btn btn-primary'
 %table.table.table-striped
@@ -15,7 +15,7 @@
     - @teams.each do |team|
       %tr
         %td= link_to team.title, team_path(team)
-        %td= team.type.title
+        %td= team.type.title if team.type
         %td= image_tag team.flag(:thumb)
         - if can? :manage, team
           %td

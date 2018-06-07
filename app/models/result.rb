@@ -19,7 +19,7 @@ class Result < ActiveRecord::Base
           # i+=1 if ((match.winner == forecast.winner) && match.winner_id?)
           i+=1 if (match.check_win == forecast.check_winner)
           # check final end
-          i+=1 if (match.ending == forecast.ending)
+          i+=1 if (match.ending == forecast.ending) && !match.round.draw
         end
       end
     end

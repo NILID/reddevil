@@ -239,6 +239,7 @@ ru:
     send: Отправить
     says: сказал
   teams:
+    title: Команды
     add: Добавить команду
     select_team: Выбрать команду
   rounds:

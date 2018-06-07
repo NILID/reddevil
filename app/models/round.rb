@@ -1,5 +1,5 @@
 class Round < ActiveRecord::Base
-  attr_accessible :close, :content, :title, :matches_attributes, :deadline, :type_id, :tag_list, :empty_match
+  attr_accessible :close, :content, :title, :matches_attributes, :deadline, :type_id, :tag_list, :empty_match, :draw
 
   has_many :matches, dependent: :delete_all
   has_many :forecasts, through: :matches

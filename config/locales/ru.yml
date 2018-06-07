@@ -246,6 +246,8 @@ ru:
     deadline: "Дэдлайн: %{date}"
     deadline_off: Приём заявок завершен.
     download: Скачать список прогнозов
+    editing: Редактирование раунда
+    creating: Создание раунда
     final: Финал
     3final: 3 место
   songs:
@@ -398,6 +400,11 @@ ru:
         title: Название
         close: Скрытность
         content: Описание
+        draw: Ничья
+        type_id: Тип
+        deadline: Дэдлайн
+        tag_list: Тэг чемпионата
+        empty_match: Пустые матчи
       substrate:
         title: Наименование
         drawing: Чертеж
@@ -418,6 +425,8 @@ ru:
         team2_id: Вторая команда
         team1goal: Голы первой команды
         team2goal: Голы второй команды
+        winner_id: Победитель
+        ending: Исход матча
       work:
         desc: Описание
       team:

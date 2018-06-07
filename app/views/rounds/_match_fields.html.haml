@@ -1,0 +1,14 @@
+.well.well-small
+  .col-xs-6
+    - %i[team1_id team2_id].each do |team|
+      = f.select(team, @teams.collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+  .col-xs-6
+    = f.number_field :team1goal
+    = f.number_field :team2goal
+
+  - if @round.allow_empty?
+    = f.select(:desc, Match::TYPES.collect { |type| [ t(type),  type] }, { include_blank: 'select desc' })
+
+  = f.select(:winner_id, @teams.collect { |t| [ "#{t.title}",  t.id] }, { include_blank: t('teams.select_team') } )
+  = f.select(:ending, Match::ENDING.collect { |e| [ t(e),  e] })
+  =# link_to_remove_association t('shared.del'), f

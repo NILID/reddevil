@@ -3,12 +3,12 @@ $ ->
   $('#winner-field').hide()
 
   if $("#forecast_team1goal").val() != '' && $("#forecast_team2goal").val() != ''
-    basic =$("form input#forecast_ending_basic")
-    basic_label =$("form .btn-group label.label-basic")
-    overtime =$("form input#forecast_ending_overtime")
-    overtime_label =$("form .btn-group label.label-overtime")
-    penalty =$("form input#forecast_ending_penalty")
-    penalty_label =$("form .btn-group label.label-penalty")
+    basic = $("form input#forecast_ending_basic")
+    basic_label = $("form .btn-group label.label-basic")
+    overtime = $("form input#forecast_ending_overtime")
+    overtime_label = $("form .btn-group label.label-overtime")
+    penalty = $("form input#forecast_ending_penalty")
+    penalty_label = $("form .btn-group label.label-penalty")
 
     if $("#forecast_team1goal").val() == $("#forecast_team2goal").val()
       $('#winner-field').show()

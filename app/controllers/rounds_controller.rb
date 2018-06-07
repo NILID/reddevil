@@ -5,6 +5,8 @@ class RoundsController < ApplicationController
   load_and_authorize_resource
   layout 'main'
 
+  before_filter :get_teams, only: %i[new edit]
+
   def index
     @rounds = @rounds.order('created_at desc')
     @rounds_finished = @rounds.finished.pluck(:id)
@@ -87,5 +89,11 @@ class RoundsController < ApplicationController
       format.html { redirect_to rounds_url, notice: t('flash.was_destroyed', item: Round.model_name.human) }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def get_teams
+    @teams = Team.order(:title)
   end
 end

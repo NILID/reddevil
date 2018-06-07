@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515073625) do
+ActiveRecord::Schema.define(version: 20180607060011) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -367,6 +367,7 @@ ActiveRecord::Schema.define(version: 20180515073625) do
     t.datetime "deadline"
     t.integer  "type_id",     limit: 4
     t.boolean  "empty_match",             default: false
+    t.boolean  "draw",                    default: false
   end
 
   create_table "songs", force: :cascade do |t|

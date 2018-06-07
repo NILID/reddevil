@@ -27,7 +27,7 @@ class Forecast < ActiveRecord::Base
   end
 
   def check_draw?
-    team1goal == team2goal
+    team1goal == team2goal && !round.draw
   end
 
   def check_deadline
@@ -91,7 +91,8 @@ class Forecast < ActiveRecord::Base
   end
 
   def check_overtime
-    errors.add(:ending, I18n.t('forecasts.hockey_bullit_equal')) if ending == 'penalty' && (team1goal != team2goal) \
+    errors.add(:ending, I18n.t('forecasts.hockey_bullit_equal')) if ending == 'penalty' \
+                                                         && (team1goal != team2goal) \
                                                          && Match.find(match_id).round.type_id == 2
     # type_id == hockey
   end

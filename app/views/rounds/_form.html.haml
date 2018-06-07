@@ -1,4 +1,7 @@
-= bootstrap_nested_form_for @round, layout: :horizontal do |f|
+.page-header
+  %h4= formtitle
+
+= bootstrap_form_for @round, layout: :horizontal do |f|
   = f.text_field :title
   = f.text_field :content
   = f.text_field :tag_list
@@ -14,23 +17,14 @@
   = f.form_group do
     .checkbox= f.check_box :empty_match
 
-  = f.fields_for :matches do |m|
-    .form-group.well.well-small
-      = m.select(:team1_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
-      = m.select(:team2_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+  = f.form_group do
+    .checkbox= f.check_box :draw
 
-      - if @round.allow_empty?
-        = m.select(:desc, Match::TYPES.collect {|type| [ t(type),  type]}, { include_blank: 'select desc' })
+  = f.fields_for :matches do |match|
+    = render 'match_fields', f: match
 
-      = m.select(:winner_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
-
-      = m.number_field :team1goal
-
-      = m.number_field :team2goal
-
-      = m.select(:ending, Match::ENDING.collect {|e| [ t(e),  e]})
-
-  = f.link_to_add t('matches.add'), :matches
+  = f.form_group do
+    = link_to_add_association t('matches.add'), f, :matches, class: 'btn btn-default'
 
   = f.form_group do
     = f.primary

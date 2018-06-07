@@ -1,26 +1,27 @@
-= bootstrap_form_for [@user, @forecast], layout: :horizontal do |f|
-  -if params[:match_id] && Match.find(params[:match_id])
-    - m=Match.find(params[:match_id])
-  -else
-    - m=Match.find(@forecast.match_id)
+= bootstrap_form_for [@user, @forecast], layout: :horizontal, html: { data: { draw: @forecast.round.draw }, class: 'forecast-form' } do |f|
+  - if params[:match_id] && Match.find(params[:match_id])
+    - m = Match.find(params[:match_id])
+  - else
+    - m = Match.find(@forecast.match_id)
 
   = f.hidden_field :match_id, value: m.id
 
   = f.number_field :team1goal, min: 0, class: 'number_field form-control', label: m.team1.title
   = f.number_field :team2goal, min: 0, class: 'number_field form-control', label: m.team2.title
 
-  #winner-field
-    = f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+  - unless @forecast.round.draw
+    #winner-field
+      = f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
-  = f.form_group :ending do
-    .btn-group.minify-radio{ data: { toggle: 'buttons' }}
-      - Match::ENDING.each do |e|
-        %label.btn.btn-primary{ class: "#{ (@forecast && @forecast.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast && @forecast.ending == e) ? 'current' : nil}" }
-          = f.radio_button :ending, e, disabled: false, autocomplete: 'off'
-          = t "matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
+    = f.form_group :ending do
+      .btn-group.minify-radio{ data: { toggle: 'buttons' } }
+        - Match::ENDING.each do |e|
+          %label.btn.btn-primary{ class: "#{ (@forecast && @forecast.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast && @forecast.ending == e) ? 'current' : nil}" }
+            = f.radio_button :ending, e, disabled: false, autocomplete: 'off'
+            = t "matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
 
   = f.form_group do
     = f.primary
     = link_to t('shared.cancel'), m.round, class: 'btn btn-default'
     - if params[:action] == 'edit'
-      = link_to t('shared.del'), [@user, @forecast], :method => :delete, :data => { confirm: t('shared.sure') }, class: 'btn btn-default' if can? :destroy, @forecast
+      = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-default' if can? :destroy, @forecast

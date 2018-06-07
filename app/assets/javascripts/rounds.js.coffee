@@ -1,7 +1,5 @@
 $ ->
 
-  $('#winner-field').hide()
-
   if $("#forecast_team1goal").val() != '' && $("#forecast_team2goal").val() != ''
     basic = $("form input#forecast_ending_basic")
     basic_label = $("form .btn-group label.label-basic")
@@ -10,7 +8,7 @@ $ ->
     penalty = $("form input#forecast_ending_penalty")
     penalty_label = $("form .btn-group label.label-penalty")
 
-    if $("#forecast_team1goal").val() == $("#forecast_team2goal").val()
+    if $("#forecast_team1goal").val() == $("#forecast_team2goal").val() && $('.forecast-form').data('draw') == 'false'
       $('#winner-field').show()
 
       basic_label.addClass('disabled')
@@ -53,7 +51,7 @@ $ ->
     penalty =$("form input#forecast_ending_penalty")
     penalty_label =$("form .btn-group label.label-penalty")
 
-    if $val1 == $val2
+    if $val1 == $val2 && $('.forecast-form').data('draw') == 'false'
       $('#winner-field').slideDown()
 
       basic_label.addClass('disabled')

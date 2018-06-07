@@ -9,6 +9,6 @@
   - if @round.allow_empty?
     = f.select(:desc, Match::TYPES.collect { |type| [ t(type),  type] }, { include_blank: 'select desc' })
 
-  = f.select(:winner_id, @teams.collect { |t| [ "#{t.title}",  t.id] }, { include_blank: t('teams.select_team') } )
+  = f.select(:winner_id, @teams.collect { |t| [ "#{t.title}",  t.id] }, { include_blank: t('teams.select_team') }, class: 'hidden' )
   = f.select(:ending, Match::ENDING.collect { |e| [ t(e),  e] })
   =# link_to_remove_association t('shared.del'), f

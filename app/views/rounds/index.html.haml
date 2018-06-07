@@ -48,16 +48,16 @@
       %table.table.table-hover.table-condensed
         %tr
           %td= t 'matches.count'
-          %td= @matches.size
-        %tr
-          %td= t 'matches.finished'
-          %td= @match_finished.size
+          %td
+            = @matches.size
+            \ /
+            %span{ title: t('matches.finished') }= @match_finished.size
         %tr
           %td= t 'forecasts.count_users'
-          %td= @forecasts.size
-        %tr
-          %td= t 'forecasts.count_users_finished'
-          %td= @forecasts_finished.size
+          %td
+            = @forecasts.size
+            \ /
+            %span{ title: t('forecasts.count_users_finished') }= @forecasts_finished.size
 
   .col-md-6
     - if (can? :manage, Round) && (can? :manage, Team)

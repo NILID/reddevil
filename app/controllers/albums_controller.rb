@@ -79,7 +79,7 @@ class AlbumsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @album.update_attributes(params[:album])
+      if @album.update_attributes(album_params)
         if params[:songs]
           params[:songs].each { |song| @album.songs.create(file: song)}
         end
@@ -87,7 +87,7 @@ class AlbumsController < ApplicationController
         format.html { redirect_to @album, notice: t('flash.was_updated', item: Album.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
@@ -100,5 +100,11 @@ class AlbumsController < ApplicationController
       format.html { redirect_to albums_url, notice: t('flash.was_destroyed', item: Album.model_name.human) }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def album_params
+    params.require(:album).permit(:title, :parent_id)
   end
 end

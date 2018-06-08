@@ -1,10 +1,7 @@
 = bootstrap_form_for @art, layout: :horizontal do |f|
 
-  #datetimepicker1.form-group.date
-    =#f.date_select :deadline, default: {hour: 16, minute: 0}
+  #datetimepicker1.date
     = f.text_field :deadline, data: { format: 'dd.MM.yyyy hh:mm:ss' }
-    %span.input-group-addon
-      %i.glyphicon.glyphicon-th
 
   = f.form_group do
     = f.primary

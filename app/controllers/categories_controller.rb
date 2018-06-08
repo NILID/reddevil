@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new(parent_id: params[:parent_id])
+    @category.parent_id = params[:parent_id]
   end
 
   def edit
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
         format.html { redirect_to categories_url, notice: t('flash.was_created', item: Category.model_name.human) }
         format.json { render json: @category, status: :created, location: @category }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -30,11 +30,11 @@ class CategoriesController < ApplicationController
   def update
 
     respond_to do |format|
-      if @category.update_attributes(params[:category])
+      if @category.update_attributes(category_params)
         format.html { redirect_to categories_url, notice: t('flash.was_updated', item: Category.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -47,5 +47,11 @@ class CategoriesController < ApplicationController
       format.html { redirect_to categories_url, notice: t('flash.was_destroyed', item: Category.model_name.human) }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def category_params
+    params.require(:category).permit(:ancestry, :title, :parent_id, :hidden)
   end
 end

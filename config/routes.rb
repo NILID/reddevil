@@ -88,13 +88,7 @@ Birthday::Application.routes.draw do
     resources :works, except: [:index, :show]
   end
 
-
-  #get 'chat' => 'comments#new'
-
-  #resources :comments, only: [:new, :create, :index]
-
   resources :items
-
 
   resources :materials
 
@@ -183,8 +177,7 @@ Birthday::Application.routes.draw do
 
   # Sample resource route with more complex sub-resources
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', :on => :collection
   #     end
   #   end

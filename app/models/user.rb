@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   after_create :set_role
 
-  has_many :comments, dependent: :delete_all
   has_many :works
   has_many :events
   has_many :purchases

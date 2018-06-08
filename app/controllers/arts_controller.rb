@@ -2,7 +2,6 @@ class ArtsController < ApplicationController
   layout  'main'
   load_and_authorize_resource
 
-
   def index
     @dima = User.where(id: 1).first
     @ilya = User.where(id: 2).first
@@ -24,7 +23,7 @@ class ArtsController < ApplicationController
         format.html { redirect_to arts_url, notice: t('flash.was_created', item: Art.model_name.human) }
         format.json { render json: @art, status: :created, location: @art }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @art.errors, status: :unprocessable_entity }
       end
     end
@@ -32,11 +31,11 @@ class ArtsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @art.update_attributes(params[:art])
+      if @art.update_attributes(art_params)
         format.html { redirect_to arts_url, notice: t('flash.was_updated', item: Art.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @art.errors, status: :unprocessable_entity }
       end
     end
@@ -51,4 +50,9 @@ class ArtsController < ApplicationController
     end
   end
 
+  private
+
+  def art_params
+    params.require(:art).permit(:deadline)
+  end
 end

@@ -1,5 +1,0 @@
-.well
-  = form_for @comment, remote: true, html: { class: 'form-group' } do |f|
-    = f.text_field :body, class: 'col-md-9', required: true, maxlength: 1000
-    = f.submit t('comments.send'), class: 'btn btn-primary btn-lg'
-  %small= t 'comments.no_more'

@@ -69,13 +69,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
   add_index "columnships", ["column_id"], name: "index_columnships_on_column_id", using: :btree
   add_index "columnships", ["purchase_id"], name: "index_columnships_on_purchase_id", using: :btree
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "body",       limit: 65535
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
   create_table "datasets", force: :cascade do |t|
     t.string   "title",            limit: 255
     t.string   "src_file_name",    limit: 255

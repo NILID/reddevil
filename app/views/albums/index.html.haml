@@ -10,19 +10,24 @@
     (#{number_to_human_size(Song.sum(:file_file_size))})
 
 .ny-block
-  %ul.nav.nav-tabs#song_tabs
-    -if params[:q]
-      %li= link_to t('songs.find'), '#find_songs', data: {toggle: 'tab'}
-    %li= link_to t('albums.all'), '#main_songs', data: {toggle: 'tab'}
-    %li= link_to t('albums.newer'), '#new_songs', data: {toggle: 'tab'}
-    %li= link_to t('albums.add'), new_album_path, data: {toggle: 'tab'} if can? :new, Album
+  %ul.nav.nav-tabs(role='tablist')
+    - if params[:q]
+      %li(role='presentation')
+        = link_to t('songs.find'), '#find_songs', data: {toggle: 'tab', role: 'tab'}, aria: {controls: 'find_songs'}
+    %li.active(role='presentation')
+      = link_to t('albums.all'), '#main_songs', data: {toggle: 'tab', role: 'tab'}, aria: {controls: 'main_songs'}
+    %li(role='presentation')
+      = link_to t('albums.newer'), '#new_songs', data: {toggle: 'tab', role: 'tab'}, aria: {controls: 'new_songs'}
+    - if can? :new, Album
+      %li= link_to t('albums.add'), new_album_path
 
   .tab-content
     - if params[:q]
-      %ul.playlist.tab-pane.fade#find_songs= render @songs, showalbum: true
-
-    %ul.mainlist.tab-pane.fade#main_songs= render @albums
-    %ul.playlist.tab-pane.fade#new_songs
+      %ul.playlist.tab-pane#find_songs(role='tabpanel')
+        = render @songs, showalbum: true
+    %ul.mainlist.tab-pane.active#main_songs(role='tabpanel')
+      = render @albums
+    %ul.playlist.tab-pane#new_songs(role='tabpanel')
       .endless= render @new_songs, showalbum: true
 
       = will_paginate @new_songs

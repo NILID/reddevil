@@ -1,12 +1,10 @@
 class Column < ActiveRecord::Base
   belongs_to :year
   belongs_to :purchase
-  attr_accessible :name, :column_type
 
   after_create :build_columnships
 
   has_many :columnships, dependent: :destroy
-
 
   private
 

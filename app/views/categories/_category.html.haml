@@ -6,4 +6,4 @@
       = link_to t('shared.edit'), edit_category_path(category), class: 'btn btn-default btn-xs'
       = link_to t('shared.del'), category_path(category), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
-  %ul=render category.children
+  %ul= render category.children

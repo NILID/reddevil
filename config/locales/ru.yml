@@ -7,7 +7,6 @@ ru:
     close: Закрыть
     more: дальше
     more_info: Подробнее
-    chat: Чат
     show: Показать
     calendar: Календарь
     back: Назад
@@ -236,10 +235,6 @@ ru:
     in_category: в категории "%{category}"
     show_inlast: 'Показывать в "Последних документах"'
     no_cats: без категории
-  comments:
-    no_more: Не может быть пустым, или больше 2000 символов
-    send: Отправить
-    says: сказал
   teams:
     title: Команды
     add: Добавить команду

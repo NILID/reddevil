@@ -47,8 +47,8 @@ class AlbumsController < ApplicationController
   end
 
   def list
-    @albums=@album.children.order(:title)
-    @songs=@album.songs.order(:file_file_name)
+    @albums = @album.children.order(:title)
+    @songs = @album.songs.order(:file_file_name)
     respond_to do |format|
       format.js
     end

@@ -22,7 +22,7 @@ gem "simple_calendar", "~> 2.0"
 
 gem 'roo'
 gem 'roo-xls'
-gem 'nokogiri', '1.6.8.1'
+# gem 'nokogiri', '1.6.8.1'
 
 gem 'best_in_place'
 

@@ -18,7 +18,7 @@
           %td= t 'member.fullname'
           %td(style="width:400px;")= t 'member.other_text'
       %tbody
-        - @members_list.each_with_index do |member, index|
+        - @members.each_with_index do |member, index|
           %tr
             %td= index + 1
             %td= member.full_name

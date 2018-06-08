@@ -35,8 +35,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (4.0.0)
-      activerecord (>= 4.0)
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
     ancestry (3.0.2)
       activerecord (>= 3.2.0)
     animate-rails (1.0.10)
@@ -407,4 +407,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

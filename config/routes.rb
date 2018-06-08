@@ -139,7 +139,7 @@ Birthday::Application.routes.draw do
   post 'import' => 'main#import'
   get 'nextsong' => 'main#nextsong'
 
-  root to: "main#index"
+  root to: 'main#index'
 
   devise_for :users
 

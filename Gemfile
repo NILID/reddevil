@@ -22,7 +22,6 @@ gem "simple_calendar", "~> 2.0"
 
 gem 'roo'
 gem 'roo-xls'
-# gem 'nokogiri', '1.6.8.1'
 
 gem 'best_in_place'
 
@@ -143,6 +142,6 @@ group :development do
   gem 'thin'
   gem 'better_errors', '< 2'
   gem 'binding_of_caller'
-  gem 'bullet', '< 5.5.0'
+  gem 'bullet'
   gem 'rails_best_practices'
 end

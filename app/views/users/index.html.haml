@@ -1,21 +1,17 @@
 - set_meta_tags title: t('users.title')
 
-%div
-  %table.table
-    %thead
-      %th
-      %th
-      %th
-      %th
-      %th
-    -@users.each_with_index do |user, index|
-      %tr
-        %td= index+=1
-        %td
-          %span.badge{class: user.online? ? 'badge-success' : ''}
-            .i.glyphicon{class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove'}
-        %td
-          = link_to user.email, user_profile_path(user)
-          .text-muted=user.profile.fullname
-        %td= l user.updated_at,  format: :long
-        %td= link_to t('profiles.edit'), edit_user_profile_path(user) if can? :edit, user.profile
+.row
+  .col-xs-12
+    .well
+      %table.table
+        - @users.each_with_index do |user, index|
+          %tr
+            %td= index+=1
+            %td
+              %span.badge{class: user.online? ? 'badge-success' : ''}
+                .i.glyphicon{class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove'}
+            %td
+              = link_to user.email, user_profile_path(user)
+              .text-muted= user.profile.fullname
+            %td= l user.updated_at,  format: :long
+            %td= link_to t('profiles.edit'), edit_user_profile_path(user) if can? :edit, user.profile

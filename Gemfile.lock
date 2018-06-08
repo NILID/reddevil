@@ -58,9 +58,9 @@ GEM
       momentjs-rails (>= 2.8.1)
     bootstrap_form (2.7.0)
     builder (3.2.3)
-    bullet (5.4.3)
+    bullet (5.7.5)
       activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.10.0)
+      uniform_notifier (~> 1.11.0)
     byebug (10.0.2)
     cancancan (2.2.0)
     chartkick (2.3.4)
@@ -314,7 +314,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.11)
       execjs (>= 0.3.0, < 3)
-    uniform_notifier (1.10.0)
+    uniform_notifier (1.11.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -339,12 +339,12 @@ DEPENDENCIES
   ancestry
   animate-rails
   best_in_place
-  better_errors (< 2)
+  better_errors
   binding_of_caller
   birthday
   bootstrap3-datetimepicker-rails
   bootstrap_form
-  bullet (< 5.5.0)
+  bullet
   byebug
   cancancan
   chartkick

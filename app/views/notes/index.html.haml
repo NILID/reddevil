@@ -4,47 +4,49 @@
 - model_class = Note
 
 - content_for :sidebar do
-  - label_css_classes.each do |k,v|
-    %p
-      = link_to notes_path(:'q[status_eq]' => k) do
-        %span.label{ class: "label-#{v}" }
-          %b= @notes_all_count[k.to_s] || '0'
-          = t "notes.#{k}"
+  .well
+    - label_css_classes.each do |k,v|
+      %p
+        = link_to notes_path(:'q[status_eq]' => k) do
+          %span.label{ class: "label-#{v}" }
+            %b= @notes_all_count[k.to_s] || '0'
+            = t "notes.#{k}"
 
-.page-header
-  %h4
-    = t 'notes.title'
-    %small
-      = link_to(new_note_path, class: 'btn btn-sm btn-primary') do
-        %i.glyphicon.glyphicon-plus
-%table.table.table-striped.table-condensed
-  %thead
-    %tr
-      %th
-      %th
-      %th= model_class.human_attribute_name(:content)
-      %th= model_class.human_attribute_name(:status)
-      %th= model_class.human_attribute_name(:created_at)
-      - if can? :manage, Note
-        %th= t '.actions', default: t('helpers.actions')
-  %tbody
-    - @notes.each do |note|
-      %tr{ class: label_css_classes[note.status.to_sym] }
-        %td= link_to note.id, note
-        %td
-          - if note.screenshot?
-            = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
-              %i.glyphicon.glyphicon-picture
-        %td
-          - if note.user && user_signed_in? && current_user.role?(:admin)
-            %strong= note.user.profile.surname_name + ':'
-          = simple_format truncate(note.content, length: 200, omission: '...')
-          - if note.review?
-            .well.well-small= simple_format note.review
-        %td
-          %span.label{class: "label-#{label_css_classes[note.status.to_sym]}"}= t "notes.#{note.status}"
-        %td.col-md-2= Russian.strftime(note.created_at, "%d %B")
+.well
+  .page-header
+    %h4
+      = t 'notes.title'
+      %small
+        = link_to(new_note_path, class: 'btn btn-sm btn-primary') do
+          %i.glyphicon.glyphicon-plus
+  %table.table.table-striped.table-condensed
+    %thead
+      %tr
+        %th
+        %th
+        %th= model_class.human_attribute_name(:content)
+        %th= model_class.human_attribute_name(:status)
+        %th= model_class.human_attribute_name(:created_at)
         - if can? :manage, Note
+          %th= t '.actions', default: t('helpers.actions')
+    %tbody
+      - @notes.each do |note|
+        %tr{ class: label_css_classes[note.status.to_sym] }
+          %td= link_to note.id, note
           %td
-            = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-default btn-xs'
-            = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+            - if note.screenshot?
+              = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
+                %i.glyphicon.glyphicon-picture
+          %td
+            - if note.user && user_signed_in? && current_user.role?(:admin)
+              %strong= note.user.profile.surname_name + ':'
+            = simple_format truncate(note.content, length: 200, omission: '...')
+            - if note.review?
+              .well.well-small= simple_format note.review
+          %td
+            %span.label{class: "label-#{label_css_classes[note.status.to_sym]}"}= t "notes.#{note.status}"
+          %td.col-md-2= Russian.strftime(note.created_at, "%d %B")
+          - if can? :manage, Note
+            %td
+              = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-default btn-xs'
+              = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'

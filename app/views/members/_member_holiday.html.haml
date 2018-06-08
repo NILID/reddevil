@@ -5,6 +5,7 @@
       = member_holiday.full_name
   %td
     .text-muted= render partial: 'vacation', collection: member_holiday.vacations.old
+    .text-success= render partial: 'vacation', collection: member_holiday.vacations.present
     = render partial: 'vacation', collection: member_holiday.vacations.future
   - if can? :manage, member_holiday
     %td= link_to t('vacations.edit'), manage_holidays_member_path(member_holiday)

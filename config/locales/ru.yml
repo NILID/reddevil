@@ -186,7 +186,7 @@ ru:
     fullname: ФИО
     other_text: Примечание
     archive: Здесь представлен список бывших сотрудников.
-    vacation: Отпуска
+    vacation: Отпуск
     in_holiday: '%{member} в отпуске'
   users:
     title: Пользователи

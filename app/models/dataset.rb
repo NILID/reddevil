@@ -1,7 +1,6 @@
 class Dataset < ActiveRecord::Base
   belongs_to :user
   belongs_to :folder
-  attr_accessible :src, :title
 
   has_attached_file :src,
       url: "/system/files/:user_id/:folder_id/:basename.:extension",

@@ -1,8 +1,8 @@
 class DocsController < ApplicationController
   load_and_authorize_resource
-  layout 'main', only: [:edit, :new]
+  layout 'main', only: %i[edit new]
 
-  before_filter :set_categories, only: [:edit, :new, :create, :update]
+  before_filter :set_categories, only: %i[edit new create update]
 
   def index
     if params[:by_category]
@@ -74,20 +74,18 @@ class DocsController < ApplicationController
     end
   end
 
-
   private
 
-    def ancestry_options(items, &block)
-      return ancestry_options(items){|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"} unless block_given?
-
-      result = []
-      items.map do |item, sub_items|
-        result << [yield(item), item.id]
-        result += ancestry_options(sub_items, &block)
-      end
-
-      result
+  def ancestry_options(items, &block)
+    return ancestry_options(items){|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"} unless block_given?
+    result = []
+    items.map do |item, sub_items|
+      result << [yield(item), item.id]
+      result += ancestry_options(sub_items, &block)
     end
+
+    result
+  end
 
   def set_categories
     @categories = ancestry_options(Category.arrange(order: :title)) {|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"}

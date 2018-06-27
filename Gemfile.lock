@@ -339,7 +339,7 @@ DEPENDENCIES
   ancestry
   animate-rails
   best_in_place
-  better_errors
+  better_errors (< 2)
   binding_of_caller
   birthday
   bootstrap3-datetimepicker-rails

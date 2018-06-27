@@ -90,7 +90,7 @@ group :test do
 end
 
 group :production do
-  gem 'passenger'
+  gem 'passenger', '5.3.1'
 end
 
 gem 'sass-rails',   '~> 5.0'

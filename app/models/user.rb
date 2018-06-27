@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   GROUPS = %w[luch lab193 test sellers art machine]
-  #             1    2     4      8     16    32
+  #             1    2     4      8    16    32
 
   def groups=(groups)
     self.groups_mask = (groups & GROUPS).map { |p| 2**GROUPS.index(p) }.inject(0, :+)
@@ -69,10 +69,17 @@ class User < ActiveRecord::Base
     updated_at > 10.minutes.ago
   end
 
-  def ratio(match_finished)
+  def ratio(match_finished, users)
     forecasts_count = self.forecasts.where(match_id: match_finished).pluck(:id).size
     ratio = forecasts_count > 0 ? (self.profile.total_result.to_f / forecasts_count.to_f).round(3) : 0
-    { forecasts_count: forecasts_count, ratio_count: ratio }
+
+    # new ratio
+    sum_total = users.order(forecasts_count: :desc).limit(users.count/2).pluck(:forecasts_count).sum.to_f / (users.count/2)
+    k_opit = forecasts_count / sum_total.to_f
+    k_opit_sqrt = Math.sqrt(Math.sqrt(k_opit))
+    new_ratio = ratio * k_opit_sqrt
+
+    { forecasts_count: forecasts_count, ratio_count: ratio, new_ratio: new_ratio }
   end
 
   def set_win_count!

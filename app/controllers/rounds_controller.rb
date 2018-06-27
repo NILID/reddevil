@@ -20,17 +20,17 @@ class RoundsController < ApplicationController
     # tag = 'чмх2017'
     # tag = 'чмх2018'
     tag = 'чмф2018'
-    @users = (User.where(sport_flag: true).includes(:profile).map { |user| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) }.sum } }).reduce(:merge)
-    @users_new = User.all
+    @all_users = User.where(sport_flag: true)
+    @users = (@all_users.includes(:profile).map { |user| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) }.sum } }).reduce(:merge)
     if @users
       @users = if params[:sort] == 'total'
-        Hash[@users.sort_by{|k, v| k.profile.total_result}.reverse]
+        Hash[@users.sort_by{ |k, v| k.profile.total_result }.reverse]
       elsif params[:sort] == 'win'
-        Hash[@users.sort_by{|k, v| k.win_forecasts_count}.reverse]
-      elsif  params[:sort] == 'ratio'
-        Hash[@users.sort_by{|k, v| k.ratio(@match_finished, @profiles)[:ratio_count]}.reverse]
-      elsif  params[:sort] == 'new_ratio'
-        Hash[@users.sort_by{|k, v| k.ratio(@match_finished, @users_new)[:new_ratio]}.reverse]
+        Hash[@users.sort_by{ |k, v| k.win_forecasts_count }.reverse]
+      elsif params[:sort] == 'ratio'
+        Hash[@users.sort_by{ |k, v| k.ratio(@match_finished, @all_users)[:ratio_count] }.reverse]
+      elsif params[:sort] == 'new_ratio'
+        Hash[@users.sort_by{ |k, v| k.ratio(@match_finished, @all_users)[:new_ratio] }.reverse]
       else
         Hash[@users.sort_by{|k, v| v}.reverse]
       end

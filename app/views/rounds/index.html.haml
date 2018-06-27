@@ -36,7 +36,7 @@
                 - if params[:sort] == 'total'
                   %i.glyphicon.glyphicon-chevron-down
         - @users.each do |user, round_result|
-          - user_ratio = user.ratio(@match_finished, @users_new)
+          - user_ratio = user.ratio(@match_finished, @all_users)
           - if user_ratio[:forecasts_count] > 0
             %tr
               %td= user.profile.surname || user.email

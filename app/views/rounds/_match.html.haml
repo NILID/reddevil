@@ -14,8 +14,7 @@
       .team-goal
         #{match.team2goal || '-'}
 
-
-  %td.match-ending(style="width:4px;")
+  %td.match-ending(style='width:4px;')
     - if match.ending != 'basic'
       - if match.team1 != match.winner
         %br/
@@ -31,7 +30,7 @@
     - f = user.forecasts.where(match_id: match.id).first
     - if f
       - f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) && (match.ending == f.ending) && ((%w[overtime basic].include? match.ending) || (match.ending == 'penalty' && match.winner == f.winner)) ? 'success' : nil
-      %td.text-center{class: f_css}
+      %td.text-center{ class: f_css }
         - if can? :edit, f
           = link_to edit_user_forecast_path(user, f, match_id: match), class: 'btn btn-default btn-xs' do
             %span.glyphicon.glyphicon-cog{ title: t('forecasts.edit') }

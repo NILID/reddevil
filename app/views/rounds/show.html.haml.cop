@@ -15,12 +15,12 @@
         .team-name
           =image_tag match.team1.flag(:thumb), width: '20px'
           #{match.team1.title}
-        .team-goal #{match.team1goal || '-'}
+        .team-goal #{ match.team1goal || '-' }
         .clear
         .team-name
           =image_tag match.team2.flag(:thumb), width: '20px'
           #{match.team2.title}
-        .team-goal #{match.team2goal || '-'}
+        .team-goal #{ match.team2goal || '-' }
         .clear
   %tbody
     -Tempuser.order(:username).each do |user|

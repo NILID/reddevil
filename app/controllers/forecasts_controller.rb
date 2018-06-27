@@ -2,6 +2,8 @@ class ForecastsController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :forecast, through: :user
 
+  after_filter :update_count, only: [:create, :destroy]
+
   def new
   end
 
@@ -40,4 +42,12 @@ class ForecastsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def update_count
+      user = @forecast.user
+      user.forecasts_count = user.forecasts.count
+      user.save!
+    end
 end

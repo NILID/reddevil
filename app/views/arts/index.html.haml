@@ -16,7 +16,7 @@
           = t 'art.new_artblock'
     .col-md-8= will_paginate @arts, renderer: BootstrapPagination::Rails
   - @arts.each do |art|
-    =div_for art, class: 'row' do
+    = div_for art, class: 'row' do
       .col-md-12
         .page-header.text-center.art-titleblock.ny-block
           .art-title= arttime art.deadline

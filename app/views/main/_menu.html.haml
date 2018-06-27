@@ -41,7 +41,7 @@
 
 
       %ul.nav.navbar-nav.navbar-right
-        -if (can? :read, Round) || (can? :read, Album) || (can? :read, Art)
+        - if (can? :read, Round) || (can? :read, Album) || (can? :read, Art)
           %li.dropdown
             = link_to '#', class: 'dropdown-toggle', role: 'button', data: { toggle: 'dropdown' }, id: 'dropmedia' do
               %i.glyphicon.glyphicon-list

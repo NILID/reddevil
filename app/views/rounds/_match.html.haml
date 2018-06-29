@@ -42,8 +42,8 @@
               - if (f.ending != 'basic') && !@round.draw
                 %span.tip
                   - if f.ending == 'penalty'
-                    %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
-                    .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+                    %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : f.ending}_short")
+                    .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : f.ending}")
                   - elsif f.ending == 'overtime'
                     %span.ending= t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
                     .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
@@ -53,8 +53,8 @@
               - if (f.ending != 'basic') && !@round.draw
                 %span.tip
                   - if f.ending == 'penalty'
-                    %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
-                    .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
+                    %span.ending= t("matches.#{(@round.type_id == 2) ? 'bullit' : f.ending}_short")
+                    .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : f.ending}")
                   - elsif f.ending == 'overtime'
                     %span.ending= t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
                     .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")

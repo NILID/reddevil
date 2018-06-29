@@ -8,7 +8,7 @@ $ ->
     penalty = $("form input#forecast_ending_penalty")
     penalty_label = $("form .btn-group label.label-penalty")
 
-    if $("#forecast_team1goal").val() == $("#forecast_team2goal").val() && $('.forecast-form').data('draw') == 'false'
+    if $("#forecast_team1goal").val() == $("#forecast_team2goal").val() # && $('.forecast-form').data('draw') == 'false'
       $('#winner-field').show()
 
       basic_label.addClass('disabled')
@@ -51,7 +51,7 @@ $ ->
     penalty =$("form input#forecast_ending_penalty")
     penalty_label =$("form .btn-group label.label-penalty")
 
-    if $val1 == $val2 && $('.forecast-form').data('draw') == 'false'
+    if $val1 == $val2 # && $('.forecast-form').data('draw') == 'false'
       $('#winner-field').slideDown()
 
       basic_label.addClass('disabled')
@@ -71,12 +71,12 @@ $ ->
 
       basic_label.removeClass('disabled')
       basic.removeAttr('disabled')
-      if basic_label.is('.current') && penalty_label.not('.current') && overtime_label.not('.active') && basic_label.is('.acitve')
+      if basic_label.is('.current') && penalty_label.not('.current') && overtime_label.not('.active') && basic_label.is('.active')
         basic.attr('checked', 'checked')
 
       overtime_label.removeClass('disabled')
       overtime.removeAttr('disabled')
-      if overtime_label.is('.current') && penalty_label.not('.current') && basic_label.not('.active') && overtime_label.is('.acitve')
+      if overtime_label.is('.current') && penalty_label.not('.current') && basic_label.not('.active') && overtime_label.is('.active')
         overtime.attr('checked', 'checked')
 
       penalty.attr('disabled', 'disabled')

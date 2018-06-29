@@ -8,8 +8,7 @@ $ ->
     penalty = $("form input#forecast_ending_penalty")
     penalty_label = $("form .btn-group label.label-penalty")
 
-    if $("#forecast_team1goal").val() == $("#forecast_team2goal").val()
-      # && $('.forecast-form').data('draw') == 'false'
+    if $("#forecast_team1goal").val() == $("#forecast_team2goal").val() && !$('.forecast-form').data('draw')
 
       $('#winner-field').show()
 
@@ -53,8 +52,7 @@ $ ->
     penalty = $("form input#forecast_ending_penalty")
     penalty_label = $("form .btn-group label.label-penalty")
 
-    if $val1 == $val2
-      # && $('.forecast-form').data('draw') == 'false'
+    if $val1 == $val2 && !$('.forecast-form').data('draw')
 
       $('#winner-field').slideDown()
 
@@ -68,7 +66,7 @@ $ ->
 
       penalty_label.addClass('disabled')
       penalty.removeAttr('disabled')
-      penalty.attr('checked', true)
+      penalty.prop('checked', true)
     else
       $('#winner-field').slideUp()
       $("select#forecast_winner_id").val('')

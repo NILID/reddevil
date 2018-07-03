@@ -70,6 +70,6 @@
       %p
         %small= link_to t('rounds.add'), new_round_path, class: 'btn btn-default'
         %small= link_to t('teams.add'), new_team_path, class: 'btn btn-default'
-        %small= link_to 'types', types_path, class: 'btn btn-default'
+        %small= link_to t('types.title'), types_path, class: 'btn btn-default'
 
     = render @rounds

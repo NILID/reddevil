@@ -35,7 +35,7 @@ Birthday::Application.routes.draw do
     member { post :like }
   end
 
-  resources :events, only: [:list] do
+  resources :events, only: %i[list] do
     collection do
       get 'list'
     end
@@ -44,15 +44,15 @@ Birthday::Application.routes.draw do
   scope 'sport' do
     resources :rounds do
       member {get :download}
-      resources :matches do
+      resources :matches, only: %i[destroy] do
         member do
           get :get_results
         end
       end
     end
     resources :users do
-      resources :forecasts, except: [:index, :show]
-      resources :results, except: [:show, :index] do
+      resources :forecasts, except: %i[index show]
+      resources :results, except: %i[show index] do
         member do
           post 'counted'
         end
@@ -68,7 +68,7 @@ Birthday::Application.routes.draw do
   resources :messages
 
 
-  %w(404 422 500).each do |code|
+  %w[404 422 500].each do |code|
     get code, to: 'errors#show', code: code
   end
 
@@ -85,19 +85,19 @@ Birthday::Application.routes.draw do
 
 
   resources :arts do
-    resources :works, except: [:index, :show]
+    resources :works, except: %i[index show]
   end
 
   resources :items
 
   resources :materials
 
-  resources :users, only: [:index] do
+  resources :users, only: %i[index] do
     member do
       post 'make_role'
       get 'edit_roles'
     end
-    resource :profile, only: [:edit, :update, :show]
+    resource :profile, only: %i[edit update show]
     resources :events
     resources :folders do
       resources :datasets
@@ -113,7 +113,7 @@ Birthday::Application.routes.draw do
       post 'like'
       get 'download'
     end
-    resources :songs, except: [:edit, :update, :show, :index] do
+    resources :songs, except: %i[edit update show index] do
       member do
         post 'like'
         get 'download'
@@ -121,7 +121,7 @@ Birthday::Application.routes.draw do
     end
   end
 
-  resources :members, except: [:show] do
+  resources :members, except: %i[show] do
     collection do
       get :archive
       get :stat
@@ -142,60 +142,4 @@ Birthday::Application.routes.draw do
   root to: 'main#index'
 
   devise_for :users
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

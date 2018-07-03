@@ -1,8 +1,0 @@
-= bootstrap_form_for [@round, @match], layout: :horizontal do |f|
-  = f.select(:team1_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
-  = f.select(:team2_id, Team.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
-  = f.number_field :team1goal, min: 0
-  = f.number_field :team2goal, min: 0
-  = f.select(:ending, Match::ENDING.collect {|e| [ t(e),  e]})
-  = f.form_group do
-    = f.primary

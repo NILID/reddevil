@@ -115,6 +115,8 @@ ru:
   columns:
     add: Добавить поле
     remove: Удалить поле
+  types:
+    title: Типы
   substrates:
     title: Подложки
     one_title: Подложка
@@ -240,6 +242,8 @@ ru:
     title: Команды
     add: Добавить команду
     select_team: Выбрать команду
+    new: Новая команда
+    edit: Редактирование команды
   rounds:
     add: Добавить раунд
     deadline: "Дэдлайн: %{date}"

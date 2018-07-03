@@ -66,25 +66,25 @@ class Ability
     end
 
     if user.role? :drawing
-      can [:index, :new, :create, :get_form], Substrate
-      can [:destroy, :edit, :update, :show, :remote_show, :sort], Substrate, category: 'substrate'
+      can %i[index new create get_form], Substrate
+      can %i[destroy edit update show remote_show sort], Substrate, category: 'substrate'
     end
 
     if user.role? :mirrors
-      can [:mirrors, :new, :create, :get_form], Substrate
-      can [:destroy, :edit, :update, :show, :remote_show, :sort], Substrate, category: 'mirror'
+      can %i[mirrors new create get_form], Substrate
+      can %i[destroy edit update show remote_show sort], Substrate, category: 'mirror'
     end
 
     if user.has_group? :art
       can :read, [Art, Work]
       can [:new, :create], Art
       can [:new, :create], Work, art: {closed?: false}
-      can [:edit, :update, :destroy], Work, user: {id: user.id}, art: {closed?: false}
-      can :manage, Source, work: {user_id: user.id}
+      can %i[edit update destroy], Work, user: { id: user.id }, art: { closed?: false }
+      can :manage, Source, work: { user_id: user.id }
     end
 
     if user.has_group? :lab193
-      can [:manage, :read, :download], [Song, Album]
+      can %i[manage read download], [Song, Album]
       can [:get_results], Match
       can [:read], [Art, Work, Round]
       can :like, Song

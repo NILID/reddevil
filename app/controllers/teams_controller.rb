@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
        format.html { redirect_to teams_url, notice: t('flash.was_created', item: Team.model_name.human) }
        format.json { render json: @team, status: :created, location: @team }
      else
-       format.html { render action: "new" }
+       format.html { render action: 'new' }
        format.json { render json: @team.errors, status: :unprocessable_entity }
      end
     end
@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
         format.html { redirect_to @team, notice: t('flash.was_updated', item: Team.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end

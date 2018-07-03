@@ -64,7 +64,7 @@ class RoundsController < ApplicationController
         # Move to model
         User.where(sport_flag: true).all.each { |user| Notification.new_round(user, @round).deliver_now }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
     end
@@ -76,7 +76,7 @@ class RoundsController < ApplicationController
         format.html { redirect_to @round, notice: t('flash.was_updated', item: Round.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
     end

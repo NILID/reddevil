@@ -17,7 +17,7 @@ class WorksController < ApplicationController
         format.html { redirect_to arts_url, notice: t('flash.was_created', item: Work.model_name.human) }
         format.json { render json: @work, status: :created, location: @work }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @work.errors, status: :unprocessable_entity }
       end
      end
@@ -29,7 +29,7 @@ class WorksController < ApplicationController
         format.html { redirect_to arts_url, notice: t('flash.was_updated', item: Work.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @work.errors, status: :unprocessable_entity }
       end
     end

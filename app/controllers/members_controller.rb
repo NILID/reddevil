@@ -27,11 +27,11 @@ class MembersController < ApplicationController
     @members.each {|m| @member_ages << m.age}
 
     members_birth_months=[]
-    @members.each {|m| members_birth_months << m.birth.strftime("%m")}
+    @members.each {|m| members_birth_months << m.birth.strftime('%m')}
     @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
 
     members_birth_days=[]
-    @members.each {|m| members_birth_days << m.birth.strftime("%w")}
+    @members.each {|m| members_birth_days << m.birth.strftime('%w')}
     @members_birth_days = (
     members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
 
@@ -58,7 +58,7 @@ class MembersController < ApplicationController
         format.html { redirect_to members_url, notice: t('flash.was_created', item: Member.model_name.human) }
         format.json { render json: @member, status: :created, location: @member }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end
@@ -70,7 +70,7 @@ class MembersController < ApplicationController
         format.html { redirect_to members_url, notice: t('flash.was_updated', item: Member.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end

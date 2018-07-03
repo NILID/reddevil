@@ -4,7 +4,7 @@ class MachinesController < ApplicationController
   layout 'main'
 
   def index
-    @machines = @machines.includes(:tasks => [:user])
+    @machines = @machines.includes(tasks: [:user])
   end
 
   def show

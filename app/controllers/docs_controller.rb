@@ -47,7 +47,7 @@ class DocsController < ApplicationController
         format.html { redirect_to docs_url, notice: t('flash.was_created', item: Doc.model_name.human) }
         format.json { render json: @doc, status: :created, location: @doc }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @doc.errors, status: :unprocessable_entity }
       end
     end
@@ -59,7 +59,7 @@ class DocsController < ApplicationController
         format.html { redirect_to docs_url, notice: t('flash.was_updated', item: Doc.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @doc.errors, status: :unprocessable_entity }
       end
     end

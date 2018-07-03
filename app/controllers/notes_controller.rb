@@ -22,7 +22,7 @@ class NotesController < ApplicationController
         format.html { redirect_to notes_url, notice: t('flash.was_created', item: Note.model_name.human) }
         format.json { render json: @note, status: :created, location: @note }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
@@ -34,7 +34,7 @@ class NotesController < ApplicationController
         format.html { redirect_to notes_url, notice: t('flash.was_updated', item: Note.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end

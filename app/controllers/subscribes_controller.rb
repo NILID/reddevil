@@ -41,7 +41,7 @@ class SubscribesController < ApplicationController
         format.html { redirect_to subscribes_url, notice: t('flash.was_created', item: Subscribe.model_name.human) }
         format.json { render json: @subscribe, status: :created, location: @subscribe }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @subscribe.errors, status: :unprocessable_entity }
       end
     end
@@ -53,7 +53,7 @@ class SubscribesController < ApplicationController
         format.html { redirect_to subscribes_url, notice: t('flash.was_updated', item: Subscribe.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @subscribe.errors, status: :unprocessable_entity }
       end
     end

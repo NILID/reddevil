@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         format.html { redirect_to user_profile_path(@user), notice: t('flash.was_updated', item: User.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

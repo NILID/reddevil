@@ -21,7 +21,7 @@ class TypesController < ApplicationController
         format.html { redirect_to @type, notice: t('flash.was_created', item: Type.model_name.human) }
         format.json { render json: @type, status: :created, location: @type }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @type.errors, status: :unprocessable_entity }
       end
     end
@@ -33,7 +33,7 @@ class TypesController < ApplicationController
         format.html { redirect_to @type, notice: t('flash.was_updated', item: Type.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @type.errors, status: :unprocessable_entity }
       end
     end

@@ -15,7 +15,7 @@ class SongsController < ApplicationController
         format.html { redirect_to @album, notice: t('flash.was_created', item: Song.model_name.human) }
         format.json { render json: @song, status: :created, location: @song }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
     end

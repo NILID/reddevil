@@ -58,7 +58,7 @@ class PurchasesController < ApplicationController
         format.html { redirect_to [@year, Purchase], notice: t('flash.was_created', item: Purchase.model_name.human) }
         format.json { render json: @purchase, status: :created, location: @purchase }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @purchase.errors, status: :unprocessable_entity }
       end
     end
@@ -71,7 +71,7 @@ class PurchasesController < ApplicationController
         format.json { respond_with_bip(@purchase) }
         format.js
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { respond_with_bip(@purchase) }
         format.js
       end

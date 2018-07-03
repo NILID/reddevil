@@ -24,7 +24,7 @@ class FoldersController < ApplicationController
         format.html { redirect_to [@user, @folder], notice: t('flash.was_created', item: Folder.model_name.human) }
         format.json { render json: @folder, status: :created, location: @folder }
       else
-        format.html { render action: "new", locals: {parent_id: params[:parent_id]} }
+        format.html { render action: 'new', locals: {parent_id: params[:parent_id]} }
         format.json { render json: @folder.errors, status: :unprocessable_entity }
       end
     end
@@ -36,7 +36,7 @@ class FoldersController < ApplicationController
         format.html { redirect_to [@user, @folder], notice: t('flash.was_updated', item: Folder.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @folder.errors, status: :unprocessable_entity }
       end
     end

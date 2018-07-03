@@ -71,7 +71,7 @@ class AlbumsController < ApplicationController
         format.html { redirect_to @album, notice: t('flash.was_created', item: Album.model_name.human) }
         format.json { render json: @album, status: :created, location: @album }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end

@@ -19,7 +19,7 @@ class MaterialsController < ApplicationController
         format.html { redirect_to @material, notice: t('flash.was_created', item: Material.model_name.human) }
         format.json { render json: @material, status: :created, location: @material }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @material.errors, status: :unprocessable_entity }
       end
     end
@@ -31,7 +31,7 @@ class MaterialsController < ApplicationController
         format.html { redirect_to @material, notice: t('flash.was_updated', item: Material.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @material.errors, status: :unprocessable_entity }
       end
     end

@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
         format.html { redirect_to @message, notice: t('flash.was_created', item: Message.model_name.human) }
         format.json { render json: @message, status: :created, location: @message }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
         format.html { redirect_to @message, notice: t('flash.was_updated', item: Message.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end

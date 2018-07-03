@@ -24,7 +24,7 @@ class EventsController < ApplicationController
         format.html { redirect_to [@user, @event], notice: t('flash.was_created', item: Event.model_name.human) }
         format.json { render json: @event, status: :created, location: @event }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
         format.html { redirect_to [@user, @event], notice: t('flash.was_updated', item: Event.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end

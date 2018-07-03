@@ -45,7 +45,7 @@ class ResultsController < ApplicationController
         format.js
         format.json { render json: @result, status: :created, location: @result }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.js
         format.json { render json: @result.errors, status: :unprocessable_entity }
       end
@@ -58,7 +58,7 @@ class ResultsController < ApplicationController
         format.html { redirect_to @result, notice: t('flash.was_updated', item: Result.model_name.human) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @result.errors, status: :unprocessable_entity }
       end
     end

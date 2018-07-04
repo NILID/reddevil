@@ -22,6 +22,6 @@
       .modal-footer
         = f.form_group do
           = f.primary
-          %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'
           - if params[:action] == 'edit'
             = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast
+          %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'

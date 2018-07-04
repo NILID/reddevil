@@ -1,1 +1,4 @@
 $('#dialog_forecast_<%=@match.id%>').html("<%=j render 'form'%>");
+<% unless @forecast.team1goal == @forecast.team2goal %>
+  $('#winner-field').hide();
+<% end %>

@@ -1,0 +1,5 @@
+<% if @forecast.errors.any? %>
+  $('#dialog_forecast_<%=@match.id%> #errors').html("sdfsdf");
+<% else %>
+  $('#dialog_forecast_<%=@match.id%>').html("<%=j render 'form'%>");
+<% end %>

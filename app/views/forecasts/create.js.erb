@@ -1,0 +1,5 @@
+$('#match_<%= @forecast.match.id %>_user_<%= @forecast.user.id %>_forecast').html('<%=j render('forecasts/forecast', f: @forecast, match: @forecast.match, user: @forecast.user, round: @forecast.match.round) %>');
+$('.modal').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+$('#match_<%= @forecast.match.id %>_user_<%= @forecast.user.id %>_forecast').effect('highlight', {}, 1000);

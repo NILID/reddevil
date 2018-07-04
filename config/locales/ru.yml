@@ -21,6 +21,7 @@ ru:
     download: Скачать
     add_favorite: Добавить в избранное
     errors: '%{error} допущена при заполнении формы:'
+    errors_done: '%{error} при заполнении формы:'
     edit: Редактировать
     media: Медиа
     create: Создать
@@ -517,6 +518,9 @@ ru:
     error_1: ошибка
     error_2: ошибки
     error_10: ошибок
+    error_done_1: ошибка допущена
+    error_done_2: ошибки допущены
+    error_done_10: ошибок допущено
     match_1: матч
     match_2: матча
     match_10: матчей

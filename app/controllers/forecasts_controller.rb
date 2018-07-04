@@ -2,22 +2,28 @@ class ForecastsController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :forecast, through: :user
 
-  after_filter :update_count, only: [:create, :destroy]
-
   def new
+    @match = Match.where(id: params[:match_id] ? params[:match_id] : @forecast.match_id).first
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit
+    @match = @forecast.match
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
+    @match = Match.where(id: params[:match_id] ? params[:match_id] : @forecast.match_id).first
     respond_to do |format|
       if @forecast.save
-        format.html { redirect_to round_path(@forecast.round), notice: t('flash.was_created', item: Forecast.model_name.human) }
-        format.json { render json: @forecast, status: :created, location: @forecast }
+        update_count
+        format.js
       else
-        format.html { render action: 'new' }
-        format.json { render json: @forecast.errors, status: :unprocessable_entity }
+        format.js { render 'errors', locals: { object: @forecast} }
       end
     end
   end
@@ -25,11 +31,9 @@ class ForecastsController < ApplicationController
   def update
     respond_to do |format|
       if @forecast.update_attributes(params[:forecast])
-        format.html { redirect_to round_path(@forecast.round), notice: t('flash.was_updated', item: Forecast.model_name.human) }
-        format.json { head :no_content }
+        format.js
       else
-        format.html { render action: 'edit', match_id: @forecast.match_id }
-        format.json { render json: @forecast.errors, status: :unprocessable_entity }
+        format.js { render 'errors', locals: { object: @forecast} }
       end
     end
   end
@@ -38,6 +42,7 @@ class ForecastsController < ApplicationController
     @forecast.destroy
 
     respond_to do |format|
+      update_count
       format.html { redirect_to round_path(@forecast.round), notice: t('flash.was_destroyed', item: Forecast.model_name.human) }
       format.json { head :no_content }
     end

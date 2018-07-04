@@ -1,26 +1,27 @@
-- m = Match.where(id: params[:match_id] ? params[:match_id] : @forecast.match_id).first
+.modal-dialog.modal-lg(role='document')
+  = bootstrap_form_for [@user, @forecast], remote: true, layout: :horizontal, html: { data: { draw: @match.round.draw }, class: 'forecast-form' } do |f|
+    .modal-content
+      .modal-body
+        .errors
+        = f.hidden_field :match_id, value: @match.id
 
-= bootstrap_form_for [@user, @forecast], layout: :horizontal, html: { data: { draw: m.round.draw }, class: 'forecast-form' } do |f|
+        = f.number_field :team1goal, min: 0, class: 'number_field form-control', label: @match.team1.title
+        = f.number_field :team2goal, min: 0, class: 'number_field form-control', label: @match.team2.title
 
-  = f.hidden_field :match_id, value: m.id
+        - unless @match.round.draw
+          #winner-field
+            = f.select(:winner_id, [@match.team1, @match.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
-  = f.number_field :team1goal, min: 0, class: 'number_field form-control', label: m.team1.title
-  = f.number_field :team2goal, min: 0, class: 'number_field form-control', label: m.team2.title
+          = f.form_group :ending do
+            .btn-group.minify-radio{ data: { toggle: 'buttons' } }
+              - Match::ENDING.each do |e|
+                %label.btn.btn-primary{ class: "#{ (@forecast && @forecast.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast && @forecast.ending == e) ? 'current' : nil}" }
+                  = f.radio_button :ending, e, disabled: false, autocomplete: 'off'
+                  = t "matches.#{(@match.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
 
-  - unless m.round.draw
-    #winner-field
-      = f.select(:winner_id, [m.team1, m.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
-
-    = f.form_group :ending do
-      .btn-group.minify-radio{ data: { toggle: 'buttons' } }
-        - Match::ENDING.each do |e|
-          %label.btn.btn-primary{ class: "#{ (@forecast && @forecast.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast && @forecast.ending == e) ? 'current' : nil}" }
-            = f.radio_button :ending, e, disabled: false, autocomplete: 'off'
-            = t "matches.#{(m.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
-
-  = f.form_group do
-    = f.primary
-    = link_to t('shared.cancel'), m.round, class: 'btn btn-default'
-    - if params[:action] == 'edit'
-      .pull-right
-        = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast
+      .modal-footer
+        = f.form_group do
+          = f.primary
+          %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'
+          - if params[:action] == 'edit'
+            = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast

@@ -9,7 +9,7 @@
         = f.number_field :team2goal, min: 0, class: 'number_field form-control', label: @match.team2.title
 
         - unless @match.round.draw
-          #winner-field
+          .winner-field
             = f.select(:winner_id, [@match.team1, @match.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
           = f.form_group :ending do

@@ -12,7 +12,7 @@ $ ->
 
     if $val1 == $val2 && !$('.forecast-form').data('draw')
 
-      $('#winner-field').slideDown()
+      $('.winner-field').slideDown()
 
       basic_label.addClass('disabled')
       basic.attr('disabled', 'disabled')
@@ -26,7 +26,7 @@ $ ->
       penalty.removeAttr('disabled')
       penalty.prop('checked', true)
     else
-      $('#winner-field').slideUp()
+      $('.winner-field').slideUp()
       $("select#forecast_winner_id").val('')
 
       basic_label.removeClass('disabled')

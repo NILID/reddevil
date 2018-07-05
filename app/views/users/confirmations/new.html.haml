@@ -1,11 +1,13 @@
 .row
   .col-md-8
-    .page-header
-      %h4 Выслать повторно письмо подтверждения регистрации
-  = bootstrap_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), laypout: :horizontal, :html => { :method => :post }) do |f|
-    = f.label :email
-    = f.email_field :email, autofocus: true
-    = f.form_group do
-      = f.primary 'Прислать письмо'
-.row
-  .col-md-6= render "users/shared/links"
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          Выслать повторно письмо подтверждения регистрации
+      .panel-body
+        = bootstrap_form_for(resource, as: resource_name, :url => confirmation_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
+          = f.email_field :email, autofocus: true
+          = f.form_group do
+            = f.primary 'Прислать письмо'
+      .panel-footer
+        = render "users/shared/links"

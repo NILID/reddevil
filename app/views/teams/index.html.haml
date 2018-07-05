@@ -1,25 +1,28 @@
 - model_class = Team
-.page-header
-  %h1
-    = t 'teams.title'
-    -if can? :manage, Team
-      %small= link_to t('.new', :default => t("helpers.links.new")), new_team_path, :class => 'btn btn-primary'
-%table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:title)
-      %th= model_class.human_attribute_name(:type_id)
-      %th= model_class.human_attribute_name(:flag_file_name)
-      %th=t '.actions', :default => t("helpers.actions")
-  %tbody
-    - @teams.each do |team|
+
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      = t 'teams.title'
+      - if can? :manage, Team
+        %small.pull-right
+          = link_to t('shared.add'), new_team_path, class: 'btn btn-primary btn-sm'
+  %table.table.table-striped
+    %thead
       %tr
-        %td= link_to team.title, team_path(team)
-        %td= team.type.title if team.type
-        %td= image_tag team.flag(:thumb)
-        - if can? :manage, team
-          %td
-            = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-default btn-xs'
-            = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+        %th= model_class.human_attribute_name(:title)
+        %th= model_class.human_attribute_name(:type_id)
+        %th= model_class.human_attribute_name(:flag_file_name)
+        %th=t '.actions', :default => t("helpers.actions")
+    %tbody
+      - @teams.each do |team|
+        %tr
+          %td= link_to team.title, team_path(team)
+          %td= team.type.title if team.type
+          %td= image_tag team.flag(:thumb)
+          - if can? :manage, team
+            %td
+              = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-default btn-xs'
+              = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
 

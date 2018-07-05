@@ -1,12 +1,15 @@
 .row
   .col-md-8
-    .page-header
-      %h4= t 'devise.signup'
-    = bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name), layout: :horizontal) do |f|
-      = f.email_field :email, autofocus: true
-      = f.password_field :password, autocomplete: 'off'
-      = f.password_field :password_confirmation, autocomplete: 'off'
-      = f.form_group do
-        = f.primary t('devise.tosignup')
-.row
-  .col-md-6= render 'users/shared/links'
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          = t 'devise.signup'
+      .panel-body
+        = bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name), layout: :horizontal) do |f|
+          = f.email_field :email, autofocus: true
+          = f.password_field :password, autocomplete: 'off'
+          = f.password_field :password_confirmation, autocomplete: 'off'
+          = f.form_group do
+            = f.primary t('devise.tosignup')
+      .panel-footer
+        = render 'users/shared/links'

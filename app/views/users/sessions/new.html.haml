@@ -1,14 +1,17 @@
 .row
-  .col-md-6
-    .page-header
-      %h4= t 'devise.sign'
-    = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), layout: :horizontal) do |f|
-      = f.email_field :email, autofocus: true
-      = f.password_field :password, autocomplete: 'off'
-      - if devise_mapping.rememberable?
-        = f.form_group :remember_me do
-          = f.check_box :remember_me, label: t('devise.remember')
-      = f.form_group do
-        = f.primary t('devise.login')
-.row
-  .col-md-6= render 'users/shared/links'
+  .col-md-8
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          = t 'devise.sign'
+      .panel-body
+        = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), layout: :horizontal) do |f|
+          = f.email_field :email, autofocus: true
+          = f.password_field :password, autocomplete: 'off'
+          - if devise_mapping.rememberable?
+            = f.form_group :remember_me do
+              = f.check_box :remember_me, label: t('devise.remember')
+          = f.form_group do
+            = f.primary t('devise.login')
+      .panel-footer
+        = render 'users/shared/links'

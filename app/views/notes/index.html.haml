@@ -4,20 +4,21 @@
 - model_class = Note
 
 - content_for :sidebar do
-  .well
-    - label_css_classes.each do |k,v|
-      %p
-        = link_to notes_path(:'q[status_eq]' => k) do
-          %span.label{ class: "label-#{v}" }
-            %b= @notes_all_count[k.to_s] || '0'
-            = t "notes.#{k}"
+  .panel.panel-default
+    .panel-body
+      - label_css_classes.each do |k,v|
+        %p
+          = link_to notes_path(:'q[status_eq]' => k) do
+            %span.label{ class: "label-#{v}" }
+              %b= @notes_all_count[k.to_s] || '0'
+              = t "notes.#{k}"
 
-.well
-  .page-header
-    %h4
+.panel.panel-default
+  .panel-heading
+    .panel-title
       = t 'notes.title'
-      %small
-        = link_to(new_note_path, class: 'btn btn-sm btn-primary') do
+      %small.pull-right
+        = link_to(new_note_path, class: 'btn btn-primary btn-sm') do
           %i.glyphicon.glyphicon-plus
   %table.table.table-striped.table-condensed
     %thead

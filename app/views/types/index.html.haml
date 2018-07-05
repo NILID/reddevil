@@ -1,23 +1,25 @@
 - model_class = Type
-.page-header
-  %h1
-    =t '.title', :default => model_class.model_name.human.pluralize.titleize
-    -if can? :new, Type
-      %small= link_to t('.new', :default => t("helpers.links.new")), new_type_path, :class => 'btn btn-primary'
-%table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:title)
-      %th
-  %tbody
-    - @types.each do |type|
+
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      = t '.title', :default => model_class.model_name.human.pluralize.titleize
+      - if can? :new, Type
+        %small= link_to t('.new', :default => t("helpers.links.new")), new_type_path, :class => 'pull-right btn btn-primary btn-sm'
+  %table.table.table-striped
+    %thead
       %tr
-        %td= link_to type.id, type_path(type)
-        %td= type.title
-        - if can? :manage, type
-          %td
-            = link_to t('shared.edit'), edit_type_path(type), :class => 'btn btn-default btn-xs'
-            = link_to t('shared.del'), type_path(type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+        %th= model_class.human_attribute_name(:id)
+        %th= model_class.human_attribute_name(:title)
+        %th
+    %tbody
+      - @types.each do |type|
+        %tr
+          %td= link_to type.id, type_path(type)
+          %td= type.title
+          - if can? :manage, type
+            %td
+              = link_to t('shared.edit'), edit_type_path(type), :class => 'btn btn-default btn-xs'
+              = link_to t('shared.del'), type_path(type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
 

@@ -11,7 +11,7 @@
 .row.masonry(data-columns='1')
   - if !@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?
     %div
-      .birthday-block.panel.panel-default
+      .panel.panel-default
         - unless @bdusers_prevyesterday.empty?
           .panel-heading
             .panel-title
@@ -54,7 +54,7 @@
 
   - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
     %div
-      .birthday-block.panel.panel-default
+      .panel.panel-default
         - unless @holidays_today.empty?
           .panel-heading
             = t 'shared.today'

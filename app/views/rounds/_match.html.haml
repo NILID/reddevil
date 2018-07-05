@@ -1,13 +1,12 @@
 %tr
   %td.team-commands
-    .team
+    .team.clearfix
       .team-name
         = image_tag match.team1.flag(:thumb)
         %span{style: (match.team1 == match.check_win) ? 'font-weight:bold' : nil} #{match.team1.title}
       .team-goal
         #{match.team1goal || '-'}
-    %br/
-    .team
+    .team.clearfix
       .team-name
         = image_tag match.team2.flag(:thumb)
         %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : nil} #{match.team2.title}

@@ -12,7 +12,7 @@
               = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger' do
                 %i.glyphicon.glyphicon-trash
           .pull-right= purchase.user.profile.surname
-          .clear
+          .clearfix
           %hr
           %dl.dl-horizontal
             %dt= Purchase.human_attribute_name(:price)

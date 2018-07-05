@@ -1,30 +1,24 @@
 = form_for Item.new, html: {class: 'item-form'} do |f|
-  =f.file_field :file
-  =f.submit t('mirrors.import'), class: 'btn btn-default'
+  = f.file_field :file
+  = f.submit t('mirrors.import'), class: 'btn btn-default'
 
+- if @item
 
--if @item
+  - out_file=Paperclip.io_adapters.for(@item.file).read
 
-  -out_file=Paperclip.io_adapters.for(@item.file).read
+  - b=[]
 
-  -b=[]
+  - out_file.each_line do |line|
+    - a = line.split(/\t|\r|\n/)
+    - b.push a if a != []
 
-  -out_file.each_line do |line|
-    -a=line.split(/\t|\r|\n/)
-    -b.push a if a != []
-
-  -ee=(b.sort_by {|key, value| value}).reverse!
-  -jj=(b.sort_by {|key, value| value}).reverse!
-
-
-
+  - ee = (b.sort_by {|key, value| value}).reverse!
+  - jj = (b.sort_by {|key, value| value}).reverse!
 
   .mirror
+    - @mirrors.each do |n|
 
-
-    -@mirrors.each do |n|
-
-      -if [1, 7, 12, 18, 23, 29, 34, 40, 45, 51, 56].include? n.id
+      - if [1, 7, 12, 18, 23, 29, 34, 40, 45, 51, 56].include? n.id
         \ <div class="mirror-row">
 
       .mirror-col.tip

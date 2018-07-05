@@ -1,22 +1,22 @@
 - set_meta_tags title: @profile.fullname
 
-.well
-  .page-header
-    %h3
+.panel.panel-default
+  .panel-heading
+    .panel-title
       = @profile.fullname
       (#{@profile.login? ? @profile.login : @user.email})
-      %small
+      %small.pull-right
         = link_to t('profiles.edit'), edit_user_profile_path(@user) if can? :edit, @profile
         - if can? :edit_roles, @user
           = link_to t('users.to_edit_roles'), edit_roles_user_path(@user)
+  .panel-body
+    .row
+      .col-md-3
+        = image_tag @profile.avatar.url(:medium), class: 'thumbnail img-responsive'
 
-  .row
-    .col-md-3
-      = image_tag @profile.avatar.url(:medium), class: 'thumbnail img-responsive'
-
-    .col-md-9
-      %dl.dl-horizontal
-        %dt= t 'users.has_groups'
-        %dd
-          - @user.groups.each do |group|
-            %span.label.label-info= t "user.groups.#{group}"
+      .col-md-9
+        %dl.dl-horizontal
+          %dt= t 'users.has_groups'
+          %dd
+            - @user.groups.each do |group|
+              %span.label.label-primary= t "user.groups.#{group}"

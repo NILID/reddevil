@@ -12,22 +12,21 @@
       = link_to like_album_path(@album), method: :post, remote: true do
         %i.glyphicon{class: current_user.likes?(@album) ? 'glyphicon-star' : 'glyphicon-star-empty'}
 
-.ny-block
-  - @albums.each do |album|
-    %p
-      = link_to album.title, album
-      - if can? :manage, album
-        = link_to t('shared.edit'), edit_album_path(album)
-        = link_to t('shared.del'), album, method: :delete, data: { confirm: t('shared.sure') }
+.panel.panel-default
+  .panel-body
+    - @albums.each do |album|
+      %p
+        = link_to album.title, album
+        - if can? :manage, album
+          = link_to t('shared.edit'), edit_album_path(album)
+          = link_to t('shared.del'), album, method: :delete, data: { confirm: t('shared.sure') }
 
-  %ul.playlist= render @album.songs, showalbum: false
+    %ul.playlist= render @album.songs, showalbum: false
 
-- if can? :manage, @album
-  = link_to t('shared.edit'), edit_album_path(@album)
-  \|
-= link_to t('shared.back'), albums_path
-\|
-- if can? :new, Song
-  = link_to t('songs.add'), new_album_song_path(@album)
-  \|
-= link_to t('albums.add'), new_album_path(parent_id: @album.id) if can? :new, Album
+%ol.breadcrumb
+  %li= link_to t('shared.back'), albums_path
+  - if can? :manage, @album
+    %li= link_to t('shared.edit'), edit_album_path(@album)
+  - if can? :new, Song
+    %li= link_to t('songs.add'), new_album_song_path(@album)
+  %li= link_to t('albums.add'), new_album_path(parent_id: @album.id) if can? :new, Album

@@ -2,8 +2,10 @@
 
 .row
   .col-md-6
-    .well.well-sm
-      %h3= t 'shared.rating'
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          = t 'shared.rating'
       %table.table.table-hover
         %thead
           %tr
@@ -49,8 +51,10 @@
               %td= user.win_forecasts_count
               %td= user.profile.total_result
 
-    .well.well-sm
-      %h3= t 'shared.stat'
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          = t 'shared.stat'
       %table.table.table-hover.table-condensed
         %tr
           %td= t 'matches.count'

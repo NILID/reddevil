@@ -1,16 +1,18 @@
 - set_meta_tags title: t('docs.title')
 
 - content_for :sidebar do
-  .ny-block
-    %h4
-      = link_to t('categories.title'), docs_path
-      - if can? :manage, Category
-        = link_to categories_path, class: 'btn btn-default btn-xs' do
-          %i.glyphicon.glyphicon-cog
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        = link_to t('categories.title'), docs_path
+        - if can? :manage, Category
+          = link_to categories_path, class: 'btn btn-default btn-xs pull-right' do
+            %i.glyphicon.glyphicon-cog
 
-    = bootstrap_form_for(@q, url: docs_path, method: :get) do |f|
-      = f.text_field :title_cont, hide_label: true, placeholder: t('shared.search'),
-        append: content_tag(:span, '', class: 'glyphicon glyphicon-search')
+    .panel-body
+      = bootstrap_form_for(@q, url: docs_path, method: :get) do |f|
+        = f.text_field :title_cont, hide_label: true, placeholder: t('shared.search'),
+          append: content_tag(:span, '', class: 'glyphicon glyphicon-search')
 
     = arranged_tree_as_list(@categories) do |category|
       = link_to category.title,
@@ -20,7 +22,6 @@
         class: "slide-link #{category.hidden? || (!category.parent.nil? && category.parent.hidden?) ? ' hide' : nil}"
 
     %hr
-
     %ul.nav.nav-pills.nav-stacked.nav-reddevil
       %li= link_to t('docs.no_cats'),
         docs_path(no_category: true),

@@ -1,31 +1,12 @@
 .row
   .col-xs-12
-    %h3
-      = @round.title
-  .col-xs-12
-    .well.well-sm
-      .row
-        .col-xs-4
-          %p
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          = @round.title
+          %small.pull-right
             .label.label-primary
               = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
-
-        .col-xs-8
-          .pull-right
-            %p
-              - if can? :download, @round
-                = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-default btn-sm', target: '_blank' do
-                  = t 'rounds.download'
-                  %i.glyphicon.glyphicon-download-alt
-                  PDF
-
-              - if can? :manage, @round
-                = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-default btn-sm' do
-                  %i.glyphicon.glyphicon-refresh
-                  = t 'results.rebuild'
-
-                = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-default btn-sm'
-                = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'
 
       %table.table.table-condensed.rounds
         %thead
@@ -95,4 +76,19 @@
           - else
             = render partial: 'match', collection: @round_matches
 
-      = link_to t('shared.back'), rounds_path, class: 'btn btn-default'
+      .panel-footer
+        = link_to t('shared.back'), rounds_path, class: 'btn btn-default btn-sm'
+        .pull-right
+          - if can? :download, @round
+            = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-default btn-sm', target: '_blank' do
+              = t 'rounds.download'
+              %i.glyphicon.glyphicon-download-alt
+              PDF
+
+          - if can? :manage, @round
+            = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-default btn-sm' do
+              %i.glyphicon.glyphicon-refresh
+              = t 'results.rebuild'
+
+            = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-default btn-sm'
+            = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'

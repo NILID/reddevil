@@ -7,8 +7,9 @@ class Member < ActiveRecord::Base
 
   acts_as_birthday :birth
 
-  scope :shown, -> { where(archive_flag: false) }
-  scope :archive, -> { where(archive_flag: true) }
+  scope :shown,      -> { where(archive_flag: false) }
+  scope :archive,    -> { where(archive_flag: true) }
+  scope :with_birth, -> { where.not(birth: nil) }
 
   def full_name
     "#{surname} #{name} #{patronymic}"
@@ -31,11 +32,15 @@ class Member < ActiveRecord::Base
   end
 
   def age
-    current_month = DateTime.now.month
-    current_year = DateTime.now.year
-    age = current_year - self.birth.year
-    age -= 1 if (current_month < self.birth.month) || ((current_month == self.birth.month) && (DateTime.now.day < self.birth.day))
-    return age
+    if self.birth
+      current_month = DateTime.now.month
+      current_year = DateTime.now.year
+      age = current_year - self.birth.year
+      age -= 1 if (current_month < self.birth.month) || ((current_month == self.birth.month) && (DateTime.now.day < self.birth.day))
+      age
+    else
+      nil
+    end
   end
 
   def self.to_xls(options = {})

@@ -24,17 +24,15 @@ class MembersController < ApplicationController
   def stat
     @members = @members.shown
     @member_ages = []
-    @members.each {|m| @member_ages << m.age}
+    @members.with_birth.each {|m| @member_ages << m.age}
 
-    members_birth_months=[]
-    @members.each {|m| members_birth_months << m.birth.strftime('%m')}
+    members_birth_months = []
+    @members.with_birth.each {|m| members_birth_months << m.birth.strftime('%m')}
     @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
 
-    members_birth_days=[]
-    @members.each {|m| members_birth_days << m.birth.strftime('%w')}
-    @members_birth_days = (
-    members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
-
+    members_birth_days = []
+    @members.with_birth.each {|m| members_birth_days << m.birth.strftime('%w')}
+    @members_birth_days = (members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
   end
 
   def archive

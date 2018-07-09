@@ -11,7 +11,7 @@ class Result < ActiveRecord::Base
         forecast=self.user.forecasts.where(match_id: match.id).last
         if forecast
           # check result
-          i+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal)
+          i+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal) && (match.check_win == forecast.check_winner)
           # check diff
           i+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
           # check winner

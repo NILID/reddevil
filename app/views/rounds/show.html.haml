@@ -29,7 +29,7 @@
                         - if match.has_goal?
                           - forecast=user.forecasts.where(match_id: match.id).last
                           - if forecast
-                            - a+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal)
+                            - a+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal) && (match.check_win == forecast.check_winner)
                             - b+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
                             - c+=1 if (match.check_win == forecast.check_winner)
                             - d+=1 if (match.ending == forecast.ending && !@round.draw)

@@ -3,13 +3,15 @@
 .row
   .col-xs-12
     .panel.panel-default
+      .panel-heading
+        %h4= t('users.title')
       %table.table
         - @users.each_with_index do |user, index|
           %tr
             %td= index+=1
             %td
-              %span.badge{class: user.online? ? 'badge-success' : ''}
-                .i.glyphicon{class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove'}
+              %span.badge{ class: user.online? ? 'badge-success' : '' }
+                .i.glyphicon{ class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove' }
             %td
               = link_to user.email, user_profile_path(user)
               .text-muted= user.profile.fullname

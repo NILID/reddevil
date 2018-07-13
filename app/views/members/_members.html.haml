@@ -12,10 +12,12 @@
             %th= Member.human_attribute_name(:work_phone)
             %th= Member.human_attribute_name(:short_number)
             %th= Member.human_attribute_name(:email)
+          - if can? :manage, Member
+            %th
       %tbody
         - members.each_with_index do |member, index|
           = content_tag_for(:tr, member) do
-            %td= index+1
+            %td.text-muted= index+1
             %td
               %span.membername
                 = member.full_name

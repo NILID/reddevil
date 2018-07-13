@@ -7,7 +7,7 @@ class Ability
 
     # everybody
     can :read, :all
-    can [:archive, :stat, :holidays, :get_holidays], Member
+    can %i[archive stat holidays get_holidays], Member
     cannot [:manage, :read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
     can [:new, :create], Note
     cannot [:edit, :update], Profile
@@ -20,7 +20,7 @@ class Ability
     if user.role? :user
       can [:edit, :update], Profile, user_id: user.id
       can :read, :all
-      can [:destroy, :edit, :update], Forecast do |f|
+      can %i[destroy edit update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.user_id == user.id)
       end
       # cannot :read, Doc, category: {hidden: true}
@@ -61,8 +61,8 @@ class Ability
     end
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
-      can [:manage, :read], Folder, user: {id: user.id}
-      can [:manage, :read], Dataset, folder: {user_id: user.id}
+      can [:manage, :read], Folder,  user:   { id: user.id }
+      can [:manage, :read], Dataset, folder: { user_id: user.id }
     end
 
     if user.role? :drawing
@@ -78,7 +78,7 @@ class Ability
     if user.has_group? :art
       can :read, [Art, Work]
       can [:new, :create], Art
-      can [:new, :create], Work, art: {closed?: false}
+      can [:new, :create], Work, art: { closed?: false }
       can %i[edit update destroy], Work, user: { id: user.id }, art: { closed?: false }
       can :manage, Source, work: { user_id: user.id }
     end

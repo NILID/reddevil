@@ -31,7 +31,7 @@
         - unless @bdusers_today.empty?
           .panel-heading
             .panel-title
-              = @bdusers_today.keys.count>1 ? t('shared.birthdays_today') : t('shared.birthday_today')
+              = @bdusers_today.keys.count > 1 ? t('shared.birthdays_today') : t('shared.birthday_today')
           .panel-body
             - @bdusers_today.keys.sort.each do |u|
               = render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
@@ -60,16 +60,16 @@
             = t 'shared.today'
             %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
           .panel-body
-            - @holidays_today.each do |h|
-              %p.text-success= h[:name]
+            - @holidays_today.each do |holiday|
+              %p.text-success= holiday[:name]
         - unless @holidays_tomorrow.empty?
           .panel-heading
             .panel-title
               = t 'shared.tomorrow'
               %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
           .panel-body
-            - @holidays_tomorrow.each do |h|
-              %p= h[:name]
+            - @holidays_tomorrow.each do |holiday|
+              %p= holiday[:name]
 
   - unless @vacations.empty?
     %div

@@ -22,10 +22,9 @@
             %td.text-muted= index+1
             %td
               - if member.phone? || member.birth?
-                %span.showinfo.glyphicon.glyphicon-chevron-down
+                %span.showinfo.glyphicon.glyphicon-chevron-down.membername.pointer
             %td
-              %span.membername
-                = member.full_name
+              %span.membername.pointer= member.full_name
               - if member.phone? || member.birth?
                 .hidden_info
                   - if member.phone?

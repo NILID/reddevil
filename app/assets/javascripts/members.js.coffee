@@ -3,6 +3,10 @@ $ ->
     $(this).parentsUntil('.member').find('.hidden_info').slideToggle()
     $(this).parentsUntil('.member').find('.showinfo').toggleClass('glyphicon-chevron-up glyphicon-chevron-down')
 
+  $('body').on 'click', '#show_all_members', ->
+    $('.hidden_info').slideToggle()
+    $(this).add('.showinfo').toggleClass('glyphicon-chevron-up glyphicon-chevron-down')
+
   $('#calendar').fullCalendar
     locale: "ru"
     #theme: true

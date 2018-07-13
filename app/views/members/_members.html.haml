@@ -7,6 +7,8 @@
       %thead
         %tr
           %th
+          %th
+            %span.glyphicon.glyphicon-chevron-down#show_all_members.pointer
           %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
           - unless params[:action] == 'archive'
             %th= Member.human_attribute_name(:work_phone)
@@ -19,10 +21,11 @@
           = content_tag_for(:tr, member) do
             %td.text-muted= index+1
             %td
+              - if member.phone? || member.birth?
+                %span.showinfo.glyphicon.glyphicon-chevron-down
+            %td
               %span.membername
                 = member.full_name
-                - if member.phone? || member.birth?
-                  %span.showinfo.glyphicon.glyphicon-chevron-down
               - if member.phone? || member.birth?
                 .hidden_info
                   - if member.phone?

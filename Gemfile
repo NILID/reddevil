@@ -54,6 +54,8 @@ gem 'devise'
 #gem 'devise-russian'
 gem 'russian'
 
+gem 'gemoji'
+
 gem 'yaml_db'
 
 gem 'nested_form'

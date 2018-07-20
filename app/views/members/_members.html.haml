@@ -8,8 +8,8 @@
         %tr
           %th
           %th
-            %span.glyphicon.glyphicon-chevron-down#show_all_members.pointer
-          %th= sort_link @q, :surname, Member.human_attribute_name(:surname)
+            %span.glyphicon.glyphicon-chevron-down#show_all_members.pointer.icon-padding-r{ title: t('shared.show_all') }
+            = sort_link @q, :surname, Member.human_attribute_name(:surname)
           - unless params[:action] == 'archive'
             %th= Member.human_attribute_name(:work_phone)
             %th= Member.human_attribute_name(:short_number)
@@ -21,19 +21,20 @@
           = content_tag_for(:tr, member) do
             %td.text-muted= index+1
             %td
-              - if member.phone? || member.birth?
-                %span.showinfo.glyphicon.glyphicon-chevron-down.membername.pointer
-            %td
-              %span.membername.pointer= member.full_name
+              %span.membername.pointer
+                - if member.phone? || member.birth?
+                  %span.icon-showicon.glyphicon.glyphicon-chevron-down.icon-padding-r
+
+                = member.full_name
               - if member.phone? || member.birth?
                 .hidden_info
                   - if member.phone?
                     %p
-                      %span.glyphicon.glyphicon-phone
+                      %span.glyphicon.glyphicon-phone.icon-padding-r
                       = number_to_phone(member.phone, area_code: true)
                   - if member.birth?
                     %p
-                      %span.glyphicon.glyphicon-gift
+                      %span.glyphicon.glyphicon-gift.icon-padding-r
                       = show_birth member
             - unless params[:action] == 'archive'
               %td

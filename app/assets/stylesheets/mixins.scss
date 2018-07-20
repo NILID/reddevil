@@ -52,6 +52,20 @@
   transform:rotate($val);
 }
 
+@mixin duration($val) {
+  -webkit-animation-duration: $val;
+     -moz-animation-duration: $val;
+       -o-animation-duration: $val;
+          animation-duration: $val;
+}
+
+@mixin delay($val) {
+  -webkit-animation-delay: $val;
+     -moz-animation-delay: $val;
+       -o-animation-delay: $val;
+          animation-delay: $val;
+}
+
 /**********************************
 @include opacity(0.3)
 **********************************/

@@ -29,11 +29,11 @@
               - if member.phone? || member.birth?
                 .hidden_info
                   - if member.phone?
-                    %p
+                    %p.animated.flipInX
                       %span.glyphicon.glyphicon-phone.icon-padding-r
                       = number_to_phone(member.phone, area_code: true)
                   - if member.birth?
-                    %p
+                    %p.animated.flipInX
                       %span.glyphicon.glyphicon-gift.icon-padding-r
                       = show_birth member
             - unless params[:action] == 'archive'

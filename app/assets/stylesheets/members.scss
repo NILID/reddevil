@@ -1,8 +1,20 @@
+@import 'mixins';
+
 .member {
   .membername {cursor:pointer}
   .glyphicon-chevron-down,
   .glyphicon-chevron-up {color: #ddd;}
-  .hidden_info{display:none;margin-top:15px;cursor:auto}
+  .hidden_info{
+    display:none;
+    margin-top:15px;
+    cursor:auto;
+    @for $i from 2 to 1 {
+      p:nth-child(#{$i}) {
+        @include duration(0.5s * $i);
+        @include delay(0.3s);
+      }
+    }
+  }
 }
 
 .icon-padding-r{margin-right: 10px;}

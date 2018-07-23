@@ -45,7 +45,7 @@
           %li.dropdown
             = link_to '#', class: 'dropdown-toggle', role: 'button', data: { toggle: 'dropdown' }, id: 'dropmedia' do
               %i.glyphicon.glyphicon-list
-              =t 'shared.media'
+              = t 'shared.media'
             %ul.dropdown-menu(role='menu' aria-labelledby='dropmedia')
               -if can? :manage, Message
                 %li

@@ -57,8 +57,9 @@
       .panel.panel-default
         - unless @holidays_today.empty?
           .panel-heading
-            = t 'shared.today'
-            %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
+            .panel-title
+              = t 'shared.today'
+              %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
           .panel-body
             - @holidays_today.each do |holiday|
               %p.text-success= holiday[:name]

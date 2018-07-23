@@ -76,6 +76,8 @@ ru:
     index: Сейчас в отпуске
     until: (отпуск до %{date})
     edit: Указать отпуск
+    add: Добавить отпуск
+    settings: Редактирование отпусков %{name}
   devise:
     logout: Выйти
     login: Войти
@@ -355,6 +357,9 @@ ru:
       album:
         title: Название
         songs: Песни
+      vacation:
+        startdate: Дата начала
+        enddate: Дата завершения
       message:
         title: Название
         content: Текст сообщения

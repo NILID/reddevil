@@ -12,7 +12,7 @@ class Folder < ActiveRecord::Base
   private
 
   def check_uniq_title
-    folders = self.root? ? User.where(id: self.user_id).folders.roots : self.siblings
+    folders = self.root? ? User.where(id: self.user_id).first.folders.roots : self.siblings
     errors.add(:title, I18n.t('folder.already_exist_in_folder')) if folders.pluck(:title).include? self.title
   end
 end

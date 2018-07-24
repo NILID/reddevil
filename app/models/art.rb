@@ -4,7 +4,7 @@ class Art < ActiveRecord::Base
 
   validates :deadline, presence: true
 
-  validate :check_uniq_deadline, :on => :create
+  validate :check_uniq_deadline, on: :create
 
   def closed?
     (Time.now.to_date - self.deadline.to_date).days > 0

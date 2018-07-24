@@ -1,8 +1,8 @@
 class Match < ActiveRecord::Base
   after_update :check_guess
 
-  belongs_to :team1, class_name: 'Team'
-  belongs_to :team2, class_name: 'Team'
+  belongs_to :team1,  class_name: 'Team'
+  belongs_to :team2,  class_name: 'Team'
   belongs_to :winner, class_name: 'Team'
   belongs_to :round
   has_many :forecasts, dependent: :delete_all
@@ -13,8 +13,8 @@ class Match < ActiveRecord::Base
 
   validates :team1_id, :team2_id, presence: true
 
-  ENDING = %w(basic overtime penalty)
-  TYPES = %w(final 3final)
+  ENDING = %w[basic overtime penalty]
+  TYPES =  %w[final 3final]
 
   def has_goal?
     self.team1goal.present? && self.team2goal.present?

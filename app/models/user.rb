@@ -26,10 +26,10 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   ROLES = %w(admin user moderator editor test drawing mirrors)
 
-  scope :online,     lambda { where('updated_at > ?', 10.minutes.ago)}
-  scope :sellers,    lambda {with_group(:sellers)}
-  scope :with_group, lambda {|group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }
-  scope :with_role,  lambda {|role| where('roles_mask & ? > 0', 2**ROLES.index(role.to_s)) }
+  scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }
+  scope :sellers,    lambda { with_group(:sellers) }
+  scope :with_group, lambda { |group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }
+  scope :with_role,  lambda { |role|  where('roles_mask & ? > 0',  2**ROLES.index(role.to_s)) }
 
 
   def roles=(roles)

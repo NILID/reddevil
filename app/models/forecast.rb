@@ -10,8 +10,8 @@ class Forecast < ActiveRecord::Base
   validates :team1goal, :team2goal, presence: true, numericality: true
 
   validates :winner_id, presence: true, if: :check_draw?
-  validates :match_id, presence: true, if: :check_draw?
-  validate :check_match, :on => :create
+  validates :match_id,  presence: true, if: :check_draw?
+  validate :check_match, on: :create
 #  validate :check_deadline, :on => :create
   validate :check_ending
   validate :check_overtime

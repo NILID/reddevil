@@ -7,25 +7,23 @@ class Substrate < ActiveRecord::Base
   belongs_to :child, class_name: 'Substrate', foreign_key: :substrate_id
 
   STATES = %w(polishing coating not_coating defect aspart control depot).freeze
-  MIRROR_STATES = %w(
-                    mirror_defect
-                    mirror_build_body
-                    mirror_spring_install
-                    mirror_spring_measure
-                    mirror_actuator_install
-                    mirror_tension_install
-                    mirror_jolting
-                    mirror_pushers_clue
-                    mirror_optics_clue
-                    mirror_finish_build
-                    mirror_control
-                    mirror_mirror_measure
-                    mirror_depot
-                    mirror_sent
-                  ).freeze
+  MIRROR_STATES = %w[ mirror_defect
+                      mirror_build_body
+                      mirror_spring_install
+                      mirror_spring_measure
+                      mirror_actuator_install
+                      mirror_tension_install
+                      mirror_jolting
+                      mirror_pushers_clue
+                      mirror_optics_clue
+                      mirror_finish_build
+                      mirror_control
+                      mirror_mirror_measure
+                      mirror_depot
+                      mirror_sent
+                    ].freeze
 
-
-  CATEGORIES = %w(substrate mirror).freeze
+  CATEGORIES = %w[substrate mirror].freeze
 
   scope :not_defect, -> { where('state NOT IN (?)', %w(defect)) }
 

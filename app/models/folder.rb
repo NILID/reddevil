@@ -7,16 +7,12 @@ class Folder < ActiveRecord::Base
 
   validates :title, presence: true
 
-  validate :check_uniq_title, :on => :create
+  validate :check_uniq_title, on: :create
 
   private
 
   def check_uniq_title
-    if self.root?
-      user = User.find(self.user_id)
-      errors.add(:title, I18n.t('folder.already_exist_in_folder')) if user.folders.roots.pluck(:title).include? self.title
-    else
-      errors.add(:title, I18n.t('folder.already_exist_in_folder')) if self.siblings.pluck(:title).include? self.title
-    end
+    folders = self.root? ? User.where(id: self.user_id).folders.roots : self.siblings
+    errors.add(:title, I18n.t('folder.already_exist_in_folder')) if folders.pluck(:title).include? self.title
   end
 end

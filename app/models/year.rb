@@ -1,7 +1,7 @@
 class Year < ActiveRecord::Base
   attr_accessible :year, :columns_attributes
 
-  has_many :columns, dependent: :destroy
+  has_many :columns,   dependent: :destroy
   has_many :purchases, dependent: :destroy
 
   extend FriendlyId

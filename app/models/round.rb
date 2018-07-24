@@ -12,7 +12,7 @@ class Round < ActiveRecord::Base
 
   validates :title, presence: true
 
-  scope :finished, -> { where('deadline < ?', DateTime.now) }
+  scope :finished,   -> { where('deadline < ?', DateTime.now) }
   scope :unfinished, -> { where.not('deadline < ?', DateTime.now) }
 
   def to_param

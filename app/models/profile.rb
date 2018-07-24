@@ -5,9 +5,9 @@ class Profile < ActiveRecord::Base
 
   has_attached_file :avatar,
     styles: {
-        thumb: {geometry: '50x50#'},
-        medium: {geometry: '100x100#'},
-        large: {geometry: '200x200#'}
+        thumb:  { geometry: '50x50#' },
+        medium: { geometry: '100x100#' },
+        large:  { geometry: '200x200#' }
     },
     processors: [:cropper],
     path: ":rails_root/public/system/:attachment/:id/:style/:filename",

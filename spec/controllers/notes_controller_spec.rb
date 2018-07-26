@@ -6,6 +6,24 @@ RSpec.describe NotesController, type: :controller do
 
   describe "admin should" do
     login_user(:admin)
+
+    it "returns edit" do
+      expect(@ability.can? :edit, note).to be true
+      get :edit, id: note
+      expect(response).to render_template(:edit)
+    end
+
+    it "destroys the requested note" do
+      expect(@ability.can? :destroy, note).to be true
+      expect{ delete :destroy, id: note}.to change(Note, :count).by(-1)
+      expect(response).to redirect_to(notes_url)
+    end
+
+    it "updates the requested note" do
+      expect(@ability.can? :update, note).to be true
+      put :update, { id: note, content: 'New content' }
+      expect(response).to redirect_to(notes_url)
+    end
   end
 
   %i[admin user].each do |role|
@@ -24,84 +42,38 @@ RSpec.describe NotesController, type: :controller do
       expect(response).to be_success
       expect(response).to render_template(:show)
     end
+
+    it "returns new" do
+      expect(@ability.can? :new, Note).to be true
+      get :new
+      expect(response).to be_success
+    end
+
+    it "creates a new Note" do
+      expect(@ability.can? :create, Note).to be true
+      expect{ post :create, note: attributes_for(:note) }.to change(Note, :count).by(1)
+      expect(response).to redirect_to(Note)
+    end
+
   end
 
   describe "user should" do
     login_user(:user)
-  end
 
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, {}
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #edit" do
-    it "returns a success response" do
-      get :edit, {:id => note.to_param}
-      expect(response).to be_success
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Note" do
-        expect {
-          post :create, {:note => valid_attributes}
-        }.to change(Note, :count).by(1)
-      end
-
-      it "redirects to the created note" do
-        post :create, {:note => valid_attributes}
-        expect(response).to redirect_to(Note.last)
-      end
+    it "not edit" do
+      expect(@ability.cannot? :edit, note).to be true
+      expect{ get :edit, id: note }.to raise_error(CanCan:: AccessDenied)
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, {:note => invalid_attributes}
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested note" do
-        put :update, {:id => note.to_param, :note => new_attributes}
-        note.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the note" do
-        put :update, {:id => note.to_param, :note => valid_attributes}
-        expect(response).to redirect_to(note)
-      end
+    it "not destroy" do
+      expect(@ability.cannot? :destroy, note).to be true
+      expect{ delete :destroy, id: note }.to raise_error(CanCan:: AccessDenied)
+      expect{ response }.to change(Note, :count).by(0)
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        put :update, {:id => note.to_param, :note => invalid_attributes}
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested note" do
-      expect {
-        delete :destroy, {:id => note.to_param}
-      }.to change(Note, :count).by(-1)
-    end
-
-    it "redirects to the notes list" do
-      delete :destroy, {:id => note.to_param}
-      expect(response).to redirect_to(notes_url)
+    it "not updates" do
+      expect(@ability.cannot? :update, note).to be true
+      expect{ put :update, { id: note, content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -118,5 +90,27 @@ RSpec.describe NotesController, type: :controller do
       expect(response).to render_template(:show)
     end
 
+    it "returns new" do
+      get :new
+      expect(response).to be_success
+    end
+
+    it "creates a new Note" do
+      expect{ post :create, note: attributes_for(:note) }.to change(Note, :count).by(1)
+      expect(response).to redirect_to(Note)
+    end
+
+    it "not edit" do
+      expect{ get :edit, id: note }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it "not updates" do
+      expect{ put :update, { id: note, content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it "not destroy" do
+      expect{ delete :destroy, id: note }.to raise_error(CanCan:: AccessDenied)
+      expect{ response }.to change(Note, :count).by(0)
+    end
   end
 end

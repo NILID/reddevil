@@ -1,5 +1,6 @@
 Birthday::Application.routes.draw do
 
+  resources :notes
   resources :machines do
     resources :tasks
   end

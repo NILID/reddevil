@@ -12,11 +12,8 @@ class FoldersController < ApplicationController
     @folder_datasets = @folder.datasets.order(:title)
   end
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     respond_to do |format|

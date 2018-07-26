@@ -45,6 +45,7 @@ class Ability
       end
 
       can [:read, :manage], :all
+
       cannot :manage, Work
       can [:import], Subscribe
       cannot [:read, :manage], [Dataset, Folder]

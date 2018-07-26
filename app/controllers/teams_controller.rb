@@ -7,14 +7,9 @@ class TeamsController < ApplicationController
     @teams = @teams.order(:title).includes(:type)
   end
 
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def show; end
+  def new;  end
+  def edit; end
 
   def create
    respond_to do |format|

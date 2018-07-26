@@ -5,11 +5,8 @@ class ProfilesController < ApplicationController
 
   layout 'main'
 
-  def show
-  end
-
-  def edit
-  end
+  def show; end
+  def edit; end
 
   def update
     if @profile.update_attributes(params[:profile])

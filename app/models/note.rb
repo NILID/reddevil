@@ -3,7 +3,7 @@ class Note < ActiveRecord::Base
 
   attr_accessible :content, :status, :review, :screenshot
 
-  STATUS = %w[new failed done later]
+  STATUS = %w[new failed done later].freeze
 
   has_attached_file :screenshot, styles: { medium: '800x600>', thumb: '100x100>' },
       path: ":rails_root/public/system/:attachment/:id/:style/:filename",

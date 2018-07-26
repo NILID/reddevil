@@ -4,17 +4,10 @@ class DatasetsController < ApplicationController
   load_and_authorize_resource :folder
   load_and_authorize_resource :dataset, through: :folder
 
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def index; end
+  def show;  end
+  def new;   end
+  def edit;  end
 
   def create
     @dataset.user = current_user

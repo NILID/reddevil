@@ -4,11 +4,8 @@ class WorksController < ApplicationController
   load_and_authorize_resource :art
   load_and_authorize_resource :work, through: :art
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     @work.user = current_user

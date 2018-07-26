@@ -2,8 +2,7 @@ class SongsController < ApplicationController
   load_and_authorize_resource :album, find_by: :slug
   load_and_authorize_resource :song, through: :album
 
-  def new
-  end
+  def new; end
 
   def download
     send_data @song.file.path, filename: @song.file_file_name

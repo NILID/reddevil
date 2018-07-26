@@ -5,14 +5,11 @@ class CategoriesController < ApplicationController
     @root_categories = @categories.roots.order(:title)
   end
 
-  def show
-  end
+  def show; end
+  def edit; end
 
   def new
     @category.parent_id = params[:parent_id]
-  end
-
-  def edit
   end
 
   def create

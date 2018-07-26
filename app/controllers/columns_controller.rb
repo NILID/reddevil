@@ -2,17 +2,10 @@ class ColumnsController < ApplicationController
   load_and_authorize_resource :year, find_by: :slug
   load_and_authorize_resource :column, through: :year
 
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def index; end
+  def show;  end
+  def new;   end
+  def edit;  end
 
   def create
     respond_to do |format|

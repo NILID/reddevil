@@ -41,14 +41,9 @@ class MembersController < ApplicationController
     @members = @q.result(distinct: true)
   end
 
-  def new
-  end
-
-  def manage_holidays
-  end
-
-  def edit
-  end
+  def new; end
+  def manage_holidays;   end
+  def edit; end
 
   def create
     respond_to do |format|

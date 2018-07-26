@@ -52,11 +52,8 @@ class RoundsController < ApplicationController
     end
   end
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     respond_to do |format|

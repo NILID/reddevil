@@ -8,14 +8,9 @@ class ArtsController < ApplicationController
     @arts = @arts.order('deadline desc').paginate(page: params[:page], per_page: 10)
   end
 
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def show; end
+  def new;  end
+  def edit; end
 
   def create
     respond_to do |format|

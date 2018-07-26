@@ -1,18 +1,11 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  def index
-    @messages = Message.all
-  end
 
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def index; end
+  def show;  end
+  def new;   end
+  def edit;  end
 
   def create
     respond_to do |format|

@@ -3,11 +3,8 @@ class ResultsController < ApplicationController
   load_and_authorize_resource :result, through: :user, except: :rebuild
   load_and_authorize_resource only: :rebuild
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def counted
     respond_to do |format|

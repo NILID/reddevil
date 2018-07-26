@@ -31,8 +31,7 @@ class SubstratesController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def sort
     params[:substrate].each_with_index do |id, index|

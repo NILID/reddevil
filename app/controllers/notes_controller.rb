@@ -9,11 +9,8 @@ class NotesController < ApplicationController
     @notes = params[:q] ? @q.result(distinct: true).includes(:user) : @q.result(distinct: true).where(status: 'new').includes(:user)
   end
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     @note.user = current_user || nil

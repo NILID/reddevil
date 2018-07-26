@@ -7,14 +7,9 @@ class MachinesController < ApplicationController
     @machines = @machines.includes(tasks: [:user])
   end
 
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def show; end
+  def new;  end
+  def edit; end
 
   def create
     respond_to do |format|

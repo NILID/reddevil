@@ -3,20 +3,11 @@ class EventsController < ApplicationController
   load_and_authorize_resource :user, except: [:list]
   load_and_authorize_resource :event, through: :user, except: [:list]
 
-  def list
-  end
-
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
+  def list;  end
+  def index; end
+  def show;  end
+  def new;   end
+  def edit;  end
 
   def create
     respond_to do |format|

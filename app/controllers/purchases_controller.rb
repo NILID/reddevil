@@ -15,6 +15,8 @@ class PurchasesController < ApplicationController
   end
 
   def show; end
+  def new;  end
+  def edit; end
 
   def get_miniform
     @attr = params[:attr]
@@ -22,7 +24,6 @@ class PurchasesController < ApplicationController
       format.js
     end
   end
-
 
   def get_form
     @columnship = Columnship.find(params[:columnship])
@@ -45,10 +46,6 @@ class PurchasesController < ApplicationController
       format.js
     end
   end
-
-  def new; end
-
-  def edit; end
 
   def create
     @purchase.user = current_user

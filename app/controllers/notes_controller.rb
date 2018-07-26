@@ -29,7 +29,7 @@ class NotesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @note.update_attributes(params[:note])
+      if @note.update_attributes(note_params)
         format.html { redirect_to notes_url, notice: t('flash.was_updated', item: Note.model_name.human) }
         format.json { head :no_content }
       else
@@ -47,4 +47,11 @@ class NotesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def note_params
+      params.require(:note).permit(:content, :screenshot)
+    end
+
 end

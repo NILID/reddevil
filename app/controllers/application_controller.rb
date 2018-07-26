@@ -34,7 +34,6 @@ class ApplicationController < ActionController::Base
   #   session[:previous_url] || root_path
   # end
 
-
   def user_activity
     current_user.try :touch
   end

@@ -21,7 +21,7 @@ RSpec.describe NotesController, type: :controller do
 
     it "updates the requested note" do
       expect(@ability.can? :update, note).to be true
-      put :update, { id: note, content: 'New content' }
+      put :update, id: note, note: { content: 'New content' }
       expect(response).to redirect_to(notes_url)
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe NotesController, type: :controller do
 
     it "not updates" do
       expect(@ability.cannot? :update, note).to be true
-      expect{ put :update, { id: note, content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update, id: note, note: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -105,7 +105,7 @@ RSpec.describe NotesController, type: :controller do
     end
 
     it "not updates" do
-      expect{ put :update, { id: note, content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update, id: note, note: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it "not destroy" do

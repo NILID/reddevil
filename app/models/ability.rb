@@ -13,7 +13,7 @@ class Ability
     cannot [:edit, :update], Profile
     # cannot :read, Doc, category: {hidden: true}
     can :rebuild, Result
-    cannot :read, [Art, Work, Forecast, Song, Album, Round, Forecast, Type]
+    cannot :read, [Art, Work, Forecast, Song, Album, Round, Forecast, Type, User]
     cannot :mirrors, Substrate
     can :list, [Event]
 
@@ -25,7 +25,7 @@ class Ability
       end
       # cannot :read, Doc, category: {hidden: true}
 
-      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate, Year, Message, Type]
+      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate, Year, Message, Type, User]
       can [:favorites], Subscribe
       cannot :download, Round, check_finish?: false
     end

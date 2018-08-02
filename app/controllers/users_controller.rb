@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def make_role
     respond_to do |format|
-      if @user.update_attributes(params[:user], {as: :admin})
+      if @user.update_attributes(params[:user], { as: :admin })
         format.html { redirect_to user_profile_path(@user), notice: t('flash.was_updated', item: User.model_name.human) }
         format.json { head :no_content }
       else

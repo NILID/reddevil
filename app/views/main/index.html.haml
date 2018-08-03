@@ -72,21 +72,37 @@
             - @holidays_tomorrow.each do |holiday|
               %p= holiday[:name]
 
-  - unless @vacations.empty?
+  - unless @vacations.empty? && @vacations_soon.empty?
     %div
       .panel.panel-default
-        .panel-heading
-          .panel-title
-            = t 'vacations.index'
-        .panel-body
-          .row
-            .col-xs-2.col-md-3
-              = image_tag 'umbrella.png', class: 'img-responsive'
-            .col-xs-10.col-md-9
-              - @vacations.each do |v|
-                %p
-                  = v.member.full_name
-                  = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
+        - unless @vacations.empty?
+          .panel-heading
+            .panel-title
+              = t 'vacations.index'
+          .panel-body
+            .row
+              .col-xs-2.col-md-3
+                = image_tag 'umbrella.png', class: 'img-responsive'
+              .col-xs-10.col-md-9
+                - @vacations.each do |v|
+                  %p
+                    = v.member.full_name
+                    = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
+
+        - unless @vacations_soon.empty?
+          .panel-heading
+            .panel-title
+              = t 'vacations.soon'
+          .panel-body
+            .row
+              .col-xs-2.col-md-3
+                = image_tag 'chemodan.png', class: 'img-responsive'
+              .col-xs-10.col-md-9
+                - @vacations_soon.each do |v|
+                  %p
+                    = v.member.full_name
+                    = t('vacations.start', date: Russian.strftime(v.startdate, "%e %B"))
+
 
 - unless @docs.empty?
   .row

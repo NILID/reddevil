@@ -74,7 +74,9 @@ ru:
     title: Поставка
   vacations:
     index: Сейчас в отпуске
+    soon: Скоро в отпуск
     until: (отпуск до %{date})
+    start: (начало с %{date})
     edit: Указать отпуск
     add: Добавить отпуск
     settings: Редактирование отпусков %{name}

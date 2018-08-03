@@ -16,7 +16,8 @@ class MainController < ApplicationController
     @bdusers_tomorrow = @bduser.find_births_for(tomorrow).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
     @bdusers_month    = @bduser.find_births_for(tomorrow + 1.day, now + 30.days).group_by {|u| [(u.birth.month < DateTime.now.month ? 1 : 0), u.birth.strftime("%m"), u.birth.strftime("%d")]}
 
-    @vacations = Vacation.where('startdate <= ?', now).where('enddate >= ?', now).includes(:member)
+    @vacations = Vacation.where('startdate <= ?', now).where('enddate >= ?', now).order(:enddate).includes(:member)
+    @vacations_soon = Vacation.where('startdate >= ?', DateTime.now + 1.days).where('startdate <= ?', DateTime.now + 7.days).order(:startdate).includes(:member)
 
     @holidays_today    = Holidays.on(now, :ru)
     @holidays_tomorrow = Holidays.on(tomorrow, :ru)

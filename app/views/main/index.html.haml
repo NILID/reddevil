@@ -101,8 +101,9 @@
                 - @vacations_soon.each do |v|
                   %p
                     = v.member.full_name
-                    = t('vacations.start', date: Russian.strftime(v.startdate, "%e %B"))
-
+                    = t('vacations.start',
+                      date: Russian.strftime(v.startdate, "%e %B"),
+                      diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
 
 - unless @docs.empty?
   .row

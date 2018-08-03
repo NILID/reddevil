@@ -76,7 +76,7 @@ ru:
     index: Сейчас в отпуске
     soon: Скоро в отпуск
     until: (отпуск до %{date})
-    start: (начало с %{date})
+    start: (с %{date}, на %{diff})
     edit: Указать отпуск
     add: Добавить отпуск
     settings: Редактирование отпусков %{name}

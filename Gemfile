@@ -20,6 +20,8 @@ gem 'wkhtmltopdf-binary'
 
 gem "simple_calendar", "~> 2.0"
 
+gem 'time_difference'
+
 gem 'roo'
 gem 'roo-xls'
 

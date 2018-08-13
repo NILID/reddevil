@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :folders
   has_many :tasks
   has_many :notes
-  has_one :profile, dependent: :destroy
+  has_one  :profile, dependent: :destroy
   ROLES = %w(admin user moderator editor test drawing mirrors)
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }

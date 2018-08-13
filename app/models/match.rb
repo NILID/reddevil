@@ -5,6 +5,7 @@ class Match < ActiveRecord::Base
   belongs_to :team2,  class_name: 'Team'
   belongs_to :winner, class_name: 'Team'
   belongs_to :round
+
   has_many :forecasts, dependent: :delete_all
   # has_one :team1, class_name: 'Team', foreign_key: 'team1_id'
   # has_one :team2, class_name: 'Team', foreign_key: 'team2_id'

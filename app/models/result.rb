@@ -1,7 +1,9 @@
 class Result < ActiveRecord::Base
   belongs_to :user
   belongs_to :round
+
   has_many :matches, through: :round
+
   attr_accessible :total, :round_id
 
   def rebuild_total

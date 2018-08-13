@@ -4,7 +4,7 @@ class Purchase < ActiveRecord::Base
 
   has_many :columnships, dependent: :destroy
   has_many :deliveries,  dependent: :destroy
-  has_many :columns, through: :columnships
+  has_many :columns,     through: :columnships
 
   accepts_nested_attributes_for :columnships
   accepts_nested_attributes_for :deliveries, allow_destroy: true

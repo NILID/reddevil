@@ -10,6 +10,7 @@ class Song < ActiveRecord::Base
 
   validates_attachment :file, presence: true
   do_not_validate_attachment_file_type :file
+
   Paperclip.interpolates :album_title do |attachment, style|
     url=''
     attachment.instance.album_title.each_with_index do |album, index|

@@ -4,11 +4,12 @@ class Round < ActiveRecord::Base
   has_many :matches, dependent: :delete_all
   has_many :forecasts, through: :matches
   has_many :results
+
   belongs_to :type
 
   acts_as_taggable
 
-  accepts_nested_attributes_for :matches, :allow_destroy => true # not required
+  accepts_nested_attributes_for :matches, allow_destroy: true # not required
 
   validates :title, presence: true
 

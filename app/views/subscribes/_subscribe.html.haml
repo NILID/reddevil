@@ -1,9 +1,9 @@
-=content_tag_for(:tr, subscribe) do
-  -if user_signed_in?
+= content_tag_for(:tr, subscribe) do
+  - if user_signed_in?
     %td
       = link_to like_subscribe_path(subscribe), :method => :post, remote: true, class: 'icon-star-link' do
         %i.glyphicon{class: current_user.likes?(subscribe) ? 'glyphicon-star' : 'glyphicon-star-empty'}
-      -if can? :edit, subscribe
+      - if can? :edit, subscribe
         = link_to edit_subscribe_path(subscribe) do
           %i.glyphicon.glyphicon-cog
   %td

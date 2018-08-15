@@ -77,24 +77,24 @@ class Forecast < ActiveRecord::Base
   private
 
   def check_match
-    errors.add(:match_id, I18n.t('forecasts.already_voted')) if !Forecast.where(match_id: match_id, user_id: user_id).empty?
+    errors.add(:match_id, I18n.t('forecasts.already_voted')) unless Forecast.where(match_id: match_id, user_id: user_id).empty?
   end
 
   def check_deadline
-    errors.add(:match_id, I18n.t('forecasts.already_end')) if Match.find(match_id).round.deadline < DateTime.now
+    errors.add(:match_id, I18n.t('forecasts.already_end')) if Match.where(id: match_id).first.round.deadline < DateTime.now
   end
 
   def check_ending
     errors.add(:ending, I18n.t('forecasts.overtime_diff')) if ending == 'overtime' \
                                                          && !([1, -1].include? (team1goal - team2goal)) \
-                                                         && Match.find(match_id).round.type_id == 2
+                                                         && Match.where(id: match_id).first.round.type_id == 2
     # type_id == hockey
   end
 
   def check_overtime
     errors.add(:ending, I18n.t('forecasts.hockey_bullit_equal')) if ending == 'penalty' \
                                                          && (team1goal != team2goal) \
-                                                         && Match.find(match_id).round.type_id == 2
+                                                         && Match.where(id: match_id).first.round.type_id == 2
     # type_id == hockey
   end
 end

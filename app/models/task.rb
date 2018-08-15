@@ -24,7 +24,7 @@ class Task < ActiveRecord::Base
   def update_next_tasks(old_end_time)
     end_days = (self.end_time.to_date - old_end_time.to_date).to_i
 
-    if (end_days != 0)
+    unless end_days == 0
       self.machine.tasks.where('start_time > ?', self.start_time).each do |t|
         t.update_attributes!(start_time: (t.start_time + end_days.days), end_time: (t.end_time + end_days.days)) if end_days
       end
@@ -34,10 +34,10 @@ class Task < ActiveRecord::Base
   private
 
     def check_time
-      (Machine.find(machine_id).tasks -  [self]).each do |task|
+      (Machine.where(id: machine_id).first.tasks -  [self]).each do |task|
         time_range = task.start_time..task.end_time
         if time_range.cover?(start_time) || time_range.cover?(end_time)
-          return errors.add(:end_time, I18n.t('tasks.check_time_failed')) if (update_tasks_flag == "0")
+          return errors.add(:end_time, I18n.t('tasks.check_time_failed')) if (update_tasks_flag == '0')
         end
       end
     end

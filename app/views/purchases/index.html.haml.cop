@@ -1,6 +1,6 @@
 - model_class = Purchase
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
 %table
   %thead
     %tr
@@ -30,7 +30,7 @@
       %th.text-table-rotate= model_class.human_attribute_name(:warmth_sum)
       %th.text-table-rotate= model_class.human_attribute_name(:proxy)
       %th.text-table-rotate= model_class.human_attribute_name(:delivery)
-      %th=t '.actions', :default => t("helpers.actions")
+      %th= t '.actions', :default => t("helpers.actions")
   %tbody
     - @purchases.each do |purchase|
       %tr

@@ -23,9 +23,9 @@
             %dd= purchase.doc || t('shared.empty')
 
   - purchase.columnships.each do |c|
-    %td{class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil}
+    %td{ class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil }
       = render 'purchase_formblock', columnship: c
-  - if !purchase.deliveries.pluck(:id).empty?
+  - unless purchase.deliveries.pluck(:id).empty?
     = render partial: 'purchases/delivery', locals: { purchase: purchase, delivery: purchase.deliveries.last }
   - else
     %td

@@ -13,5 +13,5 @@
       %i.glyphicon.glyphicon-repeat
     - if user_signed_in?
       %span.sec-links
-        -if params[:action] != 'list' && params[:action] != 'favorites'
+        - if params[:action] != 'list' && params[:action] != 'favorites'
           = link_to t('shared.del'), [song.album, song], :method => :delete, data: { confirm: t('shared.sure') } if can? :destroy, song

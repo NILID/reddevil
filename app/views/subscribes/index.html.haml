@@ -38,9 +38,7 @@
           .panel-body
             %p= link_to t('albums.favorites'), favorites_subscribes_path, remote: true
             %p
-              %span.likees-count=plural current_count, 'subscribe'
-
-
+              %span.likees-count= plural current_count, 'subscribe'
 
 .panel.panel-default
   .panel-heading

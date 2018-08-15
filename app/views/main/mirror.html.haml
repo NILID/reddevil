@@ -22,29 +22,28 @@
         \ <div class="mirror-row">
 
       .mirror-col.tip
-        %span.mirror-index=n.second_id
+        %span.mirror-index= n.second_id
         %br/
-        -if ee[n.real-1]
-          %span.badge.badge-info(style="font-size:20px;font-weight:600")=ee[n.real-1].first
-        -else
+        - if ee[n.real-1]
+          %span.badge.badge-info(style="font-size:20px;font-weight:600")= ee[n.real-1].first
+        - else
           %span &nbsp;
 
         - jj.delete(ee[n.real-1])
         - if ee[n.real-1]
           .tip-text
-            / %span.badge.badge-info=n.weight
-            %span=ee[n.real-1].last
+            / %span.badge.badge-info= n.weight
+            %span= ee[n.real-1].last
 
-
-      -if [6, 11, 17, 22, 28, 33, 39, 44, 50, 55, 61].include? n.id
+      - if [6, 11, 17, 22, 28, 33, 39, 44, 50, 55, 61].include? n.id
         \ </div>
 
-  -if !jj.empty?
+  - unless jj.empty?
     .well.mirror-delete
       %p
-        %b=t('mirrors.dont_add')
+        %b= t('mirrors.dont_add')
       %ol
-        -jj.each do |j|
+        - jj.each do |j|
           %li
-            %span.badge.badge-info=j.first
-            =j.last
+            %span.badge.badge-info= j.first
+            = j.last

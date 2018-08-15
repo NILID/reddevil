@@ -35,7 +35,7 @@
                   %td
                     = link_to edit_machine_task_path(machine, task), class: 'btn btn-default btn-xs btn-task-edit' do
                       %i.glyphicon.glyphicon-pencil
-              -if can? :new, Task
+              - if can? :new, Task
                 %tr
                   %td(colspan=6)
                     = link_to new_machine_task_path(machine), class: 'btn btn-default' do

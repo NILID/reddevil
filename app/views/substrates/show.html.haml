@@ -27,7 +27,7 @@
 
 .form-group
   = link_to t('shared.back'), :back, class: 'btn btn-default'
-  -if can? :edit, @substrate
+  - if can? :edit, @substrate
     = link_to t('shared.edit'), edit_substrate_path(@substrate), class: 'btn btn-default'
-  -if can? :destroy, @substrate
+  - if can? :destroy, @substrate
     = link_to t('shared.del'), substrate_path(@substrate), method: 'delete', data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

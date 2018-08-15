@@ -10,7 +10,7 @@ class Result < ActiveRecord::Base
     i = 0
     self.matches.each do |match|
       if match.has_goal?
-        forecast=self.user.forecasts.where(match_id: match.id).last
+        forecast = self.user.forecasts.where(match_id: match.id).last
         if forecast
           # check result
           i+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal) && (match.check_win == forecast.check_winner)

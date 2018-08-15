@@ -13,7 +13,7 @@
         %th= model_class.human_attribute_name(:title)
         %th= model_class.human_attribute_name(:type_id)
         %th= model_class.human_attribute_name(:flag_file_name)
-        %th=t '.actions', :default => t("helpers.actions")
+        %th= t '.actions', :default => t("helpers.actions")
     %tbody
       - @teams.each do |team|
         %tr

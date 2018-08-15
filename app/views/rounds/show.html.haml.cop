@@ -13,40 +13,39 @@
     -@round.matches.each do |match|
       %th.team-command
         .team-name
-          =image_tag match.team1.flag(:thumb), width: '20px'
+          = image_tag match.team1.flag(:thumb), width: '20px'
           #{match.team1.title}
         .team-goal #{ match.team1goal || '-' }
         .clearfix
         .team-name
-          =image_tag match.team2.flag(:thumb), width: '20px'
+          = image_tag match.team2.flag(:thumb), width: '20px'
           #{match.team2.title}
         .team-goal #{ match.team2goal || '-' }
         .clearfix
   %tbody
     -Tempuser.order(:username).each do |user|
       %tr(style="text-align:center;font-weight:100;")
-        %td=user.username
+        %td= user.username
         -@round.matches.each do |match|
-          -f=user.forecasts.where(match_id: match.id).first
-          -if f
-            -f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : nil
+          - f = user.forecasts.where(match_id: match.id).first
+          - if f
+            - f_css = (f.team1goal == match.team1goal) && (match.team2goal == f.team2goal) ? 'success' : nil
             %td{style: "text-align:center", class: f_css}
               #{f.team1goal} : #{f.team2goal}
-              -if can? :manage, Forecast
-                =link_to 'edit', edit_tempuser_forecast_path(user, f, match_id: match)
-          -else
+              - if can? :manage, Forecast
+                = link_to 'edit', edit_tempuser_forecast_path(user, f, match_id: match)
+          - else
             %td(style="text-align:center")
-              -if can? :manage, Forecast
-                =link_to 'add', new_tempuser_forecast_path(user, match_id: match)
+              - if can? :manage, Forecast
+                = link_to 'add', new_tempuser_forecast_path(user, match_id: match)
   %tr
-    %td=t 'shared.mid'
-    -@round.matches.each do |match|
+    %td= t 'shared.mid'
+    - @round.matches.each do |match|
       %td.middle
-        -f= Forecast.where(match_id: match)
-        -if !f.empty?
+        - f = Forecast.where(match_id: match)
+        - unless f.empty?
           %div.tip
             %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
             .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
-
 
 = link_to t('.back', :default => t("helpers.links.back")), rounds_path, :class => 'btn btn-default'

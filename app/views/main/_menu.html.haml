@@ -19,7 +19,7 @@
           = link_to t('docs.title'), docs_path
         %li{class: (params[:controller] == 'subscribes') ? 'active' : nil}
           = link_to t('shared.phonebook'), subscribes_path
-        -if can? :manage, Purchase
+        - if can? :manage, Purchase
           %li{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
             = link_to years_path do
               %i.glyphicon.glyphicon-shopping-cart
@@ -32,13 +32,12 @@
               = t 'shared.production'
 
             %ul.dropdown-menu(role='menu' aria-labelledby='dropproduction')
-              -if can? :index, Substrate
+              - if can? :index, Substrate
                 %li= link_to t('substrates.title'), substrates_path
-              -if can? :mirrors, Substrate
+              - if can? :mirrors, Substrate
                 %li= link_to t('mirrors.title'), mirrors_substrates_path
-              -if can? :index, Machine
+              - if can? :index, Machine
                 %li= link_to t('machines.title'), machines_path
-
 
       %ul.nav.navbar-nav.navbar-right
         - if (can? :read, Round) || (can? :read, Album) || (can? :read, Art)
@@ -47,7 +46,7 @@
               %i.glyphicon.glyphicon-list
               = t 'shared.media'
             %ul.dropdown-menu(role='menu' aria-labelledby='dropmedia')
-              -if can? :manage, Message
+              - if can? :manage, Message
                 %li
                   = link_to messages_path do
                     %i.glyphicon.glyphicon-envelope

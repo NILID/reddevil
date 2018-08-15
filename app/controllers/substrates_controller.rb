@@ -93,7 +93,6 @@ class SubstratesController < ApplicationController
   end
 
   def destroy
-    @substrate = Substrate.find(params[:id])
     @substrate.destroy
 
     respond_to do |format|

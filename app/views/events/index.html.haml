@@ -10,7 +10,7 @@
   - @events.each do |event|
     %tr
       %td= link_to event.title, [@user, event]
-      -if can? :manage, [@user, Event]
+      - if can? :manage, [@user, Event]
         %td= link_to t('shared.edit'), edit_user_event_path(@user, event)
         %td= link_to t('shared.del'), [@user, event], :method => :delete, :data => { :confirm => 'Are you sure?' }
 

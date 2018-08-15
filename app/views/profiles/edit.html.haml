@@ -1,5 +1,5 @@
 .page-header
-  %h3=t 'profiles.editing'
+  %h3= t 'profiles.editing'
 
 = bootstrap_form_for [@user, @profile], layout: :horizontal do |f|
   = f.text_field :login, autofocus: true

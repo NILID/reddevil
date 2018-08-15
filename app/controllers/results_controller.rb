@@ -17,7 +17,7 @@ class ResultsController < ApplicationController
   end
 
   def rebuild
-    @round=Round.find(params[:round])
+    @round = Round.find(params[:round])
     @round.results.each do |r|
       r.update_attributes(total: r.rebuild_total)
     end
@@ -28,7 +28,7 @@ class ResultsController < ApplicationController
 
     (@round.forecasts.pluck(:user_id).uniq - @round.results.pluck(:user_id).uniq).each do |u|
       user = User.where(id: u).first
-      r=user.results.create!(round_id: @round.id)
+      r = user.results.create!(round_id: @round.id)
       r.update_attributes(total: r.rebuild_total)
     end
     render nothing: true

@@ -10,11 +10,11 @@
 %p
   = link_to new_user_folder_path(@user), class: 'btn btn-default' do
     %i.glyphicon.glyphicon-folder-open
-    =t 'folder.new'
+    = t 'folder.new'
 
 .well
-  - if !@folders.empty?
+  - unless @folders.empty?
     = render @folders.roots
   - else
-    %h6.text-muted.text-center=t 'dataset.empty_root'
+    %h6.text-muted.text-center= t 'dataset.empty_root'
   .clearfix

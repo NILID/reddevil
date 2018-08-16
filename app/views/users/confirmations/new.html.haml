@@ -5,8 +5,8 @@
         .panel-title
           Выслать повторно письмо подтверждения регистрации
       .panel-body
-        = bootstrap_form_for(resource, as: resource_name, :url => confirmation_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
-          = f.email_field :email, autofocus: true
+        = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
+          = f.email_field :email, autofocus: true, autocomplete: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
           = f.form_group do
             = f.primary 'Прислать письмо'
       .panel-footer

@@ -4,7 +4,7 @@
       %h4 Смените ваш пароль
     = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, html: { method: :put}) do |f|
       = f.hidden_field :reset_password_token
-      = f.password_field :password, autofocus: true, autocomplete: 'off'
+      = f.password_field :password, autofocus: true, autocomplete: 'new-password'
       = f.password_field :password_confirmation, autocomplete: 'off'
       = f.form_group do
         = f.primary 'Сменить пароль'

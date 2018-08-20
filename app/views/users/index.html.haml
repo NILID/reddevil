@@ -8,7 +8,7 @@
       %table.table
         - @users.each_with_index do |user, index|
           %tr
-            %td= index+=1
+            %td= index += 1
             %td
               %span.badge{ class: user.online? ? 'badge-success' : '' }
                 .i.glyphicon{ class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove' }
@@ -16,4 +16,12 @@
               = link_to user.email, user_profile_path(user)
               .text-muted= user.profile.fullname
             %td= l user.updated_at,  format: :long
-            %td= link_to t('profiles.edit'), edit_user_profile_path(user) if can? :edit, user.profile
+            - if can? :edit, user.profile
+              %td
+                .btn-group
+                  %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                    %i.glyphicon.glyphicon-cog
+                  %ul.dropdown-menu.pull-right
+                    %li= link_to t('profiles.edit'), edit_user_profile_path(user)
+                    - if can? :edit_roles, user
+                      %li= link_to t('users.to_edit_roles'), edit_roles_user_path(user)

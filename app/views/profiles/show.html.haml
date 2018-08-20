@@ -5,10 +5,18 @@
     .panel-title
       = @profile.fullname
       (#{@profile.login? ? @profile.login : @user.email})
-      %small.pull-right
-        = link_to t('profiles.edit'), edit_user_profile_path(@user) if can? :edit, @profile
-        - if can? :edit_roles, @user
-          = link_to t('users.to_edit_roles'), edit_roles_user_path(@user)
+
+      - if (can? :edit, @profile) && (can? :edit_roles, @user)
+        %small.pull-right
+          .btn-group
+            %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+              %i.glyphicon.glyphicon-cog
+            %ul.dropdown-menu.pull-right
+              - if can? :edit, @profile
+                %li= link_to t('profiles.edit'), edit_user_profile_path(@user)
+              - if can? :edit_roles, @user
+                %li= link_to t('users.to_edit_roles'), edit_roles_user_path(@user)
+
   .panel-body
     .row
       .col-md-3

@@ -10,7 +10,7 @@
 
   - out_file.each_line do |line|
     - a = line.split(/\t|\r|\n/)
-    - b.push a if a != []
+    - b.push a unless a == []
 
   - ee = (b.sort_by {|key, value| value}).reverse!
   - jj = (b.sort_by {|key, value| value}).reverse!

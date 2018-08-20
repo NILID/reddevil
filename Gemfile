@@ -18,7 +18,7 @@ gem 'petrovich', '~> 1.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-gem "simple_calendar", "~> 2.0"
+gem 'simple_calendar', '~> 2.0'
 
 gem 'time_difference'
 
@@ -109,7 +109,7 @@ gem 'jcrop-rails-v2'
 gem 'fancybox2-rails'
 gem 'readmorejs-rails'
 
-gem "jquery-fileupload-rails"
+gem 'jquery-fileupload-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # To use ActiveModel has_secure_password

@@ -39,13 +39,13 @@
                   .total
                     - if (match.team1 == f.winner) || (f.team1goal > f.team2goal)
                       #{f.team1goal}
-                      - if f.ending != 'basic'
+                      - unless f.ending == 'basic'
                         %span.tip
                           %span.ending= t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
                       \ : #{f.team2goal}
                     - else (match.team2 == f.winner) || (f.team1goal < f.team2goal)
                       #{f.team1goal} : #{f.team2goal}
-                      - if f.ending != 'basic'
+                      - unless f.ending == 'basic'
                         %span.tip
                           %span.ending= t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
               - else

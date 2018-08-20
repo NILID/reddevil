@@ -10,11 +10,11 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update_attributes(params[:profile])
-      #if params[:profile][:avatar].present?
+      # if params[:profile][:avatar].present?
       #    render :crop
-      #else
+      # else
         redirect_to user_profile_path(@profile), notice: t('flash.was_updated', item: Profile.model_name.human)
-      #end
+      # end
     else
       render :edit
     end

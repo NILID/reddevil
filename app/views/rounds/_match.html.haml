@@ -14,8 +14,8 @@
         #{match.team2goal || '-'}
 
   %td.match-ending(style='width:4px;')
-    - if match.ending != 'basic'
-      - if match.team1 != match.winner
+    - unless match.ending == 'basic'
+      - unless match.team1 == match.winner
         %br/
       %span.tip
         - if match.ending == 'penalty'

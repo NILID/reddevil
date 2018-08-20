@@ -1,15 +1,21 @@
-= bootstrap_form_for @doc, layout: :horizontal do |f|
-  = f.text_field :title, autofocus: true
-  = f.text_area :desc, rows: 4
-  = f.file_field :file
-  = f.select :category_tokens,
-    @categories,
-    { include_blank: t('categories.select_category'), help: t('shared.multiple_select_helper_html') },
-    { multiple: true, size: 10 }
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      = formtitle
+  = bootstrap_form_for @doc, layout: :horizontal do |f|
+    .panel-body
+      = f.text_field :title, autofocus: true
+      = f.text_area :desc, rows: 4
+      = f.file_field :file
+      = f.select :category_tokens,
+        @categories,
+        { include_blank: t('categories.select_category'), help: t('shared.multiple_select_helper_html') },
+        { multiple: true, size: 10 }
 
-  = f.form_group do
-    = f.check_box :show_last_flag, label: t('docs.show_inlast')
+      = f.form_group do
+        = f.check_box :show_last_flag, label: t('docs.show_inlast')
 
-  = f.form_group do
-    = f.primary
-    = link_to t('shared.cancel'), docs_path, class: 'btn btn-default'
+    .panel-footer
+      = f.form_group do
+        = f.primary
+        = link_to t('shared.cancel'), docs_path, class: 'btn btn-default'

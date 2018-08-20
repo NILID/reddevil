@@ -1,6 +1,8 @@
-.page-header
-  %h1
-    = t 'categories.title'
-    = link_to t('.new', default: t('helpers.links.new')), new_category_path, class: 'btn btn-primary'
-
-%ol= render @root_categories
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      = t 'categories.title'
+      %span.pull-right
+        = link_to t('shared.add'), new_category_path, class: 'btn btn-primary btn-xs'
+  .panel-body
+    %ol= render @root_categories

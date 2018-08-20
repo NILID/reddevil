@@ -40,6 +40,6 @@
 
     - if can? :manage, Doc
       .col-xs-6.text-right
-        %small= link_to t('.new', default: t('helpers.links.new')), new_doc_path, class: 'btn btn-primary'
+        %small= link_to t('shared.add'), new_doc_path, class: 'btn btn-primary'
 
 #doc-list= render @docs

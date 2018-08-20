@@ -1,14 +1,20 @@
-= bootstrap_form_for @member, layout: :horizontal do |f|
-  = f.text_field :surname
-  = f.text_field :name
-  = f.text_field :patronymic
-  = f.text_field :work_phone
-  = f.text_field :phone
-  = f.text_field :short_number
-  = f.email_field :email
-  = f.text_field :birth, class: 'datepicker', value: (f.object.birth.to_datetime.strftime('%d.%m.%Y') if f.object.birth.present?)
-  = f.form_group do
-    = f.check_box :archive_flag
-  = f.form_group do
-    = f.primary
-    = link_to t('shared.cancel'), members_path, class: 'btn btn-default'
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      = formtitle
+  = bootstrap_form_for @member, layout: :horizontal do |f|
+    .panel-body
+      = f.text_field :surname
+      = f.text_field :name
+      = f.text_field :patronymic
+      = f.text_field :work_phone
+      = f.text_field :phone
+      = f.text_field :short_number
+      = f.email_field :email
+      = f.text_field :birth, class: 'datepicker', value: (f.object.birth.to_datetime.strftime('%d.%m.%Y') if f.object.birth.present?)
+      = f.form_group do
+        = f.check_box :archive_flag
+    .panel-footer
+      = f.form_group do
+        = f.primary
+        = link_to t('shared.cancel'), members_path, class: 'btn btn-default'

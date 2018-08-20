@@ -42,7 +42,7 @@ class MembersController < ApplicationController
   end
 
   def new; end
-  def manage_holidays;   end
+  def manage_holidays; end
   def edit; end
 
   def create

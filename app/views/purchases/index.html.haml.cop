@@ -1,6 +1,6 @@
 - model_class = Purchase
 .page-header
-  %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h1= t '.title', default: model_class.model_name.human.pluralize.titleize
 %table
   %thead
     %tr
@@ -30,7 +30,7 @@
       %th.text-table-rotate= model_class.human_attribute_name(:warmth_sum)
       %th.text-table-rotate= model_class.human_attribute_name(:proxy)
       %th.text-table-rotate= model_class.human_attribute_name(:delivery)
-      %th= t '.actions', :default => t("helpers.actions")
+      %th= t '.actions', default: t("helpers.actions")
   %tbody
     - @purchases.each do |purchase|
       %tr
@@ -39,29 +39,29 @@
         %td= purchase.provider
         %td= purchase.doc
         %td= purchase.user_id
-        %td= best_in_place purchase, :startdate, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :zkpdate, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :kp, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :zsc_kp, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :nmc, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :aztz, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :conclusion_expert, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :analytic, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :conclusion_pdtk, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :request, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :bidding, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :committee, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :contract_request, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :contract_project, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :contract, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :prepay_date, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
+        %td= best_in_place purchase, :startdate, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :zkpdate, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :kp, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :zsc_kp, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :nmc, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :aztz, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :conclusion_expert, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :analytic, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :conclusion_pdtk, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :request, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :bidding, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :committee, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :contract_request, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :contract_project, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :contract, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :prepay_date, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
         %td= purchase.prepay_sum
-        %td= best_in_place purchase, :warmth_date, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
+        %td= best_in_place purchase, :warmth_date, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
         %td= purchase.warmth_sum
-        %td= best_in_place purchase, :proxy, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
-        %td= best_in_place purchase, :delivery, as: :date, :display_with => lambda { |v| Russian.strftime(v, "%d %b")}, :ok_button => 'Save'
+        %td= best_in_place purchase, :proxy, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
+        %td= best_in_place purchase, :delivery, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
         %td
-          = link_to t('shared.edit'), edit_purchase_path(purchase), :class => 'btn btn-default btn-xs'
+          = link_to t('shared.edit'), edit_purchase_path(purchase), class: 'btn btn-default btn-xs'
           = link_to t('shared.del'), purchase_path(purchase), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
 
-= link_to t('.new', :default => t("helpers.links.new")), new_purchase_path, :class => 'btn btn-primary'
+= link_to t('shared.add'), new_purchase_path, class: 'btn btn-primary'

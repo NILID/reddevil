@@ -2,7 +2,7 @@
   %h3
     = t 'years.title'
     - if can? :new, Year
-      %small= link_to t('.new', :default => t("helpers.links.new")), new_year_path, :class => 'btn btn-sm btn-primary'
+      %small= link_to t('shared.add'), new_year_path, class: 'btn btn-sm btn-primary'
 - @years.each do |year|
   .well
     %h2

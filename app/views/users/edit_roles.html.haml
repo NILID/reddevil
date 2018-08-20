@@ -1,24 +1,24 @@
-.row
-  .col-md-8
-    .well
-      .page-header
-        %h3= t 'users.edit_roles', username: @user.profile.fullname
-
-      = bootstrap_form_for(@user, url: make_role_user_path(@user), layout: :horizontal, html: { method: :post }) do |f|
-        = f.form_group do
-          - User::ROLES.each do |role|
-            = label_tag do
-              = check_box_tag "user[roles][]", role, @user.role?(role)
-              = role
-        = f.form_group do
-          - User::GROUPS.each do |group|
-            = label_tag class: 'checkbox' do
-              = check_box_tag "user[groups][]", group, @user.has_group?(group)
-              = group
-
-        = f.form_group do
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      = t 'users.edit_roles', username: @user.profile.fullname
+  = bootstrap_form_for(@user, url: make_role_user_path(@user), layout: :horizontal, html: { method: :post }) do |f|
+    .panel-body
+      = f.form_group do
+        - User::ROLES.each do |role|
+          = label_tag do
+            = check_box_tag "user[roles][]", role, @user.role?(role)
+            = role
+      = f.form_group do
+        - User::GROUPS.each do |group|
           = label_tag class: 'checkbox' do
-            = f.check_box :sport_flag
+            = check_box_tag "user[groups][]", group, @user.has_group?(group)
+            = group
 
-        = f.form_group do
-          = f.primary
+      = f.form_group do
+        = label_tag class: 'checkbox' do
+          = f.check_box :sport_flag
+
+    .panel-footer
+      = f.form_group do
+        = f.primary

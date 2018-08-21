@@ -52,7 +52,7 @@ class NotesController < ApplicationController
 
     def note_params
       list_params_allowed = %i[content screenshot]
-      list_params_allowed << %i[status review] if current_user && (current_user.role? :admin)
+      list_params_allowed << %i[status review] if (current_user&.role? :admin)
       params.require(:note).permit(list_params_allowed)
     end
 

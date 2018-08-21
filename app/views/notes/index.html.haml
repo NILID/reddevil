@@ -39,7 +39,7 @@
               = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
                 %i.glyphicon.glyphicon-picture
           %td
-            - if note.user && user_signed_in? && current_user.role?(:admin)
+            - if note.user && current_user&.role?(:admin)
               %strong= note.user.profile.surname_name + ':'
             = simple_format truncate(note.content, length: 200, omission: '...')
             - if note.review?

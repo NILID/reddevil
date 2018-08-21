@@ -19,7 +19,7 @@
         docs_path(by_category: category.id),
         remote: true,
         id: dom_id(category),
-        class: "slide-link #{category.hidden? || (!category.parent.nil? && category.parent.hidden?) ? ' hide' : nil}"
+        class: "slide-link #{category.hidden? || category.parent&.hidden? ? ' hide' : nil}"
 
     %hr
     %ul.nav.nav-pills.nav-stacked.nav-reddevil

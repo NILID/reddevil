@@ -29,7 +29,7 @@
         .col-md-6
           - if art.works.where(user_id: user_id).empty?
             %p.text-center
-              - if user_signed_in? && (current_user.id == user_id)
+              - if current_user&.id == user_id
                 = t('art.you_empty')
               - else
                 = t('art.empty')

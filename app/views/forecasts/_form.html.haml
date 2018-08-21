@@ -15,7 +15,7 @@
           = f.form_group :ending do
             .btn-group.minify-radio{ data: { toggle: 'buttons' } }
               - Match::ENDING.each do |e|
-                %label.btn.btn-primary{ class: "#{ (@forecast && @forecast.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast && @forecast.ending == e) ? 'current' : nil}" }
+                %label.btn.btn-primary{ class: "#{ (@forecast&.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast&.ending == e) ? 'current' : nil}" }
                   = f.radio_button :ending, e, disabled: false, autocomplete: 'off'
                   = t "matches.#{(@match.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
 

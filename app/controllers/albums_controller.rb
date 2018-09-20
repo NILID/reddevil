@@ -41,9 +41,7 @@ class AlbumsController < ApplicationController
 
   def like
     current_user.toggle_like!(@album)
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   def list

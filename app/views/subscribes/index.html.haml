@@ -31,14 +31,13 @@
                     = submit_tag t('shared.import'), class: 'btn btn-primary'
 
   - if user_signed_in?
-    - current_count= current_user.likees(Subscribe).count
     .col-xs-12
-      .favorites-panel{data: { spy: 'affix' }, class: (current_count == 0) ? 'hidden' : nil}
+      - current_count = current_user.likees(Subscribe).count
+      .favorites-panel{ class: (current_count == 0) ? 'hidden' : nil }
         .panel.panel-default
           .panel-body
-            %p= link_to t('albums.favorites'), favorites_subscribes_path, remote: true
-            %p
-              %span.likees-count= plural current_count, 'subscribe'
+            = link_to t('albums.favorites'), favorites_subscribes_path, remote: true
+            %span.likees-count= plural current_count, 'subscribe'
 
 .panel.panel-default
   .panel-heading
@@ -46,7 +45,7 @@
       = t 'shared.phonebook'
       %small.text-muted
         = count > 0 ?  plural(count, 'subscribe') : t('subscribes.not_found')
-        = link_to 'new', new_subscribe_path, class: 'btn btn-default btn-xs' if can? :manage, Subscribe
+        = link_to t('shared.add'), new_subscribe_path, class: 'btn btn-primary btn-xs' if can? :create, Subscribe
       %small.text-muted.pull-right= t 'subscribes.actual_date'
 
   .panel-body

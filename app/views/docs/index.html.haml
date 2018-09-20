@@ -23,23 +23,24 @@
 
     %hr
     %ul.nav.nav-pills.nav-stacked.nav-reddevil
-      %li= link_to t('docs.no_cats'),
-        docs_path(no_category: true),
-        remote: true,
-        id: 'categories_hidden',
-        class: 'slide-link'
+      %li
+        = link_to t('docs.no_cats'),
+          docs_path(no_category: true),
+          remote: true,
+          id: 'categories_hidden',
+          class: 'slide-link'
 
 .well
-  .row
-    .col-xs-6
-      %h4
-        = t 'docs.title'
-        %small
-          %span.category-info= t('docs.in_category', category: @cat.title) if @cat
-          %span.badge#docs-count= @docs.count
+  %h4
+    = t 'docs.title'
+    %small
+      %span.category-info
+        = t('docs.in_category', category: @cat.title) if @cat
+      %span.badge#docs-count
+        = @docs.count
 
-    - if can? :manage, Doc
-      .col-xs-6.text-right
-        %small= link_to t('shared.add'), new_doc_path, class: 'btn btn-primary'
+      - if can? :manage, Doc
+        = link_to t('shared.add'), new_doc_path, class: 'btn btn-primary btn-sm pull-right'
 
-#doc-list= render @docs
+#doc-list
+  = render @docs

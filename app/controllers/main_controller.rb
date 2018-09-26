@@ -23,11 +23,8 @@ class MainController < ApplicationController
                               .where('startdate <= ?', DateTime.now + 7.days)
                               .order(:startdate).includes(:member)
 
-    #Holidays.load_custom('/home/da/reddevil/lib/definitions/full_ru.yml')
-
-
-    @holidays_today    = Holidays.on(now, :full_ru)
-    @holidays_tomorrow = Holidays.on(tomorrow, :full_ru)
+    @holidays_today    = Holidays.on(now, :full_ru, :reddevil_ru)
+    @holidays_tomorrow = Holidays.on(tomorrow, :full_ru, :reddevil_ru)
 
     @docs = Doc.where(show_last_flag: true).where('updated_at >=?', now - 10.days).order(updated_at: :desc) + Doc.where(show_last_flag: true).group_by_day(:created_at, last: 10).order(updated_at: :desc)
     @docs.uniq!

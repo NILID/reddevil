@@ -1,6 +1,6 @@
 current_year = DateTime.now.year
 
-json.array!(Holidays.between(Date.civil(current_year, 1, 1), Date.civil(current_year, 12, 31), :full_ru)) do |holiday|
+json.array!(Holidays.between(Date.civil(current_year, 1, 1), Date.civil(current_year, 12, 31), :full_ru, :reddevil_ru)) do |holiday|
   holiday_date = holiday[:date]
   holiday_name = holiday[:name]
   json.title holiday_name

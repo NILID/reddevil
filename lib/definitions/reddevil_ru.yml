@@ -1,0 +1,13 @@
+months:
+  4:
+  - name: День основания лаборатории №193
+    mday: 11
+    regions: [reddevil_ru]
+  10:
+  - name: Основание ФГУП "НИИ НПО "ЛУЧ"
+    mday: 4
+    regions: [reddevil_ru]
+  12:
+  - name: День создания Государственной корпорации по атомной энергии 'Росатом'
+    mday: 1
+    regions: [reddevil_ru]

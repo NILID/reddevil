@@ -6,17 +6,16 @@ class Forecast < ActiveRecord::Base
 
   attr_accessible :team1goal, :team2goal, :match_id, :user_id, :winner_id, :ending
 
-#  before_update :remove_winner_forecast
+  # before_update :remove_winner_forecast
 
   validates :team1goal, :team2goal, presence: true, numericality: true
 
   validates :winner_id, presence: true, if: :check_draw?
   validates :match_id,  presence: true, if: :check_draw?
   validate :check_match, on: :create
-#  validate :check_deadline, :on => :create
+  # validate :check_deadline, on: :create
   validate :check_ending
   validate :check_overtime
-
 
   def remove_winner_forecast
     f = Forecast.where(id: self).first
@@ -77,14 +76,17 @@ class Forecast < ActiveRecord::Base
   private
 
   def check_match
+    # check already voted forecast
     errors.add(:match_id, I18n.t('forecasts.already_voted')) unless Forecast.where(match_id: match_id, user_id: user_id).empty?
   end
 
   def check_deadline
-    errors.add(:match_id, I18n.t('forecasts.already_end')) if Match.where(id: match_id).first.round.deadline < DateTime.now
+    # check deadline round
+    errors.add(:match_id, I18n.t('forecasts.already_end')) if Match.where(id: match_id).first.round.check_finish?
   end
 
   def check_ending
+    # check ending of match with overtime
     errors.add(:ending, I18n.t('forecasts.overtime_diff')) if ending == 'overtime' \
                                                          && !([1, -1].include? (team1goal - team2goal)) \
                                                          && Match.where(id: match_id).first.round.type_id == 2
@@ -92,6 +94,7 @@ class Forecast < ActiveRecord::Base
   end
 
   def check_overtime
+    # check overtime with penalty
     errors.add(:ending, I18n.t('forecasts.hockey_bullit_equal')) if ending == 'penalty' \
                                                          && (team1goal != team2goal) \
                                                          && Match.where(id: match_id).first.round.type_id == 2

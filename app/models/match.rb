@@ -18,10 +18,12 @@ class Match < ActiveRecord::Base
   TYPES =  %w[final 3final]
 
   def has_goal?
+    # Check match result present
     self.team1goal.present? && self.team2goal.present?
   end
 
   def check_win
+    # Get winner
     if team1goal.present? && team2goal.present?
       if team1goal > team2goal
         team1
@@ -40,6 +42,7 @@ class Match < ActiveRecord::Base
   private
 
   def check_guess
+    # Check forecast results
     forecasts.each { |f| f.check_guess! }
   end
 end

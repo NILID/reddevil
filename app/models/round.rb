@@ -21,10 +21,12 @@ class Round < ActiveRecord::Base
   end
 
   def check_finish?
+    # Check deadline
     deadline < DateTime.now
   end
 
   def allow_empty?
+    # Allow and check flag to set non-existent possible matches
     empty_match?
   end
 end

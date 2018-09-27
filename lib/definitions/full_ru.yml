@@ -1242,43 +1242,205 @@ months:
   - name: Международный день пожилых людей в России
     mday: 1
     regions: [full_ru]
-  - name: День космических войск
+  - name: Международный день музыки
+    mday: 1
+    regions: [full_ru]
+  - name: Всемирный день вегетарианства
+    mday: 1
+    regions: [full_ru]
+  - name: День сухопутных войск России
+    mday: 1
+    regions: [full_ru]
+  - name: Международный день ненасилия
+    mday: 2
+    regions: [full_ru]
+  - name: Международный день социального педагога
+    mday: 2
+    regions: [full_ru]
+  - name: День ОМОН в России
+    mday: 3
+    regions: [full_ru]
+  - name: День космических войск России
     mday: 4
     regions: [full_ru]
-  - name: День учителя в России
+  - name: Всемирный день животных
+    mday: 4
+    regions: [full_ru]
+  - name: День гражданской обороны МЧС России
+    mday: 4
+    regions: [full_ru]
+  - name: Всемирный день учителя
+    mday: 5
+    regions: [full_ru]
+  - name: День образования Республики Адыгея
+    mday: 5
+    regions: [full_ru]
+  - name: День работников уголовного розыска России
     mday: 5
     regions: [full_ru]
   - name: День российского страховщика
     mday: 6
     regions: [full_ru]
+  - name: Всемирный день охраны мест обитаний
+    mday: 6
+    regions: [full_ru]
+  - name: День образования штабных подразделений МВД России
+    mday: 7
+    regions: [full_ru]
   - name: День финансиста в России
     mday: 8
     regions: [full_ru]
-  - name: День военного связиста
+  - name: День командира надводного, подводного и воздушного корабля ВМФ России
+    mday: 8
+    regions: [full_ru]
+  - name: Всемирный день почты
+    mday: 9
+    regions: [full_ru]
+  - name: Всемирный день психического здоровья
+    mday: 10
+    regions: [full_ru]
+  - name: Всемирный день борьбы со смертной казнью
+    mday: 10
+    regions: [full_ru]
+  - name: Международный день зрения
+    mday: 11
+    regions: [full_ru]
+  - name: День республики Башкортостан
+    mday: 11
+    regions: [full_ru]
+  - name: Всемирный день борьбы с артритом
+    mday: 12
+    regions: [full_ru]
+  - name: День кадрового работника в России
+    mday: 12
+    regions: [full_ru]
+  - name: Международный день по уменьшению опасности бедствий
+    mday: 13
+    regions: [full_ru]
+  - name: Всемирный день стандартов
+    mday: 14
+    regions: [full_ru]
+  - name: День работников заповедного дела в России
+    mday: 14
+    regions: [full_ru]
+  - name: Международный день белой трости
+    mday: 15
+    regions: [full_ru]
+  - name: Всемирный день мытья рук
+    mday: 15
+    regions: [full_ru]
+  - name: Международный день сельских женщин
+    mday: 15
+    regions: [full_ru]
+  - name: День создания адресно-справочной службы Российского государства
+    mday: 15
+    regions: [full_ru]
+  - name: Всемирный день продовольствия
+    mday: 16
+    regions: [full_ru]
+  - name: Всемирный день хлеба
+    mday: 16
+    regions: [full_ru]
+  - name: Всемирный день анестезии (День анестезиолога)
+    mday: 16
+    regions: [full_ru]
+  - name: День Шефа (День Босса)
+    mday: 16
+    regions: [full_ru]
+  - name: Международный день борьбы за ликвидацию нищеты
+    mday: 17
+    regions: [full_ru]
+  - name: Всероссийский день лицеиста
+    mday: 19
+    regions: [full_ru]
+  - name: День военного связиста в России
     mday: 20
     regions: [full_ru]
-  - name: День работников рекламы
+  - name: Международный день повара
+    mday: 20
+    regions: [full_ru]
+  - name: Международный день авиадиспетчера
+    mday: 20
+    regions: [full_ru]
+  - name: Всемирный день борьбы с остеопорозом
+    mday: 20
+    regions: [full_ru]
+  - name: Международный день заикающихся людей
+    mday: 22
+    regions: [full_ru]
+  - name: День финансово-экономической службы Вооруженных Сил РФ
+    mday: 22
+    regions: [full_ru]
+  - name: Международный день снежного барса
     mday: 23
     regions: [full_ru]
-  - name: День подразделений специального назначения
+  - name: День работников рекламы в России
+    mday: 23
+    regions: [full_ru]
+  - name: День осведомленности о синдроме кабуки
+    mday: 23
+    regions: [full_ru]
+  - name: День подразделений специального назначения Вооруженных Сил России
     mday: 24
+    regions: [full_ru]
+  - name: Всемирный день информации о развитии
+    mday: 24
+    regions: [full_ru]
+  - name: День Организации Объединенных Наций
+    mday: 24
+    regions: [full_ru]
+  - name: День таможенника Приморского края
+    mday: 25
     regions: [full_ru]
   - name: День таможенника Российской Федерации
     mday: 25
     regions: [full_ru]
-  - name: День работников службы вневедомственной охраны МВД РФ
+  - name: День работника кабельной промышленности в России
+    mday: 25
+    regions: [full_ru]
+  - name: Всемирный день аудиовизуального наследия
+    mday: 27
+    regions: [full_ru]
+  - name: Международный день анимации
+    mday: 28
+    regions: [full_ru]
+  - name: День бабушек и дедушек в России
+    mday: 28
+    regions: [full_ru]
+  - name: День создания армейской авиации России
+    mday: 28
+    regions: [full_ru]
+  - name: День работников вневедомственной охраны Росгвардии
+    mday: 29
+    regions: [full_ru]
+  - name: Всемирный день борьбы с инсультом
+    mday: 29
+    regions: [full_ru]
+  - name: Всемирный день псориаза
     mday: 29
     regions: [full_ru]
   - name: День инженера-механика в России
     mday: 30
     regions: [full_ru]
+  - name: День основания Российского военно-морского флота
+    mday: 30
+    regions: [full_ru]
   - name: День памяти жертв политических репрессий
     mday: 30
     regions: [full_ru]
-  - name: День работников СИЗО и тюрем
+  - name: День работников СИЗО и тюрем в России
     mday: 31
     regions: [full_ru]
   - name: День сурдопереводчика в России
+    mday: 31
+    regions: [full_ru]
+  - name: Международный день экономии
+    mday: 31
+    regions: [full_ru]
+  - name: Всемирный день городов
+    mday: 31
+    regions: [full_ru]
+  - name: Международный день Черного моря
     mday: 31
     regions: [full_ru]
   11:

@@ -183,6 +183,6 @@ ul.playlist.shiny li.sm2_paused,
 ul.playlist.shiny li.sm2_playing {
  background-image:asset_url('top-highlight.png');
  background-repeat:repeat-x;
- background-position:0px -1px;
+ background-position:0 -1px;
  _background-image:none; /* can't be bothered with IE 6. */
 }

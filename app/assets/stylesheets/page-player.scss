@@ -2,8 +2,8 @@
 
 ul.use-spectrum li.sm2_playing .spectrum-container {
  position:absolute;
- left:0px;
- top:0px;
+ left:0;
+ top:0;
  margin-left:-266px;
  margin-top:-1px;
  display:block;
@@ -22,7 +22,7 @@ ul.use-spectrum .spectrum-box {
 
 ul.use-spectrum .spectrum-box .spectrum {
  position:absolute;
- left:0px;
+ left:0;
  top:-2px;
  margin-top:20px;
  display:block;
@@ -156,8 +156,8 @@ ul.playlist li .controls .statusbar .position,
 ul.playlist li .controls .statusbar .loading,
 ul.playlist li .controls .statusbar .annotation {
  position:absolute;
- left:0px;
- top:0px;
+ left:0;
+ top:0;
  height:0.5em;
 }
 
@@ -178,7 +178,7 @@ ul.playlist li .controls .statusbar .loading {
 
 ul.playlist li .controls .statusbar .position,
 ul.playlist li .controls .statusbar .loading {
- width:0px;
+ width:0;
 }
 
 ul.playlist li.sm2_playing a.sm2_link,
@@ -211,7 +211,7 @@ ul.playlist li:hover .timing {
 }
 
 ul.playlist li .timing div.sm2_timing {
- margin:0px;
+ margin:0;
  padding:0;
  margin-top:-1em;
 }
@@ -258,8 +258,8 @@ ul.playlist.use-peak li .peak-box {
 ul.playlist li .peak .l,
 ul.playlist li .peak .r {
  position:absolute;
- left:0px;
- top:0px;
+ left:0;
+ top:0;
  width:7px;
  height:50px;
  background:#fff;

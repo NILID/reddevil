@@ -16,7 +16,7 @@
   background-image:linear-gradient($linearPosition, $startColor 0%, $endColor 100%);}
 
 /**********************************
-@include box-shadow(inset 1px 0 #fff,1px 1px rgba(26,18,0,0.3));
+@include box-shadow(inset 1px 0 #fff,1px 1px rgba(26,18,0,.3));
 **********************************/
 
 @mixin box-shadow($val...) {
@@ -67,7 +67,7 @@
 }
 
 /**********************************
-@include opacity(0.3)
+@include opacity(.3)
 **********************************/
 @mixin opacity($val) {
   filter:alpha(opacity=$val*100);

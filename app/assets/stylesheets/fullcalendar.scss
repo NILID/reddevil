@@ -194,7 +194,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc button .fc-icon { /* non-theme */
 	position: relative;
-	top: -0.05em; /* seems to be a good adjustment across browsers */
+	top: -.05em; /* seems to be a good adjustment across browsers */
 	margin: 0 .2em;
 	vertical-align: middle;
 }
@@ -213,10 +213,10 @@ NOTE: use percentage font sizes or else old IE chokes
 	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
 	background-repeat: repeat-x;
 	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
 	color: #333;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 .fc-state-hover,
@@ -231,23 +231,23 @@ NOTE: use percentage font sizes or else old IE chokes
 	color: #333333;
 	text-decoration: none;
 	background-position: 0 -15px;
-	-webkit-transition: background-position 0.1s linear;
-	   -moz-transition: background-position 0.1s linear;
-	     -o-transition: background-position 0.1s linear;
-	        transition: background-position 0.1s linear;
+	-webkit-transition: background-position .1s linear;
+	   -moz-transition: background-position .1s linear;
+	     -o-transition: background-position .1s linear;
+	        transition: background-position .1s linear;
 }
 
 .fc-state-down,
 .fc-state-active {
 	background-color: #cccccc;
 	background-image: none;
-	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 .fc-state-disabled {
 	cursor: default;
 	background-image: none;
-	opacity: 0.65;
+	opacity: .65;
 	box-shadow: none;
 }
 
@@ -598,11 +598,11 @@ temporary rendered events).
 
 .fc-event.fc-selected {
 	z-index: 9999 !important; /* overcomes inline z-index */
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
 }
 
 .fc-event.fc-selected.fc-dragging {
-	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 2px 7px rgba(0, 0, 0, .3);
 }
 
 
@@ -921,7 +921,7 @@ a.fc-more:hover {
 /* week and day number styling */
 
 .fc-day-top.fc-other-month {
-	opacity: 0.3;
+	opacity: .3;
 }
 
 .fc-basic-view .fc-week-number,

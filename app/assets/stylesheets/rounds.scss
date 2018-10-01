@@ -3,11 +3,11 @@
 table.rounds{
   overflow: hidden;
   font-size:12px;
-  tr:hover {background-color: rgba(220, 220, 220, 0.3)}
+  tr:hover {background-color: rgba(220, 220, 220, .3)}
   td:hover::after, th:hover:after {
     content: "";
     position:absolute;
-    background-color: rgba(220, 220, 220, 0.3);
+    background-color: rgba(220, 220, 220, .3);
     left: 0;
     top: -5000px;
     height: 10000px;
@@ -22,7 +22,7 @@ table.rounds{
     @include transition(box-shadow .3s);
     .total {font-weight:600;}
     &:hover {
-      @include box-shadow(0 0 10px rgba(0,0,0,0.3));
+      @include box-shadow(0 0 10px rgba(0,0,0,.3));
     }
   }
   td.middle {text-align:right;}

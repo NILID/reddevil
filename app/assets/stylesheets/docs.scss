@@ -1,9 +1,9 @@
 @import 'mixins';
 
 #doc-list .doc {
-  @include transition(box-shadow 0.2s ease-in-out);
+  @include transition(box-shadow .2s ease-in-out);
   box-shadow: none;
-  &:hover { box-shadow: 0 0 10px rgba(0,0,0,0.2);}
+  &:hover { box-shadow: 0 0 10px rgba(0,0,0,.2);}
 }
 
 .label-pad {margin-right: 5px}

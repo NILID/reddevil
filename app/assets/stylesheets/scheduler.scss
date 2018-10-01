@@ -81,7 +81,7 @@
 }
 
 .fc-timeline.fc-scrolled .fc-head .fc-scroller {
-	box-shadow: 0 3px 4px rgba(0,0,0,0.075);
+	box-shadow: 0 3px 4px rgba(0,0,0,.075);
 }
 
 .fc-timeline .fc-body .fc-scroller {
@@ -222,7 +222,7 @@ tr.fc-transitioning > td { /* during the transition */
 }
 
 tr.fc-transitioning > td > div {
-	transition: margin-top 0.2s;
+	transition: margin-top .2s;
 }
 
 tr.fc-collapsed > td > div {

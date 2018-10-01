@@ -24,7 +24,7 @@ ul.playlist li ul li {
  margin-right:1em;
  letter-spacing:0;
  background-color:transparent;
- opacity:0.66;
+ opacity:.66;
 }
 
 ul.playlist li ul li:hover {
@@ -43,7 +43,7 @@ ul.playlist li.sm2_playing ul li:hover {
  background-color:#fff;
  color:#5588bb;
  border-color:#336699;
- opacity:0.9;
+ opacity:.9;
 }
 
 ul.playlist li.sm2_paused ul li:hover {
@@ -73,7 +73,7 @@ ul.playlist li .controls .statusbar .annotation {
  color:#666;
  text-align:right;
  margin-left:10px;
- height:0.5em;
+ height:.5em;
 }
 
 ul.playlist li .controls .statusbar .annotation:hover {
@@ -104,11 +104,11 @@ ul.playlist li .controls .statusbar .annotation.alt {
 
 ul.playlist li .controls .statusbar .annotation span:hover {
  cursor:none; /* Fx3 rules. */
- margin-top:0.1em;
+ margin-top:.1em;
 }
 
 ul.playlist li .controls .statusbar .annotation.alt span:hover {
- margin-top:-0.1em;
+ margin-top:-.1em;
 }
 
 ul.playlist li .controls .statusbar .annotation.alt span {

@@ -1,14 +1,20 @@
 @import 'mixins';
 
-.likees-count, .likees-album-count {
-  color: #999;font-size: 10px;text-transform:uppercase;
+.likees-count,
+.likees-album-count {
+  color: #999;
+  font-size: 10px;
+  text-transform: uppercase;
   li.active & {color: #fff}
 }
 
 .song-icons {
   i {
     margin: 2px 5px 0;
-    &:hover, &:visited, &:link, a:active {text-decoration:none;outline:none}
+    &:hover,
+    &:visited,
+    &:link,
+    a:active {text-decoration:none;outline:none}
   }
 }
 
@@ -20,23 +26,23 @@ li.song {
 
 li.song, li.album, .breadcrumb{
   i {
-    @include opacity(0.15);
-    @include transition(opacity 0.2s ease-in-out);
+    @include opacity(.15);
+    @include transition(opacity .2s ease-in-out);
   }
 }
 li.song:hover i, li.album:hover > .title i, .breadcrumb:hover i{
-  @include opacity(0.8);
-  @include transition(opacity 0.2s)
+  @include opacity(.8);
+  @include transition(opacity .2s)
 }
 
 .repeat-link{
   .glyphicon-repeat {
     @include opacity(0);
-    @include transition(opacity 0.2s ease-in-out);
+    @include transition(opacity .2s ease-in-out);
   }
-  li.sm2_playing & .glyphicon-repeat {@include opacity(0.2)}
+  li.sm2_playing & .glyphicon-repeat {@include opacity(.2)}
   li.sm2_playing &:hover .glyphicon-repeat,
   li.sm2_playing &.active .glyphicon-repeat{
-    @include opacity(0.8);
+    @include opacity(.8);
     }
 }

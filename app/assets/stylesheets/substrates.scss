@@ -55,7 +55,7 @@
     /* MIRRORS COLOR */
 
 
-    $mirror_color: rgba(255, 255, 0, 0.4);
+    $mirror_color: rgba(255, 255, 0, .4);
     $mirror_spring_install:   change-color($mirror_color, $red: 165);
     $mirror_spring_measure:   change-color($mirror_color, $red: 85);
     $mirror_actuator_install: change-color($mirror_color, $red: 0);

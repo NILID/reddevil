@@ -10,8 +10,8 @@
     cursor:auto;
     @for $i from 2 to 1 {
       p:nth-child(#{$i}) {
-        @include duration(0.5s * $i);
-        @include delay(0.3s);
+        @include duration(.5s * $i);
+        @include delay(.3s);
       }
     }
   }

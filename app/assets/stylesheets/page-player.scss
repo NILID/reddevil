@@ -43,14 +43,13 @@ ul.playlist li, ul.mainlist li {
  position:relative;
  display:block;
  width:auto;
- padding:0.25em 0.5em;
+ padding:.25em .5em;
  border:none;
  -webkit-transition-property: hover;
- -webkit-transition: background-color 0.15s ease-in-out;
- -moz-transition: background-color 0.15s linear 0s; /* firefox 4 */
+ -webkit-transition: background-color .15s ease-in-out;
+ -moz-transition: background-color .15s linear 0s; /* firefox 4 */
   -o-transition-property: background-color; /* opera 10.5 */
-  -o-transition-duration: 0.15s;
-
+  -o-transition-duration: .15s;
 }
 
 ul.playlist li a {
@@ -94,8 +93,8 @@ ul.playlist li .peak,
 ul.playlist.use-peak li .peak {
  display:none;
  position:absolute;
- top:0.55em;
- right:0.5em;
+ top:.55em;
+ right:.5em;
 }
 
 ul.playlist li.sm2_playing .controls,
@@ -131,14 +130,14 @@ ul.playlist li.sm2_paused .controls .statusbar {
 
 ul.playlist li .controls {
  position:relative;
- margin-top:0.25em;
- margin-bottom:0.25em;
+ margin-top:.25em;
+ margin-bottom:.25em;
  background-color:#99ccff;
 }
 
 ul.playlist li .controls .statusbar {
  position:relative;
- height:0.5em;
+ height:.5em;
  background-color:#ccddff;
  border:2px solid #fff;
  border-radius:2px;
@@ -158,7 +157,7 @@ ul.playlist li .controls .statusbar .annotation {
  position:absolute;
  left:0;
  top:0;
- height:0.5em;
+ height:.5em;
 }
 
 ul.playlist li .controls .statusbar .position {
@@ -240,18 +239,18 @@ ul.playlist.use-peak li .peak {
  zoom:1;
  border:1px solid #99ccff;
  padding:2px;
- height:0.55em;
+ height:.55em;
  border-radius:4px;
  background-color:#5588bb;
- width:0.8em;
- height:0.55em;
+ width:.8em;
+ height:.55em;
  margin-top:-3px;
 }
 
 ul.playlist.use-peak li .peak-box {
  position:relative;
  width:100%;
- height:0.55em;
+ height: .55em;
  overflow:hidden;
 }
 

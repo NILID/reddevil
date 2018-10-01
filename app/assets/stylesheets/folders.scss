@@ -14,8 +14,8 @@
   display:inline-block;
   width:48px;
   height:48px;
-  &.new {@include opacity(0.5)}
-  &.new:hover {@include opacity(0.8)}
+  &.new {@include opacity(.5)}
+  &.new:hover {@include opacity(.8)}
 }
 
 .i-folder{background-image: asset_url('icon-folder.png');}

@@ -1,6 +1,6 @@
 @import 'mixins';
 
-.category.redhide{@include opacity(0.5)}
+.category.redhide{@include opacity(.5)}
 
 .nav-pills > li.nav-children {
   &, & + li.nav-children{margin-left:20px;}

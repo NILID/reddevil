@@ -121,7 +121,7 @@ GEM
     high_voltage (3.1.0)
     hightop (0.2.0)
       activerecord
-    holidays (6.5.0)
+    holidays (6.6.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)

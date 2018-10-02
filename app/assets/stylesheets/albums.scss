@@ -1,3 +1,4 @@
-.album, .song {
+.album,
+.song {
   &:hover  > .sec-links{display:inline-block;}
 }

@@ -2,13 +2,12 @@
   = content_tag_for(:li, song) do
     = link_to song.clean_filename, song.file.url
     %span.song-icons.pull-left
-      = link_to like_album_song_path(song.album, song), :method => :post, remote: true, class: 'icon-star-link', title: t('shared.add_favorite') do
+      = link_to like_album_song_path(song.album, song), method: :post, remote: true, class: 'icon-star-link', title: t('shared.add_favorite') do
         %i.glyphicon.icon-like-song{class: current_user.likes?(song) ? 'glyphicon-star' : 'glyphicon-star-empty'}
       = link_to download_album_song_path(song.album, song), target: '_blank', title: t('shared.download') do
         %i.glyphicon.glyphicon-download-alt
     - if showalbum
-      (#{link_to song.album.title, song.album})
-    - if user_signed_in?
+      (#{ link_to song.album.title, song.album })
+    - if (can? :destroy, song) && !(%w[list favorites].include? params[:action])
       %span.sec-links
-        - if params[:action] != 'list' && params[:action] != 'favorites'
-          = link_to t('shared.del'), [song.album, song], :method => :delete, data: { confirm: t('shared.sure') } if can? :destroy, song
+        = link_to t('shared.del'), [song.album, song], method: :delete, data: { confirm: t('shared.sure') }

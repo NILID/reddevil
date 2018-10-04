@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Base
   has_many :vacations
 
-  accepts_nested_attributes_for :vacations
+  accepts_nested_attributes_for :vacations, reject_if: :all_blank, allow_destroy: true
 
   acts_as_birthday :birth
 

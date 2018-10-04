@@ -89,7 +89,8 @@ class MembersController < ApplicationController
                              :email,
                              :birth,
                              :archive_flag,
-                             :vacations_attributes => %i[id startdate enddate _destroy]]
+                             { :vacations_attributes => %i[id startdate enddate _destroy] }
+                            ]
       params.require(:member).permit(list_params_allowed)
     end
 end

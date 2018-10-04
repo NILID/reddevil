@@ -39,6 +39,10 @@ class Ability
       can %i[manage read], Message
     end
 
+    if user.role? :manager
+      can :manage, [Member]
+    end
+
     if user.role? :admin
       can [:read], Forecast do |f|
         (f.round.deadline < DateTime.now) || (f.user_id == user.id)

@@ -1,8 +1,6 @@
 class Member < ActiveRecord::Base
   has_many :vacations
 
-  attr_accessible :birth, :name, :patronymic, :surname, :email, :phone, :short_number, :work_phone, :archive_flag, :vacations_attributes
-
   accepts_nested_attributes_for :vacations
 
   acts_as_birthday :birth
@@ -34,7 +32,7 @@ class Member < ActiveRecord::Base
   def age
     if self.birth
       current_month = DateTime.now.month
-      current_year = DateTime.now.year
+      current_year  = DateTime.now.year
       age = current_year - self.birth.year
       age -= 1 if (current_month < self.birth.month) || ((current_month == self.birth.month) && (DateTime.now.day < self.birth.day))
       age

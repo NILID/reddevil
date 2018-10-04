@@ -32,13 +32,17 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :notes
   has_one  :profile, dependent: :destroy
-  ROLES = %w(admin user moderator editor test drawing mirrors)
+
+  ROLES = %w[admin user moderator editor test drawing mirrors manager]
+  #             1    2     4         8    16    32      64      128
+
+  GROUPS = %w[luch lab193 test sellers art machine]
+  #             1    2     4      8    16    32
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }
   scope :sellers,    lambda { with_group(:sellers) }
   scope :with_group, lambda { |group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }
   scope :with_role,  lambda { |role|  where('roles_mask & ? > 0',  2**ROLES.index(role.to_s)) }
-
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
@@ -52,8 +56,6 @@ class User < ActiveRecord::Base
     roles.include? role.to_s
   end
 
-  GROUPS = %w[luch lab193 test sellers art machine]
-  #             1    2     4      8    16    32
 
   def groups=(groups)
     self.groups_mask = (groups & GROUPS).map { |p| 2**GROUPS.index(p) }.inject(0, :+)

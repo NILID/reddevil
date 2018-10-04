@@ -59,7 +59,7 @@ class MembersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @member.update_attributes(params[:member])
+      if @member.update_attributes(member_params)
         format.html { redirect_to members_url, notice: t('flash.was_updated', item: Member.model_name.human) }
         format.json { head :no_content }
       else
@@ -77,4 +77,19 @@ class MembersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def member_params
+      list_params_allowed = [:surname,
+                             :name,
+                             :patronymic,
+                             :work_phone,
+                             :phone,
+                             :short_number,
+                             :email,
+                             :birth,
+                             :archive_flag,
+                             :vacations_attributes => %i[id startdate enddate _destroy]]
+      params.require(:member).permit(list_params_allowed)
+    end
 end

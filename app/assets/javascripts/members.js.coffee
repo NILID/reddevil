@@ -28,7 +28,6 @@ $ ->
 
   $('.input-daterange').datepicker
     language: "ru"
-    format: "dd.mm.yyyy"
     isRTL: false
     showMonthAfterYear: false
     yearSuffix: ''

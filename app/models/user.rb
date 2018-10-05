@@ -33,10 +33,10 @@ class User < ActiveRecord::Base
   has_many :notes
   has_one  :profile, dependent: :destroy
 
-  ROLES = %w[admin user moderator editor test drawing mirrors manager]
+  ROLES = %w[admin user moderator editor test drawing mirrors manager].freeze
   #             1    2     4         8    16    32      64      128
 
-  GROUPS = %w[luch lab193 test sellers art machine]
+  GROUPS = %w[luch lab193 test sellers art machine].freeze
   #             1    2     4      8    16    32
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }

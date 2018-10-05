@@ -14,8 +14,8 @@ class Match < ActiveRecord::Base
 
   validates :team1_id, :team2_id, presence: true
 
-  ENDING = %w[basic overtime penalty]
-  TYPES =  %w[final 3final]
+  ENDING = %w[basic overtime penalty].freeze
+  TYPES =  %w[final 3final].freeze
 
   def has_goal?
     # Check match result present

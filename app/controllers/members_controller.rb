@@ -69,6 +69,19 @@ class MembersController < ApplicationController
     end
   end
 
+  def update_holidays
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        format.html { redirect_to holidays_members_url, notice: t('flash.was_updated', item: Member.model_name.human) }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'manage_holidays' }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def destroy
     @member.destroy
 

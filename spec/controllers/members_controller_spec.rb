@@ -20,13 +20,19 @@ RSpec.describe MembersController, type: :controller do
         expect(response).to render_template(:manage_holidays)
       end
 
-      it 'destroys the requested member' do
+      it 'updates holidays the requested member' do
+        expect(@ability.can? :update_holidays, member).to be true
+        put :update_holidays, id: member, member: { content: 'New content' }
+        expect(response).to redirect_to(holidays_members_url)
+      end
+
+      it 'destroys' do
         expect(@ability.can? :destroy, member).to be true
-        expect{ delete :destroy, id: member}.to change(Member, :count).by(-1)
+        expect{ delete :destroy, id: member }.to change(Member, :count).by(-1)
         expect(response).to redirect_to(members_url)
       end
 
-      it 'updates the requested member' do
+      it 'updates' do
         expect(@ability.can? :update, member).to be true
         put :update, id: member, member: { content: 'New content' }
         expect(response).to redirect_to(members_url)
@@ -101,6 +107,11 @@ RSpec.describe MembersController, type: :controller do
       expect(@ability.cannot? :update, member).to be true
       expect{ put :update, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
     end
+
+    it 'not updates holidays' do
+      expect(@ability.cannot? :update_holidays, member).to be true
+      expect{ put :update_holidays, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+    end
   end
 
   describe 'unreg user should' do
@@ -148,6 +159,10 @@ RSpec.describe MembersController, type: :controller do
 
     it 'not updates' do
       expect{ put :update, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'not updates holidays' do
+      expect{ put :update_holidays, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do

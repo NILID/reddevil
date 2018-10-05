@@ -131,6 +131,7 @@ Birthday::Application.routes.draw do
     end
     member do
       get :manage_holidays
+      patch :update_holidays
     end
   end
 

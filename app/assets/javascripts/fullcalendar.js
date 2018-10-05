@@ -10270,15 +10270,15 @@ Calendar.defaults = {
 	// locale
 	isRTL: false,
 	buttonText: {
-		prev: "prev",
-		next: "next",
-		prevYear: "prev year",
-		nextYear: "next year",
-		year: 'year', // TODO: locale files need to specify this
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
+		prev: "пред.",
+		next: "след.",
+		prevYear: "пред. год",
+		nextYear: "след. год",
+		year: 'год', // TODO: locale files need to specify this
+		today: 'сегодня',
+		month: 'месяц',
+		week: 'неделя',
+		day: 'день'
 	},
 
 	buttonIcons: {

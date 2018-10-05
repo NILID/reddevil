@@ -1,8 +1,12 @@
-json.array!(@members_list) do |member|
-  json.extract! member, :id, :full_name
-  json.title member.full_name
+current_year = DateTime.now.year
+
+json.array!(@members) do |member|
+  birth_date = member.birth.change(year: current_year)
+  json.title t('member.birthday_of', name: member.petrovich_fullname)
   json.tooltip t('member.birthday_of', name: member.petrovich_fullname)
-  json.start member.start_time
-  json.end member.start_time
+  json.start birth_date
+  json.end birth_date
   json.allDay true
+  json.backgroundColor '#bd2e3d'
+  json.borderColor '#681720'
 end

@@ -67,7 +67,7 @@ gem 'will_paginate-bootstrap'
 gem 'paperclip'
 gem 'paperclip-i18n'
 
-gem 'meta-tags', :require => 'meta_tags'
+gem 'meta-tags', require: 'meta_tags'
 
 gem 'bootstrap_form'
 

@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @team.update_attributes(params[:team])
+      if @team.update_attributes(team_params)
         format.html { redirect_to @team, notice: t('flash.was_updated', item: Team.model_name.human) }
         format.json { head :no_content }
       else
@@ -43,4 +43,10 @@ class TeamsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def team_params
+      list_params_allowed = %i[content flag title type_id]
+      params.require(:team).permit(list_params_allowed)
+    end
 end

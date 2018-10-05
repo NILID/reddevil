@@ -22,7 +22,7 @@ class TypesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @type.update_attributes(params[:type])
+      if @type.update_attributes(type_params)
         format.html { redirect_to @type, notice: t('flash.was_updated', item: Type.model_name.human) }
         format.json { head :no_content }
       else
@@ -40,4 +40,10 @@ class TypesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def type_params
+      list_params_allowed = %i[title]
+      params.require(:type).permit(list_params_allowed)
+    end
 end

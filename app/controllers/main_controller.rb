@@ -18,10 +18,12 @@ class MainController < ApplicationController
 
     @vacations      = Vacation.where('startdate <= ?', now)
                               .where('enddate >= ?', now)
-                              .order(:enddate).includes(:member)
+                              .order(:enddate)
+                              .includes(:member)
     @vacations_soon = Vacation.where('startdate >= ?', DateTime.now + 1.days)
                               .where('startdate <= ?', DateTime.now + 7.days)
-                              .order(:startdate).includes(:member)
+                              .order(:startdate)
+                              .includes(:member)
 
     @holidays_today    = Holidays.on(now, :full_ru, :reddevil_ru)
     @holidays_tomorrow = Holidays.on(tomorrow, :full_ru, :reddevil_ru)

@@ -25,3 +25,10 @@ $ ->
     #   alert 'Event' + calEvent.title
     defaultView: 'month'
     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source'
+
+  $('.input-daterange').datepicker
+    language: "ru"
+    format: "dd.mm.yyyy"
+    isRTL: false
+    showMonthAfterYear: false
+    yearSuffix: ''

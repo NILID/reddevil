@@ -80,6 +80,8 @@ ru:
     edit: Указать отпуск
     add: Добавить отпуск
     settings: Редактирование отпусков %{name}
+    from: с
+    until: до
   devise:
     logout: Выйти
     login: Войти

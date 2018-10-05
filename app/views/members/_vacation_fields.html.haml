@@ -1,4 +1,19 @@
 .well.clearfix.nested-fields
-  = f.text_field :startdate, class: 'datepicker', value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate.present?)
-  = f.text_field :enddate, class: 'datepicker', value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate.present?)
-  .pull-right= link_to_remove_association t('shared.del'), f, class: 'btn btn-danger btn-xs', data: { confirm: t('shared.sure') }
+  .pull-right
+    = link_to_remove_association t('shared.del'), f,
+      class: 'btn btn-danger btn-xs',
+       data: { confirm: t('shared.sure') }
+
+  .input-daterange
+    = f.text_field :startdate,
+       hide_label: true,
+          prepend: t('vacations.from'),
+           inline: true,
+            value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate.present?)
+
+    = f.text_field :enddate,
+       hide_label: true,
+          prepend: t('vacations.until'),
+           inline: true,
+            value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate.present?)
+

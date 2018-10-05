@@ -1,7 +1,7 @@
 .panel.panel-default
   .panel-heading
     .panel-title= t 'vacations.settings', name: @member.petrovich_fullname
-  = bootstrap_form_for @member, layout: :horizontal do |f|
+  = bootstrap_form_for @member, layout: :inline do |f|
     .panel-body
       = f.fields_for :vacations do |vacation|
         = render 'vacation_fields', f: vacation

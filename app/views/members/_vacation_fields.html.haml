@@ -13,7 +13,7 @@
 
     = f.text_field :enddate,
        hide_label: true,
-          prepend: t('vacations.until'),
+          prepend: t('vacations.to'),
            inline: true,
             value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate.present?)
 

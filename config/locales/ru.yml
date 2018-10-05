@@ -81,7 +81,7 @@ ru:
     add: Добавить отпуск
     settings: Редактирование отпусков %{name}
     from: с
-    until: до
+    to: до
   devise:
     logout: Выйти
     login: Войти

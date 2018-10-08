@@ -88,11 +88,6 @@ gem 'twitter-bootstrap-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails'
 
-group :test do
-  gem 'minitest-rails'
-  gem 'test-unit'
-end
-
 group :production do
   gem 'passenger', '5.3.1'
 end

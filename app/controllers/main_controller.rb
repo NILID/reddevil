@@ -31,9 +31,4 @@ class MainController < ApplicationController
     @docs = Doc.where(show_last_flag: true).where('updated_at >=?', now - 10.days).order(updated_at: :desc) + Doc.where(show_last_flag: true).group_by_day(:created_at, last: 10).order(updated_at: :desc)
     @docs.uniq!
   end
-
-  def mirror
-    @item = Item.find(params[:m]) if params[:m] && Item.where(id: params[:m]).first
-    @mirrors = Mirror.all
-  end
 end

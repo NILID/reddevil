@@ -78,7 +78,6 @@ Birthday::Application.routes.draw do
 
   resources :docs
 
-  resources :items
 
 
   resources :users, only: %i[index] do

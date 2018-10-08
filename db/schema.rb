@@ -169,15 +169,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
   add_index "forecasts", ["user_id"], name: "index_forecasts_on_user_id", using: :btree
   add_index "forecasts", ["winner_id"], name: "index_forecasts_on_winner_id", using: :btree
 
-  create_table "items", force: :cascade do |t|
-    t.string   "file_file_name",    limit: 255
-    t.string   "file_content_type", limit: 255
-    t.integer  "file_file_size",    limit: 4
-    t.datetime "file_updated_at"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
   create_table "likes", force: :cascade do |t|
     t.string   "liker_type",    limit: 255
     t.integer  "liker_id",      limit: 4

@@ -81,14 +81,6 @@ Birthday::Application.routes.draw do
 
   resources :docs
 
-
-  resources :sources
-
-
-  resources :arts do
-    resources :works, except: %i[index show]
-  end
-
   resources :items
 
   resources :materials

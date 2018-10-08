@@ -67,12 +67,6 @@
                     %i.glyphicon.glyphicon-music
                     &nbsp;
                     = t 'shared.music'
-              - if can? :read, Art
-                %li
-                  = link_to arts_path do
-                    %i.glyphicon.glyphicon-picture
-                    &nbsp;
-                    = t('shared.art')
               - if can? :read, Round
                 %li
                   = link_to rounds_path do

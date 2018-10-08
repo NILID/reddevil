@@ -24,12 +24,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
   add_index "albums", ["ancestry"], name: "index_albums_on_ancestry", using: :btree
   add_index "albums", ["slug"], name: "index_albums_on_slug", unique: true, using: :btree
 
-  create_table "arts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deadline"
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string   "title",          limit: 255
     t.string   "ancestry",       limit: 255
@@ -68,6 +62,13 @@ ActiveRecord::Schema.define(version: 20180608050004) do
 
   add_index "columnships", ["column_id"], name: "index_columnships_on_column_id", using: :btree
   add_index "columnships", ["purchase_id"], name: "index_columnships_on_purchase_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body",       limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "datasets", force: :cascade do |t|
     t.string   "title",            limit: 255
@@ -376,19 +377,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
 
   add_index "songs", ["album_id"], name: "index_songs_on_album_id", using: :btree
 
-  create_table "sources", force: :cascade do |t|
-    t.string   "file_file_name",    limit: 255
-    t.string   "file_content_type", limit: 255
-    t.integer  "file_file_size",    limit: 4
-    t.datetime "file_updated_at"
-    t.integer  "work_id",           limit: 4
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.boolean  "hide",                          default: false
-  end
-
-  add_index "sources", ["work_id"], name: "index_sources_on_work_id", using: :btree
-
   create_table "subscribes", force: :cascade do |t|
     t.string   "fullname",    limit: 255
     t.string   "departament", limit: 255
@@ -521,17 +509,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
   end
 
   add_index "vacations", ["member_id"], name: "index_vacations_on_member_id", using: :btree
-
-  create_table "works", force: :cascade do |t|
-    t.text     "desc",       limit: 65535
-    t.integer  "art_id",     limit: 4
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "works", ["art_id"], name: "index_works_on_art_id", using: :btree
-  add_index "works", ["user_id"], name: "index_works_on_user_id", using: :btree
 
   create_table "years", force: :cascade do |t|
     t.string   "year",       limit: 255

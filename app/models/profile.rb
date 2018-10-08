@@ -18,7 +18,7 @@ class Profile < ActiveRecord::Base
   attr_accessible :avatar, :crop_x, :crop_y, :crop_w, :crop_h, :login, :background_color,
                   :name, :surname, :patronymic, :total_result
 
-  #for crop
+  # for crop
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   def cropping?

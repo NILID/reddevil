@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   after_create :set_role
 
-  has_many :works
   has_many :events
   has_many :purchases
   has_many :forecasts
@@ -55,7 +54,6 @@ class User < ActiveRecord::Base
   def role?(role)
     roles.include? role.to_s
   end
-
 
   def groups=(groups)
     self.groups_mask = (groups & GROUPS).map { |p| 2**GROUPS.index(p) }.inject(0, :+)

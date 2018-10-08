@@ -13,7 +13,7 @@ class Ability
     cannot %i[edit update], Profile
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot :read, [Art, Work, Forecast, Song, Album, Round, Forecast, Type, User]
+    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User]
     cannot :mirrors, Substrate
     can :list, [Event]
 
@@ -25,7 +25,7 @@ class Ability
       end
       # cannot :read, Doc, category: { hidden: true }
 
-      cannot :read, [Song, Album, Art, Work, Forecast, Round, Substrate, Year, Message, Type, User]
+      cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type, User]
       can :favorites, Subscribe
       cannot :download, Round, check_finish?: false
     end
@@ -50,17 +50,13 @@ class Ability
 
       can %i[read manage], :all
 
-      cannot :manage, Work
       can :import, Subscribe
       cannot %i[read manage], [Dataset, Folder]
 
       can :counted, Result
       # can :read, Material, groups_mask: user.groups_mask
-      cannot %i[edit update], Art do |art|
-        art.closed?
-      end
       can %i[make_role edit_roles], User
-      cannot :read, [Art, Work, Song, Album, Round, Forecast]
+      cannot :read, [Song, Album, Round, Forecast]
       cannot :download, Round, check_finish?: false
       can :remote_show, Substrate
     end
@@ -80,18 +76,10 @@ class Ability
       can %i[destroy edit update show remote_show sort], Substrate, category: 'mirror'
     end
 
-    if user.has_group? :art
-      can :read, [Art, Work]
-      can %i[new create], Art
-      can %i[new create], Work, art: { closed?: false }
-      can %i[edit update destroy], Work, user: { id: user.id }, art: { closed?: false }
-      can :manage, Source, work: { user_id: user.id }
-    end
-
     if user.has_group? :lab193
       can %i[manage read download], [Song, Album]
       can :get_results, Match
-      can :read, [Art, Work, Round]
+      can :read, Round
       can :like, Song
       can %i[favorites list], Album
 

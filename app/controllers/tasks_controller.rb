@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     old_end_time = @task.end_time
 
     respond_to do |format|
-      if @task.update_attributes(params[:task])
+      if @task.update_attributes(task_params)
         @task.update_next_tasks(old_end_time) if params[:task][:update_tasks_flag] == '1'
 
         format.html { redirect_to machines_url, notice: t('flash.was_updated', item: Task.model_name.human) }
@@ -47,4 +47,10 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def task_params
+      list_params_allowed = %i[complete end_time start_time title update_tasks_flag]
+      params.require(:task).permit(list_params_allowed)
+    end
 end

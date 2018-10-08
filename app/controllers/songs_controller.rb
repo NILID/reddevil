@@ -35,4 +35,10 @@ class SongsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def song_params
+      list_params_allowed = %i[file title]
+      params.require(:song).permit(list_params_allowed)
+    end
 end

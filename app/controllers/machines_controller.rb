@@ -25,7 +25,7 @@ class MachinesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @machine.update_attributes(params[:machine])
+      if @machine.update_attributes(machine_params)
         format.html { redirect_to @machine, notice: t('flash.was_updated', item: Machine.model_name.human) }
         format.json { head :no_content }
       else
@@ -43,4 +43,10 @@ class MachinesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def machine_params
+      list_params_allowed = %i[title]
+      params.require(:machine).permit(list_params_allowed)
+    end
 end

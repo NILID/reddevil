@@ -1,8 +1,6 @@
 class Note < ActiveRecord::Base
   belongs_to :user
 
-  # attr_accessible :content, :status, :review, :screenshot
-
   STATUS = %w[new failed done later].freeze
 
   has_attached_file :screenshot, styles: { medium: '800x600>', thumb: '100x100>' },
@@ -12,5 +10,4 @@ class Note < ActiveRecord::Base
   validates :content, presence: true
   validates_attachment :screenshot, content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] },
                                             size: { in: 0..10.megabytes }
-
 end

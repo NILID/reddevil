@@ -5,7 +5,7 @@ class RoundsController < ApplicationController
   load_and_authorize_resource
   layout 'main'
 
-  before_filter :get_teams, only: %i[new edit]
+  before_filter :get_teams, only: %i[new edit create update]
 
   def index
     @rounds = @rounds.order('created_at desc')
@@ -73,7 +73,7 @@ class RoundsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @round.update_attributes(params[:round])
+      if @round.update_attributes(round_params)
         format.html { redirect_to @round, notice: t('flash.was_updated', item: Round.model_name.human) }
         format.json { head :no_content }
       else
@@ -96,5 +96,21 @@ class RoundsController < ApplicationController
 
   def get_teams
     @teams = Team.order(:title)
+  end
+
+  def round_params
+    list_params_allowed = [
+                            :close,
+                            :content,
+                            :title,
+                            :deadline,
+                            :type_id,
+                            :tag_list,
+                            :empty_match,
+                            :draw,
+                            { :matches_attributes => %i[id team1goal team2goal team1_id team2_id winner_id ending desc _destroy] }
+                          ]
+
+    params.require(:round).permit(list_params_allowed)
   end
 end

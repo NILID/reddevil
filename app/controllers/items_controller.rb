@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  def create
-    @item = Item.new(params[:item])
+  load_and_authorize_resource
 
+  def create
     respond_to do |format|
       if @item.save
         format.html { redirect_to controller: 'main', action: 'mirror', m: @item.id }
@@ -10,4 +10,10 @@ class ItemsController < ApplicationController
       end
     end
   end
+
+  private
+    def item_params
+      list_params_allowed = %i[file]
+      params.require(:item).permit(list_params_allowed)
+    end
 end

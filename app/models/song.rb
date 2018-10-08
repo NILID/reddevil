@@ -2,7 +2,6 @@ class Song < ActiveRecord::Base
   acts_as_likeable
 
   belongs_to :album
-  attr_accessible :file, :title
 
   has_attached_file :file, validate_media_type: false,
      url: "/system/music/:album_title/:basename.:extension",

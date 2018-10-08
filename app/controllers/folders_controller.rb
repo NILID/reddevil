@@ -29,7 +29,7 @@ class FoldersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @folder.update_attributes(params[:folder])
+      if @folder.update_attributes(folder_params)
         format.html { redirect_to [@user, @folder], notice: t('flash.was_updated', item: Folder.model_name.human) }
         format.json { head :no_content }
       else
@@ -47,4 +47,10 @@ class FoldersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def folder_params
+      list_params_allowed = %i[title parent_id]
+      params.require(:folder).permit(list_params_allowed)
+    end
 end

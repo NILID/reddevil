@@ -78,7 +78,7 @@ class SubstratesController < ApplicationController
   def update
     @substrate.user = current_user unless current_user.role? :admin
     respond_to do |format|
-      if @substrate.update_attributes(params[:substrate])
+      if @substrate.update_attributes(substrate_params)
         url = @substrate.category == 'mirror' ? mirrors_substrates_url : substrates_url
 
         format.html { redirect_to url, notice: t('flash.was_updated', item: Substrate.model_name.human) }
@@ -101,4 +101,10 @@ class SubstratesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def substrate_params
+      list_params_allowed = %i[desc drawing number state title theme category substrate_id]
+      params.require(:substrate).permit(list_params_allowed)
+    end
 end

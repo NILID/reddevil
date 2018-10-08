@@ -53,7 +53,7 @@ class DocsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @doc.update_attributes(params[:doc])
+      if @doc.update_attributes(doc_params)
         format.html { redirect_to docs_url, notice: t('flash.was_updated', item: Doc.model_name.human) }
         format.json { head :no_content }
       else
@@ -87,5 +87,16 @@ class DocsController < ApplicationController
 
   def set_categories
     @categories = ancestry_options(Category.arrange(order: :title)) {|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"}
+  end
+
+  def doc_params
+    list_params_allowed = [
+                            :desc,
+                            :title,
+                            :file,
+                            :show_last_flag,
+                            { category_tokens: [] }
+                           ]
+    params.require(:doc).permit(list_params_allowed)
   end
 end

@@ -1,6 +1,4 @@
 class Item < ActiveRecord::Base
-  attr_accessible :file
-
   has_attached_file :file,
      url: "/system/items/:id/:basename.:extension",
      path: ":rails_root/public/system/items/:id/:basename.:extension"

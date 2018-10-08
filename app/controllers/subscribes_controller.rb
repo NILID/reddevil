@@ -44,7 +44,7 @@ class SubscribesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @subscribe.update_attributes(params[:subscribe])
+      if @subscribe.update_attributes(subscribe_params)
         format.html { redirect_to subscribes_url, notice: t('flash.was_updated', item: Subscribe.model_name.human) }
         format.json { head :no_content }
       else
@@ -61,4 +61,11 @@ class SubscribesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  private
+    def subscribe_params
+      list_params_allowed = %i[departament email fullname phone_city phone_inter place position]
+      params.require(:subscribe).permit(list_params_allowed)
+    end
 end

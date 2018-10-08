@@ -1,8 +1,6 @@
 class Subscribe < ActiveRecord::Base
   acts_as_likeable
 
-  attr_accessible :departament, :email, :fullname, :phone_city, :phone_inter, :place, :position
-
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     (1..spreadsheet.last_row).each do |i|

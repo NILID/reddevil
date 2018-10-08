@@ -2,7 +2,6 @@ class Task < ActiveRecord::Base
   belongs_to :user
   belongs_to :machine
 
-  attr_accessible :complete, :end_time, :start_time, :title, :update_tasks_flag
   attr_writer :update_tasks_flag
 
   validates :title, presence: true

@@ -4,8 +4,6 @@ class Result < ActiveRecord::Base
 
   has_many :matches, through: :round
 
-  attr_accessible :total, :round_id
-
   def rebuild_total
     # SCORING
     #

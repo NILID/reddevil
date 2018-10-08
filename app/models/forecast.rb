@@ -4,8 +4,6 @@ class Forecast < ActiveRecord::Base
   belongs_to :winner, class_name: 'Team'
   has_one :round, through: :match
 
-  attr_accessible :team1goal, :team2goal, :match_id, :user_id, :winner_id, :ending
-
   # before_update :remove_winner_forecast
 
   validates :team1goal, :team2goal, presence: true, numericality: true

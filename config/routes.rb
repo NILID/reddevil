@@ -68,22 +68,18 @@ Birthday::Application.routes.draw do
 
   resources :messages
 
-
   %w[404 422 500].each do |code|
     get code, to: 'errors#show', code: code
   end
 
   resources :notes
 
-
   resources :categories
-
 
   resources :docs
 
   resources :items
 
-  resources :materials
 
   resources :users, only: %i[index] do
     member do

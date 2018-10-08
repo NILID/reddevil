@@ -49,6 +49,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:ancestry, :title, :parent_id, :hidden)
+    list_params_allowed = %i[ancestry title parent_id :hidden]
+    params.require(:category).permit(list_params_allowed)
   end
 end

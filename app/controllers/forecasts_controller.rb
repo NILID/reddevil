@@ -30,7 +30,7 @@ class ForecastsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @forecast.update_attributes(params[:forecast])
+      if @forecast.update_attributes(forecast_params)
         format.js
       else
         format.js { render 'errors', locals: { object: @forecast} }
@@ -54,5 +54,10 @@ class ForecastsController < ApplicationController
       user = @forecast.user
       user.forecasts_count = user.forecasts.count
       user.save!
+    end
+
+    def forecast_params
+      list_params_allowed = %i[team1goal team2goal match_id winner_id ending]
+      params.require(:forecast).permit(list_params_allowed)
     end
 end

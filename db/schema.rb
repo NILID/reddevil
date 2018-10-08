@@ -63,13 +63,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
   add_index "columnships", ["column_id"], name: "index_columnships_on_column_id", using: :btree
   add_index "columnships", ["purchase_id"], name: "index_columnships_on_purchase_id", using: :btree
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "body",       limit: 65535
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
   create_table "datasets", force: :cascade do |t|
     t.string   "title",            limit: 255
     t.string   "src_file_name",    limit: 255
@@ -219,17 +212,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
   add_index "matches", ["team1_id"], name: "index_matches_on_team1_id", using: :btree
   add_index "matches", ["team2_id"], name: "index_matches_on_team2_id", using: :btree
   add_index "matches", ["winner_id"], name: "index_matches_on_winner_id", using: :btree
-
-  create_table "materials", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "content",     limit: 65535
-    t.integer  "groups_mask", limit: 4
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  add_index "materials", ["user_id"], name: "index_materials_on_user_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.string   "name",         limit: 255

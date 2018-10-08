@@ -17,7 +17,7 @@ class ResultsController < ApplicationController
   end
 
   def rebuild
-    @round = Round.find(params[:round])
+    @round = Round.where(id: params[:round]).first
     @round.results.each do |r|
       r.update_attributes(total: r.rebuild_total)
     end
@@ -51,7 +51,7 @@ class ResultsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @result.update_attributes(params[:result])
+      if @result.update_attributes(result_params)
         format.html { redirect_to @result, notice: t('flash.was_updated', item: Result.model_name.human) }
         format.json { head :no_content }
       else
@@ -69,4 +69,10 @@ class ResultsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def result_params
+      list_params_allowed = %i[total round_id]
+      params.require(:result).permit(list_params_allowed)
+    end
 end

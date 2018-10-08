@@ -26,7 +26,7 @@ class PurchasesController < ApplicationController
   end
 
   def get_form
-    @columnship = Columnship.find(params[:columnship])
+    @columnship = Columnship.where(id: params[:columnship]).first
 
     respond_to do |format|
       format.js
@@ -63,7 +63,7 @@ class PurchasesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @purchase.update_attributes(params[:purchase])
+      if @purchase.update_attributes(purchase_params)
         format.html { redirect_to [@year, Purchase], notice: t('flash.was_updated', item: Purchase.model_name.human) }
         format.json { respond_with_bip(@purchase) }
         format.js
@@ -83,4 +83,45 @@ class PurchasesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def purchase_params
+      list_params_allowed = [
+                              :user_id,
+                              :erp,
+                              :analytic,
+                              :aztz,
+                              :bidding,
+                              :committee,
+                              :conclusion_expert,
+                              :conclusion_pdtk,
+                              :contract,
+                              :contract_project,
+                              :contract_request,
+                              :delivery,
+                              :doc,
+                              :kp,
+                              :nmc,
+                              :prepay_date,
+                              :prepay_sum,
+                              :price,
+                              :provider,
+                              :proxy,
+                              :request,
+                              :startdate,
+                              :title,
+                              :warmth_date,
+                              :warmth_sum,
+                              :zkpdate,
+                              :zsc_kp,
+                              :status,
+                              :status_color,
+                              {
+                                :columnships_attributes => %i[id column_id purchase_id data desc _destroy],
+                                :deliveries_attributes =>  %i[id doc delivery _destroy]
+                              }
+                            ]
+
+      params.require(:purchase).permit(list_params_allowed)
+    end
 end

@@ -38,4 +38,13 @@ class YearsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def year_params
+      list_params_allowed = [
+                              :year,
+                              { :columns_attributes => %i[id name column_type _destroy] }
+                            ]
+      params.require(:year).permit(list_params_allowed)
+    end
 end

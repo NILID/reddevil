@@ -1,8 +1,5 @@
 class Substrate < ActiveRecord::Base
-  attr_accessible :desc, :drawing, :number, :state, :title, :theme, :category, :substrate_id
-
   belongs_to :user
-  belongs_to :mirror
   # has_one :substrate_child
   belongs_to :child, class_name: 'Substrate', foreign_key: :substrate_id
 

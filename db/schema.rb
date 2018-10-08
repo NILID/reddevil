@@ -237,12 +237,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
     t.datetime "updated_at",                               null: false
   end
 
-  create_table "mirrors", force: :cascade do |t|
-    t.integer "weight",    limit: 4
-    t.integer "real",      limit: 4
-    t.integer "second_id", limit: 4
-  end
-
   create_table "notes", force: :cascade do |t|
     t.text     "content",                 limit: 65535
     t.string   "status",                  limit: 255,   default: "new"

@@ -22,6 +22,7 @@
  *= require demo
  *= require animate
  *= require jquery-ui
+ *= require fullcalendar
  *= require simple_calendar
  *= require optional-annotations
  *= require optional-themes

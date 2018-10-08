@@ -26,6 +26,8 @@
 //= require optional-page-player-metadata
 //= require moment
 //= require moment/ru
+//= require fullcalendar
+//= require fullcalendar/locale-all
 //= require bootstrap-datetimepicker
 //= require fancybox
 //= require Chart.bundle

@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @message.update_attributes(params[:message])
+      if @message.update_attributes(message_params)
         format.html { redirect_to @message, notice: t('flash.was_updated', item: Message.model_name.human) }
         format.json { head :no_content }
       else
@@ -38,5 +38,12 @@ class MessagesController < ApplicationController
       format.html { redirect_to messages_url, notice: t('flash.was_destroyed', item: Message.model_name.human) }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def message_params
+    list_params_allowed = %i[close content title]
+    params.require(:message).permit(list_params_allowed)
   end
 end

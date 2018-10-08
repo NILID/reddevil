@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    if @profile.update_attributes(params[:profile])
+    if @profile.update_attributes(profile_params)
       # if params[:profile][:avatar].present?
       #    render :crop
       # else
@@ -19,4 +19,10 @@ class ProfilesController < ApplicationController
       render :edit
     end
   end
+
+  private
+    def profile_params
+      list_params_allowed = %i[avatar crop_x crop_y crop_w crop_h login background_color name surname patronymic total_result]
+      params.require(:profile).permit(list_params_allowed)
+    end
 end

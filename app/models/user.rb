@@ -11,15 +11,8 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email,
-                  :password,
-                  :password_confirmation,
-                  :remember_me
   delegate :login, to: :profile
 
-  attr_accessible :groups, :roles, :sport_flag, as: :admin
-  # attr_accessible :title, :body
   after_create :set_role
 
   has_many :events

@@ -3,8 +3,6 @@ gem 'rails', '4.2.10'
 
 # gem 'pg'
 
-gem 'protected_attributes'
-
 gem 'animate-rails'
 
 gem 'rubyzip'

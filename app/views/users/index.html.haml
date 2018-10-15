@@ -8,9 +8,10 @@
       %table.table
         - @users.each_with_index do |user, index|
           %tr
-            %td= index += 1
             %td
-              %span.badge{ class: user.online? ? 'badge-success' : '' }
+              = index += 1
+            %td
+              %span.label{ class: user.online? ? 'label-success' : 'label-default' }
                 .i.glyphicon{ class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove' }
             %td
               = link_to user.email, user_profile_path(user)

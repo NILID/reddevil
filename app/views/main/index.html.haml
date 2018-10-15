@@ -57,7 +57,7 @@
       .panel.panel-default
         - unless @holidays_today.empty?
           .panel-heading
-            .panel-title><
+            .panel-title
               = t 'shared.today'
               %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
           .panel-body
@@ -65,7 +65,7 @@
               %p.text-success= holiday[:name]
         - unless @holidays_tomorrow.empty?
           .panel-heading
-            .panel-title><
+            .panel-title
               = t 'shared.tomorrow'
               %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
           .panel-body

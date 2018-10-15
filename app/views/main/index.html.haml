@@ -14,7 +14,7 @@
       .panel.panel-default
         - unless @bdusers_prevyesterday.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = t 'shared.birthdays_prevyesterday'
           .panel-body
             - @bdusers_prevyesterday.keys.sort.each do |u|
@@ -22,7 +22,7 @@
 
         - unless @bdusers_yesterday.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = t 'shared.birthdays_yesterday'
           .panel-body
             - @bdusers_yesterday.keys.sort.each do |u|
@@ -30,7 +30,7 @@
 
         - unless @bdusers_today.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = @bdusers_today.keys.count > 1 ? t('shared.birthdays_today') : t('shared.birthday_today')
           .panel-body
             - @bdusers_today.keys.sort.each do |u|
@@ -38,7 +38,7 @@
 
         - unless @bdusers_tomorrow.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = t 'shared.birthdays_tomorrow'
           .panel-body
             - @bdusers_tomorrow.keys.sort.each do |u|
@@ -46,7 +46,7 @@
 
         - unless @bdusers_month.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = @bdusers_month.keys.count > 1 ? t('shared.birthdays') : t('shared.birthday')
           .panel-body
             - @bdusers_month.keys.sort.each do |u|
@@ -57,7 +57,7 @@
       .panel.panel-default
         - unless @holidays_today.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = t 'shared.today'
               %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
           .panel-body
@@ -65,7 +65,7 @@
               %p.text-success= holiday[:name]
         - unless @holidays_tomorrow.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = t 'shared.tomorrow'
               %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
           .panel-body
@@ -77,7 +77,7 @@
       .panel.panel-default
         - unless @vacations.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = t 'vacations.index'
           .panel-body
             .row
@@ -91,7 +91,7 @@
 
         - unless @vacations_soon.empty?
           .panel-heading
-            .panel-title
+            .panel-title><
               = t 'vacations.soon'
           .panel-body
             .row
@@ -110,7 +110,7 @@
     .col-xs-12
       .panel.panel-default
         .panel-heading
-          .panel-title
+          .panel-title><
             = t 'docs.last_docs'
         .panel-body
           = render partial: 'docs/mini_doc', collection: @docs

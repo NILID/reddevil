@@ -26,8 +26,9 @@ $ ->
     defaultView: 'month'
     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source'
 
-  $('.input-daterange').datepicker
-    language: "ru"
-    isRTL: false
-    showMonthAfterYear: false
-    yearSuffix: ''
+  $('body').delegate '.input-daterange', 'focusin', ->
+    $(this).datepicker
+      language: "ru"
+      isRTL: false
+      showMonthAfterYear: false
+      yearSuffix: ''

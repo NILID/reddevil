@@ -9,11 +9,11 @@
        hide_label: true,
           prepend: t('vacations.from'),
            inline: true,
-            value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate.present?)
+            value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate?)
 
     = f.text_field :enddate,
        hide_label: true,
           prepend: t('vacations.to'),
            inline: true,
-            value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate.present?)
+            value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate?)
 

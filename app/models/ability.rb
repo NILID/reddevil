@@ -13,7 +13,7 @@ class Ability
     cannot %i[edit update], Profile
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User]
+    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Subscribe, Member]
     cannot :mirrors, Substrate
     can :list, [Event]
 

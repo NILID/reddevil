@@ -11,14 +11,16 @@
         %span>< EDDEVIL
     .collapse.navbar-collapse#reddevil-collapse
       %ul.nav.navbar-nav
-        %li{class: (params[:controller] == 'members') ? 'active' : nil}
-          = link_to t('member.title'), members_path
+        - if can? :read, Member
+          %li{class: (params[:controller] == 'members') ? 'active' : nil}
+            = link_to t('member.title'), members_path
         %li{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
           = link_to t('shared.calendar'), calendar_path
         %li{class: (params[:controller] == 'docs') ? 'active' : nil}
           = link_to t('docs.title'), docs_path
-        %li{class: (params[:controller] == 'subscribes') ? 'active' : nil}
-          = link_to t('shared.phonebook'), subscribes_path
+        - if can? :index, Subscribe
+          %li{class: (params[:controller] == 'subscribes') ? 'active' : nil}
+            = link_to t('shared.phonebook'), subscribes_path
         - if can? :manage, Purchase
           %li{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
             = link_to years_path do

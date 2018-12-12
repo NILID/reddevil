@@ -1,5 +1,5 @@
 class SubscribesController < ApplicationController
-  load_and_authorize_resource except: [:import, :index, :favorites]
+  load_and_authorize_resource except: %i[import favorites]
 
   def import
     Subscribe.destroy_all
@@ -8,7 +8,7 @@ class SubscribesController < ApplicationController
   end
 
   def index
-    @q = Subscribe.search(params[:q])
+    @q = @subscribes.search(params[:q])
     @subscribes = @q.result(distinct: true).order(:fullname).page(params[:page]).per_page(25)
   end
 

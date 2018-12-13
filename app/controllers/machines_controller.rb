@@ -1,5 +1,4 @@
 class MachinesController < ApplicationController
-
   load_and_authorize_resource
   layout 'main'
 

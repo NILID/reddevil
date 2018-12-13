@@ -12,7 +12,7 @@ class Ability
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Subscribe, Member, Vacation]
+    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Subscribe, Member, Vacation, Machine]
     cannot :mirrors, Substrate
     can :list, [Event]
 
@@ -22,7 +22,7 @@ class Ability
       can %i[manage read], Folder,  user:   { id: user.id }
       can %i[manage read], Dataset, folder: { user_id: user.id }
       can :show, User, id: user.id
-      can %i[edit update], Profile, user_id: user.id
+      can %i[show edit update], Profile, user: { id: user.id }
     end
 
     if user.role? :user
@@ -32,7 +32,8 @@ class Ability
       end
       # cannot :read, Doc, category: { hidden: true }
 
-      cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type, User]
+      cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type, Machine]
+      cannot :index, User
 
       can :favorites, Subscribe
       cannot :download, Round, check_finish?: false

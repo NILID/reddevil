@@ -75,7 +75,7 @@
                     %i.glyphicon.glyphicon-time
                     &nbsp;
                     = t('shared.sport')
-              - if user_signed_in?
+              - if can? :show, [current_user, Folder]
                 %li
                   = link_to [current_user, Folder] do
                     %i.glyphicon.glyphicon-hdd

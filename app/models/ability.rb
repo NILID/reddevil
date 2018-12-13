@@ -19,6 +19,8 @@ class Ability
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :read, :all
 
+      cannot %i[manage read], [Folder, Dataset]
+
       can %i[manage read], Folder,  user:   { id: user.id }
       can %i[manage read], Dataset, folder: { user_id: user.id }
       can :show, User, id: user.id
@@ -60,7 +62,6 @@ class Ability
       can %i[read manage], :all
 
       can :import, Subscribe
-      cannot %i[read manage], [Dataset, Folder]
 
       can :counted, Result
       # can :read, Material, groups_mask: user.groups_mask

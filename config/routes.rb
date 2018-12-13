@@ -1,5 +1,5 @@
 Birthday::Application.routes.draw do
-
+  resources :vacations, only: [:index]
   resources :notes
   resources :machines do
     resources :tasks
@@ -114,7 +114,6 @@ Birthday::Application.routes.draw do
       get :archive
       get :stat
       get :holidays
-      get :get_holidays
     end
     member do
       get :manage_holidays

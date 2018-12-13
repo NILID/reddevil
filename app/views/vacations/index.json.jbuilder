@@ -1,6 +1,6 @@
 current_year = DateTime.now.year
 
-json.array!(Vacation.all) do |holiday|
+json.array!(@vacations) do |holiday|
   json.title t('member.in_holiday', member: holiday.member.full_name)
   json.tooltip t('member.in_holiday', member: holiday.member.full_name)
   json.start holiday.startdate

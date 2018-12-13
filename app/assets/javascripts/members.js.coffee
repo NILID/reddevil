@@ -14,7 +14,7 @@ $ ->
     themeSystem: 'bootstrap3'
     eventSources: [
       '/members.json'
-      '/members/get_holidays.json'
+      '/vacations.json'
       '/events/list.json'
       '/relax.json'
     ]

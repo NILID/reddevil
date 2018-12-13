@@ -6,7 +6,7 @@
       = @profile.fullname
       (#{@profile.login? ? @profile.login : @user.email})
 
-      - if (can? :edit, @profile) && (can? :edit_roles, @user)
+      - if (can? :edit, @profile) || (can? :edit_roles, @user)
         %small.pull-right
           .btn-group
             %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

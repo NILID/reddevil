@@ -12,23 +12,25 @@ RSpec.describe ProfilesController, type: :controller do
       get :edit, id: profile, user_id: user
       expect(response).to be_success
     end
-  end
-
-  %i[admin user].each do |role|
-    login_user(role)
 
     it 'get edit' do
       expect(@ability.can? :edit, profile).to be true
-      expect{ get :edit, id: profile, user_id: user }.to raise_error(CanCan:: AccessDenied)
+      get :edit, id: profile, user_id: user
+      expect(response).to be_success
     end
   end
 
-  describe 'user should' do
-    login_user(:user)
+  %i[user].each do |role|
+    login_user(role)
 
-    it 'get edit' do
+    it 'cannot get edit' do
       expect(@ability.cannot? :edit, profile).to be true
       expect{ get :edit, id: profile, user_id: user }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'get edit' do
+      expect(@ability.can? :edit, @user.profile).to be true
+      expect(get :edit, id: @user.profile, user_id: @user).to be_success
     end
   end
 

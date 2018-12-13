@@ -10,16 +10,23 @@ class Ability
     can %i[archive stat holidays get_holidays], Member
     cannot %i[manage read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
     can %i[new create], Note
-    cannot %i[edit update], Profile
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
     cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Subscribe, Member, Vacation]
     cannot :mirrors, Substrate
     can :list, [Event]
 
-    if user.role? :user
-      can %i[edit update], Profile, user_id: user.id
+    if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :read, :all
+
+      can %i[manage read], Folder,  user:   { id: user.id }
+      can %i[manage read], Dataset, folder: { user_id: user.id }
+      can :show, User, id: user.id
+      can %i[edit update], Profile, user_id: user.id
+    end
+
+    if user.role? :user
+
       can %i[destroy edit update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.user_id == user.id)
       end
@@ -60,12 +67,6 @@ class Ability
       cannot :read, [Song, Album, Round, Forecast]
       cannot :download, Round, check_finish?: false
       can :remote_show, Substrate
-    end
-
-    if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
-      can %i[manage read], Folder,  user:   { id: user.id }
-      can %i[manage read], Dataset, folder: { user_id: user.id }
-      can :read, User, id: user.id
     end
 
     if user.role? :drawing

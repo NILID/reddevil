@@ -26,6 +26,7 @@ class Ability
       # cannot :read, Doc, category: { hidden: true }
 
       cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type, User]
+
       can :favorites, Subscribe
       cannot :download, Round, check_finish?: false
     end
@@ -64,6 +65,7 @@ class Ability
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can %i[manage read], Folder,  user:   { id: user.id }
       can %i[manage read], Dataset, folder: { user_id: user.id }
+      can :read, User, id: user.id
     end
 
     if user.role? :drawing

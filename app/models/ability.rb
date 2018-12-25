@@ -7,7 +7,7 @@ class Ability
 
     # everybody
     can :read, :all
-    can %i[archive stat holidays get_holidays], Member
+    can %i[archive stat holidays], Member
     cannot %i[manage read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }

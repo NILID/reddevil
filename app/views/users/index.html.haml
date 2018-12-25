@@ -17,6 +17,7 @@
               = link_to user.email, user_profile_path(user)
               .text-muted= user.profile.fullname
             %td= l user.updated_at,  format: :long
+            %td= user.confirmed?
             - if can? :edit, user.profile
               %td
                 .btn-group

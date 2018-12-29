@@ -2,9 +2,9 @@ class MainController < ApplicationController
   layout 'main'
 
   def index
-    now       = Date.today
-    tomorrow  = Date.tomorrow
-    yesterday = Date.yesterday
+    now       = DateTime.now.beginning_of_day
+    tomorrow  = DateTime.tomorrow.beginning_of_day
+    yesterday = DateTime.yesterday.beginning_of_day
 
     @messages = Message.where(close: false)
 
@@ -16,8 +16,7 @@ class MainController < ApplicationController
     @bdusers_tomorrow = @bduser.find_births_for(tomorrow).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
     @bdusers_month    = @bduser.find_births_for(tomorrow + 1.day, now + 30.days).group_by {|u| [(u.birth.month < DateTime.now.month ? 1 : 0), u.birth.strftime("%m"), u.birth.strftime("%d")]}
 
-    @vacations      = Vacation.where('startdate <= ?', now)
-                              .where('enddate >= ?', now)
+    @vacations      = Vacation.where('startdate <= ?', now).where('enddate >= ?', now)
                               .order(:enddate)
                               .includes(:member)
     @vacations_soon = Vacation.where('startdate >= ?', DateTime.now + 1.days)

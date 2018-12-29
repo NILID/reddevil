@@ -2,7 +2,10 @@
   %td.text-muted= member_holiday_counter + 1
   %td= member_holiday.full_name
   %td
-    .text-muted=   render partial: 'vacation', collection: member_holiday.vacations.old
+    = link_to "#vacations_#{member_holiday.id}", class: 'text-muted', role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "vacations_#{member_holiday.id}" } do
+      = t 'vacations.show_old'
+    .text-muted.collapse{ id: "vacations_#{member_holiday.id}" }
+      = render partial: 'vacation', collection: member_holiday.vacations.old
     .text-success= render partial: 'vacation', collection: member_holiday.vacations.present
 
     = render partial: 'vacation', collection: member_holiday.vacations.future

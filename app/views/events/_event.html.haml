@@ -1,0 +1,11 @@
+.panel.panel-default
+  .panel-heading
+    = link_to event.title, [event.user, event]
+  .panel-body
+    %p= event.content
+  - if can? :manage, [event.user, Event]
+    .panel-footer
+      = link_to t('shared.edit'), edit_user_event_path(event.user, event)
+      = link_to t('shared.del'), [event.user, event], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+

@@ -1,19 +1,6 @@
-%h1 Listing events
+.lead.pull-left= t 'events.list'
 
-%table
-  %tr
-    %th Title
-    %th
-    %th
-    %th
+.pull-right= link_to t('events.add'), new_user_event_path(@user), class: 'btn btn-primary' if can? :create, Event
+.clearfix
 
-  - @events.each do |event|
-    %tr
-      %td= link_to event.title, [@user, event]
-      - if can? :manage, [@user, Event]
-        %td= link_to t('shared.edit'), edit_user_event_path(@user, event)
-        %td= link_to t('shared.del'), [@user, event], :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Event', new_user_event_path(@user) if can? :create, Event
+= render @events

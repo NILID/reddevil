@@ -230,6 +230,14 @@ ru:
     newer: Последние добавленные
     creating: Создание альбома
     editing: Редактирование альбома
+  events:
+    list: События
+    future: Скоро
+    add: Добавить событие
+    creating: Создание события
+    editing: Редактирование события
+    until: до %{date}
+    start: с %{date}
   results:
     true_winner: угадал победителя
     true_diff: угадал разницу мячей
@@ -335,6 +343,7 @@ ru:
       show: Показать
   activerecord:
     models:
+      event: событие
       member: сотрудник
       user: пользователь
       comment: сообщение
@@ -362,6 +371,9 @@ ru:
       album:
         title: Название
         songs: Песни
+      event:
+        title: Название
+        content: Описание
       vacation:
         startdate: Дата начала
         enddate: Дата завершения

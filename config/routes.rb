@@ -78,8 +78,6 @@ Birthday::Application.routes.draw do
 
   resources :docs
 
-
-
   resources :users, only: %i[index] do
     member do
       post 'make_role'

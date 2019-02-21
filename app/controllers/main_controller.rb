@@ -24,6 +24,15 @@ class MainController < ApplicationController
                               .order(:startdate)
                               .includes(:member)
 
+    if current_user
+      @events      = current_user.events.where('start_date <= ?', now)
+                                        .where('end_date >= ?', now)
+                                        .order(:end_date)
+      @events_soon = current_user.events.where('start_date >= ?', DateTime.now + 1.days)
+                                        .where('start_date <= ?', DateTime.now + 7.days)
+                                        .order(:start_date)
+    end
+
     @holidays_today    = Holidays.on(now, :full_ru, :reddevil_ru)
     @holidays_tomorrow = Holidays.on(tomorrow, :full_ru, :reddevil_ru)
 

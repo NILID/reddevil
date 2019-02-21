@@ -8,23 +8,42 @@ class Ability
     # everybody
     can :read, :all
     can %i[archive stat holidays], Member
-    cannot %i[manage read], [Message, Folder, Dataset, Substrate, Year, Machine, Task]
+    cannot %i[manage read], [Message, Folder, Dataset, Substrate, Year, Machine, Task, Event]
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
     cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Subscribe, Member, Vacation, Machine]
     cannot :mirrors, Substrate
-    can :list, [Event]
+
+    if user.role? :admin
+      can [:read], Forecast do |f|
+        (f.round.deadline < DateTime.now) || (f.user_id == user.id)
+      end
+
+      can %i[read manage], :all
+
+      can :import, Subscribe
+
+      can :counted, Result
+      # can :read, Material, groups_mask: user.groups_mask
+      can %i[make_role edit_roles], User
+      cannot :read, [Song, Album, Round, Forecast]
+      cannot :download, Round, check_finish?: false
+      can :remote_show, Substrate
+    end
+
+
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :read, :all
 
-      cannot %i[manage read], [Folder, Dataset]
+      cannot %i[manage read], [Folder, Dataset, Event]
 
       can %i[manage read], Folder,  user:   { id: user.id }
       can %i[manage read], Dataset, folder: { user_id: user.id }
       can :show, User, id: user.id
       can %i[show edit update], Profile, user: { id: user.id }
+      can %i[read manage list], Event, user: { id: user.id }
     end
 
     if user.role? :user
@@ -54,22 +73,6 @@ class Ability
       can :manage, [Member]
     end
 
-    if user.role? :admin
-      can [:read], Forecast do |f|
-        (f.round.deadline < DateTime.now) || (f.user_id == user.id)
-      end
-
-      can %i[read manage], :all
-
-      can :import, Subscribe
-
-      can :counted, Result
-      # can :read, Material, groups_mask: user.groups_mask
-      can %i[make_role edit_roles], User
-      cannot :read, [Song, Album, Round, Forecast]
-      cannot :download, Round, check_finish?: false
-      can :remote_show, Substrate
-    end
 
     if user.role? :drawing
       can %i[index new create get_form], Substrate

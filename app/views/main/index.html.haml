@@ -79,6 +79,24 @@
               %p= holiday[:name]
 
   - if user_signed_in?
+    - unless @events.empty? && @events_soon.empty?
+      %div
+        .panel.panel-default
+          - unless @events.empty?
+            .panel-heading
+              .panel-title= link_to t('events.list'), [current_user, Event]
+            .panel-body
+              .row
+                .col-xs-12= render partial: 'events/event_mini', collection: @events, locals: { diff_dates: false } 
+
+          - unless @events_soon.empty?
+            .panel-heading
+              .panel-title= t 'events.future'
+            .panel-body
+              .row
+                .col-xs-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
+
+  - if user_signed_in?
     - unless @vacations.empty? && @vacations_soon.empty?
       %div
         .panel.panel-default

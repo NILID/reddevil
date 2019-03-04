@@ -36,6 +36,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :sport_flag, default: true
       t.integer :forecasts_count
 
+      t.integer :win_forecasts_count, default: 0
+
       t.timestamps
     end
 

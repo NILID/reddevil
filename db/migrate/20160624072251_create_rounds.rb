@@ -7,6 +7,7 @@ class CreateRounds < ActiveRecord::Migration
       t.datetime :deadline
       t.integer :type_id
       t.boolean :empty_match, default: false
+      t.boolean :draw, default: false
 
       t.timestamps
     end

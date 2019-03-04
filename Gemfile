@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 gem 'rails', '4.2.10'
 
 # gem 'pg'
@@ -53,7 +53,7 @@ gem 'cancancan'
 gem 'rails-i18n'
 
 gem 'devise'
-#gem 'devise-russian'
+gem 'devise-i18n'
 gem 'russian'
 
 gem 'yaml_db'
@@ -102,7 +102,6 @@ gem 'jcrop-rails-v2'
 gem 'fancybox2-rails'
 gem 'readmorejs-rails'
 
-gem 'jquery-fileupload-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # To use ActiveModel has_secure_password

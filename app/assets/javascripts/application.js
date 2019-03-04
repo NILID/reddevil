@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//require jquery-fileupload
 //= require jquery
 //= require best_in_place
 //= require jquery_ujs

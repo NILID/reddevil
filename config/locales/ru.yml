@@ -25,7 +25,6 @@ ru:
     edit: Редактировать
     media: Медиа
     create: Создать
-    phonebook: Телефонная книга
     show_all: Показать всё
     empty: не указано
     del: Удалить
@@ -38,7 +37,6 @@ ru:
     tomorrow: Завтра
     repeat: Повторить
     cancel: Отмена
-    import: Импорт
     up: вверх
     search: Поиск
     sport: Спорт
@@ -142,12 +140,6 @@ ru:
       aspart: В составе изделия
       control: Контролируется
       depot: На складе
-  subscribes:
-    search: Абонент
-    import: Импорт справочника
-    not_found: Не найдено абонентов по запросу
-    actual_date: по состоянию на 12 декабря 2016
-    choose_departament: == Выберите отдел ==
   mirrors:
     add_title: Новое зеркало
     edit_title: Редактирование зеркала
@@ -479,14 +471,6 @@ ru:
         screenshot_content_type: Тип изображения
       source:
         file: Слайд
-      subscribe:
-        fullname: ФИО
-        departament: Код подразд.
-        position: Должность
-        place: Место нахождения
-        phone_inter: телефон внутренний
-        phone_city: телефон городской
-        email: E-mail
       task:
         title: Наименование
         user_id: Исполнитель
@@ -553,9 +537,6 @@ ru:
     user_1: участник
     user_2: участника
     user_10: участников
-    subscribe_1: абонент
-    subscribe_2: абонента
-    subscribe_10: абонентов
     member_1: сотрудник
     member_2: сотрудника
     member_10: сотрудников

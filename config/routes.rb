@@ -28,14 +28,6 @@ Birthday::Application.routes.draw do
     end
   end
 
-  resources :subscribes, path: 'phonebook' do
-    collection do
-      post :import
-      get :favorites
-    end
-    member { post :like }
-  end
-
   resources :events, only: %i[list] do
     collection do
       get 'list'

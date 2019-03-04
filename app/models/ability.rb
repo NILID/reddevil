@@ -12,7 +12,7 @@ class Ability
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Subscribe, Member, Vacation, Machine]
+    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation, Machine]
     cannot :mirrors, Substrate
 
     if user.role? :admin
@@ -21,8 +21,6 @@ class Ability
       end
 
       can %i[read manage], :all
-
-      can :import, Subscribe
 
       can :counted, Result
       # can :read, Material, groups_mask: user.groups_mask
@@ -56,7 +54,6 @@ class Ability
       cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type, Machine]
       cannot :index, User
 
-      can :favorites, Subscribe
       cannot :download, Round, check_finish?: false
     end
 
@@ -72,7 +69,6 @@ class Ability
     if user.role? :manager
       can :manage, [Member]
     end
-
 
     if user.role? :drawing
       can %i[index new create get_form], Substrate

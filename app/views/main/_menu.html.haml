@@ -18,9 +18,6 @@
           = link_to t('shared.calendar'), calendar_path
         %li{class: (params[:controller] == 'docs') ? 'active' : nil}
           = link_to t('docs.title'), docs_path
-        - if can? :index, Subscribe
-          %li{class: (params[:controller] == 'subscribes') ? 'active' : nil}
-            = link_to t('shared.phonebook'), subscribes_path
         - if can? :manage, Purchase
           %li{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
             = link_to years_path do

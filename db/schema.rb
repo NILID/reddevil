@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 20180608050004) do
   add_index "columnships", ["column_id"], name: "index_columnships_on_column_id", using: :btree
   add_index "columnships", ["purchase_id"], name: "index_columnships_on_purchase_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.text     "body",       limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "datasets", force: :cascade do |t|
     t.string   "title",            limit: 255
     t.string   "src_file_name",    limit: 255
@@ -355,24 +362,6 @@ ActiveRecord::Schema.define(version: 20180608050004) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
-
-  create_table "substrates", force: :cascade do |t|
-    t.string   "title",        limit: 255
-    t.string   "drawing",      limit: 255
-    t.string   "number",       limit: 255
-    t.string   "state",        limit: 255
-    t.integer  "user_id",      limit: 4
-    t.text     "desc",         limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "theme",        limit: 255
-    t.integer  "place",        limit: 4
-    t.string   "category",     limit: 255,   null: false
-    t.integer  "substrate_id", limit: 4
-  end
-
-  add_index "substrates", ["substrate_id"], name: "index_substrates_on_substrate_id", using: :btree
-  add_index "substrates", ["user_id"], name: "index_substrates_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4

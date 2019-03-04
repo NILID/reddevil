@@ -1,4 +1,4 @@
-Birthday::Application.routes.draw do
+Rails.application.routes.draw do
   resources :vacations, only: [:index]
   resources :notes
   resources :machines do

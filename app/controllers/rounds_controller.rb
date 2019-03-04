@@ -5,7 +5,7 @@ class RoundsController < ApplicationController
   load_and_authorize_resource
   layout 'main'
 
-  before_filter :get_teams, only: %i[new edit create update]
+  before_action :get_teams, only: %i[new edit create update]
 
   def index
     @rounds = @rounds.order('created_at desc')

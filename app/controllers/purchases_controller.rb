@@ -1,12 +1,12 @@
 class PurchasesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   layout 'main'
   load_and_authorize_resource :year, find_by: :slug
   load_and_authorize_resource :purchase, through: :year, except: %i[new_form index]
 
   # TODO
   # Why not working?
-  # after_filter :find_last_redaction, only: [:index, :update]
+  # after_action :find_last_redaction, only: [:index, :update]
 
   def index
     @q = @year.purchases.ransack(params[:q])

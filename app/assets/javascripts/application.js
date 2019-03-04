@@ -15,8 +15,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require best_in_place.jquery-ui
-//= require jquery.Jcrop
 //= require readmore
+//= require jquery.Jcrop
 //= require cocoon
 //= require twitter/bootstrap
 //= require jquery_nested_form

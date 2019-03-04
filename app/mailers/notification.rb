@@ -1,5 +1,5 @@
 class Notification < ActionMailer::Base
-  default from: "REDDEVIL <reddevil@luch.podolsk.ru>"
+  default from: "REDDEVIL <reddevil@luch.com.ru>"
 
   def birthday(email)
     mail(to: email, subject: t('mailer.birthday'), template_name: 'birthday')
@@ -14,6 +14,6 @@ class Notification < ActionMailer::Base
 
   def new_note(note)
     @note = note
-    mail(to: 'dailyin@luch.podolsk.ru', subject: I18n.t('mailer.new_note'), template_name: 'new_note')
+    mail(to: 'dailyin@luch.com.ru', subject: I18n.t('mailer.new_note'), template_name: 'new_note')
   end
 end

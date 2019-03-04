@@ -2,7 +2,7 @@ class DocsController < ApplicationController
   load_and_authorize_resource
   layout 'main', only: %i[edit new]
 
-  before_filter :set_categories, only: %i[edit new create update]
+  before_action :set_categories, only: %i[edit new create update]
 
   def index
     if params[:by_category]

@@ -10,31 +10,31 @@ RSpec.describe MembersController, type: :controller do
 
       it 'returns edit' do
         expect(@ability.can? :edit, member).to be true
-        get :edit, id: member
+        get :edit, params: { id: member }
         expect(response).to render_template(:edit)
       end
 
       it 'returns manage_holidays' do
         expect(@ability.can? :manage_holidays, member).to be true
-        get :manage_holidays, id: member
+        get :manage_holidays, params: { id: member }
         expect(response).to render_template(:manage_holidays)
       end
 
       it 'updates holidays the requested member' do
         expect(@ability.can? :update_holidays, member).to be true
-        put :update_holidays, id: member, member: { content: 'New content' }
+        put :update_holidays, params: { id: member, member: { content: 'New content' } }
         expect(response).to redirect_to(holidays_members_url)
       end
 
       it 'destroys' do
         expect(@ability.can? :destroy, member).to be true
-        expect{ delete :destroy, id: member }.to change(Member, :count).by(-1)
+        expect{ delete :destroy, params: { id: member } }.to change(Member, :count).by(-1)
         expect(response).to redirect_to(members_url)
       end
 
       it 'updates' do
         expect(@ability.can? :update, member).to be true
-        put :update, id: member, member: { content: 'New content' }
+        put :update, params: { id: member, member: { content: 'New content' } }
         expect(response).to redirect_to(members_url)
       end
     end
@@ -70,12 +70,6 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to be_success
       expect(response).to render_template(:holidays)
     end
-
-    it 'returns get_holidays' do
-      expect(@ability.can? :get_holidays, Member).to be true
-      xhr :get, :get_holidays, format: :json
-      expect(response).to be_success
-    end
   end
 
   describe 'user should' do
@@ -88,29 +82,29 @@ RSpec.describe MembersController, type: :controller do
 
     it 'not creates a new Member' do
       expect(@ability.cannot? :create, Member).to be true
-      expect{ post :create, member: attributes_for(:member) }.to raise_error(CanCan:: AccessDenied)
+      expect{ post :create, params: { member: attributes_for(:member) } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Member, :count).by(0)
     end
 
     it 'not edit' do
       expect(@ability.cannot? :edit, member).to be true
-      expect{ get :edit, id: member }.to raise_error(CanCan:: AccessDenied)
+      expect{ get :edit, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do
       expect(@ability.cannot? :destroy, member).to be true
-      expect{ delete :destroy, id: member }.to raise_error(CanCan:: AccessDenied)
+      expect{ delete :destroy, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Member, :count).by(0)
     end
 
     it 'not update' do
       expect(@ability.cannot? :update, member).to be true
-      expect{ put :update, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not updates holidays' do
       expect(@ability.cannot? :update_holidays, member).to be true
-      expect{ put :update_holidays, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update_holidays, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -139,34 +133,29 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to render_template(:holidays)
     end
 
-    it 'returns get_holidays' do
-      xhr :get, :get_holidays, format: :json
-      expect(response).to be_success
-    end
-
     it 'returns new' do
       expect{ get :new }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'creates a new Member' do
-      expect{ post :create, member: attributes_for(:member) }.to raise_error(CanCan:: AccessDenied)
+      expect{ post :create, params: { member: attributes_for(:member) } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Member, :count).by(0)
     end
 
     it 'not edit' do
-      expect{ get :edit, id: member }.to raise_error(CanCan:: AccessDenied)
+      expect{ get :edit, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not updates' do
-      expect{ put :update, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not updates holidays' do
-      expect{ put :update_holidays, id: member, member: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update_holidays, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do
-      expect{ delete :destroy, id: member }.to raise_error(CanCan:: AccessDenied)
+      expect{ delete :destroy, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Member, :count).by(0)
     end
   end

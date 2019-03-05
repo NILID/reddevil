@@ -16,7 +16,7 @@ RSpec.describe UsersController, type: :controller do
 
     it 'returns edit_roles' do
       expect(@ability.can? :edit_roles, user).to be true
-      get :edit_roles, id: user
+      get :edit_roles, params: { id: user }
       expect(response).to be_success
       expect(response).to render_template(:edit_roles)
     end
@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
       expect(@ability.can? :make_role, user).to be true
 
       expect(user.roles).to eq(['user'])
-      post :make_role, id: user, user: { roles: ['moderator'] }
+      post :make_role, params: { id: user, user: { roles: ['moderator'] } }
 
       expect(assigns(:user).roles).to eq(['moderator'])
       expect(response).to redirect_to(user_profile_path(assigns(:user)))
@@ -42,13 +42,13 @@ RSpec.describe UsersController, type: :controller do
 
     it 'not returns edit_roles' do
       expect(@ability.cannot? :edit_roles, user).to be true
-      expect{ get :edit_roles, id: user }.to raise_error(CanCan:: AccessDenied)
+      expect{ get :edit_roles, params: { id: user } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not make role' do
       expect(@ability.cannot? :make_role, user).to be true
 
-      expect{ post :make_role, id: user, user: { roles: ['moderator'] } }.to raise_error(CanCan:: AccessDenied)
+      expect{ post :make_role, params: { id: user, user: { roles: ['moderator'] } } }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -58,11 +58,11 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'not returns edit_roles' do
-      expect(get :edit_roles, id: user).to redirect_to(new_user_session_path)
+      expect(get :edit_roles, params: { id: user }).to redirect_to(new_user_session_path)
     end
 
     it 'not make role' do
-      expect(post :make_role, id: user, user: { roles: ['moderator'] }).to redirect_to(new_user_session_path)
+      expect(post :make_role, params: { id: user, user: { roles: ['moderator'] } }).to redirect_to(new_user_session_path)
     end
   end
 end

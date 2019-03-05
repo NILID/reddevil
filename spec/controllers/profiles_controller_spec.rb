@@ -9,13 +9,13 @@ RSpec.describe ProfilesController, type: :controller do
 
     it 'returns get' do
       expect(@ability.can? :edit, profile).to be true
-      get :edit, id: profile, user_id: user
+      get :edit, params: { id: profile, user_id: user }
       expect(response).to be_success
     end
 
     it 'get edit' do
       expect(@ability.can? :edit, profile).to be true
-      get :edit, id: profile, user_id: user
+      get :edit, params: { id: profile, user_id: user }
       expect(response).to be_success
     end
   end
@@ -25,18 +25,18 @@ RSpec.describe ProfilesController, type: :controller do
 
     it 'cannot get edit' do
       expect(@ability.cannot? :edit, profile).to be true
-      expect{ get :edit, id: profile, user_id: user }.to raise_error(CanCan:: AccessDenied)
+      expect{ get :edit, params: { id: profile, user_id: user } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'get edit' do
       expect(@ability.can? :edit, @user.profile).to be true
-      expect(get :edit, id: @user.profile, user_id: @user).to be_success
+      expect(get :edit, params: { id: @user.profile, user_id: @user } ).to be_success
     end
   end
 
   describe 'unreg user should' do
     it 'not returns edit' do
-      expect{ get :edit, id: profile, user_id: user }.to raise_error(CanCan:: AccessDenied)
+      expect{ get :edit, params: { id: profile, user_id: user } }.to raise_error(CanCan:: AccessDenied)
     end
   end
 end

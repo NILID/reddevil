@@ -9,19 +9,19 @@ RSpec.describe NotesController, type: :controller do
 
     it 'returns edit' do
       expect(@ability.can? :edit, note).to be true
-      get :edit, id: note
+      get :edit, params: { id: note }
       expect(response).to render_template(:edit)
     end
 
     it 'destroys the requested note' do
       expect(@ability.can? :destroy, note).to be true
-      expect{ delete :destroy, id: note}.to change(Note, :count).by(-1)
+      expect{ delete :destroy, params: { id: note } }.to change(Note, :count).by(-1)
       expect(response).to redirect_to(notes_url)
     end
 
     it 'updates the requested note' do
       expect(@ability.can? :update, note).to be true
-      put :update, id: note, note: { content: 'New content' }
+      put :update, params: { id: note, note: { content: 'New content' } }
       expect(response).to redirect_to(notes_url)
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe NotesController, type: :controller do
 
     it 'returns show' do
       expect(@ability.can? :show, note).to be true
-      get :show, id: note
+      get :show, params: { id: note }
       expect(response).to be_success
       expect(response).to render_template(:show)
     end
@@ -51,7 +51,7 @@ RSpec.describe NotesController, type: :controller do
 
     it 'creates a new Note' do
       expect(@ability.can? :create, Note).to be true
-      expect{ post :create, note: attributes_for(:note) }.to change(Note, :count).by(1)
+      expect{ post :create, params: { note: attributes_for(:note) } }.to change(Note, :count).by(1)
       expect(response).to redirect_to(Note)
     end
 
@@ -62,18 +62,18 @@ RSpec.describe NotesController, type: :controller do
 
     it 'not edit' do
       expect(@ability.cannot? :edit, note).to be true
-      expect{ get :edit, id: note }.to raise_error(CanCan:: AccessDenied)
+      expect{ get :edit, params: { id: note } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do
       expect(@ability.cannot? :destroy, note).to be true
-      expect{ delete :destroy, id: note }.to raise_error(CanCan:: AccessDenied)
+      expect{ delete :destroy, params: { id: note } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Note, :count).by(0)
     end
 
     it 'not updates' do
       expect(@ability.cannot? :update, note).to be true
-      expect{ put :update, id: note, note: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update, params: { id: note, note: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe NotesController, type: :controller do
     end
 
     it 'returns show' do
-      get :show, id: note
+      get :show, params: { id: note }
       expect(response).to be_success
       expect(response).to render_template(:show)
     end
@@ -96,20 +96,20 @@ RSpec.describe NotesController, type: :controller do
     end
 
     it 'creates a new Note' do
-      expect{ post :create, note: attributes_for(:note) }.to change(Note, :count).by(1)
+      expect{ post :create, params: { note: attributes_for(:note) } }.to change(Note, :count).by(1)
       expect(response).to redirect_to(Note)
     end
 
     it 'not edit' do
-      expect{ get :edit, id: note }.to raise_error(CanCan:: AccessDenied)
+      expect{ get :edit, params: { id: note } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not updates' do
-      expect{ put :update, id: note, note: { content: 'New content' } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update, params: { id: note, note: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do
-      expect{ delete :destroy, id: note }.to raise_error(CanCan:: AccessDenied)
+      expect{ delete :destroy, params: { id: note } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Note, :count).by(0)
     end
   end

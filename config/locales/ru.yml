@@ -50,6 +50,7 @@ ru:
     production: Производство
     multiple_select_helper_html: Можно выделить несколько категорий, для этого достаточно при выборе зажать клавишу <span class="label label-info">Ctrl</span>
     sort_by: Сортировать по
+    not_find: Поиск не дал результатов
   flash:
     was_created: Вы создали %{item}
     was_updated: Вы обновили %{item}

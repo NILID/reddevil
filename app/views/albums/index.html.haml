@@ -4,33 +4,35 @@
   = search_form_for(@q, url: albums_path, html: { method: :get }) do |f|
     .form-group
       .input-group
-        .input-group-addon
-          = fa_icon 'search'
+        .input-group-addon= fa_icon 'search'
         = f.search_field :file_file_name_cont, placeholder: t('shared.search'), class: 'form-control'
-
-%p.text-right
-  %span.label.label-info
-    = plural(Song.count, 'song')
-    (#{number_to_human_size(Song.sum(:file_file_size))})
 
 .panel.panel-default
   .panel-body
     %ul.nav.nav-tabs(role='tablist')
       - if params[:q]
-        %li(role='presentation')
-          = link_to t('songs.find'), '#find_songs', data: {toggle: 'tab', role: 'tab'}, aria: {controls: 'find_songs'}
-      %li.active(role='presentation')
-        = link_to t('albums.all'),   '#main_songs', data: {toggle: 'tab', role: 'tab'}, aria: {controls: 'main_songs'}
+        %li.active(role='presentation')
+          = link_to t('songs.find'), '#find_songs', data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'find_songs' }
+      %li{ role: 'presentation', class: (params[:q] ?  nil : 'active') }
+        = link_to t('albums.all'),   '#main_songs', data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'main_songs' }
       %li(role='presentation')
-        = link_to t('albums.newer'),  '#new_songs', data: {toggle: 'tab', role: 'tab'}, aria: {controls: 'new_songs'}
+        = link_to t('albums.newer'), '#new_songs',  data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'new_songs' }
       - if can? :new, Album
         %li= link_to t('albums.add'), new_album_path
+      %li.pull-right
+        %span.label.label-info
+          = plural(Song.count, 'song')
+          (#{number_to_human_size(Song.sum(:file_file_size))})
 
     .tab-content
       - if params[:q]
-        %ul.playlist.tab-pane#find_songs(role='tabpanel')
-          = render @songs, showalbum: true
-      %ul.mainlist.tab-pane.active#main_songs(role='tabpanel')
+        - unless @songs.empty?
+          %ul.playlist.active.tab-pane#find_songs(role='tabpanel')
+            = render @songs, showalbum: true
+        - else
+          .active.tab-pane#find_songs(role='tabpanel')
+            .alert.alert-warning(role='alert')= t 'shared.not_find'
+      %ul.mainlist.tab-pane#main_songs{ role: 'tabpanel', class: (params[:q] ? nil : 'active' )}
         = render @albums
       %ul.playlist.tab-pane#new_songs(role='tabpanel')
         .endless= render @new_songs, showalbum: true

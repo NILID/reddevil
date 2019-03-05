@@ -19,7 +19,7 @@
       = t 'notes.title'
       %small.pull-right
         = link_to(new_note_path, class: 'btn btn-primary btn-sm') do
-          %i.glyphicon.glyphicon-plus
+          = fa_icon 'plus inverse'
   %table.table.table-striped.table-condensed
     %thead
       %tr
@@ -37,7 +37,7 @@
           %td
             - if note.screenshot?
               = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
-                %i.glyphicon.glyphicon-picture
+                = fa_icon 'picture-o'
           %td
             - if note.user && current_user&.role?(:admin)
               %strong= note.user.profile.surname_name + ':'

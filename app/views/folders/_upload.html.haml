@@ -6,18 +6,15 @@
       .col-md-7
         / The fileinput-button span is used to style the file input field as button
         %span.btn.btn-success.fileinput-button
-          %i.glyphicon.glyphicon-plus.icon-white
+          = fa_icon 'plus inverse'
           %span Add files...
           = f.file_field :src
         %button.btn.btn-primary.start{:type => "submit"}
-          %i.glyphicon.glyphicon-upload.icon-white
-          %span Start upload
+          = fa_icon 'upload inverse', text: 'Start upload'
         %button.btn.btn-warning.cancel{:type => "reset"}
-          %i.glyphicon.glyphicon-ban-circle.icon-white
-          %span Cancel upload
+          = fa_icon 'ban inverse', text: 'Cancel upload'
         %button.btn.btn-danger.delete{:type => "button"}
-          %i.glyphicon.glyphicon-trash.icon-white
-          %span Delete
+          = fa_icon 'trash-o inverse', text: 'Delete'
         %input.toggle{:type => "checkbox"}/
       .col-md-5
         / The global progress bar
@@ -64,7 +61,7 @@
     {% } %}
     <td class="cancel">{% if (!i) { %}
     <button class="btn btn-warning">
-    <i class="icon-ban-circle icon-white"></i>
+    = fa_icon 'ban inverse'
     <span>{%=locale.fileupload.cancel%}</span>
     </button>
     {% } %}</td>

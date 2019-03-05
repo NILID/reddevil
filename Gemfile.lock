@@ -113,6 +113,8 @@ GEM
     fancybox2-rails (0.2.7)
       railties (>= 3.1.0)
     ffi (1.10.0)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     friendly_id (5.2.5)
       activerecord (>= 4.0.0)
     fullcalendar-rails (3.9.0.0)
@@ -250,6 +252,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    record_tag_helper (1.0.0)
+      actionview (~> 5.x)
     ref (2.0.0)
     require_all (2.0.0)
     responders (2.4.1)
@@ -383,6 +387,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fancybox2-rails
+  font-awesome-rails
   friendly_id
   fullcalendar-rails
   groupdate
@@ -411,6 +416,7 @@ DEPENDENCIES
   rails_best_practices
   ransack
   readmorejs-rails!
+  record_tag_helper (~> 1.0)
   roo
   roo-xls
   rspec-rails

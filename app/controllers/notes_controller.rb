@@ -5,7 +5,7 @@ class NotesController < ApplicationController
 
   def index
     @notes_all_count = @notes.group(:status).count
-    @q = @notes.search(params[:q])
+    @q = @notes.ransack(params[:q])
     @notes = params[:q] ? @q.result(distinct: true).includes(:user) : @q.result(distinct: true).where(status: 'new').includes(:user)
   end
 

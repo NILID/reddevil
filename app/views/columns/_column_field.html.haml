@@ -8,4 +8,4 @@
         { include_blank: t('categories.select_category'), prepend: Column.human_attribute_name(:column_type), hide_label: true }
     .col-md-2
       = c.link_to_remove class: 'btn btn-sm btn-danger' do
-        %i.glyphicon.glyphicon-remove
+        = fa_icon 'remove'

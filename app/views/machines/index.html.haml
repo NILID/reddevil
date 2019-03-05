@@ -34,12 +34,12 @@
                   %td= task.complete.to_s + '%'
                   %td
                     = link_to edit_machine_task_path(machine, task), class: 'btn btn-default btn-xs btn-task-edit' do
-                      %i.glyphicon.glyphicon-pencil
+                      = fa_icon 'edit'
               - if can? :new, Task
                 %tr
                   %td(colspan=6)
                     = link_to new_machine_task_path(machine), class: 'btn btn-default' do
-                      %i.glyphicon.glyphicon-plus
+                      = fa_icon 'plus'
         .col-md-6
           %div{class: "calendar_view_#{machine.id}"}
           :javascript

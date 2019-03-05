@@ -14,29 +14,29 @@
               = link_to rounds_path(sort: 'current') do
                 ЧМФ 2018
                 - if params[:sort] == 'current' || !params[:sort]
-                  %i.glyphicon.glyphicon-chevron-down
+                  = fa_icon 'chevron-down'
             %td
               = link_to rounds_path(sort: 'ratio') do
                 К
                 %sub>< эф
                 - if params[:sort] == 'ratio'
-                  %i.glyphicon.glyphicon-chevron-down
+                  = fa_icon 'chevron-down'
             %td
               = link_to rounds_path(sort: 'new_ratio') do
                 К
                 %sub>< new
                 - if params[:sort] == 'new_ratio'
-                  %i.glyphicon.glyphicon-chevron-down
+                  = fa_icon 'chevron-down'
             %td
               = link_to rounds_path(sort: 'win'), title: t('forecasts.full_win') do
                 Точн.
                 - if params[:sort] == 'win'
-                  %i.glyphicon.glyphicon-chevron-down
+                  = fa_icon 'chevron-down'
             %td
               = link_to rounds_path(sort: 'total') do
                 Общий
                 - if params[:sort] == 'total'
-                  %i.glyphicon.glyphicon-chevron-down
+                  = fa_icon 'chevron-down'
         - @users.each do |user, round_result|
           - user_ratio = user.ratio(@match_finished, @all_users)
           - if user_ratio[:forecasts_count] > 0

@@ -34,8 +34,7 @@
     .form-control
       .form-group.date
         = f.text_field :delivery, class: 'datepicker', value: (f.object.delivery.strftime('%d.%m.%Y') if f.object.delivery)
-        %span.input-group-addon
-          %i.glyphicon.glyphicon-th
+        %span.input-group-addon= fa_icon 'th'
 
   = f.fields_for :columnships do |c|
     .form-group

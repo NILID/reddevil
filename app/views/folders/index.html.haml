@@ -9,8 +9,7 @@
 
 %p
   = link_to new_user_folder_path(@user), class: 'btn btn-default' do
-    %i.glyphicon.glyphicon-folder-open
-    = t 'folder.new'
+    = fa_icon 'folder-open', text: t('folder.new')
 
 .well
   - unless @folders.empty?

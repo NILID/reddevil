@@ -4,9 +4,9 @@
     = link_to purchase.title, purchase
     .btn-group.purchase-actions
       = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-default btn-xs', title: t('shared.edit') do
-        %i.glyphicon.glyphicon-cog
+        = fa_icon 'cog'
       = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger' do
-        %i.glyphicon.glyphicon-trash
+        = fa_icon 'trash-o'
   %td.nowrap= render 'purchase_formblock', purchase: purchase, attr: 'price', type: 'price'
   %td= render 'purchase_formblock', purchase: purchase, attr: 'provider', type: 'string'
   %td= render 'purchase_formblock', purchase: purchase, attr: 'doc', type: 'string'

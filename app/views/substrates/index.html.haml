@@ -25,16 +25,12 @@
       %small
         - if can? :new, Substrate
           = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-sm', style: 'vertical-align:middle' do
-            %i.glyphicon.glyphicon-plus
-            &nbsp;
-            = t 'shared.add'
+            = fa_icon 'plus', text: t('shared.add')
         %span.btn-group.pull-right
           = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-default btn-sm', target: '_blank' do
-            %i.glyphicon.glyphicon-download-alt
-            PDF
+            = fa_icon 'file-pdf-o', text: 'PDF'
           = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'xls') : substrates_path(format: 'xls')), class: 'btn btn-default btn-sm' do
-            %i.glyphicon.glyphicon-download-alt
-            Excel
+            = fa_icon 'file-excel-o', text: 'Excel'
   %table.table.table-bordered.table-substrates.table-hover
     %thead
       %tr

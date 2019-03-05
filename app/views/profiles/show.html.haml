@@ -10,7 +10,7 @@
         %small.pull-right
           .btn-group
             %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-              %i.glyphicon.glyphicon-cog
+              = fa_icon 'cog'
             %ul.dropdown-menu.pull-right
               - if can? :edit, @profile
                 %li= link_to t('profiles.edit'), edit_user_profile_path(@user)

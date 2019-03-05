@@ -17,10 +17,9 @@
                 value: (c.object.delivery.to_datetime.strftime('%d.%m.%Y') if c.object.delivery.present?)
             .col-md-2
               = c.link_to_remove class: 'btn btn-danger' do
-                %span.glyphicon.glyphicon-remove
+                = fa_icon 'remove'
         = f.link_to_add :deliveries, class: 'btn btn-default' do
-          %span.glyphicon.glyphicon-plus
-          = t 'columns.add'
+          = fa_icon 'plus', text: t('columns.add')
 
       .modal-footer
         %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'

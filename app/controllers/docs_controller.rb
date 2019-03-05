@@ -8,14 +8,14 @@ class DocsController < ApplicationController
     if params[:by_category]
       @cat = Category.where(id: params[:by_category]).first
       if @cat
-        @q = Doc.joins(:categories).where('categories.id' => (@cat.hidden ? @cat.subtree_ids : @cat.subtree.publics.pluck(:id))).search(params[:q])
+        @q = Doc.joins(:categories).where('categories.id' => (@cat.hidden ? @cat.subtree_ids : @cat.subtree.publics.pluck(:id))).ransack(params[:q])
         @docs = @q.result(distinct: true).order(:title)
       else
-        @q = Doc.search(params[:q])
+        @q = Doc.ransack(params[:q])
         @docs = []
       end
     elsif params[:no_category]
-      @q = Doc.search(params[:q])
+      @q = Doc.ransack(params[:q])
       docs = @q.result(distinct: true).order(:title)
       @docs = []
       docs.map { |d| @docs << d if d.categories.empty? }
@@ -24,7 +24,7 @@ class DocsController < ApplicationController
       hidden = []
       Category.all.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
 
-      @q = params[:q] ? Doc.search(params[:q]) : Doc.joins(:categories).where('categories.id' => hidden).search(params[:q])
+      @q = params[:q] ? Doc.ransack(params[:q]) : Doc.joins(:categories).where('categories.id' => hidden).search(params[:q])
       @docs = @q.result(distinct: true).includes(:categories).order(:title)
     end
     @categories = Category.arrange(order: :title)

@@ -5,6 +5,10 @@ gem 'rails', '~> 5.0.0'
 
 gem 'animate-rails'
 
+gem 'font-awesome-rails'
+
+gem 'record_tag_helper', '~> 1.0'
+
 gem 'rubyzip'
 
 gem 'mysql2', '0.3.21'

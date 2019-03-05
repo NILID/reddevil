@@ -12,7 +12,7 @@
               = index += 1
             %td
               %span.label{ class: user.online? ? 'label-success' : 'label-default' }
-                .i.glyphicon{ class: user.confirmed? ? 'glyphicon-ok' : 'glyphicon-remove' }
+                = user.confirmed? ? fa_icon('check') : fa_icon('remove')
             %td
               = link_to user.email, user_profile_path(user)
               .text-muted= user.profile.fullname
@@ -22,7 +22,7 @@
               %td
                 .btn-group
                   %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                    %i.glyphicon.glyphicon-cog
+                    = fa_icon 'cog'
                   %ul.dropdown-menu.pull-right
                     %li= link_to t('profiles.edit'), edit_user_profile_path(user)
                     - if can? :edit_roles, user

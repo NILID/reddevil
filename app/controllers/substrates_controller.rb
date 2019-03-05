@@ -3,7 +3,7 @@ class SubstratesController < ApplicationController
   layout 'main'
 
   def index
-    @q = @substrates.search(params[:q])
+    @q = @substrates.ransack(params[:q])
     @substrates = @q.result(distinct: true).where(category: 'substrate').includes(user: [:profile]).order(:place)
     respond_to do |format|
       format.html
@@ -13,7 +13,7 @@ class SubstratesController < ApplicationController
   end
 
   def mirrors
-    @q = @substrates.search(params[:q])
+    @q = @substrates.ransack(params[:q])
     @substrates = @q.result(distinct: true).where(category: 'mirror').includes(:child, user: [:profile]).order(:place)
 
     respond_to do |format|

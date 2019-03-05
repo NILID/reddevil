@@ -3,7 +3,7 @@ class MembersController < ApplicationController
   layout 'main'
 
   def index
-    @q = @members.shown.search(params[:q])
+    @q = @members.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
 
@@ -16,7 +16,7 @@ class MembersController < ApplicationController
   end
 
   def holidays
-    @q = @members.shown.search(params[:q])
+    @q = @members.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
   end
@@ -36,7 +36,7 @@ class MembersController < ApplicationController
   end
 
   def archive
-    @q = @members.archive.search(params[:q])
+    @q = @members.archive.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
   end

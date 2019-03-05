@@ -16,5 +16,4 @@
           .btn-group
             - %w[pdf xls].each do |file_format|
               = link_to members_path(format: file_format), class: 'btn btn-default', target: '_blank' do
-                %i.glyphicon.glyphicon-download-alt
-                = file_format == 'xls' ? 'Excel' : 'PDF'
+                = fa_icon "file-#{file_format == 'xls' ? 'excel' : file_format}-o", text: (file_format == 'xls' ? 'Excel' : 'PDF')

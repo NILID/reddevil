@@ -81,14 +81,11 @@
         .pull-right
           - if can? :download, @round
             = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-default btn-sm', target: '_blank' do
-              = t 'rounds.download'
-              %i.glyphicon.glyphicon-download-alt
-              PDF
+              = fa_icon 'file-pdf-o', text: t('rounds.download')
 
           - if can? :manage, @round
             = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-default btn-sm' do
-              %i.glyphicon.glyphicon-refresh
-              = t 'results.rebuild'
+              = fa_icon 'refresh', text: t('results.rebuild')
 
             = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-default btn-sm'
             = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'

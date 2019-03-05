@@ -335,6 +335,8 @@ ru:
       show: Показать
   activerecord:
     models:
+      album: альбом
+      song: песня
       event: событие
       member: сотрудник
       user: пользователь

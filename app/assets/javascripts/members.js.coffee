@@ -2,12 +2,12 @@ $ ->
   $('body').on 'click', '.membername', ->
     member = $(this).parentsUntil('.member')
     member.find('.hidden_info').slideToggle()
-    member.find('.icon-showicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down')
+    member.find('.icon-showicon').toggleClass('fa-chevron-up fa-chevron-down')
 
   $('body').on 'click', '#show_all_members', ->
     $('.hidden_info').slideToggle()
-    $(this).toggleClass('glyphicon-chevron-up glyphicon-chevron-down')
-    $('.icon-showicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down')
+    $(this).toggleClass('fa-chevron-up fa-chevron-down')
+    $('.icon-showicon').toggleClass('fa-chevron-up fa-chevron-down')
 
   $('#calendar').fullCalendar
     locale: "ru"

@@ -2,8 +2,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :user
   belongs_to :year
 
-  has_many :columnships, dependent: :destroy
-  has_many :deliveries,  dependent: :destroy
+  has_many :columnships, dependent: :destroy, inverse_of: :purchase
+  has_many :deliveries,  dependent: :destroy, inverse_of: :purchase
   has_many :columns,     through: :columnships
 
   accepts_nested_attributes_for :columnships

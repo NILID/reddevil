@@ -1,5 +1,5 @@
 class Round < ActiveRecord::Base
-  has_many :matches, dependent: :delete_all
+  has_many :matches, dependent: :delete_all, inverse_of: :round
   has_many :forecasts, through: :matches
   has_many :results
 

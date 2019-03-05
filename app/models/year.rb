@@ -1,5 +1,5 @@
 class Year < ActiveRecord::Base
-  has_many :columns,   dependent: :destroy
+  has_many :columns,   dependent: :destroy, inverse_of: :year
   has_many :purchases, dependent: :destroy
 
   extend FriendlyId

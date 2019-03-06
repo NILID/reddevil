@@ -3,5 +3,5 @@
     = fa_icon 'gift', style: 'font-size:20px;margin-right:10px;'
   = l member.birth,  format: :very_short
   \ -
-  = member.full_name
+  = member.fullname
   (#{turntext + ' ' + plural((member.age + (should_be_age ? 1 : 0)), 'year')})

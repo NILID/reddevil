@@ -15,7 +15,8 @@
                 = user.confirmed? ? fa_icon('check') : fa_icon('remove')
             %td
               = link_to user.email, user_profile_path(user)
-              .text-muted= user.profile.fullname
+              - if user.member
+                .text-muted= user.member.fullname
             %td= l user.updated_at,  format: :long
             %td= user.confirmed?
             - if can? :edit, user.profile

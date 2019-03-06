@@ -15,7 +15,7 @@
       - if (current_user&.role? :admin)
         = f.form_group do
           = f.check_box :archive_flag
-        = f.select :user_id, options_for_select(User.all.collect { |u| [u.email, u.id]}, @member.user_id)
+        = f.select :user_id, (User.order(:email).collect { |u| [u.email, u.id]}), {include_blank: t('substrates.select')}
     .panel-footer
       = f.form_group do
         = f.primary

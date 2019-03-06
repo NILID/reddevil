@@ -1,6 +1,6 @@
 = content_tag_for(:tr, member_holiday) do
   %td.text-muted= member_holiday_counter + 1
-  %td= member_holiday.full_name
+  %td= member_holiday.fullname
   %td
     = link_to "#vacations_#{member_holiday.id}", class: 'text-muted', role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "vacations_#{member_holiday.id}" } do
       = t 'vacations.show_old'

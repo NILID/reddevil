@@ -10,7 +10,7 @@ class Member < ActiveRecord::Base
   scope :archive,    -> { where(archive_flag: true) }
   scope :with_birth, -> { where.not(birth: nil) }
 
-  def full_name
+  def fullname
     "#{surname} #{name} #{patronymic}"
   end
 
@@ -46,7 +46,7 @@ class Member < ActiveRecord::Base
     CSV.generate(options) do |csv|
       csv << [I18n.t('symbols.number'), I18n.t('member.fullname')]
       all.each_with_index do |member, index|
-        csv << [index+1, member.full_name]
+        csv << [index+1, member.fullname]
       end
     end
   end

@@ -111,7 +111,7 @@
                 .col-xs-10.col-md-9
                   - @vacations.each do |v|
                     %p
-                      = v.member.full_name
+                      = v.member.fullname
                       = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
 
           - unless @vacations_soon.empty?
@@ -125,7 +125,7 @@
                 .col-xs-10.col-md-9
                   - @vacations_soon.each do |v|
                     %p
-                      = v.member.full_name
+                      = v.member.fullname
                       = t('vacations.start',
                         date: Russian.strftime(v.startdate, "%e %B"),
                         diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))

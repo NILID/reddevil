@@ -43,7 +43,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :users do
+    resources :users, only: [] do
       resources :forecasts, except: %i[index show]
       resources :results, except: %i[show index] do
         member do

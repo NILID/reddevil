@@ -72,7 +72,7 @@ class MembersController < ApplicationController
   def update_holidays
     respond_to do |format|
       if @member.update_attributes(member_params)
-        format.html { redirect_to holidays_members_url, notice: t('flash.was_updated', item: Member.model_name.human) }
+        format.html { redirect_to manage_holidays_member_url(@member), notice: t('flash.was_updated', item: t('member.vacation').downcase) }
         format.json { head :no_content }
       else
         format.html { render action: 'manage_holidays' }

@@ -486,7 +486,7 @@ ru:
         surname: Фамилия
         patronymic: Отчество
         birth: Дата рождения
-        phone: Номер телефона
+        phone: Личный моб.телефон
         work_phone: Рабочий моб.телефон
         short_number: Доб. номер
         archive_flag: Архив

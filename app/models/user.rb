@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :notes
   has_one  :profile, dependent: :destroy
+  has_one  :member
 
   ROLES = %w[admin user moderator editor test drawing mirrors manager].freeze
   #             1    2     4         8    16    32      64      128

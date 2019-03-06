@@ -1,0 +1,22 @@
+.panel.panel-info
+  .panel-heading
+    = member.full_name
+    .btn-group.pull-right
+      %button.btn.btn-xs.btn-primary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        = fa_icon 'cog'
+      %ul.dropdown-menu.pull-right
+        %li= link_to t('shared.edit'), edit_member_path(member)
+        %li= link_to t('member.vacation'), manage_holidays_member_path(member)
+
+  .panel-body
+    %dl.dl-horizontal
+      %dt= Member.human_attribute_name(:work_phone)
+      %dd= member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
+      %dt= Member.human_attribute_name(:short_number)
+      %dd= member.short_number || content_tag(:span, t('shared.empty'), class: 'text-muted')
+      %dt= Member.human_attribute_name(:phone)
+      %dd= member.phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
+      %dt= Member.human_attribute_name(:email)
+      %dd= member.email || content_tag(:span, t('shared.empty'), class: 'text-muted')
+      %dt= Member.human_attribute_name(:birth)
+      %dd= l(member.birth,  format: :short) || content_tag(:span, t('shared.empty'), class: 'text-muted')

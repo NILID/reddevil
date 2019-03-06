@@ -3,5 +3,6 @@
 .row
   .col-xs-12
     .well
+      = render 'current_member', member: @current_member if @current_member
       = render 'panel_top'
-      = render 'members', members: @members
+      = render 'members', members: (@members - [@current_member])

@@ -8,12 +8,14 @@
       = f.text_field :name
       = f.text_field :patronymic
       = f.text_field :work_phone
-      = f.text_field :phone
       = f.text_field :short_number
+      = f.text_field :phone
       = f.email_field :email
       = f.text_field :birth, class: 'datepicker', value: (f.object.birth.to_datetime.strftime('%d.%m.%Y') if f.object.birth.present?)
-      = f.form_group do
-        = f.check_box :archive_flag
+      - if (current_user&.role? :admin)
+        = f.form_group do
+          = f.check_box :archive_flag
+        = f.select :user_id, options_for_select(User.all.collect { |u| [u.email, u.id]}, @member.user_id)
     .panel-footer
       = f.form_group do
         = f.primary

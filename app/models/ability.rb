@@ -45,6 +45,7 @@ class Ability
     end
 
     if user.role? :user
+      can %i[update manage_holidays update_holidays], Member, user: { id: user.id }
 
       can %i[destroy edit update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.user_id == user.id)

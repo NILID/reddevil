@@ -23,7 +23,7 @@ RSpec.describe MembersController, type: :controller do
       it 'updates holidays the requested member' do
         expect(@ability.can? :update_holidays, member).to be true
         put :update_holidays, params: { id: member, member: { content: 'New content' } }
-        expect(response).to redirect_to(holidays_members_url)
+        expect(response).to redirect_to(manage_holidays_member_url(member))
       end
 
       it 'destroys' do
@@ -91,10 +91,22 @@ RSpec.describe MembersController, type: :controller do
       expect{ get :edit, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
     end
 
+    it 'edit own member' do
+      expect(@ability.can? :edit, @user.member).to be true
+      get :edit, params: { id: @user.member }
+      expect(response).to render_template(:edit)
+    end
+
     it 'not destroy' do
       expect(@ability.cannot? :destroy, member).to be true
       expect{ delete :destroy, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Member, :count).by(0)
+    end
+
+    it 'update own member' do
+      expect(@ability.can? :update, @user.member).to be true
+      put :update, params: { id: @user.member, member: { content: 'New content' } }
+      expect(response).to redirect_to(members_url)
     end
 
     it 'not update' do
@@ -105,6 +117,18 @@ RSpec.describe MembersController, type: :controller do
     it 'not updates holidays' do
       expect(@ability.cannot? :update_holidays, member).to be true
       expect{ put :update_holidays, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'returns own manage_holidays' do
+      expect(@ability.can? :manage_holidays, @user.member).to be true
+      get :manage_holidays, params: { id: @user.member }
+      expect(response).to render_template(:manage_holidays)
+    end
+
+    it 'updates holidays own member' do
+      expect(@ability.can? :update_holidays, @user.member).to be true
+      put :update_holidays, params: { id: @user.member, member: { content: 'New content' } }
+      expect(response).to redirect_to(manage_holidays_member_url(@user.member))
     end
   end
 

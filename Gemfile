@@ -71,7 +71,7 @@ gem 'paperclip-i18n'
 
 gem 'meta-tags', require: 'meta_tags'
 
-gem 'bootstrap_form'
+gem "bootstrap_form", "~> 2.7"
 
 gem 'acts-as-taggable-on'
 

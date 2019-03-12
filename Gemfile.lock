@@ -67,8 +67,7 @@ GEM
       activesupport
     bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
-    bootstrap_form (4.1.0)
-      rails (>= 5.0)
+    bootstrap_form (2.7.0)
     builder (3.2.3)
     bullet (5.9.0)
       activesupport (>= 3.0.0)
@@ -89,7 +88,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     crass (1.0.4)
     debug_inspector (0.0.3)
     devise (4.6.1)
@@ -287,7 +286,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    ruby-ole (1.2.12.1)
+    ruby-ole (1.2.12.2)
     ruby-progressbar (1.10.0)
     ruby_parser (3.12.0)
       sexp_processor (~> 4.9)
@@ -379,7 +378,7 @@ DEPENDENCIES
   binding_of_caller
   birthday
   bootstrap3-datetimepicker-rails
-  bootstrap_form
+  bootstrap_form (~> 2.7)
   bullet
   byebug
   cancancan

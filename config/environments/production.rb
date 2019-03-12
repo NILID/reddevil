@@ -84,15 +84,15 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = {:host => 'reddevil.luch.com.ru', from: '"RedDevil" <reddevil@luch.com.ru>'}
+  config.action_mailer.default_url_options = {:host => 'reddevil.luch.podolsk.ru', from: '"RedDevil" <reddevil@luch.podolsk.ru>'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-     domain:               'luch.com.ru',
+     domain:               'luch.podolsk.ru',
      address:              '192.168.1.21',
      port:                 25,
      authentication:       :login,
-     user_name:            'reddevil@luch.com.ru',
+     user_name:            'reddevil@luch.podolsk.ru',
      password:             '12345678',
      openssl_verify_mode:  'none'
   }

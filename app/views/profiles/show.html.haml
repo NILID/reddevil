@@ -1,9 +1,9 @@
-- set_meta_tags title: @profile.fullname
+- set_meta_tags title: (@user.member.fullname if @user.member)
 
 .panel.panel-default
   .panel-heading
     .panel-title
-      = @profile.fullname
+      = @user.member.fullname if @user.member
       (#{@profile.login? ? @profile.login : @user.email})
 
       - if (can? :edit, @profile) || (can? :edit_roles, @user)

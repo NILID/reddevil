@@ -1,7 +1,7 @@
 .panel.panel-default
   .panel-heading
     .panel-title
-      = t 'users.edit_roles', username: @user.profile.fullname
+      = t 'users.edit_roles', username: (@user.member ? @user.member.fullname : nil)
   = bootstrap_form_for(@user, url: make_role_user_path(@user), layout: :horizontal, html: { method: :post }) do |f|
     .panel-body
       = f.form_group do

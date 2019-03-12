@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
 
   private
     def profile_params
-      list_params_allowed = %i[avatar crop_x crop_y crop_w crop_h login background_color name surname patronymic total_result]
+      list_params_allowed = %i[avatar crop_x crop_y crop_w crop_h login background_color total_result]
       params.require(:profile).permit(list_params_allowed)
     end
 end

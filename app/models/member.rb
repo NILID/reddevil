@@ -2,6 +2,8 @@ class Member < ActiveRecord::Base
   has_many :vacations, inverse_of: :member
   belongs_to :user
 
+  validates :surname, :name, :patronymic, presence: true
+
   accepts_nested_attributes_for :vacations, reject_if: :all_blank, allow_destroy: true
 
   acts_as_birthday :birth

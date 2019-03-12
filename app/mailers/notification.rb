@@ -1,6 +1,4 @@
-class Notification < ActionMailer::Base
-  default from: "REDDEVIL <reddevil@luch.com.ru>"
-
+class Notification < ApplicationMailer
   def birthday(email)
     mail(to: email, subject: t('mailer.birthday'), template_name: 'birthday')
   end

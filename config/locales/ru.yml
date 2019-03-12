@@ -82,6 +82,8 @@ ru:
     show_old: Показать завершенные
     from: с
     to: до
+    my: Мой отпуск
+    diff_days: До ближайшего отпуска %{till} %{count}
   devise:
     logout: Выйти
     login: Войти
@@ -522,6 +524,9 @@ ru:
     day_1: день
     day_2: дня
     day_10: дней
+    till_1: остался
+    till_2: осталось
+    till_10: осталось
     year_1: год
     year_2: года
     year_10: лет

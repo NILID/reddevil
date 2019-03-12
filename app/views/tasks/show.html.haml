@@ -5,7 +5,7 @@
   %p
     %strong= model_class.human_attribute_name(:user_id) + ':'
     %br
-    = link_to @task.user.profile.fullname, user_profile_path(@task.user)
+    = link_to @task.user.member.fullname, user_profile_path(@task.user)
   %p
     %strong= model_class.human_attribute_name(:machine_id) + ':'
     %br

@@ -97,38 +97,54 @@
                 .col-xs-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
 
   - if user_signed_in?
-    - unless @vacations.empty? && @vacations_soon.empty?
-      %div
-        .panel.panel-default
-          - unless @vacations.empty?
-            .panel-heading
-              .panel-title><
-                = t 'vacations.index'
+    %div
+      .panel.panel-default
+        - if current_user.member
+          .panel-heading
+            .panel-title><
+              = t 'vacations.my'
+              = link_to manage_holidays_member_path(current_user.member), class: 'pull-right btn btn-default btn-xs', title: t('shared.edit') do
+                = fa_icon 'edit'
+            .clearfix
+          - if @current_vacations_soon
             .panel-body
-              .row
-                .col-xs-2.col-md-3
-                  = image_tag 'umbrella.png', class: 'img-responsive'
-                .col-xs-10.col-md-9
-                  - @vacations.each do |v|
-                    %p
-                      = v.member.fullname
-                      = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
+              %p
+                - count_days = (DateTime.now.beginning_of_day..@current_vacations_soon.startdate.beginning_of_day).count - 1
+                = t('vacations.diff_days', till: plural(count_days, 'till', false), count: plural(count_days, 'day'))
+                = t('vacations.start',
+                  date: Russian.strftime(@current_vacations_soon.startdate, "%e %B"),
+                  diff: plural(TimeDifference.between(@current_vacations_soon.enddate + 1.day, @current_vacations_soon.startdate).in_days.to_i, 'day'))
 
-          - unless @vacations_soon.empty?
-            .panel-heading
-              .panel-title><
-                = t 'vacations.soon'
-            .panel-body
-              .row
-                .col-xs-2.col-md-3
-                  = image_tag 'chemodan.png', class: 'img-responsive'
-                .col-xs-10.col-md-9
-                  - @vacations_soon.each do |v|
-                    %p
-                      = v.member.fullname
-                      = t('vacations.start',
-                        date: Russian.strftime(v.startdate, "%e %B"),
-                        diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
+
+        - unless @vacations.empty?
+          .panel-heading
+            .panel-title><
+              = t 'vacations.index'
+          .panel-body
+            .row
+              .col-xs-2.col-md-3
+                = image_tag 'umbrella.png', class: 'img-responsive'
+              .col-xs-10.col-md-9
+                - @vacations.each do |v|
+                  %p
+                    = v.member.fullname
+                    = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
+
+        - unless @vacations_soon.empty?
+          .panel-heading
+            .panel-title><
+              = t 'vacations.soon'
+          .panel-body
+            .row
+              .col-xs-2.col-md-3
+                = image_tag 'chemodan.png', class: 'img-responsive'
+              .col-xs-10.col-md-9
+                - @vacations_soon.each do |v|
+                  %p
+                    = v.member.fullname
+                    = t('vacations.start',
+                      date: Russian.strftime(v.startdate, "%e %B"),
+                      diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
 
 - unless @docs.empty?
   .row

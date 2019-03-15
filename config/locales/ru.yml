@@ -74,6 +74,7 @@ ru:
   vacations:
     index: Сейчас в отпуске
     soon: Скоро в отпуск
+    you_rest: У вас сейчас отпуск
     until: (отпуск до %{date})
     start: (с %{date}, на %{diff})
     edit: Указать отпуск
@@ -372,8 +373,11 @@ ru:
         title: Название
         content: Описание
       vacation:
-        startdate: Дата начала
-        enddate: Дата завершения
+        startdate: Дата начала отпуска
+        enddate: Дата завершения отпуска
+      vacations:
+        startdate: Дата начала отпуска
+        enddate: Дата завершения отпуска
       message:
         title: Название
         content: Текст сообщения

@@ -33,8 +33,12 @@ class MainController < ApplicationController
                                         .order(:start_date)
       if current_user.member
         @current_vacations_soon = current_user.member.vacations
-                                      .where('startdate >= ?', DateTime.now)
+                                      .where('startdate >= ?', now)
                                       .order(:startdate).first
+        @current_vacation       = current_user.member.vacations
+                                      .where('startdate <= ?', now)
+                                      .where('enddate >= ?', now)
+                                      .first
       end
     end
 

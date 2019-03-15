@@ -1,0 +1,11 @@
+@import 'mixins';
+
+.category.redhide{@include opacity(.5)}
+
+.nav-pills > li.nav-children {
+  &, & + li.nav-children{margin-left:20px;}
+}
+
+.nav-reddevil .nav-pills > li.slide-block {display: none;}
+
+.nav-reddevil .nav{margin-bottom:0;}

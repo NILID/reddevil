@@ -7,11 +7,11 @@ module AncestryHelper
             :list_type            => :ul,
             :list_style           => '',
             :ul_class             => [],
-            :ul_class_top         => ['nav nav-pills nav-stacked nav-reddevil'],
-            :ul_class_children    => ['nav nav-pills nav-stacked'],
-            :li_class             => ['nav-item'],
+            :ul_class_top         => ['list-group list-group-flush nav-reddevil'],
+            :ul_class_children    => ['list-group list-group-flush'],
+            :li_class             => ['list-group-item'],
             :li_class_top         => [],
-            :li_class_children    => %w(nav-children slide-block),
+            :li_class_children    => %w(nav-children slide-block list-group-item),
             :sort_by              => []
         }.merge(options)
         # setup any custom list styles you want to use here. An example is excluded

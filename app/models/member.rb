@@ -12,6 +12,8 @@ class Member < ActiveRecord::Base
   scope :archive,    -> { where(archive_flag: true) }
   scope :with_birth, -> { where.not(birth: nil) }
 
+  # validate birth
+
   def fullname
     "#{surname} #{name} #{patronymic}"
   end

@@ -95,7 +95,11 @@
             = link_to manage_holidays_member_path(current_user.member), class: 'pull-right btn btn-light border btn-sm', title: t('shared.edit') do
               = fa_icon 'edit'
             .clearfix
-          - if @current_vacations_soon
+          - if @current_vacation
+            .card-body
+              %p= t 'vacations.you_rest'
+
+          - elsif @current_vacations_soon
             .card-body
               %p
                 - count_days = (DateTime.now.beginning_of_day..@current_vacations_soon.startdate.beginning_of_day).count - 1
@@ -103,7 +107,6 @@
                 = t('vacations.start',
                   date: Russian.strftime(@current_vacations_soon.startdate, "%e %B"),
                   diff: plural(TimeDifference.between(@current_vacations_soon.enddate + 1.day, @current_vacations_soon.startdate).in_days.to_i, 'day'))
-
 
         - unless @vacations.empty?
           .card-header

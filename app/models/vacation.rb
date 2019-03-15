@@ -12,6 +12,8 @@ class Vacation < ActiveRecord::Base
   scope :present, lambda { where('startdate <= ?', DateTime.now)
                           .where('enddate >= ?',   DateTime.now) }
 
+
+  # Добавить проверку что отпуск не назначается на уже занятые даты
   private
 
     def check_dates

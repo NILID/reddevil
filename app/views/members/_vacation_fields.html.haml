@@ -1,13 +1,18 @@
-.row.nested-fields.input-daterange
-  .col-5
-    = f.text_field :startdate,
-         hide_label: true,
-            prepend: t('vacations.from'),
-              value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate?)
-    = f.text_field :enddate,
-         hide_label: true,
-            prepend: t('vacations.to'),
-              value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate?)
-    = link_to_remove_association t('shared.del'), f,
-      class: 'btn btn-danger btn-sm',
-       data: { confirm: t('shared.sure')}
+.form-group.nested-fields
+  .row
+    .col-10
+      .row.input-daterange
+        .col-6
+          = f.text_field :startdate,
+              prepend: t('vacations.from'),
+                value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate?),
+                class: 'form-control'
+        .col-6
+          = f.text_field :enddate,
+              prepend: t('vacations.to'),
+                value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate?),
+                class: 'form-control'
+    .col-2
+      = link_to_remove_association f, class: 'btn btn-danger', data: { confirm: t('shared.sure')}, title: t('shared.del') do
+        = fa_icon 'remove'
+  %hr

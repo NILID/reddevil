@@ -16,6 +16,8 @@ $ ->
 
   $('.dropdown-toggle').dropdown()
 
+  $('.slide-block').hide()
+
   $('.slide-link').click ->
     $(this).next('ul').children('.slide-block').slideToggle()
 

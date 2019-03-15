@@ -3,28 +3,36 @@
 .row
   .col-12
     .card
-      .card-header= t 'users.title'
       .card-body
-        %table.table
-          - @users.each_with_index do |user, index|
-            %tr
+        .lead= t 'users.title'
+    %table.table.table-striped.bg-light.mt-2
+      %thead
+        %tr
+          %th(scope="col") id
+          %th(scope="col") online
+          %th(scope="col") username
+          %th(scope="col") last visit
+          %th(scope="col") reg confirm
+          %th(scope="col") actions
+      %tbody
+        - @users.each_with_index do |user, index|
+          %tr
+            %th(scope="row")= user.id
+            %td
+              %span.badge{ class: user.online? ? 'badge-success' : 'badge-secondary' }
+                = user.confirmed? ? fa_icon('check') : fa_icon('remove')
+            %td
+              = link_to user.email, user_profile_path(user)
+              - if user.member
+                .text-muted= user.member.fullname
+            %td= l user.updated_at,  format: :long
+            %td= user.confirmed?
+            - if can? :edit, user.profile
               %td
-                = index += 1
-              %td
-                %span.badge{ class: user.online? ? 'badge-success' : 'badge-secondary' }
-                  = user.confirmed? ? fa_icon('check') : fa_icon('remove')
-              %td
-                = link_to user.email, user_profile_path(user)
-                - if user.member
-                  .text-muted= user.member.fullname
-              %td= l user.updated_at,  format: :long
-              %td= user.confirmed?
-              - if can? :edit, user.profile
-                %td
-                  .btn-group
-                    %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                      = fa_icon 'cog'
-                    .dropdown-menu.dropdown-menu-right
-                      = link_to t('profiles.edit'), edit_user_profile_path(user), class: 'dropdown-item'
-                      - if can? :edit_roles, user
-                        = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'dropdown-item'
+                .btn-group
+                  %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                    = fa_icon 'cog'
+                  .dropdown-menu.dropdown-menu-right
+                    = link_to t('profiles.edit'), edit_user_profile_path(user), class: 'dropdown-item'
+                    - if can? :edit_roles, user
+                      = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'dropdown-item'

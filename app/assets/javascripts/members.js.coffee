@@ -11,7 +11,7 @@ $ ->
 
   $('#calendar').fullCalendar
     locale: "ru"
-    themeSystem: 'bootstrap3'
+    themeSystem: 'bootstrap4'
     eventSources: [
       '/members.json'
       '/vacations.json'

@@ -44,6 +44,7 @@
           %div{class: "calendar_view_#{machine.id}"}
           :javascript
             $(".calendar_view_#{machine.id}").fullCalendar({
+              themeSystem: 'bootstrap4',
               locale: "ru",
               timezone: 'Russia/Moscow',
               eventSources: ["/machines/#{machine.id}/tasks.json"],

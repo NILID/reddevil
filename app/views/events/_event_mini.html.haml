@@ -1,7 +1,7 @@
 .card-header
   = link_to event_mini.title, [event_mini.user, event_mini]
 
-  .label.label-primary
+  .badge.badge-primary
     - if diff_dates
       = t('events.start', date: Russian.strftime(event_mini.start_date, "%e %B"))
     = t('events.until', date: Russian.strftime(event_mini.end_date, "%e %B"))

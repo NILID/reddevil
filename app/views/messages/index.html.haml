@@ -20,5 +20,5 @@
             = link_to t('shared.del'), message_path(message), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
             - if message.close?
               %h3
-                %span.label.label-danger><= t 'message.close'
+                %span.badge.badge-danger><= t 'message.close'
 

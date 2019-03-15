@@ -4,7 +4,7 @@
       .card-header
         = @round.title
         %small.pull-right
-          .label.label-primary
+          .badge.badge-primary
             = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
 
       %table.table.table-sm.rounds

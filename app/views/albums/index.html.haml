@@ -21,7 +21,7 @@
       - if can? :new, Album
         %li.nav-item= link_to t('albums.add'), new_album_path, class: 'nav-link'
     .pull-right
-      %span.label.label-info
+      %span.badge.badge-info
         = plural(Song.count, 'song')
         (#{number_to_human_size(Song.sum(:file_file_size))})
     .clearfix

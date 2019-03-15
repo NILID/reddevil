@@ -6,7 +6,7 @@
     %small
       - unless @doc.categories.empty?
         - @doc.categories.each do |g|
-          %span.label.label-info><= g.title
+          %span.badge.badge-info><= g.title
 
 - if @doc.desc?
   .save-wspace.well

@@ -11,7 +11,7 @@
               %td
                 = index += 1
               %td
-                %span.label{ class: user.online? ? 'label-success' : 'label-default' }
+                %span.badge{ class: user.online? ? 'badge-success' : 'badge-secondary' }
                   = user.confirmed? ? fa_icon('check') : fa_icon('remove')
               %td
                 = link_to user.email, user_profile_path(user)

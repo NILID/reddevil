@@ -29,5 +29,5 @@
         - unless doc.categories.empty?
           - doc.categories.each do |g|
             = link_to(docs_path(by_category: g.id), remote: true) do
-              %span.label.label-default.label-pad><= g.title
+              %span.badge.badge-secondary.label-pad><= g.title
 

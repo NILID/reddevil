@@ -26,4 +26,4 @@
           %dt.col-sm-3= t 'users.has_groups'
           %dd.col-sm-9
             - @user.groups.each do |group|
-              %span.label.label-primary= t "user.groups.#{group}"
+              %span.badge.badge-primary= t "user.groups.#{group}"

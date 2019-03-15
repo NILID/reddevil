@@ -58,9 +58,8 @@ $ ->
     language: "ru"
     firstDate: 1
 
-  $('#changecolor').colorpicker().on 'changeColor', (e) ->
-    $('body')[0].style.backgroundColor = e.color.toString('rgba')
-    return
+  $('#changecolor').colorpicker().on 'colorpickerChange colorpickerCreate', (e) ->
+    $('body').css 'background', e.color
 
   $('#datetimepicker1 input').datepicker
     locale: "ru"

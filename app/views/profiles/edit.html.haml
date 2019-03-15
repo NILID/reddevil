@@ -10,7 +10,7 @@
         = f.text_field :background_color,
           value: @profile.background_color,
           control_col: 'col-sm-3',
-          prepend: content_tag(:span, content_tag(:i))
+          prepend: content_tag(:span, content_tag(:i), class: 'colorpicker-input-addon')
     .card-footer
       = f.form_group do
         = f.primary

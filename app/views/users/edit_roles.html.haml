@@ -1,9 +1,8 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      = t 'users.edit_roles', username: (@user.member ? @user.member.fullname : nil)
+.card
+  .card-header
+    = t 'users.edit_roles', username: (@user.member ? @user.member.fullname : nil)
   = bootstrap_form_for(@user, url: make_role_user_path(@user), layout: :horizontal, html: { method: :post }) do |f|
-    .panel-body
+    .card-body
       = f.form_group do
         - User::ROLES.each do |role|
           = label_tag do
@@ -19,6 +18,6 @@
         = label_tag class: 'checkbox' do
           = f.check_box :sport_flag
 
-    .panel-footer
+    .card-footer
       = f.form_group do
         = f.primary

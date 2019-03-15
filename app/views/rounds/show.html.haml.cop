@@ -3,11 +3,11 @@
     = @round.title
     - if can? :manage, @round
       %small
-        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn btn-default'
+        = link_to t('shared.edit'), edit_round_path(@round), :class => 'btn btn-secondary'
         = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
 %p= @round.content
 
-%table.table.table-condensed.table-hover.rounds
+%table.table.table-sm.table-hover.rounds
   %thead
     %th
     -@round.matches.each do |match|
@@ -48,4 +48,4 @@
             %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
             .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
 
-= link_to t('.back', :default => t("helpers.links.back")), rounds_path, :class => 'btn btn-default'
+= link_to t('.back', :default => t("helpers.links.back")), rounds_path, :class => 'btn btn-secondary'

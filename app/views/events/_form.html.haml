@@ -1,5 +1,5 @@
 = bootstrap_form_for [@user, @event], layout: :horizontal do |f|
-  .panel-body
+  .card-body
     = f.text_field :title
     = f.text_area :content
 
@@ -16,6 +16,6 @@
           prepend: t('vacations.to'),
           inline: true,
           value: (f.object.end_date.to_datetime.strftime('%d.%m.%Y') if f.object.end_date?)
-  .panel-footer
+  .card-footer
     = f.form_group do
       = f.primary

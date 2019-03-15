@@ -4,19 +4,19 @@
       %h4= t 'matches.old_results'
     .modal-body
       .row
-        .col-xs-6.text-center
+        .col-6.text-center
           = image_tag match.team1.flag(:thumb), class: 'team-flag'
           %h3= match.team1.title
-        .col-xs-6.text-center
+        .col-6.text-center
           = image_tag match.team2.flag(:thumb), class: 'team-flag'
           %h3= match.team2.title
       - @results.each do |result|
         - if result.team1goal && result.team2goal
-          .panel.panel-default.text-center
-            .panel-heading
+          .card.text-center
+            .card-header
               %srong.text-uppercase= link_to result.round.title, result.round, target: '_blank'
-            .panel-body
-              .col-xs-6
+            .card-body
+              .col-6
                 %h3
                   = result.team1 == match.team1 ? result.team1goal : result.team2goal
 
@@ -29,7 +29,7 @@
                         = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
                         .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
 
-              .col-xs-6
+              .col-6
                 %h3
                   = result.team2 == match.team2 ? result.team2goal : result.team1goal
 
@@ -42,16 +42,16 @@
                         = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
                         .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
 
-            .panel-footer
+            .card-footer
               - user_forecast = result.forecasts.where(user: current_user).first
               - if user_forecast
                 .row
-                  .col-xs-4.text-right
+                  .col-4.text-right
                     %strong= user_forecast.match.team1 == match.team1 ? user_forecast.team1goal : user_forecast.team2goal
-                  .col-xs-4
+                  .col-4
                     .text-uppercase= t 'matches.your_old_result'
-                  .col-xs-4.text-left
+                  .col-4.text-left
                     %strong= user_forecast.match.team2 == match.team2 ? user_forecast.team2goal : user_forecast.team1goal
 
     .modal-footer
-      %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'
+      %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'

@@ -5,10 +5,10 @@
       = f.select :substrate_id, @substrates.collect {|s| [s.full_title, s.id]}, {include_blank: t('substrates.select_substrate')}
 
     .modal-footer
-      %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'
+      %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'
       = f.primary t('shared.save')
 - else
   .modal-body
     = t 'substrates.empty'
   .modal-footer
-    %button.btn.btn-default(data-dismiss='modal' aria-hidden='true')= t 'shared.close'
+    %button.btn.btn-secondary(data-dismiss='modal' aria-hidden='true')= t 'shared.close'

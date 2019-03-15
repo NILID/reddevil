@@ -1,0 +1,9 @@
+.row.nested-fields
+  .col-6
+    = f.text_field :name, prepend: Column.human_attribute_name(:name), hide_label: true
+  .col-4
+    = f.select :column_type,
+      Year::TYPES,
+      { include_blank: t('categories.select_category'), prepend: Column.human_attribute_name(:column_type), hide_label: true }
+  .col-2
+    = link_to_remove_association fa_icon('remove'), f, class: 'btn btn-danger'

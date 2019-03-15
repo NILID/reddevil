@@ -1,20 +1,20 @@
 - set_meta_tags title: t('docs.title')
 
 - content_for :sidebar do
-  .panel.panel-default
-    .panel-heading
-      .panel-title
-        = link_to t('categories.title'), docs_path
-        - if can? :manage, Category
-          = link_to categories_path, class: 'btn btn-default btn-xs pull-right' do
-            = fa_icon 'cog'
+  .card
+    .card-header
+      = link_to t('categories.title'), docs_path
+      - if can? :manage, Category
+        = link_to categories_path, class: 'btn btn-secondary btn-sm pull-right' do
+          = fa_icon 'cog'
 
-    .panel-body
+    .card-body
       = search_form_for(@q, url: docs_path, html: { method: :get }) do |f|
         .form-group
-          .input-group
-            .input-group-addon
-              = fa_icon 'search'
+          .input-group.mb-2
+            .input-group-prepend
+              .input-group-text
+                = fa_icon 'search'
             = f.search_field :title_cont, placeholder: t('shared.search'), class: 'form-control'
 
     = arranged_tree_as_list(@categories) do |category|
@@ -22,24 +22,24 @@
         docs_path(by_category: category.id),
         remote: true,
         id: dom_id(category),
-        class: "slide-link #{category.hidden? || category.parent&.hidden? ? ' hide' : nil}"
+        class: "nav-link slide-link #{category.hidden? || category.parent&.hidden? ? ' hide' : nil}"
 
     %hr
     %ul.nav.nav-pills.nav-stacked.nav-reddevil
-      %li
+      %li.nav-item
         = link_to t('docs.no_cats'),
           docs_path(no_category: true),
           remote: true,
           id: 'categories_hidden',
-          class: 'slide-link'
+          class: 'slide-link nav-link'
 
-.well
-  %h4
+.card
+  .card-header
     = t 'docs.title'
     %small
       %span.category-info
         = t('docs.in_category', category: @cat.title) if @cat
-      %span.badge#docs-count
+      %span.badge.badge-pill.badge-secondary#docs-count
         = @docs.count
 
       - if can? :manage, Doc

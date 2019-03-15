@@ -2,10 +2,9 @@
 
 .row
   .col-md-6
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          = t 'shared.rating'
+    .card
+      .card-header
+        = t 'shared.rating'
       %table.table.table-hover
         %thead
           %tr
@@ -51,11 +50,10 @@
               %td= user.win_forecasts_count
               %td= user.profile.total_result
 
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          = t 'shared.stat'
-      %table.table.table-hover.table-condensed
+    .card
+      .card-header
+        = t 'shared.stat'
+      %table.table.table-hover.table-sm
         %tr
           %td= t 'matches.count'
           %td
@@ -72,8 +70,8 @@
   .col-md-6
     - if (can? :manage, Round) && (can? :manage, Team)
       %p
-        %small= link_to t('rounds.add'), new_round_path, class: 'btn btn-default'
-        %small= link_to t('teams.add'), new_team_path, class: 'btn btn-default'
-        %small= link_to t('types.title'), types_path, class: 'btn btn-default'
+        %small= link_to t('rounds.add'), new_round_path, class: 'btn btn-secondary'
+        %small= link_to t('teams.add'), new_team_path, class: 'btn btn-secondary'
+        %small= link_to t('types.title'), types_path, class: 'btn btn-secondary'
 
     = render @rounds

@@ -51,9 +51,6 @@ $ ->
     fff1 = fff.replace(/\.[^/.]+$/, "")
     $('form input.title_auto').val(fff1)
 
-  if $(window).height() + 100 < $(document).height()
-    $('#top-link-block').removeClass('hidden').affix offset: top: 100
-
   $(".best_in_place").best_in_place()
 
   $.extend $.fn.datepicker.defaults,
@@ -66,7 +63,7 @@ $ ->
     return
 
   $('#datetimepicker1 input').datepicker
-    language: "ru"
+    locale: "ru"
     daysOfWeekDisabled: '0,2,3,4,6'
     startDate: new Date()
 

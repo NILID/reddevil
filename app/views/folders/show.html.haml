@@ -2,17 +2,17 @@
   %h1
     = t @folder.title
     %small
-      = link_to t('shared.edit'), edit_user_folder_path(@user, @folder), :class => 'btn btn-default btn-xs'
-      = link_to t('shared.del'), [@user, @folder], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-xs'
+      = link_to t('shared.edit'), edit_user_folder_path(@user, @folder), :class => 'btn btn-secondary btn-sm'
+      = link_to t('shared.del'), [@user, @folder], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'
 
 %p
-  = link_to [@user, Folder], class: 'btn btn-default' do
+  = link_to [@user, Folder], class: 'btn btn-secondary' do
     = fa_icon 'th-large'
-  = link_to (@folder.parent_id? ? [@user, @folder.parent] : [@user, Folder]), class: 'btn btn-default' do
+  = link_to (@folder.parent_id? ? [@user, @folder.parent] : [@user, Folder]), class: 'btn btn-secondary' do
     = fa_icon 'chevron-left'
-  = link_to new_user_folder_path(@user, parent_id: @folder.id), class: 'btn btn-default' do
+  = link_to new_user_folder_path(@user, parent_id: @folder.id), class: 'btn btn-secondary' do
     = fa_icon 'folder-open', text: t('folder.new')
-  = link_to new_user_folder_dataset_path(@user, @folder), class: 'btn btn-default' do
+  = link_to new_user_folder_dataset_path(@user, @folder), class: 'btn btn-secondary' do
     = fa_icon 'file-o', text: t('dataset.new')
 
 .well

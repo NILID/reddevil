@@ -15,6 +15,6 @@
 
 - if can? :manage, @doc
   .form-group
-    = link_to t('.back', default: t("helpers.links.back")), docs_path, class: 'btn btn-default'
-    = link_to t('shared.edit'), edit_doc_path(@doc), class: 'btn btn-default'
+    = link_to t('.back', default: t("helpers.links.back")), docs_path, class: 'btn btn-secondary'
+    = link_to t('shared.edit'), edit_doc_path(@doc), class: 'btn btn-secondary'
     = link_to t('shared.del'), doc_path(@doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

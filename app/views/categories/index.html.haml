@@ -1,8 +1,7 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      = t 'categories.title'
-      %span.pull-right
-        = link_to t('shared.add'), new_category_path, class: 'btn btn-primary btn-xs'
-  .panel-body
+.card
+  .card-header
+    = t 'categories.title'
+    %span.pull-right
+      = link_to t('shared.add'), new_category_path, class: 'btn btn-primary btn-sm'
+  .card-body
     %ol= render @root_categories

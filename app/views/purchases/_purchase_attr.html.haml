@@ -6,7 +6,7 @@
   - else
     - purchase[attr]
 - else
-  - object_property = content_tag(:div, fa_icon('plus'), class: 'btn btn-default btn-xs purchase-actions')
+  - object_property = content_tag(:div, fa_icon('plus'), class: 'btn btn-secondary btn-sm purchase-actions')
 - if current_user && ((current_user.has_group? :sellers) || (current_user.role? :admin))
   = link_to object_property, get_miniform_year_purchase_path(@year, purchase, attr: attr), data: {target: "#dialog_#{purchase.id}_#{attr}", toggle: 'modal'}, class: 'modal-link', remote: true
   .modal.fade(tabIndex='-1' role='dialog' id="dialog_#{purchase.id}_#{attr}")

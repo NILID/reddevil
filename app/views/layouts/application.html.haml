@@ -3,26 +3,25 @@
   = render 'layouts/header'
 
   %body
-    = render 'main/menu'
+    %header= render 'main/menu'
 
-    .container-fluid.main-content
-      .row
-        .col-xs-12= bootstrap_flash
-      .row
-        .col-md-3
-          = yield :sidebar
-          - if user_signed_in? && (%w[albums songs].include? params[:controller])
-            .row
-              .col-md-3.favorites-panel{data: { spy: 'affix' }, class: (current_user.likees(Song).count + current_user.likees(Album).count) == 0 ? 'hidden' : nil}
-                .panel.panel-default
-                  .panel-body
+    %main.py-2(role='main')
+      .container-fluid.main-content
+        .row
+          .col-12=# bootstrap_flash
+        .row
+          .col-md-3
+            = yield :sidebar
+            - if user_signed_in? && (%w[albums songs].include? params[:controller])
+              .favorites-panel{data: { spy: 'affix' }, class: (current_user.likees(Song).count + current_user.likees(Album).count) == 0 ? 'hidden' : nil}
+                .card
+                  .card-body
                     = link_to favorites_albums_path do
                       = t 'albums.favorites'
                     %p
                       %span.likees-album-count= plural current_user.likees(Album).count, 'album'
                       %span.likees-count= plural current_user.likees(Song).count, 'song'
-        .col-md-9
-          = yield
+          .col-md-9
+            = yield
 
     = render 'layouts/footer'
-    = javascript_include_tag 'salvattore'

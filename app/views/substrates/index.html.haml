@@ -11,12 +11,12 @@
     - if params[:action] == 'mirrors'
       - User.with_role(:mirrors).each do |u|
         = link_to user_profile_path(u), title: u.profile.surname do
-          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'img-circle img-circle-bordered'
+          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'rounded-circle img-circle-bordered'
 
     - else
       - User.with_role(:drawing).each do |u|
         = link_to user_profile_path(u), title: u.profile.surname do
-          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'img-circle img-circle-bordered'
+          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'rounded-circle img-circle-bordered'
   .clearfix
   .page-header
 
@@ -27,9 +27,9 @@
           = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-sm', style: 'vertical-align:middle' do
             = fa_icon 'plus', text: t('shared.add')
         %span.btn-group.pull-right
-          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-default btn-sm', target: '_blank' do
+          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-secondary btn-sm', target: '_blank' do
             = fa_icon 'file-pdf-o', text: 'PDF'
-          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'xls') : substrates_path(format: 'xls')), class: 'btn btn-default btn-sm' do
+          = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'xls') : substrates_path(format: 'xls')), class: 'btn btn-secondary btn-sm' do
             = fa_icon 'file-excel-o', text: 'Excel'
   %table.table.table-bordered.table-substrates.table-hover
     %thead

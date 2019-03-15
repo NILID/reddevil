@@ -12,8 +12,8 @@
                 = link_to machine.title, machine
                 %small
                 - if can? :manage, machine
-                  = link_to t('shared.edit'), edit_machine_path(machine), class: 'btn btn-default btn-xs'
-                  = link_to t('shared.del'), machine_path(machine), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+                  = link_to t('shared.edit'), edit_machine_path(machine), class: 'btn btn-secondary btn-sm'
+                  = link_to t('shared.del'), machine_path(machine), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
 
           %table.table.table-striped.table-hover.table-machines
             %thead
@@ -33,12 +33,12 @@
                   %td= l task.end_time, format: :short
                   %td= task.complete.to_s + '%'
                   %td
-                    = link_to edit_machine_task_path(machine, task), class: 'btn btn-default btn-xs btn-task-edit' do
+                    = link_to edit_machine_task_path(machine, task), class: 'btn btn-secondary btn-sm btn-task-edit' do
                       = fa_icon 'edit'
               - if can? :new, Task
                 %tr
                   %td(colspan=6)
-                    = link_to new_machine_task_path(machine), class: 'btn btn-default' do
+                    = link_to new_machine_task_path(machine), class: 'btn btn-secondary' do
                       = fa_icon 'plus'
         .col-md-6
           %div{class: "calendar_view_#{machine.id}"}

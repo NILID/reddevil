@@ -8,6 +8,6 @@
   = @machine.title
 
 .form-group
-  = link_to t('.back', :default => t("helpers.links.back")), machines_path, class: 'btn btn-default'
-  = link_to t('shared.edit'), edit_machine_path(@machine), class: 'btn btn-default'
+  = link_to t('.back', :default => t("helpers.links.back")), machines_path, class: 'btn btn-secondary'
+  = link_to t('shared.edit'), edit_machine_path(@machine), class: 'btn btn-secondary'
   = link_to t('shared.del'), machine_path(@machine), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

@@ -24,4 +24,4 @@
           = f.primary
           - if params[:action] == 'edit'
             = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast
-          %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'
+          %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'

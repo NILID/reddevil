@@ -34,7 +34,8 @@
     .form-control
       .form-group.date
         = f.text_field :delivery, class: 'datepicker', value: (f.object.delivery.strftime('%d.%m.%Y') if f.object.delivery)
-        %span.input-group-addon= fa_icon 'th'
+        %span.input-group-prepend
+          .input-group-text= fa_icon 'th'
 
   = f.fields_for :columnships do |c|
     .form-group
@@ -49,4 +50,4 @@
 
   .form-group
     = f.submit nil, class: 'btn btn-primary'
-    = link_to t('shared.cancel'), purchases_path, class: 'btn btn-default'
+    = link_to t('shared.cancel'), purchases_path, class: 'btn btn-secondary'

@@ -29,9 +29,9 @@
     = c.text_field :delivery, class: 'datepicker', value: (c.object.delivery.to_datetime.strftime('%d.%m.%Y') if c.object.delivery.present?)
     = c.form_group do
       = c.link_to_remove t('columns.remove')
-  = f.link_to_add :deliveries, class: 'btn btn-default' do
+  = f.link_to_add :deliveries, class: 'btn btn-secondary' do
     = fa_icon 'plus', text: t('columns.add')
 
   = f.form_group do
     = f.primary
-    = link_to t('shared.cancel'), [@year, Purchase], class: 'btn btn-default'
+    = link_to t('shared.cancel'), [@year, Purchase], class: 'btn btn-secondary'

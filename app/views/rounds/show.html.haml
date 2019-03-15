@@ -1,14 +1,13 @@
 .row
-  .col-xs-12
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          = @round.title
-          %small.pull-right
-            .label.label-primary
-              = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
+  .col-12
+    .card
+      .card-header
+        = @round.title
+        %small.pull-right
+          .label.label-primary
+            = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
 
-      %table.table.table-condensed.rounds
+      %table.table.table-sm.rounds
         %thead
           %th
           %th
@@ -21,7 +20,7 @@
               - result = user.results.where(round_id: @round).first
               - if result
                 .tip
-                  .badge.badge-success= result.total
+                  .badge.badge-pill.badge-success= result.total
                   - if result.total > 0
                     .tip-text
                       - a,b,c,d = 0, 0, 0, 0
@@ -33,25 +32,25 @@
                             - b+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
                             - c+=1 if (match.check_win == forecast.check_winner)
                             - d+=1 if (match.ending == forecast.ending && !@round.draw)
-                      %dl.dl-horizontal
+                      %dl.row
                         - if a > 0
                           %p
-                            %span.badge.badge-success + #{a}
+                            %span.badge.badge-pill.badge-success + #{a}
                             = t 'results.true_match'
                         - if b > 0
                           %p
-                            %span.badge.badge-success + #{b}
+                            %span.badge.badge-pill.badge-success + #{b}
                             = t 'results.true_diff'
                         - if c > 0
                           %p
-                            %span.badge.badge-success + #{c}
+                            %span.badge.badge-pill.badge-success + #{c}
                             = t 'results.true_winner'
                         - if d > 0
                           %p
-                            %span.badge.badge-success + #{d}
+                            %span.badge.badge-pill.badge-success + #{d}
                             = t 'results.true_final_end'
               - else
-                .badge.badge-success 0
+                .badge.badge-pill.badge-success 0
 
           - if @round.check_finish?
             %th= t 'shared.mid'
@@ -64,7 +63,7 @@
             - if @round.content? && !@round.check_finish?
               %tr
                 %td(colspan=17)
-                  .col-xs-6.alert.alert-danger.col-xs-offset-3
+                  .col-6.alert.alert-danger.offset-3
                     = @round.content
 
             - %w[final 3final].each do |type|
@@ -76,16 +75,16 @@
           - else
             = render partial: 'match', collection: @round_matches
 
-      .panel-footer
-        = link_to t('shared.back'), rounds_path, class: 'btn btn-default btn-sm'
+      .card-footer
+        = link_to t('shared.back'), rounds_path, class: 'btn btn-secondary btn-sm'
         .pull-right
           - if can? :download, @round
-            = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-default btn-sm', target: '_blank' do
+            = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-secondary btn-sm', target: '_blank' do
               = fa_icon 'file-pdf-o', text: t('rounds.download')
 
           - if can? :manage, @round
-            = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-default btn-sm' do
+            = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-secondary btn-sm' do
               = fa_icon 'refresh', text: t('results.rebuild')
 
-            = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-default btn-sm'
+            = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-secondary btn-sm'
             = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'

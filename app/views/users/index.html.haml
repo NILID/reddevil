@@ -1,30 +1,30 @@
 - set_meta_tags title: t('users.title')
 
 .row
-  .col-xs-12
-    .panel.panel-default
-      .panel-heading
-        %h4= t('users.title')
-      %table.table
-        - @users.each_with_index do |user, index|
-          %tr
-            %td
-              = index += 1
-            %td
-              %span.label{ class: user.online? ? 'label-success' : 'label-default' }
-                = user.confirmed? ? fa_icon('check') : fa_icon('remove')
-            %td
-              = link_to user.email, user_profile_path(user)
-              - if user.member
-                .text-muted= user.member.fullname
-            %td= l user.updated_at,  format: :long
-            %td= user.confirmed?
-            - if can? :edit, user.profile
+  .col-12
+    .card
+      .card-header= t 'users.title'
+      .card-body
+        %table.table
+          - @users.each_with_index do |user, index|
+            %tr
               %td
-                .btn-group
-                  %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                    = fa_icon 'cog'
-                  %ul.dropdown-menu.pull-right
-                    %li= link_to t('profiles.edit'), edit_user_profile_path(user)
-                    - if can? :edit_roles, user
-                      %li= link_to t('users.to_edit_roles'), edit_roles_user_path(user)
+                = index += 1
+              %td
+                %span.label{ class: user.online? ? 'label-success' : 'label-default' }
+                  = user.confirmed? ? fa_icon('check') : fa_icon('remove')
+              %td
+                = link_to user.email, user_profile_path(user)
+                - if user.member
+                  .text-muted= user.member.fullname
+              %td= l user.updated_at,  format: :long
+              %td= user.confirmed?
+              - if can? :edit, user.profile
+                %td
+                  .btn-group
+                    %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                      = fa_icon 'cog'
+                    .dropdown-menu.dropdown-menu-right
+                      = link_to t('profiles.edit'), edit_user_profile_path(user), class: 'dropdown-item'
+                      - if can? :edit_roles, user
+                        = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'dropdown-item'

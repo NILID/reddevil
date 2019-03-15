@@ -1,30 +1,29 @@
 - set_meta_tags title: (@user.member.fullname if @user.member)
 
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      = @user.member.fullname if @user.member
-      (#{@profile.login? ? @profile.login : @user.email})
+.card
+  .card-header
+    = @user.member.fullname if @user.member
+    (#{@profile.login? ? @profile.login : @user.email})
 
-      - if (can? :edit, @profile) || (can? :edit_roles, @user)
-        %small.pull-right
-          .btn-group
-            %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-              = fa_icon 'cog'
-            %ul.dropdown-menu.pull-right
-              - if can? :edit, @profile
-                %li= link_to t('profiles.edit'), edit_user_profile_path(@user)
-              - if can? :edit_roles, @user
-                %li= link_to t('users.to_edit_roles'), edit_roles_user_path(@user)
+    - if (can? :edit, @profile) || (can? :edit_roles, @user)
+      %small.pull-right
+        .btn-group
+          %button.btn.btn-sm.btn-primary.dropdown-toggle#btnGroupProfile{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+            = fa_icon 'cog'
+          .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupProfile")
+            - if can? :edit, @profile
+              = link_to t('profiles.edit'), edit_user_profile_path(@user), class: 'dropdown-item'
+            - if can? :edit_roles, @user
+              = link_to t('users.to_edit_roles'), edit_roles_user_path(@user), class: 'dropdown-item'
 
-  .panel-body
+  .card-body
     .row
       .col-md-3
-        = image_tag @profile.avatar.url(:medium), class: 'thumbnail img-responsive'
+        = image_tag @profile.avatar.url(:medium), class: 'thumbnail img-fluid'
 
       .col-md-9
-        %dl.dl-horizontal
-          %dt= t 'users.has_groups'
-          %dd
+        %dl.row
+          %dt.col-sm-3= t 'users.has_groups'
+          %dd.col-sm-9
             - @user.groups.each do |group|
               %span.label.label-primary= t "user.groups.#{group}"

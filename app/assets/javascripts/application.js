@@ -14,11 +14,12 @@
 //= require best_in_place
 //= require jquery_ujs
 //= require jquery-ui
+//= require popper.min
+//= require bootstrap.min
 //= require best_in_place.jquery-ui
 //= require readmore
 //= require jquery.Jcrop
 //= require cocoon
-//= require twitter/bootstrap
 //= require jquery_nested_form
 //= require soundmanager2-nodebug-jsmin
 //= require page-player
@@ -28,6 +29,8 @@
 //= require fullcalendar
 //= require fullcalendar/locale-all
 //= require bootstrap-datetimepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require fancybox
 //= require Chart.bundle
 //= require chartkick

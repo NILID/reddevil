@@ -1,22 +1,14 @@
 @media (min-width: 1200px) {
-  .masonry[data-columns]::before {
-    content: '2 .col-xs-6';
-  }
+  .card-columns {column-count: 2;}
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .masonry[data-columns]::before {
-    content: '2 .col-xs-6';
-  }
+  .card-columns {column-count: 2;}
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .masonry[data-columns]::before {
-    content: '2 .col-xs-6';
-  }
+  .card-columns {column-count: 2;}
 }
 @media (max-width: 767px) {
-  .masonry[data-columns]::before {
-    content: '1 .col-xs-12';
-  }
+  .card-columns {column-count: 1;}
 }

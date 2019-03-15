@@ -8,5 +8,5 @@
         = (%w(int price).include? type) ? (f.number_field :warmth_sum, class: 'number_field form-control') : (f.text_field element, class: 'form-control')
 
   .modal-footer
-    %button.btn.btn-default(data-dismiss='modal' aria-hidden='true')= t 'shared.close'
+    %button.btn.btn-secondary(data-dismiss='modal' aria-hidden='true')= t 'shared.close'
     = f.submit nil, class: 'btn btn-primary'

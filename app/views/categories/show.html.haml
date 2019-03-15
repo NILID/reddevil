@@ -12,6 +12,6 @@
   = @category.ancestry
 
 .form-group
-  = link_to t('.back', :default => t("helpers.links.back")), categories_path, class: 'btn btn-default'
-  = link_to t('shared.edit'), edit_category_path(@category), class: 'btn btn-default'
+  = link_to t('.back', :default => t("helpers.links.back")), categories_path, class: 'btn btn-secondary'
+  = link_to t('shared.edit'), edit_category_path(@category), class: 'btn btn-secondary'
   = link_to t('shared.del'), category_path(@category), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

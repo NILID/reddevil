@@ -1,19 +1,19 @@
 = content_tag_for(:ul, @album, class: 'breadcrumb') do
   %li
     = link_to t('shared.music'), albums_path
-    %span.divider
+    %span.dropdown-divider
   - @album.ancestors.each do |a|
     %li
       = link_to a.title, a
-      %span.divider
+      %span.dropdown-divider
   %li
     = @album.title
     - if user_signed_in?
       = link_to like_album_path(@album), method: :post, remote: true do
         = current_user.likes?(@album) ? fa_icon('star') : fa_icon('star-o')
 
-.panel.panel-default
-  .panel-body
+.card
+  .card-body
     - @albums.each do |album|
       %p
         = link_to album.title, album

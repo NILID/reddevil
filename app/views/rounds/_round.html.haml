@@ -1,22 +1,21 @@
 - check_deadline = round.check_finish?
 - matches_count = round.matches.pluck(:id).size
 
-.panel{ class: check_deadline ? 'panel-default' : 'panel-info' }
-  .panel-heading
+/ !!!!!!!!!! panel-info dropped
+.card{ class: check_deadline ? nil : 'panel-info' }
+  .card-header
     = link_to round.title, round
     - if can? :manage, round
       .btn-group.pull-right
-        %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
           = fa_icon 'cog'
         %ul.dropdown-menu
-          %li
-            = link_to edit_round_path(round) do
-              = fa_icon 'edit', text: t('shared.edit')
-          %li
-            = link_to round_path(round), method: :delete, data: { confirm: t('shared.sure') } do
-              = fa_icon 'trash-o', text: t('shared.del')
+          = link_to edit_round_path(round), class: 'dropdown-item' do
+            = fa_icon 'edit', text: t('shared.edit')
+          = link_to round_path(round), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+            = fa_icon 'trash-o', text: t('shared.del')
 
-  .panel-body
+  .card-body
     %span.text-muted
       %span= plural matches_count, 'match'
       &#149;
@@ -26,5 +25,5 @@
       &#149;
       %span= check_deadline ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(round.deadline))
   - if !check_deadline && (matches_count != round.forecasts.where(user_id: current_user.id).pluck(:id).size)
-    .panel-footer.text-danger
+    .card-footer.text-danger
       = t 'forecasts.empty', count_days: distance_of_time_in_words(round.deadline, Time.zone.now)

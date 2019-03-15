@@ -3,111 +3,100 @@
 - unless user_signed_in?
   .row
     .col-md-12
-      .alert.alert-info
+      .alert.alert-primary
         %p C 12 декабря незарегистрированным участникам ограничен свободный доступ к персональным данным.
 
 - if @messages
   .row
     .col-md-12
       - @messages.each do |message|
-        .alert.alert-info
+        .alert.alert-primary
           %h4= message.title
           %p= simple_format message.content
 
-.row.masonry(data-columns='1')
-  - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?)
-    %div
-      .panel.panel-default
+.row
+  .col.card-columns
+    - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?)
+      .card
         - unless @bdusers_prevyesterday.empty?
-          .panel-heading
-            .panel-title><
-              = t 'shared.birthdays_prevyesterday'
-          .panel-body
+          .card-header
+            = t 'shared.birthdays_prevyesterday'
+          .card-body
             - @bdusers_prevyesterday.keys.sort.each do |u|
               = render @bdusers_prevyesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
 
         - unless @bdusers_yesterday.empty?
-          .panel-heading
-            .panel-title><
-              = t 'shared.birthdays_yesterday'
-          .panel-body
+          .card-header
+            = t 'shared.birthdays_yesterday'
+          .card-body
             - @bdusers_yesterday.keys.sort.each do |u|
               = render @bdusers_yesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
 
         - unless @bdusers_today.empty?
-          .panel-heading
-            .panel-title><
-              = @bdusers_today.keys.count > 1 ? t('shared.birthdays_today') : t('shared.birthday_today')
-          .panel-body
+          .card-header
+            = @bdusers_today.keys.count > 1 ? t('shared.birthdays_today') : t('shared.birthday_today')
+          .card-body
             - @bdusers_today.keys.sort.each do |u|
               = render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
 
         - unless @bdusers_tomorrow.empty?
-          .panel-heading
-            .panel-title><
-              = t 'shared.birthdays_tomorrow'
-          .panel-body
+          .card-header
+            = t 'shared.birthdays_tomorrow'
+          .card-body
             - @bdusers_tomorrow.keys.sort.each do |u|
               = render @bdusers_tomorrow[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
 
         - unless @bdusers_month.empty?
-          .panel-heading
-            .panel-title><
-              = @bdusers_month.keys.count > 1 ? t('shared.birthdays') : t('shared.birthday')
-          .panel-body
+          .card-header
+            = @bdusers_month.keys.count > 1 ? t('shared.birthdays') : t('shared.birthday')
+          .card-body
             - @bdusers_month.keys.sort.each do |u|
               = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
 
-  - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
-    %div
-      .panel.panel-default
+    - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
+      .card
         - unless @holidays_today.empty?
-          .panel-heading
-            .panel-title
-              = t 'shared.today'
-              %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
-          .panel-body
+          .card-header
+            = t 'shared.today'
+            %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
+          .card-body
             - @holidays_today.each do |holiday|
               %p.text-success= holiday[:name]
         - unless @holidays_tomorrow.empty?
-          .panel-heading
-            .panel-title
-              = t 'shared.tomorrow'
-              %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
-          .panel-body
+          .card-header
+            = t 'shared.tomorrow'
+            %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
+          .card-body
             - @holidays_tomorrow.each do |holiday|
               %p= holiday[:name]
 
-  - if user_signed_in?
-    - unless @events.empty? && @events_soon.empty?
-      %div
-        .panel.panel-default
+    - if user_signed_in?
+      - unless @events.empty? && @events_soon.empty?
+        .card
           - unless @events.empty?
-            .panel-heading
-              .panel-title= link_to t('events.list'), [current_user, Event]
-            .panel-body
+            .card-header
+              = link_to t('events.list'), [current_user, Event]
+            .card-body
               .row
-                .col-xs-12= render partial: 'events/event_mini', collection: @events, locals: { diff_dates: false } 
+                .col-12= render partial: 'events/event_mini', collection: @events, locals: { diff_dates: false } 
 
           - unless @events_soon.empty?
-            .panel-heading
-              .panel-title= t 'events.future'
-            .panel-body
+            .card-header
+              = t 'events.future'
+            .card-body
               .row
-                .col-xs-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
+                .col-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
 
-  - if user_signed_in?
-    %div
-      .panel.panel-default
+    - if user_signed_in?
+      .card
         - if current_user.member
-          .panel-heading
-            .panel-title><
-              = t 'vacations.my'
-              = link_to manage_holidays_member_path(current_user.member), class: 'pull-right btn btn-default btn-xs', title: t('shared.edit') do
-                = fa_icon 'edit'
+          .card-header
+            = t 'vacations.my'
+            = link_to manage_holidays_member_path(current_user.member), class: 'pull-right btn btn-light border btn-sm', title: t('shared.edit') do
+              = fa_icon 'edit'
             .clearfix
           - if @current_vacations_soon
-            .panel-body
+            .card-body
               %p
                 - count_days = (DateTime.now.beginning_of_day..@current_vacations_soon.startdate.beginning_of_day).count - 1
                 = t('vacations.diff_days', till: plural(count_days, 'till', false), count: plural(count_days, 'day'))
@@ -117,28 +106,26 @@
 
 
         - unless @vacations.empty?
-          .panel-heading
-            .panel-title><
-              = t 'vacations.index'
-          .panel-body
+          .card-header
+            = t 'vacations.index'
+          .card-body
             .row
-              .col-xs-2.col-md-3
-                = image_tag 'umbrella.png', class: 'img-responsive'
-              .col-xs-10.col-md-9
+              .col-2.col-md-3
+                = image_tag 'umbrella.png', class: 'img-fluid'
+              .col-10.col-md-9
                 - @vacations.each do |v|
                   %p
                     = v.member.fullname
                     = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
 
         - unless @vacations_soon.empty?
-          .panel-heading
-            .panel-title><
-              = t 'vacations.soon'
-          .panel-body
+          .card-header
+            = t 'vacations.soon'
+          .card-body
             .row
-              .col-xs-2.col-md-3
-                = image_tag 'chemodan.png', class: 'img-responsive'
-              .col-xs-10.col-md-9
+              .col-2.col-md-3
+                = image_tag 'chemodan.png', class: 'img-fluid'
+              .col-10.col-md-9
                 - @vacations_soon.each do |v|
                   %p
                     = v.member.fullname
@@ -148,10 +135,9 @@
 
 - unless @docs.empty?
   .row
-    .col-xs-12
-      .panel.panel-default
-        .panel-heading
-          .panel-title><
-            = t 'docs.last_docs'
-        .panel-body
-          = render partial: 'docs/mini_doc', collection: @docs
+    .col-12
+      .card
+        .card-header= t 'docs.last_docs'
+        .card-body
+          %p.card-text
+            .row= render partial: 'docs/mini_doc', collection: @docs

@@ -16,8 +16,8 @@
             %p= l message.created_at
         - if can? :manage, Message
           %td
-            = link_to t('shared.edit'), edit_message_path(message), :class => 'btn btn-default btn-xs'
-            = link_to t('shared.del'), message_path(message), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+            = link_to t('shared.edit'), edit_message_path(message), :class => 'btn btn-secondary btn-sm'
+            = link_to t('shared.del'), message_path(message), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
             - if message.close?
               %h3
                 %span.label.label-danger><= t 'message.close'

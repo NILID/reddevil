@@ -71,7 +71,7 @@ gem 'paperclip-i18n'
 
 gem 'meta-tags', require: 'meta_tags'
 
-gem "bootstrap_form", "~> 2.7"
+gem "bootstrap_form", ">= 4.2.0"
 
 gem 'acts-as-taggable-on'
 
@@ -85,10 +85,9 @@ gem 'will_paginate', '~> 3.0'
 # gem 'turbolinks', '~> 5'
 # gem 'faye-rails', '~> 2.0'
 
-gem 'less-rails'
-gem 'twitter-bootstrap-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'bootstrap-datepicker-rails'
 
 group :production do
   gem 'passenger', '5.3.1'

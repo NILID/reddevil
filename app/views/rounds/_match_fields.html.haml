@@ -1,10 +1,10 @@
 = f.form_group do
   .well.well-small
-    .col-xs-6
+    .col-6
       - %i[team1_id team2_id].each do |team|
         = f.select(team, @teams.collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
     - if params[:action] == 'edit'
-      .col-xs-6
+      .col-6
         = f.number_field :team1goal, min: 0
         = f.number_field :team2goal, min: 0
 

@@ -1,8 +1,11 @@
 - set_meta_tags title: t('member.title')
 
 .row
-  .col-xs-12
-    .well
-      = render 'current_member', member: @current_member if @current_member
-      = render 'panel_top'
-      = render 'members', members: (@members - [@current_member])
+  .col-12
+    = render 'current_member', member: @current_member if @current_member
+  .col-12.py-2
+    .card
+      .card-header
+        = render 'panel_top'
+      .card-body
+        = render 'members', members: (@members - [@current_member])

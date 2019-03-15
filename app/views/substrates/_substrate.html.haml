@@ -11,7 +11,7 @@
     = link_to substrate.title, substrate
     %span.substrates-actions
       - if can? :edit, Substrate
-        = link_to edit_substrate_path(substrate), class: 'btn-sm btn btn-default' do
+        = link_to edit_substrate_path(substrate), class: 'btn-sm btn btn-secondary' do
           = fa_icon 'edit'
   %td= substrate.drawing
   %td= substrate.number

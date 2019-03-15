@@ -1,6 +1,6 @@
 = form_for Item.new, html: {class: 'item-form'} do |f|
   = f.file_field :file
-  = f.submit t('mirrors.import'), class: 'btn btn-default'
+  = f.submit t('mirrors.import'), class: 'btn btn-secondary'
 
 - if @item
 
@@ -25,14 +25,14 @@
         %span.mirror-index= n.second_id
         %br/
         - if ee[n.real-1]
-          %span.badge.badge-info(style="font-size:20px;font-weight:600")= ee[n.real-1].first
+          %span.badge.badge-pill.badge-info(style="font-size:20px;font-weight:600")= ee[n.real-1].first
         - else
           %span &nbsp;
 
         - jj.delete(ee[n.real-1])
         - if ee[n.real-1]
           .tip-text
-            / %span.badge.badge-info= n.weight
+            / %span.badge.badge-pill.badge-info= n.weight
             %span= ee[n.real-1].last
 
       - if [6, 11, 17, 22, 28, 33, 39, 44, 50, 55, 61].include? n.id
@@ -45,5 +45,5 @@
       %ol
         - jj.each do |j|
           %li
-            %span.badge.badge-info= j.first
+            %span.badge.badge-pill.badge-info= j.first
             = j.last

@@ -1,10 +1,9 @@
 .row
-  .col-md-8
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          = t 'devise.sign'
-      .panel-body
+  .col-md-12
+    .card
+      .card-header
+        = t 'devise.sign'
+      .card-body
         = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), layout: :horizontal) do |f|
           = f.email_field :email, autofocus: true, autocomplete: 'email'
           = f.password_field :password, autocomplete: 'current-password'
@@ -13,5 +12,5 @@
               = f.check_box :remember_me, label: t('devise.remember')
           = f.form_group do
             = f.primary t('devise.login')
-      .panel-footer
+      .card-footer
         = render 'users/shared/links'

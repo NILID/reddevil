@@ -9,7 +9,7 @@ module AncestryHelper
             :ul_class             => [],
             :ul_class_top         => ['nav nav-pills nav-stacked nav-reddevil'],
             :ul_class_children    => ['nav nav-pills nav-stacked'],
-            :li_class             => [],
+            :li_class             => ['nav-item'],
             :li_class_top         => [],
             :li_class_children    => %w(nav-children slide-block),
             :sort_by              => []

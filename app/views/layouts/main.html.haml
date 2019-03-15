@@ -1,13 +1,13 @@
-!!! 5
+!!!
 %html{ lang: 'ru' }
   = render 'layouts/header'
 
   %body
-    = render 'main/menu'
-    .container-fluid
-      .row
-        .col-xs-12= bootstrap_flash
-      = yield
+    %header= render 'main/menu'
+    %main.py-2(role='main')
+      .container-fluid
+        .row
+          .col-12=# bootstrap_flash
+        = yield
 
     = render 'layouts/footer'
-    = javascript_include_tag 'salvattore'

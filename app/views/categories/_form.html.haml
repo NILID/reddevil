@@ -1,16 +1,15 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      = formtitle
+.card
+  .card-header
+    = formtitle
 
   = bootstrap_form_for @category, layout: :horizontal do |f|
-    .panel-body
+    .card-body
       = f.hidden_field :parent_id
       = f.text_field :title, autofocus: true
       = f.form_group do
         = f.check_box :hidden, label: t('categories.hide')
 
-    .panel-footer
+    .card-footer
       = f.form_group do
         = f.primary
-        = link_to t('shared.cancel'), categories_path, class: 'btn btn-default'
+        = link_to t('shared.cancel'), categories_path, class: 'btn btn-secondary'

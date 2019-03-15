@@ -1,5 +1,5 @@
 - if f.id && (can? :edit, f)
-  = link_to edit_user_forecast_path(user, f), data: {target: "#dialog_forecast_#{match.id}", toggle: 'modal'}, title: t('forecasts.edit'), class: 'modal-link btn btn-default btn-xs', remote: true do
+  = link_to edit_user_forecast_path(user, f), data: {target: "#dialog_forecast_#{match.id}", toggle: 'modal'}, title: t('forecasts.edit'), class: 'modal-link btn btn-secondary btn-sm', remote: true do
     = fa_icon 'cog'
   .modal.fade(tabIndex='-1' role='dialog' id="dialog_forecast_#{match.id}")
 

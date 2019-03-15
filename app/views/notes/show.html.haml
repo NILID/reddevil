@@ -16,5 +16,5 @@
 
 - if can? :manage, Note
   .form-group
-    = link_to t('shared.edit'), edit_note_path(@note), class: 'btn btn-default'
+    = link_to t('shared.edit'), edit_note_path(@note), class: 'btn btn-secondary'
     = link_to t('shared.del'), note_path(@note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

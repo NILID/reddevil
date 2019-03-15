@@ -8,4 +8,4 @@ Rails.application.config.assets.version = '1.2'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( salvattore.js soundmanager2.swf soundmanager2_flash9.swf )
+Rails.application.config.assets.precompile += %w( soundmanager2.swf soundmanager2_flash9.swf )

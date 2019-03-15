@@ -4,23 +4,22 @@
 - model_class = Note
 
 - content_for :sidebar do
-  .panel.panel-default
-    .panel-body
+  .card
+    .card-body
       - label_css_classes.each do |k,v|
         %p
           = link_to notes_path(:'q[status_eq]' => k) do
-            %span.label{ class: "label-#{v}" }
+            %span.label.badge{ class: "badge-#{v}" }
               %b= @notes_all_count[k.to_s] || '0'
               = t "notes.#{k}"
 
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      = t 'notes.title'
-      %small.pull-right
-        = link_to(new_note_path, class: 'btn btn-primary btn-sm') do
-          = fa_icon 'plus inverse'
-  %table.table.table-striped.table-condensed
+.card
+  .card-header
+    = t 'notes.title'
+    %small.pull-right
+      = link_to(new_note_path, class: 'btn btn-primary btn-sm') do
+        = fa_icon 'plus inverse'
+  %table.table.table-striped.table-sm
     %thead
       %tr
         %th
@@ -49,5 +48,5 @@
           %td.col-md-2= Russian.strftime(note.created_at, "%d %B")
           - if can? :manage, Note
             %td
-              = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-default btn-xs'
-              = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+              = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-secondary btn-sm'
+              = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'

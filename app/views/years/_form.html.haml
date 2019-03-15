@@ -1,11 +1,12 @@
-= bootstrap_nested_form_for @year, label: :horizontal do |f|
+= bootstrap_form_for @year, label: :horizontal do |f|
   = f.text_field :year
 
   = f.fields_for :columns do |c|
-    = render partial: 'columns/column_field', locals: {c: c}
+    = render partial: 'columns/column_fields', locals: {c: c}
 
-  = f.link_to_add t('columns.add'), :columns
+  = f.form_group do
+    = link_to_add_association t('columns.add'), f, :columns
 
   = f.form_group do
     = f.primary
-    = link_to t('shared.cancel'), :back, class: 'btn btn-default'
+    = link_to t('shared.cancel'), :back, class: 'btn btn-secondary'

@@ -103,6 +103,6 @@
   = @purchase.delivery
 
 .form-group
-  = link_to t('.back', :default => t("helpers.links.back")), purchases_path, class: 'btn btn-default'
-  = link_to t('shared.edit'), edit_purchase_path(@purchase), class: 'btn btn-default'
+  = link_to t('.back', :default => t("helpers.links.back")), purchases_path, class: 'btn btn-secondary'
+  = link_to t('shared.edit'), edit_purchase_path(@purchase), class: 'btn btn-secondary'
   = link_to t('shared.del'), purchase_path(@purchase), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

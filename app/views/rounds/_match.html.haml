@@ -35,7 +35,7 @@
       %td.text-center{ id: "match_#{match.id}_user_#{user.id}_forecast" }
         - if (user_signed_in? && ((@round.deadline > DateTime.now)) || (current_user.role? :admin))
           - if can? :new, user => Forecast
-            = link_to new_user_forecast_path(user, match_id: match.id), data: {target: "#dialog_forecast_#{match.id}", toggle: 'modal'}, class: 'modal-link btn btn-default btn-xs', title: t('forecasts.add'), remote: true do
+            = link_to new_user_forecast_path(user, match_id: match.id), data: {target: "#dialog_forecast_#{match.id}", toggle: 'modal'}, class: 'modal-link btn btn-secondary btn-sm', title: t('forecasts.add'), remote: true do
               = fa_icon 'plus'
             .modal.fade(tabIndex='-1' role='dialog' id="dialog_forecast_#{match.id}")
 
@@ -50,6 +50,6 @@
     %td
       - results = (Match.where(team1_id: [match.team1, match.team2], team2_id: [match.team1, match.team2]).joins(:round).where(rounds: {type_id: @round.type_id}).where('deadline < ?', DateTime.now).pluck(:id) - [match.id]).count
       - if results > 0
-        = link_to get_results_round_match_path(@round, match), data: { target: "#dialog_match_#{match.id}", toggle: 'modal' }, class: 'modal-link btn btn-success btn-xs', remote: true do
+        = link_to get_results_round_match_path(@round, match), data: { target: "#dialog_match_#{match.id}", toggle: 'modal' }, class: 'modal-link btn btn-success btn-sm', remote: true do
           = fa_icon 'info-circle'
         .modal.fade(tabIndex='-1' role='dialog' id="dialog_match_#{match.id}")

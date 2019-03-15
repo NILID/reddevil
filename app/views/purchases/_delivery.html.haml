@@ -9,9 +9,9 @@
         \ -
         .modal.fade(tabIndex='-1' role='dialog' id="dialog_delivery_#{purchase.id}")
     .tip-text
-      %dl.dl-horizontal
-        %dt= Delivery.human_attribute_name(:doc)
-        %dd= Delivery.human_attribute_name(:delivery)
+      %dl.row
+        %dt.col-sm-3= Delivery.human_attribute_name(:doc)
+        %dd.col-sm-9= Delivery.human_attribute_name(:delivery)
         %hr
         - purchase.deliveries.each do |d|
           %dt= short_date d.doc

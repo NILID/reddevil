@@ -2,57 +2,59 @@
 
 .row
   .col-md-12
-    .well
-      = render 'panel_top'
-      .tab-content
-        - unless @members.pluck(:id).empty?
-          .tab-pane.active
-            .stat-ages
-              %h3= t 'member.ages'
-              %p
-                %button.btn.btn-primary.btn-xs
-                  = t 'member.total'
-                  %span.badge
-                    = plural(total = @member_ages.inject(:+), 'year')
-                %button.btn.btn-primary.btn-xs
-                  = t 'member.medium'
-                  %span.badge
-                    = plural(total / @member_ages.length, 'year')
+    .card
+      .card-header
+        = render 'panel_top'
+      .card-body
+        .tab-content
+          - unless @members.pluck(:id).empty?
+            .tab-pane.active
+              .stat-ages
+                %h3= t 'member.ages'
+                %p
+                  %button.btn.btn-primary.btn-sm
+                    = t 'member.total'
+                    %span.badge.badge-pill.badge-secondary
+                      = plural(total = @member_ages.inject(:+), 'year')
+                  %button.btn.btn-primary.btn-sm
+                    = t 'member.medium'
+                    %span.badge.badge-pill.badge-secondary
+                      = plural(total / @member_ages.length, 'year')
 
-              - a = @members.reorder(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
-              = bar_chart a, height: '700px', label: t('member.ages')
+                - a = @members.reorder(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
+                = bar_chart a, height: '700px', label: t('member.ages')
 
-            %hr/
+              %hr/
 
-            .stat-days
-              %h3= t 'member.dayname_stat'
-              %p
-                - @members_birth_days.each do |day|
-                  %button.btn.btn-primary.btn-xs
-                    = I18n.t("date.standalone_day_names")[day[0].to_i]
-                    %span.badge= day[1]
-              = line_chart @members.group_by_day_of_week(:birth, format: "%A").count, label: t('member.birth_count')
+              .stat-days
+                %h3= t 'member.dayname_stat'
+                %p
+                  - @members_birth_days.each do |day|
+                    %button.btn.btn-primary.btn-sm
+                      = I18n.t("date.standalone_day_names")[day[0].to_i]
+                      %span.badge.badge-pill.badge-secondary= day[1]
+                = line_chart @members.group_by_day_of_week(:birth, format: "%A").count, label: t('member.birth_count')
 
-            %hr/
+              %hr/
 
-            .stat-month
-              %h3= t 'member.month_stat'
-              %p
-                - @members_birth_months.each do |month|
-                  %button.btn.btn-primary.btn-xs
-                    = I18n.t("date.standalone_month_names")[month[0].to_i]
-                    %span.badge= month[1]
+              .stat-month
+                %h3= t 'member.month_stat'
+                %p
+                  - @members_birth_months.each do |month|
+                    %button.btn.btn-primary.btn-sm
+                      = I18n.t("date.standalone_month_names")[month[0].to_i]
+                      %span.badge.badge-pill.badge-secondary= month[1]
 
-              = column_chart @members.group_by_month_of_year(:birth, format: "%b").count, xtitle: 'Месяц', ytitle: 'Количество человек', label: t('member.birth_count')
+                = column_chart @members.group_by_month_of_year(:birth, format: "%b").count, xtitle: 'Месяц', ytitle: 'Количество человек', label: t('member.birth_count')
 
-            %hr/
+              %hr/
 
-            .stat-names
-              %h3= t 'member.name_stat'
-              %p
-                - member_count = @members.group(:name).count
-                - member_count.sort_by {|_key, value| value}.reverse.first(3).each do |m|
-                  %button.btn.btn-primary.btn-xs
-                    = m[0]
-                    %span.badge= m[1]
-              = pie_chart member_count, legend: false
+              .stat-names
+                %h3= t 'member.name_stat'
+                %p
+                  - member_count = @members.group(:name).count
+                  - member_count.sort_by {|_key, value| value}.reverse.first(3).each do |m|
+                    %button.btn.btn-primary.btn-sm
+                      = m[0]
+                      %span.badge.badge-pill.badge-secondary= m[1]
+                = pie_chart member_count, legend: false

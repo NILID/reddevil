@@ -2,7 +2,9 @@
 
 .row
   .col-md-12
-    .well
-      = render 'panel_top'
-      %table.table.table-striped
-        = render partial: 'member_holiday', collection: @members
+    .card
+      .card-header
+        = render 'panel_top'
+      .card-body
+        %table.table.table-striped
+          = render partial: 'member_holiday', collection: @members

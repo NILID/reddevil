@@ -1,12 +1,11 @@
 - model_class = Team
 
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      = t 'teams.title'
-      - if can? :manage, Team
-        %small.pull-right
-          = link_to t('shared.add'), new_team_path, class: 'btn btn-primary btn-sm'
+.card
+  .card-header
+    = t 'teams.title'
+    - if can? :manage, Team
+      %small.pull-right
+        = link_to t('shared.add'), new_team_path, class: 'btn btn-primary btn-sm'
   %table.table.table-striped
     %thead
       %tr
@@ -22,7 +21,7 @@
           %td= image_tag team.flag(:thumb)
           - if can? :manage, team
             %td
-              = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-default btn-xs'
-              = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+              = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-secondary btn-sm'
+              = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
 
 

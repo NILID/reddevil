@@ -18,9 +18,9 @@
             .col-md-2
               = c.link_to_remove class: 'btn btn-danger' do
                 = fa_icon 'remove'
-        = f.link_to_add :deliveries, class: 'btn btn-default' do
+        = f.link_to_add :deliveries, class: 'btn btn-secondary' do
           = fa_icon 'plus', text: t('columns.add')
 
       .modal-footer
-        %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'
+        %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'
         = f.primary

@@ -9,12 +9,12 @@
       = t 'purchases.title'
       - if can? :manage, @year
         %small
-          = link_to t('shared.edit'), edit_year_path(@year), class: 'btn btn-default btn-xs'
-          = link_to t('shared.del'), @year, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+          = link_to t('shared.edit'), edit_year_path(@year), class: 'btn btn-secondary btn-sm'
+          = link_to t('shared.del'), @year, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
     .pull-right
       - User.sellers.each do |u|
         = link_to user_profile_path(u), title: u.profile.surname do
-          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'img-circle img-circle-bordered'
+          = image_tag u.profile.avatar(:thumb), width: '30px', class: 'rounded-circle img-circle-bordered'
   .row
     .col-md-5.col-sm-6.col-lg-4
       = bootstrap_form_for(@q, url: year_purchases_path(@year), method: :get) do |f|
@@ -25,7 +25,7 @@
           append: (f.primary 'OK')
 
   .purchases-table
-    %table.table.table-bordered.table-hover.table-condensed.table-white
+    %table.table.table-bordered.table-hover.table-sm.table-white
       %thead.header
         %tr
           %th №

@@ -1,6 +1,6 @@
 - if user_signed_in?
-  %li= link_to (current_user.profile.login? ? current_user.profile.login : current_user.email), user_profile_path(current_user)
-  %li= link_to t('devise.logout'), destroy_user_session_path, method: :delete
+  %li.nav-item= link_to (current_user.profile.login? ? current_user.profile.login : current_user.email), user_profile_path(current_user), class: 'nav-link'
+  %li.nav-item= link_to t('devise.logout'), destroy_user_session_path, method: :delete, class: 'nav-link'
 - else
-  %li= link_to t('devise.login'), new_user_session_path
-  %li= link_to t('devise.signup'), new_user_registration_path
+  %li.nav-item= link_to t('devise.login'), new_user_session_path, class: 'nav-link'
+  %li.nav-item= link_to t('devise.signup'), new_user_registration_path, class: 'nav-link'

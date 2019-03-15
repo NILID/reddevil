@@ -7,20 +7,20 @@
         .tip-text
           .pull-left
             .btn-group.purchase-actions
-              = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-default btn-xs', title: t('shared.edit') do
+              = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-secondary btn-sm', title: t('shared.edit') do
                 = fa_icon 'cog'
-              = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger' do
+              = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger' do
                 = fa_icon 'trash-o'
           .pull-right= purchase.user.profile.surname
           .clearfix
           %hr
-          %dl.dl-horizontal
-            %dt= Purchase.human_attribute_name(:price)
-            %dd= purchase.price? ? number_to_currency(purchase.price, precision: 2, delimiter: ' ') : t('shared.empty')
-            %dt= Purchase.human_attribute_name(:provider)
-            %dd= purchase.provider || t('shared.empty')
-            %dt= Purchase.human_attribute_name(:doc)
-            %dd= purchase.doc || t('shared.empty')
+          %dl.row
+            %dt.col-sm-3.text-right= Purchase.human_attribute_name(:price)
+            %dd.col-sm-9= purchase.price? ? number_to_currency(purchase.price, precision: 2, delimiter: ' ') : t('shared.empty')
+            %dt.col-sm-3.text-right= Purchase.human_attribute_name(:provider)
+            %dd.col-sm-9= purchase.provider || t('shared.empty')
+            %dt.col-sm-3.text-right= Purchase.human_attribute_name(:doc)
+            %dd.col-sm-9= purchase.doc || t('shared.empty')
 
   - purchase.columnships.each do |c|
     %td{ class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil }
@@ -30,6 +30,6 @@
   - else
     %td
       .purchase-actions
-        = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-default btn-xs', remote: true do
+        = link_to get_delivery_form_year_purchase_path(@year, purchase), data: {target: "#dialog_delivery_#{purchase.id}", toggle: 'modal'}, class: 'modal-link btn btn-secondary btn-sm', remote: true do
           = fa_icon 'cog'
       .modal.fade(tabIndex='-1' role='dialog' id="dialog_delivery_#{purchase.id}")

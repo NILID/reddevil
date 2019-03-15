@@ -61,7 +61,7 @@
         %td= best_in_place purchase, :proxy, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
         %td= best_in_place purchase, :delivery, as: :date, display_with: lambda { |v| Russian.strftime(v, "%d %b")}, ok_button: 'Save'
         %td
-          = link_to t('shared.edit'), edit_purchase_path(purchase), class: 'btn btn-default btn-xs'
-          = link_to t('shared.del'), purchase_path(purchase), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-xs btn-danger'
+          = link_to t('shared.edit'), edit_purchase_path(purchase), class: 'btn btn-secondary btn-sm'
+          = link_to t('shared.del'), purchase_path(purchase), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
 
 = link_to t('shared.add'), new_purchase_path, class: 'btn btn-primary'

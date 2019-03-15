@@ -1,32 +1,29 @@
-= div_for doc, class: 'panel-group', role: 'tablist' do
-  .panel.panel-default
-    .panel-heading(role='tab' id="collapse_list_#{doc.id}")
-      .panel-title
-        = link_to doc.title, "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }
+= div_for doc, role: 'tablist' do
+  .card
+    .card-header(role='tab' id="collapse_list_#{doc.id}")
+      = link_to doc.title, "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }
     - if doc.desc?
       .panel-collapse.collapse{id: "collapse_#{doc.id}", style: 'height:0px', role: 'tabpanel', aria: { labelledby: "collapse_#{doc.id}", expanded: 'false' }}
-        .panel-body
+        .card-body
           %p.save-wspace
             %small= simple_format doc.desc
 
-    .panel-footer.clearfix
+    .card-footer.clearfix
       .pull-left
-        = link_to t('docs.download'), doc.file.url, class: 'btn btn-xs btn-primary', target: '_blank'
+        = link_to t('docs.download'), doc.file.url, class: 'btn btn-sm btn-primary', target: '_blank'
         - if doc.desc?
-          = link_to "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }, class: 'btn btn-xs btn-default' do
+          = link_to "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }, class: 'btn btn-sm btn-secondary' do
             = t('docs.about')
 
         - if can? :manage, Doc
           .btn-group
-            %button.btn.btn-xs.btn-default.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+            %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
               = fa_icon 'cog'
             %ul.dropdown-menu
-              %li
-                = link_to edit_doc_path(doc) do
-                  = fa_icon 'edit', text: t('shared.edit')
-              %li
-                = link_to doc_path(doc), method: :delete, data: { confirm: t('shared.sure') } do
-                  = fa_icon 'trash-o', text: t('shared.del')
+              = link_to edit_doc_path(doc), class: 'dropdown-item' do
+                = fa_icon 'edit', text: t('shared.edit')
+              = link_to doc_path(doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+                = fa_icon 'trash-o', text: t('shared.del')
 
       .pull-right
         - unless doc.categories.empty?

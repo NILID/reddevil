@@ -1,80 +1,72 @@
-.navbar.navbar-default.navbar-xmas
-  .container-fluid
-    .navbar-header
-      %button.navbar-toggle.collapsed{ type: 'button', aria: { collapse: 'false' }, data: { toggle: 'collapse', target: '#reddevil-collapse' } }
-        %span.sr-only Toggle
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to root_path, class: 'navbar-brand' do
-        %span.brand-letter>< R
-        %span>< EDDEVIL
-    .collapse.navbar-collapse#reddevil-collapse
-      %ul.nav.navbar-nav
-        - if can? :read, Member
-          %li{class: (params[:controller] == 'members') ? 'active' : nil}
-            = link_to t('member.title'), members_path
-        %li{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
-          = link_to t('shared.calendar'), calendar_path
-        %li{class: (params[:controller] == 'docs') ? 'active' : nil}
-          = link_to t('docs.title'), docs_path
-        - if can? :manage, Purchase
-          %li{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
-            = link_to years_path do
-              = fa_icon 'shopping-cart', text: t('purchases.title')
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  = link_to root_path, class: 'navbar-brand' do
+    %span.brand-letter>< R
+    %span>< EDDEVIL
+  %button.navbar-toggler{ type: 'button', aria: { collapse: 'false', controls: 'reddevil-collapse', expanded: "false", label: "Toggle navigation" }, data: { toggle: 'collapse', target: '#reddevil-collapse' } }
+    %span.navbar-toggler-icon
 
-        - if (can? :index, Substrate) || (can? :mirrors, Substrate) || (can? :index, Machine)
-          %li.dropdown{class: params[:controller] == 'substrates' ? 'active' : nil}
-            = link_to '#', class: 'dropdown-toggle', role: 'button', data: { toggle: 'dropdown' }, id: 'dropproduction' do
-              = fa_icon 'wrench', text: t('shared.production')
 
-            %ul.dropdown-menu(role='menu' aria-labelledby='dropproduction')
-              - if can? :index, Substrate
-                %li= link_to t('substrates.title'), substrates_path
-              - if can? :mirrors, Substrate
-                %li= link_to t('mirrors.title'), mirrors_substrates_path
-              - if can? :index, Machine
-                %li= link_to t('machines.title'), machines_path
+  .collapse.navbar-collapse#reddevil-collapse
+    %ul.navbar-nav.mr-auto
+      - if can? :read, Member
+        %li.nav-item{class: (params[:controller] == 'members') ? 'active' : nil}
+          = link_to t('member.title'), members_path, class: 'nav-link'
+      %li.nav-item{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
+        = link_to t('shared.calendar'), calendar_path, class: 'nav-link'
+      %li.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
+        = link_to t('docs.title'), docs_path, class: 'nav-link'
+      - if can? :manage, Purchase
+        %li.nav-item{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
+          = link_to years_path, class: 'nav-link' do
+            = fa_icon 'shopping-cart', text: t('purchases.title')
 
-      %ul.nav.navbar-nav.navbar-right
-        - if (can? :read, Round) || (can? :read, Album)
-          %li.dropdown
-            = link_to '#', class: 'dropdown-toggle', role: 'button', data: { toggle: 'dropdown' }, id: 'dropmedia' do
-              %i.fa.fa-list
-              = t 'shared.media'
-            %ul.dropdown-menu(role='menu' aria-labelledby='dropmedia')
-              - if can? :manage, Message
-                %li
-                  = link_to messages_path do
-                    = fa_icon 'envelope'
-                    &nbsp;
-                    = t 'message.title'
+      - if (can? :index, Substrate) || (can? :mirrors, Substrate) || (can? :index, Machine)
+        %li.nav-item.dropdown{class: params[:controller] == 'substrates' ? 'active' : nil}
+          = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: "true", expanded: "false" }, id: 'dropproduction' do
+            = fa_icon 'wrench', text: t('shared.production')
 
-              - if can? :manage, User
-                %li
-                  = link_to users_path do
-                    = fa_icon 'user'
-                    &nbsp;
-                    = t 'users.title'
-                %li.divider
+          .dropdown-menu(aria-labelledby='dropproduction')
+            - if can? :index, Substrate
+              = link_to t('substrates.title'), substrates_path, class: 'dropdown-item'
+            - if can? :mirrors, Substrate
+              = link_to t('mirrors.title'), mirrors_substrates_path, class: 'dropdown-item'
+            - if can? :index, Machine
+              = link_to t('machines.title'), machines_path, class: 'dropdown-item'
 
-              - if can? :read, Album
-                %li
-                  = link_to albums_path do
-                    = fa_icon 'music'
-                    &nbsp;
-                    = t 'shared.music'
-              - if can? :read, Round
-                %li
-                  = link_to rounds_path do
-                    = fa_icon 'futbol-o'
-                    &nbsp;
-                    = t('shared.sport')
-              - if can? :show, [current_user, Folder]
-                %li
-                  = link_to [current_user, Folder] do
-                    = fa_icon 'hdd-o'
-                    &nbsp;
-                    = t('dataset.title')
+    %ul.nav.navbar-nav.navbar-right
+      - if (can? :read, Round) || (can? :read, Album)
+        %li.nav-item.dropdown
+          = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, id: 'dropmedia' do
+            %i.fa.fa-list
+            = t 'shared.media'
+          .dropdown-menu(aria-labelledby='dropmedia')
+            - if can? :manage, Message
+              = link_to messages_path, class: 'nav-link' do
+                = fa_icon 'envelope'
+                &nbsp;
+                = t 'message.title'
 
-        = render 'users/userbar'
+            - if can? :manage, User
+              = link_to users_path, class: 'nav-link' do
+                = fa_icon 'user'
+                &nbsp;
+                = t 'users.title'
+            .dropdown-divider
+
+            - if can? :read, Album
+              = link_to albums_path, class: 'nav-link' do
+                = fa_icon 'music'
+                &nbsp;
+                = t 'shared.music'
+            - if can? :read, Round
+              = link_to rounds_path, class: 'nav-link' do
+                = fa_icon 'futbol-o'
+                &nbsp;
+                = t('shared.sport')
+            - if can? :show, [current_user, Folder]
+              = link_to [current_user, Folder], class: 'nav-link' do
+                = fa_icon 'hdd-o'
+                &nbsp;
+                = t('dataset.title')
+
+      = render 'users/userbar'

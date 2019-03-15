@@ -1,10 +1,10 @@
-.panel.panel-default
-  .panel-heading
+.card
+  .card-header
     = link_to event.title, [event.user, event]
-  .panel-body
+  .card-body
     %p= event.content
   - if can? :manage, [event.user, Event]
-    .panel-footer
+    .card-footer
       = link_to t('shared.edit'), edit_user_event_path(event.user, event)
       = link_to t('shared.del'), [event.user, event], :method => :delete, :data => { :confirm => 'Are you sure?' }
 

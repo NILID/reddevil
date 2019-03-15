@@ -3,5 +3,5 @@
     = bootstrap_form_for [year, purchase], remote: true, layout: :horizontal do |f|
       .modal-body= f.text_field attr
       .modal-footer
-        %button.btn.btn-default(data-dismiss='modal')= t 'shared.close'
+        %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'
         = f.primary

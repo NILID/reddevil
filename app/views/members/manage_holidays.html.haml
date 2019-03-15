@@ -1,13 +1,13 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title= t 'vacations.settings', name: @member.petrovich_fullname
-  = bootstrap_form_for @member, url: update_holidays_member_path, layout: :inline do |f|
-    .panel-body
+.card
+  .card-header
+    = t 'vacations.settings', name: @member.petrovich_fullname
+  .card-body
+    = bootstrap_form_for @member, url: update_holidays_member_path do |f|
       = f.fields_for :vacations do |vacation|
         = render 'vacation_fields', f: vacation
       = f.form_group do
-        = link_to_add_association t('vacations.add'), f, :vacations, class: 'btn btn-default'
-    .panel-footer
+        = link_to_add_association t('vacations.add'), f, :vacations, class: 'btn btn-secondary'
+      %br/
       = f.form_group do
         = f.primary t('shared.save')
-        = link_to t('shared.cancel'), members_path, class: 'btn btn-default'
+        = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'

@@ -1,19 +1,13 @@
-.well.clearfix.nested-fields
-  .pull-right
-    = link_to_remove_association t('shared.del'), f,
-      class: 'btn btn-danger btn-xs',
-       data: { confirm: t('shared.sure') }
-
-  .input-daterange
+.row.nested-fields.input-daterange
+  .col-5
     = f.text_field :startdate,
-       hide_label: true,
-          prepend: t('vacations.from'),
-           inline: true,
-            value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate?)
-
+         hide_label: true,
+            prepend: t('vacations.from'),
+              value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate?)
     = f.text_field :enddate,
-       hide_label: true,
-          prepend: t('vacations.to'),
-           inline: true,
-            value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate?)
-
+         hide_label: true,
+            prepend: t('vacations.to'),
+              value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate?)
+    = link_to_remove_association t('shared.del'), f,
+      class: 'btn btn-danger btn-sm',
+       data: { confirm: t('shared.sure')}

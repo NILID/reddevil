@@ -1,13 +1,12 @@
 .row
-  .col-md-8
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          = t 'devise.forgot'
-      .panel-body
+  .col-md-12
+    .card
+      .card-header
+        = t 'devise.forgot'
+      .card-body
         = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, html: { :method => :post }) do |f|
           = f.email_field :email, autofocus: true
           = f.form_group do
             = f.primary t('devise.sendmepassword')
-      .panel-footer
+      .card-footer
         = render 'users/shared/links'

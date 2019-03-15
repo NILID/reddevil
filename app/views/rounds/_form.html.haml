@@ -1,9 +1,8 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      = formtitle
+.card
+  .card-header
+    = formtitle
   = bootstrap_form_for @round, layout: :horizontal do |f|
-    .panel-body
+    .card-body
       = f.text_field :title
       = f.text_field :content
       = f.text_field :tag_list
@@ -26,9 +25,9 @@
         = render 'match_fields', f: match
 
       = f.form_group do
-        = link_to_add_association t('matches.add'), f, :matches, class: 'btn btn-default'
+        = link_to_add_association t('matches.add'), f, :matches, class: 'btn btn-secondary'
 
-    .panel-footer
+    .card-footer
       = f.form_group do
         = f.primary
-        = link_to t('shared.cancel'), rounds_path, class: 'btn btn-default'
+        = link_to t('shared.cancel'), rounds_path, class: 'btn btn-secondary'

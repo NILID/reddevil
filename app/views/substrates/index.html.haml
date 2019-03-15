@@ -10,12 +10,12 @@
   .pull-right
     - if params[:action] == 'mirrors'
       - User.with_role(:mirrors).each do |u|
-        = link_to user_profile_path(u), title: u.profile.surname do
+        = link_to user_profile_path(u), data: { toggle: 'tooltip' }, title: u.profile.surname do
           = image_tag u.profile.avatar(:thumb), width: '30px', class: 'rounded-circle img-circle-bordered'
 
     - else
       - User.with_role(:drawing).each do |u|
-        = link_to user_profile_path(u), title: u.profile.surname do
+        = link_to user_profile_path(u), data: { toggle: 'tooltip' }, title: u.profile.surname do
           = image_tag u.profile.avatar(:thumb), width: '30px', class: 'rounded-circle img-circle-bordered'
   .clearfix
   .page-header

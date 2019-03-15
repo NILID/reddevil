@@ -3,7 +3,7 @@
     = link_to like_album_path(album), method: :post, remote: true, class: 'icon-star-link' do
       = current_user.likes?(album) ? fa_icon('star') : fa_icon('star-o')
     - unless album.songs.pluck(:id).empty?
-      = link_to download_album_path(album), target: '_blank', title: t('shared.download') do
+      = link_to download_album_path(album), target: '_blank', data: { toggle: 'tooltip' }, title: t('shared.download') do
         = fa_icon 'download'
 
     = link_to album.title, list_album_path(album), remote: true

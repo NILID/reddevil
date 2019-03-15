@@ -28,7 +28,7 @@
           class: 'slide-link list-group-item'
 
 .card
-  .card-header
+  .card-body
     .row
       .col-8
         = t 'docs.title'
@@ -42,12 +42,11 @@
 
       .col-4
         = search_form_for(@q, url: docs_path, html: { method: :get }) do |f|
-          .form-group
-            .input-group
-              .input-group-prepend
-                .input-group-text
-                  = fa_icon 'search'
-              = f.search_field :title_cont, placeholder: t('shared.search'), class: 'form-control form-control-sm'
+          .input-group
+            .input-group-prepend
+              .input-group-text
+                = fa_icon 'search'
+            = f.search_field :title_cont, placeholder: t('shared.search'), class: 'form-control form-control-sm'
 
 
 #doc-list

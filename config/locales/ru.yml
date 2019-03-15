@@ -79,7 +79,7 @@ ru:
     start: (с %{date}, на %{diff})
     edit: Указать отпуск
     add: Добавить отпуск
-    settings: Редактирование отпусков %{name}
+    settings: Редактирование графика отпусков %{name}
     show_old: Показать завершенные
     from: с
     to: до
@@ -193,7 +193,7 @@ ru:
     fullname: ФИО
     other_text: Примечание
     archive: Здесь представлен список бывших сотрудников.
-    vacation: Отпуск
+    vacation: График отпусков
     in_holiday: '%{member} в отпуске'
   users:
     title: Пользователи

@@ -3,19 +3,19 @@
 - unless user_signed_in?
   .row
     .col-md-12
-      .alert.alert-primary
+      .alert.alert-primary(role='alert')
         %p C 12 декабря незарегистрированным участникам ограничен свободный доступ к персональным данным.
 
 - if @messages
   .row
     .col-md-12
       - @messages.each do |message|
-        .alert.alert-primary
-          %h4= message.title
+        .alert.alert-primary(role='alert')
+          %h4.alert-heading= message.title
           %p= simple_format message.content
 
 .row
-  .col.card-columns
+  .col.card-columns.main-blocks
     - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?)
       .card
         - unless @bdusers_prevyesterday.empty?
@@ -92,12 +92,15 @@
         - if current_user.member
           .card-header
             = t 'vacations.my'
-            = link_to manage_holidays_member_path(current_user.member), class: 'pull-right btn btn-light border btn-sm', title: t('shared.edit') do
+            = link_to manage_holidays_member_path(current_user.member),
+              class: 'pull-right btn btn-light border btn-sm',
+              data: { toggle: 'tooltip' },
+              title: t('shared.edit') do
+
               = fa_icon 'edit'
             .clearfix
           - if @current_vacation
-            .card-body
-              %p= t 'vacations.you_rest'
+            .card-body= t 'vacations.you_rest'
 
           - elsif @current_vacations_soon
             .card-body
@@ -136,11 +139,8 @@
                       date: Russian.strftime(v.startdate, "%e %B"),
                       diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
 
-- unless @docs.empty?
-  .row
-    .col-12
+    - unless @docs.empty?
       .card
         .card-header= t 'docs.last_docs'
         .card-body
-          %p.card-text
-            .row= render partial: 'docs/mini_doc', collection: @docs
+          .row= render partial: 'docs/mini_doc', collection: @docs

@@ -13,7 +13,7 @@
           = link_to t('shared.del'), @year, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
     .pull-right
       - User.sellers.each do |u|
-        = link_to user_profile_path(u), title: u.profile.surname do
+        = link_to user_profile_path(u), data: { toggle: 'tooltip' }, title: u.profile.surname do
           = image_tag u.profile.avatar(:thumb), width: '30px', class: 'rounded-circle img-circle-bordered'
   .row
     .col-md-5.col-sm-6.col-lg-4

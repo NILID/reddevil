@@ -20,7 +20,7 @@
                 - if params[:sort] == 'ratio'
                   = fa_icon 'chevron-down'
             %td
-              = link_to rounds_path(sort: 'win'), class: 'has-tooltip', data: { toggle: 'tooltip', title: t('forecasts.full_win') } do
+              = link_to rounds_path(sort: 'win'), data: { toggle: 'tooltip', title: t('forecasts.full_win') } do
                 Точн.
                 - if params[:sort] == 'win'
                   = fa_icon 'chevron-down'
@@ -43,7 +43,7 @@
               %td
                 %p
                   = user_ratio[:ratio_count]
-                  %span.text-muted.has-tooltip{ data: { toggle: 'tooltip', title: t('forecasts.count_tip') } }
+                  %span.text-muted{ data: { toggle: 'tooltip', title: t('forecasts.count_tip') } }
                     = user_ratio[:forecasts_count]
               %td= user.win_forecasts_count
               %td= user.profile.total_result

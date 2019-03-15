@@ -1,4 +1,4 @@
-.dataset.text-center{ title: dataset.src_file_name }
+.dataset.text-center{ title: dataset.src_file_name, data: { toggle: 'tooltip' } }
   = link_to '', dataset.src.url, class: 'i-file', target: '_blank'
   = truncate dataset.src_file_name, length: 15, separator: ' ', omission: '...'
   = link_to t('shared.del'), [@user, @folder, dataset], method: :delete, data: { confirm: t('shared.sure') }

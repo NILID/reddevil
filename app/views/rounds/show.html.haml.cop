@@ -44,7 +44,7 @@
       %td.middle
         - f = Forecast.where(match_id: match)
         - unless f.empty?
-          %div.tip
+          .tip
             %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
             .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
 

@@ -3,9 +3,9 @@
   %td.main-title
     = link_to purchase.title, purchase
     .btn-group.purchase-actions
-      = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-secondary btn-sm', title: t('shared.edit') do
+      = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-secondary btn-sm', data: { toggle: 'tooltip' }, title: t('shared.edit') do
         = fa_icon 'cog'
-      = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger' do
+      = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure'), toggle: 'tooltip' }, class: 'btn btn-sm btn-danger' do
         = fa_icon 'trash-o'
   %td.nowrap= render 'purchase_formblock', purchase: purchase, attr: 'price', type: 'price'
   %td= render 'purchase_formblock', purchase: purchase, attr: 'provider', type: 'string'

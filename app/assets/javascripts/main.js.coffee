@@ -16,6 +16,8 @@ $ ->
 
   $('.dropdown-toggle').dropdown()
 
+  $('[data-toggle="tooltip"]').tooltip()
+
   $('.slide-block').hide()
 
   $('.slide-link').click ->

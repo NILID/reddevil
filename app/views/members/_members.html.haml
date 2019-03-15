@@ -8,7 +8,7 @@
         %tr
           %th
           %th
-            = fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all')
+            = fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all'), data: { toggle: 'tooltip' }
             = sort_link @q, :surname, Member.human_attribute_name(:surname)
           - unless params[:action] == 'archive'
             %th= Member.human_attribute_name(:work_phone)

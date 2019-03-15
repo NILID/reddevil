@@ -7,7 +7,8 @@
     %main.py-2(role='main')
       .container-fluid
         .row
-          .col-12=# bootstrap_flash
+          .col-12
+            = flash_messages
         = yield
 
     = render 'layouts/footer'

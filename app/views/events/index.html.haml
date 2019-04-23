@@ -1,6 +1,6 @@
-.lead.pull-left= t 'events.list'
+.lead.float-left= t 'events.list'
 
-.pull-right= link_to t('events.add'), new_user_event_path(@user), class: 'btn btn-primary' if can? :create, Event
+.float-right= link_to t('events.add'), new_user_event_path(@user), class: 'btn btn-primary' if can? :create, Event
 .clearfix
 
 = render @events

@@ -4,7 +4,7 @@
   .card-header
     = t '.title', default: model_class.model_name.human.pluralize.titleize
     - if can? :new, Type
-      %small= link_to t('shared.add'), new_type_path, class: 'pull-right btn btn-primary btn-sm'
+      %small= link_to t('shared.add'), new_type_path, class: 'float-right btn btn-primary btn-sm'
   %table.table.table-striped
     %thead
       %tr

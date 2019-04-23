@@ -7,7 +7,7 @@
 
 - model_class = Substrate
 .well
-  .pull-right
+  .float-right
     - if params[:action] == 'mirrors'
       - User.with_role(:mirrors).each do |u|
         = link_to user_profile_path(u), data: { toggle: 'tooltip' }, title: u.profile.surname do
@@ -26,7 +26,7 @@
         - if can? :new, Substrate
           = link_to new_substrate_path(category: (params[:action] == 'mirrors' ? 'mirror' : 'substrate' )), class: 'btn btn-primary btn-sm', style: 'vertical-align:middle' do
             = fa_icon 'plus', text: t('shared.add')
-        %span.btn-group.pull-right
+        %span.btn-group.float-right
           = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'pdf') : substrates_path(format: 'pdf')), class: 'btn btn-secondary btn-sm', target: '_blank' do
             = fa_icon 'file-pdf-o', text: 'PDF'
           = link_to (params[:action] == 'mirrors' ? mirrors_substrates_path(format: 'xls') : substrates_path(format: 'xls')), class: 'btn btn-secondary btn-sm' do

@@ -3,7 +3,7 @@
     .card
       .card-header
         = @round.title
-        %small.pull-right
+        %small.float-right
           .badge.badge-primary
             = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
 
@@ -77,7 +77,7 @@
 
       .card-footer
         = link_to t('shared.back'), rounds_path, class: 'btn btn-secondary btn-sm'
-        .pull-right
+        .float-right
           - if can? :download, @round
             = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-secondary btn-sm', target: '_blank' do
               = fa_icon 'file-pdf-o', text: t('rounds.download')

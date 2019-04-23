@@ -4,7 +4,7 @@
   .card-header
     = t 'teams.title'
     - if can? :manage, Team
-      %small.pull-right
+      %small.float-right
         = link_to t('shared.add'), new_team_path, class: 'btn btn-primary btn-sm'
   %table.table.table-striped
     %thead

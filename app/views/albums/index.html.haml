@@ -10,7 +10,7 @@
 
 .card
   .card-body
-    %ul.nav.nav-tabs.pull-left
+    %ul.nav.nav-tabs.float-left
       - if params[:q]
         %li.nav-item
           = link_to t('songs.find'), '#find_songs', data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'find_songs' }, class: 'nav-link active'
@@ -20,7 +20,7 @@
         = link_to t('albums.newer'), '#new_songs',  data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'new_songs' }, class: 'nav-link'
       - if can? :new, Album
         %li.nav-item= link_to t('albums.add'), new_album_path, class: 'nav-link'
-    .pull-right
+    .float-right
       %span.badge.badge-info
         = plural(Song.count, 'song')
         (#{number_to_human_size(Song.sum(:file_file_size))})

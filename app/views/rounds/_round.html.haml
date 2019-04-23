@@ -6,7 +6,7 @@
   .card-header
     = link_to round.title, round
     - if can? :manage, round
-      .btn-group.pull-right
+      .btn-group.float-right
         %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
           = fa_icon 'cog'
         %ul.dropdown-menu

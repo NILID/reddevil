@@ -6,7 +6,7 @@
       %p
         = link_to t('categories.title'), docs_path
         - if can? :manage, Category
-          = link_to categories_path, class: 'btn btn-secondary btn-sm pull-right' do
+          = link_to categories_path, class: 'btn btn-secondary btn-sm float-right' do
             = fa_icon 'cog'
 
     = arranged_tree_as_list(@categories) do |category|
@@ -17,7 +17,7 @@
         class: "#{category.hidden? || category.parent&.hidden? ? ' hide' : nil}"
 
       - if category.children.size > 0
-        = link_to '#', class: 'slide-link pull-right' do
+        = link_to '#', class: 'slide-link float-right' do
           = fa_icon 'arrow-down'
 
     .nav-reddevil.list-group.list-group-flush

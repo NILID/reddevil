@@ -9,7 +9,7 @@
             %small= simple_format doc.desc
 
     .card-body
-      .pull-left
+      .float-left
         = link_to t('docs.download'), doc.file.url, class: 'btn btn-sm btn-primary', target: '_blank'
         - if doc.desc?
           = link_to "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }, class: 'btn btn-sm btn-secondary' do
@@ -25,7 +25,7 @@
               = link_to doc_path(doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
                 = fa_icon 'trash-o', text: t('shared.del')
 
-      .pull-right
+      .float-right
         - unless doc.categories.empty?
           - doc.categories.each do |g|
             = link_to(docs_path(by_category: g.id), remote: true) do

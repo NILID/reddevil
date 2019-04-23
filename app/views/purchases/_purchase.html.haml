@@ -1,17 +1,17 @@
 = content_tag_for(:tr, purchase) do
   %td= purchase_counter + 1
   %td.main-title
-    .pull-left= render 'purchase_attr', year: @year, purchase: purchase, attr: :title, type: 'string'
-    .pull-right
+    .float-left= render 'purchase_attr', year: @year, purchase: purchase, attr: :title, type: 'string'
+    .float-right
       = fa_icon 'asterisk', class: 'tip' do
         .tip-text
-          .pull-left
+          .float-left
             .btn-group.purchase-actions
               = link_to edit_year_purchase_path(@year, purchase), class: 'btn btn-secondary btn-sm', title: t('shared.edit'), data: { toggle: 'tooltip' } do
                 = fa_icon 'cog'
               = link_to [@year, purchase], :method => :delete, title: t('shared.del'), data: { confirm: t('shared.sure'), toggle: 'tooltip' }, class: 'btn btn-sm btn-danger' do
                 = fa_icon 'trash-o'
-          .pull-right= purchase.user.profile.surname
+          .float-right= purchase.user.profile.surname
           .clearfix
           %hr
           %dl.row

@@ -6,7 +6,7 @@
     (#{@profile.login? ? @profile.login : @user.email})
 
     - if (can? :edit, @profile) || (can? :edit_roles, @user)
-      %small.pull-right
+      %small.float-right
         .btn-group
           %button.btn.btn-sm.btn-primary.dropdown-toggle#btnGroupProfile{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
             = fa_icon 'cog'

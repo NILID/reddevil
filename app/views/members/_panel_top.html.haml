@@ -1,16 +1,17 @@
-%ul.nav.nav-tabs.card-header-tabs#member_info.pull-left
+%ul.nav.nav-tabs.card-header-tabs#member_info.float-left
   %li.nav-item
-    = link_to t('member.title'), members_path, class: "nav-link #{params[:action] == 'index' ? 'active' : nil}"
+    = link_to t('member.title'),    members_path,          class: "nav-link #{params[:action] == 'index' ? 'active' : nil}"
   %li.nav-item
     = link_to t('member.vacation'), holidays_members_path, class: "nav-link #{params[:action] == 'holidays' ? 'active' : nil}"
   %li.nav-item
-    = link_to t('shared.stat'), stat_members_path, class: "nav-link #{params[:action] == 'stat' ? 'active' : nil}"
+    = link_to t('shared.stat'),     stat_members_path,     class: "nav-link #{params[:action] == 'stat' ? 'active' : nil}"
   %li.nav-item
-    = link_to t('shared.archive'), archive_members_path, class: "nav-link #{params[:action] == 'archive' ? 'active' : nil}"
+    = link_to t('shared.archive'),  archive_members_path,  class: "nav-link #{params[:action] == 'archive' ? 'active' : nil}"
   - if can? :create, Member
-    %li.nav-item= link_to t('shared.add'), new_member_path, class: 'nav-link'
+    %li.nav-item
+      = link_to t('shared.add'),    new_member_path,       class: 'nav-link'
 - if params[:action] == 'index'
-  .btn-group.pull-right
+  .btn-group.float-right
     - %w[pdf xls].each do |file_format|
       = link_to members_path(format: file_format), class: 'btn btn-sm btn-outline-secondary', target: '_blank' do
         = fa_icon "file-#{file_format == 'xls' ? 'excel' : file_format}-o", text: (file_format == 'xls' ? 'Excel' : 'PDF')

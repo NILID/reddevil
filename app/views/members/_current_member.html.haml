@@ -1,7 +1,7 @@
 .card
   .card-header
     = member.fullname
-    .btn-group.pull-right(role="group")
+    .btn-group.float-right(role="group")
       %button.btn.btn-sm.btn-primary.dropdown-toggle#btnCurMember{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: "true", expanded: "false"} }
         = fa_icon 'cog'
       .dropdown-menu.dropdown-menu-right{ aria: { labelledby: 'btnCurMember' } }

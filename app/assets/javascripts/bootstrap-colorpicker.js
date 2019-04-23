@@ -6198,4 +6198,3 @@ exports.default = AddonHandler;
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=bootstrap-colorpicker.js.map

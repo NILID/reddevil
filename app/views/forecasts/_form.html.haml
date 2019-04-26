@@ -1,6 +1,6 @@
 .modal-dialog.modal-lg(role='document')
-  = bootstrap_form_for [@user, @forecast], remote: true, layout: :horizontal, html: { data: { draw: @match.round.draw }, class: 'forecast-form' } do |f|
-    .modal-content
+  .modal-content
+    = bootstrap_form_for [@user, @forecast], remote: true, layout: :horizontal, html: { data: { draw: @match.round.draw }, class: 'forecast-form' } do |f|
       .modal-body
         .errors
         = f.hidden_field :match_id, value: @match.id
@@ -16,12 +16,11 @@
             .btn-group.minify-radio{ data: { toggle: 'buttons' } }
               - Match::ENDING.each do |e|
                 %label.btn.btn-primary{ class: "#{ (@forecast&.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast&.ending == e) ? 'current' : nil}" }
-                  = f.radio_button :ending, e, disabled: false, autocomplete: 'off'
+                  = f.radio_button :ending, e, disabled: false, autocomplete: 'off', hide_label: true
                   = t "matches.#{(@match.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
 
       .modal-footer
-        = f.form_group do
-          = f.primary
-          - if params[:action] == 'edit'
-            = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast
-          %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'
+        = f.primary
+        - if params[:action] == 'edit'
+          = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast
+        %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'

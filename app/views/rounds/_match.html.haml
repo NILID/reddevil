@@ -37,7 +37,7 @@
           - if can? :new, user => Forecast
             = link_to new_user_forecast_path(user, match_id: match.id), data: { target: "#dialog_forecast_#{match.id}", toggle: 'modal'}, class: 'modal-link btn btn-secondary btn-sm', title: t('forecasts.add'), remote: true do
               = fa_icon 'plus'
-            .modal.fade(tabIndex='-1' role='dialog' id="dialog_forecast_#{match.id}")
+            .modal.fade(tabindex='-1' role='dialog' id="dialog_forecast_#{match.id}" aria-hidden="true")
 
   - if @round.check_finish?
     %td.middle

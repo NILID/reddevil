@@ -3,7 +3,7 @@
     .card
       .card-header
         = @round.title
-        %small.float-right
+        .float-right
           .badge.badge-primary
             = @round.check_finish? ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(@round.deadline))
 

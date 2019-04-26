@@ -2,7 +2,7 @@
 - matches_count = round.matches.pluck(:id).size
 
 / !!!!!!!!!! panel-info dropped
-.card{ class: check_deadline ? nil : 'panel-info' }
+.card.mb-3{ class: check_deadline ? nil : 'panel-info' }
   .card-header
     = link_to round.title, round
     - if can? :manage, round

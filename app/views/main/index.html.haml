@@ -61,14 +61,14 @@
             %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
           .card-body
             - @holidays_today.each do |holiday|
-              %p.text-success= holiday[:name]
+              .text-success.mb-2= holiday[:name]
         - unless @holidays_tomorrow.empty?
           .card-header
             = t 'shared.tomorrow'
             %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
           .card-body
             - @holidays_tomorrow.each do |holiday|
-              %p= holiday[:name]
+              .mb-2= holiday[:name]
 
     - if user_signed_in?
       - unless @events.empty? && @events_soon.empty?
@@ -104,12 +104,11 @@
 
           - elsif @current_vacations_soon
             .card-body
-              %p
-                - count_days = (DateTime.now.beginning_of_day..@current_vacations_soon.startdate.beginning_of_day).count - 1
-                = t('vacations.diff_days', till: plural(count_days, 'till', false), count: plural(count_days, 'day'))
-                = t('vacations.start',
-                  date: Russian.strftime(@current_vacations_soon.startdate, "%e %B"),
-                  diff: plural(TimeDifference.between(@current_vacations_soon.enddate + 1.day, @current_vacations_soon.startdate).in_days.to_i, 'day'))
+              - count_days = (DateTime.now.beginning_of_day..@current_vacations_soon.startdate.beginning_of_day).count - 1
+              = t('vacations.diff_days', till: plural(count_days, 'till', false), count: plural(count_days, 'day'))
+              = t('vacations.start',
+                date: Russian.strftime(@current_vacations_soon.startdate, "%e %B"),
+                diff: plural(TimeDifference.between(@current_vacations_soon.enddate + 1.day, @current_vacations_soon.startdate).in_days.to_i, 'day'))
 
         - unless @vacations.empty?
           .card-header
@@ -120,7 +119,7 @@
                 = image_tag 'umbrella.png', class: 'img-fluid'
               .col-10.col-md-9
                 - @vacations.each do |v|
-                  %p
+                  .mb-2
                     = v.member.fullname
                     = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
 
@@ -133,7 +132,7 @@
                 = image_tag 'chemodan.png', class: 'img-fluid'
               .col-10.col-md-9
                 - @vacations_soon.each do |v|
-                  %p
+                  .mb-2
                     = v.member.fullname
                     = t('vacations.start',
                       date: Russian.strftime(v.startdate, "%e %B"),

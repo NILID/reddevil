@@ -1,5 +1,9 @@
 @import 'mixins';
 
+html {
+  font-size: 14px;
+}
+
 body {background: #dbf1fc}
 
 .nowrap {white-space: nowrap}

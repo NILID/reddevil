@@ -13,7 +13,7 @@
             = f.select(:winner_id, [@match.team1, @match.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
           = f.form_group :ending do
-            .btn-group.minify-radio{ data: { toggle: 'buttons' } }
+            .btn-group.btn-group-toggle.minify-radio{ data: { toggle: 'buttons' } }
               - Match::ENDING.each do |e|
                 %label.btn.btn-primary{ class: "#{ (@forecast&.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast&.ending == e) ? 'current' : nil}" }
                   = f.radio_button :ending, e, disabled: false, autocomplete: 'off', hide_label: true
@@ -21,6 +21,6 @@
 
       .modal-footer
         = f.primary
-        - if params[:action] == 'edit'
-          = link_to t('shared.del'), [@user, @forecast], :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger' if can? :destroy, @forecast
+        - if params[:action] == 'edit' && (can? :destroy, @forecast)
+          = link_to t('shared.del'), [@user, @forecast], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
         %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'

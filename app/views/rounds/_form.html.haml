@@ -21,10 +21,10 @@
       = f.form_group do
         .checkbox= f.check_box :draw
 
-      = f.fields_for :matches do |match|
-        = render 'match_fields', f: match
+      .nested-fields
+        = f.fields_for :matches do |match|
+          = render 'match_fields', f: match
 
-      = f.form_group do
         = link_to_add_association t('matches.add'), f, :matches, class: 'btn btn-secondary'
 
     .card-footer

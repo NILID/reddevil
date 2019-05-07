@@ -76,3 +76,6 @@ $ ->
       isRTL: false
       showMonthAfterYear: false
       yearSuffix: ''
+
+  $('.modal').on 'hidden.bs.modal', ->
+    $(this).html('')

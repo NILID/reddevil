@@ -35,9 +35,10 @@
       %td.text-center{ id: "match_#{match.id}_user_#{user.id}_forecast" }
         - if (user_signed_in? && ((@round.deadline > DateTime.now)) || (current_user.role? :admin))
           - if can? :new, user => Forecast
-            = link_to new_user_forecast_path(user, match_id: match.id), data: { target: "#dialog_forecast_#{match.id}", toggle: 'modal'}, class: 'modal-link btn btn-secondary btn-sm', title: t('forecasts.add'), remote: true do
+            = link_to new_user_forecast_path(user, match_id: match.id), data: { target: "#dialog_forecast_#{match.id}_#{user.id}", toggle: 'modal'}, class: 'modal-link btn btn-secondary btn-sm', title: t('forecasts.add'), remote: true do
               = fa_icon 'plus'
-            .modal.fade(tabindex='-1' role='dialog' id="dialog_forecast_#{match.id}" aria-hidden="true")
+            .modal(tabindex='-1' role='dialog' id="dialog_forecast_#{match.id}_#{user.id}" aria-hidden="true")
+
 
   - if @round.check_finish?
     %td.middle

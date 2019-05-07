@@ -9,7 +9,7 @@
     .team.clearfix
       .team-name
         = image_tag match.team2.flag(:thumb)
-        %span{style: (match.team2 == match.check_win) ? 'font-weight:bold' : nil} #{match.team2.title}
+        %span{ style: (match.team2 == match.check_win) ? 'font-weight:bold' : nil } #{match.team2.title}
       .team-goal
         #{match.team2goal || '-'}
 

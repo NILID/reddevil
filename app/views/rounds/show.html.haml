@@ -12,8 +12,8 @@
           %th
           %th
           - @users.each do |user|
-            %th.results(style="text-align:center;font-weight:100;")
-              %p
+            %th.results.text-center
+              %p.font-weight-normal
                 = link_to [user, :profile] do
                   = user.profile.surname || user.email.split('@').first
 
@@ -21,38 +21,7 @@
               - if result
                 .tip
                   .badge.badge-pill.badge-success= result.total
-                  - if result.total > 0
-                    .tip-text
-                      - a,b,c,d = 0, 0, 0, 0
-                      - result.matches.each do |match|
-                        - if match.has_goal?
-                          - forecast = user.forecasts.where(match_id: match.id).last
-                          - if forecast
-                            - a+=1 if (match.team1goal == forecast.team1goal) && (match.team2goal == forecast.team2goal) && (match.check_win == forecast.check_winner)
-                            - b+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
-                            - c+=1 if (match.check_win == forecast.check_winner)
-                            - d+=1 if (match.ending == forecast.ending && !@round.draw)
-                      .row
-                        - if a > 0
-                          .col-sm-2
-                            %span.badge.badge-pill.badge-success + #{a}
-                          .col-sm-10
-                            = t 'results.true_match'
-                        - if b > 0
-                          .col-sm-2
-                            %span.badge.badge-pill.badge-success + #{b}
-                          .col-sm-10
-                            = t 'results.true_diff'
-                        - if c > 0
-                          .col-sm-2
-                            %span.badge.badge-pill.badge-success + #{c}
-                          .col-sm-10
-                            = t 'results.true_winner'
-                        - if d > 0
-                          .col-sm-2
-                            %span.badge.badge-pill.badge-success + #{d}
-                          .col-sm-10
-                            = t 'results.true_final_end'
+                  = render partial: 'result_stats', locals: { result: result, user: user }
               - else
                 .badge.badge-pill.badge-success 0
 

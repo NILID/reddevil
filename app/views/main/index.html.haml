@@ -35,7 +35,7 @@
         - unless @bdusers_today.empty?
           .card-header
             = @bdusers_today.keys.count > 1 ? t('shared.birthdays_today') : t('shared.birthday_today')
-          .card-body
+          .card-body.animated.rubberBand
             - @bdusers_today.keys.sort.each do |u|
               = render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
 

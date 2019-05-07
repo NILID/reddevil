@@ -1,5 +1,5 @@
 $ ->
-  $('body').on 'change paste input keyup propertychange', 'form.forecast-form input.number_field', ->
+  $('.modal').on 'change paste input keyup propertychange', 'form.forecast-form input.number_field', ->
     $val1 = $("#forecast_team1goal").val()
     $val2 = $("#forecast_team2goal").val()
 

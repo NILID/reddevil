@@ -15,7 +15,7 @@
           = f.form_group :ending do
             .btn-group.btn-group-toggle.minify-radio{ data: { toggle: 'buttons' } }
               - Match::ENDING.each do |e|
-                %label.btn.btn-primary{ class: "#{ (@forecast&.ending == e) ? 'active' : nil } label-#{e} #{ (@forecast&.ending == e) ? 'current' : nil}" }
+                %label.btn.btn-primary{ class: ending_style(@forecast, e) }
                   = f.radio_button_without_bootstrap :ending, e, disabled: false, autocomplete: 'off'
                   = t "matches.#{(@match.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
 

@@ -2,7 +2,8 @@ class ErrorsController < ApplicationController
   layout 'main'
 
   def show
-    render status_code.to_s, status: status_code
+    @code = status_code
+    render :show, status: @code
   end
 
   protected

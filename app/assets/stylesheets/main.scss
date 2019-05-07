@@ -4,7 +4,9 @@ html {
   font-size: 14px;
 }
 
-body {background: #dbf1fc}
+body {
+  background: #dbf1fc;
+}
 
 .nowrap {white-space: nowrap}
 
@@ -21,6 +23,7 @@ body {background: #dbf1fc}
   height:25px;
   margin-right: 1px;
   text-align: center;
+  padding-bottom: 29px;
 }
 
 #wrapper {

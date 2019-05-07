@@ -15,16 +15,19 @@
           %span.badge.badge-pill.badge-success + #{a}
         .col-sm-10
           = t 'results.true_match'
+    .row
       - if b > 0
         .col-sm-2
           %span.badge.badge-pill.badge-success + #{b}
         .col-sm-10
           = t 'results.true_diff'
+    .row
       - if c > 0
         .col-sm-2
           %span.badge.badge-pill.badge-success + #{c}
         .col-sm-10
           = t 'results.true_winner'
+    .row
       - if d > 0
         .col-sm-2
           %span.badge.badge-pill.badge-success + #{d}

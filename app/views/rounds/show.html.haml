@@ -32,7 +32,7 @@
                             - b+=1 if (match.team1goal - match.team2goal) == (forecast.team1goal - forecast.team2goal)
                             - c+=1 if (match.check_win == forecast.check_winner)
                             - d+=1 if (match.ending == forecast.ending && !@round.draw)
-                      %dl.row
+                      .row
                         - if a > 0
                           .col-sm-2
                             %span.badge.badge-pill.badge-success + #{a}

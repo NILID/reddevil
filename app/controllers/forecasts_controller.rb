@@ -29,6 +29,7 @@ class ForecastsController < ApplicationController
   end
 
   def update
+    @match = Match.where(id: @forecast.match_id).first
     respond_to do |format|
       if @forecast.update_attributes(forecast_params)
         format.js

@@ -12,12 +12,15 @@
           .winner-field
             = f.select(:winner_id, [@match.team1, @match.team2].collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
 
-          = f.form_group :ending do
-            .btn-group.btn-group-toggle.minify-radio{ data: { toggle: 'buttons' } }
-              - Match::ENDING.each do |e|
-                %label.btn.btn-primary{ class: ending_style(@forecast, e) }
-                  = f.radio_button_without_bootstrap :ending, e, disabled: false, autocomplete: 'off'
-                  = t "matches.#{(@match.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
+        = f.form_group :ending do
+          .btn-group.btn-group-toggle{ data: { toggle: 'buttons' } }
+            - Match::ENDING.each do |e|
+              %label.btn.btn-primary{ class: ending_style(@forecast, e) }
+                = f.radio_button_without_bootstrap :ending, e, disabled: false, autocomplete: 'off'
+                = t "matches.#{(@match.round.type_id == 2 && e == 'penalty') ? 'bullit' : e}"
+          .mt-4
+            %small.form-text.text-muted.text-left
+              При равном счете буллиты устанавливаются автоматически, необходимо только выбрать победителя.
 
       .modal-footer
         = f.primary

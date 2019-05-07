@@ -39,14 +39,12 @@
               = fa_icon 'plus'
             .modal(tabindex='-1' role='dialog' id="dialog_forecast_#{match.id}_#{user.id}" aria-hidden="true")
 
-
   - if @round.check_finish?
-    %td.middle
+    %td
       - f = Forecast.where(match_id: match)
       - unless f.empty?
-        .tip
-          %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
-          .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}
+        %a.btn.btn-outline-primary.btn-sm{ href: '#', data: { toggle: 'tooltip', placement: 'left' }, title: "#{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}" }
+          #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
   - else
     %td
       - results = (Match.where(team1_id: [match.team1, match.team2], team2_id: [match.team1, match.team2]).joins(:round).where(rounds: {type_id: @round.type_id}).where('deadline < ?', DateTime.now).pluck(:id) - [match.id]).count

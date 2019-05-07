@@ -41,7 +41,7 @@
   %tr
     %td= t 'shared.mid'
     - @round.matches.each do |match|
-      %td.middle
+      %td
         - f = Forecast.where(match_id: match)
         - unless f.empty?
           .tip

@@ -1,18 +1,21 @@
 = f.form_group do
-  .well.well-small
-    .col-6
-      - %i[team1_id team2_id].each do |team|
-        = f.select(team, @teams.collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
-    - if params[:action] == 'edit'
-      .col-6
-        = f.number_field :team1goal, min: 0
-        = f.number_field :team2goal, min: 0
+  .card
+    .card-body
+      .row
+        .col-6
+          - %i[team1_id team2_id].each do |team|
+            = f.select(team, @teams.collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('teams.select_team') } )
+        - if params[:action] == 'edit'
+          .col-6
+            = f.number_field :team1goal, min: 0
+            = f.number_field :team2goal, min: 0
+      - if @round.allow_empty?
+        .row
+          .col-12
+            = f.select(:desc, Match::TYPES.collect { |type| [ t(type),  type] }, { include_blank: 'select desc' })
 
-    - if @round.allow_empty?
-      = f.select(:desc, Match::TYPES.collect { |type| [ t(type),  type] }, { include_blank: 'select desc' })
-
-    - if params[:action] == 'edit'
-      = f.select(:winner_id, @teams.collect { |t| [ "#{t.title}",  t.id] }, { include_blank: t('teams.select_team') })
-      = f.select(:ending, Match::ENDING.collect { |e| [ t(e),  e] })
-    =# link_to_remove_association t('shared.del'), f
-    .clearfix
+      - if params[:action] == 'edit'
+        .row
+          .col-6= f.select(:winner_id, @teams.collect { |t| [ "#{t.title}",  t.id] }, { include_blank: t('teams.select_team') })
+          .col-6= f.select(:ending, Match::ENDING.collect { |e| [ t(e),  e] })
+        =# link_to_remove_association t('shared.del'), f

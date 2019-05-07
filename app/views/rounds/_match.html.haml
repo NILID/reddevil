@@ -17,13 +17,12 @@
     - unless match.ending == 'basic'
       - unless match.team1 == match.winner
         %br/
-      %span.tip
-        - if match.ending == 'penalty'
+      - if match.ending == 'penalty'
+        %span{ data: { toggle: 'tooltip' }, title: t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}") }
           = t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}_short")
-          .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : match.ending}")
-        - elsif match.ending == 'overtime'
+      - elsif match.ending == 'overtime'
+        %span{ data: { toggle: 'tooltip' }, title: t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}") }
           = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
-          .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
 
   - @users.each do |user|
     - f = user.forecasts.where(match_id: match.id).first

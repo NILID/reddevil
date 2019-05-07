@@ -10,7 +10,7 @@
         Type.order(:title).collect { |t| [t.title,  t.id] },
         { include_blank: t('categories.select_category') }
 
-      .date= f.text_field :deadline, id: 'datetimeround'
+      = f.datetime_select :deadline
 
       = f.form_group do
         .checkbox= f.check_box :close

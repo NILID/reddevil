@@ -22,26 +22,24 @@
                     = result.team1 == match.team1 ? result.team1goal : result.team2goal
 
                     - if result.ending != 'basic' && result.team1 == result.winner
-                      %span.tip
-                        - if result.ending == 'penalty'
+                      - if result.ending == 'penalty'
+                        %span{ data: { toggle: 'tooltip' }, title: t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}") }
                           = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")
-                          .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}")
-                        - elsif result.ending == 'overtime'
+                      - elsif result.ending == 'overtime'
+                        %span{ data: { toggle: 'tooltip' }, title: t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}") }
                           = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
-                          .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
 
                 .col-6
                   %h3
                     = result.team2 == match.team2 ? result.team2goal : result.team1goal
 
                     - if result.ending != 'basic' && result.team2 == result.winner
-                      %span.tip
-                        - if result.ending == 'penalty'
+                      - if result.ending == 'penalty'
+                        %span{ data: { toggle: 'tooltip' }, title: t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}") }
                           = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")
-                          .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}")
-                        - elsif result.ending == 'overtime'
+                      - elsif result.ending == 'overtime'
+                        %span{ data: { toggle: 'tooltip' }, title: t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}") }
                           = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
-                          .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
 
             .card-footer
               - user_forecast = result.forecasts.where(user: current_user).first

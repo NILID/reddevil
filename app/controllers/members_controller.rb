@@ -1,6 +1,5 @@
 class MembersController < ApplicationController
   load_and_authorize_resource
-  layout 'main'
 
   def index
     @current_member = current_user.member

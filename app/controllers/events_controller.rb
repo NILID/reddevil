@@ -3,8 +3,6 @@ class EventsController < ApplicationController
   load_and_authorize_resource :user, except: [:list]
   load_and_authorize_resource :event, through: :user, except: [:list]
 
-  layout 'main'
-
   def list;  end
   def index; end
   def show;  end

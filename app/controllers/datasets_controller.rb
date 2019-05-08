@@ -4,6 +4,8 @@ class DatasetsController < ApplicationController
   load_and_authorize_resource :folder
   load_and_authorize_resource :dataset, through: :folder
 
+  layout 'withside'
+
   def index; end
   def show;  end
   def new;   end

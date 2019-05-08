@@ -1,9 +1,5 @@
-# encoding: UTF-8
-
 class RoundsController < ApplicationController
-
   load_and_authorize_resource
-  layout 'main'
 
   before_action :get_teams, only: %i[new edit create update]
 

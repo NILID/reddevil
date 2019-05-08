@@ -1,6 +1,4 @@
 class MainController < ApplicationController
-  layout 'main'
-
   def index
     now       = DateTime.now.beginning_of_day
     tomorrow  = DateTime.tomorrow.beginning_of_day

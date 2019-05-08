@@ -2,8 +2,6 @@ class TasksController < ApplicationController
   load_and_authorize_resource :machine
   load_and_authorize_resource :task, through: :machine
 
-  layout 'main'
-
   def index; end
   def show;  end
   def new;   end

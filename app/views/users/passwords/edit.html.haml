@@ -1,5 +1,5 @@
 .row
-  .col-md-12
+  .col-md-6.offset-md-3
     .page-header
       %h4 Смените ваш пароль
     = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, html: { method: :put}) do |f|
@@ -10,4 +10,5 @@
         = f.primary 'Сменить пароль'
 
 .row
-  .col-md-6= render "users/shared/links"
+  .col-md-6.offset-md-3
+    = render "users/shared/links"

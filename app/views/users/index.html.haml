@@ -8,12 +8,12 @@
     %table.table.table-striped.bg-light.mt-2
       %thead
         %tr
-          %th(scope="col") id
-          %th(scope="col") online
-          %th(scope="col") username
-          %th(scope="col") last visit
-          %th(scope="col") reg confirm
-          %th(scope="col") actions
+          %th(scope='col') id
+          %th(scope='col') online
+          %th(scope='col') username
+          %th(scope='col') last visit
+          %th(scope='col') reg confirm
+          %th(scope='col') actions
       %tbody
         - @users.each_with_index do |user, index|
           %tr
@@ -25,7 +25,7 @@
               = link_to user.email, user_profile_path(user)
               - if user.member
                 .text-muted= user.member.fullname
-            %td= l user.updated_at,  format: :long
+            %td= l user.updated_at, format: :long
             %td= user.confirmed?
             - if can? :edit, user.profile
               %td

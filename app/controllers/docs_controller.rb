@@ -1,6 +1,6 @@
 class DocsController < ApplicationController
   load_and_authorize_resource
-  layout 'main', only: %i[edit new]
+  layout 'withside', except: %i[edit new]
 
   before_action :set_categories, only: %i[edit new create update]
 

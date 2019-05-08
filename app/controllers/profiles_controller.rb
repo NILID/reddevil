@@ -3,8 +3,6 @@ class ProfilesController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :profile, through: :user, singleton: :true
 
-  layout 'main'
-
   def show; end
   def edit; end
 

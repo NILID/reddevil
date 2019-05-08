@@ -2,6 +2,8 @@ class AlbumsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource find_by: :slug
 
+  layout 'withside'
+
   def index
     @albums = @albums.order(:title).roots
     @new_songs = Song.includes(:album).order('created_at DESC').page(params[:page]).per_page(20)

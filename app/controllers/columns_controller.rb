@@ -1,6 +1,7 @@
 class ColumnsController < ApplicationController
   load_and_authorize_resource :year, find_by: :slug
   load_and_authorize_resource :column, through: :year
+  layout 'withside'
 
   def index; end
   def show;  end

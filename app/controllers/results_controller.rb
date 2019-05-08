@@ -3,6 +3,8 @@ class ResultsController < ApplicationController
   load_and_authorize_resource :result, through: :user, except: :rebuild
   load_and_authorize_resource only: :rebuild
 
+  layout 'withside'
+
   def new;  end
   def edit; end
 

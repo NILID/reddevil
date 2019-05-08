@@ -1,5 +1,6 @@
 class YearsController < ApplicationController
   load_and_authorize_resource find_by: :slug
+  layout 'withside'
 
   def index; end
   def show;  end

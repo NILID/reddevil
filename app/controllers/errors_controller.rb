@@ -1,6 +1,4 @@
 class ErrorsController < ApplicationController
-  layout 'main'
-
   def show
     @code = status_code
     render :show, status: @code

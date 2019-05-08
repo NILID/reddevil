@@ -2,6 +2,8 @@ class ForecastsController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :forecast, through: :user
 
+  layout 'withside'
+
   def new
     @match = Match.where(id: params[:match_id] ? params[:match_id] : @forecast.match_id).first
     respond_to do |format|

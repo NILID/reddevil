@@ -2,6 +2,8 @@ class MatchesController < ApplicationController
   load_and_authorize_resource :round
   load_and_authorize_resource :match, through: :round
 
+  layout 'withside'
+
   def get_results
     @results = (Match.where(team1_id: [@match.team1, @match.team2], team2_id: [@match.team1, @match.team2])
                     .joins(:round)

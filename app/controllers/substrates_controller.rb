@@ -1,6 +1,5 @@
 class SubstratesController < ApplicationController
   load_and_authorize_resource
-  layout 'main'
 
   def index
     @q = @substrates.ransack(params[:q])

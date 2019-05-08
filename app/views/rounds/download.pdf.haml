@@ -40,13 +40,11 @@
                     - if (match.team1 == f.winner) || (f.team1goal > f.team2goal)
                       #{f.team1goal}
                       - unless f.ending == 'basic'
-                        %span.tip
-                          %span.ending= t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
+                        %span.ending= t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
                       \ : #{f.team2goal}
                     - else (match.team2 == f.winner) || (f.team1goal < f.team2goal)
                       #{f.team1goal} : #{f.team2goal}
                       - unless f.ending == 'basic'
-                        %span.tip
-                          %span.ending= t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
+                        %span.ending= t("matches.#{(f.ending == 'penalty' && @round.type_id == 2) ? 'bullit' : f.ending}_short")
               - else
                 %td

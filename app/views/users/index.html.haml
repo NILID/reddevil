@@ -10,6 +10,7 @@
         %tr
           %th(scope='col') id
           %th(scope='col') online
+          %th(scope='col') avatar
           %th(scope='col') username
           %th(scope='col') last visit
           %th(scope='col') reg confirm
@@ -21,6 +22,8 @@
             %td
               %span.badge{ class: user.online? ? 'badge-success' : 'badge-secondary' }
                 = user.confirmed? ? fa_icon('check') : fa_icon('remove')
+            %td
+              = image_tag user.profile.avatar.url(:medium), class: 'thumbnail img-fluid'
             %td
               = link_to user.email, user_profile_path(user)
               - if user.member

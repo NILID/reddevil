@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = @users.includes(:profile)
+    @users = @users.includes(:profile, :member)
   end
 
   def make_role

@@ -16,31 +16,32 @@
             .card-header
               %srong.text-uppercase= link_to result.round.title, result.round, target: '_blank'
             .card-body
-              .col-6
-                %h3
-                  = result.team1 == match.team1 ? result.team1goal : result.team2goal
+              .row
+                .col-6
+                  %h3
+                    = result.team1 == match.team1 ? result.team1goal : result.team2goal
 
-                  - if result.ending != 'basic' && result.team1 == result.winner
-                    %span.tip
-                      - if result.ending == 'penalty'
-                        = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")
-                        .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}")
-                      - elsif result.ending == 'overtime'
-                        = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
-                        .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
+                    - if result.ending != 'basic' && result.team1 == result.winner
+                      %span.tip
+                        - if result.ending == 'penalty'
+                          = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")
+                          .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}")
+                        - elsif result.ending == 'overtime'
+                          = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
+                          .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
 
-              .col-6
-                %h3
-                  = result.team2 == match.team2 ? result.team2goal : result.team1goal
+                .col-6
+                  %h3
+                    = result.team2 == match.team2 ? result.team2goal : result.team1goal
 
-                  - if result.ending != 'basic' && result.team2 == result.winner
-                    %span.tip
-                      - if result.ending == 'penalty'
-                        = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")
-                        .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}")
-                      - elsif result.ending == 'overtime'
-                        = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
-                        .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
+                    - if result.ending != 'basic' && result.team2 == result.winner
+                      %span.tip
+                        - if result.ending == 'penalty'
+                          = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")
+                          .tip-text= t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}")
+                        - elsif result.ending == 'overtime'
+                          = t("matches.overtime_short#{(@round.type_id == 2) ? '_hockey' : nil}")
+                          .tip-text= t("matches.overtime#{(@round.type_id == 2) ? '_hockey' : nil}")
 
             .card-footer
               - user_forecast = result.forecasts.where(user: current_user).first

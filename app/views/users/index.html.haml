@@ -9,7 +9,6 @@
       %thead
         %tr
           %th(scope='col') id
-          %th(scope='col') online
           %th(scope='col') avatar
           %th(scope='col') username
           %th(scope='col') last visit
@@ -18,10 +17,9 @@
       %tbody
         - @users.each_with_index do |user, index|
           %tr
-            %th(scope="row")= user.id
-            %td
+            %th(scope="row")
               %span.badge{ class: user.online? ? 'badge-success' : 'badge-secondary' }
-                = user.confirmed? ? fa_icon('check') : fa_icon('remove')
+                = user.id
             %td
               = image_tag user.profile.avatar.url(:medium), class: 'thumbnail img-fluid'
             %td

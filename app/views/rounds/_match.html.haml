@@ -48,6 +48,6 @@
     %td
       - results = (Match.where(team1_id: [match.team1, match.team2], team2_id: [match.team1, match.team2]).joins(:round).where(rounds: {type_id: @round.type_id}).where('deadline < ?', DateTime.now).pluck(:id) - [match.id]).count
       - if results > 0
-        = link_to get_results_round_match_path(@round, match), data: { target: "#dialog_match_#{match.id}_past", toggle: 'modal' }, class: 'modal-link btn btn-success btn-sm', remote: true do
+        = link_to get_results_round_match_path(@round, match), data: { target: "#dialog_match_#{match.id}_past", toggle: 'modal' }, class: 'modal-link match-info', remote: true do
           = fa_icon 'info-circle'
         .modal(tabIndex='-1' role='dialog' id="dialog_match_#{match.id}_past")

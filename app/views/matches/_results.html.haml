@@ -12,7 +12,7 @@
           %h3= match.team2.title
       - @results.each do |result|
         - if result.team1goal && result.team2goal
-          .card.text-center
+          .card.text-center.mb-3
             .card-header
               %srong.text-uppercase= link_to result.round.title, result.round, target: '_blank'
             .card-body
@@ -21,7 +21,7 @@
                   %h3
                     = result.team1 == match.team1 ? result.team1goal : result.team2goal
 
-                    - if result.ending != 'basic' && result.team1 == result.winner
+                    - if result.ending != 'basic' && (result.team1 == match.team1 ? result.team1 : result.team2) == result.winner
                       - if result.ending == 'penalty'
                         %span{ data: { toggle: 'tooltip' }, title: t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}") }
                           = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")
@@ -33,7 +33,7 @@
                   %h3
                     = result.team2 == match.team2 ? result.team2goal : result.team1goal
 
-                    - if result.ending != 'basic' && result.team2 == result.winner
+                    - if result.ending != 'basic' && (result.team2 == match.team2 ? result.team2 : result.team1) == result.winner
                       - if result.ending == 'penalty'
                         %span{ data: { toggle: 'tooltip' }, title: t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}") }
                           = t("matches.#{(@round.type_id == 2) ? 'bullit' : result.ending}_short")

@@ -5,7 +5,7 @@ class RoundsController < ApplicationController
 
   def index
     get_sorted_users
-    @all_rounds = @rounds.order('created_at desc').page(params[:page]).per_page(5)
+    @all_rounds = @rounds.order('created_at desc').page(params[:page]).per_page(10)
     @forecasts = Forecast.all
     @forecasts_finished = @forecasts.where(match_id: @match_finished).pluck(:id)
 

@@ -16,7 +16,7 @@ class RoundsController < ApplicationController
     # tag = 'чмх2017'
     # tag = 'чмх2018'
     # tag = 'чмф2018'
-    tag = 'чмx2019'
+    tag = 'чмх2019'
     @all_users = User.where(sport_flag: true)
     @users = (@all_users.includes(:profile).map { |user| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) }.sum } }).reduce(:merge)
     if @users

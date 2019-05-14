@@ -39,4 +39,4 @@
       %ul.playlist.tab-pane#new_songs(role='tabpanel')
         .endless= render @new_songs, showalbum: true
 
-        = will_paginate @new_songs
+        %div(hidden)= will_paginate @new_songs

@@ -31,4 +31,4 @@
         %small= link_to t('types.title'), types_path, class: 'btn btn-secondary'
 
     .endless= render @all_rounds
-    = will_paginate @all_rounds
+    %div(hidden)= will_paginate @all_rounds

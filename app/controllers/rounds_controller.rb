@@ -4,7 +4,7 @@ class RoundsController < ApplicationController
   before_action :get_teams, only: %i[new edit create update]
 
   def index
-    @rounds = @rounds.order('created_at desc')
+    @all_rounds = @rounds.order('created_at desc').page(params[:page]).per_page(5)
     @rounds_finished = @rounds.finished.pluck(:id)
     @forecasts = Forecast.all
     @matches = Match.all

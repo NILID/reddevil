@@ -1,0 +1,6 @@
+$('.endless').append('<%= j render @all_rounds %>');
+<% if @all_rounds.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate(@all_rounds) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %> 

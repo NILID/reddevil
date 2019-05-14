@@ -76,4 +76,5 @@
         %small= link_to t('teams.add'), new_team_path, class: 'btn btn-secondary'
         %small= link_to t('types.title'), types_path, class: 'btn btn-secondary'
 
-    = render @rounds
+    .endless= render @all_rounds
+    = will_paginate @all_rounds

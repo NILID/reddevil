@@ -20,7 +20,10 @@
         .col-sm-2
           %span.badge.badge-pill.badge-success + #{b}
         .col-sm-10
-          = t 'results.true_diff'
+          - if @round.type.title == 'футбол'
+            = t 'results.true_diff_balls'
+          - else
+            = t 'results.true_diff'
     .row
       - if c > 0
         .col-sm-2

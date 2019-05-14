@@ -236,7 +236,8 @@ ru:
     start: с %{date}
   results:
     true_winner: угадал победителя
-    true_diff: угадал разницу мячей
+    true_diff: угадал разницу шайб
+    true_diff_balls: угадал разницу мячей
     true_match: угадал результат матча
     true_final_end: угадал время исхода матча
     rebuild: Пересчитать

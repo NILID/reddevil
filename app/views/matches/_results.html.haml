@@ -1,7 +1,9 @@
 .modal-dialog(role='document')
   .modal-content
     .modal-header
-      %h4= t 'matches.old_results'
+      %h5= t 'matches.old_results'
+      %button.close(type='button' data-dismiss='modal' aria-label='Close')
+        %span(aria-hidden='true') &times;
     .modal-body
       .row
         .col-6.text-center

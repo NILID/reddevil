@@ -2,12 +2,12 @@
 - matches_count = round.matches.pluck(:id).size
 
 / !!!!!!!!!! panel-info dropped
-.card.mb-3{ class: check_deadline ? nil : 'panel-info' }
+.card.mb-3{ class: check_deadline ? nil : 'bg-info text-white' }
   .card-header
-    = link_to round.title, round
+    = link_to round.title, round, class: check_deadline ? nil : 'text-white'
     - if can? :manage, round
       .btn-group.float-right.dropleft
-        %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        .dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
           = fa_icon 'cog'
         %ul.dropdown-menu
           = link_to edit_round_path(round), class: 'dropdown-item' do
@@ -15,7 +15,7 @@
           = link_to round_path(round), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
             = fa_icon 'trash-o', text: t('shared.del')
 
-  .card-body
+  .card-body{ class: check_deadline ? nil : 'bg-white' }
     %span.text-muted
       %span= plural matches_count, 'match'
       &#149;
@@ -25,5 +25,5 @@
       &#149;
       %span= check_deadline ? t('rounds.deadline_off') : t('rounds.deadline', date: deadline(round.deadline))
   - if !check_deadline && (matches_count != round.forecasts.where(user_id: current_user.id).pluck(:id).size)
-    .card-footer.text-danger
+    .card-footer.text-danger.bg-light
       = t 'forecasts.empty', count_days: distance_of_time_in_words(round.deadline, Time.zone.now)

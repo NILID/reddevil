@@ -36,6 +36,9 @@ Rails.application.routes.draw do
 
   scope 'sport' do
     resources :rounds do
+      collection do
+        get :list
+      end
       member {get :download}
       resources :matches, only: %i[destroy] do
         member do

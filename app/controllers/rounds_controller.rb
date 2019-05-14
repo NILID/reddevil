@@ -4,36 +4,17 @@ class RoundsController < ApplicationController
   before_action :get_teams, only: %i[new edit create update]
 
   def index
+    get_sorted_users
     @all_rounds = @rounds.order('created_at desc').page(params[:page]).per_page(5)
-    @rounds_finished = @rounds.finished.pluck(:id)
     @forecasts = Forecast.all
-    @matches = Match.all
-    @match_finished = @matches.where(round_id: @rounds_finished).pluck(:id)
     @forecasts_finished = @forecasts.where(match_id: @match_finished).pluck(:id)
 
-    # @users = User.order('total_result desc')
-    # tag = 'ои2018'
-    # tag = 'чмх2017'
-    # tag = 'чмх2018'
-    # tag = 'чмф2018'
-    tag = 'чмх2019'
-    @all_users = User.where(sport_flag: true)
-    @users = (@all_users.includes(:profile).map { |user| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) }.sum } }).reduce(:merge)
-    if @users
-      @users = if params[:sort] == 'total'
-        Hash[@users.sort_by{ |k, v| k.profile.total_result }.reverse]
-      elsif params[:sort] == 'win'
-        Hash[@users.sort_by{ |k, v| k.win_forecasts_count }.reverse]
-      elsif params[:sort] == 'ratio'
-        Hash[@users.sort_by{ |k, v| k.ratio(@match_finished, @all_users)[:ratio_count] }.reverse]
-      elsif params[:sort] == 'new_ratio'
-        Hash[@users.sort_by{ |k, v| k.ratio(@match_finished, @all_users)[:new_ratio] }.reverse]
-      else
-        Hash[@users.sort_by{|k, v| v}.reverse]
-      end
-    end
     # for test
     # Notification.new_round(User.where(email: 'dailyin@luch.podolsk.ru').first, Round.last).deliver_now
+  end
+
+  def list
+    get_sorted_users
   end
 
   def show
@@ -109,5 +90,34 @@ class RoundsController < ApplicationController
                           ]
 
     params.require(:round).permit(list_params_allowed)
+  end
+
+  def get_sorted_users
+    # @users = User.order('total_result desc')
+    # tag = 'ои2018'
+    # tag = 'чмх2017'
+    # tag = 'чмх2018'
+    # tag = 'чмф2018'
+    @matches = Match.all
+    @rounds_finished = @rounds.finished.pluck(:id)
+    @match_finished = @matches.where(round_id: @rounds_finished).pluck(:id)
+
+
+    tag = 'чмх2019'
+    @all_users = User.where(sport_flag: true)
+    @users = (@all_users.includes(:profile).map { |user| { user => Round.tagged_with(tag).map { |r| r.results.where(user_id: user).sum(:total) }.sum } }).reduce(:merge)
+    if @users
+      @users = if params[:sort] == 'total'
+        Hash[@users.sort_by{ |k, v| k.profile.total_result }.reverse]
+      elsif params[:sort] == 'win'
+        Hash[@users.sort_by{ |k, v| k.win_forecasts_count }.reverse]
+      elsif params[:sort] == 'ratio'
+        Hash[@users.sort_by{ |k, v| k.ratio(@match_finished, @all_users)[:ratio_count] }.reverse]
+      elsif params[:sort] == 'new_ratio'
+        Hash[@users.sort_by{ |k, v| k.ratio(@match_finished, @all_users)[:new_ratio] }.reverse]
+      else
+        Hash[@users.sort_by{|k, v| v}.reverse]
+      end
+    end
   end
 end

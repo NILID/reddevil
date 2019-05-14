@@ -1,7 +1,6 @@
 - check_deadline = round.check_finish?
 - matches_count = round.matches.pluck(:id).size
 
-/ !!!!!!!!!! panel-info dropped
 .card.mb-3{ class: check_deadline ? nil : 'bg-info text-white' }
   .card-header
     = link_to round.title, round, class: check_deadline ? nil : 'text-white'

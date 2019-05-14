@@ -1,0 +1,46 @@
+.card-header
+  = t 'shared.rating'
+%table.table.table-hover.animated.fadeIn
+  %thead
+    %tr
+      %td
+      %td
+        = link_to list_rounds_path(sort: 'current'), remote: true do
+          ЧМX 2019
+          - if params[:sort] == 'current' || !params[:sort]
+            = fa_icon 'chevron-down'
+      %td
+        = link_to list_rounds_path(sort: 'ratio'), remote: true do
+          К
+          %sub>< эф
+          - if params[:sort] == 'ratio'
+            = fa_icon 'chevron-down'
+      %td
+        = link_to list_rounds_path(sort: 'new_ratio'), remote: true do
+          К
+          %sub>< new
+          - if params[:sort] == 'new_ratio'
+            = fa_icon 'chevron-down'
+      %td
+        = link_to list_rounds_path(sort: 'win'), remote: true, data: { toggle: 'tooltip' }, title: t('forecasts.full_win') do
+          Точн.
+          - if params[:sort] == 'win'
+            = fa_icon 'chevron-down'
+      %td
+        = link_to list_rounds_path(sort: 'total'), remote: true do
+          Общий
+          - if params[:sort] == 'total'
+            = fa_icon 'chevron-down'
+  - users.each do |user, round_result|
+    - user_ratio = user.ratio(@match_finished, @all_users)
+    - if user_ratio[:forecasts_count] > 0
+      %tr
+        %td= user.profile.surname || user.email
+        %td= round_result
+        %td
+          = user_ratio[:ratio_count]
+          %span.text-muted{ data: { toggle: 'tooltip' }, title: t('forecasts.count_tip') }
+            = user_ratio[:forecasts_count]
+        %td= user_ratio[:new_ratio].round(3)
+        %td= user.win_forecasts_count
+        %td= user.profile.total_result

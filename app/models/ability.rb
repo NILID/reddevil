@@ -8,11 +8,11 @@ class Ability
     # everybody
     can :read, :all
     can %i[archive stat holidays], Member
-    cannot %i[manage read], [Message, Folder, Dataset, Substrate, Year, Machine, Task, Event]
+    cannot %i[manage read], [Message, Folder, Dataset, Substrate, Year, Event]
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation, Machine]
+    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation]
     cannot :mirrors, Substrate
 
     if user.role? :admin
@@ -29,8 +29,6 @@ class Ability
       cannot :download, Round, check_finish?: false
       can :remote_show, Substrate
     end
-
-
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :read, :all
@@ -52,7 +50,7 @@ class Ability
       end
       # cannot :read, Doc, category: { hidden: true }
 
-      cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type, Machine]
+      cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type]
       cannot :index, User
 
       cannot :download, Round, check_finish?: false
@@ -93,11 +91,6 @@ class Ability
 
     if user.has_group? :sellers
       can %i[manage read], [Purchase, Year]
-    end
-
-    if user.has_group? :machine
-      can :read, Machine
-      can %i[manage read], Task
     end
   end
 end

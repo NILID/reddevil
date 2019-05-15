@@ -173,12 +173,6 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.index ["liker_id", "liker_type"], name: "fk_likes", using: :btree
   end
 
-  create_table "machines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "team1_id"
     t.integer  "team2_id"
@@ -385,19 +379,6 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.string  "name",                       collation: "utf8_bin"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
-  end
-
-  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.integer  "user_id"
-    t.integer  "machine_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "complete",   default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["machine_id"], name: "index_tasks_on_machine_id", using: :btree
-    t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

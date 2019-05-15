@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   has_many :results
   has_many :substrates
   has_many :folders
-  has_many :tasks
   has_many :notes
   has_one  :profile, dependent: :destroy
   has_one  :member

@@ -272,13 +272,6 @@ ru:
     add: Добавить песню
     like: Добавить в избранное
     unlike: Убрать из избранного
-  tasks:
-    check_time_failed: Задача не может быть запланирована на те же даты, что и другие задачи.
-    check_less_time_failed: не может произойти раньше, чем дата начала.
-    standstill: Простой
-    update_tasks_help: При смене даты завершения автоматически произойдет смещение сроков следующих задач.
-    add_task: Создание задачи
-    edit_task: Редактирование задачи
   categories:
     title: Категории
     add_subcategory: Добавить подкатегорию
@@ -310,8 +303,6 @@ ru:
   slides:
     add: Добавить слайд
     hide: Ограниченный предосмотр
-  machines:
-    title: Покрытие
   years:
     title: Периоды закупок
     editing: Редактирование периода
@@ -364,8 +355,6 @@ ru:
       substrate: Подложка
       year: период
       column: поле
-      task: задача
-      machine: установка
     attributes:
       album:
         title: Название
@@ -481,13 +470,6 @@ ru:
         screenshot_content_type: Тип изображения
       source:
         file: Слайд
-      task:
-        title: Наименование
-        user_id: Исполнитель
-        start_time: Дата начала
-        end_time: Дата завершения
-        complete: Процент завершения
-        update_tasks_flag: Обновить задачи
       member:
         name: Имя
         surname: Фамилия

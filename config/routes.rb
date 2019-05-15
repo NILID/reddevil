@@ -113,7 +113,6 @@ Rails.application.routes.draw do
 
   get 'calendar' => 'main#calendar'
   get 'relax' => 'main#relax'
-  get 'mirror' => 'main#mirror'
   post 'import' => 'main#import'
   get 'nextsong' => 'main#nextsong'
 

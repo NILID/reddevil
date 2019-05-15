@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
   ROLES = %w[admin user moderator editor test drawing mirrors manager].freeze
   #             1    2     4         8    16    32      64      128
 
-  GROUPS = %w[luch lab193 test sellers art machine].freeze
-  #             1    2     4      8    16    32
+  GROUPS = %w[luch lab193 test sellers].freeze
+  #             1    2     4      8
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }
   scope :sellers,    lambda { with_group(:sellers) }

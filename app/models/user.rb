@@ -26,11 +26,10 @@ class User < ActiveRecord::Base
   ROLES = %w[admin user moderator editor test manager].freeze
   #             1    2     4         8    16    32
 
-  GROUPS = %w[luch lab193 test sellers].freeze
-  #             1    2     4      8
+  GROUPS = %w[luch lab193 test].freeze
+  #             1    2     4
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }
-  scope :sellers,    lambda { with_group(:sellers) }
   scope :with_group, lambda { |group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }
   scope :with_role,  lambda { |role|  where('roles_mask & ? > 0',  2**ROLES.index(role.to_s)) }
 

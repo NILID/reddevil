@@ -3,7 +3,6 @@ ru:
     title: Главная
     music: Музыка
     archive: Архив
-    art: Арт
     close: Закрыть
     more: дальше
     more_info: Подробнее
@@ -42,6 +41,7 @@ ru:
     sport: Спорт
     mid: среднее
     select: Выбрать..
+    to_select: == Выберите ==
     hidden: (скрыто)
     saving: Сохранение...
     rating: Рейтинг знатоков
@@ -51,6 +51,7 @@ ru:
     multiple_select_helper_html: Можно выделить несколько категорий, для этого достаточно при выборе зажать клавишу <span class="label label-info">Ctrl</span>
     sort_by: Сортировать по
     not_find: Поиск не дал результатов
+    already_exist: с такой же датой уже создан
   flash:
     was_created: Вы создали %{item}
     was_updated: Вы обновили %{item}
@@ -128,50 +129,6 @@ ru:
     remove: Удалить поле
   types:
     title: Типы
-  substrates:
-    title: Подложки
-    one_title: Подложка
-    add_title: Новая подложка
-    edit_title: Редактирование подложки
-    select: == Выберите состояние ==
-    select_substrate: == Выберите подложку ==
-    empty: На данный момент нет свободных подложек.
-    states:
-      polishing: Полировка
-      coating: Покрытие
-      not_coating: Без покрытия
-      defect: Забраковано
-      aspart: В составе изделия
-      control: Контролируется
-      depot: На складе
-  mirrors:
-    add_title: Новое зеркало
-    edit_title: Редактирование зеркала
-    title: Зеркала
-    dont_add: "Не вошли:"
-    import: Импорт
-    states:
-      mirror_defect: Брак
-      mirror_build_body: Сборка корпуса
-      mirror_spring_install: Установка пружин(ы)
-      mirror_spring_measure: Измерение хар-к пружины
-      mirror_actuator_install: Установка актюаторов
-      mirror_tension_install: Установка натяжения
-      mirror_jolting: Тряска
-      mirror_pushers_clue: Приклейка толкателей
-      mirror_optics_clue: Приклейка оптики
-      mirror_finish_build: Финишная сборка
-      mirror_control: Юстировка
-      mirror_mirror_measure: Измерение хар-к зеркала
-      mirror_depot: На складе
-      mirror_sent: Отправлено
-  art:
-    create: Создание артблока
-    edit: Редактирование артблока
-    new_artblock: Новый артблок
-    empty: Участник пока не добавил свои работы
-    you_empty: Вы пока не добавили свои работы
-    already_exist: с такой же датой уже создан
   member:
     title: Сотрудники
     title_list: Список сотрудников
@@ -340,7 +297,6 @@ ru:
       profile: профиль
       work: работа
       source: слайд
-      art: артблок
       doc: документ
       category: категория
       note: заметка
@@ -352,7 +308,6 @@ ru:
       folder: папка
       dataset: файл
       purchase: закупка
-      substrate: Подложка
       year: период
       column: поле
     attributes:
@@ -384,8 +339,6 @@ ru:
         src: Файл
       folder:
         title: Название
-      art:
-        deadline: Дедлайн
       purchase:
         title: название
         price: стоимость
@@ -423,15 +376,6 @@ ru:
         deadline: Дэдлайн
         tag_list: Тэг чемпионата
         empty_match: Пустые матчи
-      substrate:
-        title: Наименование
-        drawing: Чертеж
-        number: Зав. номер
-        state: Состояние
-        desc: Примечание
-        theme: Тема
-        user_id: Фамилия
-        substrate_id: Подложка
       forecast:
         winner_id: Победитель
         ending: Завершение матча

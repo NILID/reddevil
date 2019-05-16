@@ -14,7 +14,7 @@
       - if (current_user&.role? :admin)
         = f.form_group do
           = f.check_box :archive_flag
-        = f.select :user_id, (User.order(:email).collect { |u| [u.email, u.id]}), {include_blank: t('substrates.select')}
+        = f.select :user_id, (User.order(:email).collect { |u| [u.email, u.id]}), { include_blank: t('shared.to_select') }
     .card-footer
       = f.form_group do
         = f.primary

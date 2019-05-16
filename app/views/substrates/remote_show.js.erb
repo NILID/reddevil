@@ -1,7 +1,0 @@
-<%if @substrate.category == 'mirror'%>
-  $("#substrate_<%=@substrate.id%>").removeClass("<%=Substrate::MIRROR_STATES.compact.join(' ')%>").addClass("<%=@substrate.state%>");
-<%else%>
-  $("#substrate_<%=@substrate.id%>").removeClass("warning error info success").addClass("<%=@substrate.state_css%>");
-<%end%>
-$("#substrate_<%=@substrate.id%> .substrate_user").html("<%=j link_to(@substrate.user.profile.surname, user_profile_path(@substrate.user)) %>");
-$("#substrate_<%=@substrate.id%> .substrate_date").html("<%=j l(@substrate.updated_at, format: :short)%>");

@@ -8,12 +8,11 @@ class Ability
     # everybody
     can :read, :all
     can %i[archive stat holidays], Member
-    cannot %i[manage read], [Message, Folder, Dataset, Substrate, Year, Event]
+    cannot %i[manage read], [Message, Folder, Dataset, Year, Event]
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
     cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation]
-    cannot :mirrors, Substrate
 
     if user.role? :admin
       can [:read], Forecast do |f|
@@ -27,7 +26,6 @@ class Ability
       can %i[make_role edit_roles], User
       cannot :read, [Song, Album, Round, Forecast]
       cannot :download, Round, check_finish?: false
-      can :remote_show, Substrate
     end
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
@@ -50,7 +48,7 @@ class Ability
       end
       # cannot :read, Doc, category: { hidden: true }
 
-      cannot :read, [Song, Album, Forecast, Round, Substrate, Year, Message, Type]
+      cannot :read, [Song, Album, Forecast, Round, Year, Message, Type]
       cannot :index, User
 
       cannot :download, Round, check_finish?: false
@@ -67,16 +65,6 @@ class Ability
 
     if user.role? :manager
       can :manage, [Member]
-    end
-
-    if user.role? :drawing
-      can %i[index new create get_form], Substrate
-      can %i[destroy edit update show remote_show sort], Substrate, category: 'substrate'
-    end
-
-    if user.role? :mirrors
-      can %i[mirrors new create get_form], Substrate
-      can %i[destroy edit update show remote_show sort], Substrate, category: 'mirror'
     end
 
     if user.has_group? :lab193

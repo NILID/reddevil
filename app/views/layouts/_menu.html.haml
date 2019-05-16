@@ -19,17 +19,6 @@
           = link_to years_path, class: 'nav-link' do
             = fa_icon 'shopping-cart', text: t('purchases.title')
 
-      - if (can? :index, Substrate) || (can? :mirrors, Substrate)
-        %li.nav-item.dropdown{class: params[:controller] == 'substrates' ? 'active' : nil}
-          = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: "true", expanded: "false" }, id: 'dropproduction' do
-            = fa_icon 'wrench', text: t('shared.production')
-
-          .dropdown-menu(aria-labelledby='dropproduction')
-            - if can? :index, Substrate
-              = link_to t('substrates.title'), substrates_path, class: 'dropdown-item'
-            - if can? :mirrors, Substrate
-              = link_to t('mirrors.title'), mirrors_substrates_path, class: 'dropdown-item'
-
     %ul.nav.navbar-nav.navbar-right
       - if (can? :read, Round) || (can? :read, Album)
         %li.nav-item.dropdown

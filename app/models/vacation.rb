@@ -17,6 +17,6 @@ class Vacation < ActiveRecord::Base
   private
 
     def check_dates
-      errors.add(:startdate, I18n.t('art.already_exist')) if startdate && enddate && startdate > enddate
+      errors.add(:startdate, I18n.t('shared.already_exist')) if startdate && enddate && startdate > enddate
     end
 end

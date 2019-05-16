@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :forecasts
   has_many :results
-  has_many :substrates
   has_many :folders
   has_many :notes
   has_one  :profile, dependent: :destroy

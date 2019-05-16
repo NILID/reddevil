@@ -339,23 +339,6 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "substrates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.string   "drawing"
-    t.string   "number"
-    t.string   "state"
-    t.integer  "user_id"
-    t.text     "desc",         limit: 65535
-    t.string   "theme"
-    t.integer  "place"
-    t.string   "category",                   null: false
-    t.integer  "substrate_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["substrate_id"], name: "index_substrates_on_substrate_id", using: :btree
-    t.index ["user_id"], name: "index_substrates_on_user_id", using: :btree
-  end
-
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"

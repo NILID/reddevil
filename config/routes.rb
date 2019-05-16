@@ -2,17 +2,6 @@ Rails.application.routes.draw do
   resources :vacations, only: [:index]
   resources :notes
 
-  resources :substrates do
-    member do
-      get :remote_show
-      get :get_form
-    end
-    collection do
-      get :mirrors
-      post :sort
-    end
-  end
-
   resources :years do
     resources :columns
     resources :purchases do

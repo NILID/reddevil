@@ -1,5 +1,5 @@
-# ROLES = %w(admin user moderator editor test drawing mirrors manager)
-#              1    2       4       8      16    32      64     128
+# ROLES = %w(admin user moderator editor test manager)
+#              1    2       4       8      16    32
 
 FactoryBot.define do
   factory :user do
@@ -23,7 +23,7 @@ FactoryBot.define do
     end
 
     trait(:manager) do
-      after(:create) { |u| u.update_attribute(:roles_mask, 128)}
+      after(:create) { |u| u.update_attribute(:roles_mask, 32)}
     end
   end
 end

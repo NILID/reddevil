@@ -39,24 +39,6 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.index ["doc_id"], name: "index_categoryships_on_doc_id", using: :btree
   end
 
-  create_table "columns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "column_type"
-    t.integer  "year_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["year_id"], name: "index_columns_on_year_id", using: :btree
-  end
-
-  create_table "columnships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "column_id"
-    t.integer "purchase_id"
-    t.text    "data",        limit: 65535
-    t.text    "desc",        limit: 65535
-    t.index ["column_id"], name: "index_columnships_on_column_id", using: :btree
-    t.index ["purchase_id"], name: "index_columnships_on_purchase_id", using: :btree
-  end
-
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "body",       limit: 65535
     t.integer  "user_id"
@@ -91,15 +73,6 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
-  end
-
-  create_table "deliveries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "doc"
-    t.datetime "delivery"
-    t.integer  "purchase_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["purchase_id"], name: "index_deliveries_on_purchase_id", using: :btree
   end
 
   create_table "docs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -254,43 +227,6 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.integer  "total_result",        default: 0
   end
 
-  create_table "purchases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.float    "price",             limit: 24
-    t.string   "provider"
-    t.string   "doc"
-    t.integer  "user_id"
-    t.date     "startdate"
-    t.date     "zkpdate"
-    t.date     "kp"
-    t.date     "zsc_kp"
-    t.date     "nmc"
-    t.date     "aztz"
-    t.date     "conclusion_expert"
-    t.date     "analytic"
-    t.date     "conclusion_pdtk"
-    t.date     "erp"
-    t.date     "request"
-    t.date     "bidding"
-    t.date     "committee"
-    t.date     "contract_request"
-    t.date     "contract_project"
-    t.date     "contract"
-    t.date     "prepay_date"
-    t.integer  "prepay_sum"
-    t.date     "warmth_date"
-    t.integer  "warmth_sum"
-    t.date     "proxy"
-    t.date     "delivery"
-    t.integer  "year_id"
-    t.string   "status"
-    t.string   "status_color"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
-    t.index ["year_id"], name: "index_purchases_on_year_id", using: :btree
-  end
-
   create_table "results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "total",       default: 0
     t.integer  "user_id"
@@ -421,14 +357,6 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_vacations_on_member_id", using: :btree
-  end
-
-  create_table "years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "year"
-    t.string   "slug",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_years_on_slug", unique: true, using: :btree
   end
 
   add_foreign_key "categoryships", "categories"

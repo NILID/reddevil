@@ -8,7 +8,7 @@ class Ability
     # everybody
     can :read, :all
     can %i[archive stat holidays], Member
-    cannot %i[manage read], [Message, Folder, Dataset, Year, Event]
+    cannot %i[manage read], [Message, Folder, Dataset, Event]
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
@@ -48,7 +48,7 @@ class Ability
       end
       # cannot :read, Doc, category: { hidden: true }
 
-      cannot :read, [Song, Album, Forecast, Round, Year, Message, Type]
+      cannot :read, [Song, Album, Forecast, Round, Message, Type]
       cannot :index, User
 
       cannot :download, Round, check_finish?: false
@@ -75,10 +75,6 @@ class Ability
       can %i[favorites list], Album
 
       can %i[new create], Forecast, user: { id: user.id }
-    end
-
-    if user.has_group? :sellers
-      can %i[manage read], [Purchase, Year]
     end
   end
 end

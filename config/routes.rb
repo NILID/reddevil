@@ -2,18 +2,6 @@ Rails.application.routes.draw do
   resources :vacations, only: [:index]
   resources :notes
 
-  resources :years do
-    resources :columns
-    resources :purchases do
-      member do
-        get :get_form
-        get :get_miniform
-        get :get_delivery_form
-        post :new_form
-      end
-    end
-  end
-
   resources :events, only: %i[list] do
     collection do
       get 'list'

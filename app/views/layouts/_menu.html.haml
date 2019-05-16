@@ -14,10 +14,6 @@
         = link_to t('shared.calendar'), calendar_path, class: 'nav-link'
       %li.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
         = link_to t('docs.title'), docs_path, class: 'nav-link'
-      - if can? :manage, Purchase
-        %li.nav-item{class: (%w(purchases years).include? params[:controller]) ? 'active' : nil}
-          = link_to years_path, class: 'nav-link' do
-            = fa_icon 'shopping-cart', text: t('purchases.title')
 
     %ul.nav.navbar-nav.navbar-right
       - if (can? :read, Round) || (can? :read, Album)

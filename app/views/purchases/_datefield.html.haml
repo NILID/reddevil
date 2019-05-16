@@ -1,6 +1,0 @@
-=# c.object.data.to_datetime
-= c.text_field :data,
-  prepend: fa_icon('calendar'),
-  class: 'datepicker',
-  label: c.object.column.name,
-  value: (c.object.data.to_datetime.strftime('%d.%m.%Y') if c.object.data.present?)

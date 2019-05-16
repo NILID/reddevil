@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   after_create :set_role
 
   has_many :events
-  has_many :purchases
   has_many :forecasts
   has_many :results
   has_many :folders

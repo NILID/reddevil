@@ -70,8 +70,6 @@ ru:
     empty: Пустая папка
     empty_root: Пусто
     already_exist_in_folder: В текущей директории уже существует файл с таким названием.
-  deliveries:
-    title: Поставка
   vacations:
     index: Сейчас в отпуске
     soon: Скоро в отпуск
@@ -96,25 +94,6 @@ ru:
     remember: Запомнить меня
     sendmepassword: Выслать письмо с подтверждением сброса пароля
     no_confirm: Не получили письмо с подтверждением регистрации?
-  purchases:
-    title: Закупки
-    basic_info: общая информация
-    ask_price: запрос и сравнение цен
-    info_share: информационный обмен
-    erp: ерп
-    buy_depart: отдел закупок
-    dogovor_depart: договорной отдел
-    payment: оплата
-    delivery: поставка
-    result: итог
-    add_new: Добавить закупку
-    last_editing_html: 'Последняя редакция: %{user}'
-    sort_by:
-      title: наименованию
-      user: исполнителю
-      price: стоимости
-      doc: теме/счету
-      provider: поставщику
   notes:
     title: Заметки по работе сайта
     find_error: Нашли ошибку?
@@ -124,9 +103,6 @@ ru:
     failed: отклонено
     done: выполнено
     later: отложено
-  columns:
-    add: Добавить поле
-    remove: Удалить поле
   types:
     title: Типы
   member:
@@ -260,10 +236,6 @@ ru:
   slides:
     add: Добавить слайд
     hide: Ограниченный предосмотр
-  years:
-    title: Периоды закупок
-    editing: Редактирование периода
-    creating: Создание периода
   work:
     edit: Редактирование работы
     create: Создание работы
@@ -307,9 +279,6 @@ ru:
       forecast: прогноз
       folder: папка
       dataset: файл
-      purchase: закупка
-      year: период
-      column: поле
     attributes:
       album:
         title: Название
@@ -327,46 +296,11 @@ ru:
         title: Название
         content: Текст сообщения
         close: Скрытие
-        purchase: Закупка
-      delivery:
-        doc: Доверенность
-        delivery: Поставка
-      column:
-        name: Название
-        column_type: Тип
       dataset:
         title: Название
         src: Файл
       folder:
         title: Название
-      purchase:
-        title: название
-        price: стоимость
-        provider: поставщик
-        doc: тема/счёт
-        user_id: исполнитель
-        startdate: старт закупки
-        zkpdate: зкп
-        kp: кп
-        zsc_kp: зсц, кп
-        nmc: нмц
-        aztz: аз/тз/оеп
-        conclusion_expert: заключение экспертной группы
-        analytic: аналитическая справка
-        conclusion_pdtk: заключение пдтк / разрешение ио
-        erp: заказ (гид, номенклатура, контрагент, счёт/договор)
-        request: заявка / закупочная документация / публикация
-        bidding: торги
-        committee: закупочная комиссия (зк), протокол зк, озеп, озд
-        contract_request: запрос обоснование
-        contract_project: проект договора
-        contract: договор
-        prepay_date: аванс, дата
-        prepay_sum: аванс, сумма
-        warmth_date: постоплата, дата
-        warmth_sum: постоплата, сумма
-        proxy: доверенность
-        delivery: поставка
       round:
         title: Название
         close: Скрытность
@@ -436,8 +370,6 @@ ru:
         patronymic: Отчество
         avatar: Аватар
         background_color: Фон сайта
-      year:
-        year: Период
       song:
         title: Название
         file: Файл
@@ -479,9 +411,6 @@ ru:
     member_1: сотрудник
     member_2: сотрудника
     member_10: сотрудников
-    purchase_1: закупка
-    purchase_2: закупки
-    purchase_10: закупок
   will_paginate:
     next_label: Следующее
     previous_label: Предыдущее

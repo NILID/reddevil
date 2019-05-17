@@ -1,5 +1,4 @@
 class AlbumsController < ApplicationController
-  before_action :authenticate_user!
   load_and_authorize_resource find_by: :slug
 
   layout 'withside'
@@ -58,8 +57,7 @@ class AlbumsController < ApplicationController
     @album.parent_id = params[:parent_id]
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     respond_to do |format|

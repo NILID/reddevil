@@ -8,6 +8,18 @@ RSpec.describe MembersController, type: :controller do
     describe "#{role} should" do
       login_user(role)
 
+      it 'returns new' do
+        expect(@ability.can? :new, Member).to be true
+        get :new
+        expect(response).to render_template(:new)
+      end
+
+      it 'not creates a new Member' do
+        expect(@ability.can? :create, Member).to be true
+        expect{ post :create, params: { member: attributes_for(:member) } }.to change(Member, :count).by(1)
+        expect(response).to redirect_to(Member)
+      end
+
       it 'returns edit' do
         expect(@ability.can? :edit, member).to be true
         get :edit, params: { id: member }

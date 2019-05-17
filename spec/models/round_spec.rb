@@ -8,5 +8,15 @@ RSpec.describe Round, type: :model do
       round.title = nil
       expect(round.valid?).to be false
     end
+
+    it 'check finish must be false' do
+      round.deadline = DateTime.now + 1.day
+      expect(round.check_finish?).to be false
+    end
+
+    it 'check finish must be true' do
+      round.deadline = DateTime.now - 1.day
+      expect(round.check_finish?).to be true
+    end
   end
 end

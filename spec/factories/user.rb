@@ -1,6 +1,9 @@
 # ROLES = %w(admin user moderator editor test manager)
 #              1    2       4       8      16    32
 
+# GROUPS = %w[luch lab193 test]
+#               1    2     4
+
 FactoryBot.define do
   factory :user do
     email                 { Faker::Internet.unique.email }
@@ -10,13 +13,12 @@ FactoryBot.define do
 
     after(:build) do |u|
       u.profile = build(:profile)
-      u.member = build(:member)
+      u.member  = build(:member)
     end
 
     trait(:admin) do
       after(:create) { |u| u.update_attribute(:roles_mask, 1)}
     end
-
 
     trait(:user) do
       after(:create) { |u| u.update_attribute(:roles_mask, 2)}
@@ -24,6 +26,10 @@ FactoryBot.define do
 
     trait(:manager) do
       after(:create) { |u| u.update_attribute(:roles_mask, 32)}
+    end
+
+    trait(:from_lab) do
+      after(:create) { |u| u.update_attribute(:groups_mask, 2)}
     end
   end
 end

@@ -24,5 +24,11 @@ RSpec.describe Forecast, type: :model do
       expect(forecast.valid?).to be false
     end
 
+    it 'user cannot add forecast more than one' do
+      forecast.save!
+      f = build(:forecast, match: forecast.match, user: forecast.user)
+      expect(f.valid?).to be false
+      expect(f.errors[:match_id]).not_to be_empty
+    end
   end
 end

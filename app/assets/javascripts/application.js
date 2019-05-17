@@ -25,7 +25,7 @@
 //= require moment
 //= require moment/ru
 //= require fullcalendar
-//= require fullcalendar/locale-all
+//= require fullcalendar/lang/ru
 //= require bootstrap-datetimepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js

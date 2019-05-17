@@ -53,9 +53,6 @@ GEM
       rails
     arel (7.1.4)
     bcrypt (3.1.12)
-    best_in_place (3.1.1)
-      actionpack (>= 3.2)
-      railties (>= 3.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -362,7 +359,6 @@ DEPENDENCIES
   acts-as-taggable-on
   ancestry
   animate-rails
-  best_in_place
   better_errors (< 2)
   binding_of_caller
   birthday

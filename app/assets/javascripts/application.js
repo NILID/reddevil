@@ -11,12 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require best_in_place
 //= require jquery_ujs
 //= require jquery-ui
 //= require popper.min
 //= require bootstrap.bundle
-//= require best_in_place.jquery-ui
 //= require readmore
 //= require jquery.Jcrop
 //= require cocoon

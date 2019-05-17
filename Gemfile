@@ -27,8 +27,6 @@ gem 'time_difference'
 gem 'roo'
 gem 'roo-xls'
 
-gem 'best_in_place'
-
 gem 'fullcalendar-rails'
 
 gem 'chartkick'

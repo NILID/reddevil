@@ -55,8 +55,6 @@ $ ->
     fff1 = fff.replace(/\.[^/.]+$/, "")
     $('form input.title_auto').val(fff1)
 
-  $(".best_in_place").best_in_place()
-
   $.extend $.fn.datepicker.defaults,
     format: 'yyyy-mm-dd'
     language: "ru"

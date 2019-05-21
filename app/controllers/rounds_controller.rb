@@ -23,7 +23,7 @@ class RoundsController < ApplicationController
   end
 
   def download
-    @users = User.includes(:profile).order('profiles.surname')
+    @users = User.where(sport_flag: true).includes(:profile).order('profiles.surname')
     @round_matches = @round.matches.includes([:team1, :team2])
     respond_to do |format|
       format.pdf{ render pdf: @round.title, orientation: 'Landscape' }

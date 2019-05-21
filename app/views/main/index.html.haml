@@ -52,25 +52,24 @@
           .card-body
             - @bdusers_month.keys.sort.each do |u|
               = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
-
-    - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
-      .card
-        - unless @holidays_today.empty?
-          .card-header
-            = t 'shared.today'
-            %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
-          .card-body
-            - @holidays_today.each do |holiday|
-              .text-success.mb-2= holiday[:name]
-        - unless @holidays_tomorrow.empty?
-          .card-header
-            = t 'shared.tomorrow'
-            %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
-          .card-body
-            - @holidays_tomorrow.each do |holiday|
-              .mb-2= holiday[:name]
-
     - if user_signed_in?
+      - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
+        .card
+          - unless @holidays_today.empty?
+            .card-header
+              = t 'shared.today'
+              %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
+            .card-body
+              - @holidays_today.each do |holiday|
+                .text-success.mb-2= holiday[:name]
+          - unless @holidays_tomorrow.empty?
+            .card-header
+              = t 'shared.tomorrow'
+              %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
+            .card-body
+              - @holidays_tomorrow.each do |holiday|
+                .mb-2= holiday[:name]
+
       - unless @events.empty? && @events_soon.empty?
         .card
           - unless @events.empty?
@@ -78,7 +77,7 @@
               = link_to t('events.list'), [current_user, Event]
             .card-body
               .row
-                .col-12= render partial: 'events/event_mini', collection: @events, locals: { diff_dates: false } 
+                .col-12= render partial: 'events/event_mini', collection: @events, locals: { diff_dates: false }
 
           - unless @events_soon.empty?
             .card-header

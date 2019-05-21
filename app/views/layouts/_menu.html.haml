@@ -10,8 +10,9 @@
       - if can? :read, Member
         %li.nav-item{class: (params[:controller] == 'members') ? 'active' : nil}
           = link_to t('member.title'), members_path, class: 'nav-link'
-      %li.nav-item{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
-        = link_to t('shared.calendar'), calendar_path, class: 'nav-link'
+      - if user_signed_in?
+        %li.nav-item{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
+          = link_to t('shared.calendar'), calendar_path, class: 'nav-link'
       %li.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
         = link_to t('docs.title'), docs_path, class: 'nav-link'
 

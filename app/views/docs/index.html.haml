@@ -3,11 +3,10 @@
 - content_for :sidebar do
   .card
     .card-header
-      %p
-        = link_to t('categories.title'), docs_path
-        - if can? :manage, Category
-          = link_to categories_path, class: 'btn btn-secondary btn-sm float-right' do
-            = fa_icon 'cog'
+      = link_to t('categories.title'), docs_path
+      - if can? :manage, Category
+        = link_to categories_path, class: 'btn btn-secondary btn-sm float-right' do
+          = fa_icon 'cog'
 
     = arranged_tree_as_list(@categories) do |category|
       = link_to category.title,

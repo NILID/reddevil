@@ -9,7 +9,7 @@
         = link_to t('member.vacation'), manage_holidays_member_path(member), class: 'dropdown-item'
 
   .card-body
-    %dl.row
+    %dl.row.my-0
       %dt.col-sm-3.text-right= Member.human_attribute_name(:work_phone)
       %dd.col-sm-9= member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
       %dt.col-sm-3.text-right= Member.human_attribute_name(:short_number)

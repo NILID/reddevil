@@ -8,10 +8,11 @@
     .card-body
       - label_css_classes.each do |k,v|
         .mb-2
-          = link_to notes_path(:'q[status_eq]' => k) do
+          = link_to notes_path(q: { status_eq: k }) do
             %span.badge{ class: "badge-#{v}" }
               %b= @notes_all_count[k.to_s] || '0'
               = t "notes.#{k}"
+
 
 .card
   .card-header
@@ -19,7 +20,7 @@
     %small.float-right
       = link_to(new_note_path, class: 'btn btn-primary btn-sm') do
         = fa_icon 'plus inverse'
-  %table.table.table-striped.table-sm
+  %table.table.table-striped.table-sm.my-0
     %thead
       %tr
         %th

@@ -7,5 +7,4 @@
     .card
       .card-header
         = render 'panel_top'
-      .card-body
-        = render 'members', members: (@members - [@current_member])
+      = render 'members', members: (@members - [@current_member])

@@ -5,6 +5,5 @@
     .card
       .card-header
         = render 'panel_top'
-      .card-body
-        %table.table.table-striped
-          = render partial: 'member_holiday', collection: @members
+      %table.table.table-striped
+        = render partial: 'member_holiday', collection: @members

@@ -16,7 +16,6 @@
       %li.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
         = link_to t('docs.title'), docs_path, class: 'nav-link'
 
-    %ul.nav.navbar-nav.navbar-right
       - if (can? :read, Round) || (can? :read, Album)
         %li.nav-item.dropdown
           = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, id: 'dropmedia' do
@@ -52,4 +51,5 @@
                 &nbsp;
                 = t('dataset.title')
 
+    %ul.nav.navbar-nav.navbar-right
       = render 'users/userbar'

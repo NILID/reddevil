@@ -218,6 +218,7 @@ ru:
   profiles:
     editing: Редактирование профиля
     edit: Редактировать профиль
+    my: Мой профиль
   mailer:
     birthday: День Рождения!
     new_round: Новый раунд прогнозов - "%{round_name}"

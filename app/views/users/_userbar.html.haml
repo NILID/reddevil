@@ -1,6 +1,13 @@
 - if user_signed_in?
-  %li.nav-item= link_to (current_user.profile.login? ? current_user.profile.login : current_user.email), user_profile_path(current_user), class: 'nav-link'
-  %li.nav-item= link_to t('devise.logout'), destroy_user_session_path, method: :delete, class: 'nav-link'
+  %li.nav-item.dropdown
+    = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, id: 'userbar' do
+      = image_tag current_user.profile.avatar(:thumb), class: 'img-fluid user-avatar rounded mr-2'
+      = (current_user.profile.login? ? current_user.profile.login : current_user.email)
+
+    .dropdown-menu.dropdown-menu-right(aria-labelledby='userbar')
+      = link_to t('profiles.my'), user_profile_path(current_user), class: 'nav-link'
+      .dropdown-divider
+      = link_to t('devise.logout'), destroy_user_session_path, method: :delete, class: 'nav-link'
 - else
   %li.nav-item= link_to t('devise.login'), new_user_session_path, class: 'nav-link'
   %li.nav-item= link_to t('devise.signup'), new_user_registration_path, class: 'nav-link'

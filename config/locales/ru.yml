@@ -135,6 +135,8 @@ ru:
     edit_roles: Настройка доступа пользователя %{username}
     roles: Роли
     groups: Группы
+    online: онлайн
+    online_ago_html: заходил %{time} назад
   matches:
     count: Количество матчей
     add: Добавить матч

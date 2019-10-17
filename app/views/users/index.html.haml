@@ -18,15 +18,15 @@
         - @users.each_with_index do |user, index|
           %tr
             %th(scope="row")
-              %span.badge{ class: user.online? ? 'badge-success' : 'badge-secondary' }
-                = user.id
+              = user.id
             %td
               = image_tag user.profile.avatar.url(:medium), class: 'thumbnail img-fluid'
             %td
               = link_to user.email, user_profile_path(user)
               - if user.member
                 .text-muted= user.member.fullname
-            %td= l user.updated_at, format: :long
+            %td
+              = last_seen(user)
             %td= user.confirmed?
             - if can? :edit, user.profile
               %td

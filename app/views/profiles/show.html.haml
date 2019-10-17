@@ -17,10 +17,10 @@
     .card.mt-2.mt-md-0
       .card-header
         .row
-          .col-10
-            .h3
-              = @member.fullname if @member
-              (#{@profile.login? ? @profile.login : @user.email})
+          .col
+            .h3= @member.fullname if @member
+          .col.text-right
+            = last_seen(@user)
 
       .card-body
         .row

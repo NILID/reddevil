@@ -11,10 +11,24 @@ class UsersController < ApplicationController
     @albums = @user.likees(Album)
   end
 
+  def edit; end
+
+  def update
+    if @user.update_attributes(user_params)
+      # if params[:profile][:avatar].present?
+      #    render :crop
+      # else
+      redirect_to @user, notice: t('flash.was_updated', item: User.model_name.human)
+      # end
+    else
+      render :edit
+    end
+  end
+
   def make_role
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to user_profile_path(@user), notice: t('flash.was_updated', item: User.model_name.human) }
+        format.html { redirect_to @user, notice: t('flash.was_updated', item: User.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -26,7 +40,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      list_params_allowed = []
+      list_params_allowed = [ { profile_attributes: %i[avatar crop_x crop_y crop_w crop_h login background_color total_result] } ]
       list_params_allowed << [:roles_mask, :sport_flag, roles: [], groups: []] if (current_user&.role? :admin)
       params.require(:user).permit(list_params_allowed)
     end

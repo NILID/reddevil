@@ -1,13 +1,13 @@
 .row
   .col-md-12
     %h1 Crop Avatar
-    = image_tag @profile.avatar.url(:large), id: "cropbox"
+    = image_tag @user.avatar.url(:large), id: "cropbox"
 .row
   .col-md-12
     %h4 Preview
     %div(style="width:100px; height:100px; overflow:hidden;")
-      = image_tag @profile.avatar.url(:large), id: "preview", style: 'max-width: none'
-= bootstrap_form_for [@user, @profile], layout: :horizontal do |f|
+      = image_tag @user.avatar.url(:large), id: "preview", style: 'max-width: none'
+= bootstrap_form_for @user, layout: :horizontal do |f|
   - %w[x y w h].each do |attribute|
     = f.hidden_field "crop_#{attribute}"
   = f.primary 'Crop'

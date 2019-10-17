@@ -20,7 +20,7 @@
             %th(scope="row")
               = user.id
             %td
-              = image_tag user.profile.avatar.url(:medium), class: 'thumbnail img-fluid'
+              = image_tag user.avatar.url(:medium), class: 'thumbnail img-fluid'
             %td
               = link_to user.email, user
               - if user.member
@@ -28,12 +28,12 @@
             %td
               = last_seen(user)
             %td= user.confirmed?
-            - if can? :edit, user.profile
+            - if can? :edit, user
               %td
                 .btn-group
                   %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                     = fa_icon 'cog'
                   .dropdown-menu.dropdown-menu-right
-                    = link_to t('profiles.edit'), edit_user_profile_path(user), class: 'dropdown-item'
+                    = link_to t('profiles.edit'), edit_user_path(user), class: 'dropdown-item'
                     - if can? :edit_roles, user
                       = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'dropdown-item'

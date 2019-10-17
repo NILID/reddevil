@@ -1,0 +1,17 @@
+.card
+  .card-header
+    = t 'profiles.editing'
+
+  = bootstrap_form_for @user, layout: :horizontal do |f|
+    = f.fields_for :profile do |p|
+      .card-body
+        = p.text_field :login, autofocus: true
+        = p.file_field :avatar
+        #changecolor.colorpicker-component
+          = p.text_field :background_color,
+            value: @user.background_color,
+            control_col: 'col-sm-3',
+            prepend: content_tag(:span, content_tag(:i), class: 'colorpicker-input-addon')
+    .card-footer
+      = f.form_group do
+        = f.primary

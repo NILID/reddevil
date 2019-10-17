@@ -49,12 +49,11 @@ Rails.application.routes.draw do
 
   resources :docs
 
-  resources :users, only: %i[index show] do
+  resources :users, only: %i[index show edit update] do
     member do
       post 'make_role'
       get 'edit_roles'
     end
-    resource :profile, only: %i[edit update]
     resources :events
     resources :folders do
       resources :datasets

@@ -21,6 +21,19 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to render_template(:edit_roles)
     end
 
+    it 'get edit' do
+      expect(@ability.can? :edit, user).to be true
+      get :edit, params: { id: user, user_id: user }
+      expect(response).to render_template(:edit)
+      expect(response).to be_success
+    end
+
+    it 'updates' do
+      expect(@ability.can? :update, user).to be true
+      put :update, params: { id: user, user: attributes_for(:user) }
+      expect(response).to redirect_to(assigns(:user))
+    end
+
     it 'make role' do
       expect(@ability.can? :make_role, user).to be true
 
@@ -28,7 +41,7 @@ RSpec.describe UsersController, type: :controller do
       post :make_role, params: { id: user, user: { roles: ['moderator'] } }
 
       expect(assigns(:user).roles).to eq(['moderator'])
-      expect(response).to redirect_to(user_profile_path(assigns(:user)))
+      expect(response).to redirect_to(assigns(:user))
     end
   end
 
@@ -47,6 +60,28 @@ RSpec.describe UsersController, type: :controller do
       expect{ get :index }.to raise_error(CanCan:: AccessDenied)
     end
 
+    it 'cannot get edit not own' do
+      expect(@ability.cannot? :edit, user).to be true
+      expect{ get :edit, params: { id: user } }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'get edit own' do
+      expect(@ability.can? :edit, @user).to be true
+      expect(get :edit, params: { id: @user } ).to be_success
+    end
+
+    it 'not updates' do
+      expect(@ability.cannot? :update, user).to be true
+      expect{ put :update, params: { id: user, user: attributes_for(:user) } }
+        .to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'updates own' do
+      expect(@ability.can? :update, @user).to be true
+      put :update, params: { id: @user, user: attributes_for(:user) }
+      expect(response).to redirect_to(assigns(:user))
+    end
+
     it 'not returns edit_roles' do
       expect(@ability.cannot? :edit_roles, user).to be true
       expect{ get :edit_roles, params: { id: user } }.to raise_error(CanCan:: AccessDenied)
@@ -62,6 +97,15 @@ RSpec.describe UsersController, type: :controller do
   describe 'unreg user should' do
     it 'not returns index' do
       expect(get :index).to redirect_to(new_user_session_path)
+    end
+
+    it 'not returns edit' do
+      expect(get :edit, params: { id: user }).to redirect_to(new_user_session_path)
+    end
+
+    it 'not updates' do
+      expect(put :update, params: { id: user, user: attributes_for(:user) })
+        .to redirect_to(new_user_session_path)
     end
 
     it 'not returns edit_roles' do

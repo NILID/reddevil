@@ -77,7 +77,7 @@ RSpec.describe AlbumsController, type: :controller do
 
     it 'update' do
       expect(@ability.can? :update, album).to be true
-      put :update, params: { id: album, album: { title: 'New content' } }
+      put :update, params: { id: album, album: attributes_for(:album) }
       expect(response).to redirect_to(assigns(:album))
     end
   end
@@ -157,7 +157,7 @@ RSpec.describe AlbumsController, type: :controller do
 
     it 'update' do
       expect(@ability.can? :update, album).to be true
-      put :update, params: { id: album, album: { title: 'New content' } }
+      put :update, params: { id: album, album: attributes_for(:album) }
       expect(response).to redirect_to(assigns(:album))
     end
   end
@@ -221,7 +221,7 @@ RSpec.describe AlbumsController, type: :controller do
 
     it 'update' do
       expect(@ability.cannot? :update, album).to be true
-      expect{ put :update, params: { id: album, album: { title: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put :update, params: { id: album, album: attributes_for(:album) } }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -238,7 +238,7 @@ RSpec.describe AlbumsController, type: :controller do
     it('list')     { get :list, params: { id: album } }
     it('show')     { get :show, params: { id: album } }
     it('edit')     { get :edit, params: { id: album } }
-    it('updates')  { put :update, params: { id: album, album: { title: 'New content' } } }
+    it('updates')  { put :update, params: { id: album, album: attributes_for(:album) } }
 
     it 'create' do
       post :create, params: { album: attributes_for(:album) }

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  delegate :login, :avatar, :fullname, to: :profile
+
 
   after_create :set_role
 
@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :notes
   has_one  :profile, dependent: :destroy
   has_one  :member
+
+  accepts_nested_attributes_for :profile, reject_if: :all_blank
+  delegate :login, :avatar, :background_color, to: :profile
 
   ROLES = %w[admin user moderator editor test manager].freeze
   #             1    2     4         8    16    32
@@ -43,10 +46,6 @@ class User < ActiveRecord::Base
 
   def role?(role)
     roles.include? role.to_s
-  end
-
-  def to_param
-    "#{id}-#{fullname.parameterize}"
   end
 
   def groups=(groups)

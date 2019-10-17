@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :vacations, only: [:index]
   resources :notes
 
+  devise_for :users
+
   resources :events, only: %i[list] do
     collection do
       get 'list'
@@ -47,12 +49,12 @@ Rails.application.routes.draw do
 
   resources :docs
 
-  resources :users, only: %i[index] do
+  resources :users, only: %i[index show] do
     member do
       post 'make_role'
       get 'edit_roles'
     end
-    resource :profile, only: %i[edit update show]
+    resource :profile, only: %i[edit update]
     resources :events
     resources :folders do
       resources :datasets
@@ -95,5 +97,5 @@ Rails.application.routes.draw do
 
   root to: 'main#index'
 
-  devise_for :users
+
 end

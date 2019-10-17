@@ -16,7 +16,7 @@
           - @users.each do |user|
             %th.results.text-center
               %p.font-weight-normal
-                = link_to [user, :profile] do
+                = link_to user do
                   = user.profile.surname || user.email.split('@').first
 
               - result = user.results.where(round_id: @round).first

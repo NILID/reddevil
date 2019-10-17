@@ -3,12 +3,6 @@ class ProfilesController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :profile, through: :user, singleton: :true
 
-  def show
-    @member = @user.member
-    @songs  = @user.likees(Song)
-    @albums = @user.likees(Album)
-  end
-
   def edit; end
 
   def update
@@ -16,7 +10,7 @@ class ProfilesController < ApplicationController
       # if params[:profile][:avatar].present?
       #    render :crop
       # else
-        redirect_to user_profile_path(@profile), notice: t('flash.was_updated', item: Profile.model_name.human)
+        redirect_to @user, notice: t('flash.was_updated', item: Profile.model_name.human)
       # end
     else
       render :edit

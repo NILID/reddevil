@@ -36,7 +36,7 @@ class Ability
       can %i[manage read], Folder,  user:   { id: user.id }
       can %i[manage read], Dataset, folder: { user_id: user.id }
       can :show, User, id: user.id
-      can %i[show edit update], Profile, user: { id: user.id }
+      can %i[edit update], Profile, user: { id: user.id }
       can %i[read manage list], Event, user: { id: user.id }
     end
 

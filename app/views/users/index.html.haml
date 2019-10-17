@@ -22,7 +22,7 @@
             %td
               = image_tag user.profile.avatar.url(:medium), class: 'thumbnail img-fluid'
             %td
-              = link_to user.email, user_profile_path(user)
+              = link_to user.email, user
               - if user.member
                 .text-muted= user.member.fullname
             %td

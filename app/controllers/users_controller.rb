@@ -5,6 +5,12 @@ class UsersController < ApplicationController
     @users = @users.includes(:profile, :member)
   end
 
+  def show
+    @member = @user.member
+    @songs  = @user.likees(Song)
+    @albums = @user.likees(Album)
+  end
+
   def make_role
     respond_to do |format|
       if @user.update_attributes(user_params)

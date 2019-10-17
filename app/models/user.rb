@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  delegate :login, to: :profile
+  delegate :login, :avatar, :fullname, to: :profile
 
   after_create :set_role
 
@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
 
   def role?(role)
     roles.include? role.to_s
+  end
+
+  def to_param
+    "#{id}-#{fullname.parameterize}"
   end
 
   def groups=(groups)

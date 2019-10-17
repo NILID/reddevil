@@ -35,6 +35,13 @@ RSpec.describe UsersController, type: :controller do
   describe 'user should' do
     login_user(:user)
 
+    it 'returns show' do
+      expect(@ability.can? :show, User).to be true
+      get :show, params: { id: user }
+      expect(response).to be_success
+      expect(response).to render_template(:show)
+    end
+
     it 'not index' do
       expect(@ability.cannot? :index, User).to be true
       expect{ get :index }.to raise_error(CanCan:: AccessDenied)

@@ -3,7 +3,12 @@ class ProfilesController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :profile, through: :user, singleton: :true
 
-  def show; end
+  def show
+    @member = @user.member
+    @songs  = @user.likees(Song)
+    @albums = @user.likees(Album)
+  end
+
   def edit; end
 
   def update

@@ -11,7 +11,7 @@ class Profile < ActiveRecord::Base
     processors: [:cropper],
     path: ":rails_root/public/system/:attachment/:id/:style/:filename",
     url: "/system/:attachment/:id/:style/:filename",
-    default_url: "/default/avatars/:style/missing.png"
+    default_url: "/default/avatars/:style/missing.jpg"
 
   validates_attachment :avatar, content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 

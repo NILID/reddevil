@@ -12,7 +12,7 @@ class Ability
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation]
+    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation, Room]
 
     if user.role? :admin
       can [:read], Forecast do |f|

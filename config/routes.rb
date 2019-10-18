@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope 'chat' do
-    resources :room_messages
+    resources :room_messages, only: [:create]
     resources :rooms
   end
   resources :vacations, only: [:index]

@@ -15,7 +15,7 @@
                     %p.mb-1
                       = room_message.message
                     .text-right
-                      %small
+                      %small.text-muted
                         = room_message.created_at
                 .col-1{class: room_message.user == current_user ? 'order-first' : nil}
 

@@ -1,4 +1,7 @@
-.text-center
-  %h1.fucking_error.animated.fadeInLeft ##{@code}
-  %h2.animated.fadeInRight ошибочка вышла
-  .matthew.animated.fadeIn
+.row.justify-content-center
+  .col-6
+    .card.bg-dark.text-white.my-5
+      = image_tag asset_path('matthew.gif'), class: 'card-img animated fadeIn'
+      .card-img-overlay
+        .h1.animated.fadeInLeft ##{@code}
+        .h3.animated.fadeInRight ошибочка вышла

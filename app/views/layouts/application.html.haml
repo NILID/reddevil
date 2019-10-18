@@ -6,9 +6,9 @@
     %header= render 'layouts/menu'
     %main.pt-4.mt-5(role='main')
       .container-fluid
-        .row
-          .col-12
-            = flash_messages
+        - if flash_messages
+          .row
+            .col= flash_messages
         = yield
 
     = render 'layouts/footer'

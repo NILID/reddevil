@@ -4,3 +4,10 @@ ru:
       luch: Луч
       lab193: Лаборатория 193
       test: Tестовая
+    roles:
+      admin: Администратор
+      user: Пользователь
+      moderator: Модератор
+      editor: Редактор
+      manager: Менеджер
+      test: Тестовая

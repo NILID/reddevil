@@ -3,16 +3,8 @@
     = t 'users.edit_roles', username: (@user.member ? @user.member.fullname : nil)
   = bootstrap_form_for(@user, url: make_role_user_path(@user), layout: :horizontal, html: { method: :post }) do |f|
     .card-body
-      = f.form_group do
-        - User::ROLES.each do |role|
-          = label_tag do
-            = check_box_tag "user[roles][]", role, @user.role?(role)
-            = role
-      = f.form_group do
-        - User::GROUPS.each do |group|
-          = label_tag class: 'checkbox' do
-            = check_box_tag "user[groups][]", group, @user.has_group?(group)
-            = group
+      = f.collection_check_boxes :roles,  User::ROLES.sort,  :to_s, :to_s
+      = f.collection_check_boxes :groups, User::GROUPS.sort, :to_s, :to_s
 
       = f.form_group do
         = label_tag class: 'checkbox' do

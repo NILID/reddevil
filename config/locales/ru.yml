@@ -130,7 +130,8 @@ ru:
     in_holiday: '%{member} в отпуске'
   users:
     title: Пользователи
-    has_groups: 'Относится к группам:'
+    has_groups: Относится к группам
+    has_roles: Имеет роли
     to_edit_roles: Настроить доступ
     edit_roles: Настройка доступа пользователя %{username}
     roles: Роли
@@ -219,6 +220,7 @@ ru:
     editing: Редактирование профиля
     edit: Редактировать профиль
     my: Мой профиль
+    save: Обновить профиль
   mailer:
     birthday: День Рождения!
     new_round: Новый раунд прогнозов - "%{round_name}"
@@ -365,6 +367,8 @@ ru:
         password: Пароль
         password_confirmation: Повторите пароль
         confirmation_token: Код подтверждения
+        roles: Роли
+        groups: Группы
       comment:
         body: Текст сообщения
       profile:

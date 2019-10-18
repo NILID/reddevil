@@ -5,7 +5,7 @@
   = bootstrap_form_for @user, layout: :horizontal do |f|
     .card-body
       .row
-        .col
+        .col-xs-12.col-md-6
           = f.fields_for :profile do |p|
             = p.text_field :login, autofocus: true, control_col: 'col-8', label_col: 'col'
             = p.file_field :avatar, control_col: 'col-8', label_col: 'col'
@@ -17,9 +17,9 @@
                 prepend: content_tag(:span, content_tag(:i), class: 'colorpicker-input-addon')
           = f.fields_for :member do |m|
             = render 'members/member_fields_names', f: m
-        .col
+        .col-xs-12.col-md-6
           = f.fields_for :member do |m|
             = render 'members/member_fields_other', f: m
     .card-footer
-      = f.form_group do
-        = f.primary
+      = f.primary t('profiles.save')
+      .pull-right= link_to t('shared.back'), @user, class: 'btn btn-secondary'

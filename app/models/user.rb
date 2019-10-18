@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :member
 
-  delegate :login, :avatar, :background_color, to: :profile
+  delegate :login, :avatar, :background_color, :surname, :name, to: :profile
 
   ROLES = %w[admin user moderator editor test manager].freeze
   #             1    2     4         8    16    32
@@ -88,6 +88,14 @@ class User < ActiveRecord::Base
   def set_win_count!
     count = Forecast.where(user_id: id, full_guess: true).pluck(:id).size
     update_attribute(:win_forecasts_count, count)
+  end
+
+  def surname_name
+      "#{surname} #{name}"
+  end
+
+  def avatar_url
+    avatar(:thumb)
   end
 
   private

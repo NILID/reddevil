@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :room_messages
+  resources :rooms
   resources :vacations, only: [:index]
   resources :notes
 

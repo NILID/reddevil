@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190515114657) do
+ActiveRecord::Schema.define(version: 20191018062908) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -239,6 +239,23 @@ ActiveRecord::Schema.define(version: 20190515114657) do
     t.index ["user_id"], name: "index_results_on_user_id", using: :btree
   end
 
+  create_table "room_messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "room_id"
+    t.integer  "user_id"
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["room_id"], name: "index_room_messages_on_room_id", using: :btree
+    t.index ["user_id"], name: "index_room_messages_on_user_id", using: :btree
+  end
+
+  create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_rooms_on_name", unique: true, using: :btree
+  end
+
   create_table "rounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "content"
@@ -363,5 +380,7 @@ ActiveRecord::Schema.define(version: 20190515114657) do
   add_foreign_key "categoryships", "docs"
   add_foreign_key "forecasts", "users"
   add_foreign_key "members", "users"
+  add_foreign_key "room_messages", "rooms"
+  add_foreign_key "room_messages", "users"
   add_foreign_key "vacations", "members"
 end

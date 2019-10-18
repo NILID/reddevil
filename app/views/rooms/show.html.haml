@@ -1,0 +1,32 @@
+.card
+  .card-header
+    %h1= @room.name
+  .card-body
+    .row
+      .col-12.col-md-3
+        = render partial: 'rooms'
+      .col
+        .chat{ data: { channel_subscribe: "room", room_id: @room.id } }
+          - @room_messages.each do |room_message|
+            .chat-message-container
+              .row.no-gutters
+                .col-1.text-center{class: room_message.user == current_user ? 'order-last' : nil}
+                  = image_tag room_message.user.avatar_url, class: 'mx-2'
+                .col
+                  .message-content.bg-white
+                    %p.mb-1
+                      = room_message.message
+                    .text-right
+                      %small
+                        = room_message.created_at
+                .col-1{class: room_message.user == current_user ? 'order-first' : nil}
+
+        = bootstrap_form_for @room_message, remote: true do |form|
+          = form.text_field :message, as: :string,
+            wrapper: false,
+            label: false,
+            input_html: { class: 'chat-input' },
+            append: form.primary(t('shared.send'), class: 'btn btn-primary chat-input')
+          = form.hidden_field :room_id, as: :hidden
+
+= render 'message_snippet'

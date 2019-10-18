@@ -8,8 +8,8 @@
     %table.table.table-striped.bg-light.mt-2
       %thead
         %tr
-          %th(scope='col') id
-          %th(scope='col') avatar
+          %th(scope='col')
+          %th(scope='col')
           %th(scope='col') username
           %th(scope='col') last visit
           %th(scope='col') reg confirm
@@ -20,7 +20,7 @@
             %th(scope="row")
               = user.id
             %td
-              = image_tag user.avatar.url(:medium), class: 'thumbnail img-fluid'
+              = image_tag user.avatar.url(:thumb), class: 'thumbnail img-fluid'
             %td
               = link_to user.email, user
               - if user.member

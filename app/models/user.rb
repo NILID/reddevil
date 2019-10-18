@@ -23,7 +23,9 @@ class User < ActiveRecord::Base
   has_one  :profile, dependent: :destroy
   has_one  :member
 
-  accepts_nested_attributes_for :profile, reject_if: :all_blank
+  accepts_nested_attributes_for :profile
+  accepts_nested_attributes_for :member
+
   delegate :login, :avatar, :background_color, to: :profile
 
   ROLES = %w[admin user moderator editor test manager].freeze

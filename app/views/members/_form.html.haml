@@ -3,18 +3,7 @@
     = formtitle
   = bootstrap_form_for @member, layout: :horizontal do |f|
     .card-body
-      = f.text_field :surname
-      = f.text_field :name
-      = f.text_field :patronymic
-      = f.text_field :work_phone
-      = f.text_field :short_number
-      = f.text_field :phone
-      = f.email_field :email
-      = f.text_field :birth, class: 'datepicker', value: (f.object.birth.to_datetime.strftime('%d.%m.%Y') if f.object.birth.present?)
-      - if (current_user&.role? :admin)
-        = f.form_group do
-          = f.check_box :archive_flag
-        = f.select :user_id, (User.order(:email).collect { |u| [u.email, u.id]}), { include_blank: t('shared.to_select') }
+      = render 'member_fields_full', f: f
     .card-footer
       = f.form_group do
         = f.primary

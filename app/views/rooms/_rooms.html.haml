@@ -1,10 +1,10 @@
 .mb-3
-  = link_to new_room_path, class: 'btn btn-primary' do
-    Create a room
+  = link_to 'Rooms', rooms_path, class: 'h1'
+  = link_to fa_icon('plus'), new_room_path, class: 'btn btn-primary btn-sm h1'
 - if @rooms.present?
-  %nav.nav.flex-column
+  %ul.list-group
     - @rooms.each do |room|
-      = link_to room.name, room_path(room), class: 'nav-link room-nav-link'
+      = link_to room.name, room_path(room), class: "list-group-item room-nav-link #{room == @room ? 'active' : nil}"
 - else
   .text-muted
     The are no rooms

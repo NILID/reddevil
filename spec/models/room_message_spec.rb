@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe RoomMessage, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:room_message) { build(:room_message) }
+
+  context 'should' do
+    it 'have message' do
+      room_message.message = nil
+      expect(room_message.valid?).to be false
+    end
+  end
 end

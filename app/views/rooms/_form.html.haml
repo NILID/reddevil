@@ -1,3 +1,10 @@
-= bootstrap_form_for @room do |form|
-  = form.text_field :name
-  = form.primary
+.card
+  .card-body
+    .row
+      .col-12.col-md-3
+        = render partial: 'rooms'
+      .col
+        .h1= formtitle
+        = bootstrap_form_for @room do |form|
+          = form.text_field :name
+          = form.primary

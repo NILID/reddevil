@@ -1,14 +1,13 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # Loads:
   # @rooms = all rooms
   # @room = current room when applicable
   before_action :load_entities
 
-  def index
-    @rooms = Room.all
-  end
+  def index; end
 
   def show
     @room_message = RoomMessage.new room: @room
@@ -16,14 +15,11 @@ class RoomsController < ApplicationController
   end
 
   def new
-    @room = Room.new
   end
 
   def create
-    @room = Room.new permitted_parameters
-
     if @room.save
-      flash[:success] = "Room #{@room.name} was created successfully"
+      flash[:success] = t('flash.was_created', item: Room.model_name.human)
       redirect_to rooms_path
     else
       render :new
@@ -34,8 +30,8 @@ class RoomsController < ApplicationController
   end
 
   def update
-    if @room.update_attributes(permitted_parameters)
-      flash[:success] = "Room #{@room.name} was updated successfully"
+    if @room.update_attributes(room_params)
+      flash[:success] = t('flash.was_updated', item: Room.model_name.human)
       redirect_to rooms_path
     else
       render :new
@@ -45,11 +41,10 @@ class RoomsController < ApplicationController
   protected
 
   def load_entities
-    @rooms = Room.all
-    @room = Room.find(params[:id]) if params[:id]
+    @rooms = Room.order(created_at: :desc)
   end
 
-  def permitted_parameters
+  def room_params
     params.require(:room).permit(:name)
   end
 end

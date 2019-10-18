@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
   end
 
   def surname_name
-      "#{surname} #{name}"
+    "#{surname} #{name}"
   end
 
   def avatar_url

@@ -286,6 +286,7 @@ ru:
       forecast: прогноз
       folder: папка
       dataset: файл
+      room: чат
     attributes:
       album:
         title: Название
@@ -293,6 +294,8 @@ ru:
       event:
         title: Название
         content: Описание
+      room:
+        name: Название
       vacation:
         startdate: Дата начала отпуска
         enddate: Дата завершения отпуска

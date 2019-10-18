@@ -29,6 +29,9 @@ class Ability
     end
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
+    end
+
+    if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :read, :all
 
       cannot %i[manage read], [Folder, Dataset, Event]
@@ -37,6 +40,14 @@ class Ability
       can %i[manage read], Dataset, folder: { user_id: user.id }
       can %i[edit update], User, id: user.id
       can %i[read manage list], Event, user: { id: user.id }
+    end
+
+    if (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
+      cannot %i[manage read], [Room]
+    end
+
+    if (user.role? :admin) || (user.role? :test)
+      can %i[manage read], [Room]
     end
 
     if user.role? :user

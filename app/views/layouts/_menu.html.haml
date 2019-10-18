@@ -8,13 +8,19 @@
   .collapse.navbar-collapse#reddevil-collapse
     %ul.navbar-nav.mr-auto
       - if can? :read, Member
-        %li.nav-item{class: (params[:controller] == 'members') ? 'active' : nil}
+        %li.mr-3.nav-item{class: (params[:controller] == 'members') ? 'active' : nil}
           = link_to t('member.title'), members_path, class: 'nav-link'
       - if user_signed_in?
-        %li.nav-item{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
+        %li.mr-3.nav-item{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
           = link_to t('shared.calendar'), calendar_path, class: 'nav-link'
-      %li.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
+      %li.mr-3.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
         = link_to t('docs.title'), docs_path, class: 'nav-link'
+
+      - if can? :read, Room
+        %li.mr-3.nav-item{class: (params[:controller] == 'rooms') ? 'active' : nil}
+          = link_to rooms_path, class: 'nav-link' do
+            = fa_icon 'users'
+            = t('chat.title')
 
       - if (can? :read, Round) || (can? :read, Album)
         %li.nav-item.dropdown

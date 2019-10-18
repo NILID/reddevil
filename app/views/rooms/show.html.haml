@@ -5,19 +5,23 @@
         = render partial: 'rooms'
       .col
         .chat{ data: { channel_subscribe: "room", room_id: @room.id } }
-          - @room_messages.each do |room_message|
-            .chat-message-container
-              .row.no-gutters
-                .col-1.text-center{class: room_message.user == current_user ? 'order-last' : nil}
-                  = image_tag room_message.user.avatar_url, class: 'mx-2'
-                .col
-                  .message-content.bg-white
-                    %p.mb-1
-                      = room_message.message
-                    .text-right
-                      %small.text-muted
-                        = room_message.created_at
-                .col-1{class: room_message.user == current_user ? 'order-first' : nil}
+          - if @room_messages.empty?
+            .h1.text-center.chat-empty
+              = t 'chat.empty'
+          - else
+            - @room_messages.each do |room_message|
+              .chat-message-container
+                .row.no-gutters
+                  .col-1.text-center{class: room_message.user == current_user ? 'order-last' : nil}
+                    = image_tag room_message.user.avatar_url, class: 'mx-2'
+                  .col
+                    .message-content.bg-white
+                      %p.mb-1
+                        = room_message.message
+                      .text-right
+                        %small.text-muted
+                          = room_message.created_at
+                  .col-1{class: room_message.user == current_user ? 'order-first' : nil}
 
         = bootstrap_form_for @room_message, remote: true do |form|
           = form.text_field :message, as: :string,

@@ -36,16 +36,17 @@
                   - @user.roles.each do |role|
                     %span.badge.badge-primary= t "user.roles.#{role}"
 
-              %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:work_phone)
-              %dd.col-md-9.col-6= @member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
-              %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:short_number)
-              %dd.col-md-9.col-6= @member.short_number || content_tag(:span, t('shared.empty'), class: 'text-muted')
-              %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:phone)
-              %dd.col-md-9.col-6= @member.phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
-              %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:email)
-              %dd.col-md-9.col-6= @member.email || content_tag(:span, t('shared.empty'), class: 'text-muted')
-              %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:birth)
-              %dd.col-md-9.col-6= l(@member.birth,  format: :short) || content_tag(:span, t('shared.empty'), class: 'text-muted')
+              - if @member
+                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:work_phone)
+                %dd.col-md-9.col-6= @member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
+                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:short_number)
+                %dd.col-md-9.col-6= @member.short_number || content_tag(:span, t('shared.empty'), class: 'text-muted')
+                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:phone)
+                %dd.col-md-9.col-6= @member.phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
+                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:email)
+                %dd.col-md-9.col-6= @member.email || content_tag(:span, t('shared.empty'), class: 'text-muted')
+                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:birth)
+                %dd.col-md-9.col-6= l(@member.birth,  format: :short) || content_tag(:span, t('shared.empty'), class: 'text-muted')
 
     - unless @albums.empty? || @songs.empty?
       .card.mt-3

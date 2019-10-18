@@ -2,8 +2,15 @@ $primary: blue;
 $secondary: #ccc;
 $white: #fff;
 
+.chat-empty {
+  color: darken($secondary, 1%);
+  position: absolute;
+  width: 100%;
+  top: 40%;
+}
+
 .chat {
-  border: 1px solid lighten($secondary, 40%);
+  border: 1px solid lighten($secondary, 10%);
   background: #eee;
   height: 50vh;
   border-radius: 5px 5px 0 0;

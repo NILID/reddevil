@@ -11,7 +11,7 @@
     %span.badge{class: "badge-#{label_css_classes[@note.status.to_sym]}"}= t "notes.#{@note.status}"
 
 - if @note.user && current_user&.role?(:admin)
-  %strong= @note.user.profile.surname_name + ':'
+  %strong= @note.user.surname_name + ':'
 %p= @note.content
 
 - if can? :manage, Note

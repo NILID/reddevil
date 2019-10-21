@@ -5,6 +5,7 @@
         %img.mx-2{ alt: "", "data-role" => "user-avatar", src: "" }/
       .col
         .message-content.bg-white
+          %p.mb-2.text-muted
+            %span{"data-role" => "user-surname-name"}
+            %small.pull-right{"data-role" => "message-date"}
           %p.mb-1{"data-role" => "message-text"}
-          .text-right
-            %small.text-muted{"data-role" => "message-date"}

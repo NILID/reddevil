@@ -49,6 +49,7 @@ class Ability
       can :read, Room, private: true, user_id: user.id
       can :read, Room, users: { id: user.id }
       can :manage, Room, user_id: user.id
+      can :manage, RoomMessage, user_id: user.id
     end
 
     if user.role? :user

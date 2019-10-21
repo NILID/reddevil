@@ -20,7 +20,7 @@
         %th
         - @users.each do |user|
           %th.results(style="text-align:center;font-weight:100;")
-            %p= user.profile.surname
+            %p= user.surname
       %tbody
         - @round_matches.each do |match|
           %tr

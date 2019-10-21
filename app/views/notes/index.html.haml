@@ -40,7 +40,7 @@
                 = fa_icon 'picture-o'
           %td
             - if note.user && current_user&.role?(:admin)
-              %strong= note.user.profile.surname_name + ':'
+              %strong= note.user.surname_name + ':'
             = simple_format truncate(note.content, length: 200, omission: '...')
             - if note.review?
               .well.well-small= simple_format note.review

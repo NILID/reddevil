@@ -11,11 +11,12 @@
           %th(scope='col')
           %th(scope='col')
           %th(scope='col') username
-          %th(scope='col') last visit
+          %th(scope='col')
+            = sort_link @q, :updated_at, User.human_attribute_name(:updated_at)
           %th(scope='col') reg confirm
-          %th(scope='col') actions
+          %th(scope='col')
       %tbody
-        - @users.each_with_index do |user, index|
+        - @users.each do |user|
           %tr
             %th(scope="row")
               = user.id

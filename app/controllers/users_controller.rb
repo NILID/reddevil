@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = @users.includes(:profile, :member)
+    @q = @users.includes(:profile, :member).ransack(params[:q])
+    @users = @q.result(distinct: true)
   end
 
   def show

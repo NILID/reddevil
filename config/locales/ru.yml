@@ -298,6 +298,7 @@ ru:
         name: Название
         private: Ограниченный доступ
         user_ids: Участники
+
       vacation:
         startdate: Дата начала отпуска
         enddate: Дата завершения отпуска
@@ -375,6 +376,8 @@ ru:
         confirmation_token: Код подтверждения
         roles: Роли
         groups: Группы
+        updated_at: Последнее посещение
+        username: ФИО
       comment:
         body: Текст сообщения
       profile:

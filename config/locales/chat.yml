@@ -2,3 +2,5 @@ ru:
   chat:
     empty: Здесь пока пусто...
     title: Сообщения
+    editing_room: Редактирование чата %{name}
+    creating_room: Создание чата

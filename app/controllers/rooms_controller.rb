@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
   load_and_authorize_resource
 
   # Loads:
@@ -18,9 +17,10 @@ class RoomsController < ApplicationController
   end
 
   def create
+    @room.user = current_user
     if @room.save
       flash[:success] = t('flash.was_created', item: Room.model_name.human)
-      redirect_to rooms_path
+      redirect_to @room
     else
       render :new
     end
@@ -32,9 +32,9 @@ class RoomsController < ApplicationController
   def update
     if @room.update_attributes(room_params)
       flash[:success] = t('flash.was_updated', item: Room.model_name.human)
-      redirect_to rooms_path
+      redirect_to @room
     else
-      render :new
+      render :edit
     end
   end
 

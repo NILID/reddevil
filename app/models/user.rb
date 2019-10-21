@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-
-
   after_create :set_role
 
   has_many :events
@@ -20,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :results
   has_many :folders
   has_many :notes
+  has_many :rooms
+  has_many :room_messages, dependent: :destroy
   has_one  :profile, dependent: :destroy
   has_one  :member
 
@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
 
   delegate :login, :avatar, :background_color, :surname, :name, to: :profile
 
-  ROLES = %w[admin user moderator editor test manager].freeze
-  #             1    2     4         8    16    32
+  ROLES = %w[admin user moderator editor testuser manager].freeze
+  #             1    2     4         8    16       32
 
   GROUPS = %w[luch lab193 test].freeze
   #             1    2     4

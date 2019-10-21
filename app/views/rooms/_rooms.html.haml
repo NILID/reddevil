@@ -1,11 +1,6 @@
 .mb-3
   = link_to t('chat.title'), rooms_path, class: 'h3 mr-2'
-- if @rooms.present?
-  %ul.list-group
-    = link_to fa_icon('plus'), new_room_path, class: 'list-group-item list-group-item-action text-center text-muted'
-    - @rooms.each do |room|
-      = link_to room.name, room_path(room), class: "list-group-item list-group-item-action #{room == @room ? 'list-group-item-warning' : nil}"
-
-- else
-  .text-muted
-    The are no rooms
+%ul.list-group
+  = link_to fa_icon('plus'), new_room_path, class: 'list-group-item list-group-item-action text-center text-muted'
+  - @rooms.each do |room|
+    = link_to room.name, room_path(room), class: "list-group-item list-group-item-action #{room == @room ? 'list-group-item-warning' : nil}"

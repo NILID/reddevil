@@ -251,8 +251,11 @@ ActiveRecord::Schema.define(version: 20191018062908) do
 
   create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_rooms_on_name", using: :btree
+    t.index ["user_id"], name: "index_rooms_on_user_id", using: :btree
   end
 
   create_table "rounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -381,5 +384,6 @@ ActiveRecord::Schema.define(version: 20191018062908) do
   add_foreign_key "members", "users"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
+  add_foreign_key "rooms", "users"
   add_foreign_key "vacations", "members"
 end

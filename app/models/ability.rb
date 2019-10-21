@@ -8,11 +8,10 @@ class Ability
     # everybody
     can :read, :all
     can %i[archive stat holidays], Member
-    cannot %i[manage read], [Message, Folder, Dataset, Event]
     can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot :read, [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation, Room]
+    cannot [:read, :manage], [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation, Room, Message, Folder, Dataset, Event]
 
     if user.role? :admin
       can [:read], Forecast do |f|
@@ -28,8 +27,7 @@ class Ability
       cannot :download, Round, check_finish?: false
     end
 
-    if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
-    end
+
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :read, :all
@@ -43,14 +41,16 @@ class Ability
     end
 
     if (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
-      cannot %i[manage read], [Room]
+      cannot %i[manage read], Room
     end
 
-    if (user.role? :admin) || (user.role? :test)
-      can %i[manage read], [Room]
+    if (user.role? :admin) || (user.role? :testuser)
+      can :read, Room
+      can :manage, Room, user_id: user.id
     end
 
     if user.role? :user
+      can %i[holidays stat archive], Member
       can %i[update manage_holidays update_holidays], Member, user: { id: user.id }
 
       can %i[destroy edit update], Forecast do |f|
@@ -74,7 +74,7 @@ class Ability
     end
 
     if user.role? :manager
-      can :manage, [Member]
+      can :manage, Member
     end
 
     if user.has_group? :lab193
@@ -86,5 +86,7 @@ class Ability
 
       can %i[new create], Forecast, user: { id: user.id }
     end
+
+
   end
 end

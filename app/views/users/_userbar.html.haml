@@ -1,7 +1,7 @@
 - if user_signed_in?
   - if current_user.role? :admin
     %li.nav-item.mr-5
-      = link_to users_path, class: 'nav-link' do
+      = link_to users_path, class: 'nav-link', title: t('users.title') do
         = fa_icon 'user', class: 'mr-2'
         = User.online.size
   %li.nav-item.dropdown

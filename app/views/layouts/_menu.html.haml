@@ -34,11 +34,6 @@
                 &nbsp;
                 = t 'message.title'
 
-            - if can? :manage, User
-              = link_to users_path, class: 'nav-link' do
-                = fa_icon 'user'
-                &nbsp;
-                = t 'users.title'
             .dropdown-divider
 
             - if can? :read, Album

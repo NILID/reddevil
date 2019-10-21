@@ -83,6 +83,13 @@ RSpec.describe RoomsController, type: :controller do
         expect{ get :show, params: { id: private_room } }.to raise_error(CanCan:: AccessDenied)
       end
 
+      it 'show for private if in users list' do
+        private_room.users << @user
+        expect(@ability.can? :show, private_room).to be true
+        expect(get :show, params: { id: private_room }).to be_success
+      end
+
+
       it 'returns show for private own' do
         private_room.update_attribute(:user_id, @user.id)
         expect(@ability.can? :show, private_room).to be true

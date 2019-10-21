@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :room_messages, dependent: :destroy
   has_one  :profile, dependent: :destroy
   has_one  :member
+  has_and_belongs_to_many :rooms
+
 
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :member

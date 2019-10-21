@@ -9,4 +9,6 @@
           = f.text_field :name
           = f.check_box :private
           = f.form_group class: 'mt-4' do
+            = f.select :user_ids, @select_users, {}, { multiple: true}
+          = f.form_group class: 'mt-4' do
             = f.primary

@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
   # @rooms = all rooms
   # @room = current room when applicable
   before_action :load_entities
+  before_action :get_users, only: [:edit, :new]
 
   def index; end
 
@@ -44,7 +45,11 @@ class RoomsController < ApplicationController
     @rooms = Room.accessible_by(current_ability).order(created_at: :desc)
   end
 
+  def get_users
+    @select_users = User.order(:email).map { |u| [u.email, u.id] }
+  end
+
   def room_params
-    params.require(:room).permit(:name, :private)
+    params.require(:room).permit(:name, :private, user_ids: [])
   end
 end

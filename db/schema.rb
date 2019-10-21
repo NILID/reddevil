@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191018062908) do
+ActiveRecord::Schema.define(version: 20191021093745) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -259,6 +259,13 @@ ActiveRecord::Schema.define(version: 20191018062908) do
     t.index ["user_id"], name: "index_rooms_on_user_id", using: :btree
   end
 
+  create_table "rooms_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "room_id"
+    t.integer "user_id"
+    t.index ["room_id"], name: "index_rooms_users_on_room_id", using: :btree
+    t.index ["user_id"], name: "index_rooms_users_on_user_id", using: :btree
+  end
+
   create_table "rounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "content"
@@ -386,5 +393,7 @@ ActiveRecord::Schema.define(version: 20191018062908) do
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "rooms_users", "rooms"
+  add_foreign_key "rooms_users", "users"
   add_foreign_key "vacations", "members"
 end

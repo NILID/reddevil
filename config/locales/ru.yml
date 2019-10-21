@@ -297,6 +297,7 @@ ru:
       room:
         name: Название
         private: Ограниченный доступ
+        user_ids: Участники
       vacation:
         startdate: Дата начала отпуска
         enddate: Дата завершения отпуска

@@ -41,10 +41,10 @@ class RoomsController < ApplicationController
   protected
 
   def load_entities
-    @rooms = Room.order(created_at: :desc)
+    @rooms = Room.accessible_by(current_ability).order(created_at: :desc)
   end
 
   def room_params
-    params.require(:room).permit(:name)
+    params.require(:room).permit(:name, :private)
   end
 end

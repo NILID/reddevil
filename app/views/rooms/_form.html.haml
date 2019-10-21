@@ -5,6 +5,8 @@
         = render partial: 'rooms'
       .col
         .h1= formtitle
-        = bootstrap_form_for @room do |form|
-          = form.text_field :name
-          = form.primary
+        = bootstrap_form_for @room do |f|
+          = f.text_field :name
+          = f.check_box :private
+          = f.form_group class: 'mt-4' do
+            = f.primary

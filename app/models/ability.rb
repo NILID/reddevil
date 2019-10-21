@@ -45,7 +45,8 @@ class Ability
     end
 
     if (user.role? :admin) || (user.role? :testuser)
-      can :read, Room
+      can :read, Room, private: false
+      can :read, Room, private: true, user_id: user.id
       can :manage, Room, user_id: user.id
     end
 

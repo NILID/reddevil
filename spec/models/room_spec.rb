@@ -7,6 +7,13 @@ RSpec.describe Room, type: :model do
     it 'have name' do
       room.name = nil
       expect(room.valid?).to be false
+      expect(room.errors[:name]).not_to be_empty
+    end
+
+    it 'have private flag' do
+      room.private = nil
+      expect(room.valid?).to be false
+      expect(room.errors[:private]).not_to be_empty
     end
   end
 end

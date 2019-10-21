@@ -296,6 +296,7 @@ ru:
         content: Описание
       room:
         name: Название
+        private: Ограниченный доступ
       vacation:
         startdate: Дата начала отпуска
         enddate: Дата завершения отпуска

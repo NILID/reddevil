@@ -3,9 +3,17 @@ require 'rails_helper'
 RSpec.describe RoomsController, type: :controller do
 
   let!(:room) { create(:room) }
+  let!(:private_room) { create(:room, :private) }
 
   describe 'admin user should' do
     login_user(:admin)
+
+    it 'returns show for private' do
+      expect(@ability.can? :show, private_room).to be true
+      get :show, params: { id: private_room }
+      expect(response).to be_success
+      expect(response).to render_template(:show)
+    end
 
     it 'edit' do
       expect(@ability.can? :edit, room).to be true
@@ -19,6 +27,15 @@ RSpec.describe RoomsController, type: :controller do
       put :update, params: { id: room, room: attributes_for(:room) }
       expect(response).to redirect_to(assigns(:room))
     end
+
+    it 'returns index with two rooms' do
+      expect(@ability.can? :index, Room).to be true
+      get :index
+      expect(response).to be_success
+      expect(response).to render_template(:index)
+      expect(2).to eq(assigns(:rooms).count)
+    end
+
   end
 
 
@@ -36,13 +53,7 @@ RSpec.describe RoomsController, type: :controller do
         expect(@ability.can? :create, Room).to be true
         expect{ post :create, params: { room: attributes_for(:room) } }.to change(Room, :count).by(1)
         expect(response).to redirect_to(assigns(:room))
-      end
-
-      it 'returns index' do
-        expect(@ability.can? :index, Room).to be true
-        get :index
-        expect(response).to be_success
-        expect(response).to render_template(:index)
+        expect(@user).to eq(assigns(:room).user)
       end
 
       it 'returns show' do
@@ -58,11 +69,30 @@ RSpec.describe RoomsController, type: :controller do
     describe "#{role} user should" do
       login_user(role)
 
+      it 'returns index with one room' do
+        expect(@ability.can? :index, Room).to be true
+        get :index
+        expect(response).to be_success
+        expect(response).to render_template(:index)
+        expect(1).to eq(assigns(:rooms).count)
+      end
+
+
+      it 'not returns show for private not own' do
+        expect(@ability.cannot? :show, private_room).to be true
+        expect{ get :show, params: { id: private_room } }.to raise_error(CanCan:: AccessDenied)
+      end
+
+      it 'returns show for private own' do
+        private_room.update_attribute(:user_id, @user.id)
+        expect(@ability.can? :show, private_room).to be true
+        expect(get :show, params: { id: private_room }).to be_success
+      end
+
       it 'can edit own' do
         room.update_attribute(:user_id, @user.id)
         expect(@ability.can? :edit, room).to be true
       end
-
 
       it 'can update own' do
         room.update_attribute(:user_id, @user.id)

@@ -18,6 +18,10 @@ class Member < ActiveRecord::Base
     "#{surname} #{name} #{patronymic}"
   end
 
+  def surname_name
+    "#{surname} #{name}"
+  end
+
   def petrovich_fullname
     Petrovich(lastname: surname, firstname: name,  middlename: patronymic).to(:genitive).to_s
   end

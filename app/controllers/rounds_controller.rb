@@ -2,6 +2,7 @@ class RoundsController < ApplicationController
   load_and_authorize_resource
 
   before_action :get_teams, only: %i[new edit create update]
+  before_action :get_users, only: %i[show download]
 
   def index
     get_sorted_users
@@ -17,14 +18,9 @@ class RoundsController < ApplicationController
     get_sorted_users
   end
 
-  def show
-    @users = User.where(sport_flag: true).includes(:profile).order('profiles.surname')
-    @round_matches = @round.matches.includes([:team1, :team2])
-  end
+  def show; end
 
   def download
-    @users = User.where(sport_flag: true).includes(:profile).order('profiles.surname')
-    @round_matches = @round.matches.includes([:team1, :team2])
     respond_to do |format|
       format.pdf{ render pdf: @round.title, orientation: 'Landscape' }
     end
@@ -90,6 +86,11 @@ class RoundsController < ApplicationController
                           ]
 
     params.require(:round).permit(list_params_allowed)
+  end
+
+  def get_users
+    @users = User.where(sport_flag: true).includes(:member).order('members.surname')
+    @round_matches = @round.matches.includes([:team1, :team2])
   end
 
   def get_sorted_users

@@ -1,6 +1,6 @@
 .card
   .card-header
-    = t 'users.edit_roles', username: (@user.member ? @user.member.fullname : nil)
+    = t 'users.edit_roles', username: (@user.member ? @user.fullname : nil)
   = bootstrap_form_for(@user, url: make_role_user_path(@user), layout: :horizontal, html: { method: :post }) do |f|
     .card-body
       = f.collection_check_boxes :roles,  User::ROLES.sort,  :to_s, :to_s

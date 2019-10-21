@@ -35,7 +35,7 @@
     - user_ratio = user.ratio(@match_finished, @all_users)
     - if user_ratio[:forecasts_count] > 0
       %tr
-        %td= user.profile.surname || user.email
+        %td= user.surname
         %td= round_result
         %td
           = user_ratio[:ratio_count]

@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :member
 
-  delegate :login, :avatar, :background_color, :surname, :name, to: :profile
+  delegate :login, :avatar, :background_color, to: :profile
+  delegate :fullname, :surname, :name, to: :member
 
   ROLES = %w[admin user moderator editor testuser manager].freeze
   #             1    2     4         8    16       32
@@ -60,6 +61,11 @@ class User < ActiveRecord::Base
     GROUPS.reject do |p|
      ((groups_mask.to_i || 0) & 2**GROUPS.index(p)).zero?
     end
+  end
+
+  def to_param
+    # for user without member return only id
+    member ? "#{id}-#{fullname.parameterize}" : id.to_s
   end
 
   def has_group?(group)

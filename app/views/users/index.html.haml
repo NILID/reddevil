@@ -25,7 +25,7 @@
             %td
               = link_to user.email, user
               - if user.member
-                .text-muted= user.member.fullname
+                .text-muted= user.fullname
             %td
               = last_seen(user)
             %td= user.confirmed?

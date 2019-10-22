@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # after_action :store_location
-  after_action :user_activity
+  before_action :user_activity
 
   rescue_from CanCan::AccessDenied do |exception|
     unless current_user

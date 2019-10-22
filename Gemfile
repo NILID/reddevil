@@ -88,7 +88,7 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'bootstrap-datepicker-rails'
 
 group :production do
-  gem 'passenger', '5.3.1'
+  gem 'passenger', '6.0.4'
 end
 
 gem 'sass-rails',   '~> 5.0'

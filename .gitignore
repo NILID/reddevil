@@ -21,6 +21,9 @@
 !/tmp/.keep
 
 # Ignore Byebug command history file.
+/node_modules
+/yarn-error.log
+
 .byebug_history
 
 /config/database.yml

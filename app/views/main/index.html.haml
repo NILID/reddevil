@@ -86,7 +86,7 @@
               .row
                 .col-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
 
-    - if user_signed_in?
+    - if user_signed_in? && !@vacations.empty?
       .card
         - if current_user.member
           .card-header

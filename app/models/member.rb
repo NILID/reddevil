@@ -1,6 +1,6 @@
 class Member < ActiveRecord::Base
   has_many :vacations, inverse_of: :member
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :surname, :name, :patronymic, presence: true
 

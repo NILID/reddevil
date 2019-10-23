@@ -16,5 +16,10 @@ RSpec.describe Note, type: :model do
       user.save!
       expect(user.roles).to eq(['user'])
     end
+
+    it 'have user role by default after create' do
+      user.save!
+      expect(user.profile).not_to be nil
+    end
   end
 end

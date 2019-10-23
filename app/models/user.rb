@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  after_create :set_role
+  before_create :set_role
+  after_create :create_profile
 
   has_many :events
   has_many :forecasts
@@ -109,7 +110,6 @@ class User < ActiveRecord::Base
   private
 
   def set_role
-    self.update_attribute(:roles_mask, 2)
-    self.build_profile
+    self.roles_mask = 2
   end
 end

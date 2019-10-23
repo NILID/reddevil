@@ -32,11 +32,13 @@ class User < ActiveRecord::Base
   delegate :login, :avatar, :background_color, to: :profile
   delegate :fullname, :surname, :name, to: :member
 
-  ROLES = %w[admin user moderator editor testuser manager].freeze
-  #             1    2     4         8    16       32
+  ROLES = %w[admin user moderator editor testuser manager guest].freeze
+  #            1     2      4        8      16      32      64
 
   GROUPS = %w[luch lab193 test].freeze
   #             1    2     4
+
+  validates :roles, presence: true
 
   scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }
   scope :with_group, lambda { |group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }

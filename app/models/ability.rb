@@ -8,10 +8,10 @@ class Ability
     # everybody
     can :read, :all
     can %i[archive stat holidays], Member
-    can %i[new create], Note
     # cannot :read, Doc, category: { hidden: true }
     can :rebuild, Result
-    cannot [:read, :manage], [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation, Room, Message, Folder, Dataset, Event]
+    cannot %i[read manage], [Forecast, Song, Album, Round, Forecast, Type, User, Member, Vacation, Room, Message, Folder, Dataset, Event, Note]
+    can %i[new create], Note
 
     if user.role? :admin
       can [:read], Forecast do |f|
@@ -26,8 +26,6 @@ class Ability
       cannot :read, [Song, Album, Round, Forecast]
       cannot :download, Round, check_finish?: false
     end
-
-
 
     if (user.role? :admin) || (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :read, :all
@@ -89,7 +87,5 @@ class Ability
 
       can %i[new create], Forecast, user: { id: user.id }
     end
-
-
   end
 end

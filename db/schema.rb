@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191021093745) do
+ActiveRecord::Schema.define(version: 20191023115238) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -337,7 +337,7 @@ ActiveRecord::Schema.define(version: 20191021093745) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "roles_mask"
+    t.integer  "roles_mask",             default: 64
     t.integer  "groups_mask",            default: 1
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false

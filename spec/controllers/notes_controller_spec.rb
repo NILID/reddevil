@@ -79,9 +79,7 @@ RSpec.describe NotesController, type: :controller do
 
   describe 'unreg user should' do
     it 'returns index' do
-      get :index
-      expect(response).to be_success
-      expect(response).to render_template(:index)
+      expect(get :index).to render_template(:index)
     end
 
     it 'returns show' do

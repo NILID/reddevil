@@ -17,8 +17,9 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         Notification.new_note(@note).deliver_now
+        path = current_user ? notes_url : root_url
 
-        format.html { redirect_to notes_url, notice: t('flash.was_created', item: Note.model_name.human) }
+        format.html { redirect_to path, notice: t('flash.was_created', item: Note.model_name.human) }
         format.json { render json: @note, status: :created, location: @note }
       else
         format.html { render action: 'new' }

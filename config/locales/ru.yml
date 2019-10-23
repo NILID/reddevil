@@ -54,9 +54,9 @@ ru:
     not_find: Поиск не дал результатов
     already_exist: с такой же датой уже создан
   flash:
-    was_created: Вы создали %{item}
-    was_updated: Вы обновили %{item}
-    was_destroyed: Вы удалили %{item}
+    was_created: 'Вы создали: %{item}'
+    was_updated: 'Вы обновили: %{item}'
+    was_destroyed: 'Вы удалили: %{item}'
   folder:
     new: Создать папку
     new_title: Новая папка

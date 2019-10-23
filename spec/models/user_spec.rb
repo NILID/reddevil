@@ -9,7 +9,13 @@ RSpec.describe Note, type: :model do
     end
 
     it 'have guest role by default for unreg user' do
-      expect(user.roles.empty?).to be true
+      expect(user.roles).to eq(['guest'])
+    end
+
+    it 'have roles' do
+      user.roles= []
+      expect(user.valid?).to be false
+      expect(user.errors[:roles]).not_to be_empty
     end
 
     it 'have user role by default after create' do

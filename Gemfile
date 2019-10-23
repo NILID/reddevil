@@ -103,7 +103,6 @@ gem 'ransack'
 gem 'will_paginate', '~> 3.0'
 
 # gem 'jquery-turbolinks'
-# gem 'turbolinks', '~> 5'
 # gem 'faye-rails', '~> 2.0'
 
 gem 'momentjs-rails', '>= 2.9.0'

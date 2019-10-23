@@ -343,7 +343,7 @@ GEM
     tilt (2.0.10)
     time_difference (0.5.0)
       activesupport
-    tooltipster-rails (4.2.3)
+    tooltipster-rails (4.2.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.20)

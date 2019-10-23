@@ -11,7 +11,7 @@
           = f.password_field :password, autocomplete: 'current-password'
           - if devise_mapping.rememberable?
             = f.form_group :remember_me do
-              = f.check_box :remember_me, label: t('devise.remember')
+              = f.check_box :remember_me, custom: :switch
           = f.form_group do
             = f.primary t('devise.login')
       .card-footer

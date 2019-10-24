@@ -25,12 +25,4 @@ class Profile < ActiveRecord::Base
     @geometry ||= {}
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
   end
-
-  def fullname
-    "#{surname} #{name} #{patronymic}"
-  end
-
-  def surname_name
-    "#{surname} #{name}"
-  end
 end

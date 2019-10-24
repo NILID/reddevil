@@ -10,16 +10,20 @@ module ApplicationHelper
      end
    end
 
+   def short_date(time)
+     Russian.strftime(time, '%d.%m.%Y')
+   end
+
    def arttime(time)
-     Russian.strftime(time, "%A %d.%m.%Y")
+     Russian.strftime(time, '%A, %d.%m.%Y')
    end
 
    def deadline(time)
-     Russian.strftime(time, "%d %B %Y %H:%M (%A)")
+     Russian.strftime(time, '%d %B %Y %H:%M (%A)')
    end
 
    def bootstrap_class_for flash_type
-     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }.stringify_keys[flash_type.to_s] || flash_type.to_s
+     { success: 'alert-success', error: 'alert-danger', alert: 'alert-warning', notice: 'alert-info' }.stringify_keys[flash_type.to_s] || flash_type.to_s
    end
 
    def flash_messages(opts = {})

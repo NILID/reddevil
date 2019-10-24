@@ -2,7 +2,7 @@
   .card-body
     .row
       .col
-        %h1= t 'substrates.title'
+        %h2.text-muted= t 'substrates.title'
       .col-2.text-right
         = link_to new_substrate_path, class: 'btn btn-primary' do
           = fa_icon 'plus'
@@ -11,18 +11,23 @@
     %table.table
       %thead
         %tr
-          %th= Substrate.human_attribute_name(:drawing)
-          %th= Substrate.human_attribute_name(:detail)
-          %th= Substrate.human_attribute_name(:amount)
-          %th= Substrate.human_attribute_name(:contract)
-          %th= Substrate.human_attribute_name(:arrival_at)
-          %th= Substrate.human_attribute_name(:arrival_from)
-          %th= Substrate.human_attribute_name(:shipping_at)
-          %th= Substrate.human_attribute_name(:shipping_to)
+          %th= sort_link @q, :drawing, Substrate.human_attribute_name(:drawing)
+          %th= sort_link @q, :detail, Substrate.human_attribute_name(:detail)
+          %th= sort_link @q, :amount, Substrate.human_attribute_name(:amount)
+          %th= sort_link @q, :contract, Substrate.human_attribute_name(:contract)
+          %th
+            %p= t('substrates.arrival.title')
+            %p
+              .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
+              .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
+          %th
+            %p= t('substrates.shipping.title')
+            %p
+              .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
+              .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
           %th= Substrate.human_attribute_name(:shipping_base)
           %th= Substrate.human_attribute_name(:status)
           %th User
-          %th
           %th
           %th
 
@@ -33,15 +38,22 @@
             %td= substrate.detail
             %td= substrate.amount
             %td= substrate.contract
-            %td= substrate.arrival_at
-            %td= substrate.arrival_from
-            %td= substrate.shipping_at
-            %td= substrate.shipping_to
+            %td
+              = substrate.arrival_at
+              = substrate.arrival_from
+            %td
+              = short_date substrate.shipping_at
+              = substrate.shipping_to
             %td= substrate.shipping_base
             %td= substrate.status
             %td= substrate.user.email
             %td= link_to 'Show', substrate
-            %td= link_to t('shared.edit'), edit_substrate_path(substrate)
-            %td= link_to t('shared.del'), substrate, method: :delete, data: { confirm: t('shared.sure') }
+            %td
+              .btn-group
+                %button.btn.btn-sm.btn-outline-primary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                  = fa_icon 'cog'
+                .dropdown-menu.dropdown-menu-right
+                  = link_to t('shared.edit'), edit_substrate_path(substrate), class: 'dropdown-item'
+                  = link_to t('shared.del'), substrate, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
 
 

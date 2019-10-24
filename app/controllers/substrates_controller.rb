@@ -1,7 +1,11 @@
 class SubstratesController < ApplicationController
   load_and_authorize_resource
 
-  def index; end
+  def index
+    @q = @substrates.includes(:user).ransack(params[:q])
+    @substrates = @q.result(distinct: true)
+  end
+
   def show;  end
   def new;   end
   def edit;  end

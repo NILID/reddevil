@@ -3,3 +3,11 @@ ru:
     title: Подложки
     new: Новая подложка
     edit: Редактирование подложки
+    arrival:
+      title: Приход
+      date: Дата
+      who: От кого
+    shipping:
+      title: Отгрузка
+      date: Дата
+      who: Кому

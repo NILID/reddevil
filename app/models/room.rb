@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :room_messages, dependent: :destroy,
                           inverse_of: :room
   has_and_belongs_to_many :users

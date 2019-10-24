@@ -9,7 +9,7 @@ RSpec.describe VacationsController, type: :controller do
       it 'returns index' do
         expect(@ability.can? :index, Vacation).to be true
         get :index, format: :json
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template(:index)
       end
     end

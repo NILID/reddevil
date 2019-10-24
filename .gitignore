@@ -11,19 +11,24 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-/public/system/
-/public/assets/
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
-# Ignore Byebug command history file.
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+
 /node_modules
 /yarn-error.log
 
+/public/system/
+/public/assets/
 .byebug_history
 
 /config/database.yml
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

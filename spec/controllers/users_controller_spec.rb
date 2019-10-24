@@ -10,14 +10,14 @@ RSpec.describe UsersController, type: :controller do
     it 'returns index' do
       expect(@ability.can? :index, User).to be true
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 
     it 'returns edit_roles' do
       expect(@ability.can? :edit_roles, user).to be true
       get :edit_roles, params: { id: user }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:edit_roles)
     end
 
@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
       expect(@ability.can? :edit, user).to be true
       get :edit, params: { id: user, user_id: user }
       expect(response).to render_template(:edit)
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'updates' do
@@ -51,7 +51,7 @@ RSpec.describe UsersController, type: :controller do
     it 'returns show' do
       expect(@ability.can? :show, User).to be true
       get :show, params: { id: user }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:show)
     end
 
@@ -67,7 +67,7 @@ RSpec.describe UsersController, type: :controller do
 
     it 'get edit own' do
       expect(@ability.can? :edit, @user).to be true
-      expect(get :edit, params: { id: @user } ).to be_success
+      expect(get :edit, params: { id: @user } ).to be_successful
     end
 
     it 'not updates' do

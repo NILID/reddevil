@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # in RAILS 5.2 deprecated
   protect_from_forgery with: :exception
 
   # after_action :store_location

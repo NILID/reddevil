@@ -7,7 +7,7 @@ RSpec.describe MainController, type: :controller do
 
     it 'get calendar' do
       get :calendar
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:calendar)
     end
   end
@@ -15,7 +15,7 @@ RSpec.describe MainController, type: :controller do
   describe 'unreg user should' do
     it 'get index' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 

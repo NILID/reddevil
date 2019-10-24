@@ -58,28 +58,28 @@ RSpec.describe MembersController, type: :controller do
     it 'returns index' do
       expect(@ability.can? :index, Member).to be true
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 
     it 'returns archive' do
       expect(@ability.can? :archive, Member).to be true
       get :archive
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:archive)
     end
 
     it 'returns stat' do
       expect(@ability.can? :stat, Member).to be true
       get :stat
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:stat)
     end
 
     it 'returns holidays' do
       expect(@ability.can? :holidays, Member).to be true
       get :holidays
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:holidays)
     end
   end
@@ -147,25 +147,25 @@ RSpec.describe MembersController, type: :controller do
   describe 'unreg user should' do
     it 'returns index' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 
     it 'returns archive' do
       get :archive
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:archive)
     end
 
     it 'returns stat' do
       get :stat
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:stat)
     end
 
     it 'returns holidays' do
       get :holidays
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:holidays)
     end
 

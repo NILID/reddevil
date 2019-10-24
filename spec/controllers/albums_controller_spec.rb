@@ -11,14 +11,14 @@ RSpec.describe AlbumsController, type: :controller do
     it 'returns index' do
       expect(@ability.can? :index, Album).to be true
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 
     it 'returns favorites' do
       expect(@ability.can? :favorites, Album).to be true
       get :favorites
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:favorites)
     end
 
@@ -91,14 +91,14 @@ RSpec.describe AlbumsController, type: :controller do
     it 'returns index' do
       expect(@ability.can? :index, Album).to be true
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 
     it 'returns favorites' do
       expect(@ability.can? :favorites, Album).to be true
       get :favorites
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:favorites)
     end
 

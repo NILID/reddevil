@@ -11,14 +11,14 @@ RSpec.describe RoomsController, type: :controller do
     it 'returns show for private' do
       expect(@ability.can? :show, private_room).to be true
       get :show, params: { id: private_room }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:show)
     end
 
     it 'edit' do
       expect(@ability.can? :edit, room).to be true
       get :edit, params: { id: room }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:edit)
     end
 
@@ -31,7 +31,7 @@ RSpec.describe RoomsController, type: :controller do
     it 'returns index with two rooms' do
       expect(@ability.can? :index, Room).to be true
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
       expect(2).to eq(assigns(:rooms).count)
     end
@@ -59,7 +59,7 @@ RSpec.describe RoomsController, type: :controller do
       it 'returns show' do
         expect(@ability.can? :show, room).to be true
         get :show, params: { id: room }
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template(:show)
       end
     end
@@ -72,7 +72,7 @@ RSpec.describe RoomsController, type: :controller do
       it 'returns index with one room' do
         expect(@ability.can? :index, Room).to be true
         get :index
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template(:index)
         expect(1).to eq(assigns(:rooms).count)
       end
@@ -86,14 +86,14 @@ RSpec.describe RoomsController, type: :controller do
       it 'show for private if in users list' do
         private_room.users << @user
         expect(@ability.can? :show, private_room).to be true
-        expect(get :show, params: { id: private_room }).to be_success
+        expect(get :show, params: { id: private_room }).to be_successful
       end
 
 
       it 'returns show for private own' do
         private_room.update_attribute(:user_id, @user.id)
         expect(@ability.can? :show, private_room).to be true
-        expect(get :show, params: { id: private_room }).to be_success
+        expect(get :show, params: { id: private_room }).to be_successful
       end
 
       it 'can edit own' do

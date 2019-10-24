@@ -32,21 +32,21 @@ RSpec.describe NotesController, type: :controller do
     it 'returns index' do
       expect(@ability.can? :index, Note).to be true
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 
     it 'returns show' do
       expect(@ability.can? :show, note).to be true
       get :show, params: { id: note }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:show)
     end
 
     it 'returns new' do
       expect(@ability.can? :new, Note).to be true
       get :new
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'creates a new Note' do
@@ -84,13 +84,13 @@ RSpec.describe NotesController, type: :controller do
 
     it 'returns show' do
       get :show, params: { id: note }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:show)
     end
 
     it 'returns new' do
       get :new
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'creates a new Note' do

@@ -1,0 +1,39 @@
+.card
+  .card-body
+    %p
+      %b Drawing:
+      = @substrate.drawing
+    %p
+      %b Detail:
+      = @substrate.detail
+    %p
+      %b Amount:
+      = @substrate.amount
+    %p
+      %b Contract:
+      = @substrate.contract
+    %p
+      %b Arrival at:
+      = @substrate.arrival_at
+    %p
+      %b Arrival from:
+      = @substrate.arrival_from
+    %p
+      %b Shipping at:
+      = @substrate.shipping_at
+    %p
+      %b Shipping to:
+      = @substrate.shipping_to
+    %p
+      %b Shipping base:
+      = @substrate.shipping_base
+    %p
+      %b Status:
+      = @substrate.status
+    %p
+      %b User:
+      = @substrate.user.email
+
+    = link_to t('shared.edit'), edit_substrate_path(@substrate)
+    \|
+    = link_to t('shared.back'), substrates_path

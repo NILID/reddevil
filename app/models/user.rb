@@ -35,8 +35,8 @@ class User < ActiveRecord::Base
   ROLES = %w[admin user moderator editor testuser manager guest].freeze
   #            1     2      4        8      16      32      64
 
-  GROUPS = %w[luch lab193 test].freeze
-  #             1    2     4
+  GROUPS = %w[luch lab193 test lab182].freeze
+  #             1    2     4     8
 
   validates :roles, presence: true
 

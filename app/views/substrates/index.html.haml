@@ -1,0 +1,47 @@
+.card
+  .card-body
+    .row
+      .col
+        %h1= t 'substrates.title'
+      .col-2.text-right
+        = link_to new_substrate_path, class: 'btn btn-primary' do
+          = fa_icon 'plus'
+          = t('shared.add')
+
+    %table.table
+      %thead
+        %tr
+          %th= Substrate.human_attribute_name(:drawing)
+          %th= Substrate.human_attribute_name(:detail)
+          %th= Substrate.human_attribute_name(:amount)
+          %th= Substrate.human_attribute_name(:contract)
+          %th= Substrate.human_attribute_name(:arrival_at)
+          %th= Substrate.human_attribute_name(:arrival_from)
+          %th= Substrate.human_attribute_name(:shipping_at)
+          %th= Substrate.human_attribute_name(:shipping_to)
+          %th= Substrate.human_attribute_name(:shipping_base)
+          %th= Substrate.human_attribute_name(:status)
+          %th User
+          %th
+          %th
+          %th
+
+      %tbody
+        - @substrates.each do |substrate|
+          %tr
+            %td= substrate.drawing
+            %td= substrate.detail
+            %td= substrate.amount
+            %td= substrate.contract
+            %td= substrate.arrival_at
+            %td= substrate.arrival_from
+            %td= substrate.shipping_at
+            %td= substrate.shipping_to
+            %td= substrate.shipping_base
+            %td= substrate.status
+            %td= substrate.user.email
+            %td= link_to 'Show', substrate
+            %td= link_to t('shared.edit'), edit_substrate_path(substrate)
+            %td= link_to t('shared.del'), substrate, method: :delete, data: { confirm: t('shared.sure') }
+
+

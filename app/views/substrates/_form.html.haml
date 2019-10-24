@@ -1,0 +1,28 @@
+.card
+  .card-body
+    = render 'breadcrumb', formtitle: formtitle
+
+    = bootstrap_form_for @substrate, html: { layout: :horizontal } do |f|
+      = render 'main/error', object: @substrate
+
+      .row
+        .col-6.col-md-3
+          = f.text_field :drawing
+        .col-6.col-md-3
+          = f.text_field :detail
+        .col-6.col-md-3
+          = f.number_field :amount
+        .col-6.col-md-3
+          = f.text_field :contract
+      .row
+        .col
+          = f.text_field :arrival_at, class: 'datepicker',
+            value: (f.object.arrival_at.to_datetime.strftime('%d.%m.%Y') if f.object.arrival_at.present?)
+          = f.text_field :arrival_from
+        .col
+          = f.text_field :shipping_at, class: 'datepicker',
+            value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
+          = f.text_field :shipping_to
+      = f.text_area :shipping_base
+      = f.text_field :status
+      = f.submit 'Save'

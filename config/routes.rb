@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :substrates
   scope 'chat' do
     resources :room_messages, only: [:create]
     resources :rooms

@@ -116,15 +116,14 @@ ru:
         body: Текст сообщения
       profile:
         login: Логин
-        name: Имя
-        surname: Фамилия
-        patronymic: Отчество
         avatar: Аватар
         background_color: Фон сайта
       song:
         title: Название
         file: Файл
       substrate:
+        user: Автор
+        priority: Приоритет
         drawing: Номер чертежа
         detail: Номер детали
         amount: Количество

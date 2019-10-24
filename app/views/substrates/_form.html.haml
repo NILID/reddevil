@@ -23,6 +23,10 @@
           = f.text_field :shipping_at, class: 'datepicker',
             value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
           = f.text_field :shipping_to
-      = f.text_area :shipping_base
-      = f.text_field :status
-      = f.submit 'Save'
+      .row
+        .col
+          = f.text_area :shipping_base
+        .col
+          = f.select :status, Substrate::STATUSES.map{|s| [t("substrates.statuses.#{s}"), s]}, { include_blank: t('shared.to_select') }
+          = f.select :priority, Substrate::PRIORITIES.map{|s| [t("substrates.priorities.#{s}"), s]}
+      = f.submit t('shared.save')

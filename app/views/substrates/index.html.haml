@@ -11,6 +11,7 @@
     %table.table
       %thead
         %tr
+          %th= sort_link @q, :priority, Substrate.human_attribute_name(:priority)
           %th= sort_link @q, :drawing, Substrate.human_attribute_name(:drawing)
           %th= sort_link @q, :detail, Substrate.human_attribute_name(:detail)
           %th= sort_link @q, :amount, Substrate.human_attribute_name(:amount)
@@ -26,28 +27,29 @@
               .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
               .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
           %th= Substrate.human_attribute_name(:shipping_base)
-          %th= Substrate.human_attribute_name(:status)
-          %th User
+          %th= sort_link @q, :status, Substrate.human_attribute_name(:status)
+          %th= sort_link @q, :user, Substrate.human_attribute_name(:user)
           %th
           %th
 
       %tbody
         - @substrates.each do |substrate|
           %tr
+            %td= priority_tag substrate.priority
             %td= substrate.drawing
             %td= substrate.detail
             %td= substrate.amount
             %td= substrate.contract
             %td
-              = substrate.arrival_at
+              = short_date substrate.arrival_at if substrate.arrival_at
               = substrate.arrival_from
             %td
-              = short_date substrate.shipping_at
+              = short_date substrate.shipping_at if substrate.shipping_at
               = substrate.shipping_to
             %td= substrate.shipping_base
-            %td= substrate.status
+            %td= status_text(substrate.status)
             %td= substrate.user.email
-            %td= link_to 'Show', substrate
+            %td= link_to t('shared.show'), substrate
             %td
               .btn-group
                 %button.btn.btn-sm.btn-outline-primary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

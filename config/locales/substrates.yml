@@ -3,6 +3,15 @@ ru:
     title: Подложки
     new: Новая подложка
     edit: Редактирование подложки
+    statuses:
+      opened: Открыто
+      finished: Завершено
+      worked: В работе
+      delayed: Отложено
+      canceled: Отменено
+    priorities:
+      normal: Обычный
+      high: Высокий
     arrival:
       title: Приход
       date: Дата

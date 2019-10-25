@@ -21,15 +21,15 @@
                   = link_to user.email, user
                   - if user.member
                     .text-muted= user.fullname
-                  - if current_user&.role? :admin
-                    %p
-                      %b Confirm:
-                      = user.confirmed?
 
                 %td
                   = last_seen(user)
                 - if current_user&.role? :admin
                   %td
+                    %p
+                      %b Confirm:
+                      = user.confirmed?
+
                     .btn-group
                       %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                         = fa_icon 'cog'

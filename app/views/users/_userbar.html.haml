@@ -1,6 +1,6 @@
 - if user_signed_in?
   %li.nav-item.mr-5
-    = link_to users_path, class: 'nav-link', title: t('users.title') do
+    = link_to users_path, class: 'nav-link', title: t('users.title'), data: { toggle: 'tooltip' } do
       = fa_icon 'user', class: 'mr-2'
       = User.online.size
   %li.nav-item.dropdown

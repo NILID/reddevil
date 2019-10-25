@@ -2,7 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Database authenticatable
-      t.integer :roles_mask,  default: nil
+      t.integer :roles_mask,  default: 64
       t.integer :groups_mask, default: "1"
 
       t.string :email,              :null => false, :default => ""

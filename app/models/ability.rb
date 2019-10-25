@@ -63,7 +63,6 @@ class Ability
       # cannot :read, Doc, category: { hidden: true }
 
       cannot :read, [Song, Album, Forecast, Round, Message, Type]
-      cannot :index, User
 
       cannot :download, Round, check_finish?: false
     end

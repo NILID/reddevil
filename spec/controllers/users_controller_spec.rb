@@ -55,9 +55,11 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to render_template(:show)
     end
 
-    it 'not index' do
-      expect(@ability.cannot? :index, User).to be true
-      expect{ get :index }.to raise_error(CanCan:: AccessDenied)
+    it 'returns index' do
+      expect(@ability.can? :index, User).to be true
+      get :index
+      expect(response).to be_successful
+      expect(response).to render_template(:index)
     end
 
     it 'cannot get edit not own' do

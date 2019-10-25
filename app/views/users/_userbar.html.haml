@@ -1,9 +1,8 @@
 - if user_signed_in?
-  - if current_user.role? :admin
-    %li.nav-item.mr-5
-      = link_to users_path, class: 'nav-link', title: t('users.title') do
-        = fa_icon 'user', class: 'mr-2'
-        = User.online.size
+  %li.nav-item.mr-5
+    = link_to users_path, class: 'nav-link', title: t('users.title') do
+      = fa_icon 'user', class: 'mr-2'
+      = User.online.size
   %li.nav-item.dropdown
     = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, id: 'userbar' do
       = image_tag current_user.avatar(:thumb), class: 'img-fluid user-avatar rounded mr-2'

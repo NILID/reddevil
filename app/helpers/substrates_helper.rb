@@ -22,14 +22,14 @@ module SubstratesHelper
   def priority_style(priority)
     color = case priority
     when 'normal' then 'bg-success'
-    when 'high' then 'bg-danger'
+    when 'high'   then 'bg-danger'
     end
     "status-label rounded-circle #{color}"
   end
 
   def priority_tag(priority)
     unless priority.empty?
-      content_tag(:span, '', class: priority_style(priority), title: t("substrates.priorities.#{priority}"))
+      content_tag(:span, '', class: priority_style(priority), title: t("substrates.priorities.#{priority}", data: { toggle: 'tooltip' }))
     end
   end
 end

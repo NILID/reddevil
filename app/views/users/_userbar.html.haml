@@ -13,5 +13,5 @@
       .dropdown-divider
       = link_to t('devise.logout'), destroy_user_session_path, method: :delete, class: 'nav-link'
 - else
-  %li.nav-item= link_to t('devise.login'), new_user_session_path, class: 'nav-link'
+  %li.nav-item= link_to t('devise.login'),  new_user_session_path,      class: 'nav-link'
   %li.nav-item= link_to t('devise.signup'), new_user_registration_path, class: 'nav-link'

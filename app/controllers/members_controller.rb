@@ -15,6 +15,10 @@ class MembersController < ApplicationController
     end
   end
 
+  def days_birth
+    render json: @members.shown.group_by_day_of_week(:birth, format: "%A").count
+  end
+
   def holidays
     @q = @members.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?

@@ -33,7 +33,7 @@
                     %button.btn.btn-info.btn-sm
                       = I18n.t("date.standalone_day_names")[day[0].to_i]
                       %span.badge.badge-light= day[1]
-                = line_chart @members.group_by_day_of_week(:birth, format: "%A").count, label: t('member.birth_count')
+                = line_chart days_birth_members_path, label: t('member.birth_count')
 
               %hr/
 

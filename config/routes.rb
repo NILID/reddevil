@@ -87,6 +87,7 @@ Rails.application.routes.draw do
       get :archive
       get :stat
       get :holidays
+      get :days_birth
     end
     member do
       get :manage_holidays

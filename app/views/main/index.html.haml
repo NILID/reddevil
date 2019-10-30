@@ -137,7 +137,7 @@
                       date: Russian.strftime(v.startdate, "%e %B"),
                       diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
 
-    - unless @docs.empty?
+    - if current_user && !@docs.empty?
       .card
         .card-header= t 'docs.last_docs'
         .card-body

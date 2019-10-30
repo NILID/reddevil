@@ -56,5 +56,4 @@ class NotesController < ApplicationController
       list_params_allowed << %i[status review] if (current_user&.role? :admin)
       params.require(:note).permit(list_params_allowed)
     end
-
 end

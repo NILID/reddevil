@@ -27,34 +27,35 @@ RSpec.describe NotesController, type: :controller do
   end
 
   %i[admin user].each do |role|
-    login_user(role)
+    describe "#{role} should" do
+      login_user(role)
 
-    it 'returns index' do
-      expect(@ability.can? :index, Note).to be true
-      get :index
-      expect(response).to be_successful
-      expect(response).to render_template(:index)
+      it 'returns index' do
+        expect(@ability.can? :index, Note).to be true
+        get :index
+        expect(response).to be_successful
+        expect(response).to render_template(:index)
+      end
+
+      it 'returns show' do
+        expect(@ability.can? :show, note).to be true
+        get :show, params: { id: note }
+        expect(response).to be_successful
+        expect(response).to render_template(:show)
+      end
+
+      it 'returns new' do
+        expect(@ability.can? :new, Note).to be true
+        get :new
+        expect(response).to be_successful
+      end
+
+      it 'creates a new Note' do
+        expect(@ability.can? :create, Note).to be true
+        expect{ post :create, params: { note: attributes_for(:note) } }.to change(Note, :count).by(1)
+        expect(response).to redirect_to(Note)
+      end
     end
-
-    it 'returns show' do
-      expect(@ability.can? :show, note).to be true
-      get :show, params: { id: note }
-      expect(response).to be_successful
-      expect(response).to render_template(:show)
-    end
-
-    it 'returns new' do
-      expect(@ability.can? :new, Note).to be true
-      get :new
-      expect(response).to be_successful
-    end
-
-    it 'creates a new Note' do
-      expect(@ability.can? :create, Note).to be true
-      expect{ post :create, params: { note: attributes_for(:note) } }.to change(Note, :count).by(1)
-      expect(response).to redirect_to(Note)
-    end
-
   end
 
   describe 'user should' do
@@ -78,37 +79,36 @@ RSpec.describe NotesController, type: :controller do
   end
 
   describe 'unreg user should' do
+    after(:each) do
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
     it 'returns index' do
-      expect(get :index).to render_template(:index)
+      get :index
     end
 
     it 'returns show' do
       get :show, params: { id: note }
-      expect(response).to be_successful
-      expect(response).to render_template(:show)
     end
 
     it 'returns new' do
       get :new
-      expect(response).to be_successful
     end
 
     it 'creates a new Note' do
-      expect{ post :create, params: { note: attributes_for(:note) } }.to change(Note, :count).by(1)
-      expect(response).to redirect_to(Note)
+      expect{ post :create, params: { note: attributes_for(:note) } }.to change(Note, :count).by(0)
     end
 
     it 'not edit' do
-      expect{ get :edit, params: { id: note } }.to raise_error(CanCan:: AccessDenied)
+      get :edit, params: { id: note }
     end
 
     it 'not updates' do
-      expect{ put :update, params: { id: note, note: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
+      put :update, params: { id: note, note: { content: 'New content' } }
     end
 
     it 'not destroy' do
-      expect{ delete :destroy, params: { id: note } }.to raise_error(CanCan:: AccessDenied)
-      expect{ response }.to change(Note, :count).by(0)
+      expect{ delete :destroy, params: { id: note } }.to change(Note, :count).by(0)
     end
   end
 end

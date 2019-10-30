@@ -14,7 +14,6 @@ class Ability
                              Forecast, Type, User, Member,
                              Vacation, Room, Message,
                              Folder, Dataset, Event, Note]
-    can %i[new create], Note
 
     if user.role? :admin
       can :read, Forecast do |f|
@@ -43,6 +42,7 @@ class Ability
 
     if (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       cannot %i[manage read], [Room, Substrate]
+      can %i[new create], Note
     end
 
     if (user.role? :admin) || (user.role? :testuser)

@@ -16,17 +16,29 @@
       %b= Substrate.human_attribute_name(:amount)
       = @substrate.amount
     %p
+      %b= Substrate.human_attribute_name(:coating_type)
+      = @substrate.coating_type
+    %p
+      %b= Substrate.human_attribute_name(:wave)
+      = @substrate.wave
+    %p
+      %b= Substrate.human_attribute_name(:corner)
+      = @substrate.corner
+    %p
+      %b= Substrate.human_attribute_name(:frame)
+      = @substrate.frame
+    %p
       %b= Substrate.human_attribute_name(:contract)
       = @substrate.contract
     %p
       %b= Substrate.human_attribute_name(:arrival_at)
-      = @substrate.arrival_at
+      = short_date @substrate.arrival_at if @substrate.arrival_at
     %p
       %b= Substrate.human_attribute_name(:arrival_from)
       = @substrate.arrival_from
     %p
       %b= Substrate.human_attribute_name(:shipping_at)
-      = @substrate.shipping_at
+      = short_date @substrate.shipping_at if @substrate.shipping_at
     %p
       %b= Substrate.human_attribute_name(:shipping_to)
       = @substrate.shipping_to
@@ -39,6 +51,9 @@
     %p
       %b= Substrate.human_attribute_name(:user)
       = @substrate.user.email
+    %p
+      %b= Substrate.human_attribute_name(:desc)
+      = @substrate.desc
 
     = link_to t('shared.edit'), edit_substrate_path(@substrate)
     \|

@@ -18,6 +18,16 @@
         .col-6.col-md-3
           = f.text_field :contract
       .row
+        .col-6.col-md-3
+          = f.text_field :coating_type
+        .col-6.col-md-3
+          = f.text_field :wave
+        .col-6.col-md-3
+          = f.text_field :corner
+        .col-6.col-md-3
+          .mt-4
+            = f.check_box :frame, custom: :switch
+      .row
         .col
           = f.text_field :arrival_at, class: 'datepicker',
             value: (f.object.arrival_at.to_datetime.strftime('%d.%m.%Y') if f.object.arrival_at.present?)

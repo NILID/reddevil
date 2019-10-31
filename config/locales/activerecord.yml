@@ -130,6 +130,10 @@ ru:
         detail: Номер детали
         amount: Количество
         contract: Договор
+        coating_type: Тип покрытия
+        wave: Длина волны
+        corner: Угол
+        frame: Наличие оправы
         arrival_at: Дата прихода
         arrival_from: От кого пришло
         shipping_at: Дата отгрузки

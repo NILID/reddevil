@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_31_105758) do
+ActiveRecord::Schema.define(version: 2019_10_31_115848) do
 
   create_table "albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -306,6 +306,10 @@ ActiveRecord::Schema.define(version: 2019_10_31_105758) do
     t.string "priority", default: "normal"
     t.string "title"
     t.text "desc"
+    t.string "coating_type"
+    t.string "wave"
+    t.string "corner"
+    t.boolean "frame", default: false
     t.index ["user_id"], name: "index_substrates_on_user_id"
   end
 

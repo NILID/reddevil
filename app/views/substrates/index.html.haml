@@ -8,54 +8,56 @@
           = fa_icon 'plus'
           = t('shared.add')
 
-    %table.table
-      %thead
+  %table.table.table-substrates
+    %thead
+      %tr
+        %th.text-center
+          = sort_link @q, :priority, Substrate.human_attribute_name(:priority)
+          %br/
+          = sort_link @q, :status, Substrate.human_attribute_name(:status)
+        %th= sort_link @q, :title, Substrate.human_attribute_name(:title)
+        %th= sort_link @q, :drawing, Substrate.human_attribute_name(:drawing_short)
+        %th= sort_link @q, :detail, Substrate.human_attribute_name(:detail_short)
+        %th= sort_link @q, :amount, Substrate.human_attribute_name(:amount_short)
+        %th= sort_link @q, :contract, Substrate.human_attribute_name(:contract)
+        %th
+          %p= t('substrates.arrival.title')
+          %p
+            .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
+            .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
+        %th
+          %p= t('substrates.shipping.title')
+          %p
+            .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
+            .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
+        %th= Substrate.human_attribute_name(:shipping_base)
+        %th= sort_link @q, :user, Substrate.human_attribute_name(:user)
+        %th
+
+    %tbody
+      - @substrates.each do |substrate|
         %tr
-          %th
-          %th= sort_link @q, :drawing, Substrate.human_attribute_name(:drawing)
-          %th= sort_link @q, :detail, Substrate.human_attribute_name(:detail)
-          %th= sort_link @q, :amount, Substrate.human_attribute_name(:amount)
-          %th= sort_link @q, :contract, Substrate.human_attribute_name(:contract)
-          %th
-            %p= t('substrates.arrival.title')
-            %p
-              .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
-              .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
-          %th
-            %p= t('substrates.shipping.title')
-            %p
-              .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
-              .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
-          %th= Substrate.human_attribute_name(:shipping_base)
-          %th= sort_link @q, :status, Substrate.human_attribute_name(:status)
-          %th= sort_link @q, :user, Substrate.human_attribute_name(:user)
-          %th
-          %th
-
-      %tbody
-        - @substrates.each do |substrate|
-          %tr
-            %td= priority_tag substrate.priority
-            %td= substrate.drawing
-            %td= substrate.detail
-            %td= substrate.amount
-            %td= substrate.contract
-            %td
-              = short_date substrate.arrival_at if substrate.arrival_at
-              = substrate.arrival_from
-            %td
-              = short_date substrate.shipping_at if substrate.shipping_at
-              = substrate.shipping_to
-            %td= substrate.shipping_base
-            %td= status_text(substrate.status)
-            %td= substrate.author
-            %td= link_to t('shared.show'), substrate
-            %td
-              .btn-group
-                %button.btn.btn-sm.btn-outline-primary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                  = fa_icon 'cog'
-                .dropdown-menu.dropdown-menu-right
-                  = link_to t('shared.edit'), edit_substrate_path(substrate), class: 'dropdown-item'
-                  = link_to t('shared.del'), substrate, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
-
-
+          %td.text-center
+            = priority_tag substrate.priority
+            %br/
+            = status_text(substrate.status)
+          %td= link_to substrate.title, substrate
+          %td= substrate.drawing
+          %td= substrate.detail
+          %td= substrate.amount
+          %td= substrate.contract
+          %td
+            = short_date substrate.arrival_at if substrate.arrival_at
+            = substrate.arrival_from
+          %td
+            = short_date substrate.shipping_at if substrate.shipping_at
+            = substrate.shipping_to
+          %td= substrate.shipping_base
+          %td= substrate.author
+          %td
+            .btn-group
+              %button.btn.btn-sm.btn-outline-primary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                = fa_icon 'cog'
+              .dropdown-menu.dropdown-menu-right
+                = link_to t('shared.edit'), edit_substrate_path(substrate), class: 'dropdown-item'
+                = link_to t('shared.del'), substrate, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

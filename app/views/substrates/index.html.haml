@@ -8,7 +8,7 @@
           = fa_icon 'plus'
           = t('shared.add')
 
-  %table.table.table-substrates
+  %table.table.table-substrates.table-striped.table-hover.table-sm
     %thead
       %tr
         %th.text-center
@@ -30,7 +30,7 @@
           %p
             .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
             .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
-        %th= Substrate.human_attribute_name(:shipping_base)
+        %th= t('activerecord.attributes.substrate.shipping_base_html')
         %th= sort_link @q, :user, Substrate.human_attribute_name(:user)
         %th
 

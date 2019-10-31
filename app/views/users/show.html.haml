@@ -26,7 +26,7 @@
         .row
           .col-md-12
             %dl.row
-              - if (current_user&.role? :admin)
+              - if (current_user.role? :admin)
                 %dt.col-md-3.col-6.text-right= t 'users.has_groups'
                 %dd.col-md-9.col-6
                   - @user.groups.each do |group|

@@ -8,9 +8,8 @@
       %span.dropdown-divider
   %li
     = @album.title
-    - if user_signed_in?
-      = link_to like_album_path(@album), method: :post, remote: true do
-        = current_user.likes?(@album) ? fa_icon('star') : fa_icon('star-o')
+    = link_to like_album_path(@album), method: :post, remote: true do
+      = current_user.likes?(@album) ? fa_icon('star') : fa_icon('star-o')
 
 .card
   .card-body

@@ -24,7 +24,7 @@
 
                 %td
                   = last_seen(user)
-                - if current_user&.role? :admin
+                - if current_user.role? :admin
                   %td
                     %p
                       %b Confirm:

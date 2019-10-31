@@ -46,23 +46,22 @@
           .card-body
             - @bdusers_month.keys.sort.each do |u|
               = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
-    - if user_signed_in?
-      - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
-        .card
-          - unless @holidays_today.empty?
-            .card-header
-              = t 'shared.today'
-              %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
-            .card-body
-              - @holidays_today.each do |holiday|
-                .text-success.mb-2= holiday[:name]
-          - unless @holidays_tomorrow.empty?
-            .card-header
-              = t 'shared.tomorrow'
-              %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
-            .card-body
-              - @holidays_tomorrow.each do |holiday|
-                .mb-2= holiday[:name]
+    - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
+      .card
+        - unless @holidays_today.empty?
+          .card-header
+            = t 'shared.today'
+            %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
+          .card-body
+            - @holidays_today.each do |holiday|
+              .text-success.mb-2= holiday[:name]
+        - unless @holidays_tomorrow.empty?
+          .card-header
+            = t 'shared.tomorrow'
+            %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
+          .card-body
+            - @holidays_tomorrow.each do |holiday|
+              .mb-2= holiday[:name]
 
       - unless @events.empty? && @events_soon.empty?
         .card
@@ -80,7 +79,7 @@
               .row
                 .col-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
 
-    - if user_signed_in? && !@vacations.empty?
+    - unless @vacations.empty?
       .card
         - if current_user.member
           .card-header
@@ -131,7 +130,7 @@
                       date: Russian.strftime(v.startdate, "%e %B"),
                       diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
 
-    - if current_user && !@docs.empty?
+    - unless @docs.empty?
       .card
         .card-header= t 'docs.last_docs'
         .card-body

@@ -10,7 +10,6 @@
       = fa_icon 'download', text: t('shared.download')
     = link_to '#repeat', class: 'repeat-link inactive', data: { repeat: 'true', toggle: 'tooltip' }, title: t('shared.repeat') do
       = fa_icon 'repeat'
-    - if user_signed_in?
-      %span.sec-links
-        - if params[:action] != 'list' && params[:action] != 'favorites'
-          = link_to t('shared.del'), [song.album, song], :method => :delete, data: { confirm: t('shared.sure') } if can? :destroy, song
+    %span.sec-links
+      - if params[:action] != 'list' && params[:action] != 'favorites'
+        = link_to t('shared.del'), [song.album, song], :method => :delete, data: { confirm: t('shared.sure') } if can? :destroy, song

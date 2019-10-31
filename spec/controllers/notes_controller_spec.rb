@@ -80,7 +80,7 @@ RSpec.describe NotesController, type: :controller do
 
   describe 'unreg user should' do
     after(:each) do
-      expect(response).to redirect_to(new_user_session_path)
+      expect(response).to redirect_to(root_path)
     end
 
     it 'returns index' do

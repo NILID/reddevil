@@ -1,12 +1,9 @@
-.row
-  .col-md-8.offset-md-2
-    .card
-      .card-header
-        = t 'devise.forgot'
-      .card-body
-        = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
-          = f.email_field :email, autofocus: true, autocomplete: 'email'
-          = f.form_group do
-            = f.primary t('devise.sendmepassword')
-      .card-footer
-        = render 'users/shared/links'
+.card.mt-5
+  .card-header
+    = t 'devise.forgot'
+  .card-body
+    = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
+      = f.email_field :email, autofocus: true, autocomplete: 'email'
+      = f.primary t('devise.sendmepassword')
+  .card-footer
+    = render 'users/shared/links'

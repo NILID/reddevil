@@ -1,11 +1,5 @@
 - set_meta_tags title: t('shared.title')
 
-- unless user_signed_in?
-  .row
-    .col-md-12
-      .alert.alert-primary(role='alert')
-        %p C 12 декабря незарегистрированным участникам ограничен свободный доступ к персональным данным.
-
 - if @messages
   .row
     .col-md-12

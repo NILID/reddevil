@@ -151,28 +151,32 @@ RSpec.describe RoomsController, type: :controller do
   end
 
   describe 'unreg user should' do
+    after(:each) do
+      expect(response).to redirect_to(root_path)
+    end
+
     it 'cannot show' do
-      expect(get :show, params: { id: room }).to redirect_to(new_user_session_path)
+      get :show, params: { id: room }
     end
 
     it 'cannot edit' do
-      expect(get :edit, params: { id: room }).to redirect_to(new_user_session_path)
+      get :edit, params: { id: room }
     end
 
     it 'cannot update' do
-      expect(put :update, params: { id: room, room: attributes_for(:room) }).to redirect_to(new_user_session_path)
+      put :update, params: { id: room, room: attributes_for(:room) }
     end
 
     it 'new' do
-      expect(get :new).to redirect_to(new_user_session_path)
+      get :new
     end
 
     it 'index' do
-      expect(get :index).to redirect_to(new_user_session_path)
+      get :index
     end
 
     it 'create' do
-      expect(post :create, params: { room: attributes_for(:room) }).to redirect_to(new_user_session_path)
+      post :create, params: { room: attributes_for(:room) }
       expect{ response }.to change(Room, :count).by(0)
     end
   end

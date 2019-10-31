@@ -1,12 +1,9 @@
-.row
-  .col-md-8.offset-md-2
-    .card
-      .card-header
-        Выслать повторно письмо подтверждения регистрации
-      .card-body
-        = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
-          = f.email_field :email, autofocus: true, autocomplete: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-          = f.form_group do
-            = f.primary 'Прислать письмо'
-      .card-footer
-        = render "users/shared/links"
+.card.mt-5
+  .card-header
+    Выслать повторно письмо подтверждения регистрации
+  .card-body
+    = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), layout: :horizontal, html: { method: :post }) do |f|
+      = f.email_field :email, autofocus: true, autocomplete: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+      = f.primary 'Прислать письмо'
+  .card-footer
+    = render "users/shared/links"

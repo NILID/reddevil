@@ -1,5 +1,4 @@
 class FoldersController < ApplicationController
-  before_action :authenticate_user!
   load_and_authorize_resource :user
   load_and_authorize_resource :folder, through: :user
 

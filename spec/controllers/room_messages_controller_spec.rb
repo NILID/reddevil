@@ -18,7 +18,7 @@ RSpec.describe RoomMessagesController, type: :controller do
 
   describe 'unreg user should' do
     it 'create' do
-      expect(post :create, params: { room_id: room, room_message: attributes_for(:room_message) }).to redirect_to(new_user_session_path)
+      expect(post :create, params: { room_id: room, room_message: attributes_for(:room_message) }).to redirect_to(root_path)
       expect{ response }.to change(RoomMessage, :count).by(0)
     end
   end                                                                  end

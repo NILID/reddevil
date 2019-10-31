@@ -97,25 +97,28 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'unreg user should' do
+    after(:each) do
+      expect(response).to redirect_to(root_path)
+    end
+
     it 'not returns index' do
-      expect(get :index).to redirect_to(new_user_session_path)
+      get :index
     end
 
     it 'not returns edit' do
-      expect(get :edit, params: { id: user }).to redirect_to(new_user_session_path)
+      get :edit, params: { id: user }
     end
 
     it 'not updates' do
-      expect(put :update, params: { id: user, user: attributes_for(:user) })
-        .to redirect_to(new_user_session_path)
+      put :update, params: { id: user, user: attributes_for(:user) }
     end
 
     it 'not returns edit_roles' do
-      expect(get :edit_roles, params: { id: user }).to redirect_to(new_user_session_path)
+      get :edit_roles, params: { id: user }
     end
 
     it 'not make role' do
-      expect(post :make_role, params: { id: user, user: { roles: ['moderator'] } }).to redirect_to(new_user_session_path)
+      post :make_role, params: { id: user, user: { roles: ['moderator'] } }
     end
   end
 end

@@ -1,18 +1,12 @@
-= render 'users/shared/new_email'
-
-.row
-  .col-md-8.offset-md-2
-    .card
-      .card-header
-        = t 'devise.sign'
-      .card-body
-        = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), layout: :horizontal) do |f|
-          = f.email_field :email, autofocus: true, autocomplete: 'email'
-          = f.password_field :password, autocomplete: 'current-password'
-          - if devise_mapping.rememberable?
-            = f.form_group :remember_me do
-              = f.check_box :remember_me, custom: :switch
-          = f.form_group do
-            = f.primary t('devise.login')
-      .card-footer
-        = render 'users/shared/links'
+.card.mt-5
+  .card-header
+    = t 'devise.sign'
+  .card-body
+    = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), layout: :horizontal) do |f|
+      = f.email_field :email, autofocus: true, autocomplete: 'email'
+      = f.password_field :password, autocomplete: 'current-password'
+      - if devise_mapping.rememberable?
+        .my-2= f.check_box :remember_me, custom: :switch
+      = f.primary t('devise.login')
+  .card-footer
+    = render 'users/shared/links'

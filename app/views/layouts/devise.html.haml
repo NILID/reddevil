@@ -1,0 +1,15 @@
+!!!
+%html{ lang: 'ru' }
+  = render 'layouts/header'
+
+  %body(style="background: none;")
+    %section.mt-5.pt-5
+      .container
+        .row.justify-content-center
+          .col-12.col-md-8.col-lg-7.col-md-5.text-center
+            .jumbotron.shadow
+              .mb-2
+                .navbar-brand
+                  .brand-letter(style="font-size:50px;line-height:50px;height: 50px;width: 50px;")>< R
+                  %span(style="font-size:48px;line-height:50px;height: 50px;width: 50px;")>< EDDEVIL
+              = yield

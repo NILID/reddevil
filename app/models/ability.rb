@@ -6,14 +6,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     # everybody
-    can :read, :all
-    can %i[archive stat holidays], Member
-    # cannot :read, Doc, category: { hidden: true }
-    can :rebuild, Result
-    cannot %i[read manage], [Substrate, Song, Album, Round,
-                             Forecast, Type, User, Member,
-                             Vacation, Room, Message,
-                             Folder, Dataset, Event, Note]
+    cannot [:manage, :read], :all
 
     if user.role? :admin
       can :read, Forecast do |f|
@@ -41,6 +34,7 @@ class Ability
     end
 
     if (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
+      can :rebuild, Result
       cannot %i[manage read], [Room, Substrate]
       can %i[new create], Note
     end

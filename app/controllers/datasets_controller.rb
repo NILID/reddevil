@@ -1,5 +1,4 @@
 class DatasetsController < ApplicationController
-  before_action :authenticate_user!
   load_and_authorize_resource :user
   load_and_authorize_resource :folder
   load_and_authorize_resource :dataset, through: :folder

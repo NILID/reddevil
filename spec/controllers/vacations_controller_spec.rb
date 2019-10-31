@@ -17,7 +17,7 @@ RSpec.describe VacationsController, type: :controller do
 
   describe 'unreg user should' do
     it 'get index' do
-      expect(get :index).to redirect_to(new_user_session_path)
+      expect(get :index).to redirect_to(root_path)
     end
   end
 end

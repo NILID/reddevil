@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       flash[:alert] = t('devise.failure.unauthenticated')
       session[:requested_url] = request.url
-      redirect_to new_user_session_path
+      redirect_to root_url
     else
       raise
     end

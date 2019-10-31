@@ -227,7 +227,7 @@ RSpec.describe AlbumsController, type: :controller do
 
   describe 'unreg user should not' do
     after(:each) do
-      expect(response).to redirect_to(new_user_session_path)
+      expect(response).to redirect_to(root_path)
     end
 
     it('index')    { get :index }

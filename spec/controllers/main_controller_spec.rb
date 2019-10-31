@@ -16,7 +16,7 @@ RSpec.describe MainController, type: :controller do
     it 'get index' do
       get :index
       expect(response).to be_successful
-      expect(response).to render_template(:index)
+      expect(response).to render_template(:index_unreg)
     end
 
     it 'not get calendar' do

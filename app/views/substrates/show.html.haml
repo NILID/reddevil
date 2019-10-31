@@ -1,11 +1,14 @@
 .card
   .card-body
-    %p
-      %b= Substrate.human_attribute_name(:title)
-      = @substrate.title
+    = render 'breadcrumb', formtitle: @substrate.title
+
     %p
       %b= Substrate.human_attribute_name(:priority)
       = priority_tag @substrate.priority
+
+    %p
+      %b= Substrate.human_attribute_name(:status)
+      = status_text(@substrate.status)
     %p
       %b= Substrate.human_attribute_name(:drawing)
       = @substrate.drawing
@@ -45,9 +48,6 @@
     %p
       %b= Substrate.human_attribute_name(:shipping_base)
       = @substrate.shipping_base
-    %p
-      %b= Substrate.human_attribute_name(:status)
-      = status_text(@substrate.status)
     %p
       %b= Substrate.human_attribute_name(:user)
       = @substrate.user.email

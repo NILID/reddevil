@@ -27,10 +27,18 @@ module SubstratesHelper
     "status-label rounded-circle #{color}"
   end
 
+  def priority_select_tag(priority)
+    content_tag(:span, class: 'select-priority') do
+      content_tag(:span, '', class: priority_style(priority)) +
+      content_tag(:span, t("substrates.priorities.#{priority}"), class: 'option-text align-top ml-2')
+    end
+  end
+
   def priority_tag(priority)
     unless priority.empty?
       title_text = 'Приоритет: ' + t("substrates.priorities.#{priority}")
       content_tag(:span, '', class: priority_style(priority), title: title_text , data: { toggle: 'tooltip' })
     end
   end
+
 end

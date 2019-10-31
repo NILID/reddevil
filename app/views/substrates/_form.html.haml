@@ -39,9 +39,14 @@
           = f.text_field :shipping_base
       .row
         .col
-          = f.select :status, Substrate::STATUSES.map{|s| [t("substrates.statuses.#{s}"), s]}, { include_blank: t('shared.to_select') }
+          = f.select :status, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
+            - Substrate::STATUSES.each do |s|
+              = content_tag(:option, t("substrates.statuses.#{s}"), value: s, data: { content: status_text(s) })
+
         .col
-          = f.select :priority, Substrate::PRIORITIES.map{|s| [t("substrates.priorities.#{s}"), s]}
+          = f.select :priority, {}, {}, { class: 'selectpicker' } do
+            - Substrate::PRIORITIES.each do |s|
+              = content_tag(:option, t("substrates.priorities.#{s}"), value: s, data: { content: priority_select_tag(s) })
       .row
         .col
           = f.text_area :desc

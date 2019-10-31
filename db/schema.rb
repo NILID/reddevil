@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_151202) do
+ActiveRecord::Schema.define(version: 2019_10_31_104746) do
 
   create_table "albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -298,7 +298,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_151202) do
     t.string "arrival_from"
     t.datetime "shipping_at"
     t.string "shipping_to"
-    t.text "shipping_base"
+    t.string "shipping_base"
     t.string "status"
     t.bigint "user_id"
     t.datetime "created_at", null: false

@@ -12,4 +12,8 @@
                 .navbar-brand
                   .brand-letter(style="font-size:50px;line-height:50px;height: 50px;width: 50px;")>< R
                   %span(style="font-size:48px;line-height:50px;height: 50px;width: 50px;")>< EDDEVIL
+              - if flash_messages
+                .row
+                  .col= flash_messages
+
               = yield

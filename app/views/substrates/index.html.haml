@@ -48,7 +48,7 @@
               = substrate.shipping_to
             %td= substrate.shipping_base
             %td= status_text(substrate.status)
-            %td= substrate.user.email
+            %td= substrate.user.email if substrate.user
             %td= link_to t('shared.show'), substrate
             %td
               .btn-group

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :substrate do
+    title { "MyTitle" }
     drawing { "MyDrawing" }
     detail { "MyDetail" }
     amount { 1 }

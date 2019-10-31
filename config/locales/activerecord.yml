@@ -122,6 +122,8 @@ ru:
         title: Название
         file: Файл
       substrate:
+        title: Наименование
+        desc: Описание
         user: Автор
         priority: Приоритет
         drawing: Номер чертежа

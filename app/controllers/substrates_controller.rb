@@ -46,6 +46,6 @@ class SubstratesController < ApplicationController
 
   private
     def substrate_params
-      params.require(:substrate).permit(:priority, :drawing, :detail, :amount, :contract, :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base, :status, :user_id)
+      params.require(:substrate).permit(:title, :desc, :priority, :drawing, :detail, :amount, :contract, :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base, :status, :user_id)
     end
 end

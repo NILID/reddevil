@@ -1,6 +1,9 @@
 .card
   .card-body
     %p
+      %b= Substrate.human_attribute_name(:title)
+      = @substrate.title
+    %p
       %b= Substrate.human_attribute_name(:priority)
       = priority_tag @substrate.priority
     %p

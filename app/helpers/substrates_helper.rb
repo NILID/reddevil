@@ -29,7 +29,8 @@ module SubstratesHelper
 
   def priority_tag(priority)
     unless priority.empty?
-      content_tag(:span, '', class: priority_style(priority), title: t("substrates.priorities.#{priority}", data: { toggle: 'tooltip' }))
+      title_text = 'Приоритет: ' + t("substrates.priorities.#{priority}")
+      content_tag(:span, '', class: priority_style(priority), title: title_text , data: { toggle: 'tooltip' })
     end
   end
 end

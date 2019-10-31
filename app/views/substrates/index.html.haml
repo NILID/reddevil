@@ -11,7 +11,7 @@
     %table.table
       %thead
         %tr
-          %th= sort_link @q, :priority, Substrate.human_attribute_name(:priority)
+          %th
           %th= sort_link @q, :drawing, Substrate.human_attribute_name(:drawing)
           %th= sort_link @q, :detail, Substrate.human_attribute_name(:detail)
           %th= sort_link @q, :amount, Substrate.human_attribute_name(:amount)
@@ -48,7 +48,7 @@
               = substrate.shipping_to
             %td= substrate.shipping_base
             %td= status_text(substrate.status)
-            %td= substrate.user.email if substrate.user
+            %td= substrate.author
             %td= link_to t('shared.show'), substrate
             %td
               .btn-group

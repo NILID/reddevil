@@ -6,6 +6,9 @@
       = render 'main/error', object: @substrate
 
       .row
+        .col
+          = f.text_field :title
+      .row
         .col-6.col-md-3
           = f.text_field :drawing
         .col-6.col-md-3
@@ -29,4 +32,8 @@
           = f.select :status, Substrate::STATUSES.map{|s| [t("substrates.statuses.#{s}"), s]}, { include_blank: t('shared.to_select') }
         .col
           = f.select :priority, Substrate::PRIORITIES.map{|s| [t("substrates.priorities.#{s}"), s]}
+      .row
+        .col
+          = f.text_area :desc
+
       = f.submit t('shared.save')

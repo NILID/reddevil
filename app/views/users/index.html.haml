@@ -8,7 +8,7 @@
         %table.table.table-striped.bg-light.mt-2
           %thead
             %tr
-              %th(scope='col')
+              %th
               %th(scope='col')= t 'member.fullname'
               %th(scope='col')
                 = sort_link @q, :updated_at, User.human_attribute_name(:updated_at)

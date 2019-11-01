@@ -1,59 +1,62 @@
 .card
   .card-body
-    = render 'breadcrumb', formtitle: @substrate.title
-
-    %p
-      %b= Substrate.human_attribute_name(:priority)
-      = priority_tag @substrate.priority
-
-    %p
-      %b= Substrate.human_attribute_name(:status)
-      = status_text(@substrate.status)
-    %p
-      %b= Substrate.human_attribute_name(:drawing)
-      = @substrate.drawing
-    %p
-      %b= Substrate.human_attribute_name(:detail)
-      = @substrate.detail
-    %p
-      %b= Substrate.human_attribute_name(:amount)
-      = @substrate.amount
-    %p
-      %b= Substrate.human_attribute_name(:coating_type)
-      = @substrate.coating_type
-    %p
-      %b= Substrate.human_attribute_name(:wave)
-      = @substrate.wave
-    %p
-      %b= Substrate.human_attribute_name(:corner)
-      = @substrate.corner
-    %p
-      %b= Substrate.human_attribute_name(:frame)
-      = @substrate.frame
-    %p
-      %b= Substrate.human_attribute_name(:contract)
-      = @substrate.contract
-    %p
-      %b= Substrate.human_attribute_name(:arrival_at)
-      = short_date @substrate.arrival_at if @substrate.arrival_at
-    %p
-      %b= Substrate.human_attribute_name(:arrival_from)
-      = @substrate.arrival_from
-    %p
-      %b= Substrate.human_attribute_name(:shipping_at)
-      = short_date @substrate.shipping_at if @substrate.shipping_at
-    %p
-      %b= Substrate.human_attribute_name(:shipping_to)
-      = @substrate.shipping_to
-    %p
-      %b= Substrate.human_attribute_name(:shipping_base)
-      = @substrate.shipping_base
-    %p
-      %b= Substrate.human_attribute_name(:user)
-      = @substrate.user.email
-    %p
-      %b= Substrate.human_attribute_name(:desc)
-      = @substrate.desc
+    .row
+      .col-12
+        = render 'breadcrumb', formtitle: @substrate.title
+        %p
+          %b= Substrate.human_attribute_name(:priority)
+          = priority_tag @substrate.priority
+        %p
+          %b= Substrate.human_attribute_name(:status)
+          = status_text(@substrate.status)
+        %p
+          %b= Substrate.human_attribute_name(:desc)
+          = @substrate.desc
+    .row
+      .col
+        %p
+          %b= Substrate.human_attribute_name(:drawing)
+          = @substrate.drawing
+        %p
+          %b= Substrate.human_attribute_name(:detail)
+          = @substrate.detail
+        %p
+          %b= Substrate.human_attribute_name(:amount)
+          = @substrate.amount
+        %p
+          %b= Substrate.human_attribute_name(:coating_type)
+          = @substrate.coating_type
+        %p
+          %b= Substrate.human_attribute_name(:wave)
+          = @substrate.wave
+        %p
+          %b= Substrate.human_attribute_name(:corner)
+          = @substrate.corner
+        %p
+          %b= Substrate.human_attribute_name(:frame)
+          = @substrate.frame
+      .col
+        %p
+          %b= Substrate.human_attribute_name(:contract)
+          = @substrate.contract
+        %p
+          %b= Substrate.human_attribute_name(:arrival_at)
+          = short_date @substrate.arrival_at if @substrate.arrival_at
+        %p
+          %b= Substrate.human_attribute_name(:arrival_from)
+          = @substrate.arrival_from
+        %p
+          %b= Substrate.human_attribute_name(:shipping_at)
+          = short_date @substrate.shipping_at if @substrate.shipping_at
+        %p
+          %b= Substrate.human_attribute_name(:shipping_to)
+          = @substrate.shipping_to
+        %p
+          %b= Substrate.human_attribute_name(:shipping_base)
+          = @substrate.shipping_base
+        %p
+          %b= Substrate.human_attribute_name(:user)
+          = link_to @substrate.author, @substrate.user
 
     = link_to t('shared.edit'), edit_substrate_path(@substrate)
     \|

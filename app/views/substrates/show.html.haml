@@ -13,6 +13,9 @@
           %b= Substrate.human_attribute_name(:status)
           = status_text(@substrate.status)
         %p
+          %b= t('substrates.created_at')
+          = l @substrate.created_at, format: :long
+        %p
           %b= Substrate.human_attribute_name(:desc)
           = @substrate.desc
     .row

@@ -3,6 +3,7 @@ ru:
     title: Подложки
     new: Новая подложка
     edit: Редактирование подложки
+    created_at: Создано
     statuses:
       opened: Открыто
       finished: Завершено

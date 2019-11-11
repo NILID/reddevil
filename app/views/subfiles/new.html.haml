@@ -1,4 +1,1 @@
-= bootstrap_form_for [@substrate, @subfile], layout: :horizontal do |f|
-  = f.file_field :src, control_col: 'col-8', label_col: 'col'
-  = f.form_group do
-    = f.primary t('shared.save')
+= render partial: 'form', locals: { substrate: @substrate, subfile: @subfile }

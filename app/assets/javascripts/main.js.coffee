@@ -1,4 +1,6 @@
 $ ->
+  bsCustomFileInput.init()
+
   Chartkick.configure language: 'ru'
 
   soundManager.defaultOptions =

@@ -28,6 +28,6 @@ class SubfilesController < ApplicationController
   private
 
   def subfile_params
-    params.require(:subfile).permit(:src, :user_id)
+    params.require(:subfile).permit(:src, :user_id) if params[:subfile]
   end
 end

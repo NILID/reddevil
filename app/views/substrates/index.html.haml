@@ -48,10 +48,10 @@
           %td= substrate.contract
           %td
             = short_date substrate.arrival_at if substrate.arrival_at
-            = substrate.arrival_from
+            .text-muted= substrate.arrival_from
           %td
             = short_date substrate.shipping_at if substrate.shipping_at
-            = substrate.shipping_to
+            .text-muted= substrate.shipping_to
           %td= substrate.shipping_base
           %td= substrate.author
           %td

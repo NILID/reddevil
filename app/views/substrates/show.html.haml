@@ -75,15 +75,11 @@
             .my-3= render partial: 'subfiles/form', locals: { substrate: @substrate, subfile: Subfile.new }
 
         %table.table.table-striped.table-hover.table-sm
-
-          - index = 0
           = content_tag_for(:tr, @subfiles) do |subfile|
-            %tr
-              %td.text-muted= index +=1
-              %td
-                = link_to subfile.src_file_name, subfile.src.url, target: '_blank'
-              %td
-                = link_to subfile.user.surname_name, subfile.user
-              %td
-                = link_to [@substrate, subfile], method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: t('shared.sure') } do
-                  = fa_icon 'trash'
+            %td
+              = link_to subfile.src_file_name, subfile.src.url, target: '_blank'
+            %td
+              = link_to subfile.user.surname_name, subfile.user
+            %td
+              = link_to [@substrate, subfile], method: :delete, remote: true, class: 'btn btn-sm btn-danger', data: { confirm: t('shared.sure') } do
+                = fa_icon 'trash'

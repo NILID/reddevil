@@ -1,5 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe Substrate, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:substrate) { build(:substrate) }
+
+  context 'should' do
+    it 'have status' do
+      substrate.status = nil
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:status]).not_to be_empty
+    end
+
+    it 'have status inclusion list STATUSES' do
+      substrate.status = 'new_open'
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:status]).not_to be_empty
+    end
+
+    it 'have priority' do
+      substrate.priority = nil
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:priority]).not_to be_empty
+    end
+
+    it 'have priority inclusion list PRIORITIES' do
+      substrate.priority = 'new_open'
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:priority]).not_to be_empty
+    end
+
+    it 'have title' do
+      substrate.title = nil
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:title]).not_to be_empty
+    end
+
+    it 'have arrival_at' do
+      substrate.arrival_at = nil
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:arrival_at]).not_to be_empty
+    end
+
+  end
 end

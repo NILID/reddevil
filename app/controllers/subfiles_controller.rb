@@ -18,10 +18,8 @@ class SubfilesController < ApplicationController
 
   def destroy
     @subfile.destroy
-
     respond_to do |format|
-      format.html { redirect_to @substrate, notice: t('flash.was_destroyed', item: Subfile.model_name.human) }
-      format.json { head :no_content }
+      format.js
     end
   end
 

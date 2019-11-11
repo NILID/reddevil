@@ -23,8 +23,7 @@ RSpec.describe SubfilesController, type: :controller do
 
       it 'destroys' do
         expect(@ability.can? :destroy, subfile).to be true
-        expect{ delete :destroy, params: { substrate_id: substrate, id: subfile } }.to change(Subfile, :count).by(-1)
-        expect(response).to redirect_to(assigns(:substrate))
+        expect{ delete :destroy, params: { substrate_id: substrate, id: subfile }, format: 'js', xhr: true }.to change(Subfile, :count).by(-1)
       end
     end
   end
@@ -45,7 +44,7 @@ RSpec.describe SubfilesController, type: :controller do
 
     it 'not destroy' do
       expect(@ability.cannot? :destroy, subfile).to be true
-      expect{ delete :destroy, params: { substrate_id: substrate, id: subfile } }.to raise_error(CanCan:: AccessDenied)
+      expect{ delete :destroy, params: { substrate_id: substrate, id: subfile }, format: 'js', xhr: true }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Subfile, :count).by(0)
     end
   end
@@ -65,7 +64,7 @@ RSpec.describe SubfilesController, type: :controller do
     end
 
     it 'not destroy' do
-      delete :destroy, params: { substrate_id: substrate, id: subfile }
+      delete :destroy, params: { substrate_id: substrate, id: subfile }, format: 'js', xhr: true
       expect{ response }.to change(Subfile, :count).by(0)
     end
   end

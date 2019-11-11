@@ -22,6 +22,7 @@ ru:
       dataset: файл
       room: чат
       substrate: подложка
+      subfile: документ
     attributes:
       album:
         title: Название
@@ -144,3 +145,5 @@ ru:
         shipping_base: Основание отгрузки
         shipping_base_html: Основание<br/>отгрузки
         status: Статус
+      subfiles:
+        src: Файл документа

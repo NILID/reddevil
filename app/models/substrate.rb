@@ -1,5 +1,6 @@
 class Substrate < ApplicationRecord
   belongs_to :user
+  has_many :subfiles
 
   STATUSES = %w[opened worked delayed canceled finished].freeze
   PRIORITIES = %w[normal high].freeze

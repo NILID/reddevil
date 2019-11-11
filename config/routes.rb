@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :substrates
+  resources :substrates do
+    resources :subfiles, only: %i[new create destroy]
+  end
+
   scope 'chat' do
     resources :room_messages, only: [:create]
     resources :rooms

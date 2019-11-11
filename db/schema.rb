@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_31_115848) do
+ActiveRecord::Schema.define(version: 2019_11_05_120335) do
 
   create_table "albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -275,6 +275,19 @@ ActiveRecord::Schema.define(version: 2019_10_31_115848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["album_id"], name: "index_songs_on_album_id"
+  end
+
+  create_table "subfiles", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src_file_name"
+    t.string "src_content_type"
+    t.bigint "src_file_size"
+    t.datetime "src_updated_at"
+    t.bigint "substrate_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["substrate_id"], name: "index_subfiles_on_substrate_id"
+    t.index ["user_id"], name: "index_subfiles_on_user_id"
   end
 
   create_table "subscribes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

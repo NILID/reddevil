@@ -6,7 +6,10 @@ class SubstratesController < ApplicationController
     @substrates = @q.result(distinct: true)
   end
 
-  def show;  end
+  def show
+    @subfiles = @substrate.subfiles.includes(:user).order(created_at: :desc)
+  end
+
   def new;   end
   def edit;  end
 
@@ -27,6 +30,9 @@ class SubstratesController < ApplicationController
   def update
     respond_to do |format|
       if @substrate.update(substrate_params)
+        if substrate_params[:subfiles]
+          substrate_params[:subfiles].each { |s| @substrate.subfiles.create(src: s)}
+        end
         format.html { redirect_to @substrate, notice: t('flash.was_updated', item: Substrate.model_name.human) }
         format.json { render :show, status: :ok, location: @substrate }
       else
@@ -46,6 +52,12 @@ class SubstratesController < ApplicationController
 
   private
     def substrate_params
-      params.require(:substrate).permit(:title, :desc, :coating_type, :wave, :corner, :frame, :priority, :drawing, :detail, :amount, :contract, :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base, :status, :user_id)
+      params.require(:substrate).permit(:title,
+                                        :desc, :coating_type,
+                                        :wave, :corner, :frame, :priority, :drawing, :detail, :amount, :contract, :arrival_at,
+                                        :arrival_from, :shipping_at, :shipping_to, :shipping_base,
+                                        :status, :user_id,
+                                        { subfiles_attributes: %i[id src user_id _destroy] }
+                                        )
     end
 end

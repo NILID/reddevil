@@ -85,7 +85,7 @@ class Ability
     end
 
     if user.has_group? :lab182
-      can %i[manage read], Substrate
+      can %i[manage read], [Substrate, Subfile]
     end
   end
 end

@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :forecasts
   has_many :results
   has_many :folders
+  has_many :subfiles
+  has_many :substrates
   has_many :notes
   has_many :rooms
   has_many :room_messages, dependent: :destroy

@@ -14,6 +14,8 @@
         = link_to t('shared.calendar'), calendar_path, class: 'nav-link'
       %li.mr-3.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
         = link_to t('docs.title'), docs_path, class: 'nav-link'
+      %li.mr-3.nav-item{class: (params[:controller] == 'mail' && params[:action] == 'infocenter') ? 'active' : nil}
+        = link_to t('infocenter.title'), infocenter_path, class: 'nav-link'
 
       - if can? :read, Substrate
         %li.mr-3.nav-item{class: (params[:controller] == 'substrates') ? 'active' : nil}

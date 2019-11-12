@@ -5,15 +5,9 @@ RSpec.describe Substrate, type: :model do
 
   context 'should' do
     it 'have status' do
-      substrate.status = nil
+      substrate.statuses_mask = nil
       expect(substrate.valid?).to be false
-      expect(substrate.errors[:status]).not_to be_empty
-    end
-
-    it 'have status inclusion list STATUSES' do
-      substrate.status = 'new_open'
-      expect(substrate.valid?).to be false
-      expect(substrate.errors[:status]).not_to be_empty
+      expect(substrate.errors[:statuses_mask]).not_to be_empty
     end
 
     it 'have priority' do

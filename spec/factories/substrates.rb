@@ -10,6 +10,7 @@ FactoryBot.define do
     shipping_at { "2019-10-24 13:06:50" }
     shipping_to { "MyString" }
     shipping_base { "MyText" }
+    statuses_mask { 0 }
     user
   end
 end

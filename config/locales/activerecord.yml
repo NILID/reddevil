@@ -145,5 +145,6 @@ ru:
         shipping_base: Основание отгрузки
         shipping_base_html: Основание<br/>отгрузки
         status: Статус
+        statuses_mask: Статус
       subfiles:
         src: Файл документа

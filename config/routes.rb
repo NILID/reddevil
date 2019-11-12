@@ -100,6 +100,7 @@ Rails.application.routes.draw do
 
   get 'calendar' => 'main#calendar'
   get 'relax' => 'main#relax'
+  get 'infocenter' => 'main#infocenter'
   post 'import' => 'main#import'
   get 'nextsong' => 'main#nextsong'
 

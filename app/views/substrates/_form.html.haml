@@ -41,11 +41,7 @@
         .col
           = f.select :status, {}, {}, { class: 'selectpicker' } do
             - Substrate::STATUSES.each do |s|
-              = content_tag :option,
-                t("substrates.statuses.#{s}"),
-                value: s,
-                data: { content: status_text(s) },
-                selected: (f.object.status == s)
+              = content_tag(:option, s, value: s, data: { content: status_text(s) }, selected: s == f.object.status )
 
         .col
           = f.select :priority, {}, {}, { class: 'selectpicker' } do

@@ -58,6 +58,9 @@ class MainController < ApplicationController
     end
   end
 
+  def infocenter
+  end
+
   private
 
   def get_layout

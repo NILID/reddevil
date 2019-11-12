@@ -2,7 +2,12 @@
   .card-body
     .row
       .col
-        %h2.text-muted= t 'substrates.title'
+        %h2.text-muted
+          = t 'substrates.title'
+          %small
+            = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
+              = fa_icon('filter')
+              = t('shared.filter')
       .col-2.text-right
         = link_to new_substrate_path, class: 'btn btn-primary' do
           = fa_icon 'plus'

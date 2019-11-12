@@ -4,6 +4,9 @@ ru:
     new: Новая подложка
     edit: Редактирование подложки
     created_at: Создано
+    frame: Оправа
+    frame_true: Присутствует
+    frame_false: Отсутствует
     statuses:
       opened: Открыто
       finished: Завершено

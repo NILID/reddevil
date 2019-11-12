@@ -1,0 +1,157 @@
+.card-body.bg-info.text-white
+  = search_form_for @q do |f|
+    .row
+      .col
+        .form-group.row
+          = f.label :title_or_desc_or_drawing_or_detail_or_contract_or_arrival_from_or_shipping_to_or_shipping_base_cont,
+            t('shared.search'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.text_field :title_or_desc_or_drawing_or_detail_or_contract_or_arrival_from_or_shipping_to_or_shipping_base_cont,
+              placeholder: t('shared.search_text'),
+              class: 'form-control form-control-sm'
+        .form-group.row
+          = f.label :statuses_mask_eq,
+            Substrate.human_attribute_name(:statuses_mask),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :statuses_mask_eq, {}, { include_blank: '== Выберите статус ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - Substrate::STATUSES.each do |s|
+                = content_tag(:option, s, value: status_index(s), data: { content: status_text(s) }, selected: params[:q] && (params[:q][:statuses_mask_eq] == status_index(s).to_s) )
+        .form-group.row
+          = f.label :priority_eq,
+            Substrate.human_attribute_name(:priority),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :priority_eq, {}, { include_blank: '== Выберите приоритет ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - Substrate::PRIORITIES.each do |s|
+                = content_tag(:option, t("substrates.priorities.#{s}"), value: s, data: { content: priority_select_tag(s) }, selected: params[:q] && (params[:q][:priority_eq] == s) )
+        .form-group.row
+          = f.label :priority_eq,
+            Substrate.human_attribute_name(:user),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :user_id_eq, {}, { include_blank: '== Выберите автора ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - User.with_group(:lab182).each do |u|
+                = content_tag(:option, u.surname, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
+      .col
+        .form-group.row
+          = f.label :amount_gteq,
+            Substrate.human_attribute_name(:amount_short),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.text_field :amount_gteq, class: 'form-control'
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :amount_lteq, class: 'form-control'
+        .form-group.row
+          = f.label :wave_gteq,
+            Substrate.human_attribute_name(:wave),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row.pr-0
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.text_field :wave_gteq, class: 'form-control'
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :wave_lteq, class: 'form-control'
+        .form-group.row
+          = f.label :corner_gteq,
+            Substrate.human_attribute_name(:corner),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.text_field :corner_gteq, class: 'form-control'
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :corner_lteq, class: 'form-control'
+        .form-group.row
+          = f.label :frame_eq,
+            t('substrates.frame'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :frame_eq, {}, { include_blank: '== Наличие оправы ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - [true, false].each do |u|
+                = content_tag(:option, t("substrates.frame_#{u}"), value: u, selected: params[:q] && (params[:q][:frame_eq] == u.to_s) )
+      .col
+        .form-group.row
+          = f.label :created_at_gteq,
+            t('substrates.created_at'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text c
+                  = f.text_field :created_at_gteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:created_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_gteq].present?)
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :created_at_lteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:created_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_lteq].present?)
+        .form-group.row
+          = f.label :arrival_at_gteq,
+            t('substrates.arrival.title'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text c
+                  = f.text_field :arrival_at_gteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:arrival_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:arrival_at_gteq].present?)
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :arrival_at_lteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:arrival_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:arrival_at_lteq].present?)
+        .form-group.row
+          = f.label :shipping_at_gteq,
+            t('substrates.shipping.title'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text c
+                  = f.text_field :shipping_at_gteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:shipping_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_gteq].present?)
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :shipping_at_lteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_lteq].present?)
+        .form-group.row.text-right
+          .col
+            = f.submit t('shared.to_search'), class: 'btn btn-outline-light'

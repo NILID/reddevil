@@ -8,17 +8,77 @@
           = fa_icon 'plus'
           = t('shared.add')
 
+  .card-body.bg-info.text-white
+    .row
+      .col
+        = search_form_for @q do |f|
+          Поиск по названию и описанию:
+          = f.text_field :title_or_desc_or_drawing_or_detail_or_contract_or_arrival_from_or_shipping_to_or_shipping_base_cont,
+            placeholder: 'insert some text'
+          %br/
+          = f.select :statuses_mask_eq, {}, { include_blank: '== Выберите статус ==' }, { class: 'selectpicker' } do
+            - Substrate::STATUSES.each do |s|
+              = content_tag(:option, s, value: status_index(s), data: { content: status_text(s) }, selected: params[:q] && (params[:q][:statuses_mask_eq] == status_index(s).to_s) )
+          = f.select :priority_eq, {}, { include_blank: '== Выберите приоритет ==' }, { class: 'selectpicker' } do
+            - Substrate::PRIORITIES.each do |s|
+              = content_tag(:option, t("substrates.priorities.#{s}"), value: s, data: { content: priority_select_tag(s) }, selected: params[:q] && (params[:q][:priority_eq] == s) )
+          %br/
+          Автор
+          = f.select :user_id_eq, {}, { include_blank: '== Выберите автора ==' }, { class: 'selectpicker' } do
+            - User.with_group(:lab182).each do |u|
+              = content_tag(:option, u.surname, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
+          %br/
+          = Substrate.human_attribute_name(:amount_short)
+          = f.text_field :amount_gteq, placeholder: 'от'
+          = f.text_field :amount_lt, placeholder: 'до'
+          %br/
+          = Substrate.human_attribute_name(:wave)
+          = f.text_field :wave_gteq, placeholder: 'от'
+          = f.text_field :wave_lt, placeholder: 'до'
+          %br/
+          = Substrate.human_attribute_name(:corner)
+          = f.text_field :corner_gteq, placeholder: 'от'
+          = f.text_field :corner_lt, placeholder: 'до'
+          %br/
+          = Substrate.human_attribute_name(:frame)
+          = f.select :frame_eq, {}, { include_blank: '== Наличие оправы ==' }, { class: 'selectpicker' } do
+            - [true, false].each do |u|
+              = content_tag(:option, u, value: u, selected: params[:q] && (params[:q][:frame_eq] == u.to_s) )
+          %br/
+          = Substrate.human_attribute_name(:created_at)
+          = f.text_field :created_at_gteq, placeholder: 'от', class: 'datepicker',
+            value: (params[:q][:created_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_gteq].present?)
+          = f.text_field :created_at_lteq, placeholder: 'до', class: 'datepicker',
+            value: (params[:q][:created_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_lteq].present?)
+          %br/
+          = Substrate.human_attribute_name(:arrival_at)
+          = f.text_field :arrival_at_gteq, placeholder: 'от', class: 'datepicker',
+            value: (params[:q][:arrival_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:arrival_at_gteq].present?)
+          = f.text_field :arrival_at_lteq, placeholder: 'до', class: 'datepicker',
+            value: (params[:q][:arrival_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:arrival_at_lteq].present?)
+
+          %br/
+          = Substrate.human_attribute_name(:shipping_at)
+          = f.text_field :shipping_at_gteq, placeholder: 'от', class: 'datepicker',
+            value: (params[:q][:shipping_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_gteq].present?)
+          = f.text_field :shipping_at_lteq, placeholder: 'до', class: 'datepicker',
+            value: (params[:q][:shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_lteq].present?)
+
+          %br/
+          = f.submit 'Search'
+
+
   %table.table.table-substrates.table-striped.table-hover.table-sm
     %thead
       %tr
         %th.text-center
-          = sort_link @q, :priority, Substrate.human_attribute_name(:priority)
+          = sort_link @q, :priority,  Substrate.human_attribute_name(:priority)
           %br/
-          = sort_link @q, :status, Substrate.human_attribute_name(:status)
-        %th= sort_link @q, :title, Substrate.human_attribute_name(:title)
-        %th= sort_link @q, :drawing, Substrate.human_attribute_name(:drawing_short)
-        %th= sort_link @q, :detail, Substrate.human_attribute_name(:detail_short)
-        %th= sort_link @q, :amount, Substrate.human_attribute_name(:amount_short)
+          = sort_link @q, :status,    Substrate.human_attribute_name(:status)
+        %th= sort_link @q, :title,    Substrate.human_attribute_name(:title)
+        %th= sort_link @q, :drawing,  Substrate.human_attribute_name(:drawing_short)
+        %th= sort_link @q, :detail,   Substrate.human_attribute_name(:detail_short)
+        %th= sort_link @q, :amount,   Substrate.human_attribute_name(:amount_short)
         %th= sort_link @q, :contract, Substrate.human_attribute_name(:contract)
         %th
           %p= t('substrates.arrival.title')

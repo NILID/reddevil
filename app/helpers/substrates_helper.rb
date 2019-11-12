@@ -41,4 +41,8 @@ module SubstratesHelper
     end
   end
 
+  def status_index(status)
+    Substrate::STATUSES.index(status)
+  end
+
 end

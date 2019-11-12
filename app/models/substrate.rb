@@ -24,4 +24,9 @@ class Substrate < ApplicationRecord
   def status
     Substrate::STATUSES[statuses_mask]
   end
+
+  ransacker :created_at, type: :date do
+   Arel.sql("date(created_at)")
+  end
+
 end

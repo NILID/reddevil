@@ -1,0 +1,7 @@
+<% if @substrate.followed_by? @user  %>
+  $('#followers').prepend("<%= j render 'follow_user', user: @user, substrate: @substrate, marker: :minus %>");
+  $('#future_followers #user_<%=@user.id%>').fadeOut();
+<% else %>
+  $('#followers #user_<%=@user.id%>').fadeOut();
+  $('#future_followers').prepend("<%= j render 'follow_user', user: @user, substrate: @substrate, marker: :plus %>");
+<% end %>

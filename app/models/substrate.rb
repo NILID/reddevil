@@ -1,4 +1,5 @@
 class Substrate < ApplicationRecord
+  acts_as_followable
   belongs_to :user
   has_many :subfiles
 
@@ -6,7 +7,7 @@ class Substrate < ApplicationRecord
   #                0     1       2        3      4
 
   PRIORITIES = %w[normal high].freeze
-  #                  0     1
+  #                 0     1
 
   validates :title, :arrival_at, :statuses_mask, :priority, presence: true
   validates_inclusion_of :priority, in: PRIORITIES

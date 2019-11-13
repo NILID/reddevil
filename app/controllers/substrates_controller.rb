@@ -8,6 +8,15 @@ class SubstratesController < ApplicationController
 
   def show
     @subfiles = @substrate.subfiles.includes(:user).order(created_at: :desc)
+    @users = User.with_group(:lab182) - @substrate.followers(User)
+  end
+
+  def follow
+    @user = User.where(id: params[:user_id]).first
+    if @user
+      @user.toggle_follow!(@substrate)
+      respond_to :js
+    end
   end
 
   def new;   end

@@ -5,7 +5,8 @@
         = render 'breadcrumb', formtitle: @substrate.title
       .col-12.mb-2
         = link_to t('shared.edit'), edit_substrate_path(@substrate), class: 'btn btn-outline-primary btn-sm'
-      .col-12
+    .row
+      .col
         %p
           %b= Substrate.human_attribute_name(:priority)
           = priority_tag @substrate.priority
@@ -18,7 +19,48 @@
         %p
           %b= Substrate.human_attribute_name(:desc)
           = @substrate.desc
+      .col
+        .row
+          .col
+            .h5.text-muted
+              = t 'substrates.followers'
+          .col.text-right
+            = link_to '#manage_followers', class: 'btn btn-sm btn-outline-secondary', data: { toggle: 'modal', target: '#manage_followers' } do
+              = fa_icon 'users', text: t('substrates.followers_manage')
+        %hr
+
+        .modal.fade#manage_followers(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-header
+                .lead= t 'substrates.followers_manage_full'
+              .modal-body
+                .row
+                  .col.border-right
+                    .h6.text-muted= t 'substrates.followers_future'
+                    %ul.list-group.list-group-flush#future_followers
+                      = render partial: 'follow_user',
+                        collection: @users,
+                        as: :user,
+                        locals: { substrate: @substrate, marker: :plus }
+                  .col
+                    .h6.text-muted= t 'substrates.followers'
+                    %ul.list-group.list-group-flush#followers
+                      = render partial: 'follow_user',
+                        collection: @substrate.followers(User),
+                        as: :user,
+                        locals: { substrate: @substrate, marker: :minus }
+        #followers_small
+          = render partial: 'follow_user_small',
+            collection: @substrate.followers(User),
+            as: :user,
+            locals: { substrate: @substrate }
+
     .row
+      .col-12
+        %hr
+        .h5.text-muted= t('shared.information')
+        %hr
       .col
         %p
           %b= Substrate.human_attribute_name(:drawing)
@@ -86,23 +128,3 @@
             %td
               = link_to [@substrate, subfile], method: :delete, remote: true, class: 'btn btn-sm btn-danger', data: { confirm: t('shared.sure') } do
                 = fa_icon 'trash'
-    .row
-      .col
-        %hr
-        %h4.text-muted= t 'substrates.followers'
-        %hr
-    .row
-      .col
-        .h4 to follow:
-        %table.table.table-striped.table-hover.table-sm#future_followers
-          = render partial: 'follow_user',
-            collection: @users,
-            as: :user,
-            locals: { substrate: @substrate, marker: :plus }
-      .col
-        .h4 followers:
-        %table.table.table-striped.table-hover.table-sm#followers
-          = render partial: 'follow_user',
-            collection: @substrate.followers(User),
-            as: :user,
-            locals: { substrate: @substrate, marker: :minus }

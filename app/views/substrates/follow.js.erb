@@ -1,7 +1,9 @@
 <% if @substrate.followed_by? @user  %>
-  $('#followers').prepend("<%= j render 'follow_user', user: @user, substrate: @substrate, marker: :minus %>");
-  $('#future_followers #user_<%=@user.id%>').fadeOut();
+  $('#followers').append("<%= j render 'follow_user', user: @user, substrate: @substrate, marker: :minus %>");
+  $('#future_followers #user_<%=@user.id%>').addClass('fadeOutRight').fadeOut();
+  $('#followers_small').append("<%= j render 'follow_user_small', user: @user %>");
 <% else %>
-  $('#followers #user_<%=@user.id%>').fadeOut();
-  $('#future_followers').prepend("<%= j render 'follow_user', user: @user, substrate: @substrate, marker: :plus %>");
+  $('#followers #user_<%=@user.id%>').addClass('fadeOutLeft').fadeOut();
+  $('#future_followers').append("<%= j render 'follow_user', user: @user, substrate: @substrate, marker: :plus %>");
+  $('#followers_small #user_<%=@user.id%>_small').fadeOut();
 <% end %>

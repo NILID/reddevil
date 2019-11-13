@@ -8,6 +8,9 @@ ru:
     frame_true: Присутствует
     frame_false: Отсутствует
     followers: Исполнители
+    followers_future: Претенденты
+    followers_manage: Редактировать список
+    followers_manage_full: Редактирование списка исполнителей
     statuses:
       opened: Открыто
       finished: Завершено

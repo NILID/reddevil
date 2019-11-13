@@ -1,10 +1,8 @@
 - btn_style = marker == :minus ? 'btn-danger' : 'btn-success'
-
-= content_tag_for(:tr, user) do |follower|
-  %td
-    = user.surname_name
-    = link_to fa_icon(marker),
-      follow_substrate_path(substrate, user_id: user.id),
-      class: "btn #{btn_style} btn-sm",
-      method: :post,
-      remote: true
+= content_tag_for(:li, user, class: "list-group-item animated") do |follower|
+  = user.surname_name
+  = link_to fa_icon(marker),
+    follow_substrate_path(substrate, user_id: user.id),
+    class: "btn #{btn_style} btn-sm float-right",
+    method: :post,
+    remote: true

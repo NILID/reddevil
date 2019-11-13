@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe SubstratesController, type: :controller do
 
   let!(:substrate) { create(:substrate) }
+  let!(:user)      { create(:user) }
 
   %i[admin from_lab182].each do |role|
     describe "#{role} should" do
@@ -20,10 +21,16 @@ RSpec.describe SubstratesController, type: :controller do
         expect(response).to render_template(:new)
       end
 
-      it 'not creates a new Substrate' do
+      it 'create a new Substrate' do
         expect(@ability.can? :create, Substrate).to be true
         expect{ post :create, params: { substrate: attributes_for(:substrate) } }.to change(Substrate, :count).by(1)
         expect(response).to redirect_to(assigns(:substrate))
+      end
+
+      it 'follow' do
+        expect(@ability.can? :follow, substrate).to be true
+        expect{ post :follow, params: { id: substrate, user_id: @user.id }, format: 'js', xhr: true }
+          .to change{ substrate.followers(User).count }.by(1)
       end
 
       it 'returns edit' do
@@ -65,6 +72,13 @@ RSpec.describe SubstratesController, type: :controller do
       expect{ response }.to change(Substrate, :count).by(0)
     end
 
+    it 'not follow' do
+      expect(@ability.cannot? :follow, substrate).to be true
+      expect{ post :follow, params: { id: substrate, user_id: @user.id }, format: 'js', xhr: true }
+        .to raise_error(CanCan:: AccessDenied)
+      expect{ response }.to change{ substrate.followers(User).count }.by(0)
+    end
+
     it 'not edit' do
       expect(@ability.cannot? :edit, substrate).to be true
       expect{ get :edit, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
@@ -98,6 +112,11 @@ RSpec.describe SubstratesController, type: :controller do
     it 'creates a new Substrate' do
       post :create, params: { substrate: attributes_for(:substrate) }
       expect{ response }.to change(Substrate, :count).by(0)
+    end
+
+    it 'not follow' do
+      post :follow, params: { id: substrate, user_id: user.id }, format: 'js', xhr: true
+      expect{ response }.to change{ substrate.followers(User).count }.by(0)
     end
 
     it 'not edit' do

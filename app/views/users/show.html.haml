@@ -18,7 +18,7 @@
       .card-header
         .row
           .col
-            .h3= @member ? @member.fullname : @user.email
+            .h3.mb-0= @member ? @member.fullname : @user.email
           .col-2.text-right
             = last_seen(@user)
 

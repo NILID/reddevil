@@ -21,6 +21,12 @@ RSpec.describe SubfilesController, type: :controller do
         expect(response).to redirect_to(assigns(:substrate))
       end
 
+      it 'not creates a new Subfile' do
+        expect(@ability.can? :create, Subfile).to be true
+        expect{ post :create, params: { substrate_id: substrate ,subfile: attributes_for(:subfile) } }.to change(Subfile, :count).by(1)
+        expect(response).to redirect_to(assigns(:substrate))
+      end
+
       it 'destroys' do
         expect(@ability.can? :destroy, subfile).to be true
         expect{ delete :destroy, params: { substrate_id: substrate, id: subfile }, format: 'js', xhr: true }.to change(Subfile, :count).by(-1)

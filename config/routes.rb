@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :subfiles, only: %i[new create destroy]
     member do
       post :follow
+      get :copy
     end
   end
 

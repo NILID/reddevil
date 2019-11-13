@@ -70,5 +70,9 @@
               %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                 = fa_icon 'cog'
               .dropdown-menu.dropdown-menu-right
-                = link_to t('shared.edit'), edit_substrate_path(substrate), class: 'dropdown-item'
-                = link_to t('shared.del'), substrate, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
+                = link_to edit_substrate_path(substrate), class: 'dropdown-item' do
+                  = fa_icon 'edit', text: t('shared.edit')
+                = link_to copy_substrate_path(substrate), class: 'dropdown-item' do
+                  = fa_icon 'copy', text: t('shared.copy')
+                = link_to substrate, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+                  = fa_icon 'trash', text: t('shared.del')

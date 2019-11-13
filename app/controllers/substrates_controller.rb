@@ -6,6 +6,20 @@ class SubstratesController < ApplicationController
     @substrates = @q.result(distinct: true).order(:statuses_mask, priority: :asc, created_at: :desc)
   end
 
+  def copy
+    substrate = Substrate.new
+    substrate = @substrate.dup
+    substrate.title = substrate.title + ' (копия)'
+    respond_to do |format|
+      if substrate.save
+        format.html { redirect_to substrates_url, notice: t('flash.was_created', item: Substrate.model_name.human) }
+      else
+        format.html { redirect_to substrates_url, error: 'Dubplicate failed' }
+      end
+    end
+
+  end
+
   def show
     @subfiles = @substrate.subfiles.includes(:user).order(created_at: :desc)
     @users = User.with_group(:lab182) - @substrate.followers(User)

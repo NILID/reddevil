@@ -27,7 +27,7 @@
               - Substrate::PRIORITIES.each do |s|
                 = content_tag(:option, t("substrates.priorities.#{s}"), value: s, data: { content: priority_select_tag(s) }, selected: params[:q] && (params[:q][:priority_eq] == s) )
         .form-group.row.mb-1
-          = f.label :priority_eq,
+          = f.label :user_id_eq,
             Substrate.human_attribute_name(:user),
             class: 'col-sm-4 col-form-label'
           .col

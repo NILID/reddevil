@@ -54,7 +54,7 @@
         .float-right
           - if can? :download, @round
             = link_to download_round_path(@round, format: 'pdf'), class: 'btn btn-secondary btn-sm', target: '_blank' do
-              = fa_icon 'file-pdf-o', text: t('rounds.download')
+              = fa_icon 'file-pdf', text: t('rounds.download')
 
           - if can? :manage, @round
             = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-secondary btn-sm' do

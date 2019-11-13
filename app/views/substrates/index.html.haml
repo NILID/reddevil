@@ -5,13 +5,12 @@
         %h2.text-muted
           = t 'substrates.title'
           %small
-            = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
-              = fa_icon('filter')
-              = t('shared.filter')
+            = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
+              = fa_icon 'plus', text: t('shared.add')
+
       .col-2.text-right
-        = link_to new_substrate_path, class: 'btn btn-primary' do
-          = fa_icon 'plus'
-          = t('shared.add')
+        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
+          = fa_icon 'filter', text: t('shared.filter')
 
   = render 'search_form'
 

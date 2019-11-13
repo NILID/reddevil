@@ -35,4 +35,5 @@
 //= require Chart.bundle
 //= require chartkick
 //= require tooltipster.bundle
+//= require font_awesome5
 //= require_tree .

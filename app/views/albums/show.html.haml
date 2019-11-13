@@ -9,7 +9,7 @@
   %li
     = @album.title
     = link_to like_album_path(@album), method: :post, remote: true do
-      = current_user.likes?(@album) ? fa_icon('star') : fa_icon('star-o')
+      = current_user.likes?(@album) ? fa_icon('star') : fa_icon('star')
 
 .card
   .card-body

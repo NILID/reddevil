@@ -13,7 +13,7 @@
   = link_to new_user_folder_path(@user, parent_id: @folder.id), class: 'btn btn-secondary' do
     = fa_icon 'folder-open', text: t('folder.new')
   = link_to new_user_folder_dataset_path(@user, @folder), class: 'btn btn-secondary' do
-    = fa_icon 'file-o', text: t('dataset.new')
+    = fa_icon 'file', text: t('dataset.new')
 
 .well
   - if @folder.has_children? || !@folder.datasets.empty?

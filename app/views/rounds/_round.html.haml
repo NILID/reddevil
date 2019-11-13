@@ -12,7 +12,7 @@
           = link_to edit_round_path(round), class: 'dropdown-item' do
             = fa_icon 'edit', text: t('shared.edit')
           = link_to round_path(round), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
-            = fa_icon 'trash-o', text: t('shared.del')
+            = fa_icon 'trash', text: t('shared.del')
 
   .card-body{ class: check_deadline ? nil : 'bg-white' }
     %span.text-muted

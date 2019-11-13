@@ -23,7 +23,7 @@
               = link_to edit_doc_path(doc), class: 'dropdown-item' do
                 = fa_icon 'edit', text: t('shared.edit')
               = link_to doc_path(doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
-                = fa_icon 'trash-o', text: t('shared.del')
+                = fa_icon 'trash', text: t('shared.del')
 
       .float-right
         - unless doc.categories.empty?

@@ -1,7 +1,7 @@
 - if song.file?
   = content_tag_for(:li, song) do
     = link_to like_album_song_path(song.album, song), :method => :post, remote: true, class: 'icon-star-link', data: { toggle: 'tooltip' }, title: t('shared.add_favorite') do
-      = current_user.likes?(song) ? fa_icon('star', class: 'icon-like-song') : fa_icon('star-o', class: 'icon-like-song')
+      = current_user.likes?(song) ? fa_icon('star', class: 'icon-like-song') : fa_icon('star', class: 'icon-like-song')
     = link_to song.clean_filename, song.file.url
     %br/
     - if showalbum

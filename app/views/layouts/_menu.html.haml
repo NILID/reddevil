@@ -20,14 +20,12 @@
       - if can? :read, Substrate
         %li.mr-3.nav-item{class: (params[:controller] == 'substrates') ? 'active' : nil}
           = link_to substrates_path, class: 'nav-link' do
-            = fa_icon 'wrench'
-            = t('substrates.title')
+            = fa_icon 'wrench', text: t('substrates.title')
 
       - if can? :read, Room
         %li.mr-3.nav-item{class: (params[:controller] == 'rooms') ? 'active' : nil}
           = link_to rooms_path, class: 'nav-link' do
-            = fa_icon 'users'
-            = t('chat.title')
+            = fa_icon 'users', t('chat.title')
 
       - if (can? :read, Round) || (can? :read, Album)
         %li.nav-item.dropdown
@@ -37,27 +35,20 @@
           .dropdown-menu(aria-labelledby='dropmedia')
             - if can? :manage, Message
               = link_to messages_path, class: 'nav-link' do
-                = fa_icon 'envelope'
-                &nbsp;
-                = t 'message.title'
+                = fa_icon 'envelope', text: t('message.title')
 
             .dropdown-divider
 
             - if can? :read, Album
               = link_to albums_path, class: 'nav-link' do
-                = fa_icon 'music'
-                &nbsp;
-                = t 'shared.music'
+                = fa_icon 'music', text: t('shared.music')
+
             - if can? :read, Round
               = link_to rounds_path, class: 'nav-link' do
-                = fa_icon 'futbol-o'
-                &nbsp;
-                = t('shared.sport')
+                = fa_icon 'futbol', text: t('shared.sport')
             - if can? :show, [current_user, Folder]
               = link_to [current_user, Folder], class: 'nav-link' do
-                = fa_icon 'hdd-o'
-                &nbsp;
-                = t('dataset.title')
+                = fa_icon 'hdd', text: t('dataset.title')
 
     %ul.nav.navbar-nav.navbar-right
       = render 'users/userbar'

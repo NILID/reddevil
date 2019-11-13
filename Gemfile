@@ -36,7 +36,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'animate-rails'
 
-gem 'font-awesome-rails'
+gem 'font_awesome5_rails'
 
 gem 'record_tag_helper', '~> 1.0'
 

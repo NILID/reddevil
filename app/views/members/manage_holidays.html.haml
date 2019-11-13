@@ -8,8 +8,7 @@
         = render 'vacation_fields', f: vacation
       .form-group
         = link_to_add_association f, :vacations, class: 'btn btn-secondary' do
-          = fa_icon 'plus'
-          = t('vacations.add')
+          = fa_icon 'plus', text: t('vacations.add')
       .form-group
         = f.submit t('shared.save'), class: 'btn btn-primary'
         = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'

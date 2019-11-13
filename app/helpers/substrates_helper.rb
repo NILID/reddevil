@@ -8,7 +8,7 @@ module SubstratesHelper
     end
   end
 
-  def status_style(status)
+  def status_style(status, tag = :badge)
     color = case status
     when 'opened' then 'danger'
     when 'finished' then 'success'
@@ -16,7 +16,7 @@ module SubstratesHelper
     else
       'secondary'
     end
-    "badge badge-#{color}"
+    tag == :badge ? "badge badge-#{color}" : "table-#{color}"
   end
 
   def priority_style(priority)
@@ -26,6 +26,7 @@ module SubstratesHelper
     end
     "status-label rounded-circle #{color}"
   end
+
 
   def priority_select_tag(priority)
     content_tag(:span, class: 'select-priority') do
@@ -44,5 +45,4 @@ module SubstratesHelper
   def status_index(status)
     Substrate::STATUSES.index(status)
   end
-
 end

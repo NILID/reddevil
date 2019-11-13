@@ -14,7 +14,7 @@
 
   = render 'search_form'
 
-  %table.table.table-substrates.table-striped.table-hover.table-sm
+  %table.table.table-substrates.table-hover.table-sm.mb-0
     %thead
       %tr
         %th.text-center
@@ -44,7 +44,7 @@
 
     %tbody
       - @substrates.each do |substrate|
-        %tr
+        %tr{ class: status_style(substrate.status, :table) }
           %td.text-center
             = priority_tag substrate.priority
             %br/

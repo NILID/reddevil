@@ -22,10 +22,10 @@ RSpec.describe Substrate, type: :model do
       expect(substrate.errors[:priority]).not_to be_empty
     end
 
-    it 'have null coating_type' do
+    it 'have coating_type' do
       substrate.coating_type = nil
-      expect(substrate.valid?).to be true
-      expect(substrate.errors[:priority]).to be_empty
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:coating_type]).not_to be_empty
     end
 
     it 'have coating_type inclusion list COATINGS' do

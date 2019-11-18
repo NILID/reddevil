@@ -91,7 +91,15 @@
             = f.select :frame_eq, {}, { include_blank: '== Наличие оправы ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - [true, false].each do |u|
                 = content_tag(:option, t("substrates.frame_#{u}"), value: u, selected: params[:q] && (params[:q][:frame_eq] == u.to_s) )
+
       .col
+        .form-group.row.mb-1
+          = f.label :coating_type_eq,
+            Substrate.human_attribute_name(:coating_type),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :coating_type_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
+
         .form-group.row.mb-1
           = f.label :created_at_gteq,
             t('substrates.created_at'),

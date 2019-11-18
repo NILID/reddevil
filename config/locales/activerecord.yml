@@ -137,6 +137,7 @@ ru:
         coating_type: Тип покрытия
         wave: Длина волны
         corner: Угол
+        propotions: Размер
         frame: Наличие оправы
         arrival_at: Дата прихода
         arrival_from: От кого пришло

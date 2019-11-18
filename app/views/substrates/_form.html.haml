@@ -25,7 +25,10 @@
         .col-6.col-md-3
           = f.text_field :corner
         .col-6.col-md-3
-          .mt-4
+          = f.text_field :propotions
+      .row
+        .col-6.col-md-3
+          .mb-4
             = f.check_box :frame, custom: :switch
       .row
         .col

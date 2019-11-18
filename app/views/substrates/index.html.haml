@@ -24,6 +24,8 @@
         %th= sort_link @q, :title,    Substrate.human_attribute_name(:title)
         %th= sort_link @q, :drawing,  Substrate.human_attribute_name(:drawing_short)
         %th= sort_link @q, :detail,   Substrate.human_attribute_name(:detail_short)
+        %th= sort_link @q, :wave,     t('substrates.wave_short_html')
+        %th= sort_link @q, :corner,   Substrate.human_attribute_name(:corner)
         %th= sort_link @q, :amount,   Substrate.human_attribute_name(:amount_short)
         %th= sort_link @q, :contract, Substrate.human_attribute_name(:contract)
         %th
@@ -52,6 +54,8 @@
           %td= link_to substrate.title, substrate
           %td= substrate.drawing
           %td= substrate.detail
+          %td= substrate.wave
+          %td= substrate.corner
           %td= substrate.amount
           %td= substrate.contract
           %td

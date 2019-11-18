@@ -20,16 +20,17 @@
         %th.text-center
           = sort_link @q, :priority,  Substrate.human_attribute_name(:priority)
           %br/
-          = sort_link @q, :status,      Substrate.human_attribute_name(:status)
-        %th= sort_link @q, :title,      Substrate.human_attribute_name(:title)
-        %th= sort_link @q, :drawing,    Substrate.human_attribute_name(:drawing_short)
-        %th= sort_link @q, :detail,     Substrate.human_attribute_name(:detail_short)
-        %th= sort_link @q, :wave,       t('substrates.wave_short_html')
-        %th= sort_link @q, :corner,     Substrate.human_attribute_name(:corner)
-        %th= sort_link @q, :amount,     Substrate.human_attribute_name(:amount_short)
-        %th= sort_link @q, :propotions, Substrate.human_attribute_name(:propotions)
-        %th= sort_link @q, :frame,      t('substrates.frame_short_html')
-        %th= sort_link @q, :contract,   Substrate.human_attribute_name(:contract)
+          = sort_link @q, :status,        Substrate.human_attribute_name(:status)
+        %th= sort_link @q, :title,        Substrate.human_attribute_name(:title)
+        %th= sort_link @q, :drawing,      Substrate.human_attribute_name(:drawing_short)
+        %th= sort_link @q, :detail,       Substrate.human_attribute_name(:detail_short)
+        %th= sort_link @q, :coating_type, Substrate.human_attribute_name(:coating_type)
+        %th= sort_link @q, :wave,         t('substrates.wave_short_html')
+        %th= sort_link @q, :corner,       Substrate.human_attribute_name(:corner)
+        %th= sort_link @q, :amount,       Substrate.human_attribute_name(:amount_short)
+        %th= sort_link @q, :propotions,   Substrate.human_attribute_name(:propotions)
+        %th= sort_link @q, :frame,        t('substrates.frame_short_html')
+        %th= sort_link @q, :contract,     Substrate.human_attribute_name(:contract)
         %th
           %p= t('substrates.arrival.title')
           %p
@@ -55,6 +56,7 @@
           %td= link_to substrate.title, substrate
           %td= substrate.drawing
           %td= substrate.detail
+          %td= substrate.coating_type
           %td= substrate.wave
           %td= substrate.corner
           %td= substrate.amount

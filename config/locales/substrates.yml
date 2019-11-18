@@ -5,10 +5,11 @@ ru:
     edit: Редактирование подложки
     created_at: Создано
     frame: Оправа
-    frame_true: Присутствует
-    frame_false: Отсутствует
+    frame_true: Есть
+    frame_false: Нет
     followers: Исполнители
     wave_short_html: Длина<br/>волны
+    frame_short_html: Наличие<br/>оправы
     followers_future: Претенденты
     followers_manage: Редактировать список
     followers_manage_full: Редактирование списка исполнителей

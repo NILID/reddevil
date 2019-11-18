@@ -27,6 +27,7 @@
         %th= sort_link @q, :wave,     t('substrates.wave_short_html')
         %th= sort_link @q, :corner,   Substrate.human_attribute_name(:corner)
         %th= sort_link @q, :amount,   Substrate.human_attribute_name(:amount_short)
+        %th= sort_link @q, :frame,    t('substrates.frame_short_html')
         %th= sort_link @q, :contract, Substrate.human_attribute_name(:contract)
         %th
           %p= t('substrates.arrival.title')
@@ -57,6 +58,7 @@
           %td= substrate.wave
           %td= substrate.corner
           %td= substrate.amount
+          %td= t("substrates.frame_#{substrate.frame}")
           %td= substrate.contract
           %td
             = short_date substrate.arrival_at if substrate.arrival_at

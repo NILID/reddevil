@@ -144,7 +144,6 @@ ru:
         shipping_at: Дата отгрузки
         shipping_to: Кому отгрузили
         shipping_base: Основание отгрузки
-        shipping_base_html: Основание<br/>отгрузки
         status: Статус
         statuses_mask: Статус
         created_at: Дата создания

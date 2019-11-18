@@ -33,14 +33,13 @@
         %th
           %p= t('substrates.arrival.title')
           %p
-            .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
             .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
+            .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
         %th
           %p= t('substrates.shipping.title')
           %p
-            .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
             .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
-        %th= t('activerecord.attributes.substrate.shipping_base_html')
+            .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
         %th
           .font-weight-normal= sort_link @q, :user, Substrate.human_attribute_name(:user)
           .font-weight-normal= sort_link @q, :created_at, t('substrates.created_at')
@@ -63,12 +62,11 @@
           %td= t("substrates.frame_#{substrate.frame}")
           %td= substrate.contract
           %td
-            = short_date substrate.arrival_at if substrate.arrival_at
-            .text-muted= substrate.arrival_from
-          %td
-            = short_date substrate.shipping_at if substrate.shipping_at
-            .text-muted= substrate.shipping_to
-          %td= substrate.shipping_base
+            = substrate.arrival_from
+            .text-muted= short_date substrate.arrival_at if substrate.arrival_at
+          %td{ data: { toggle: 'tooltip' }, title: substrate.shipping_base }
+            = substrate.shipping_to
+            .text-muted= short_date substrate.shipping_at if substrate.shipping_at
           %td
             = substrate.author
             .text-muted{title: l(substrate.created_at, format: :long), data: { toggle: 'tooltip' }}

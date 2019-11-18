@@ -19,7 +19,7 @@
           = f.text_field :contract
       .row
         .col-6.col-md-3
-          = f.text_field :coating_type
+          = f.select :coating_type, Substrate::COATINGS.map { |c| c }, { include_blank: 'нет' }
         .col-6.col-md-3
           = f.text_field :wave
         .col-6.col-md-3

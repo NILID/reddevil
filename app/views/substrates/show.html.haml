@@ -70,7 +70,7 @@
           = @substrate.detail
         %p
           %b= Substrate.human_attribute_name(:sides)
-          = t("substrates.sides.#{@substrate.sides}") if @substrate.sides
+          = t("substrates.sides.#{@substrate.sides}") if @substrate.sides?
         %p
           %b= Substrate.human_attribute_name(:amount)
           = @substrate.amount

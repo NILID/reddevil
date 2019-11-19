@@ -58,7 +58,7 @@
           %td= link_to substrate.title, substrate
           %td= substrate.drawing
           %td= substrate.detail
-          %td= t("substrates.sides.#{substrate.sides}") if substrate.sides
+          %td= t("substrates.sides.#{substrate.sides}") if substrate.sides?
           %td= substrate.coating_type
           %td= substrate.wave
           %td= substrate.corner

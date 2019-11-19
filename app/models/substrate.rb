@@ -15,7 +15,7 @@ class Substrate < ApplicationRecord
   validates :title, :arrival_at, :statuses_mask, :coating_type, :priority, presence: true
   validates_inclusion_of :priority,     in: PRIORITIES
   validates_inclusion_of :coating_type, in: COATINGS
-  validates_inclusion_of :sides,        in: SIDES,     allow_nil: true
+  validates_inclusion_of :sides,        in: SIDES, allow_blank: true
 
   def author
     if user

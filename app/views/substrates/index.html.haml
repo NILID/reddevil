@@ -45,7 +45,9 @@
         %th
           .font-weight-normal= sort_link @q, :user, Substrate.human_attribute_name(:user)
           .font-weight-normal= sort_link @q, :created_at, t('substrates.created_at')
-        %th= t('substrates.followers')
+        %th
+          = t('substrates.followers')
+          .font-weight-normal= sort_link @q, :finished_at, Substrate.human_attribute_name(:finished_at)
         %th
 
     %tbody
@@ -77,9 +79,13 @@
             .text-muted{title: l(substrate.created_at, format: :long), data: { toggle: 'tooltip' }}
               = short_date substrate.created_at
           %td
-            %ul
-              - substrate.followers(User).each do |user|
-                %li= user.surname
+            - followers = substrate.followers(User)
+            - unless followers.empty?
+              %ul.list-unstyled
+                - followers.each do |user|
+                  %li= user.surname
+            .text-muted
+              = short_date substrate.finished_at if substrate.finished_at?
           %td
             .btn-group
               %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

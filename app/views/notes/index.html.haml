@@ -37,7 +37,7 @@
           %td
             - if note.screenshot?
               = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
-                = fa_icon 'picture'
+                = fa_icon 'image'
           %td
             - if note.user && current_user.role?(:admin)
               %strong= note.user.surname_name + ':'

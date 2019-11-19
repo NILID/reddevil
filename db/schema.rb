@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_18_143128) do
+ActiveRecord::Schema.define(version: 2019_11_19_082634) do
 
   create_table "albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -324,6 +324,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_143128) do
     t.boolean "frame", default: false
     t.integer "statuses_mask", default: 0
     t.string "propotions"
+    t.string "sides"
     t.index ["user_id"], name: "index_substrates_on_user_id"
   end
 

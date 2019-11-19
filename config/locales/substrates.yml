@@ -26,6 +26,10 @@ ru:
       title: Приход
       date: Дата
       who: От кого
+    sides:
+      a: А
+      b: Б
+      ab: А | Б
     shipping:
       title: Отгрузка
       date: Дата

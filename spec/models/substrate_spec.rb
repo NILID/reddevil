@@ -34,6 +34,18 @@ RSpec.describe Substrate, type: :model do
       expect(substrate.errors[:coating_type]).not_to be_empty
     end
 
+    it 'have empty sides' do
+      substrate.sides = nil
+      expect(substrate.valid?).to be true
+      expect(substrate.errors[:coating_type]).to be_empty
+    end
+
+    it 'have sides inclusion list SIDES' do
+      substrate.sides = 'C'
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:sides]).not_to be_empty
+    end
+
     it 'have title' do
       substrate.title = nil
       expect(substrate.valid?).to be false

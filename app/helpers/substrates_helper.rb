@@ -27,7 +27,6 @@ module SubstratesHelper
     "status-label rounded-circle #{color}"
   end
 
-
   def priority_select_tag(priority)
     content_tag(:span, class: 'select-priority') do
       content_tag(:span, '', class: priority_style(priority)) +

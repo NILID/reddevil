@@ -8,6 +8,22 @@
       .row
         .col
           = f.text_field :title
+
+      .row
+        .col
+          = f.select :status, {}, {}, { class: 'selectpicker' } do
+            - Substrate::STATUSES.each do |s|
+              = content_tag(:option, s, value: s, data: { content: status_text(s) }, selected: s == f.object.status )
+
+        .col
+          = f.select :priority, {}, {}, { class: 'selectpicker' } do
+            - Substrate::PRIORITIES.each do |s|
+              = content_tag :option,
+                t("substrates.priorities.#{s}"),
+                value: s,
+                data: { content: priority_select_tag(s) },
+                selected: (f.object.priority == s)
+
       .row
         .col-6.col-md-3
           = f.text_field :drawing
@@ -16,10 +32,16 @@
         .col-6.col-md-3
           = f.number_field :amount
         .col-6.col-md-3
-          = f.text_field :contract
+          = f.select :sides, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
+            - Substrate::SIDES.each do |s|
+              = content_tag :option,
+                t("substrates.sides.#{s}"),
+                value: s,
+                selected: (f.object.sides == s)
+
       .row
         .col-6.col-md-3
-          = f.select :coating_type, Substrate::COATINGS.map { |c| c }, { include_blank: 'нет' }
+          = f.select :coating_type, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
         .col-6.col-md-3
           = f.text_field :wave
         .col-6.col-md-3
@@ -35,25 +57,12 @@
           = f.text_field :arrival_at, class: 'datepicker',
             value: (f.object.arrival_at.to_datetime.strftime('%d.%m.%Y') if f.object.arrival_at.present?)
           = f.text_field :arrival_from
+          = f.text_field :contract
         .col
           = f.text_field :shipping_at, class: 'datepicker',
             value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
           = f.text_field :shipping_to
           = f.text_field :shipping_base
-      .row
-        .col
-          = f.select :status, {}, {}, { class: 'selectpicker' } do
-            - Substrate::STATUSES.each do |s|
-              = content_tag(:option, s, value: s, data: { content: status_text(s) }, selected: s == f.object.status )
-
-        .col
-          = f.select :priority, {}, {}, { class: 'selectpicker' } do
-            - Substrate::PRIORITIES.each do |s|
-              = content_tag :option,
-                t("substrates.priorities.#{s}"),
-                value: s,
-                data: { content: priority_select_tag(s) },
-                selected: (f.object.priority == s)
       .row
         .col
           = f.text_area :desc

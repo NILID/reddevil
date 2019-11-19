@@ -147,5 +147,6 @@ ru:
         status: Статус
         statuses_mask: Статус
         created_at: Дата создания
+        sides: Сторона
       subfiles:
         src: Файл документа

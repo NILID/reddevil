@@ -10,10 +10,12 @@ class Substrate < ApplicationRecord
   #                 0     1
 
   COATINGS = %w[нет зеркальное просветляющее светоделительное поляризующее фильтрующее другое].freeze
+  SIDES = %w[a b ab].freeze
 
   validates :title, :arrival_at, :statuses_mask, :coating_type, :priority, presence: true
-  validates_inclusion_of :priority, in: PRIORITIES
+  validates_inclusion_of :priority,     in: PRIORITIES
   validates_inclusion_of :coating_type, in: COATINGS
+  validates_inclusion_of :sides,        in: SIDES,     allow_nil: true
 
   def author
     if user

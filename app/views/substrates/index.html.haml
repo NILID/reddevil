@@ -77,7 +77,9 @@
             .text-muted{title: l(substrate.created_at, format: :long), data: { toggle: 'tooltip' }}
               = short_date substrate.created_at
           %td
-            = substrate.followers(User).map{ |user| user.surname }.join(',')
+            %ul
+              - substrate.followers(User).each do |user|
+                %li= user.surname
           %td
             .btn-group
               %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

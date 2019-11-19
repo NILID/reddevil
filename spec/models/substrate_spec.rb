@@ -58,5 +58,20 @@ RSpec.describe Substrate, type: :model do
       expect(substrate.errors[:arrival_at]).not_to be_empty
     end
 
+    it 'have finished_at if has finish status' do
+      expect(substrate.status).not_to eq('finished')
+      expect(substrate.finished_at?).to be false
+      substrate.update_attribute(:status, 'finished')
+
+      expect(substrate.finished_at?).to be true
+    end
+
+    it 'have empty finished_at if clear finish status' do
+      substrate = create(:substrate, status: 'finished')
+      expect(substrate.finished_at?).to be true
+      substrate.update_attribute(:status, 'opened')
+
+      expect(substrate.finished_at?).to be false
+    end
   end
 end

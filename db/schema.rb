@@ -325,7 +325,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_143526) do
     t.integer "statuses_mask", default: 0
     t.string "propotions"
     t.string "sides"
-    t.date "finished_at"
+    t.datetime "finished_at"
     t.index ["user_id"], name: "index_substrates_on_user_id"
   end
 

@@ -1,6 +1,6 @@
 class AddFinishedAtToSubstrates < ActiveRecord::Migration[5.2]
   def up
-    add_column :substrates, :finished_at, :date
+    add_column :substrates, :finished_at, :datetime
 
     Substrate.all.each do |s|
       if s.status == 'finished'

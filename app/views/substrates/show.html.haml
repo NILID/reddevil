@@ -27,34 +27,19 @@
           .col.text-right
             = link_to '#manage_followers', class: 'btn btn-sm btn-outline-secondary', data: { toggle: 'modal', target: '#manage_followers' } do
               = fa_icon 'users', text: t('substrates.followers_manage')
-        %hr
-
-        .modal.fade#manage_followers(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
-          .modal-dialog
-            .modal-content
-              .modal-header
-                .lead= t 'substrates.followers_manage_full'
-              .modal-body
-                .row
-                  .col.border-right
-                    .h6.text-muted= t 'substrates.followers_future'
-                    %ul.list-group.list-group-flush#future_followers
-                      = render partial: 'follow_user',
-                        collection: @users,
-                        as: :user,
-                        locals: { substrate: @substrate, marker: :plus }
-                  .col
-                    .h6.text-muted= t 'substrates.followers'
-                    %ul.list-group.list-group-flush#followers
-                      = render partial: 'follow_user',
-                        collection: @substrate.followers(User),
-                        as: :user,
-                        locals: { substrate: @substrate, marker: :minus }
-        #followers_small
-          = render partial: 'follow_user_small',
-            collection: @substrate.followers(User),
-            as: :user,
-            locals: { substrate: @substrate }
+        .row
+          .col
+            %hr
+            #followers_small
+              = render partial: 'follow_user_small',
+                collection: @substrate.followers(User),
+                as: :user,
+                locals: { substrate: @substrate }
+        - if @substrate.finished_at?
+          .row.mt-3
+            .col
+              %b= Substrate.human_attribute_name(:finished_at)
+              = short_date @substrate.finished_at
 
     .row
       .col-12
@@ -134,3 +119,26 @@
             %td
               = link_to [@substrate, subfile], method: :delete, remote: true, class: 'btn btn-sm btn-danger', data: { confirm: t('shared.sure') } do
                 = fa_icon 'trash'
+
+
+.modal.fade#manage_followers(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .lead= t 'substrates.followers_manage_full'
+      .modal-body
+        .row
+          .col.border-right
+            .h6.text-muted= t 'substrates.followers_future'
+            %ul.list-group.list-group-flush#future_followers
+              = render partial: 'follow_user',
+                collection: @users,
+                as: :user,
+                locals: { substrate: @substrate, marker: :plus }
+          .col
+            .h6.text-muted= t 'substrates.followers'
+            %ul.list-group.list-group-flush#followers
+              = render partial: 'follow_user',
+                collection: @substrate.followers(User),
+                as: :user,
+                locals: { substrate: @substrate, marker: :minus }

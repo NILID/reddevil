@@ -3,6 +3,8 @@ class Substrate < ApplicationRecord
   belongs_to :user
   has_many :subfiles
 
+  before_save :init_finished_at
+
   STATUSES = %w[opened worked finished delayed canceled].freeze
   #                0     1       2        3      4
 
@@ -33,5 +35,11 @@ class Substrate < ApplicationRecord
 
   ransacker :created_at, type: :date do
     Arel.sql("date(created_at)")
+  end
+
+  private
+
+  def init_finished_at
+    self.finished_at = (status == 'finished') ? DateTime.now : nil
   end
 end

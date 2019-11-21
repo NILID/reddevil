@@ -48,11 +48,11 @@ class MainController < ApplicationController
 
       @docs = Doc.where(show_last_flag: true)
                  .where('updated_at >=?', now - 10.days)
-                 .order(updated_at: :desc) +
+                 .order(updated_at: :desc) &&
               Doc.where(show_last_flag: true)
                  .group_by_day(:created_at, last: 10)
                  .order(updated_at: :desc)
-      @docs.uniq!
+      # @docs.uniq!
     else
       render template: 'main/index_unreg'
     end

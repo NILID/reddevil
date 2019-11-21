@@ -9,11 +9,16 @@
 
     .row
       .col
-        %table.table
-          %thead
-            %tr
-              %th Дата
-              %th Пользователь
-              %th Действие
-              %th Изменения
-          %tbody= render partial: 'version', collection: @versions
+        - if @versions.empty?
+          .text-center.my-5
+            .h3.text-muted= t('history.empty')
+        - else
+          %table.table
+            %thead
+              %tr
+                %th Дата
+                %th Пользователь
+                %th Действие
+                %th Изменения
+            %tbody
+              = render(partial: 'version', collection: @versions)

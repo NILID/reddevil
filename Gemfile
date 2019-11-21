@@ -46,6 +46,8 @@ gem 'mysql2'
 
 gem 'cocoon'
 
+gem 'paper_trail'
+
 gem 'petrovich', '~> 1.0'
 
 gem 'wicked_pdf'

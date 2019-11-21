@@ -1,4 +1,6 @@
 class Substrate < ApplicationRecord
+  has_paper_trail
+
   acts_as_followable
   belongs_to :user
   has_many :subfiles

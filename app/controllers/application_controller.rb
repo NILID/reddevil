@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_for_paper_trail
+    current_user ? current_user : 'undefined user'  # or whatever
+  end
+
   # def store_location
   #      # store last url - this is needed for post-login redirect to whatever the user last visited.
   #      if (request.fullpath != '/users/sign_in' &&

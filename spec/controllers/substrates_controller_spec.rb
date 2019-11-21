@@ -15,6 +15,12 @@ RSpec.describe SubstratesController, type: :controller do
         expect(response).to render_template(:index)
       end
 
+      it 'returns index' do
+        expect(@ability.can? :history, Substrate).to be true
+        get :history
+        expect(response).to render_template(:history)
+      end
+
       it 'returns new' do
         expect(@ability.can? :new, Substrate).to be true
         get :new
@@ -45,6 +51,12 @@ RSpec.describe SubstratesController, type: :controller do
         expect(response).to render_template(:edit)
       end
 
+      it 'returns changes' do
+        expect(@ability.can? :changes, substrate).to be true
+        get :changes, params: { id: substrate }
+        expect(response).to render_template(:history)
+      end
+
       it 'destroys' do
         expect(@ability.can? :destroy, substrate).to be true
         expect{ delete :destroy, params: { id: substrate } }.to change(Substrate, :count).by(-1)
@@ -62,9 +74,14 @@ RSpec.describe SubstratesController, type: :controller do
   describe 'user should' do
     login_user(:user)
 
-    it 'returns index' do
+    it 'not returns index' do
       expect(@ability.cannot? :index, Substrate).to be true
       expect{ get :index}.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'not returns history' do
+      expect(@ability.cannot? :history, Substrate).to be true
+      expect{ get :history}.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns new' do
@@ -96,6 +113,11 @@ RSpec.describe SubstratesController, type: :controller do
       expect{ get :edit, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
     end
 
+    it 'not changes' do
+      expect(@ability.cannot? :changes, substrate).to be true
+      expect{ get :changes, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+    end
+
     it 'not destroy' do
       expect(@ability.cannot? :destroy, substrate).to be true
       expect{ delete :destroy, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
@@ -117,6 +139,10 @@ RSpec.describe SubstratesController, type: :controller do
       get :index
     end
 
+    it 'returns history' do
+      get :history
+    end
+
     it 'returns new' do
       get :new
     end
@@ -136,9 +162,12 @@ RSpec.describe SubstratesController, type: :controller do
       expect{ response }.to change{ Substrate.count}.by(0)
     end
 
-
     it 'not edit' do
       get :edit, params: { id: substrate }
+    end
+
+    it 'not changes' do
+      get :changes, params: { id: substrate }
     end
 
     it 'not updates' do

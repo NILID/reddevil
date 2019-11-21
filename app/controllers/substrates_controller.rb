@@ -6,6 +6,15 @@ class SubstratesController < ApplicationController
     @substrates = @q.result(distinct: true).order(:statuses_mask, priority: :asc, created_at: :desc)
   end
 
+  def history
+    @versions = PaperTrail::Version.where(item_type: 'Substrate').includes(:item).order('created_at DESC')
+  end
+
+  def changes
+    @versions = @substrate.versions.reverse
+    render 'history'
+  end
+
   def copy
     substrate = Substrate.new
     substrate = @substrate.dup
@@ -14,7 +23,7 @@ class SubstratesController < ApplicationController
       if substrate.save
         format.html { redirect_to substrates_url, notice: t('flash.was_created', item: Substrate.model_name.human) }
       else
-        format.html { redirect_to substrates_url, error: 'Dubplicate failed' }
+        format.html { redirect_to substrates_url, error: 'Duplicate failed' }
       end
     end
 

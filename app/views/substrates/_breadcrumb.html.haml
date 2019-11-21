@@ -3,4 +3,5 @@
     .col
       %ol.breadcrumb.h4
         %li.breadcrumb-item= link_to t('substrates.title'), substrates_path
-        %li.breadcrumb-item.active= formtitle
+        - titles.each do |title|
+          %li.breadcrumb-item= title

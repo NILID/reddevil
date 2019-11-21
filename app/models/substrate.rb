@@ -1,5 +1,5 @@
 class Substrate < ApplicationRecord
-  has_paper_trail
+  has_paper_trail ignore: [:updated_at]
 
   acts_as_followable
   belongs_to :user

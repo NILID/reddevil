@@ -7,10 +7,13 @@
           %small
             = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
               = fa_icon 'plus', text: t('shared.add')
-
-      .col-2.text-right
-        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
+      .col-6.text-right
+        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
           = fa_icon 'filter', text: t('shared.filter')
+        = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm' do
+          = fa_icon 'history', text: t('shared.history')
+
+
 
   = render 'search_form'
 

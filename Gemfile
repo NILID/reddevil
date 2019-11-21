@@ -47,6 +47,7 @@ gem 'mysql2'
 gem 'cocoon'
 
 gem 'paper_trail'
+gem 'paper_trail-globalid'
 
 gem 'petrovich', '~> 1.0'
 

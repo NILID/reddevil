@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     member do
       post :follow
       get :copy
+      get :changes
+    end
+    collection do
+      get :history
     end
   end
 

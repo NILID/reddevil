@@ -1,0 +1,23 @@
+%tr
+  %td
+    .text-muted= l(version.created_at, format: "%-d.%m.%Y %H:%M:%S")
+  %td
+    = link_to version.actor.surname_name, version.actor if version.actor
+  %td
+    - if version.event == 'create'
+      Создание: #{link_to version.item.title, version.item}
+    - elsif version.event == 'update'
+      Обновление: #{link_to version.item.title, version.item}
+    - else
+      [#{version.event}]
+
+  %td
+    - if version.event == 'update'
+      %ul.list-group.list-group-flush.list-group-sm
+        - version.changeset.each do |changeitem|
+          %li.list-group-item.p-1
+            .row
+              .col
+                %strong= Substrate.human_attribute_name(changeitem[0])
+              .col= changeitem[1][0] ? content_tag(:span, t('shared.empty'), class: 'text-muted') : changeitem[1][0]
+              .col= changeitem[1][1]

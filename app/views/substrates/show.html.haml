@@ -2,9 +2,12 @@
   .card-body
     .row
       .col-12
-        = render 'breadcrumb', formtitle: @substrate.title
+        = render 'breadcrumb', titles: [@substrate.title]
       .col-12.mb-2
-        = link_to t('shared.edit'), edit_substrate_path(@substrate), class: 'btn btn-outline-primary btn-sm'
+        = link_to edit_substrate_path(@substrate), class: 'btn btn-outline-primary btn-sm mr-1' do
+          = fa_icon 'edit', text: t('shared.edit')
+        = link_to changes_substrate_path(@substrate), class: 'btn btn-outline-primary btn-sm' do
+          = fa_icon 'history', text: t('shared.history')
     .row
       .col
         %p

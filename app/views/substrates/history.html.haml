@@ -1,0 +1,19 @@
+.card
+  .card-body
+    .row
+      .col
+        - if params[:action] == 'changes'
+          = render 'breadcrumb', titles: [link_to(@substrate.title, @substrate), t('shared.history')]
+        - else
+          = render 'breadcrumb', titles: [t('shared.history')]
+
+    .row
+      .col
+        %table.table
+          %thead
+            %tr
+              %th Дата
+              %th Пользователь
+              %th Действие
+              %th Изменения
+          %tbody= render partial: 'version', collection: @versions

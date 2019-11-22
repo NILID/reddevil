@@ -15,6 +15,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require best_in_place
 //= require popper.min
 //= require bootstrap.bundle
 //= require readmore

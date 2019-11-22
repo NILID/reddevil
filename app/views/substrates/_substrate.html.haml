@@ -1,0 +1,51 @@
+= content_tag_for(:tr, substrate, class: status_style(substrate.status, :table)) do
+  %td.text-center
+    = priority_tag substrate.priority
+    %br/
+    = best_in_place substrate, :status,
+        as: :select,
+        collection: Substrate::STATUSES.map { |s| [s, status_text(s, true)] },
+        data: { place_success: substrate.id },
+        display_with: lambda { |v| status_text(v) }
+  %td= link_to substrate.title, substrate
+  %td= substrate.drawing
+  %td= substrate.detail
+  %td= t("substrates.sides.#{substrate.sides}") if substrate.sides?
+  %td= substrate.coating_type
+  %td= substrate.wave
+  %td= substrate.corner
+  %td= substrate.amount
+  %td= substrate.propotions
+  %td= t("substrates.frame_#{substrate.frame}")
+  %td= substrate.contract
+  %td
+    = substrate.arrival_from
+    .text-muted= short_date substrate.arrival_at if substrate.arrival_at
+  %td.text-muted
+    = short_date substrate.future_shipping_at if substrate.future_shipping_at
+  %td{ data: { toggle: 'tooltip' }, title: substrate.shipping_base }
+    = substrate.shipping_to
+    .text-muted= short_date substrate.shipping_at if substrate.shipping_at
+  %td
+    = substrate.author
+    .text-muted{title: l(substrate.created_at, format: :long), data: { toggle: 'tooltip' }}
+      = short_date substrate.created_at
+  %td
+    - followers = substrate.followers(User)
+    - unless followers.empty?
+      %ul.list-unstyled.mb-0
+        - followers.each do |user|
+          %li= user.surname
+    .text-muted
+      = short_date substrate.finished_at if substrate.finished_at?
+  %td
+    .btn-group
+      %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        = fa_icon 'cog'
+      .dropdown-menu.dropdown-menu-right
+        = link_to edit_substrate_path(substrate), class: 'dropdown-item' do
+          = fa_icon 'edit', text: t('shared.edit')
+        = link_to copy_substrate_path(substrate), class: 'dropdown-item' do
+          = fa_icon 'copy', text: t('shared.copy')
+        = link_to substrate, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+          = fa_icon 'trash', text: t('shared.del')

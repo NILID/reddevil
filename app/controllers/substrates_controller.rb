@@ -26,12 +26,16 @@ class SubstratesController < ApplicationController
         format.html { redirect_to substrates_url, error: 'Duplicate failed' }
       end
     end
-
   end
 
   def show
     @subfiles = @substrate.subfiles.includes(:user).order(created_at: :desc)
     @users = User.with_group(:lab182) - @substrate.followers(User)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def follow

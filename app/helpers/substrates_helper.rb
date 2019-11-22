@@ -1,8 +1,12 @@
 module SubstratesHelper
-  def status_text(status)
+  def status_text(status, editable=false)
     unless status.empty?
-      text = t("substrates.statuses.#{status}")
-      content_tag(:span, text, class: status_style(status))
+      if editable
+        text = fa_icon('angle-down', text: t("substrates.statuses.#{status}"), right: true, class: 'ml-2')
+      else
+        text = t("substrates.statuses.#{status}")
+      end
+      content_tag(:span, text.html_safe, class: status_style(status))
     else
       nil
     end

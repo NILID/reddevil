@@ -63,6 +63,8 @@ gem 'roo-xls'
 
 gem 'fullcalendar-rails'
 
+gem 'best_in_place'
+
 gem 'chartkick'
 # gem 'highcharts-rails'
 gem 'groupdate'

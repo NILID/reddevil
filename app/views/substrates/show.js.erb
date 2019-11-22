@@ -1,0 +1,1 @@
+$("#substrate_<%=@substrate.id%>").removeClass("<%=Substrate::STATUSES.map{|s| status_style(s, :table)}.compact.join(' ')%>").addClass("<%=status_style(@substrate.status, :table)%>");

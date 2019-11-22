@@ -1,5 +1,9 @@
 class Substrate < ApplicationRecord
-  has_paper_trail ignore: [:updated_at]
+  has_paper_trail on: [:create, :update], ignore: [:updated_at]
+
+  before_destroy do
+    self.versions.destroy_all
+  end
 
   acts_as_followable
   belongs_to :user

@@ -7,7 +7,12 @@
         collection: Substrate::STATUSES.map { |s| [s, status_text(s, true)] },
         data: { place_success: substrate.id },
         display_with: lambda { |v| status_text(v) }
-  %td= link_to substrate.title, substrate
+  %td{ title: substrate.desc, data: {toggle: 'tooltip'}}
+    = link_to(substrate.title, substrate)
+    - if substrate.desc?
+      .badge.badge-pill.badge-info
+        = fa_icon 'info'
+
   %td= substrate.drawing
   %td= substrate.detail
   %td= t("substrates.sides.#{substrate.sides}") if substrate.sides?

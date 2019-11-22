@@ -88,6 +88,9 @@
           %b= Substrate.human_attribute_name(:arrival_from)
           = @substrate.arrival_from
         %p
+          %b= Substrate.human_attribute_name(:future_shipping_at)
+          = short_date @substrate.future_shipping_at if @substrate.future_shipping_at
+        %p
           %b= Substrate.human_attribute_name(:shipping_at)
           = short_date @substrate.shipping_at if @substrate.shipping_at
         %p

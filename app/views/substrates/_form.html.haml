@@ -63,6 +63,8 @@
           = f.text_field :arrival_from
           = f.text_field :contract
         .col
+          = f.text_field :future_shipping_at, class: 'datepicker',
+            value: (f.object.future_shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.future_shipping_at.present?)
           = f.text_field :shipping_at, class: 'datepicker',
             value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
           = f.text_field :shipping_to

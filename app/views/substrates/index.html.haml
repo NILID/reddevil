@@ -40,6 +40,7 @@
           %p
             .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
             .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
+        %th.font-weight-normal= sort_link @q, :future_shipping_to, Substrate.human_attribute_name(:future_shipping_at)
         %th
           %p= t('substrates.shipping.title')
           %p
@@ -74,6 +75,8 @@
           %td
             = substrate.arrival_from
             .text-muted= short_date substrate.arrival_at if substrate.arrival_at
+          %td.text-muted
+            = short_date substrate.future_shipping_at if substrate.future_shipping_at
           %td{ data: { toggle: 'tooltip' }, title: substrate.shipping_base }
             = substrate.shipping_to
             .text-muted= short_date substrate.shipping_at if substrate.shipping_at

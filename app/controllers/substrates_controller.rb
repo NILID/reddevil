@@ -88,7 +88,7 @@ class SubstratesController < ApplicationController
                                         :desc, :coating_type, :sides,
                                         :wave, :corner, :frame, :priority, :drawing, :detail, :amount, :contract, :propotions,
                                         :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
-                                        :status, :user_id,
+                                        :status, :user_id, :future_shipping_at,
                                         { subfiles_attributes: %i[id src user_id _destroy] }
                                         )
     end

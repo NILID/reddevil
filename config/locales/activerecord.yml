@@ -142,6 +142,7 @@ ru:
         finished_at: Завершено
         arrival_at: Дата прихода
         arrival_from: От кого пришло
+        future_shipping_at: План. время отгрузки
         shipping_at: Дата отгрузки
         shipping_to: Кому отгрузили
         shipping_base: Основание отгрузки

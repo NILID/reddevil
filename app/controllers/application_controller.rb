@@ -30,6 +30,23 @@ class ApplicationController < ActionController::Base
   #      end
   #  end
 
+  rescue_from ActiveRecord::StaleObjectError do |exception|
+    respond_to do |format|
+      format.html {
+          correct_stale_record_version
+          stale_record_recovery_action
+      }
+      format.xml  { head :conflict }
+      format.json { head :conflict }
+    end
+  end
+
+  protected
+    def stale_record_recovery_action
+      flash.now[:error] = t('shared.editing_conflict')
+      render :edit, status: :conflict
+    end
+
   private
 
   # def after_sign_in_path_for(resource)

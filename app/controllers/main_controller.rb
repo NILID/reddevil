@@ -46,13 +46,10 @@ class MainController < ApplicationController
       @holidays_today    = Holidays.on(now,      :full_ru, :reddevil_ru)
       @holidays_tomorrow = Holidays.on(tomorrow, :full_ru, :reddevil_ru)
 
-      @docs = Doc.where(show_last_flag: true)
-                 .where('updated_at >=?', now - 10.days)
-                 .order(updated_at: :desc) &&
-              Doc.where(show_last_flag: true)
-                 .group_by_day(:created_at, last: 10)
-                 .order(updated_at: :desc)
-      # @docs.uniq!
+      @docs = (Doc.where('updated_at >= ?', now - 10.days).
+            or(Doc.where('created_at >= ?', now - 10.days)))
+               .where(show_last_flag: true)
+               .order(updated_at: :desc)
     else
       render template: 'main/index_unreg'
     end

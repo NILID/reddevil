@@ -44,7 +44,7 @@
               - if current_user.role? :admin
                 %td
                   - if member.user
-                    id=#{member.user_id} (#{member.user.email})
+                    =#{member.user_id} (#{member.user.email})
             - if can? :manage, member
               %td
                 .btn-group

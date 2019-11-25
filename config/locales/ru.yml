@@ -140,6 +140,9 @@ ru:
     archive: Здесь представлен список бывших сотрудников.
     vacation: График отпусков
     in_holiday: '%{member} в отпуске'
+    download: Скачать список
+    specify_format: Выберите формат
+    showing: 'Отображать:'
   users:
     title: Пользователи
     has_groups: Относится к группам

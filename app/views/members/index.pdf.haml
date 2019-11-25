@@ -16,10 +16,34 @@
         %tr
           %td №
           %td= t 'member.fullname'
-          %td(style="width:400px;")= t 'member.other_text'
+          - if params[:showing_birth]
+            %td= Member.human_attribute_name(:birth)
+          - if params[:showing_phone]
+            %td= Member.human_attribute_name(:phone)
+          - if params[:showing_work_phone]
+            %td= Member.human_attribute_name(:work_phone)
+          - if params[:showing_short_number]
+            %td= Member.human_attribute_name(:short_number)
+          - if params[:showing_other_text]
+            %td(style="width:400px;")= t 'member.other_text'
       %tbody
         - @members.each_with_index do |member, index|
           %tr
             %td= index + 1
             %td= member.fullname
-            %td
+            - if params[:showing_birth]
+              %td
+                - if member.birth
+                  = show_birth(member)
+            - if params[:showing_phone]
+              %td
+                - if member.phone?
+                  = number_to_phone(member.phone, area_code: true)
+            - if params[:showing_work_phone]
+              %td
+                - if member.work_phone?
+                  = number_to_phone(member.work_phone, area_code: true)
+            - if params[:showing_short_number]
+              %td= member.short_number
+            - if params[:showing_other_text]
+              %td

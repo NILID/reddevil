@@ -24,8 +24,10 @@
           = sort_link @q, :priority,      Substrate.human_attribute_name(:priority)
           %br/
           = sort_link @q, :status,        Substrate.human_attribute_name(:status)
-        %th= sort_link @q, :title,        Substrate.human_attribute_name(:title)
-        %th= sort_link @q, :drawing,      Substrate.human_attribute_name(:drawing_short)
+        %th
+          = sort_link @q, :title,        Substrate.human_attribute_name(:title)
+          %br/
+          = sort_link @q, :drawing,      Substrate.human_attribute_name(:drawing_short)
         %th= sort_link @q, :detail,       Substrate.human_attribute_name(:detail_short)
         %th= sort_link @q, :sides,        Substrate.human_attribute_name(:sides)
         %th= sort_link @q, :coating_type, Substrate.human_attribute_name(:coating_type)

@@ -7,13 +7,13 @@
         collection: Substrate::STATUSES.map { |s| [s, status_text(s, true)] },
         data: { place_success: substrate.id },
         display_with: lambda { |v| status_text(v) }
-  %td{ title: substrate.desc, data: {toggle: 'tooltip'}}
+  %td.text-nowrap{ title: substrate.desc, data: {toggle: 'tooltip'}}
     = link_to(substrate.title, substrate)
     - if substrate.desc?
       .badge.badge-pill.badge-info
         = fa_icon 'info'
-
-  %td= substrate.drawing
+    %br/
+    = substrate.drawing
   %td= substrate.detail
   %td= t("substrates.sides.#{substrate.sides}") if substrate.sides?
   %td= substrate.coating_type

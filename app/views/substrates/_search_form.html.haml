@@ -34,7 +34,6 @@
             = f.select :user_id_eq, {}, { include_blank: '== Выберите автора ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - User.with_group(:lab182).each do |u|
                 = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
-      .col
         .form-group.row.mb-1
           = f.label :amount_gteq,
             Substrate.human_attribute_name(:amount_short),
@@ -51,6 +50,8 @@
                   .input-group-prepend
                     .input-group-text до
                   = f.text_field :amount_lteq, class: 'form-control'
+
+      .col
         .form-group.row.mb-1
           = f.label :wave_gteq,
             Substrate.human_attribute_name(:wave),
@@ -100,8 +101,6 @@
             = f.select :sides_eq, {}, { include_blank: '== Выберите сторону ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - Substrate::SIDES.each do |s|
                 = content_tag(:option, t("substrates.sides.#{s}"), value: s, selected: params[:q] && (params[:q][:sides_eq] == s.to_s) )
-
-      .col
         .form-group.row.mb-1
           = f.label :coating_type_eq,
             Substrate.human_attribute_name(:coating_type),
@@ -109,6 +108,14 @@
           .col
             = f.select :coating_type_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
 
+        .form-group.row.mb-1
+          = f.label :coating_type_b_eq,
+            Substrate.human_attribute_name(:coating_type_b),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :coating_type_b_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
+
+      .col
         .form-group.row.mb-1
           = f.label :created_at_gteq,
             t('substrates.created_at'),
@@ -192,7 +199,7 @@
                   = f.text_field :shipping_at_lteq,
                     class: 'datepicker form-control',
                     value: (params[:q][:shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_lteq].present?)
-        .form-group.row.text-right
+        .form-group.row.text-right.mt-5
           .col
             = f.button class: 'btn btn-warning btn-sm btn-block' do
               = fa_icon 'search', text: t('shared.to_search')

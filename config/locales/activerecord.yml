@@ -134,7 +134,8 @@ ru:
         amount: Количество
         amount_short: Кол-во
         contract: Договор
-        coating_type: Тип покрытия
+        coating_type: Тип покрытия A
+        coating_type_b: Тип покрытия Б
         wave: Длина волны
         corner: Угол
         propotions: Размер

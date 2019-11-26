@@ -28,10 +28,22 @@ RSpec.describe Substrate, type: :model do
       expect(substrate.errors[:coating_type]).not_to be_empty
     end
 
+    it 'have coating_type_b' do
+      substrate.coating_type_b = nil
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:coating_type_b]).not_to be_empty
+    end
+
     it 'have coating_type inclusion list COATINGS' do
       substrate.coating_type = 'mirror'
       expect(substrate.valid?).to be false
       expect(substrate.errors[:coating_type]).not_to be_empty
+    end
+
+    it 'have coating_type_b inclusion list COATINGS' do
+      substrate.coating_type_b = 'mirror'
+      expect(substrate.valid?).to be false
+      expect(substrate.errors[:coating_type_b]).not_to be_empty
     end
 
     it 'have empty sides' do

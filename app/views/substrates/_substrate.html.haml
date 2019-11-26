@@ -15,8 +15,7 @@
     %br/
     = substrate.drawing
   %td= substrate.detail
-  %td= t("substrates.sides.#{substrate.sides}") if substrate.sides?
-  %td= substrate.coating_type
+  %td= raw substrate_sides(substrate, true)
   %td= substrate.wave
   %td= substrate.corner
   %td= substrate.amount

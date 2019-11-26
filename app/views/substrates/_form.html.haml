@@ -30,13 +30,14 @@
                 selected: (f.object.priority == s)
 
       .row
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.text_field :drawing
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.text_field :detail
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.number_field :amount
-        .col-6.col-md-3
+      .row
+        .col-6.col-md-4
           = f.select :sides, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
             - Substrate::SIDES.each do |s|
               = content_tag :option,
@@ -44,14 +45,16 @@
                 value: s,
                 selected: (f.object.sides == s)
 
+        .col-6.col-md-4#substrate_coating_type_block
+          = f.select :coating_type,   Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
+        .col-6.col-md-4#substrate_coating_type_block_b
+          = f.select :coating_type_b, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
       .row
-        .col-6.col-md-3
-          = f.select :coating_type, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.text_field :wave
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.text_field :corner
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.text_field :propotions
       .row
         .col-6.col-md-3

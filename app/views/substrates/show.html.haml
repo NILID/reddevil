@@ -58,13 +58,10 @@
           = @substrate.detail
         %p
           %b= Substrate.human_attribute_name(:sides)
-          = t("substrates.sides.#{@substrate.sides}") if @substrate.sides?
+          = substrate_sides(@substrate)
         %p
           %b= Substrate.human_attribute_name(:amount)
           = @substrate.amount
-        %p
-          %b= Substrate.human_attribute_name(:coating_type)
-          = @substrate.coating_type
         %p
           %b= Substrate.human_attribute_name(:wave)
           = @substrate.wave

@@ -96,7 +96,7 @@ class SubstratesController < ApplicationController
   private
     def substrate_params
       params.require(:substrate).permit(:title, :lock_version,
-                                        :desc, :coating_type, :sides,
+                                        :desc, :coating_type, :coating_type_b, :sides,
                                         :wave, :corner, :frame, :priority, :drawing, :detail, :amount, :contract, :propotions,
                                         :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
                                         :status, :user_id, :future_shipping_at,

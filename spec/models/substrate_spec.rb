@@ -4,6 +4,20 @@ RSpec.describe Substrate, type: :model do
   let(:substrate) { build(:substrate) }
 
   context 'should' do
+    it 'have empty drawing' do
+      substrate.drawing = nil
+      expect(substrate.valid?).to be true
+      expect(substrate.errors[:drawing]).to be_empty
+    end
+
+    it 'have uniq drawing' do
+      substrate.drawing = 'specific'
+      substrate.save!
+      new_substrate = build(:substrate, drawing: 'specific')
+      expect(new_substrate.valid?).to be false
+      expect(new_substrate.errors[:drawing]).not_to be_empty
+    end
+
     it 'have status' do
       substrate.statuses_mask = nil
       expect(substrate.valid?).to be false

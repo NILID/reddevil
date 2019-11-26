@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :substrate do
     title { "MyTitle" }
-    drawing { "MyDrawing" }
+    # sequence(:drawing) { Faker::Lorem.unique.word }
     detail { "MyDetail" }
     amount { 1 }
     contract { "MyContract" }

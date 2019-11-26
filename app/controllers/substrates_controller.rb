@@ -16,9 +16,10 @@ class SubstratesController < ApplicationController
   end
 
   def copy
-    substrate = Substrate.new
     substrate = @substrate.dup
     substrate.title = substrate.title + ' (копия)'
+    substrate.drawing = ''
+
     respond_to do |format|
       if substrate.save
         format.html { redirect_to substrates_url, notice: t('flash.was_created', item: Substrate.model_name.human) }

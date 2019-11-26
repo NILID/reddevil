@@ -87,15 +87,16 @@ class SubstratesController < ApplicationController
   end
 
   protected
-    def correct_stale_record_version
-      @substrate.reload.attributes = substrate_params.reject do |attr, value|
-        attr.to_sym == :lock_version
-      end
-    end
+  #  def correct_stale_record_version
+  #    @substrate.reload.attributes = substrate_params.reject do |attr, value|
+  #      attr.to_sym == :lock_version
+  #    end
+  #  end
 
   private
     def substrate_params
-      params.require(:substrate).permit(:title, :lock_version,
+      # params.require(:substrate).permit(:title, :lock_version,
+      params.require(:substrate).permit(:title,
                                         :desc, :coating_type, :coating_type_b, :sides,
                                         :wave, :corner, :frame, :priority, :drawing, :detail, :amount, :contract, :propotions,
                                         :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,

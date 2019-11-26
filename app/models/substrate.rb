@@ -1,5 +1,6 @@
 class Substrate < ApplicationRecord
-  has_paper_trail on: [:create, :update], ignore: [:updated_at, :lock_version]
+#  has_paper_trail on: [:create, :update], ignore: [:updated_at, :lock_version]
+  has_paper_trail on: [:create, :update], ignore: [:updated_at]
 
   before_destroy do
     self.versions.destroy_all

@@ -16,8 +16,20 @@
     = substrate.drawing
   %td= substrate.detail
   %td.text-nowrap= raw substrate_sides(substrate, true)
-  %td= substrate.wave
-  %td= substrate.corner
+  %td
+    &nbsp;
+    = substrate.wave
+    - if substrate.wave_b?
+      %hr.my-1
+      &nbsp;
+      = substrate.wave_b
+  %td
+    &nbsp;
+    = substrate.corner
+    - if substrate.corner_b?
+      %hr.my-1
+      &nbsp;
+      = substrate.corner_b
   %td= substrate.amount
   %td= substrate.propotions
   %td= t("substrates.frame_#{substrate.frame}")

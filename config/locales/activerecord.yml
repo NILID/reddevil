@@ -136,8 +136,10 @@ ru:
         contract: Договор
         coating_type: Тип покрытия A
         coating_type_b: Тип покрытия Б
-        wave: Длина волны
-        corner: Угол
+        wave: Длина волны А
+        wave_b: Длина волны Б
+        corner: Угол А
+        corner_b: Угол Б
         propotions: Размер
         frame: Наличие оправы
         finished_at: Завершено

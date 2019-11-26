@@ -57,17 +57,30 @@
           %b= Substrate.human_attribute_name(:detail)
           = @substrate.detail
         %p
-          %b= Substrate.human_attribute_name(:sides)
-          = substrate_sides(@substrate)
-        %p
           %b= Substrate.human_attribute_name(:amount)
           = @substrate.amount
         %p
-          %b= Substrate.human_attribute_name(:wave)
-          = @substrate.wave
-        %p
-          %b= Substrate.human_attribute_name(:corner)
-          = @substrate.corner
+          %table.table
+            %thead
+              %tr
+                %th= Substrate.human_attribute_name(:sides)
+                %th= t('substrates.coating_type')
+                %th= t('substrates.wave')
+                %th= t('substrates.corner')
+            %tbody
+              %tr
+                %td
+                  %strong А
+                %td= @substrate.coating_type
+                %td= @substrate.wave
+                %td= @substrate.corner
+              %tr
+                %td
+                  %strong Б
+                %td= @substrate.coating_type_b
+                %td= @substrate.wave_b
+                %td= @substrate.corner_b
+
         %p
           %b= Substrate.human_attribute_name(:propotions)
           = @substrate.propotions

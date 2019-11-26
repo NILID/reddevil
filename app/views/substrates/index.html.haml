@@ -36,7 +36,7 @@
           %br
           = sort_link @q, :coating_type_b, Substrate.human_attribute_name(:coating_type_b)
         %th= sort_link @q, :wave,         t('substrates.wave_short_html')
-        %th= sort_link @q, :corner,       Substrate.human_attribute_name(:corner)
+        %th= sort_link @q, :corner,       t('substrates.corner')
         %th= sort_link @q, :amount,       Substrate.human_attribute_name(:amount_short)
         %th= sort_link @q, :propotions,   Substrate.human_attribute_name(:propotions)
         %th= sort_link @q, :frame,        t('substrates.frame_short_html')

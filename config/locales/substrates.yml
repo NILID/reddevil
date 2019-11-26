@@ -14,6 +14,9 @@ ru:
     followers_future: Претенденты
     followers_manage: Редактировать список
     followers_manage_full: Редактирование списка исполнителей
+    coating_type: Тип покрытия
+    wave: Длина волны
+    corner: Угол
     statuses:
       opened: Открыто
       finished: Завершено

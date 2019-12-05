@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Note, type: :model do
-  let(:note) { build(:note, :with_screenshot) }
+  let(:note) { build_stubbed(:note, :with_screenshot) }
 
   context 'should' do
     it 'have content' do

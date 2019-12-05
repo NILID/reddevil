@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Doc, type: :model do
-  let(:doc) { build(:doc) }
+  let(:doc) { build_stubbed(:doc) }
 
   context 'should' do
     it 'have title' do

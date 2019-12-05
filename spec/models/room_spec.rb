@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Room, type: :model do
-  let(:room) { build(:room) }
+  let(:room) { build_stubbed(:room) }
 
   context 'should' do
     it 'have name' do

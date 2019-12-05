@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RoomsController, type: :controller do
-
-  let!(:room) { create(:room) }
+  let!(:room)         { create(:room) }
   let!(:private_room) { create(:room, :private) }
 
   describe 'admin user should' do

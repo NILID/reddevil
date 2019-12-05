@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe NotesController, type: :controller do
-
   let!(:note) { create(:note) }
 
   describe 'admin should' do

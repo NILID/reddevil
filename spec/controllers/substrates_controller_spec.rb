@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe SubstratesController, type: :controller do
-
   let!(:substrate) { create(:substrate) }
-  let!(:user)      { create(:user) }
+  let(:user)      { create(:user) }
 
   %i[admin from_lab182].each do |role|
     describe "#{role} should" do

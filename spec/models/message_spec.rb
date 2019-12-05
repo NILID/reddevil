@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  let(:message) { build(:message) }
+  let(:message) { build_stubbed(:message) }
 
   context 'should' do
     it 'have content' do

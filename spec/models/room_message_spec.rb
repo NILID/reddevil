@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RoomMessage, type: :model do
-  let(:room_message) { build(:room_message) }
+  let(:room_message) { build_stubbed(:room_message) }
 
   context 'should' do
     it 'have message' do

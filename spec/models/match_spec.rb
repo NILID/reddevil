@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Match, type: :model do
-  let(:match) { build(:match) }
+  let(:match) { build_stubbed(:match) }
 
   context 'should' do
     it 'have team1' do

@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe SubfilesController, type: :controller do
-
-  let!(:substrate) { create(:substrate) }
-  let!(:subfile)   { create(:subfile, substrate: substrate) }
+  let(:substrate) { create(:substrate) }
+  let!(:subfile)  { create(:subfile, substrate: substrate) }
 
   %i[admin from_lab182].each do |role|
     describe "#{role} should" do

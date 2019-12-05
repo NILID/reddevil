@@ -1,5 +1,5 @@
 class Substrate < ApplicationRecord
-#  has_paper_trail on: [:create, :update], ignore: [:updated_at, :lock_version]
+  # has_paper_trail on: [:create, :update], ignore: [:updated_at, :lock_version]
   has_paper_trail on: [:create, :update], ignore: [:updated_at]
 
   before_destroy do
@@ -21,7 +21,7 @@ class Substrate < ApplicationRecord
   COATINGS = %w[нет зеркальное просветляющее светоделительное поляризующее фильтрующее другое].freeze
   SIDES = %w[a b ab].freeze
 
-  validates :title, :arrival_at, :statuses_mask, :coating_type, :priority, presence: true
+  validates :title, :statuses_mask, :coating_type, :priority, presence: true
   validates :drawing, uniqueness: true, allow_blank: true
   validates_inclusion_of :priority,       in: PRIORITIES
   validates_inclusion_of :coating_type,

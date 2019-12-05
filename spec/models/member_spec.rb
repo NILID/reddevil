@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Member, type: :model do
-  let(:member) { build(:member) }
+  let(:member) { build_stubbed(:member) }
 
   context 'should' do
     it 'have fullname' do

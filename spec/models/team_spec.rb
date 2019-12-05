@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Team, type: :model do
-  let(:team) { build(:team) }
+  let(:team) { build_stubbed(:team) }
 
   context 'should' do
     it 'have title' do

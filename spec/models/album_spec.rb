@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Album, type: :model do
-  let(:album) { build(:album) }
+  let(:album) { build_stubbed(:album) }
 
   context 'should' do
     it 'have title' do

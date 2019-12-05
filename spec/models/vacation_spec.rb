@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Vacation, type: :model do
-  let(:vacation) { build(:vacation) }
+  let(:vacation) { build_stubbed(:vacation) }
 
   context 'should' do
     it 'have current date' do

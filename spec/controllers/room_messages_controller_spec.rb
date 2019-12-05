@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RoomMessagesController, type: :controller do
-
-  let!(:room) { create(:room) }
+  let(:room)         { create(:room) }
   let!(:room_message) { create(:room_message, room: room) }
 
   %i[admin testuser].each do |role|

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Song, type: :model do
-  let(:song) { build(:song) }
+  let(:song) { build_stubbed(:song) }
 
   context 'should' do
     it 'have file' do

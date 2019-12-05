@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Folder, type: :model do
-  let(:folder) { create(:folder) }
+  let(:folder) { build_stubbed(:folder) }
 
   context 'should' do
     it 'have title' do

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MembersController, type: :controller do
-
   let!(:member) { create(:member) }
 
   %i[admin manager].each do |role|

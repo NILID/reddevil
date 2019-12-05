@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe AlbumsController, type: :controller do
-
-  let!(:album)         { create(:album) }
-  let!(:user_from_lab) { create(:user, :from_lab) }
+  let!(:album)        { create(:album) }
+  let(:user_from_lab) { create(:user, :from_lab) }
 
   describe 'admin should' do
     login_user(:admin)

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  let(:category) { build(:category) }
+  let(:category) { build_stubbed(:category) }
 
   context 'should' do
     it 'have title' do

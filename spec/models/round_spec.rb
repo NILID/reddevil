@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Round, type: :model do
-  let(:round) { build(:round) }
+  let(:round) { build_stubbed(:round) }
 
   context 'should' do
     it 'have title' do

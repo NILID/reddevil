@@ -44,12 +44,28 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text от
-                  = f.text_field :amount_gteq, class: 'form-control'
+                  = f.number_field :amount_gteq, class: 'form-control', min: 0
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :amount_lteq, class: 'form-control'
+                  = f.number_field :amount_lteq, class: 'form-control', min: 0
+        .form-group.row.mb-1
+          = f.label :instock_gteq,
+            t('substrates.instock_search'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.number_field :instock_gteq, class: 'form-control', min: 0
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.number_field :instock_lteq, class: 'form-control', min: 0
 
       .col
         .form-group.row.mb-1

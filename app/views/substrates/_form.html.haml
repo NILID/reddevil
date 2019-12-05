@@ -35,7 +35,12 @@
         .col-6.col-md-3
           = f.text_field :detail
         .col-6.col-md-3
-          = f.number_field :amount
+          = f.label :amount
+          .row
+            .col.pr-0
+              = f.number_field :amount, prepend: t('substrates.amount_short'), wrapper: false, min: 0
+            .col.pl-0
+              = f.number_field :instock, prepend: t('substrates.instock_short'), wrapper: false, min: 0
         .col-6.col-md-3
           = f.text_field :propotions
 

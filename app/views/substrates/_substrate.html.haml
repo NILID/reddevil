@@ -30,7 +30,10 @@
       %hr.my-1
       &nbsp;
       = substrate.corner_b
-  %td= substrate.amount
+  %td
+    = substrate.amount
+    %span.text-muted /
+    = substrate.instock
   %td= substrate.propotions
   %td= t("substrates.frame_#{substrate.frame}")
   %td= substrate.contract

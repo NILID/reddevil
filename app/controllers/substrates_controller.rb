@@ -100,7 +100,7 @@ class SubstratesController < ApplicationController
       params.require(:substrate).permit(:title,
                                         :desc, :coating_type, :coating_type_b, :sides,
                                         :wave, :wave_b, :corner, :corner_b, :frame, :priority, :drawing,
-                                        :detail, :amount, :contract, :propotions,
+                                        :detail, :amount, :contract, :propotions, :instock,
                                         :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
                                         :status, :user_id, :future_shipping_at,
                                         { subfiles_attributes: %i[id src user_id _destroy] }

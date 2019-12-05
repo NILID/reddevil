@@ -17,6 +17,10 @@ ru:
     coating_type: Тип покрытия
     wave: Длина волны
     corner: Угол
+    instock: Количество в наличии
+    instock_search: В наличии
+    amount_short: общ
+    instock_short: налич
     statuses:
       opened: Открыто
       finished: Завершено

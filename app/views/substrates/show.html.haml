@@ -10,18 +10,15 @@
           = fa_icon 'history', text: t('shared.history')
     .row
       .col
-        %p
-          %b= Substrate.human_attribute_name(:priority)
-          = priority_tag @substrate.priority
-        %p
-          %b= Substrate.human_attribute_name(:status)
-          = status_text(@substrate.status)
-        %p
-          %b= t('substrates.created_at')
-          = l @substrate.created_at, format: :long
-        %p
-          %b= Substrate.human_attribute_name(:desc)
-          = @substrate.desc
+        %dl.row
+          %dt.col-sm-3= Substrate.human_attribute_name(:priority)
+          %dd.col-sm-9= priority_tag @substrate.priority
+          %dt.col-sm-3= Substrate.human_attribute_name(:status)
+          %dd.col-sm-9= status_text(@substrate.status)
+          %dt.col-sm-3= t('substrates.created_at')
+          %dd.col-sm-9= l @substrate.created_at, format: :long
+          %dt.col-sm-3= Substrate.human_attribute_name(:desc)
+          %dd.col-sm-9= @substrate.desc
       .col
         .row
           .col
@@ -50,18 +47,20 @@
         .h5.text-muted= t('shared.information')
         %hr
       .col
-        %p
-          %b= Substrate.human_attribute_name(:drawing)
-          = @substrate.drawing
-        %p
-          %b= Substrate.human_attribute_name(:detail)
-          = @substrate.detail
-        %p
-          %b= Substrate.human_attribute_name(:amount)
-          = @substrate.amount
-        %p
-          %b= t 'substrates.instock'
-          = @substrate.instock
+        %dl.row
+          %dt.col-sm-4= Substrate.human_attribute_name(:drawing)
+          %dd.col-sm-8= @substrate.drawing
+          %dt.col-sm-4= Substrate.human_attribute_name(:detail)
+          %dd.col-sm-8= @substrate.detail
+          %dt.col-sm-4= Substrate.human_attribute_name(:amount)
+          %dd.col-sm-8= @substrate.amount
+          %dt.col-sm-4= t 'substrates.instock'
+          %dd.col-sm-8= @substrate.instock
+          %dt.col-sm-4= Substrate.human_attribute_name(:propotions)
+          %dd.col-sm-8= @substrate.propotions
+          %dt.col-sm-4= Substrate.human_attribute_name(:frame)
+          %dd.col-sm-8= t("substrates.frame_#{@substrate.frame}")
+
         %p
           %table.table
             %thead
@@ -84,37 +83,24 @@
                 %td= @substrate.wave_b
                 %td= @substrate.corner_b
 
-        %p
-          %b= Substrate.human_attribute_name(:propotions)
-          = @substrate.propotions
-        %p
-          %b= Substrate.human_attribute_name(:frame)
-          = t("substrates.frame_#{@substrate.frame}")
       .col
-        %p
-          %b= Substrate.human_attribute_name(:contract)
-          = @substrate.contract
-        %p
-          %b= Substrate.human_attribute_name(:arrival_at)
-          = short_date @substrate.arrival_at if @substrate.arrival_at
-        %p
-          %b= Substrate.human_attribute_name(:arrival_from)
-          = @substrate.arrival_from
-        %p
-          %b= Substrate.human_attribute_name(:future_shipping_at)
-          = short_date @substrate.future_shipping_at if @substrate.future_shipping_at
-        %p
-          %b= Substrate.human_attribute_name(:shipping_at)
-          = short_date @substrate.shipping_at if @substrate.shipping_at
-        %p
-          %b= Substrate.human_attribute_name(:shipping_to)
-          = @substrate.shipping_to
-        %p
-          %b= Substrate.human_attribute_name(:shipping_base)
-          = @substrate.shipping_base
-        %p
-          %b= Substrate.human_attribute_name(:user)
-          = link_to @substrate.author, @substrate.user
+        %dl.row
+          %dt.col-sm-4= Substrate.human_attribute_name(:contract)
+          %dd.col-sm-8= @substrate.contract
+          %dt.col-sm-4= Substrate.human_attribute_name(:arrival_at)
+          %dd.col-sm-8= short_date @substrate.arrival_at if @substrate.arrival_at
+          %dt.col-sm-4= Substrate.human_attribute_name(:arrival_from)
+          %dd.col-sm-8= @substrate.arrival_from
+          %dt.col-sm-4= Substrate.human_attribute_name(:future_shipping_at)
+          %dd.col-sm-8= short_date @substrate.future_shipping_at if @substrate.future_shipping_at
+          %dt.col-sm-4= Substrate.human_attribute_name(:shipping_at)
+          %dd.col-sm-8= short_date @substrate.shipping_at if @substrate.shipping_at
+          %dt.col-sm-4= Substrate.human_attribute_name(:shipping_to)
+          %dd.col-sm-8= @substrate.shipping_to
+          %dt.col-sm-4= Substrate.human_attribute_name(:shipping_base)
+          %dd.col-sm-8= @substrate.shipping_base
+          %dt.col-sm-4= Substrate.human_attribute_name(:user)
+          %dd.col-sm-8= link_to @substrate.author, @substrate.user
 
     .row
       .col

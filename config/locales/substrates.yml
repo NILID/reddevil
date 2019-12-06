@@ -28,6 +28,7 @@ ru:
       worked: В работе
       delayed: Отложено
       canceled: Отменено
+      missing: Отсутствует
     priorities:
       normal: Обычный
       high: Высокий

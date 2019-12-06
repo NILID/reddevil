@@ -12,7 +12,7 @@ class Substrate < ApplicationRecord
 
   before_save :init_finished_at
 
-  STATUSES = %w[opened worked finished delayed canceled].freeze
+  STATUSES = %w[missing opened worked finished delayed canceled].freeze
   #                0     1       2        3      4
 
   PRIORITIES = %w[normal high].freeze

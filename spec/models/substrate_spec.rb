@@ -44,15 +44,15 @@ RSpec.describe Substrate, type: :model do
       end
 
       it 'have priority' do
-        substrate.priority = nil
+        substrate.priorityx = nil
         expect(substrate.valid?).to be false
-        expect(substrate.errors[:priority]).not_to be_empty
+        expect(substrate.errors[:priorityx]).not_to be_empty
       end
 
       it 'have priority inclusion list PRIORITIES' do
-        substrate.priority = 'new_open'
+        substrate.priorityx = 'new_open'
         expect(substrate.valid?).to be false
-        expect(substrate.errors[:priority]).not_to be_empty
+        expect(substrate.errors[:priorityx]).not_to be_empty
       end
 
       it 'have coating_type' do

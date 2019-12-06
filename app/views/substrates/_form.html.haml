@@ -14,20 +14,19 @@
         .col
           = f.text_field :title
 
-      .row
         .col
           = f.select :status, {}, {}, { class: 'selectpicker' } do
             - Substrate::STATUSES.each do |s|
               = content_tag(:option, s, value: s, data: { content: status_text(s) }, selected: s == f.object.status )
 
         .col
-          = f.select :priority, {}, {}, { class: 'selectpicker' } do
-            - Substrate::PRIORITIES.each do |s|
+          = f.select :priorityx, {}, {}, { class: 'selectpicker' } do
+            - Substrate::NEW_PRIORITIES.each do |s|
               = content_tag :option,
                 t("substrates.priorities.#{s}"),
                 value: s,
-                data: { content: priority_select_tag(s) },
-                selected: (f.object.priority == s)
+                data: { content: new_priority_select_tag(s) },
+                selected: (f.object.priorityx == s)
 
       .row
         .col-6.col-md-3

@@ -127,6 +127,7 @@ ru:
         desc: Описание
         user: Автор
         priority: Приоритет
+        priorityx: Приоритет
         drawing: Номер чертежа
         detail: Номер детали
         drawing_short: № чертежа

@@ -18,12 +18,15 @@ class Substrate < ApplicationRecord
   PRIORITIES = %w[normal high].freeze
   #                 0     1
 
+  NEW_PRIORITIES = [1, 2, 3, 4].freeze
+
+
   COATINGS = %w[нет зеркальное просветляющее светоделительное поляризующее фильтрующее другое].freeze
   SIDES = %w[a b ab].freeze
 
-  validates :title, :statuses_mask, :coating_type, :priority, presence: true
+  validates :title, :statuses_mask, :coating_type, :priorityx, presence: true
   validates :drawing, uniqueness: true, allow_blank: true
-  validates_inclusion_of :priority,       in: PRIORITIES
+  validates_inclusion_of :priorityx,       in: NEW_PRIORITIES
   validates_inclusion_of :coating_type,
                          :coating_type_b, in: COATINGS
   validates_inclusion_of :sides,          in: SIDES, allow_blank: true

@@ -23,6 +23,7 @@ module SubstratesHelper
     tag == :badge ? "badge badge-#{color}" : "table-#{color}"
   end
 
+  # remove
   def priority_style(priority)
     color = case priority
     when 'normal' then 'bg-success'
@@ -31,6 +32,18 @@ module SubstratesHelper
     "status-label rounded-circle #{color}"
   end
 
+  def new_priority_style(priority)
+    color = case priority
+    when 4 then 'bg-success text-white'
+    when 3 then 'bg-yellow'
+    when 2 then 'bg-warning'
+    when 1 then 'bg-danger text-white'
+    end
+    "badge rounded-circle shadow-lg substrate-priority px-2 #{color}"
+  end
+
+
+  # remove
   def priority_select_tag(priority)
     content_tag(:span, class: 'select-priority') do
       content_tag(:span, '', class: priority_style(priority)) +
@@ -38,10 +51,23 @@ module SubstratesHelper
     end
   end
 
+  def new_priority_select_tag(priority)
+    content_tag(:span, class: 'select-priority') do
+      content_tag(:span, priority, class: new_priority_style(priority))
+    end
+  end
+
+  # remove
   def priority_tag(priority)
     unless priority.empty?
       title_text = 'Приоритет: ' + t("substrates.priorities.#{priority}")
       content_tag(:span, '', class: priority_style(priority), title: title_text , data: { toggle: 'tooltip' })
+    end
+  end
+
+  def new_priority_tag(priority)
+    if priority
+      content_tag(:span, priority, class: new_priority_style(priority))
     end
   end
 

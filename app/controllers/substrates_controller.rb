@@ -3,7 +3,7 @@ class SubstratesController < ApplicationController
 
   def index
     @q = @substrates.includes(:user).ransack(params[:q])
-    @substrates = @q.result(distinct: true).order(:statuses_mask, priority: :asc, created_at: :desc)
+    @substrates = @q.result(distinct: true).order(:statuses_mask, priorityx: :asc, created_at: :desc)
   end
 
   def history

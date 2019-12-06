@@ -53,9 +53,13 @@
           %dt.col-sm-4= Substrate.human_attribute_name(:detail)
           %dd.col-sm-8= @substrate.detail
           %dt.col-sm-4= Substrate.human_attribute_name(:amount)
-          %dd.col-sm-8= @substrate.amount
-          %dt.col-sm-4= t 'substrates.instock'
-          %dd.col-sm-8= @substrate.instock
+          %dd.col-sm-8
+            %div
+              %span.text-muted= t('substrates.instock_search')
+              %strong= @substrate.instock
+            %div
+              %span.text-muted= t('substrates.amount_search')
+              %strong= @substrate.amount
           %dt.col-sm-4= Substrate.human_attribute_name(:propotions)
           %dd.col-sm-8= @substrate.propotions
           %dt.col-sm-4= Substrate.human_attribute_name(:frame)

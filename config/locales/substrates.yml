@@ -19,6 +19,7 @@ ru:
     corner: Угол
     instock: Количество в наличии
     instock_search: В наличии
+    amount_search: Общее
     amount_short: общ
     instock_short: налич
     statuses:

@@ -42,6 +42,7 @@
           = sort_link @q, :instock,       t('substrates.instock_short')
           %span.text-muted /
           = sort_link @q, :amount,        t('substrates.amount_short')
+        %th= sort_link @q, :ready_count,  Substrate.human_attribute_name(:ready_count)
         %th= sort_link @q, :propotions,   Substrate.human_attribute_name(:propotions)
         %th= sort_link @q, :frame,        t('substrates.frame_short_html')
         %th= sort_link @q, :contract,     Substrate.human_attribute_name(:contract)

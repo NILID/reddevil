@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_155137) do
+ActiveRecord::Schema.define(version: 2019_12_09_121759) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -353,6 +353,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_155137) do
     t.string "corner_b"
     t.integer "instock", default: 0
     t.integer "priorityx", default: 4, null: false
+    t.integer "ready_count", default: 0
     t.index ["user_id"], name: "index_substrates_on_user_id"
   end
 

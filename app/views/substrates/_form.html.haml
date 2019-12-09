@@ -29,19 +29,24 @@
                 selected: (f.object.priorityx == s)
 
       .row
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.text_field :drawing
-        .col-6.col-md-3
+        .col-6.col-md-4
           = f.text_field :detail
-        .col-6.col-md-3
+        .col-6.col-md-4
+          = f.text_field :propotions
+
+      .row
+        .col-6.col-md-4
           = f.label :amount
           .row
             .col.pr-0
               = f.number_field :instock, prepend: t('substrates.instock_short'), wrapper: false, min: 0
             .col.pl-0
               = f.number_field :amount, prepend: t('substrates.amount_short'), wrapper: false, min: 0
-        .col-6.col-md-3
-          = f.text_field :propotions
+
+        .col-6.col-md-4
+          = f.number_field :ready_count, min: 0
 
       .row
         .col-6.col-md-3

@@ -60,6 +60,10 @@
             %div
               %span.text-muted= t('substrates.amount_search')
               %strong= @substrate.amount
+          %dt.col-sm-4= Substrate.human_attribute_name(:ready_count)
+          %dd.col-sm-8
+            %strong= @substrate.ready_count
+
           %dt.col-sm-4= Substrate.human_attribute_name(:propotions)
           %dd.col-sm-8= @substrate.propotions
           %dt.col-sm-4= Substrate.human_attribute_name(:frame)

@@ -15,7 +15,8 @@
         = fa_icon 'info'
     %br/
     = substrate.drawing
-  %td= substrate.detail
+    - if substrate.detail?
+      .text-muted= substrate.detail
   %td.text-nowrap= raw substrate_sides(substrate, true)
   %td
     &nbsp;

@@ -20,4 +20,14 @@
               .col
                 %strong= Substrate.human_attribute_name(changeitem[0])
               .col= changeitem[1][0] ? content_tag(:span, t('shared.empty'), class: 'text-muted') : changeitem[1][0]
-              .col= changeitem[1][1]
+              .col
+                - if changeitem[1][1]
+                  - case changeitem[0]
+                  - when 'finished_at'
+                    = short_date changeitem[1][1]
+                  - when 'statuses_mask'
+                    = t("substrates.statuses.#{Substrate::STATUSES[changeitem[1][1]]}")
+                  - when 'priorityx'
+                    = new_priority_tag changeitem[1][1]
+                  - else
+                    = changeitem[1][1]

@@ -13,8 +13,6 @@
         = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm' do
           = fa_icon 'history', text: t('shared.history')
 
-
-
   = render 'search_form'
 
   %table.table.table-substrates.table-hover.table-sm.mb-0
@@ -28,7 +26,8 @@
           = sort_link @q, :title,          Substrate.human_attribute_name(:title)
           %br/
           = sort_link @q, :drawing,        Substrate.human_attribute_name(:drawing_short)
-        %th= sort_link @q, :detail,        Substrate.human_attribute_name(:detail_short)
+          %br/
+          = sort_link @q, :detail,        Substrate.human_attribute_name(:detail_short)
         %th
           = sort_link @q, :sides,          Substrate.human_attribute_name(:sides)
           %br

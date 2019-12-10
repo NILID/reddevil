@@ -14,9 +14,10 @@ module SubstratesHelper
 
   def status_style(status, tag = :badge)
     color = case status
-    when 'opened' then 'danger'
+    when 'opened'   then 'danger'
     when 'finished' then 'success'
-    when 'worked' then 'primary'
+    when 'worked'   then 'primary'
+    when 'shipped'  then 'violet'
     else
       'secondary'
     end

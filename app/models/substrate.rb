@@ -12,8 +12,8 @@ class Substrate < ApplicationRecord
 
   before_save :init_finished_at
 
-  STATUSES = %w[missing opened worked finished delayed canceled].freeze
-  #                0     1       2        3      4
+  STATUSES = %w[missing opened worked finished delayed canceled shipped].freeze
+  #                0     1       2        3      4         5       6
 
   PRIORITIES = %w[normal high].freeze
   #                 0     1
@@ -30,6 +30,9 @@ class Substrate < ApplicationRecord
   validates_inclusion_of :coating_type,
                          :coating_type_b, in: COATINGS
   validates_inclusion_of :sides,          in: SIDES, allow_blank: true
+
+  scope :archive, lambda { where(statuses_mask: 6) }
+  scope :not_archive, lambda { where.not(statuses_mask: 6) }
 
   def author
     if user

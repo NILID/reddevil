@@ -14,7 +14,13 @@ RSpec.describe SubstratesController, type: :controller do
         expect(response).to render_template(:index)
       end
 
-      it 'returns index' do
+      it 'returns archive' do
+        expect(@ability.can? :archive, Substrate).to be true
+        get :archive
+        expect(response).to render_template(:index)
+      end
+
+      it 'returns history' do
         expect(@ability.can? :history, Substrate).to be true
         get :history
         expect(response).to render_template(:history)
@@ -76,6 +82,11 @@ RSpec.describe SubstratesController, type: :controller do
     it 'not returns index' do
       expect(@ability.cannot? :index, Substrate).to be true
       expect{ get :index}.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'not returns index' do
+      expect(@ability.cannot? :archive, Substrate).to be true
+      expect{ get :archive }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns history' do
@@ -140,6 +151,10 @@ RSpec.describe SubstratesController, type: :controller do
 
     it 'returns history' do
       get :history
+    end
+
+    it 'returns archive' do
+      get :archive
     end
 
     it 'returns new' do

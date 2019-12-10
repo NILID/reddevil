@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :history
+      get :archive
     end
   end
 

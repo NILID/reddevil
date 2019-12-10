@@ -1,17 +1,21 @@
-.card
+- check_archive = params[:action] == 'archive'
+
+- set_meta_tags title: check_archive ? t('substrates.archive') : t('substrates.title')
+
+.card{ class: check_archive ? 'card-archive' : 'card-index' }
   .card-body
     .row
       .col
-        %h2.text-muted
-          = t 'substrates.title'
-          %small
-            = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
-              = fa_icon 'plus', text: t('shared.add')
+        = render 'breadcrumb', titles: [link_to_if(!check_archive, content_tag(:span, t('substrates.archive'), class: 'card-index-link animated'), archive_substrates_path)]
       .col-6.text-right
         = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
           = fa_icon 'filter', text: t('shared.filter')
         = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm' do
           = fa_icon 'history', text: t('shared.history')
+    .row
+      .col
+        = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
+          = fa_icon 'plus', text: t('shared.add')
 
   = render 'search_form'
 
@@ -27,7 +31,7 @@
           %br/
           = sort_link @q, :drawing,        Substrate.human_attribute_name(:drawing_short)
           %br/
-          = sort_link @q, :detail,        Substrate.human_attribute_name(:detail_short)
+          = sort_link @q, :detail,         Substrate.human_attribute_name(:detail_short)
         %th
           = sort_link @q, :sides,          Substrate.human_attribute_name(:sides)
           %br

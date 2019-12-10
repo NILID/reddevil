@@ -2,9 +2,16 @@ class SubstratesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @q = @substrates.ransack(params[:q])
+    @q = @substrates.not_archive.ransack(params[:q])
     @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
     @users = User.with_group(:lab182).includes(:member).order('members.surname')
+  end
+
+  def archive
+    @q = @substrates.archive.ransack(params[:q])
+    @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
+    @users = User.with_group(:lab182).includes(:member).order('members.surname')
+    render 'index'
   end
 
   def history

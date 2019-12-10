@@ -22,6 +22,7 @@ ru:
     amount_search: Общее
     amount_short: общ
     instock_short: налич
+    archive: Архив
     statuses:
       opened: Открыто
       finished: Готово
@@ -29,6 +30,7 @@ ru:
       delayed: Отложено
       canceled: Отменено
       missing: Отсутствует
+      shipped: Отгружено
     priorities:
       normal: Обычный
       high: Высокий

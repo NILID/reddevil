@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_one  :profile, dependent: :destroy
   has_one  :member
   has_and_belongs_to_many :rooms
+  has_and_belongs_to_many :substrates
 
 
   accepts_nested_attributes_for :profile

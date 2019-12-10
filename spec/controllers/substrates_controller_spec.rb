@@ -41,7 +41,7 @@ RSpec.describe SubstratesController, type: :controller do
       it 'follow' do
         expect(@ability.can? :follow, substrate).to be true
         expect{ post :follow, params: { id: substrate, user_id: @user.id }, format: 'js', xhr: true }
-          .to change{ substrate.followers(User).count }.by(1)
+          .to change{ substrate.users.count }.by(1)
       end
 
       it 'returns edit' do
@@ -98,7 +98,7 @@ RSpec.describe SubstratesController, type: :controller do
       expect(@ability.cannot? :follow, substrate).to be true
       expect{ post :follow, params: { id: substrate, user_id: @user.id }, format: 'js', xhr: true }
         .to raise_error(CanCan:: AccessDenied)
-      expect{ response }.to change{ substrate.followers(User).count }.by(0)
+      expect{ response }.to change{ substrate.users.count }.by(0)
     end
 
     it 'not copy substrate' do
@@ -153,7 +153,7 @@ RSpec.describe SubstratesController, type: :controller do
 
     it 'not follow' do
       post :follow, params: { id: substrate, user_id: user.id }, format: 'js', xhr: true
-      expect{ response }.to change{ substrate.followers(User).count }.by(0)
+      expect{ response }.to change{ substrate.users.count }.by(0)
     end
 
     it 'not copy substrate' do

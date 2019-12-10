@@ -31,7 +31,7 @@ class SubstratesController < ApplicationController
 
   def show
     @subfiles = @substrate.subfiles.includes(:user).order(created_at: :desc)
-    @users = User.with_group(:lab182) - @substrate.followers(User)
+    @users = User.with_group(:lab182) - @substrate.users
 
     respond_to do |format|
       format.html
@@ -42,7 +42,11 @@ class SubstratesController < ApplicationController
   def follow
     @user = User.where(id: params[:user_id]).first
     if @user
-      @user.toggle_follow!(@substrate)
+      if @substrate.user_ids.include? @user.id
+        @substrate.users.delete(@user)
+      else
+        @substrate.users << @user
+      end
       respond_to :js
     end
   end

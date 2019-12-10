@@ -53,7 +53,7 @@
     .text-muted{title: l(substrate.created_at, format: :long), data: { toggle: 'tooltip' }}
       = short_date substrate.created_at
   %td
-    - followers = substrate.followers(User)
+    - followers = substrate.users
     - unless followers.empty?
       %ul.list-unstyled.mb-0
         - followers.each do |user|

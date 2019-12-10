@@ -9,6 +9,7 @@ class Substrate < ApplicationRecord
   acts_as_followable
   belongs_to :user
   has_many :subfiles
+  has_and_belongs_to_many :users
 
   before_save :init_finished_at
 

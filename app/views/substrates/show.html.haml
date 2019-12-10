@@ -32,7 +32,7 @@
             %hr
             #followers_small
               = render partial: 'follow_user_small',
-                collection: @substrate.followers(User),
+                collection: @substrate.users,
                 as: :user,
                 locals: { substrate: @substrate }
         - if @substrate.finished_at?
@@ -152,6 +152,6 @@
             .h6.text-muted= t 'substrates.followers'
             %ul.list-group.list-group-flush#followers
               = render partial: 'follow_user',
-                collection: @substrate.followers(User),
+                collection: @substrate.users,
                 as: :user,
                 locals: { substrate: @substrate, marker: :minus }

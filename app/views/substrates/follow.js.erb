@@ -1,4 +1,4 @@
-<% if @substrate.followed_by? @user  %>
+<% if @substrate.user_ids.include? @user.id %>
   $('#followers').append("<%= j render 'follow_user', user: @user, substrate: @substrate, marker: :minus %>");
   $('#future_followers #user_<%=@user.id%>').addClass('fadeOutRight').fadeOut();
   $('#followers_small').append("<%= j render 'follow_user_small', user: @user %>");

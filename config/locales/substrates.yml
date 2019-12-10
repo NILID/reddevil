@@ -23,6 +23,7 @@ ru:
     amount_short: общ
     instock_short: налич
     archive: Архив
+    empty: Пока здесь пусто...
     statuses:
       opened: Открыто
       finished: Готово

@@ -12,62 +12,67 @@
           = fa_icon 'filter', text: t('shared.filter')
         = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm' do
           = fa_icon 'history', text: t('shared.history')
-    .row
-      .col
-        = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
-          = fa_icon 'plus', text: t('shared.add')
+    - if !check_archive
+      .row
+        .col
+          = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
+            = fa_icon 'plus', text: t('shared.add')
 
   = render 'search_form'
 
-  %table.table.table-substrates.table-hover.table-sm.mb-0
-    %thead
-      %tr
-        %th.text-center
-          = sort_link @q, :priority,       Substrate.human_attribute_name(:priority)
-          %br/
-          = sort_link @q, :status,         Substrate.human_attribute_name(:status)
-        %th.text-nowrap
-          = sort_link @q, :title,          Substrate.human_attribute_name(:title)
-          %br/
-          = sort_link @q, :drawing,        Substrate.human_attribute_name(:drawing_short)
-          %br/
-          = sort_link @q, :detail,         Substrate.human_attribute_name(:detail_short)
-        %th
-          = sort_link @q, :sides,          Substrate.human_attribute_name(:sides)
-          %br
-          = sort_link @q, :coating_type,   Substrate.human_attribute_name(:coating_type)
-          %br
-          = sort_link @q, :coating_type_b, Substrate.human_attribute_name(:coating_type_b)
-        %th= sort_link @q, :wave,          t('substrates.wave_short_html')
-        %th= sort_link @q, :corner,        t('substrates.corner')
-        %th.text-nowrap
-          = Substrate.human_attribute_name(:amount_short)
-          %br/
-          = sort_link @q, :instock,       t('substrates.instock_short')
-          %span.text-muted /
-          = sort_link @q, :amount,        t('substrates.amount_short')
-        %th= sort_link @q, :ready_count,  Substrate.human_attribute_name(:ready_count)
-        %th= sort_link @q, :propotions,   Substrate.human_attribute_name(:propotions)
-        %th= sort_link @q, :frame,        t('substrates.frame_short_html')
-        %th= sort_link @q, :contract,     Substrate.human_attribute_name(:contract)
-        %th
-          %p= t('substrates.arrival.title')
-          %p
-            .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
-            .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
-        %th.font-weight-normal= sort_link @q, :future_shipping_to, Substrate.human_attribute_name(:future_shipping_at)
-        %th
-          %p= t('substrates.shipping.title')
-          %p
-            .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
-            .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
-        %th
-          .font-weight-normal= sort_link @q, :user, Substrate.human_attribute_name(:user)
-          .font-weight-normal= sort_link @q, :created_at, t('substrates.created_at')
-        %th
-          = t('substrates.followers')
-          .font-weight-normal= sort_link @q, :finished_at, Substrate.human_attribute_name(:finished_at)
-        %th
+  - if @substrates.empty?
+    .text-center.my-5
+      .h3.text-muted= t('substrates.empty')
+  - else
+    %table.table.table-substrates.table-hover.table-sm.mb-0
+      %thead
+        %tr
+          %th.text-center
+            = sort_link @q, :priority,       Substrate.human_attribute_name(:priority)
+            %br/
+            = sort_link @q, :status,         Substrate.human_attribute_name(:status)
+          %th.text-nowrap
+            = sort_link @q, :title,          Substrate.human_attribute_name(:title)
+            %br/
+            = sort_link @q, :drawing,        Substrate.human_attribute_name(:drawing_short)
+            %br/
+            = sort_link @q, :detail,         Substrate.human_attribute_name(:detail_short)
+          %th
+            = sort_link @q, :sides,          Substrate.human_attribute_name(:sides)
+            %br
+            = sort_link @q, :coating_type,   Substrate.human_attribute_name(:coating_type)
+            %br
+            = sort_link @q, :coating_type_b, Substrate.human_attribute_name(:coating_type_b)
+          %th= sort_link @q, :wave,          t('substrates.wave_short_html')
+          %th= sort_link @q, :corner,        t('substrates.corner')
+          %th.text-nowrap
+            = Substrate.human_attribute_name(:amount_short)
+            %br/
+            = sort_link @q, :instock,       t('substrates.instock_short')
+            %span.text-muted /
+            = sort_link @q, :amount,        t('substrates.amount_short')
+          %th= sort_link @q, :ready_count,  Substrate.human_attribute_name(:ready_count)
+          %th= sort_link @q, :propotions,   Substrate.human_attribute_name(:propotions)
+          %th= sort_link @q, :frame,        t('substrates.frame_short_html')
+          %th= sort_link @q, :contract,     Substrate.human_attribute_name(:contract)
+          %th
+            %p= t('substrates.arrival.title')
+            %p
+              .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
+              .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
+          %th.font-weight-normal= sort_link @q, :future_shipping_to, Substrate.human_attribute_name(:future_shipping_at)
+          %th
+            %p= t('substrates.shipping.title')
+            %p
+              .font-weight-normal= sort_link @q, :shipping_to, t('substrates.shipping.who')
+              .font-weight-normal= sort_link @q, :shipping_at, t('substrates.shipping.date')
+          %th
+            .font-weight-normal= sort_link @q, :user, Substrate.human_attribute_name(:user)
+            .font-weight-normal= sort_link @q, :created_at, t('substrates.created_at')
+          %th
+            = t('substrates.followers')
+            .font-weight-normal= sort_link @q, :finished_at, Substrate.human_attribute_name(:finished_at)
+          %th
 
-    %tbody
-      = render @substrates
+      %tbody
+        = render(@substrates)

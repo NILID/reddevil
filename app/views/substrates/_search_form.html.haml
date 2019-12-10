@@ -239,7 +239,7 @@
           .col
             = f.select :users_id_eq, {}, { include_blank: '== Выберите исполнителя ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - @users.each do |u|
-                = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
+                = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:users_id_eq] == u.id.to_s) )
 
         .form-group.row.text-right
           .col.mt-5

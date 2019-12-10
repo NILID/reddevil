@@ -32,7 +32,7 @@
             class: 'col-sm-4 col-form-label'
           .col
             = f.select :user_id_eq, {}, { include_blank: '== Выберите автора ==' }, { class: 'selectpicker form-control form-control-sm' } do
-              - User.with_group(:lab182).includes(:member).each do |u|
+              - @users.each do |u|
                 = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
         .form-group.row.mb-1
           = f.label :amount_gteq,
@@ -238,7 +238,7 @@
             class: 'col-sm-4 col-form-label'
           .col
             = f.select :users_id_eq, {}, { include_blank: '== Выберите исполнителя ==' }, { class: 'selectpicker form-control form-control-sm' } do
-              - User.with_group(:lab182).includes(:member).each do |u|
+              - @users.each do |u|
                 = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
 
         .form-group.row.text-right

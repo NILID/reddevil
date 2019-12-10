@@ -4,6 +4,7 @@ class SubstratesController < ApplicationController
   def index
     @q = @substrates.ransack(params[:q])
     @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
+    @users = User.with_group(:lab182).includes(:member).order('members.surname')
   end
 
   def history
@@ -31,7 +32,8 @@ class SubstratesController < ApplicationController
 
   def show
     @subfiles = @substrate.subfiles.includes(:user).order(created_at: :desc)
-    @users = User.with_group(:lab182) - @substrate.users
+    @followers = @substrate.users.includes(:member).order('members.surname')
+    @users = User.with_group(:lab182).includes(:member).order('members.surname') - @followers
 
     respond_to do |format|
       format.html

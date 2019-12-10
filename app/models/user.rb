@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   acts_as_liker
-  acts_as_follower
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

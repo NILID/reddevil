@@ -6,7 +6,6 @@ class Substrate < ApplicationRecord
     self.versions.destroy_all
   end
 
-  acts_as_followable
   belongs_to :user
   has_many :subfiles
   has_and_belongs_to_many :users

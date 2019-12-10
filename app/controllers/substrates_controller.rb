@@ -2,8 +2,8 @@ class SubstratesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @q = @substrates.includes(:user).ransack(params[:q])
-    @substrates = @q.result(distinct: true).order(:statuses_mask, priorityx: :asc, created_at: :desc)
+    @q = @substrates.ransack(params[:q])
+    @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
   end
 
   def history

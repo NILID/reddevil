@@ -32,7 +32,7 @@
             class: 'col-sm-4 col-form-label'
           .col
             = f.select :user_id_eq, {}, { include_blank: '== Выберите автора ==' }, { class: 'selectpicker form-control form-control-sm' } do
-              - User.with_group(:lab182).each do |u|
+              - User.with_group(:lab182).includes(:member).each do |u|
                 = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
         .form-group.row.mb-1
           = f.label :amount_gteq,
@@ -231,7 +231,17 @@
                   = f.text_field :shipping_at_lteq,
                     class: 'datepicker form-control',
                     value: (params[:q][:shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_lteq].present?)
-        .form-group.row.text-right.mt-5
+
+        .form-group.row.mb-1
+          = f.label :users_id_eq,
+            t('substrates.followers'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :users_id_eq, {}, { include_blank: '== Выберите исполнителя ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - User.with_group(:lab182).includes(:member).each do |u|
+                = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
+
+        .form-group.row.text-right
           .col.mt-5
             = f.button class: 'btn btn-warning btn-sm btn-block' do
               = fa_icon 'search', text: t('shared.to_search')

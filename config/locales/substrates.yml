@@ -24,7 +24,7 @@ ru:
     instock_short: налич
     statuses:
       opened: Открыто
-      finished: Завершено
+      finished: Готово
       worked: В работе
       delayed: Отложено
       canceled: Отменено

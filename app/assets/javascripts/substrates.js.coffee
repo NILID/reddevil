@@ -41,14 +41,15 @@ $ ->
   $('body').on 'onload change paste input keyup propertychange', 'select#substrate_sides', ->
     selectpicker_init(this)
 
-  selectpicker_init_status = (select_tag = '.new_substrate input#substrate_instock') ->
-    if $(select_tag).val() == '0'
-      $('#substrate_status').selectpicker('val', 'missing')
-    else
-      $('#substrate_status').selectpicker('val', 'opened')
-    $('#substrate_status').selectpicker('refresh')
+  selectpicker_init_status = (select_tag = '.new_substrate input#substrate_instock', check = true) ->
+    if check
+      if $(select_tag).val() == '0'
+        $('#substrate_status').selectpicker('val', 'missing')
+      else
+        $('#substrate_status').selectpicker('val', 'opened')
+      $('#substrate_status').selectpicker('refresh')
 
-  selectpicker_init_status()
+  selectpicker_init_status('', false)
 
-  $('body').on 'onload change paste input keyup propertychange', 'input#substrate_instock', ->
+  $('body').on 'onload change paste input keyup propertychange', '.new_substrate input#substrate_instock', ->
     selectpicker_init_status(this)

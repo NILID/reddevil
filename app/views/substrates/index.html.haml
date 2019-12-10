@@ -74,5 +74,6 @@
             .font-weight-normal= sort_link @q, :finished_at, Substrate.human_attribute_name(:finished_at)
           %th
 
-      %tbody
-        = render(@substrates)
+      %tbody.endless
+        = render @substrates
+      %div(hidden)= will_paginate @substrates

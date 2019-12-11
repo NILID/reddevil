@@ -3,10 +3,11 @@
   = render 'layouts/header'
 
   %body
-    %header= render 'layouts/menu'
+    = render 'layouts/menu'
 
     %main.pt-4.mt-5(role='main')
       .container-fluid.main-content
+        = render 'messages/messages'
         .row
           .col-12= flash_messages
         .row

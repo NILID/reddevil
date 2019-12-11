@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   # after_action :store_location
   before_action :user_activity
+  before_action :get_messages
 
   rescue_from CanCan::AccessDenied do |exception|
     unless current_user
@@ -39,6 +40,10 @@ class ApplicationController < ActionController::Base
       format.xml  { head :conflict }
       format.json { head :conflict }
     end
+  end
+
+  def get_messages
+    @messages = Message.where(close: false)
   end
 
   protected

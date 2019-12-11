@@ -1,13 +1,5 @@
 - set_meta_tags title: t('shared.title')
 
-- if @messages
-  .row
-    .col-md-12
-      - @messages.each do |message|
-        .alert.alert-primary(role='alert')
-          %h4.alert-heading= message.title
-          %p= simple_format message.content
-
 .row
   .col.card-columns.main-blocks
     - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?)

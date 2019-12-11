@@ -9,8 +9,6 @@ class MainController < ApplicationController
       tomorrow  = DateTime.tomorrow.beginning_of_day
       yesterday = DateTime.yesterday.beginning_of_day
 
-      @messages = Message.where(close: false)
-
       @bduser                = Member.shown.find_births_for(now, now + 30.days)
       @bdusers_yesterday     = Member.shown.find_births_for(yesterday).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
       @bdusers_prevyesterday = Member.shown.find_births_for(yesterday - 1.day).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}

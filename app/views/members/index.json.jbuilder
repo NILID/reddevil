@@ -1,6 +1,6 @@
 current_year = DateTime.now.year
 
-json.array!(@members) do |member|
+json.array!(@members.select{|m| m.birth?}) do |member|
   birth_date = member.birth.change(year: current_year)
   json.title t('member.birthday_of', name: member.petrovich_fullname)
   json.tooltip t('member.birthday_of', name: member.petrovich_fullname)

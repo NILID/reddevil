@@ -1,5 +1,4 @@
 class MainController < ApplicationController
-
   before_action :authenticate_user!, only: :calendar
   layout :get_layout, only: :index
 

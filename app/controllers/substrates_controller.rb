@@ -3,7 +3,9 @@ class SubstratesController < ApplicationController
 
   def index
     @q = @substrates.not_archive.ransack(params[:q])
-    @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc).page(params[:page]).per_page(10)
+    # with pagination
+    # @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc).page(params[:page]).per_page(10)
+    @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
     @users = User.with_group(:lab182).includes(:member).order('members.surname')
   end
 

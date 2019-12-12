@@ -23,7 +23,7 @@
                   .col
                     .message-content.bg-white
                       %p.mb-2.text-muted
-                        %span= room_message.user.surname_name
+                        %span= room_message.user.member ? room_message.user.surname_name : room_message.user.email
                         %small.float-right= room_message.created_at
 
                       %p.mb-1

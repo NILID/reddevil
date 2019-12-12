@@ -60,5 +60,8 @@ class ApplicationController < ActionController::Base
 
   def user_activity
     current_user.try :touch
+    if user_signed_in?
+      UserChannel.broadcast_to 'users-online', User.online.size
+    end
   end
 end

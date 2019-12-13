@@ -2,17 +2,13 @@ class SubstratesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @q = @substrates.not_archive.ransack(params[:q])
-    # with pagination
-    # @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc).page(params[:page]).per_page(10)
-    @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
-    @users = User.with_group(:lab182).includes(:member).order('members.surname')
+    @q = @substrates.not_archive
+    get_ransack
   end
 
   def archive
-    @q = @substrates.archive.ransack(params[:q])
-    @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
-    @users = User.with_group(:lab182).includes(:member).order('members.surname')
+    @q = @substrates.archive
+    get_ransack
     render 'index'
   end
 
@@ -110,6 +106,14 @@ class SubstratesController < ApplicationController
   #  end
 
   private
+    def get_ransack
+      @q = @substrates.ransack(params[:q])
+      # with pagination
+      # @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc).page(params[:page]).per_page(10)
+      @substrates = @q.result(distinct: true).includes(:user).order(:statuses_mask, priorityx: :asc, created_at: :desc)
+      @users = User.with_group(:lab182).includes(:member).order('members.surname')
+    end
+
     def substrate_params
       # params.require(:substrate).permit(:lock_version,
       params.require(:substrate).permit(:title, :ready_count,

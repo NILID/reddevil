@@ -1,12 +1,12 @@
 %ul.nav.nav-tabs.card-header-tabs#member_info.float-left
   %li.nav-item
-    = link_to t('member.title'),    members_path,          class: "nav-link #{params[:action] == 'index' ? 'active' : nil}"
+    = link_to t('member.title'),    members_path,          class: "nav-link #{params[:action] == 'index' ?    'active' : nil}"
   %li.nav-item
     = link_to t('member.vacation'), holidays_members_path, class: "nav-link #{params[:action] == 'holidays' ? 'active' : nil}"
   %li.nav-item
-    = link_to t('shared.stat'),     stat_members_path,     class: "nav-link #{params[:action] == 'stat' ? 'active' : nil}"
+    = link_to t('shared.stat'),     stat_members_path,     class: "nav-link #{params[:action] == 'stat' ?     'active' : nil}"
   %li.nav-item
-    = link_to t('shared.archive'),  archive_members_path,  class: "nav-link #{params[:action] == 'archive' ? 'active' : nil}"
+    = link_to t('shared.archive'),  archive_members_path,  class: "nav-link #{params[:action] == 'archive' ?  'active' : nil}"
   - if can? :create, Member
     %li.nav-item
       = link_to t('shared.add'),    new_member_path,       class: 'nav-link'

@@ -4,7 +4,7 @@ class MembersController < ApplicationController
   def index
     @current_member = current_user.member
     @q = @members.includes(:user).shown.ransack(params[:q])
-    @q.sorts = 'group surname' if @q.sorts.empty?
+    @q.sorts = 'surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
 
     respond_to do |format|

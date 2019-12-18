@@ -1,7 +1,6 @@
 .dropdown-submenu {
   position: relative;
-
-  .dropdown-item-toggle {padding-left: 0;}
+  padding: 0;
 
   .dropdown-item-toggle::after {
     position: absolute;

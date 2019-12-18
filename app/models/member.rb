@@ -2,7 +2,7 @@ class Member < ActiveRecord::Base
   has_many :vacations, inverse_of: :member
   belongs_to :user, optional: true
 
-  GROUPS = %w[lab193 lab182 lab180]
+  GROUPS = %w[lab107 lab180 lab190 lab193 lab182]
 
   validates :surname, :name, :patronymic, presence: true
 

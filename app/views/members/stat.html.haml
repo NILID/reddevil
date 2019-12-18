@@ -6,6 +6,7 @@
       .card-header
         = render 'panel_top'
       .card-body
+        = render 'search_form', url: stat_members_path, only_select: true
         .tab-content
           - unless @members.pluck(:id).empty?
             .tab-pane.active

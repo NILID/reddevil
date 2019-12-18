@@ -1,15 +1,16 @@
 .card-body.bg-info.text-white#search-form-collapse{class: params[:q] ? '' : 'collapse' }
-  = search_form_for @q do |f|
+  = search_form_for @q, url: url do |f|
     .row
-      .col
-        .form-group.row
-          = f.label :name_or_surname_or_patronymic_or_email_cont,
-            t('shared.search'),
-            class: 'col-sm-3 col-form-label'
-          .col
-            = f.text_field :name_or_surname_or_patronymic_or_email_cont,
-              placeholder: t('shared.search_text'),
-              class: 'form-control form-control-sm'
+      - unless only_select
+        .col
+          .form-group.row
+            = f.label :name_or_surname_or_patronymic_or_email_cont,
+              t('shared.search'),
+              class: 'col-sm-3 col-form-label'
+            .col
+              = f.text_field :name_or_surname_or_patronymic_or_email_cont,
+                placeholder: t('shared.search_text'),
+                class: 'form-control form-control-sm'
       .col
         .form-group.row
           = f.label :group_eq,

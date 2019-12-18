@@ -26,7 +26,9 @@ class MembersController < ApplicationController
   end
 
   def stat
-    @members = @members.shown
+    @q = @members.shown.ransack(params[:q])
+    @members = @q.result(distinct: true)
+
     @member_ages = []
     @members.with_birth.each {|m| @member_ages << m.age}
 

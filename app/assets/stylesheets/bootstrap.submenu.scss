@@ -1,0 +1,19 @@
+.dropdown-submenu {
+  position: relative;
+
+  .dropdown-item-toggle {padding-left: 0;}
+
+  .dropdown-item-toggle::after {
+    position: absolute;
+    right: 7px;
+    content: '▸';
+    color: #aaa;
+    margin-left: 0.5rem;
+  }
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}

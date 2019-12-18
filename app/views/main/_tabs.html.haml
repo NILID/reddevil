@@ -1,0 +1,26 @@
+%ul.nav.nav-tabs
+  %li.nav-item
+    %a.nav-link.active{:href => "#"} Дерево целей
+  %li.nav-item.dropdown
+    %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} Оперативное управление
+    .dropdown-menu
+      %a.dropdown-item{:href => "#"} Безопасность
+      %a.dropdown-item{:href => "#"} Качество
+      %a.dropdown-item{:href => "#"} Исполнение заказов
+      .dropdown-item.dropdown-submenu
+        %a.dropdown-item.dropdown-item-toggle{:href => "#", data: {toggle: 'dropdown'} } Затраты
+        .dropdown-menu
+          %a.dropdown-item{:href => "#"} Затраты по продуктам
+          %a.dropdown-item{:href => "#"} Затраты на персонал
+      .dropdown-item.dropdown-submenu
+        %a.dropdown-item.dropdown-item-toggle{:href => "#", data: {toggle: 'dropdown'}} Корпоративная культура
+        .dropdown-menu
+          %a.dropdown-item{:href => "#"} Среднесписочная численность
+          %a.dropdown-item{:href => "#"} Фонд оплаты труда
+          %a.dropdown-item{:href => "#"} График отпусков персонала
+  %li.nav-item
+    %a.nav-link{:href => "#"} Проектное управление
+  %li.nav-item
+    %a.nav-link{:href => "#"} Управление проблемами
+
+

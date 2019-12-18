@@ -4,7 +4,7 @@ class MembersController < ApplicationController
   def index
     @current_member = current_user.member
     @q = @members.includes(:user).shown.ransack(params[:q])
-    @q.sorts = 'surname' if @q.sorts.empty?
+    @q.sorts = 'group surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
 
     respond_to do |format|
@@ -107,7 +107,7 @@ class MembersController < ApplicationController
                              :birth,
                              { :vacations_attributes => %i[id startdate enddate _destroy] }
                             ]
-      list_params_allowed << [:archive_flag, :user_id] if (current_user&.role? :admin)
+      list_params_allowed << [:archive_flag, :user_id, :group] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)
     end
 end

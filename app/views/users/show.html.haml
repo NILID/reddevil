@@ -37,6 +37,8 @@
                     %span.badge.badge-primary= t "user.roles.#{role}"
 
               - if @member
+                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:group)
+                %dd.col-md-9.col-6= @member.group ? t("member.groups.#{@member.group}") : content_tag(:span, t('shared.empty'), class: 'text-muted')
                 %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:work_phone)
                 %dd.col-md-9.col-6= @member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
                 %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:short_number)

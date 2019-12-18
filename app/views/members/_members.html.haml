@@ -10,6 +10,7 @@
             = fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all'), data: { toggle: 'tooltip' }
             = sort_link @q, :surname, Member.human_attribute_name(:surname)
           - unless params[:action] == 'archive'
+            %th= sort_link @q, :group, Member.human_attribute_name(:group)
             %th= Member.human_attribute_name(:work_phone)
             %th= Member.human_attribute_name(:short_number)
             %th= Member.human_attribute_name(:email)
@@ -34,6 +35,7 @@
                     %p.animated.flipInX
                       = fa_icon 'gift', class: 'icon-padding-r', text: show_birth(member)
             - unless params[:action] == 'archive'
+              %td= t("member.groups.#{member.group}") if member.group
               %td
                 - if member.work_phone?
                   = number_to_phone(member.work_phone, area_code: true)

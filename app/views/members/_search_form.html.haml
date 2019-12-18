@@ -1,0 +1,26 @@
+.card-body.bg-info.text-white#search-form-collapse{class: params[:q] ? '' : 'collapse' }
+  = search_form_for @q do |f|
+    .row
+      .col
+        .form-group.row
+          = f.label :name_or_surname_or_patronymic_or_email_cont,
+            t('shared.search'),
+            class: 'col-sm-3 col-form-label'
+          .col
+            = f.text_field :name_or_surname_or_patronymic_or_email_cont,
+              placeholder: t('shared.search_text'),
+              class: 'form-control form-control-sm'
+      .col
+        .form-group.row
+          = f.label :group_eq,
+            Member.human_attribute_name(:group),
+            class: 'col-sm-3 col-form-label'
+          .col
+            = f.select :group_eq, {}, { include_blank: '== Выберите отдел ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - Member::GROUPS.each do |g|
+                = content_tag(:option, t("member.groups.#{g}"), value: g, selected: params[:q] && (params[:q][:group_eq] == g) )
+      .col
+        .form-group.row.text-right
+          .col
+            = f.button class: 'btn btn-warning btn-sm btn-block' do
+              = fa_icon 'search', text: t('shared.to_search')

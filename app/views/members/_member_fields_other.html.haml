@@ -4,5 +4,6 @@
 = f.email_field :email, control_col: 'col-8', label_col: 'col'
 = f.text_field :birth, class: 'datepicker', value: (f.object.birth.to_datetime.strftime('%d.%m.%Y') if f.object.birth.present?), control_col: 'col-8', label_col: 'col'
 - if (current_user.role? :admin)
+  = f.select :group, Member::GROUPS.map{|m| [t("member.groups.#{m}"), m]}, { include_blank: t('shared.to_select'), control_col: 'col-8', label_col: 'col' }
   = f.select :user_id, (User.order(:email).collect { |u| [u.email, u.id]}), { include_blank: t('shared.to_select'), control_col: 'col-8', label_col: 'col' }
   = f.check_box :archive_flag, { custom: :switch }

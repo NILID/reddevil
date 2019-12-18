@@ -10,9 +10,13 @@
   - if can? :create, Member
     %li.nav-item
       = link_to t('shared.add'),    new_member_path,       class: 'nav-link'
-- if params[:action] == 'index'
-  = link_to '#export_list', class: 'btn btn-sm btn-outline-secondary float-right', data: { toggle: 'modal', target: '#export_list' } do
-    = fa_icon 'upload', text: t('member.download')
+
+.float-right
+  = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
+    = fa_icon 'filter', text: t('shared.filter')
+  - if params[:action] == 'index'
+    = link_to '#export_list', class: 'btn btn-sm btn-outline-secondary ', data: { toggle: 'modal', target: '#export_list' } do
+      = fa_icon 'upload', text: t('member.download')
 
   .modal.fade#export_list(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exportListLabel" aria-hidden="true")
     .modal-dialog

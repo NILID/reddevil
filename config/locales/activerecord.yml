@@ -105,6 +105,7 @@ ru:
         work_phone: Рабочий моб.телефон
         short_number: Доб. номер
         archive_flag: Архив
+        group: Отдел
       user:
         password: Пароль
         password_confirmation: Повторите пароль

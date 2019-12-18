@@ -10,6 +10,8 @@
 
   .card-body
     %dl.row.my-0
+      %dt.col-sm-3.text-right= Member.human_attribute_name(:group)
+      %dd.col-sm-9= member.group ? t("member.groups.#{member.group}") : content_tag(:span, t('shared.empty'), class: 'text-muted')
       %dt.col-sm-3.text-right= Member.human_attribute_name(:work_phone)
       %dd.col-sm-9= member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
       %dt.col-sm-3.text-right= Member.human_attribute_name(:short_number)

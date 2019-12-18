@@ -2,6 +2,8 @@ class Member < ActiveRecord::Base
   has_many :vacations, inverse_of: :member
   belongs_to :user, optional: true
 
+  GROUPS = %w[lab193 lab182 lab180]
+
   validates :surname, :name, :patronymic, presence: true
 
   accepts_nested_attributes_for :vacations, reject_if: :all_blank, allow_destroy: true

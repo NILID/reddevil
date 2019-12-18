@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_155257) do
+ActiveRecord::Schema.define(version: 2019_12_18_153425) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_155257) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "user_id"
+    t.string "group"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
@@ -323,7 +324,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_155257) do
     t.datetime "updated_at"
   end
 
-  create_table "substrates", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "substrates", id: :bigint, default: nil, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "drawing"
     t.string "detail"
     t.integer "amount", default: 1

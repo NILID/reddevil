@@ -18,5 +18,5 @@ test:
 production:
   <<: *default
   database: reddevil
-  user: <%= Rails.application.credentials.db_prod_user %>
+  username: <%= Rails.application.credentials.db_prod_user %>
   password: <%= Rails.application.credentials.db_prod_pass %>

@@ -5,18 +5,19 @@ default: &default
   adapter: mysql2
   encoding: utf8
   host: localhost
-  username: root
-  password:
 
 development:
   <<: *default
+  username: <%= Rails.application.credentials.db_dev_user %>
+  password: <%= Rails.application.credentials.db_dev_pass %>
 
 test:
   <<: *default
   database: reddevil_test
+  username: <%= Rails.application.credentials.db_test_user %>
+  password: <%= Rails.application.credentials.db_test_pass %>
 
 production:
   <<: *default
-  database: reddevil
   username: <%= Rails.application.credentials.db_prod_user %>
   password: <%= Rails.application.credentials.db_prod_pass %>

@@ -1,6 +1,6 @@
-%ul.nav.nav-tabs
+%ul.nav.nav-pills#redTab(role="tablist")
   %li.nav-item
-    %a.nav-link.active{:href => "#"} Дерево целей
+    = link_to 'Дерево целей', infocenter_path, class: "nav-link #{ params[:action] == 'infocenter' ? 'active bg-success' : nil}", role: 'tab'
   %li.nav-item.dropdown
     %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} Оперативное управление
     .dropdown-menu
@@ -19,8 +19,6 @@
           %a.dropdown-item{:href => "#"} Фонд оплаты труда
           %a.dropdown-item{:href => "#"} График отпусков персонала
   %li.nav-item
-    %a.nav-link{:href => "#"} Проектное управление
+    = link_to 'Проектное управление', project_path, class: "nav-link #{ params[:action] == 'project' ? 'active bg-info' : nil}", role: 'tab'
   %li.nav-item
-    %a.nav-link{:href => "#"} Управление проблемами
-
-
+    = link_to 'Управление проблемами', problem_path, class: "nav-link #{ params[:action] == 'problem' ? 'active bg-danger' : nil}", role: 'tab'

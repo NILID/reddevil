@@ -1,10 +1,8 @@
 .card
-  .card-header
-    %h4 Инфоцентр отделения ОиИТ
+  = render 'main/header'
   .card-body
-    = render 'tabs'
     .text-center.my-5
-      .h3.text-muted= t('substrates.empty')
+      .h3.text-muted=# t('substrates.empty')
 
-
-=# image_tag 'tree_2019.svg'
+    .zoom-photo{ data: { url: image_url('tree_20.12.2019.png') } }
+      = image_tag 'tree_20.12.2019.png', class: 'img-fluid'

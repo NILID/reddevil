@@ -1,0 +1,38 @@
+.card
+  = render 'main/header'
+  .card-body
+    .text-center
+      .row.py-3
+        .col.bg-primary.m-2
+          .m-5
+            .h3 Безопасность
+        .col.bg-secondary.m-2
+          .m-5
+            .h3 Качество
+        .col.bg-danger.m-2
+          .m-5
+            .h3 Исполнения заказов
+
+
+      .row.bg-warning.p-3.mb-3
+        .col
+          .row
+            .col.pb-4
+              %h2
+                Затраты
+          .row
+            - 2.times do
+              .col.bg-white.m-2
+                .m-5
+                  .h3.text-muted= t('substrates.empty')
+
+      .row.bg-success.p-3
+        .col
+          .row
+            .col.pb-4
+              %h2 Корпоративная культура
+          .row
+            - 3.times do
+              .col.bg-white.m-2
+                .m-5
+                  .h3.text-muted= t('substrates.empty')

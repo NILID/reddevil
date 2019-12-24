@@ -107,9 +107,13 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'infocenter/operative' => 'main#operative', as: :operative
+  get 'infocenter/project'   => 'main#project'  , as: :project
+  get 'infocenter/problem'   => 'main#problem'  , as: :problem
+
   get 'calendar' => 'main#calendar'
   get 'relax' => 'main#relax'
-  get 'infocenter' => 'main#infocenter'
+  get 'infocenter' => 'main#infocenter', as: :infocenter
   post 'import' => 'main#import'
   get 'nextsong' => 'main#nextsong'
 

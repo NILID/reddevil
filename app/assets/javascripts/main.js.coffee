@@ -90,4 +90,7 @@ $ ->
     $('.dropdown-menu.show').removeClass 'show'
     return
 
+  $('.zoom-photo').zoom
+    url: $(this).data('url')
+
   jQuery('.best_in_place').best_in_place()

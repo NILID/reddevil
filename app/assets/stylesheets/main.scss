@@ -86,3 +86,9 @@ footer {margin-top:50px;}
 .table-violet {
   background-color: #ffd5ff;
 }
+
+.zoom-photo:hover {
+  cursor: -webkit-nesw-resize;
+  cursor: -moz-nesw-resize;
+  cursor: nesw-resize;
+}

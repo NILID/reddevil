@@ -92,5 +92,6 @@ $ ->
 
   $('.zoom-photo').zoom
     url: $(this).data('url')
+    on: 'grab'
 
   jQuery('.best_in_place').best_in_place()

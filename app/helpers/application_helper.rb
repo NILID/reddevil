@@ -10,6 +10,10 @@ module ApplicationHelper
      end
    end
 
+   def rus_month(time)
+     Russian.strftime(time, '%b')
+   end
+
    def short_date(time)
      Russian.strftime(time, '%d.%m.%Y')
    end

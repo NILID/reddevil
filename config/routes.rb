@@ -112,6 +112,7 @@ Rails.application.routes.draw do
   get 'infocenter/problem'   => 'main#problem'  , as: :problem
 
   get 'calendar' => 'main#calendar'
+  get 'new_calendar' => 'main#new_calendar'
   get 'relax' => 'main#relax'
   get 'infocenter' => 'main#infocenter', as: :infocenter
   post 'import' => 'main#import'

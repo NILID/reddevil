@@ -12,6 +12,13 @@ class Vacation < ActiveRecord::Base
   scope :present, lambda { where('startdate <= ?', DateTime.now)
                           .where('enddate >= ?',   DateTime.now) }
 
+  def get_date
+    enddate
+  end
+
+  def new_check_vac(date, day)
+    (startdate..(enddate + 10.hour)).cover? DateTime.parse([date.year, date.month, day].join('-'))
+  end
 
   # Добавить проверку что отпуск не назначается на уже занятые даты
   private

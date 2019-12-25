@@ -64,6 +64,10 @@ class MainController < ApplicationController
   def problem
   end
 
+  def new_calendar
+    @members = Member.order(:surname)
+    @current_date = params[:date] ? DateTime.parse(params[:date]) : DateTime.now
+  end
 
 
   private

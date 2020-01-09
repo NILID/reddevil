@@ -1,6 +1,11 @@
 .card
   .card-header
-    = t 'vacations.settings', name: @member.petrovich_fullname
+    %nav(aria-label='breadcrumb')
+      .row
+        .col
+          %ol.breadcrumb.h4
+            %li.breadcrumb-item= link_to t('member.vacation'), holidays_members_path, class: 'card-archive-link animated'
+            %li.breadcrumb-item= t 'vacations.settings', name: @member.petrovich_fullname
   .card-body
     = form_for @member, url: update_holidays_member_path, layout: :inline do |f|
       = render 'main/error', object: @member

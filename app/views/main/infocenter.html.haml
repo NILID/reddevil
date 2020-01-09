@@ -1,8 +1,5 @@
 .card
   = render 'main/header'
   .card-body
-    .text-center.my-5
-      .h3.text-muted=# t('substrates.empty')
-
     .zoom-photo{ data: { url: image_url('tree_20.12.2019.png') } }
       = image_tag 'tree_20.12.2019.png', class: 'img-fluid'

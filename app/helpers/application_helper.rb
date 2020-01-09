@@ -14,6 +14,10 @@ module ApplicationHelper
      Russian.strftime(time, '%b')
    end
 
+    def rus_dayname(time)
+      Russian.strftime(time, '%a')
+    end
+
    def short_date(time)
      Russian.strftime(time, '%d.%m.%Y')
    end

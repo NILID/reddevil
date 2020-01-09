@@ -25,7 +25,9 @@
         %tr
           %th= Member.human_attribute_name(:surname)
           - (1..days).each do |day|
-            %th= day
+            %th
+              = ((1..9).to_a.include? day) ? raw("&nbsp;#{day}") : day
+              .text-muted.small= rus_dayname(@current_date.change(day: day))
       %tbody
         - @members.each do |member|
           - holidays = member.vacations.where('startdate <= ?', @current_date).or(member.vacations.where('enddate >= ?', @current_date))

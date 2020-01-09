@@ -52,19 +52,19 @@ class MainController < ApplicationController
     end
   end
 
-  def infocenter
-  end
+  def infocenter; end
+  def operative;  end
+  def project;    end
+  def problem;    end
+  def security;   end
+  def quality;    end
+  def orders;     end
+  def personal;   end
+  def products;   end
+  def strength;   end
+  def salary;     end
 
-  def operative
-  end
-
-  def project
-  end
-
-  def problem
-  end
-
-  def new_calendar
+  def vac
     @members = Member.order(:surname)
     @current_date = params[:date] ? DateTime.parse(params[:date]) : DateTime.now
   end

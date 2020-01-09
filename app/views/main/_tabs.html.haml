@@ -4,20 +4,20 @@
   %li.nav-item.dropdown
     %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} Оперативное управление
     .dropdown-menu
-      %a.dropdown-item{:href => "#"} Безопасность
-      %a.dropdown-item{:href => "#"} Качество
-      %a.dropdown-item{:href => "#"} Исполнение заказов
+      = link_to 'Безопасноcть', security_path, class: 'dropdown-item'
+      = link_to 'Качество', quality_path, class: 'dropdown-item'
+      = link_to 'Исполнение заказов', orders_path, class: 'dropdown-item'
       .dropdown-item.dropdown-submenu
         %a.dropdown-item.dropdown-item-toggle{:href => "#", data: {toggle: 'dropdown'} } Затраты
         .dropdown-menu
-          %a.dropdown-item{:href => "#"} Затраты по продуктам
-          %a.dropdown-item{:href => "#"} Затраты на персонал
+          = link_to 'Затраты по продуктам', products_path, class: 'dropdown-item'
+          = link_to 'Затраты на персонал', personal_path, class: 'dropdown-item'
       .dropdown-item.dropdown-submenu
         %a.dropdown-item.dropdown-item-toggle{:href => "#", data: {toggle: 'dropdown'}} Корпоративная культура
         .dropdown-menu
-          %a.dropdown-item{:href => "#"} Среднесписочная численность
-          %a.dropdown-item{:href => "#"} Фонд оплаты труда
-          %a.dropdown-item{:href => "#"} График отпусков персонала
+          = link_to 'Среднесписочная численность', strength_path, class: 'dropdown-item'
+          = link_to 'Фонд оплаты труда', salary_path, class: 'dropdown-item'
+          = link_to 'График отпусков персонала', vac_path, class: 'dropdown-item'
   %li.nav-item
     = link_to 'Проектное управление', project_path, class: "nav-link #{ params[:action] == 'project' ? 'active bg-info' : nil}", role: 'tab'
   %li.nav-item

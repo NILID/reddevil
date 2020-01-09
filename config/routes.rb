@@ -110,6 +110,14 @@ Rails.application.routes.draw do
   get 'infocenter/operative' => 'main#operative', as: :operative
   get 'infocenter/project'   => 'main#project'  , as: :project
   get 'infocenter/problem'   => 'main#problem'  , as: :problem
+  get 'infocenter/security'  => 'main#security',  as: :security
+  get 'infocenter/quality'   => 'main#quality',   as: :quality
+  get 'infocenter/orders'    => 'main#orders',    as: :orders
+  get 'infocenter/expenses/personal'  => 'main#personal',  as: :personal
+  get 'infocenter/expenses/products'  => 'main#products',  as: :products
+  get 'infocenter/corporate/strength' => 'main#strength', as: :strength
+  get 'infocenter/corporate/salary'   => 'main#salary',   as: :salary
+  get 'infocenter/corporate/vac' => 'main#vac', as: :vac
 
   get 'calendar' => 'main#calendar'
   get 'new_calendar' => 'main#new_calendar'

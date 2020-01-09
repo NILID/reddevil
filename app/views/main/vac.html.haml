@@ -3,9 +3,15 @@
 .card
   = render 'main/header'
   .card-body
-    .h3.text-muted.mb-3 График отпусков персонала
-
-    .row
+    .row.mb-3
+      .col
+        .h3.text-muted График отпусков персонала
+      .col
+        .text-right
+          = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
+            = fa_icon 'filter', text: t('shared.filter')
+    = render 'members/search_form', url: vac_path, only_select: false
+    .row.mt-2
       .col
         = link_to vac_path(date: (@current_date - 1.month).strftime("%Y-%m-%d")), class: 'btn btn-primary' do
           = fa_icon(:arrow_left)
@@ -25,9 +31,10 @@
         %tr
           %th= Member.human_attribute_name(:surname)
           - (1..days).each do |day|
-            %th
+            - dayname = rus_dayname(@current_date.change(day: day))
+            %th{ class: (%w[Сб Вс].include? dayname) ? 'bg-red-10' : nil }
               = ((1..9).to_a.include? day) ? raw("&nbsp;#{day}") : day
-              .text-muted.small= rus_dayname(@current_date.change(day: day))
+              .text-muted.small= dayname
       %tbody
         - @members.each do |member|
           - holidays = member.vacations.where('startdate <= ?', @current_date).or(member.vacations.where('enddate >= ?', @current_date))

@@ -22,8 +22,8 @@
             %td.text-muted= index+1
             %td
               %span.membername.pointer
-                - if member.phone? || member.birth?
-                  = fa_icon 'chevron-down', class: 'icon-padding-r icon-showicon'
+                = fa_icon 'chevron-down',
+                  class: "icon-padding-r icon-showicon #{(member.phone? || member.birth?) ? nil : 'invisible'}"
 
                 = member.fullname
               - if member.phone? || member.birth?

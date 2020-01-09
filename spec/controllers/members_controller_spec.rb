@@ -74,13 +74,6 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to be_successful
       expect(response).to render_template(:stat)
     end
-
-    it 'returns holidays' do
-      expect(@ability.can? :holidays, Member).to be true
-      get :holidays
-      expect(response).to be_successful
-      expect(response).to render_template(:holidays)
-    end
   end
 
   describe 'user should' do
@@ -160,12 +153,6 @@ RSpec.describe MembersController, type: :controller do
       get :stat
       expect(response).to be_successful
       expect(response).to render_template(:stat)
-    end
-
-    it 'returns holidays' do
-      get :holidays
-      expect(response).to be_successful
-      expect(response).to render_template(:holidays)
     end
 
     it 'returns new' do

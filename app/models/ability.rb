@@ -48,7 +48,7 @@ class Ability
     end
 
     if user.role? :user
-      can %i[holidays stat archive days_birth], Member
+      can %i[stat archive days_birth], Member
       can %i[update manage_holidays update_holidays], Member, user: { id: user.id }
 
       can %i[destroy edit update], Forecast do |f|

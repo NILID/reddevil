@@ -65,7 +65,11 @@ class MainController < ApplicationController
   def salary;     end
 
   def vac
-    @members = Member.order(:surname)
+    #@q = @members.shown.ransack(params[:q])
+    #@q.sorts = 'surname' if @q.sorts.empty?
+    #@members = @q.result(distinct: true)
+
+    @members = Member.order(:surname).includes(:user)
     @current_date = params[:date] ? DateTime.parse(params[:date]) : DateTime.now
   end
 

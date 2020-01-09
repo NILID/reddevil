@@ -13,7 +13,7 @@
     = render 'members/search_form', url: vac_path, only_select: false
     .row.mt-2
       .col
-        = link_to vac_path(date: (@current_date - 1.month).strftime("%Y-%m-%d"), q: params[:q].permit!), class: 'btn btn-primary' do
+        = link_to vac_path(date: (@current_date - 1.month).strftime("%Y-%m-%d"), q: (params[:q] ? params[:q].permit! : nil)), class: 'btn btn-primary' do
           = fa_icon(:arrow_left)
           = rus_month(@current_date-1.month)
       .col.text-center
@@ -22,7 +22,7 @@
           = @current_date.year
 
       .col.text-right
-        = link_to vac_path(date: (@current_date + 1.month).strftime("%Y-%m-%d"), q: params[:q].permit!), class: 'btn btn-primary' do
+        = link_to vac_path(date: (@current_date + 1.month).strftime("%Y-%m-%d"), q: (params[:q] ? params[:q].permit! : nil)), class: 'btn btn-primary' do
           = rus_month(@current_date+1.month)
           = fa_icon(:arrow_right)
     %table.table.table-sm.table-bordered

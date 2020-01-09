@@ -92,7 +92,7 @@
               = t('vacations.diff_days', till: plural(count_days, 'till', false), count: plural(count_days, 'day'))
               = t('vacations.start',
                 date: Russian.strftime(@current_vacations_soon.startdate, "%e %B"),
-                diff: plural(TimeDifference.between(@current_vacations_soon.enddate, @current_vacations_soon.startdate).in_days.to_i, 'day'))
+                diff: plural(TimeDifference.between(@current_vacations_soon.enddate + 1.day, @current_vacations_soon.startdate).in_days.to_i, 'day'))
 
         - unless @vacations.empty?
           .card-header
@@ -105,7 +105,7 @@
                 - @vacations.each do |v|
                   .mb-2
                     = v.member.fullname
-                    = t('vacations.until', date: Russian.strftime(v.enddate + 1.day, "%e %B"))
+                    = t('vacations.until', date: Russian.strftime(v.enddate, "%e %B"))
 
         - unless @vacations_soon.empty?
           .card-header

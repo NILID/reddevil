@@ -4,7 +4,7 @@ class MembersController < ApplicationController
   def index
     @current_member = current_user.member
     @q = @members.includes(:user).shown.ransack(params[:q])
-    @q.group_eq = @current_member.group unless params[:q]
+    @q.group_eq = current_user.member.group if current_user.member && params[:q].empty? # TODO: check current_user and member
     @q.sorts = 'surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
 
@@ -22,7 +22,7 @@ class MembersController < ApplicationController
 
   def stat
     @q = @members.shown.ransack(params[:q])
-    @q.group_eq = current_user.member.group unless params[:q] # TODO: check current_user and member
+    @q.group_eq = current_user.member.group if current_user.member && params[:q].empty? # TODO: check current_user and member
     @members = @q.result(distinct: true)
 
 

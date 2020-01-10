@@ -67,7 +67,7 @@ class MainController < ApplicationController
   def vac
     @q = Member.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
-    @q.group_eq = current_user.member.group if current_user.member && params[:q].empty? # TODO: check current_user and member
+    @q.group_eq = current_user.member.group if current_user.member && !params[:q] # TODO: check current_user and member
     @members = @q.result(distinct: true)
 
     @current_date = params[:date] ? DateTime.parse(params[:date]) : DateTime.now

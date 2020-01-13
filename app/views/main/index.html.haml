@@ -71,7 +71,7 @@
               .row
                 .col-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
 
-    - unless @vacations.empty?
+    - if @vacations.any? || @vacations_soon.any? || @current_vacation || @current_vacations_soon
       .card
         - if current_user.member
           = render 'vacations/current_vacations',

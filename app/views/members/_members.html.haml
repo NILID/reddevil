@@ -5,17 +5,17 @@
     %table.table.table-striped.my-0
       %thead
         %tr
-          %th
-          %th
+          %th.border-top-0
+          %th.border-top-0
             = fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all'), data: { toggle: 'tooltip' }
             = sort_link @q, :surname, Member.human_attribute_name(:surname)
           - unless params[:action] == 'archive'
-            %th= sort_link @q, :group, Member.human_attribute_name(:group)
-            %th= Member.human_attribute_name(:work_phone)
-            %th= Member.human_attribute_name(:short_number)
-            %th= Member.human_attribute_name(:email)
+            %th.border-top-0= sort_link @q, :group, Member.human_attribute_name(:group)
+            %th.border-top-0= Member.human_attribute_name(:work_phone)
+            %th.border-top-0= Member.human_attribute_name(:short_number)
+            %th.border-top-0= Member.human_attribute_name(:email)
           - if can? :manage, Member
-            %th
+            %th.border-top-0
       %tbody
         - members.each_with_index do |member, index|
           = content_tag_for(:tr, member) do

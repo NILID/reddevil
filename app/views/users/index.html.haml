@@ -3,36 +3,36 @@
 .row
   .col-12
     .card
-      .card-body
+      .card-header
         .lead= t 'users.title'
-        %table.table.table-striped.bg-light.mt-2
-          %thead
+      %table.table.table-striped.bg-light.mb-0
+        %thead
+          %tr
+            %th.border-top-0
+            %th.border-top-0(scope='col')= t 'member.fullname'
+            %th.border-top-0(scope='col')
+              = sort_link @q, :updated_at, User.human_attribute_name(:updated_at)
+        %tbody
+          - @users.each do |user|
             %tr
-              %th
-              %th(scope='col')= t 'member.fullname'
-              %th(scope='col')
-                = sort_link @q, :updated_at, User.human_attribute_name(:updated_at)
-          %tbody
-            - @users.each do |user|
-              %tr
-                %td
-                  = image_tag user.avatar.url(:thumb), class: 'thumbnail img-fluid'
-                %td
-                  = link_to user.email, user
-                  - if user.member
-                    .text-muted= user.fullname
+              %td
+                = image_tag user.avatar.url(:thumb), class: 'thumbnail img-fluid'
+              %td
+                = link_to user.email, user
+                - if user.member
+                  .text-muted= user.fullname
 
+              %td
+                = last_seen(user)
+              - if current_user.role? :admin
                 %td
-                  = last_seen(user)
-                - if current_user.role? :admin
-                  %td
-                    %p
-                      %b Confirm:
-                      = user.confirmed?
+                  %p
+                    %b Confirm:
+                    = user.confirmed?
 
-                    .btn-group
-                      %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                        = fa_icon 'cog'
-                      .dropdown-menu.dropdown-menu-right
-                        = link_to t('profiles.edit'), edit_user_path(user), class: 'dropdown-item'
-                        = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'dropdown-item'
+                  .btn-group
+                    %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                      = fa_icon 'cog'
+                    .dropdown-menu.dropdown-menu-right
+                      = link_to t('profiles.edit'), edit_user_path(user), class: 'dropdown-item'
+                      = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'dropdown-item'

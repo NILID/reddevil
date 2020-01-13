@@ -7,6 +7,5 @@
     .card
       .card-header
         = render 'panel_top'
-      .card-body
-        = render 'search_form', url: members_path, only_select: false
-        = render 'members', members: (@members - [@current_member])
+      = render 'search_form', url: members_path, only_select: false
+      = render 'members', members: (@members - [@current_member])

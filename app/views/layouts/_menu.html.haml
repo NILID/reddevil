@@ -9,13 +9,17 @@
     %ul.navbar-nav.mr-auto
       - if can? :read, Member
         %li.mr-3.nav-item{class: (params[:controller] == 'members') ? 'active' : nil}
-          = link_to t('member.title'), members_path, class: 'nav-link'
+          = link_to members_path, class: 'nav-link' do
+            = fa_icon 'users', text: t('member.title')
       %li.mr-3.nav-item{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
-        = link_to t('shared.calendar'), calendar_path, class: 'nav-link'
+        = link_to calendar_path, class: 'nav-link' do
+          = fa_icon 'calendar-alt', text: t('shared.calendar')
       %li.mr-3.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
-        = link_to t('docs.title'), docs_path, class: 'nav-link'
-      %li.mr-3.nav-item{class: (params[:controller] == 'mail' && params[:action] == 'infocenter') ? 'active' : nil}
-        = link_to t('infocenter.title'), infocenter_path, class: 'nav-link'
+        = link_to docs_path, class: 'nav-link' do
+          = fa_icon 'book', text: t('docs.title')
+      %li.mr-3.nav-item{class: (params[:controller] == 'main' && params[:action] == 'infocenter') ? 'active' : nil}
+        = link_to infocenter_path, class: 'nav-link' do
+          = fa_icon 'info-circle', text: t('infocenter.title')
 
       - if can? :read, Substrate
         %li.mr-3.nav-item{class: (params[:controller] == 'substrates') ? 'active' : nil}
@@ -25,7 +29,7 @@
       - if can? :read, Room
         %li.mr-3.nav-item{class: (params[:controller] == 'rooms') ? 'active' : nil}
           = link_to rooms_path, class: 'nav-link' do
-            = fa_icon 'users', text: t('chat.title')
+            = fa_icon 'comments', text: t('chat.title')
 
       - if (can? :read, Round) || (can? :read, Album)
         %li.nav-item.dropdown

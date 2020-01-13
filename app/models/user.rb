@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   end
 
   def show_name
-    member ? member.fullname : user.email
+    member ? member.fullname : email
   end
 
   private

@@ -82,9 +82,11 @@ ru:
     empty_root: Пусто
     already_exist_in_folder: В текущей директории уже существует файл с таким названием.
   vacations:
+    title: Отпуск
     index: Сейчас в отпуске
     soon: Скоро в отпуск
     you_rest: У вас сейчас отпуск
+    user_rest: У %{username} сейчас отпуск
     until: (отпуск до %{date})
     start: (с %{date}, на %{diff})
     edit: Указать отпуск

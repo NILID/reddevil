@@ -74,26 +74,10 @@
     - unless @vacations.empty?
       .card
         - if current_user.member
-          .card-header
-            = t 'vacations.my'
-            = link_to manage_holidays_member_path(current_user.member),
-              class: 'float-right btn btn-light border btn-sm',
-              data: { toggle: 'tooltip' },
-              title: t('shared.edit') do
-
-              = fa_icon 'edit'
-            .clearfix
-          - if @current_vacation
-            .card-body= t 'vacations.you_rest'
-
-          - elsif @current_vacations_soon
-            .card-body
-              - count_days = (DateTime.now.beginning_of_day..@current_vacations_soon.startdate.beginning_of_day).count - 1
-              = t('vacations.diff_days', till: plural(count_days, 'till', false), count: plural(count_days, 'day'))
-              = t('vacations.start',
-                date: Russian.strftime(@current_vacations_soon.startdate, "%e %B"),
-                diff: plural(TimeDifference.between(@current_vacations_soon.enddate + 1.day, @current_vacations_soon.startdate).in_days.to_i, 'day'))
-
+          = render 'vacations/current_vacations',
+            current_vacation: @current_vacation,
+            current_vacations_soon: @current_vacations_soon,
+            member: current_user.member
         - unless @vacations.empty?
           .card-header
             = t 'vacations.index'

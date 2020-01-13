@@ -7,9 +7,18 @@ class UsersController < ApplicationController
   end
 
   def show
+    now     = DateTime.now.beginning_of_day
+
     @member = @user.member
     @songs  = @user.likees(Song)
     @albums = @user.likees(Album)
+    @current_vacations_soon = @user.member.vacations
+      .where('startdate >= ?', now)
+      .order(:startdate).first
+    @current_vacation       = @user.member.vacations
+      .where('startdate <= ?', now)
+      .where('enddate >= ?',   now)
+      .first
   end
 
   def edit; end

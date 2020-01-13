@@ -50,6 +50,13 @@
                 %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:birth)
                 %dd.col-md-9.col-6= @member.birth ? l(@member.birth, format: :short) : content_tag(:span, t('shared.empty'), class: 'text-muted')
 
+    - if current_user.member
+      .card.mt-3
+        = render 'vacations/current_vacations',
+          current_vacation: @current_vacation,
+          current_vacations_soon: @current_vacations_soon,
+          member: @member
+
     - unless @albums.empty? || @songs.empty?
       .card.mt-3
         .card-header

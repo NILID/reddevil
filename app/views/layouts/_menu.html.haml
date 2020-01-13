@@ -37,12 +37,6 @@
             %i.fa.fa-list
             = t 'shared.media'
           .dropdown-menu(aria-labelledby='dropmedia')
-            - if can? :manage, Message
-              = link_to messages_path, class: 'nav-link' do
-                = fa_icon 'envelope', text: t('message.title')
-
-            .dropdown-divider
-
             - if can? :read, Album
               = link_to albums_path, class: 'nav-link' do
                 = fa_icon 'music', text: t('shared.music')

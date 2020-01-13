@@ -18,18 +18,15 @@
               %td
                 = image_tag user.avatar.url(:thumb), class: 'thumbnail img-fluid'
               %td
-                = link_to user.email, user
-                - if user.member
-                  .text-muted= user.fullname
+                = link_to user.show_name, user
+                - if (current_user.role? :admin) && !user.confirmed?
+                  %span.text-danger{ title: "Не подтвержден", data: { toggle: 'tooltip' }}
+                    = fa_icon 'exclamation-circle'
 
               %td
                 = last_seen(user)
               - if current_user.role? :admin
                 %td
-                  %p
-                    %b Confirm:
-                    = user.confirmed?
-
                   .btn-group
                     %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                       = fa_icon 'cog'

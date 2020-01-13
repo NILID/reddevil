@@ -112,6 +112,10 @@ class User < ActiveRecord::Base
     avatar(:thumb)
   end
 
+  def show_name
+    member ? member.fullname : user.email
+  end
+
   private
 
   def set_role

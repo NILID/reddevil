@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_153425) do
+ActiveRecord::Schema.define(version: 2020_01_13_111115) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -226,7 +226,6 @@ ActiveRecord::Schema.define(version: 2019_12_18_153425) do
 
   create_table "profiles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
-    t.string "login"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.bigint "avatar_file_size"

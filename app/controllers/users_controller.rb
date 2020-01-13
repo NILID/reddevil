@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      profile_params = %i[avatar crop_x crop_y crop_w crop_h login background_color total_result id]
+      profile_params = %i[avatar crop_x crop_y crop_w crop_h background_color total_result id]
       member_params  = %i[surname name patronymic work_phone phone short_number email birth id]
       member_params << %i[archive_flag user_id] if (current_user&.role? :admin)
 

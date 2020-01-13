@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :member
 
-  delegate :login, :avatar, :background_color, to: :profile
+  delegate :avatar, :background_color, to: :profile
   delegate :fullname, :surname, :name, to: :member
 
   ROLES = %w[admin user moderator editor testuser manager guest].freeze
@@ -112,8 +112,16 @@ class User < ActiveRecord::Base
     avatar(:thumb)
   end
 
-  def show_name
-    member ? member.fullname : email
+  def show_name(*options)
+    return email unless member
+
+    if options.include? :petrovich
+      member.petrovich_fullname
+    elsif options.include? :short
+      member.surname
+    else
+      member.fullname
+    end
   end
 
   private

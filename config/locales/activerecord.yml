@@ -106,6 +106,7 @@ ru:
         short_number: Доб. номер
         archive_flag: Архив
         group: Отдел
+        user_id: Пользователь
       user:
         password: Пароль
         password_confirmation: Повторите пароль

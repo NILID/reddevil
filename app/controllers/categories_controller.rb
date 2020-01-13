@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   load_and_authorize_resource
-  layout 'withside'
 
   def index
     @root_categories = @categories.roots.order(:title)

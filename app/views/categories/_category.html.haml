@@ -1,9 +1,11 @@
 = content_tag_for(:li, category, class: "#{(category.root? ? 'well' : '') + (category.hidden? ? ' redhide' : '')}") do
-  %p
-    %span= category.title
-    %span
-      = link_to t('categories.add_subcategory'), new_category_path(parent_id: category.id), class: 'btn btn-secondary btn-sm'
-      = link_to t('shared.edit'), edit_category_path(category), class: 'btn btn-secondary btn-sm'
-      = link_to t('shared.del'), category_path(category), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+  %span= category.title
+  .btn-group
+    .btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+      = fa_icon 'cog'
+    %ul.dropdown-menu
+      = link_to t('categories.add_subcategory'), new_category_path(parent_id: category.id), class: 'dropdown-item'
+      = link_to t('shared.edit'), edit_category_path(category), class: 'dropdown-item'
+      = link_to t('shared.del'), category_path(category), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
 
   %ul= render category.children

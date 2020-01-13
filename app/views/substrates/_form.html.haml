@@ -9,7 +9,7 @@
       = render 'breadcrumb', titles: [formtitle]
 
     = bootstrap_form_for @substrate, html: { layout: :horizontal } do |f|
-      = render 'main/error', object: @substrate
+      = render 'error', object: @substrate
       =# f.hidden_field :lock_version
 
       .row

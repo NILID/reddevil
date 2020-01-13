@@ -8,7 +8,7 @@
             %li.breadcrumb-item= t 'vacations.settings', name: @member.petrovich_fullname
   .card-body
     = form_for @member, url: update_holidays_member_path, layout: :inline do |f|
-      = render 'main/error', object: @member
+      = render 'error', object: @member
       = f.fields_for :vacations do |vacation|
         = render 'vacation_fields', f: vacation
       .form-group

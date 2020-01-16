@@ -1,5 +1,9 @@
 .card
   = render 'main/header'
   .card-body
-    .text-center.my-5
-      .h3.text-muted= t('substrates.empty')
+    .row
+      - @cards.each do |card|
+        .col-4
+          %figure.figure
+            = image_tag card.doc, class: "figure-img img-fluid rounded"
+            %figcaption.figure-caption= card.title

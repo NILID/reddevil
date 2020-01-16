@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_111115) do
+ActiveRecord::Schema.define(version: 2020_01_15_154235) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2020_01_13_111115) do
     t.index ["slug"], name: "index_albums_on_slug", unique: true
   end
 
+  create_table "cards", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_cards_on_category_id"
+  end
+
   create_table "categories", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "ancestry"
@@ -50,6 +58,9 @@ ActiveRecord::Schema.define(version: 2020_01_13_111115) do
     t.boolean "hidden", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "flag"
+    t.integer "position", default: 0
+    t.string "show_type"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
@@ -460,6 +471,7 @@ ActiveRecord::Schema.define(version: 2020_01_13_111115) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "categories"
   add_foreign_key "categoryships", "categories"
   add_foreign_key "categoryships", "docs"
   add_foreign_key "forecasts", "matches"

@@ -52,17 +52,39 @@ class MainController < ApplicationController
     end
   end
 
-  def infocenter; end
-  def operative;  end
-  def project;    end
-  def problem;    end
-  def security;   end
-  def quality;    end
-  def orders;     end
-  def personal;   end
-  def products;   end
-  def strength;   end
-  def salary;     end
+  def infocenter
+  end
+
+  def operative
+  end
+
+  def project
+    @cards = Card.where(category: 'project')
+  end
+
+  def problem
+  end
+
+  def security
+  end
+
+  def quality
+  end
+
+  def orders
+  end
+
+  def personal
+  end
+
+  def products
+  end
+
+  def strength
+  end
+
+  def salary
+  end
 
   def vac
     @q = Member.shown.ransack(params[:q])

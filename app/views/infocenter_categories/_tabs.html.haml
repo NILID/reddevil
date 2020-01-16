@@ -1,0 +1,18 @@
+%ul.nav.nav-pills#redTab(role="tablist")
+  - @objects.each do |category|
+    %li.nav-item
+      - if category.has_children?
+        %li.nav-item.dropdown
+          %a.nav-link.dropdown-toggle{ aria: { expanded: "false", haspopup: "true" }, data: { toggle: "dropdown" }, href: "#", role: "button"} Оперативное управление
+          .dropdown-menu
+            - category.children.each do |child|
+              - if child.has_children?
+                .dropdown-item.dropdown-submenu
+                  %a.dropdown-item.dropdown-item-toggle{href: "#", data: {toggle: 'dropdown'} }= child.title
+                  .dropdown-menu
+                    - child.children.each do |small_child|
+                      = link_to small_child.title, [:infocenter, small_child], class: 'dropdown-item'
+              - else
+                = link_to child.title, [:infocenter, child], class: 'dropdown-item'
+      - else
+        = link_to category.title, category, class: "nav-link #{params[:id] == category.id.to_s ? 'active bg-success' : nil}", role: 'tab'

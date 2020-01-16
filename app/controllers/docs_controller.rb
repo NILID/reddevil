@@ -6,7 +6,7 @@ class DocsController < ApplicationController
 
   def index
     if params[:by_category]
-      @cat = Category.where(id: params[:by_category]).first
+      @cat = Category.specific.where(id: params[:by_category]).first
       if @cat
         @q = Doc.joins(:categories).where('categories.id' => (@cat.hidden ? @cat.subtree_ids : @cat.subtree.publics.pluck(:id))).ransack(params[:q])
         @docs = @q.result(distinct: true).order(:title)
@@ -22,12 +22,12 @@ class DocsController < ApplicationController
       @nocat = true
     else
       hidden = []
-      Category.all.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
+      Category.specific.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
 
       @q = params[:q] ? Doc.ransack(params[:q]) : Doc.joins(:categories).where('categories.id' => hidden).search(params[:q])
       @docs = @q.result(distinct: true).includes(:categories, :categoryships).order(:title)
     end
-    @categories = Category.arrange(order: :title)
+    @categories = Category.specific.arrange(order: :title)
 
     respond_to do |format|
       format.html
@@ -86,7 +86,7 @@ class DocsController < ApplicationController
   end
 
   def set_categories
-    @categories = ancestry_options(Category.arrange(order: :title)) {|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"}
+    @categories = ancestry_options(Category.specific.arrange(order: :title)) {|i| "#{'- ' * i.depth} #{i.title} #{I18n.t('shared.hidden') if i.hidden? || i.root.hidden?}"}
   end
 
   def doc_params

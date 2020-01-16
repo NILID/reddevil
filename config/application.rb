@@ -18,5 +18,9 @@ module Reddevil
     config.time_zone = 'Moscow'
 
     config.sass.preferred_syntax = :sass
+
+    config.generators do |g|
+      g.scaffold_stylesheet false
+    end
   end
 end

@@ -1,0 +1,45 @@
+- set_meta_tags title: t('shared.calendar')
+
+.row.mb-3
+  .col
+    .text-right
+      = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
+        = fa_icon 'filter', text: t('shared.filter')
+    = render 'members/search_form', url: vac_path, only_select: false
+
+.row.mt-2
+  .col
+    = link_to infocenter_category_path(@object, date: (@current_date - 1.month).strftime("%Y-%m-%d"), q: (params[:q] ? params[:q].permit! : nil)), class: 'btn btn-primary' do
+      = fa_icon(:arrow_left)
+      = rus_month(@current_date-1.month)
+  .col.text-center
+    %h1
+      = rus_month(@current_date)
+      = @current_date.year
+
+  .col.text-right
+    = link_to infocenter_category_path(@object, date: (@current_date + 1.month).strftime("%Y-%m-%d"), q: (params[:q] ? params[:q].permit! : nil)), class: 'btn btn-primary' do
+      = rus_month(@current_date+1.month)
+      = fa_icon(:arrow_right)
+.row
+  .col
+    %table.table.table-sm.table-bordered
+      - days = Time.days_in_month(@current_date.month, @current_date.year)
+      %thead
+        %tr
+          %th= Member.human_attribute_name(:surname)
+          - (1..days).each do |day|
+            - dayname = rus_dayname(@current_date.change(day: day))
+            %th{ class: (%w[Сб Вс].include? dayname) ? 'bg-red-10' : nil }
+              = ((1..9).to_a.include? day) ? raw("&nbsp;#{day}") : day
+              .text-muted.small= dayname
+      %tbody
+        - @members.each do |member|
+          - holidays = member.vacations.where('startdate <= ?', @current_date).or(member.vacations.where('enddate >= ?', @current_date))
+          %tr
+            %td
+              = member.surname
+              - if can? :manage_holidays, member
+                = link_to fa_icon('cog'), manage_holidays_member_path(member), class: 'float-right', title: t('vacations.edit'), data: { toggle: 'tooltip' } 
+            - (1..days).each do |day|
+              %td{class: is_holiday(holidays, @current_date, day) ? 'bg-danger' : nil}

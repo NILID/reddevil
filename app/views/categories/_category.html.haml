@@ -1,5 +1,5 @@
 = content_tag_for(:li, category, class: "#{(category.root? ? 'well' : '') + (category.hidden? ? ' redhide' : '')}") do
-  %span= category.title
+  = category.title
   .btn-group
     .btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
       = fa_icon 'cog'

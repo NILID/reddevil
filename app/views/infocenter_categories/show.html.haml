@@ -1,0 +1,28 @@
+.card
+  = render 'header'
+  .card-body
+    .row.mb-3
+      .col
+        %span.h3.text-muted= @object.title
+        - if can?(:manage, @object) || can?(:new, Card)
+          .btn-group
+            .btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+              = fa_icon 'cog'
+            %ul.dropdown-menu
+              = link_to t('cards.new'), new_infocenter_category_card_path(@object), class: 'dropdown-item'
+              .dropdown-divider
+              = link_to t('shared.edit'), edit_infocenter_category_path(@object), class: 'dropdown-item'
+              = link_to t('shared.del'), @object, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
+
+    .row
+      .col
+        - case @object.show_type
+        - when 'grid'
+          .row.row-cols-1.row-cols-md-4= render @cards
+        - when 'single'
+          - @cards.each do |card|
+            = image_tag url_for(card.doc), class: 'img-fluid'
+        - when 'zoom'
+          = render partial: 'cards/zoom_grid', collection: @cards, as: :card
+        - when 'vacations'
+          = render 'vac'

@@ -64,6 +64,15 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  resources :infocenter_categories, path: :infocenter do
+    resources :cards, except: [:show, :index]
+
+    collection do
+      get :manage
+      post :sort
+    end
+  end
+
   resources :docs
 
   resources :users, only: %i[index show edit update] do
@@ -121,7 +130,7 @@ Rails.application.routes.draw do
   get 'calendar' => 'main#calendar'
   get 'new_calendar' => 'main#new_calendar'
   get 'relax' => 'main#relax'
-  get 'infocenter' => 'main#infocenter', as: :infocenter
+  get 'infocenter' => 'main#infocenter'#, as: :infocenter
   post 'import' => 'main#import'
   get 'nextsong' => 'main#nextsong'
 

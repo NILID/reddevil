@@ -96,3 +96,22 @@ footer {margin-top:50px;}
   cursor: -moz-nesw-resize;
   cursor: nesw-resize;
 }
+
+.card-img-overlay-w100 {
+  height:35px;
+  overflow: hidden;
+
+}
+
+.card-with-cog
+  .btn-group {
+    position: absolute;
+    right: 0;
+    top: 5px;
+  }
+
+
+.card-img-top-fixw {
+  overflow: hidden;
+  height: 200px;
+}

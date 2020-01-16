@@ -2,6 +2,7 @@ ru:
   activerecord:
     models:
       album: альбом
+      card: карточка
       song: песня
       event: событие
       member: сотрудник
@@ -27,6 +28,9 @@ ru:
       album:
         title: Название
         songs: Песни
+      card:
+        title: Название
+        doc: Документ
       event:
         title: Название
         content: Описание

@@ -1,0 +1,16 @@
+- category = infocenter_category
+
+= content_tag_for(:li, category) do
+  = category.title
+  .btn-group
+    .btn.btn-sm.btn-secondary.handle{ type: 'button' }
+      = fa_icon 'arrows-alt'
+    .btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+      = fa_icon 'cog'
+    %ul.dropdown-menu
+      = link_to t('shared.show'), infocenter_category_path(category), class: 'dropdown-item'
+      = link_to t('categories.add_subcategory'), new_infocenter_category_path(parent_id: category.id), class: 'dropdown-item'
+      = link_to t('shared.edit'), edit_infocenter_category_path(category), class: 'dropdown-item'
+      = link_to t('shared.del'), infocenter_category_path(category), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
+
+  %ul= render partial: 'infocenter_category', collection: category.children

@@ -1,0 +1,8 @@
+.card
+  .card-header
+    = t 'categories.title'
+    %span.float-right
+      = link_to t('shared.add'), new_infocenter_category_path, class: 'btn btn-primary btn-sm'
+  .card-body
+    %ol#sortable{ data: { update_url: sort_infocenter_categories_url } }
+      = render partial: 'infocenter_category', collection: @objects

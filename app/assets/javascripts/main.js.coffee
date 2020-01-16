@@ -62,6 +62,11 @@ $ ->
     language: "ru"
     firstDate: 1
 
+  $('#sortable').sortable
+    handle: '.handle'
+    update: ->
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+
   $('#changecolor').colorpicker().on 'colorpickerChange colorpickerCreate', (e) ->
     $('body').css 'background', e.color
 

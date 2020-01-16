@@ -1,0 +1,13 @@
+%nav
+  #nav-tab.nav.nav-tabs{:role => "tablist"}
+    %a#nav-home-tab.nav-item.nav-link.active{"aria-controls" => "nav-home", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-home", :role => "tab"} Home
+    %a#nav-profile-tab.nav-item.nav-link{"aria-controls" => "nav-profile", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-profile", :role => "tab"} Profile
+#nav-tabContent.tab-content
+  #nav-home.tab-pane.fade.show.active{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+.row
+  .col
+    .zoom-photo{ data: { url: image_url('politica.jpg') } }
+      = image_tag 'politica.jpg', class: 'img-fluid'
+  .col
+    .zoom-photo{ data: { url: image_url('audit.jpg') } }
+      = image_tag 'audit.jpg', class: 'img-fluid'

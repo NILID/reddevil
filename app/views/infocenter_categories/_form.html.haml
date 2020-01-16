@@ -1,0 +1,14 @@
+.card
+  .card-header
+    = formtitle
+
+  = bootstrap_form_for @object, layout: :horizontal do |f|
+    .card-body
+      = f.hidden_field :parent_id
+      = f.text_field :title, autofocus: true
+      = f.select :show_type, InfocenterCategory::SHOWTYPES.map { |c| c }, {}, { class: 'selectpicker' }
+
+    .card-footer
+      = f.form_group do
+        = f.primary
+        = link_to t('shared.cancel'), categories_path, class: 'btn btn-secondary'

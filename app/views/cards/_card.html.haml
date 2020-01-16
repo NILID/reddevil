@@ -1,0 +1,23 @@
+.col.mb4
+  .card.h-100.bg-dark.text-white.border-secondary.card-with-cog
+    - if card.doc.attached?
+      - unless card.doc.variable?
+        = link_to image_tag(asset_url('doc.png')),
+          url_for(card.doc),
+          data: { fancybox_type: 'iframe' },
+          class: 'fancybox card-img card-img-top-fixw'
+      - else
+        = link_to image_tag(url_for(card.preview)),
+          url_for(card.doc),
+          class: 'fancybox card-img card-img-top-fixw'
+
+    .card-img-overlay.card-img-overlay-w100.p-0
+      .card-title.p-2.bg-dark
+        %span.h6= card.title
+    - if can? :manage, card
+      .btn-group.position-absolute
+        .btn.btn-sm.dropdown-toggle.text-white{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+          = fa_icon 'cog'
+        %ul.dropdown-menu
+          = link_to t('shared.edit'), edit_infocenter_category_card_path(@object, card), class: 'dropdown-item'
+          = link_to t('shared.del'), [@object, card], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

@@ -38,7 +38,7 @@ class InfocenterCategoriesController < CategoriesController
   end
 
   def infocenter_category_params
-    list_params_allowed = %i[ancestry title parent_id hidden flag position show_type]
+    list_params_allowed = %i[ancestry title parent_id hidden flag position show_type color]
     params.require(:infocenter_category).permit(list_params_allowed)
   end
 end

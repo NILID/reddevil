@@ -1,7 +1,7 @@
 .card-header
   .row
     .col-auto
-      %span.h4 Инфоцентр отделения ОиИТ
+      = link_to t('infocenter.title_full'), infocenter_path, class: 'h4'
       - if can? :manage, InfocenterCategory
         = link_to fa_icon('cog'), manage_infocenter_categories_path, class: 'btn btn-outline-primary btn-sm'
     .col

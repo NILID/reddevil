@@ -3,7 +3,8 @@
     %li.nav-item
       - if category.has_children?
         %li.nav-item.dropdown
-          %a.nav-link.dropdown-toggle{ aria: { expanded: "false", haspopup: "true" }, data: { toggle: "dropdown" }, href: "#", role: "button"} Оперативное управление
+          %a.nav-link.dropdown-toggle{ class: (category.subtree_ids.include? params[:id].to_i) ? 'active' : nil, aria: { expanded: "false", haspopup: "true" }, data: { toggle: "dropdown" }, href: "#", role: "button"}
+            = category.title
           .dropdown-menu
             - category.children.each do |child|
               - if child.has_children?
@@ -15,4 +16,7 @@
               - else
                 = link_to child.title, [:infocenter, child], class: 'dropdown-item'
       - else
-        = link_to category.title, category, class: "nav-link #{params[:id] == category.id.to_s ? 'active bg-success' : nil}", role: 'tab'
+        = link_to category.title,
+          category,
+          class: "nav-link #{params[:id] == category.id.to_s ? 'active' : nil}",
+          role: 'tab'

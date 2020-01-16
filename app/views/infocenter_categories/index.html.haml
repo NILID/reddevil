@@ -1,5 +1,27 @@
 .card
-  = render 'header'
-  .card-body
-    .zoom-photo{ data: { url: image_url('tree_20.12.2019.png') } }
-      = image_tag 'tree_20.12.2019.png', class: 'img-fluid'
+  .card-body.text-center
+    .h1.text-dark.pb-4= t('infocenter.title_full')
+
+    - @objects.each do |category|
+      .row.text-white
+        .col.my-2.mx-2.shadow-sm.rounded{ style: "background-color: #{category.color};" }
+          - if category.has_children?
+            .h2.py-3= category.title
+            .row
+              - category.children.each do |child|
+                .col.rounded.bg-success.mx-2.py-2.mb-4.shadow-sm
+                  - if child.has_children?
+                    .row
+                      .col
+                        .h4.py-2= child.title
+                        %ul.list-group.list-group-flush
+                          - child.children.each do |small_child|
+                            = link_to small_child.title,
+                              [:infocenter, small_child],
+                              class: 'text-white list-group-item bg-transparent py-2'
+                  - else
+                    .row.align-items-center.align-middle.align-center
+                      .col
+                        .h4.py-2= link_to child.title, [:infocenter, child], class: 'text-white'
+          - else
+            .h2.py-3= link_to category.title, category, class: 'text-white', role: 'tab'

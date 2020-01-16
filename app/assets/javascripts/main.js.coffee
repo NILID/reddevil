@@ -67,6 +67,8 @@ $ ->
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
+  $('#simple-changecolor').colorpicker()
+
   $('#changecolor').colorpicker().on 'colorpickerChange colorpickerCreate', (e) ->
     $('body').css 'background', e.color
 

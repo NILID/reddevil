@@ -8,6 +8,10 @@
       = f.text_field :title, autofocus: true
       = f.select :show_type, InfocenterCategory::SHOWTYPES.map { |c| c }, {}, { class: 'selectpicker' }
 
+      #simple-changecolor.colorpicker-component
+        = f.text_field :color,
+          prepend: content_tag(:span, content_tag(:i), class: 'colorpicker-input-addon')
+
     .card-footer
       = f.form_group do
         = f.primary

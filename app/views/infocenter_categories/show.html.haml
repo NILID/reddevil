@@ -18,7 +18,7 @@
       .col
         - case @object.show_type
         - when 'grid'
-          .row.row-cols-1.row-cols-md-4= render @cards
+          .row.row-cols-md-3.row-cols-sm-2.row-cols-1= render @cards
         - when 'single'
           - @cards.each do |card|
             = image_tag url_for(card.doc), class: 'img-fluid'

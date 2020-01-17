@@ -4,7 +4,6 @@
       - unless card.doc.variable?
         = link_to image_tag(asset_url('doc.png')),
           url_for(card.doc),
-          data: { fancybox_type: 'iframe' },
           class: 'fancybox card-img card-img-top-fixw'
       - else
         = link_to image_tag(url_for(card.preview)),

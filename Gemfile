@@ -128,7 +128,6 @@ end
 
 gem 'tooltipster-rails'
 gem 'jcrop-rails-v2'
-gem 'fancybox2-rails'
 gem 'readmorejs-rails', github: 'azavalla/readmorejs-rails'
 
 gem 'jquery-rails'

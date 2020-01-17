@@ -32,7 +32,6 @@
 //= require bootstrap-datetimepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
-//= require fancybox
 //= require Chart.bundle
 //= require chartkick
 //= require tooltipster.bundle

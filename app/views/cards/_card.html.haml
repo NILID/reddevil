@@ -11,12 +11,12 @@
           url_for(card.doc),
           class: 'fancybox card-img card-img-top-fixw'
 
-    - if can? :manage, card
-      .card-title.p-2.bg-dark
-        .row
-          .col-8
-            %span.h6.float-left
-              = card.title
+    .card-title.p-2.bg-dark
+      .row
+        .col-8
+          %span.h6.float-left
+            = card.title
+        - if can? :manage, card
           .col.text-right
             %a.dropdown-toggle.text-white{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
               = fa_icon 'cog'

@@ -14,7 +14,10 @@ $ ->
       delay: 10
       interactive: true
 
-  $("a.fancybox").fancybox()
+  $("a.fancybox").fancybox
+    autoSize: 'false'
+    width: '100%'
+    height: '100%'
 
   $('.dropdown-toggle').dropdown()
 

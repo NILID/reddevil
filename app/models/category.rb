@@ -8,4 +8,8 @@ class Category < ActiveRecord::Base
 
   scope :publics,  -> {where(hidden: false)}
   scope :specific, -> {where(flag: nil)}
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end

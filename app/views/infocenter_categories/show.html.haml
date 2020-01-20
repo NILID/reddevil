@@ -18,7 +18,7 @@
       .col
         - case @object.show_type
         - when 'grid'
-          .row.row-cols-md-3.row-cols-sm-2.row-cols-1.justify-content-center
+          .row.row-cols-xl-5.row-cols-lg-4.row-cols-md-3.row-cols-sm-2.row-cols-1.justify-content-center
             = render @cards
         - when 'single'
           - @cards.each do |card|

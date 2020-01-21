@@ -3,7 +3,7 @@
 
   - purchase.columnships.each do |c|
     %td{ class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil }
-      = render 'purchase_formblock', columnship: c
+      = render 'purchases/purchase_formblock', columnship: c
   %td
     .btn-group
       = link_to edit_table_purchase_path(@table, purchase), class: 'btn btn-secondary btn-sm', title: t('shared.edit'), data: { toggle: 'tooltip' } do

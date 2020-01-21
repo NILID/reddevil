@@ -32,7 +32,7 @@
     .row
       .col
         .float-left
-          = link_to new_form_table_purchase_path(@table, Purchase), method: :post, remote: true, disable_with: t('shared.waiting'), class: 'btn btn-primary btn-sm' do
+          = link_to new_form_table_purchase_path(@table), method: :post, remote: true, disable_with: t('shared.waiting'), class: 'btn btn-primary btn-sm' do
             = fa_icon 'plus', text: t('purchases.add_new')
         - if @last_redaction
           .float-right.text-right

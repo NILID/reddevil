@@ -1,19 +1,12 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource :table
-  load_and_authorize_resource :purchase, through: :table, except: %i[new_form index]
+  load_and_authorize_resource :purchase, through: :table, except: %i[new_form]
 
   # TODO
   # Why not working?
   # after_action :find_last_redaction, only: [:index, :update]
 
-  def index
-    @q = @table.purchases.ransack(params[:q])
-    @purchases = @q.result.includes(columnships: %i[column])
-    @last_redaction = @purchases.order('updated_at desc').first
-  end
-
-  def show; end
   def new;  end
   def edit; end
 
@@ -45,7 +38,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to [@table, Purchase], notice: t('flash.was_created', item: Purchase.model_name.human) }
+        format.html { redirect_to @table, notice: t('flash.was_created', item: Purchase.model_name.human) }
         format.json { render json: @purchase, status: :created, location: @purchase }
       else
         format.html { render action: 'new' }
@@ -57,7 +50,7 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update_attributes(purchase_params)
-        format.html { redirect_to [@table, Purchase], notice: t('flash.was_updated', item: Purchase.model_name.human) }
+        format.html { redirect_to @table, notice: t('flash.was_updated', item: Purchase.model_name.human) }
         format.json { respond_with_bip(@purchase) }
         format.js
       else
@@ -72,7 +65,7 @@ class PurchasesController < ApplicationController
     @purchase.destroy
 
     respond_to do |format|
-      format.html { redirect_to [@table, Purchase], notice: t('flash.was_destroyed', item: Purchase.model_name.human) }
+      format.html { redirect_to @table, notice: t('flash.was_destroyed', item: Purchase.model_name.human) }
       format.json { head :no_content }
     end
   end

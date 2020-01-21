@@ -2,14 +2,18 @@ class TablesController < ApplicationController
   load_and_authorize_resource
 
   def index; end
-  def show;  end
+  def show
+    @q = @table.purchases.ransack(params[:q])
+    @purchases = @q.result.includes(columnships: %i[column])
+    @last_redaction = @purchases.order('updated_at desc').first
+  end
   def new;   end
   def edit;  end
 
   def create
     respond_to do |format|
       if @table.save
-        format.html { redirect_to [@table, Purchase], notice: t('flash.was_created', item: Table.model_name.human) }
+        format.html { redirect_to @table, notice: t('flash.was_created', item: Table.model_name.human) }
         format.json { render json: @table, status: :created, location: @table }
       else
         format.html { render action: 'new' }
@@ -21,7 +25,7 @@ class TablesController < ApplicationController
   def update
     respond_to do |format|
       if @table.update_attributes(table_params)
-        format.html { redirect_to [@table, Purchase], notice: t('flash.was_updated', item: Table.model_name.human) }
+        format.html { redirect_to @table, notice: t('flash.was_updated', item: Table.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

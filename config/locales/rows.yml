@@ -1,6 +1,7 @@
 ru:
   rows:
     add_new: Добавить строку
+    last_editing_html: 'Последняя редакция: %{user}'
   columns:
     add: Добавить поле
     remove: Удалить поле

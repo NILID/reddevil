@@ -1,0 +1,12 @@
+- if row[attr].present?
+  - object_property = if (type == 'datetime')
+    - short_date row[attr]
+  - elsif type == 'price'
+    - number_to_currency(row[attr], precision: 2, delimiter: ' ')
+  - else
+    - row[attr]
+- else
+  - object_property = content_tag(:div, fa_icon('plus'), class: 'btn btn-secondary btn-sm row-actions')
+- if current_user && (current_user.role? :admin)
+  = link_to object_property, get_miniform_table_row_path(@table, row, attr: attr), data: {target: "#dialog_#{row.id}_#{attr}", toggle: 'modal'}, class: 'modal-link', remote: true
+  .modal.fade(tabIndex='-1' role='dialog' id="dialog_#{row.id}_#{attr}")

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :tables do
-    resources :purchases, except: [:index, :show] do
+    resources :rows, except: [:index, :show] do
       member do
         get :get_form
         get :get_miniform

@@ -1,8 +1,8 @@
 class Table < ActiveRecord::Base
   has_many :columns, inverse_of: :table
-  has_many :purchases, dependent: :destroy
+  has_many :rows, dependent: :destroy
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, :category, presence: true, uniqueness: true
 
   TYPES = %w[string datetime integer price text references].freeze
 

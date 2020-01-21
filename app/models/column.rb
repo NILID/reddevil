@@ -1,6 +1,6 @@
 class Column < ActiveRecord::Base
   belongs_to :table
-  belongs_to :purchase, optional: true
+  belongs_to :row, optional: true
 
   after_create :build_columnships
 
@@ -9,7 +9,7 @@ class Column < ActiveRecord::Base
   private
 
     def build_columnships
-      self.table.purchases.each do |p|
+      self.table.rows.each do |p|
         p.columnships.create(column_id: self.id)
       end
     end

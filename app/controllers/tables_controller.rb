@@ -3,9 +3,9 @@ class TablesController < ApplicationController
 
   def index; end
   def show
-    @q = @table.purchases.ransack(params[:q])
-    @purchases = @q.result.includes(columnships: %i[column])
-    @last_redaction = @purchases.order('updated_at desc').first
+    @q = @table.rows.ransack(params[:q])
+    @rows = @q.result.includes(columnships: %i[column])
+    @last_redaction = @rows.order('updated_at desc').first
   end
   def new;   end
   def edit;  end

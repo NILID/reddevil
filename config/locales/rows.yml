@@ -1,0 +1,27 @@
+ru:
+  rows:
+    add_new: Добавить строку
+  columns:
+    add: Добавить поле
+    remove: Удалить поле
+  types:
+    title: Типы
+  tables:
+    title: Таблицы
+    editing: Редактирование таблицы
+    creating: Создание таблицы
+  activerecord:
+    models:
+      dataset: файл
+      row: строка
+      table: таблица
+      column: поле
+    attributes:
+      column:
+        name: Название
+        column_type: Тип
+      row:
+        user_id: исполнитель
+      table:
+        title: Название
+        file: Файл

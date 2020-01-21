@@ -93,11 +93,11 @@ ActiveRecord::Schema.define(version: 2020_01_20_164833) do
 
   create_table "columnships", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "column_id"
-    t.integer "purchase_id"
+    t.integer "row_id"
     t.text "data"
     t.text "desc"
     t.index ["column_id"], name: "index_columnships_on_column_id"
-    t.index ["purchase_id"], name: "index_columnships_on_purchase_id"
+    t.index ["row_id"], name: "index_columnships_on_row_id"
   end
 
   create_table "datasets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -277,15 +277,6 @@ ActiveRecord::Schema.define(version: 2020_01_20_164833) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "purchases", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "table_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["table_id"], name: "index_purchases_on_table_id"
-    t.index ["user_id"], name: "index_purchases_on_user_id"
-  end
-
   create_table "results", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "total", default: 0
     t.integer "user_id"
@@ -333,6 +324,15 @@ ActiveRecord::Schema.define(version: 2020_01_20_164833) do
     t.boolean "draw", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "rows", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "table_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["table_id"], name: "index_rows_on_table_id"
+    t.index ["user_id"], name: "index_rows_on_user_id"
   end
 
   create_table "songs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

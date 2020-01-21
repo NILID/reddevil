@@ -1,0 +1,7 @@
+$('#row_<%=@row.id%>').replaceWith("<%=j render @row, row_counter: @table.rows.where('id < ?', @row.id).pluck(:id).count%>");
+$('#last-row-user').html("<%=j @row.user.profile.surname %>");
+$('#last-row-date').html("<%=j deadline(@row.updated_at) %>");
+$('.modal').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+$('#row_<%=@row.id%>').effect('highlight', {}, 1000);

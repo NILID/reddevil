@@ -2,9 +2,9 @@
   .card-header= formtitle
 
   .card-body
-    = bootstrap_form_for [@table, @purchase], layout: :horizontal do |f|
+    = bootstrap_form_for [@table, @row], layout: :horizontal do |f|
       - if params[:action] == 'edit'
-        = f.select :user_id, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, @purchase.user_id)
+        = f.select :user_id, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, @row.user_id)
         %hr/
 
       = f.fields_for :columnships do |c|
@@ -24,4 +24,4 @@
 
       = f.form_group do
         = f.primary
-        = link_to t('shared.cancel'), [@table, Purchase], class: 'btn btn-secondary'
+        = link_to t('shared.cancel'), [@table, Row], class: 'btn btn-secondary'

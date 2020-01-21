@@ -1,6 +1,6 @@
 .modal-dialog(role='document')
   .modal-content
-    = bootstrap_form_for [table, purchase], remote: true, layout: :horizontal do |f|
+    = bootstrap_form_for [table, row], remote: true, layout: :horizontal do |f|
       .modal-body= f.text_field attr
       .modal-footer
         %button.btn.btn-secondary(data-dismiss='modal')= t 'shared.close'

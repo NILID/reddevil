@@ -1,0 +1,1 @@
+$('table').append("<%=j render(partial: 'rows/row', locals: {row: @row, row_counter: @table.rows.pluck(:id).count-1})%>");

@@ -9,5 +9,5 @@
     - @tables.each do |table|
       .well
         %h2
-          = link_to table.title, [table, Purchase]
-          %small.text-muted= plural(table.purchases.pluck(:id).count, 'purchase')
+          = link_to table.title, table
+          %small.text-muted= plural(table.rows.pluck(:id).count, 'row')

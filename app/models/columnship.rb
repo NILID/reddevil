@@ -1,4 +1,4 @@
 class Columnship < ActiveRecord::Base
   belongs_to :column
-  belongs_to :purchase
+  belongs_to :row
 end

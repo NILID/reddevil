@@ -307,9 +307,6 @@ ru:
     till_1: остался
     till_2: осталось
     till_10: осталось
-    year_1: год
-    year_2: года
-    year_10: лет
     error_1: ошибка
     error_2: ошибки
     error_10: ошибок
@@ -331,9 +328,9 @@ ru:
     table_1: талица
     table_2: таблицы
     table_10: таблиц
-    purchase_1: закупка
-    purchase_2: закупки
-    purchase_10: закупок
+    row_1: строка
+    row_2: строки
+    row_10: строк
   will_paginate:
     next_label: Следующее
     previous_label: Предыдущее

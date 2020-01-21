@@ -1,0 +1,13 @@
+%p
+  %b Name:
+  = @column.name
+%p
+  %b Type:
+  = @column.column_type
+%p
+  %b Table:
+  = @column.table
+
+= link_to 'Edit', edit_table_column_path(@table, @column)
+\|
+= link_to 'Back', [@table, Column]

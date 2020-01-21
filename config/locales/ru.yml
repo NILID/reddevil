@@ -328,6 +328,12 @@ ru:
     member_1: сотрудник
     member_2: сотрудника
     member_10: сотрудников
+    table_1: талица
+    table_2: таблицы
+    table_10: таблиц
+    purchase_1: закупка
+    purchase_2: закупки
+    purchase_10: закупок
   will_paginate:
     next_label: Следующее
     previous_label: Предыдущее

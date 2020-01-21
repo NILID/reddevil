@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   before_create :set_role
   after_create :create_profile
 
+  has_many :purchases
   has_many :events
   has_many :forecasts
   has_many :results

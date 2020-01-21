@@ -1,0 +1,40 @@
+.card
+  .card-header
+    .h3.float-left
+      = @table.title
+    - if can? :manage, @table
+      .float-right
+        %small
+          = link_to t('shared.edit'), edit_table_path(@table), class: 'btn btn-secondary btn-sm'
+          = link_to t('shared.del'), @table, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+    .clearfix
+  .card-body
+    .row
+      .col-md-5.col-sm-6.col-lg-4
+        =# bootstrap_form_for(@q, url: table_purchases_path(@table), method: :get) do |f|
+        =# f.select :sorts,
+          options_for_select({ t('purchases.sort_by.title') => :title, t('purchases.sort_by.user') => :user_id, t('purchases.sort_by.price') => :price, t('purchases.sort_by.doc') => :doc, t('purchases.sort_by.provider') => :provider}.collect { |c| c }, params[:q] ? params[:q][:sorts] : []),
+          hide_label: true,
+          prepend: t('shared.sort_by'),
+          append: (f.primary 'OK')
+
+    .row.purchases-table
+      .col
+        %table.table.table-bordered.table-hover.table-sm.table-striped
+          %thead
+            %tr
+              %th(scope='col') №
+              - @table.columns.each do |column|
+                %th(scope='col')= column.name
+              %th(scope='col')
+
+          %tbody= render @purchases
+    .row
+      .col
+        .float-left
+          = link_to new_form_table_purchase_path(@table, Purchase), method: :post, remote: true, disable_with: t('shared.waiting'), class: 'btn btn-primary btn-sm' do
+            = fa_icon 'plus', text: t('purchases.add_new')
+        - if @last_redaction
+          .float-right.text-right
+            %p= t('purchases.last_editing_html', user: content_tag(:strong, @last_redaction.user.show_name(:surname), id: 'last-purchase-user' ))
+            %p#last-purchase-date= deadline(@last_redaction.user.updated_at)

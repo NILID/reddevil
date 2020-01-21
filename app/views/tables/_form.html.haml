@@ -1,0 +1,20 @@
+.card
+  .card-header= formtitle
+
+  .card-body
+    = bootstrap_form_for @table, label: :horizontal do |f|
+      = render 'error', object: @table
+
+      = f.text_field :title
+
+      = f.text_field :category
+
+      #columns
+        = f.fields_for :columns do |column|
+          = render 'column_fields', f: column
+        .links
+          = link_to_add_association t('columns.add'), f, :columns
+
+      = f.form_group do
+        = f.primary
+        = link_to t('shared.cancel'), :back, class: 'btn btn-secondary'

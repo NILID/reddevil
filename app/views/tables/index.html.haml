@@ -1,0 +1,13 @@
+.card
+  .card-header
+    %h3
+      = t 'tables.title'
+      - if can? :new, Table
+        .float-right
+          %small= link_to t('shared.add'), new_table_path, class: 'btn btn-sm btn-primary'
+  .card-body
+    - @tables.each do |table|
+      .well
+        %h2
+          = link_to table.title, [table, Purchase]
+          %small.text-muted= plural(table.purchases.pluck(:id).count, 'purchase')

@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+
+  resources :tables do
+    resources :columns
+    resources :purchases do
+      member do
+        get :get_form
+        get :get_miniform
+        post :new_form
+      end
+    end
+  end
+
   resources :substrates do
     resources :subfiles, only: %i[new create destroy]
     member do

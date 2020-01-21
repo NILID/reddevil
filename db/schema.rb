@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_113907) do
+ActiveRecord::Schema.define(version: 2020_01_20_164833) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2020_01_16_113907) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "activities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id"
+    t.date "deadline"
+    t.string "flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "fk_rails_7e11bb717f"
   end
 
   create_table "albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,6 +80,24 @@ ActiveRecord::Schema.define(version: 2020_01_16_113907) do
     t.integer "category_id"
     t.index ["category_id"], name: "index_categoryships_on_category_id"
     t.index ["doc_id"], name: "index_categoryships_on_doc_id"
+  end
+
+  create_table "columns", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "column_type"
+    t.integer "table_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["table_id"], name: "index_columns_on_table_id"
+  end
+
+  create_table "columnships", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "column_id"
+    t.integer "purchase_id"
+    t.text "data"
+    t.text "desc"
+    t.index ["column_id"], name: "index_columnships_on_column_id"
+    t.index ["purchase_id"], name: "index_columnships_on_purchase_id"
   end
 
   create_table "datasets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -249,6 +277,15 @@ ActiveRecord::Schema.define(version: 2020_01_16_113907) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "purchases", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "table_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["table_id"], name: "index_purchases_on_table_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
   create_table "results", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "total", default: 0
     t.integer "user_id"
@@ -376,6 +413,13 @@ ActiveRecord::Schema.define(version: 2020_01_16_113907) do
     t.index ["user_id"], name: "index_substrates_users_on_user_id"
   end
 
+  create_table "tables", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -472,6 +516,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_113907) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "users"
   add_foreign_key "cards", "categories"
   add_foreign_key "categoryships", "categories"
   add_foreign_key "categoryships", "docs"

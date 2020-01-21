@@ -1,0 +1,10 @@
+- if columnship.data?
+  - object_property = if (columnship.column.column_type == 'datetime')
+    - short_date columnship.data.to_datetime
+  - elsif columnship.column.column_type == 'price'
+    - number_to_currency(columnship.data, precision: 2, delimiter: ' ')
+  - else
+    - columnship.data
+- else
+  - object_property = content_tag(:span, 'пусто', class: 'text-muted')
+= object_property

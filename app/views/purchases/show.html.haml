@@ -1,0 +1,10 @@
+- model_class = Purchase
+%p
+  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %br
+  = @purchase.user_id
+
+.form-group
+  = link_to t('.back', :default => t("helpers.links.back")), [@table, Purchase], class: 'btn btn-secondary'
+  = link_to t('shared.edit'), edit_table_purchase_path(@table, @purchase), class: 'btn btn-secondary'
+  = link_to t('shared.del'), [@table, @purchase], method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

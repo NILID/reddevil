@@ -1,0 +1,33 @@
+ru:
+  purchases:
+    add_new: Добавить закупку
+    sort_by:
+      title: наименованию
+      user: исполнителю
+      price: стоимости
+      doc: теме/счету
+      provider: поставщику
+  columns:
+    add: Добавить поле
+    remove: Удалить поле
+  types:
+    title: Типы
+  tables:
+    title: Периоды закупок
+    editing: Редактирование периода
+    creating: Создание периода
+  activerecord:
+    models:
+      dataset: файл
+      purchase: закупка
+      table: период
+      column: поле
+    attributes:
+      column:
+        name: Название
+        column_type: Тип
+      purchase:
+        user_id: исполнитель
+      table:
+        title: Название
+        file: Файл

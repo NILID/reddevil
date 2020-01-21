@@ -1,0 +1,5 @@
+= bootstrap_form_for [@table, @column], layout: :horizontal do |f|
+  = f.text_field :name
+  = f.select(:column_type, Table::TYPES, { include_blank: t('categories.select_category') } )
+  = f.form_group do
+    = f.primary

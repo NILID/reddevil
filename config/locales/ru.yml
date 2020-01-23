@@ -331,6 +331,9 @@ ru:
     row_1: строка
     row_2: строки
     row_10: строк
+    year_1: год
+    year_2: года
+    year_10: лет
   will_paginate:
     next_label: Следующее
     previous_label: Предыдущее

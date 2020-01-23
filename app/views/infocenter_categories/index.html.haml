@@ -2,7 +2,12 @@
 
 .card
   .card-body.text-center
-    .h1.text-dark.pb-4= t('infocenter.title_full')
+    .row
+      .col
+        .h1.text-dark.pb-4
+          = t('infocenter.title_full')
+          - if can? :manage, InfocenterCategory
+            .float-right= link_to fa_icon('cog'), manage_infocenter_categories_path, class: 'btn btn-outline-primary'
 
     - @objects.each do |category|
       .row.text-white

@@ -4,7 +4,7 @@ class Table < ActiveRecord::Base
 
   validates :title, :category, presence: true, uniqueness: true
 
-  TYPES = %w[string datetime integer price text one_reference many_references].freeze
+  TYPES = %w[string datetime integer price text one_reference many_references boolean].freeze
 
   accepts_nested_attributes_for :columns, allow_destroy: true, reject_if: :all_blank
 

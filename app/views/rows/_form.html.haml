@@ -20,12 +20,14 @@
         - when 'string'
           = c.text_field :data, label: c.object.column.name
         - when 'one_reference'
-          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data)
+          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }
         - when 'many_references'
-          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), {}, { multiple: true }
+          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }, { multiple: true, include_blank: t('shared.select') }
+        - when 'boolean'
+          = c.select :data, [true, false], { include_blank: t('shared.select') }
         - else
           = c.text_area :data, label: c.object.column.name
 
       = f.form_group do
         = f.primary
-        = link_to t('shared.cancel'), [@table, Row], class: 'btn btn-secondary'
+        = link_to t('shared.cancel'), @table, class: 'btn btn-secondary'

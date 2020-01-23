@@ -83,9 +83,9 @@
             = t 'vacations.index'
           .card-body
             .row
-              .col-2.col-md-3
+              .col-3.col-lg-2
                 = image_tag 'umbrella.png', class: 'img-fluid'
-              .col-10.col-md-9
+              .col-9.col-lg-10
                 - @vacations.each do |v|
                   .mb-2
                     = v.member.fullname
@@ -96,9 +96,9 @@
             = t 'vacations.soon'
           .card-body
             .row
-              .col-2.col-md-3
+              .col-3.col-lg-2
                 = image_tag 'chemodan.png', class: 'img-fluid'
-              .col-10.col-md-9
+              .col-9.col-lg-10
                 - @vacations_soon.each do |v|
                   .mb-2
                     = v.member.fullname

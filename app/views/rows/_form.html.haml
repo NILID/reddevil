@@ -19,6 +19,10 @@
             class: 'datepicker'
         - when 'string'
           = c.text_field :data, label: c.object.column.name
+        - when 'one_reference'
+          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data)
+        - when 'many_references'
+          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), {}, { multiple: true }
         - else
           = c.text_area :data, label: c.object.column.name
 

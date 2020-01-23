@@ -3,6 +3,10 @@
     - short_date columnship.data.to_datetime
   - elsif columnship.column.column_type == 'price'
     - number_to_currency(columnship.data, precision: 2, delimiter: ' ')
+  - elsif columnship.column.column_type == 'one_reference'
+    - User.where(id: columnship.data).first.show_name(:short)
+  - elsif columnship.column.column_type == 'many_references'
+    - User.where(id: columnship.data).map { |u| u.show_name(:short) }
   - else
     - columnship.data
 - else

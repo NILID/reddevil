@@ -73,7 +73,7 @@ class RowsController < ApplicationController
   private
     def row_params
       list_params_allowed = [ :user_id,
-                              { columnships_attributes: %i[id column_id row_id data desc _destroy] }
+                              { columnships_attributes: [:id, :column_id, :row_id, :data, :desc, :_destroy, :data => []] }
                             ]
 
       params.require(:row).permit(list_params_allowed)

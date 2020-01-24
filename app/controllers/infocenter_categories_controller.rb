@@ -12,9 +12,12 @@ class InfocenterCategoriesController < CategoriesController
     else
       @cards = @object.cards.includes(doc_attachment: [:blob])
     end
+    @tables = @object.tables.includes(rows: [columnships: [:column]])
   end
 
   def manage; end
+
+  def add_table; end
 
   def sort
     params[:infocenter_category].each_with_index do |id, index|

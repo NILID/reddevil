@@ -1,0 +1,13 @@
+.card
+  .card-header
+    Add table
+
+  = bootstrap_form_for @object, layout: :horizontal do |f|
+    .card-body
+      = f.select :table_ids,
+        Table.all.map { |t| [t.title, t.id] }, { include_blank: t('shared.select') }, { class: 'selectpicker', multiple: true }
+
+    .card-footer
+      = f.form_group do
+        = f.primary t('shared.save')
+        = link_to t('shared.cancel'), categories_path, class: 'btn btn-secondary'

@@ -43,7 +43,9 @@ Rails.application.routes.draw do
       collection do
         get :list
       end
-      member {get :download}
+
+      member { get :download }
+
       resources :matches, only: %i[destroy] do
         member do
           get :get_results
@@ -81,6 +83,10 @@ Rails.application.routes.draw do
     collection do
       get :manage
       post :sort
+    end
+
+    member do
+      get :add_table
     end
   end
 

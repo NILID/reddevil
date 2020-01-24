@@ -2,6 +2,8 @@ ru:
   rows:
     add_new: Добавить строку
     last_editing_html: 'Последняя редакция: %{user}'
+    creating: Создание строки
+    editing: Редактирование строки
   columns:
     add: Добавить столбец
     remove: Удалить столбец

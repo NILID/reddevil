@@ -38,7 +38,9 @@ ru:
         name: Название
         column_type: Тип
       row:
-        user_id: исполнитель
+        user_id: Исполнитель
+      columnship:
+        data: Данные
       table:
         title: Название
         tableable: Привязка
@@ -96,6 +98,8 @@ ru:
       category:
         title: Название
         hidden: Архивное
+        show_type: Тип отображение
+        color: Цвет
       doc:
         title: Название
         desc: Описание

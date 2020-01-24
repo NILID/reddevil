@@ -1,33 +1,32 @@
-.card
+= bootstrap_form_for [@table, @row], layout: :horizontal, html: { class: 'card' } do |f|
   .card-header= formtitle
 
   .card-body
-    = bootstrap_form_for [@table, @row], layout: :horizontal do |f|
-      - if params[:action] == 'edit'
-        = f.select :user_id, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, @row.user_id)
-        %hr/
+    - if params[:action] == 'edit'
+      = f.select :user_id, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, @row.user_id)
+      %hr/
 
-      = f.fields_for :columnships do |c|
-        - case c.object.column.column_type
-        - when 'integer'
-          = c.number_field :data, label: c.object.column.name, min: 0
-        - when 'price'
-          = c.number_field :data, label: c.object.column.name, step: 0.01, min: 0
-        - when 'datetime'
-          = c.text_field :data, value: (c.object.data.to_datetime.strftime('%d.%m.%Y') if c.object.data.present?),
-            label: c.object.column.name,
-            class: 'datepicker'
-        - when 'string'
-          = c.text_field :data, label: c.object.column.name
-        - when 'one_reference'
-          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }
-        - when 'many_references'
-          = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }, { multiple: true, include_blank: t('shared.select') }
-        - when 'boolean'
-          = c.select :data, [true, false], { include_blank: t('shared.select') }
-        - else
-          = c.text_area :data, label: c.object.column.name
+    = f.fields_for :columnships do |c|
+      - case c.object.column.column_type
+      - when 'integer'
+        = c.number_field :data, label: c.object.column.name, min: 0
+      - when 'price'
+        = c.number_field :data, label: c.object.column.name, step: 0.01, min: 0
+      - when 'datetime'
+        = c.text_field :data, value: (c.object.data.to_datetime.strftime('%d.%m.%Y') if c.object.data.present?),
+          label: c.object.column.name,
+          class: 'datepicker'
+      - when 'string'
+        = c.text_field :data, label: c.object.column.name
+      - when 'one_reference'
+        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }
+      - when 'many_references'
+        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }, { multiple: true }
+      - when 'boolean'
+        = c.select :data, [true, false], { include_blank: t('shared.select') }
+      - else
+        = c.text_area :data, label: c.object.column.name
 
-      = f.form_group do
-        = f.primary
-        = link_to t('shared.cancel'), @table, class: 'btn btn-secondary'
+  .card-footer
+    = f.primary t('shared.save')
+    = link_to t('shared.cancel'), @table, class: 'btn btn-secondary'

@@ -20,7 +20,7 @@
             = plural(table.rows.pluck(:id).count, 'row')
           %td
             - if table.tableable
-              = link_to table.tableable.title, table.tableable
+              = link_to table.tableable.title,
+                (table.tableable_type == 'Category') ? infocenter_category_path(table.tableable) : table.tableable
             - else
               %span.text-muted= t 'shared.empty'
-

@@ -12,6 +12,7 @@
               = fa_icon 'cog'
             %ul.dropdown-menu
               = link_to t('cards.new'), new_infocenter_category_card_path(@object), class: 'dropdown-item'
+              = link_to 'add_table', add_table_infocenter_category_path(@object), class: 'dropdown-item'
               .dropdown-divider
               = link_to t('shared.edit'), edit_infocenter_category_path(@object), class: 'dropdown-item'
               = link_to t('shared.del'), @object, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
@@ -32,4 +33,6 @@
 
     .row
       .col
-        = render @object.tables
+        - @tables.each do |table|
+          .my-5
+            = render table, rows: table.rows

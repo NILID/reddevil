@@ -17,6 +17,7 @@
               %th(scope='col') №
               - table.columns.each do |column|
                 %th(scope='col')= column.name
-              %th(scope='col')
+              - if current_user.role? :admin
+                %th(scope='col')
 
           %tbody= render rows, table: table

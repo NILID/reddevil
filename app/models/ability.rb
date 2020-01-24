@@ -35,7 +35,7 @@ class Ability
 
     if (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :rebuild, Result
-      cannot %i[manage read], [Room, Substrate]
+      cannot %i[manage read], [Room, Substrate, Table]
       can %i[new create], Note
     end
 

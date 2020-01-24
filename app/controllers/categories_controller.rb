@@ -61,7 +61,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    list_params_allowed = %i[ancestry title parent_id hidden flag position show_type color table_ids]
+    list_params_allowed = [:ancestry, :title, :parent_id, :hidden, :flag, :position, :show_type, :color, table_ids: [] ]
     params.require(@object.class.name.underscore.to_sym).permit(list_params_allowed)
   end
 end

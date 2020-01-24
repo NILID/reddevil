@@ -1,0 +1,21 @@
+.col.mb-4
+  .card.h-100.bg-dark.text-white.border-secondary
+    = link_to image_tag(asset_url('table.png')),
+      '#',
+      class: 'fancybox card-img card-img-top-fixw',
+      data: { src: '#' + dom_id(table), width: '100%' }
+    .hidden{ id: dom_id(table) }
+      = render table, rows: table.rows
+
+    .card-title.p-2.bg-dark
+      .row
+        .col-8
+          %span.h6.float-left
+            = table.title
+        - if can? :manage, table
+          .col.text-right
+            %a.dropdown-toggle.text-white{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+              = fa_icon 'cog'
+            %ul.dropdown-menu
+              = link_to t('shared.edit'), edit_table_path(table), class: 'dropdown-item'
+              = link_to t('shared.del'), table, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

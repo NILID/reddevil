@@ -100,14 +100,17 @@ footer {margin-top:50px;}
 .card-img-overlay-w100 {
   height:35px;
   overflow: hidden;
-
 }
 
 .card-img-top-fixw {
   overflow: hidden;
   height: 200px;
 
-  img {
+  img, table {
     width: 100%;
   }
+}
+
+.hidden {
+  display: none;
 }

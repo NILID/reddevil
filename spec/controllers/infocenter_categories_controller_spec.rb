@@ -6,7 +6,7 @@ RSpec.describe InfocenterCategoriesController, type: :controller do
   describe 'admin should' do
     login_user(:admin)
 
-    it 'returns index' do
+    it 'returns manage' do
       expect(@ability.can? :manage, InfocenterCategory).to be true
       get :manage
       expect(response).to be_successful
@@ -19,6 +19,12 @@ RSpec.describe InfocenterCategoriesController, type: :controller do
       expect(response).to render_template(:edit)
     end
 
+    it 'add_table' do
+      expect(@ability.can? :add_table, category).to be true
+      get :add_table, params: { id: category }
+      expect(response).to render_template(:add_table)
+    end
+
     it 'destroys the requested category' do
       expect(@ability.can? :destroy, category).to be true
       expect{ delete :destroy, params: { id: category } }.to change(InfocenterCategory, :count).by(-1)
@@ -28,6 +34,7 @@ RSpec.describe InfocenterCategoriesController, type: :controller do
     it 'updates the requested category' do
       expect(@ability.can? :update, category).to be true
       put :update, params: { id: category, infocenter_category: { title: 'New title' } }
+      category.reload
       expect(response).to redirect_to(category)
     end
 
@@ -63,10 +70,10 @@ RSpec.describe InfocenterCategoriesController, type: :controller do
     end
   end
 
-  describe 'user should' do
+  describe 'user should not' do
     login_user(:user)
 
-    it 'not returns manage' do
+    it 'returns manage' do
       expect(@ability.can? :manage, InfocenterCategory).to be false
       expect{ get :manage }.to raise_error(CanCan:: AccessDenied)
     end
@@ -82,24 +89,29 @@ RSpec.describe InfocenterCategoriesController, type: :controller do
       expect{ response }.to change(InfocenterCategory, :count).by(0)
     end
 
-    it 'not edit' do
+    it 'edit' do
       expect(@ability.cannot? :edit, category).to be true
       expect{ get :edit, params: { id: category } }.to raise_error(CanCan:: AccessDenied)
     end
 
-    it 'not destroy' do
+    it 'destroy' do
       expect(@ability.cannot? :destroy, category).to be true
       expect{ delete :destroy, params: { id: category } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(InfocenterCategory, :count).by(0)
     end
 
-    it 'not updates' do
+    it 'updates' do
       expect(@ability.cannot? :update, category).to be true
       expect{ put :update, params: { id: category, infocenter_category: { title: 'New title' } } }.to raise_error(CanCan:: AccessDenied)
     end
+
+    it 'add_table' do
+      expect(@ability.can? :add_table, category).to be false
+      expect{ get :add_table, params: { id: category } }.to raise_error(CanCan:: AccessDenied)
+    end
   end
 
-  describe 'unreg user should' do
+  describe 'unreg user should not' do
     after(:each) do
       expect(response).to redirect_to(root_path)
     end
@@ -124,15 +136,19 @@ RSpec.describe InfocenterCategoriesController, type: :controller do
       expect{ post :create, params: { infocenter_category: attributes_for(:infocenter_category) } }.to change(InfocenterCategory, :count).by(0)
     end
 
-    it 'not edit' do
+    it 'add_table' do
+      get :add_table, params: { id: category }
+    end
+
+    it 'edit' do
       get :edit, params: { id: category }
     end
 
-    it 'not updates' do
+    it 'updates' do
       put :update, params: { id: category, infocenter_category: { title: 'New title' } }
     end
 
-    it 'not destroy' do
+    it 'destroy' do
       expect{ delete :destroy, params: { id: category } }.to change(InfocenterCategory, :count).by(0)
     end
   end

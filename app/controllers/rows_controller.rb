@@ -1,5 +1,4 @@
 class RowsController < ApplicationController
-  before_action :authenticate_user!
   load_and_authorize_resource :table
   load_and_authorize_resource :row, through: :table, except: %i[new_form]
 

@@ -1,10 +1,4 @@
 %tr
-  %th(scope='row')
-    = row_counter + 1
-
-  - row.columnships.each do |c|
-    %td{ class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil }
-      = render 'rows/row_formblock', columnship: c
   - if current_user.role? :admin
     %td
       .btn-group
@@ -12,3 +6,10 @@
           = fa_icon 'cog'
         = link_to [table, row], method: :delete, title: t('shared.del'), data: { confirm: t('shared.sure'), toggle: 'tooltip' }, class: 'btn btn-sm btn-danger' do
           = fa_icon 'trash'
+
+  %th(scope='row')
+    = row_counter + 1
+
+  - row.columnships.each do |c|
+    %td{ class: (%w(price integer).include? c.column.column_type) ? 'nowrap' : nil }
+      = render 'rows/row_formblock', columnship: c

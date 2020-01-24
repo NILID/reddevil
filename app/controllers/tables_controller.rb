@@ -10,6 +10,7 @@ class TablesController < ApplicationController
     @rows = @q.result.includes(columnships: %i[column])
     @last_redaction = @rows.order('updated_at desc').first
   end
+
   def new;   end
   def edit;  end
 

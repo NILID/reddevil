@@ -100,6 +100,7 @@ ru:
         hidden: Архивное
         show_type: Тип отображение
         color: Цвет
+        table_ids: Список таблиц
       doc:
         title: Название
         desc: Описание

@@ -14,10 +14,11 @@
         %table.table.table-bordered.table-hover.table-sm.table-striped
           %thead
             %tr
+              - if current_user.role? :admin
+                %th
+
               %th(scope='col') №
               - table.columns.each do |column|
                 %th(scope='col')= column.name
-              - if current_user.role? :admin
-                %th(scope='col')
 
           %tbody= render rows, table: table

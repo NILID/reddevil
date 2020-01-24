@@ -12,7 +12,7 @@
               = fa_icon 'cog'
             %ul.dropdown-menu
               = link_to t('cards.new'), new_infocenter_category_card_path(@object), class: 'dropdown-item'
-              = link_to 'add_table', add_table_infocenter_category_path(@object), class: 'dropdown-item'
+              = link_to t('tables.add'), add_table_infocenter_category_path(@object), class: 'dropdown-item'
               .dropdown-divider
               = link_to t('shared.edit'), edit_infocenter_category_path(@object), class: 'dropdown-item'
               = link_to t('shared.del'), @object, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
@@ -23,16 +23,14 @@
         - when 'grid'
           .row.row-cols-xl-5.row-cols-lg-4.row-cols-md-3.row-cols-sm-2.row-cols-1.justify-content-center
             = render @cards
+            = render partial: 'tables/grid_table', collection: @tables, as: :table
         - when 'single'
           - @cards.each do |card|
             = image_tag url_for(card.doc), class: 'img-fluid'
+          = render 'tables/inline_table', tables: @tables
         - when 'zoom'
           = render partial: 'cards/zoom_grid', collection: @cards, as: :card
+          = render 'tables/inline_table', tables: @tables
         - when 'vacations'
           = render 'vac'
-
-    .row
-      .col
-        - @tables.each do |table|
-          .my-5
-            = render table, rows: table.rows
+          = render 'tables/inline_table', tables: @tables

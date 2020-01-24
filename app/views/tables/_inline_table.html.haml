@@ -1,0 +1,5 @@
+.row
+  .col
+    - tables.each do |table|
+      .my-5
+        = render table, rows: table.rows

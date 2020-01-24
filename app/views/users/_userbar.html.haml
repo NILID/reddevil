@@ -15,6 +15,8 @@
         .dropdown-divider
         = link_to messages_path, class: 'nav-link' do
           = fa_icon 'envelope', text: t('message.title')
+        = link_to tables_path, class: 'nav-link' do
+          = fa_icon 'table', text: t('tables.title')
       .dropdown-divider
       = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
         = fa_icon 'sign-out-alt', text: t('devise.logout')

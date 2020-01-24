@@ -5,9 +5,22 @@
       - if can? :new, Table
         .float-right
           %small= link_to t('shared.add'), new_table_path, class: 'btn btn-sm btn-primary'
-  .card-body
-    - @tables.each do |table|
-      .well
-        %h2
-          = link_to table.title, table
-          %small.text-muted= plural(table.rows.pluck(:id).count, 'row')
+  %table.table
+    %thead
+      %tr
+        %th.border-top-0= Table.human_attribute_name(:title)
+        %th.border-top-0 Размер
+        %th.border-top-0 Привязка
+    %tbody
+      - @tables.each do |table|
+        %tr
+          %td
+            = link_to table.title, table
+          %td
+            = plural(table.rows.pluck(:id).count, 'row')
+          %td
+            - if table.tableable
+              = link_to table.tableable.title, table.tableable
+            - else
+              %span.text-muted= t 'shared.empty'
+

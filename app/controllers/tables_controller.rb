@@ -1,7 +1,10 @@
 class TablesController < ApplicationController
   load_and_authorize_resource
 
-  def index; end
+  def index
+    @tables = @tables.includes(:tableable)
+  end
+
   def show
     @q = @table.rows.ransack(params[:q])
     @rows = @q.result.includes(columnships: %i[column])
@@ -45,6 +48,6 @@ class TablesController < ApplicationController
 
   private
     def table_params
-      params.require(:table).permit(:title, :category, columns_attributes: %i[id name column_type _destroy])
+      params.require(:table).permit(:title, columns_attributes: %i[id name column_type _destroy])
     end
 end

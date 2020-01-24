@@ -7,6 +7,8 @@
       = f.hidden_field :parent_id
       = f.text_field :title, autofocus: true
       = f.select :show_type, InfocenterCategory::SHOWTYPES.map { |c| c }, {}, { class: 'selectpicker' }
+      = f.select :table_ids,
+        Table.all.map { |t| [t.title, t.id] }, { include_blank: t('shared.select') }, { class: 'selectpicker' }
 
       #simple-changecolor.colorpicker-component
         = f.text_field :color,

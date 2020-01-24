@@ -24,6 +24,9 @@ ru:
       room: чат
       substrate: подложка
       subfile: документ
+      row: строка
+      table: таблица
+      column: поле
     attributes:
       album:
         title: Название
@@ -31,6 +34,14 @@ ru:
       card:
         title: Название
         doc: Документ
+      column:
+        name: Название
+        column_type: Тип
+      row:
+        user_id: исполнитель
+      table:
+        title: Название
+        tableable: Привязка
       event:
         title: Название
         content: Описание

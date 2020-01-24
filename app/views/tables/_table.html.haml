@@ -1,0 +1,22 @@
+.card
+  .card-header
+    .h3.float-left
+      = table.title
+    - if can? :manage, table
+      .float-right
+        %small
+          = link_to t('shared.edit'), edit_table_path(table), class: 'btn btn-secondary btn-sm'
+          = link_to t('shared.del'), table, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+    .clearfix
+  .card-body
+    .row.rows-table
+      .col
+        %table.table.table-bordered.table-hover.table-sm.table-striped
+          %thead
+            %tr
+              %th(scope='col') №
+              - table.columns.each do |column|
+                %th(scope='col')= column.name
+              %th(scope='col')
+
+          %tbody= render table.rows, table: table

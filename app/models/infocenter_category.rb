@@ -1,5 +1,6 @@
 class InfocenterCategory < Category
   has_many :cards, foreign_key: 'category_id', dependent: :destroy
+  has_many :tables, as: :tableable
 
   SHOWTYPES = %w[zoom grid single vacations].freeze
 

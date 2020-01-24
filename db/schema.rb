@@ -415,9 +415,11 @@ ActiveRecord::Schema.define(version: 2020_01_20_164833) do
 
   create_table "tables", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.string "category"
+    t.integer "tableable_id"
+    t.string "tableable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["tableable_id", "tableable_type"], name: "index_tables_on_tableable_id_and_tableable_type"
   end
 
   create_table "taggings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

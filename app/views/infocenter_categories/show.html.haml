@@ -29,3 +29,7 @@
           = render partial: 'cards/zoom_grid', collection: @cards, as: :card
         - when 'vacations'
           = render 'vac'
+
+    .row
+      .col
+        = render @object.tables

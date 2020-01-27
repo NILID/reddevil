@@ -19,11 +19,11 @@
       - when 'string'
         = c.text_field :data, label: c.object.column.name
       - when 'one_reference'
-        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }
+        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select'), label: c.object.column.name }
       - when 'many_references'
-        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select') }, { multiple: true }
+        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select'), label: c.object.column.name }, { multiple: true }
       - when 'boolean'
-        = c.select :data, [true, false], { include_blank: t('shared.select') }
+        = c.select :data, [true, false], { include_blank: t('shared.select'), label: c.object.column.name }
       - else
         = c.text_area :data, label: c.object.column.name
 

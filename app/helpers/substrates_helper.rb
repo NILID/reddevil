@@ -12,10 +12,24 @@ module SubstratesHelper
     end
   end
 
+  def select_text(status)
+    color = case status
+    when 'false' then 'danger'
+    when 'true'  then 'success'
+    else
+      'secondary'
+    end
+
+    text = t("columns.booleans.#{status}")
+    fa_icon('circle', text: text, class: "text-#{color}")
+  end
+
   def status_style(status, tag = :badge)
     color = case status
     when 'opened'   then 'danger'
+    when 'false'    then 'danger'
     when 'finished' then 'success'
+    when 'true'     then 'success'
     when 'worked'   then 'primary'
     when 'shipped'  then 'violet'
     else

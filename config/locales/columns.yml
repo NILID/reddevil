@@ -1,0 +1,5 @@
+ru:
+  columns:
+    booleans:
+      true: Выполнено
+      false: Не выполнено

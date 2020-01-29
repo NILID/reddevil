@@ -7,6 +7,8 @@
     - User.where(id: columnship.data).first.show_name(:short)
   - elsif columnship.column.column_type == 'many_references'
     - User.where(id: columnship.data).map { |u| u.show_name(:short) }
+  - elsif columnship.column.column_type == 'boolean'
+    - select_text(columnship.data)
   - else
     - columnship.data
 - else

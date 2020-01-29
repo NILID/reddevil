@@ -1,19 +1,18 @@
-.card
+= form_for @member, url: update_holidays_member_path, html: { class: 'card' } do |f|
   .card-header
     %nav(aria-label='breadcrumb')
       .row
         .col
-          %ol.breadcrumb.h4
+          %ol.breadcrumb.h4.m-0
             %li.breadcrumb-item= link_to t('member.vacation'), vac_path, class: 'card-archive-link animated'
             %li.breadcrumb-item= t 'vacations.settings', name: @member.petrovich_fullname
   .card-body
-    = form_for @member, url: update_holidays_member_path, layout: :inline do |f|
-      = render 'error', object: @member
-      = f.fields_for :vacations, f.object.vacations.order(:startdate) do |vacation|
-        = render 'vacation_fields', f: vacation
-      .form-group
-        = link_to_add_association f, :vacations, class: 'btn btn-secondary' do
-          = fa_icon 'plus', text: t('vacations.add')
-      .form-group
-        = f.submit t('shared.save'), class: 'btn btn-primary'
-        = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'
+    = render 'error', object: @member
+    = f.fields_for :vacations, f.object.vacations.order(:startdate) do |vacation|
+      = render 'vacation_fields', f: vacation
+    .form-group
+      = link_to_add_association f, :vacations, class: 'btn btn-secondary' do
+        = fa_icon 'plus', text: t('vacations.add')
+  .card-footer
+    = f.submit t('shared.save'), class: 'btn btn-primary'
+    = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'

@@ -45,6 +45,7 @@ class MembersController < ApplicationController
   end
 
   def new; end
+
   def manage_holidays; end
   def edit; end
 

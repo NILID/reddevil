@@ -9,7 +9,7 @@
   .card-body
     = form_for @member, url: update_holidays_member_path, layout: :inline do |f|
       = render 'error', object: @member
-      = f.fields_for :vacations do |vacation|
+      = f.fields_for :vacations, f.object.vacations.order(:startdate) do |vacation|
         = render 'vacation_fields', f: vacation
       .form-group
         = link_to_add_association f, :vacations, class: 'btn btn-secondary' do

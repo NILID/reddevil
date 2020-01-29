@@ -1,7 +1,7 @@
 .form-group.nested-fields
   .row
     .col-10
-      .row.input-daterange
+      .row.input-daterange{ style: !f.object.enddate.nil? && (f.object.enddate < Date.today) ? "opacity:0.5" : nil }
         .col-6
           .input-group.mb-2
             .input-group-prepend

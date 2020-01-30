@@ -10,6 +10,5 @@
         = f.check_box :hidden, label: t('categories.hide')
 
     .card-footer
-      = f.form_group do
-        = f.primary t('shared.save')
-        = link_to t('shared.cancel'), categories_path, class: 'btn btn-secondary'
+      = f.primary t('shared.save')
+      = link_to t('shared.cancel'), categories_path, class: 'btn btn-secondary'

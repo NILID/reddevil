@@ -1,13 +1,13 @@
 - set_meta_tags title: formtitle
 
-.card
+= bootstrap_form_for @substrate, html: { class: 'card' } do |f|
   .card-body
     - if params[:action] == 'edit'
       = render 'breadcrumb', titles: [link_to(@substrate.title, @substrate), formtitle]
     - else
       = render 'breadcrumb', titles: [formtitle]
 
-    = bootstrap_form_for @substrate, html: { layout: :horizontal } do |f|
+
       = render 'error', object: @substrate
       =# f.hidden_field :lock_version
 
@@ -93,5 +93,5 @@
       .row
         .col
           = f.text_area :desc
-
-      = f.submit t('shared.save')
+  .card-footer
+    = f.submit t('shared.save')

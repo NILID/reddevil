@@ -13,4 +13,7 @@
     - columnship.data
 - else
   - object_property = content_tag(:span, 'пусто', class: 'text-muted')
+
 = object_property
+- if columnship.column.column_type == 'boolean' && columnship.data == 'true'
+  %span.text-muted (#{short_date columnship.row.updated_at.to_datetime})

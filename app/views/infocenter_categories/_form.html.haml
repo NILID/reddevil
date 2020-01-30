@@ -15,6 +15,5 @@
           prepend: content_tag(:span, content_tag(:i), class: 'colorpicker-input-addon')
 
     .card-footer
-      = f.form_group do
-        = f.primary t('shared.save')
-        = link_to t('shared.cancel'), categories_path, class: 'btn btn-secondary'
+      = f.primary t('shared.save')
+      = link_to t('shared.cancel'), categories_path, class: 'btn btn-secondary'

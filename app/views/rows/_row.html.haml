@@ -2,10 +2,13 @@
   - if current_user.role? :admin
     %td
       .btn-group
-        = link_to edit_table_row_path(table, row), class: 'btn btn-secondary btn-sm', title: t('shared.edit'), data: { toggle: 'tooltip' } do
+        %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
           = fa_icon 'cog'
-        = link_to [table, row], method: :delete, title: t('shared.del'), data: { confirm: t('shared.sure'), toggle: 'tooltip' }, class: 'btn btn-sm btn-danger' do
-          = fa_icon 'trash'
+        .dropdown-menu
+          = link_to edit_table_row_path(table, row), class: 'dropdown-item' do
+            = fa_icon 'edit', text: t('shared.edit')
+          = link_to [table, row], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+            = fa_icon 'trash', text: t('shared.del')
 
   %th(scope='row')
     = row_counter + 1

@@ -5,6 +5,5 @@
     .card-body
       = render 'member_fields_full', f: f
     .card-footer
-      = f.form_group do
-        = f.primary
-        = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'
+      = f.primary
+      = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'

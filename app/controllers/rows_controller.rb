@@ -60,6 +60,14 @@ class RowsController < ApplicationController
     end
   end
 
+  def sort
+    params[:row].each_with_index do |id, index|
+      @table.rows.where(id: id).update_all({ position: index + 1 })
+    end
+
+    render body: nil
+  end
+
   def destroy
     @row.destroy
 
@@ -71,7 +79,7 @@ class RowsController < ApplicationController
 
   private
     def row_params
-      list_params_allowed = [ :user_id,
+      list_params_allowed = [ :user_id, :position,
                               { columnships_attributes: [:id, :column_id, :row_id, :data, :desc, :_destroy, :data => []] }
                             ]
 

@@ -37,6 +37,11 @@ RSpec.describe RowsController, type: :controller do
       expect{ post :create, params: { row: { user_id: @user }, table_id: table } }.to change(Row, :count).by(1)
       expect(response).to redirect_to(table)
     end
+
+    it 'sort rows' do
+      expect(@ability.can? :sort, Row).to be true
+      post :sort, params: { row: ['1', '2', '3'], table_id: table }
+    end
   end
 
   describe 'user should not' do
@@ -68,6 +73,11 @@ RSpec.describe RowsController, type: :controller do
       expect(@ability.cannot? :update, row).to be true
       expect{ put :update, params: { id: row, row: { user_id: @user }, table_id: table } }.to raise_error(CanCan:: AccessDenied)
     end
+
+    it 'sort rows' do
+      expect(@ability.can? :sort, Row).to be false
+      expect{ post :sort, params: { row: ['1', '2', '3'], table_id: table } }.to raise_error(CanCan:: AccessDenied)
+    end
   end
 
   describe 'unreg user should not' do
@@ -93,6 +103,10 @@ RSpec.describe RowsController, type: :controller do
 
     it 'destroy' do
       expect{ delete :destroy, params: { id: row, table_id: table } }.to change(Row, :count).by(0)
+    end
+
+    it 'sort rows' do
+      post :sort, params: { row: ['1', '2', '3'], table_id: table }
     end
   end
 end

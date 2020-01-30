@@ -21,4 +21,5 @@
               - table.columns.each do |column|
                 %th(scope='col')= column.name
 
-          %tbody= render rows, table: table
+          %tbody#sortable{ data: { update_url: sort_table_rows_url(table) } }
+            = render rows, table: table

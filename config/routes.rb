@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   resources :tables do
     resources :rows, except: [:index, :show] do
+      collection do
+        post :sort
+      end
+
       member do
         get :get_form
         get :get_miniform

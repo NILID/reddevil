@@ -1,6 +1,8 @@
-%tr
-  - if current_user.role? :admin
+%tr{ id: "row_#{row.id}" }
+  - if (current_user.role? :admin) && params[:controller] == 'tables'
     %td
+      .btn.btn-sm.btn-outline-secondary.handle{ type: 'button' }
+        = fa_icon 'arrows-alt'
       .btn-group
         %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
           = fa_icon 'cog'

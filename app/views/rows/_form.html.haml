@@ -2,10 +2,6 @@
   .card-header= formtitle
 
   .card-body
-    - if params[:action] == 'edit'
-      = f.select :user_id, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, @row.user_id)
-      %hr/
-
     = f.fields_for :columnships do |c|
       - case c.object.column.column_type
       - when 'integer'
@@ -23,7 +19,6 @@
       - when 'many_references'
         = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select'), label: c.object.column.name }, { multiple: true }
       - when 'boolean'
-        =# c.select :data, [true, false], { include_blank: t('shared.select'), label: c.object.column.name }
         = c.select :data, {}, { include_blank: t('shared.select'), label: c.object.column.name }, { class: 'selectpicker' } do
           - ['true', 'false'].each do |s|
             = content_tag(:option, s, value: s, data: { content: select_text(s) }, selected: s == c.object.data )

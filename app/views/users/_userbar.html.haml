@@ -13,6 +13,7 @@
         = fa_icon 'user-circle', text: t('profiles.my')
       - if current_user.role? :admin
         .dropdown-divider
+        %a.nav-link.disabled.text-muted(href="#" tabindex="-1" aria-disabled="true") Админ
         = link_to messages_path, class: 'nav-link' do
           = fa_icon 'envelope', text: t('message.title')
         = link_to tables_path, class: 'nav-link' do

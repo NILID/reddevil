@@ -5,7 +5,7 @@
     .col
       .float-left
         = link_to new_form_table_row_path(@table), method: :post, remote: true, disable_with: t('shared.waiting'), class: 'btn btn-primary btn-sm' do
-          = fa_icon 'arrows-alt-v', text: t('rows.add_new')
+          = fa_icon 'sort-amount-down-alt', text: t('rows.add_new')
 
       .float-right.text-right.text-muted
         - if @table.tableable

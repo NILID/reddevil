@@ -1,16 +1,17 @@
 %tr{ id: "row_#{row.id}" }
   - if (current_user.role? :admin) && params[:controller] == 'tables'
     %td
-      .btn.btn-sm.btn-outline-secondary.handle{ type: 'button' }
-        = fa_icon 'arrows-alt'
-      .btn-group
-        %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-          = fa_icon 'cog'
-        .dropdown-menu
-          = link_to edit_table_row_path(table, row), class: 'dropdown-item' do
-            = fa_icon 'edit', text: t('shared.edit')
-          = link_to [table, row], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
-            = fa_icon 'trash', text: t('shared.del')
+      .btn-group(role="group")
+        .btn.btn-sm.btn-outline-secondary.handle{ type: 'button', title: t('shared.tosort'), data: { toggle: 'tooltip' } }
+          = fa_icon 'arrows-alt-v'
+        .btn-group(role="group")
+          %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+            = fa_icon 'cog'
+          .dropdown-menu
+            = link_to edit_table_row_path(table, row), class: 'dropdown-item' do
+              = fa_icon 'edit', text: t('shared.edit')
+            = link_to [table, row], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+              = fa_icon 'trash', text: t('shared.del')
 
   %th(scope='row')
     = row_counter + 1

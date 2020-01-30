@@ -14,7 +14,7 @@
         %table.table.table-bordered.table-hover.table-sm.table-striped
           %thead
             %tr
-              - if current_user.role? :admin
+              - if (current_user.role? :admin) && params[:controller] == 'tables'
                 %th
 
               %th(scope='col') №

@@ -8,90 +8,90 @@
       = render 'breadcrumb', titles: [formtitle]
 
 
-      = render 'error', object: @substrate
-      =# f.hidden_field :lock_version
+    = render 'error', object: @substrate
+    =# f.hidden_field :lock_version
 
-      .row
-        .col
-          = f.text_field :title
+    .row
+      .col
+        = f.text_field :title
 
-        .col
-          = f.select :status, {}, {}, { class: 'selectpicker' } do
-            - Substrate::STATUSES.each do |s|
-              = content_tag(:option, s, value: s, data: { content: status_text(s) }, selected: s == f.object.status )
+      .col
+        = f.select :status, {}, {}, { class: 'selectpicker' } do
+          - Substrate::STATUSES.each do |s|
+            = content_tag(:option, s, value: s, data: { content: status_text(s) }, selected: s == f.object.status )
 
-        .col
-          = f.select :priorityx, {}, {}, { class: 'selectpicker' } do
-            - Substrate::NEW_PRIORITIES.each do |s|
-              = content_tag :option,
-                t("substrates.priorities.#{s}"),
-                value: s,
-                data: { content: new_priority_select_tag(s) },
-                selected: (f.object.priorityx == s)
+      .col
+        = f.select :priorityx, {}, {}, { class: 'selectpicker' } do
+          - Substrate::NEW_PRIORITIES.each do |s|
+            = content_tag :option,
+              t("substrates.priorities.#{s}"),
+              value: s,
+              data: { content: new_priority_select_tag(s) },
+              selected: (f.object.priorityx == s)
 
-      .row
-        .col-6.col-md-4
-          = f.text_field :drawing
-        .col-6.col-md-4
-          = f.text_field :detail
-        .col-6.col-md-4
-          = f.text_field :propotions
+    .row
+      .col-6.col-md-4
+        = f.text_field :drawing
+      .col-6.col-md-4
+        = f.text_field :detail
+      .col-6.col-md-4
+        = f.text_field :propotions
 
-      .row
-        .col-6.col-md-4
-          = f.label :amount
-          .row
-            .col.pr-0
-              = f.number_field :instock, prepend: t('substrates.instock_short'), wrapper: false, min: 0
-            .col.pl-0
-              = f.number_field :amount, prepend: t('substrates.amount_short'), wrapper: false, min: 0
+    .row
+      .col-6.col-md-4
+        = f.label :amount
+        .row
+          .col.pr-0
+            = f.number_field :instock, prepend: t('substrates.instock_short'), wrapper: false, min: 0
+          .col.pl-0
+            = f.number_field :amount, prepend: t('substrates.amount_short'), wrapper: false, min: 0
 
-        .col-6.col-md-4
-          = f.number_field :ready_count, min: 0
+      .col-6.col-md-4
+        = f.number_field :ready_count, min: 0
 
-      .row
-        .col-6.col-md-3
-          = f.select :sides, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
-            - Substrate::SIDES.each do |s|
-              = content_tag :option,
-                t("substrates.sides.#{s}"),
-                value: s,
-                selected: (f.object.sides == s)
-        .col
-          .row#substrate_block_a
-            .col-6.col-md-4
-              = f.select :coating_type,   Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
-            .col-6.col-md-4
-              = f.text_field :wave
-            .col-6.col-md-4
-              = f.text_field :corner
-          .row#substrate_block_b
-            .col-6.col-md-4
-              = f.select :coating_type_b, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
-            .col-6.col-md-4
-              = f.text_field :wave_b
-            .col-6.col-md-4
-              = f.text_field :corner_b
+    .row
+      .col-6.col-md-3
+        = f.select :sides, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
+          - Substrate::SIDES.each do |s|
+            = content_tag :option,
+              t("substrates.sides.#{s}"),
+              value: s,
+              selected: (f.object.sides == s)
+      .col
+        .row#substrate_block_a
+          .col-6.col-md-4
+            = f.select :coating_type,   Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
+          .col-6.col-md-4
+            = f.text_field :wave
+          .col-6.col-md-4
+            = f.text_field :corner
+        .row#substrate_block_b
+          .col-6.col-md-4
+            = f.select :coating_type_b, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
+          .col-6.col-md-4
+            = f.text_field :wave_b
+          .col-6.col-md-4
+            = f.text_field :corner_b
 
-      .row
-        .col-6.col-md-3
-          .mb-4
-            = f.check_box :frame, custom: :switch
-      .row
-        .col
-          = f.text_field :arrival_at, class: 'datepicker',
-            value: (f.object.arrival_at.to_datetime.strftime('%d.%m.%Y') if f.object.arrival_at.present?)
-          = f.text_field :arrival_from
-          = f.text_field :contract
-        .col
-          = f.text_field :future_shipping_at, class: 'datepicker',
-            value: (f.object.future_shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.future_shipping_at.present?)
-          = f.text_field :shipping_at, class: 'datepicker',
-            value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
-          = f.text_field :shipping_to
-          = f.text_field :shipping_base
-      .row
-        .col
-          = f.text_area :desc
+    .row
+      .col-6.col-md-3
+        .mb-4
+          = f.check_box :frame, custom: :switch
+    .row
+      .col
+        = f.text_field :arrival_at, class: 'datepicker',
+          value: (f.object.arrival_at.to_datetime.strftime('%d.%m.%Y') if f.object.arrival_at.present?)
+        = f.text_field :arrival_from
+        = f.text_field :contract
+      .col
+        = f.text_field :future_shipping_at, class: 'datepicker',
+          value: (f.object.future_shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.future_shipping_at.present?)
+        = f.text_field :shipping_at, class: 'datepicker',
+          value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
+        = f.text_field :shipping_to
+        = f.text_field :shipping_base
+    .row
+      .col
+        = f.text_area :desc
   .card-footer
     = f.submit t('shared.save')

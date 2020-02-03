@@ -44,7 +44,7 @@ gem 'record_tag_helper', '~> 1.0'
 
 gem 'rubyzip'
 
-gem 'mysql2'
+gem 'mysql2', '0.5.2'
 
 gem 'cocoon'
 

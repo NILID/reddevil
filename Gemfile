@@ -163,9 +163,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet'
 
-  gem 'better_errors', '< 2'
-  gem 'binding_of_caller'
-  gem 'rails_best_practices'
+  # gem 'rails_best_practices'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -66,12 +66,7 @@ GEM
     best_in_place (3.1.1)
       actionpack (>= 3.2)
       railties (>= 3.2)
-    better_errors (1.1.0)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
     bindex (0.8.1)
-    binding_of_caller (0.8.0)
-      debug_inspector (>= 0.0.1)
     birthday (0.3.1)
       activerecord
       activesupport
@@ -105,9 +100,6 @@ GEM
       nokogiri (~> 1.8)
     climate_control (0.2.0)
     cocoon (1.2.14)
-    code_analyzer (0.5.1)
-      sexp_processor
-    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -117,7 +109,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.6)
-    debug_inspector (0.0.3)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -180,7 +171,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (2.3.0)
     libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -262,14 +252,6 @@ GEM
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
-    rails_best_practices (1.19.4)
-      activesupport
-      code_analyzer (>= 0.4.8)
-      erubis
-      i18n
-      json
-      require_all (~> 2.0)
-      ruby-progressbar
     railties (5.2.4.1)
       actionpack (= 5.2.4.1)
       activesupport (= 5.2.4.1)
@@ -292,7 +274,6 @@ GEM
     regexp_parser (1.6.0)
     request_store (1.5.0)
       rack (>= 1.4)
-    require_all (2.0.0)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -321,7 +302,6 @@ GEM
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
     ruby-ole (1.2.12.2)
-    ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     ruby_parser (3.14.1)
       sexp_processor (~> 4.9)
@@ -409,8 +389,6 @@ DEPENDENCIES
   ancestry
   animate-rails
   best_in_place
-  better_errors (< 2)
-  binding_of_caller
   birthday
   bootsnap (>= 1.1.0)
   bootstrap-datepicker-rails
@@ -456,7 +434,6 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rails-controller-testing
   rails-i18n
-  rails_best_practices
   ransack
   readmorejs-rails!
   record_tag_helper (~> 1.0)

@@ -72,8 +72,6 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'hightop'
 
-gem 'high_voltage'
-
 gem 'holidays'
 
 gem 'birthday'

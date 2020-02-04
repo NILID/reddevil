@@ -1,0 +1,9 @@
+.card
+  .card-body
+    = render 'breadcrumb', titles: [@page.title]
+    - if can? :update, @page
+      = link_to fa_icon(:edit), edit_page_path(@page), class: 'btn btn-primary'
+    .row.mt-4
+      .col
+        = m @page.content
+

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :pages
   resources :tables do
     resources :rows, except: [:index, :show] do
       collection do

@@ -80,6 +80,8 @@ gem 'soundmanager2-rails'
 
 gem 'socialization'
 
+gem 'ckeditor'
+
 gem 'ancestry'
 
 gem 'friendly_id'

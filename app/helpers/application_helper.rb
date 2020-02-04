@@ -10,6 +10,10 @@ module ApplicationHelper
      end
    end
 
+    def m(content)
+      sanitize(content, tag: %w[a em p strong])
+    end
+
    def rus_month(time)
      Russian.strftime(time, '%b')
    end

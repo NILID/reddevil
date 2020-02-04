@@ -6,7 +6,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     # everybody
-    cannot [:manage, :read], :all
+    cannot %[manage read], :all
 
     if user.role? :admin
       can :read, Forecast do |f|
@@ -29,14 +29,15 @@ class Ability
 
       can %i[manage read], Folder,  user:   { id: user.id }
       can %i[manage read], Dataset, folder: { user_id: user.id }
-      can %i[edit update], User, id: user.id
+      can %i[update], User, id: user.id
       can %i[read manage list], Event, user: { id: user.id }
     end
 
     if (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :rebuild, Result
       cannot %i[manage read], [Room, Substrate, Table]
-      can %i[new create], Note
+      can %i[create], [Note, Page]
+      can %i[update destroy], Page, user: { id: user.id }
     end
 
     if (user.role? :admin) || (user.role? :testuser)
@@ -51,7 +52,7 @@ class Ability
       can %i[stat archive days_birth], Member
       can %i[update manage_holidays update_holidays], Member, user: { id: user.id }
 
-      can %i[destroy edit update], Forecast do |f|
+      can %i[destroy update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.user_id == user.id)
       end
       # cannot :read, Doc, category: { hidden: true }
@@ -81,7 +82,7 @@ class Ability
       can :like, Song
       can %i[favorites list], Album
 
-      can %i[new create], Forecast, user: { id: user.id }
+      can %i[create], Forecast, user: { id: user.id }
     end
 
     if user.has_group? :lab182

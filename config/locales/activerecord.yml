@@ -27,6 +27,7 @@ ru:
       row: строка
       table: таблица
       column: поле
+      page: страница
     attributes:
       album:
         title: Название
@@ -106,6 +107,9 @@ ru:
         desc: Описание
         file: Документ
         category_tokens: Категории
+      page:
+        title: Название
+        content: Описание
       note:
         content: Описание
         status: Статус

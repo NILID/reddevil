@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   after_create :create_profile
 
   has_many :rows
+  has_many :pages
   has_many :events
   has_many :forecasts
   has_many :results

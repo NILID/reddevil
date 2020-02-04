@@ -1,0 +1,20 @@
+.card
+  .card-body
+    = render 'breadcrumb', titles: []
+    = link_to fa_icon(:plus), new_page_path, class: 'btn btn-primary'
+
+    .row.mt-4
+      - @pages.each do |page|
+        .col-12
+          = link_to page.title, page
+          - if can? :update, page
+            .btn-group
+              %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                = fa_icon 'cog'
+              .dropdown-menu.dropdown-menu-right
+                = link_to edit_page_path(page), class: 'dropdown-item' do
+                  = fa_icon 'edit', text: t('shared.edit')
+                = link_to page, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+                  = fa_icon 'trash', text: t('shared.del')
+
+

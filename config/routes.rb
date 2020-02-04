@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :pages
+  resources :pages, path: 'wiki'
+
   resources :tables do
     resources :rows, except: [:index, :show] do
       collection do

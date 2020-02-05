@@ -1,20 +1,19 @@
 .col.mb-3
   .card.bg-secondary.text-white.border-secondary
     .row.no-gutters
-      .col-md-4
+      .col-md-3
         - if card.doc.attached?
           = link_to image_tag(card.doc.variable? ? url_for(card.preview) : asset_url('doc.png'), class: 'img-fluid card-img'),
             url_for(card.doc),
             class: 'fancybox'
 
-      .col-md-8
+      .col-md-9
         .card-body.p-0.pl-2.m-2
           .h6.card-title
             = link_to card.title, url_for(card.doc), class: 'fancybox text-white'
-          - if can? :manage, card
-            %p.card-text
-              .dropdown
-                %a.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+            - if can? :manage, card
+              .dropdown(style="position:absolute;right:5px;top:5px")
+                %a.pointer{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                   = fa_icon 'cog'
                 %ul.dropdown-menu
                   = link_to t('shared.edit'), edit_infocenter_category_card_path(@object, card), class: 'dropdown-item'

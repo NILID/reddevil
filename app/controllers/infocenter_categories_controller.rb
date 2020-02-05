@@ -12,7 +12,7 @@ class InfocenterCategoriesController < CategoriesController
     else
       @cards = @object.cards.includes(doc_attachment: [:blob])
     end
-    @tables = @object.tables.includes(rows: [columnships: [:column]])
+    @tables = @object.tables.includes(:columns, rows: [columnships: [:column]])
   end
 
   def manage; end

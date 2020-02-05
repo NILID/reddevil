@@ -2,4 +2,4 @@
   .col
     - tables.each do |table|
       .my-5
-        = render table, rows: table.rows
+        = render table, rows: table.rows.order(position: :desc)

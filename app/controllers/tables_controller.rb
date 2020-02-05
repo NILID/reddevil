@@ -6,6 +6,7 @@ class TablesController < ApplicationController
   end
 
   def show
+    #@q = @table.rows.order(position: :desc).ransack(params[:q])
     @q = @table.rows.order(position: :desc).ransack(params[:q])
     @rows = @q.result.includes(columnships: %i[column])
     @last_redaction = @rows.order('updated_at desc').first

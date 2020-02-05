@@ -61,7 +61,7 @@ class RowsController < ApplicationController
   end
 
   def sort
-    params[:row].each_with_index do |id, index|
+    params[:row].reverse.each_with_index do |id, index|
       @table.rows.where(id: id).update_all({ position: index + 1 })
     end
 

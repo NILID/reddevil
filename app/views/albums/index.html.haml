@@ -10,14 +10,14 @@
 
 .card
   .card-body
-    %ul.nav.nav-tabs.float-left
+    %ul.nav.nav-tabs.float-left(role='tablist')
       - if params[:q]
         %li.nav-item
-          = link_to t('songs.find'), '#find_songs', data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'find_songs' }, class: 'nav-link active'
+          = link_to t('songs.find'), '#find-songs', data: { toggle: 'tab' }, id: 'find-songs-tab', role: 'tab', aria: { controls: 'find-songs' }, class: 'nav-link active'
       %li.nav-item
-        = link_to t('albums.all'),   '#main_songs', data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'main_songs' }, class: "nav-link #{params[:q] ?  nil : 'active'}"
+        = link_to t('albums.all'),   '#main-songs', data: { toggle: 'tab' }, id: 'main-songs-tab', role: 'tab', aria: { controls: 'main-songs' }, class: "nav-link #{(params[:q] ? nil : 'active')}"
       %li.nav-item
-        = link_to t('albums.newer'), '#new_songs',  data: { toggle: 'tab', role: 'tab' }, aria: { controls: 'new_songs' }, class: 'nav-link'
+        = link_to t('albums.newer'), '#new-songs',  data: { toggle: 'tab' }, id: 'new-songs-tab',  role: 'tab', aria: { controls: 'new-songs' },  class: 'nav-link'
       - if can? :new, Album
         %li.nav-item= link_to t('albums.add'), new_album_path, class: 'nav-link'
     .float-right
@@ -28,15 +28,17 @@
 
     .tab-content
       - if params[:q]
-        - unless @songs.empty?
-          %ul.playlist.active.tab-pane#find_songs(role='tabpanel')
-            = render @songs, showalbum: true
-        - else
-          .active.tab-pane#find_songs(role='tabpanel')
+        .tab-pane.fade.show.active#find-songs(role='tabpanel' aria-labelledby='find-songs-tab')
+          - unless @songs.empty?
+            %ul.playlist.mt-3
+              = render @songs, showalbum: true
+          - else
             .alert.alert-warning(role='alert')= t 'shared.not_find'
-      %ul.mainlist.tab-pane#main_songs{ role: 'tabpanel', class: (params[:q] ? nil : 'active' )}
-        = render @albums
-      %ul.playlist.tab-pane#new_songs(role='tabpanel')
-        .endless= render @new_songs, showalbum: true
+      .tab-pane.fade#main-songs{ role: 'tabpanel', aria: { labelledby: 'main-songs-tab' }, class: (params[:q] ? nil : 'active show') }
+        %ul.mainlist.list-group.mt-3
+          = render @albums
+      .tab-pane.fade#new-songs{ role: 'tabpanel', aria: { labelledby: 'new-songs-tab' } }
+        %ul.playlist.mt-3
+          .endless= render @new_songs, showalbum: true
 
         %div(hidden)= will_paginate @new_songs

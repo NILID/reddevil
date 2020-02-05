@@ -5,7 +5,7 @@
       = link_to like_album_song_path(song.album, song), method: :post, remote: true, class: 'icon-star-link', data: { toggle: 'tooltip' }, title: t('shared.add_favorite') do
         = fa_icon :star, class: "icon-like-song #{ (current_user.likes?(song) ? nil : 'text-muted') }"
     - if showalbum
-      (#{ link_to song.album.title, song.album })
+      = link_to song.album.title, song.album, class: 'badge badge-light'
     .dropdown.sec-links.ml-3
       .dropdown-toggle.text-muted{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
         = fa_icon 'cog'

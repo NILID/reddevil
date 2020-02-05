@@ -35,11 +35,16 @@ li.song:hover i, li.album:hover > .title i, .breadcrumb:hover i{
   @include transition(opacity .2s)
 }
 
+li.sm2_playing {
+  .badge {color: #666 !important}
+}
+
 .repeat-link{
   .fa-repeat {
     @include opacity(0);
     @include transition(opacity .2s ease-in-out);
   }
+
   li.sm2_playing & .fa-repeat {@include opacity(.2)}
   li.sm2_playing &:hover,
   li.sm2_playing &.active {

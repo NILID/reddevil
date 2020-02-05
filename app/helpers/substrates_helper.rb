@@ -21,7 +21,7 @@ module SubstratesHelper
     end
 
     text = t("columns.booleans.#{status}")
-    fa_icon('circle', text: text, class: "text-#{color}")
+    content_tag(:span, text, class: "badge badge-#{color}")
   end
 
   def status_style(status, tag = :badge)

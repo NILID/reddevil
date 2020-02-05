@@ -1,5 +1,5 @@
 %tr{ id: "row_#{row.id}" }
-  - if (current_user.role? :admin) && params[:controller] == 'tables'
+  - if (current_user.role? :admin) && (%w[tables rows].include? params[:controller])
     %td
       .btn-group(role="group")
         .btn.btn-sm.btn-outline-secondary.handle{ type: 'button', title: t('shared.tosort'), data: { toggle: 'tooltip' } }

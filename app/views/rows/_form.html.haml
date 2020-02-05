@@ -22,6 +22,10 @@
         = c.select :data, {}, { include_blank: t('shared.select'), label: c.object.column.name }, { class: 'selectpicker' } do
           - ['true', 'false'].each do |s|
             = content_tag(:option, s, value: s, data: { content: select_text(s) }, selected: s == c.object.data )
+      - when 'status'
+        = c.select :data, {}, { include_blank: t('shared.select'), label: c.object.column.name }, { class: 'selectpicker' } do
+          - Table::Statuses.each do |s|
+            = content_tag(:option, s, value: s, data: { content: select_text(s) }, selected: s == c.object.data )
       - else
         = c.text_area :data, label: c.object.column.name
 

@@ -3,3 +3,4 @@ ru:
     booleans:
       true: Выполнено
       false: Не выполнено
+      waiting: В работе

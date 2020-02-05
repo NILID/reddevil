@@ -1,16 +1,23 @@
 = content_tag_for(:li, album) do
   %span.title
     %span.mr-3
-      = link_to like_album_path(album), method: :post, remote: true, class: 'icon-star-link' do
-        = current_user.likes?(album) ? fa_icon('star') : fa_icon('star', class: 'text-muted')
-      - unless album.songs.pluck(:id).empty?
-        = link_to download_album_path(album), target: '_blank', data: { toggle: 'tooltip' }, title: t('shared.download') do
-          = fa_icon 'download'
+      = link_to like_album_path(album), method: :post, remote: true, class: 'icon-star-link', data: { toggle: 'tooltip' }, title: t('shared.add_favorite') do
+        = fa_icon :star, class: (current_user.likes?(album) ? nil : 'text-muted')
 
     = link_to album.title, list_album_path(album), remote: true
     = link_to album do
       = fa_icon 'arrow-right'
-  - if can? :manage, album
-    %span.sec-links
-      = link_to t('shared.edit'), edit_album_path(album), class: 'text-muted'
-      = link_to t('shared.del'), album, method: :delete, data: { confirm: t('shared.sure') }, class: 'text-muted'
+
+  .dropdown.sec-links.ml-3
+    .dropdown-toggle.text-muted{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+      = fa_icon 'cog'
+    .dropdown-menu.dropdown-menu-right
+      - unless album.songs.pluck(:id).empty?
+        = link_to download_album_path(album), target: '_blank', class: 'dropdown-item' do
+          = fa_icon 'download', text: t('albums.download')
+      - if can? :manage, album
+        .dropdown-divider
+        = link_to edit_album_path(album), class: 'dropdown-item' do
+          = fa_icon :edit, text: t('shared.edit')
+        = link_to album, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+          = fa_icon :trash, text: t('shared.del')

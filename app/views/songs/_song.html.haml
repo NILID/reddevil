@@ -3,11 +3,16 @@
     = link_to song.clean_filename, song.file.url
     %span.song-icons.float-left.mr-3
       = link_to like_album_song_path(song.album, song), method: :post, remote: true, class: 'icon-star-link', data: { toggle: 'tooltip' }, title: t('shared.add_favorite') do
-        = current_user.likes?(song) ? fa_icon('star', class: 'icon-like-song') : fa_icon('star', class: 'icon-like-song text-muted')
-      = link_to download_album_song_path(song.album, song), target: '_blank', data: { toggle: 'tooltip' }, title: t('shared.download') do
-        = fa_icon 'download'
+        = fa_icon :star, class: "icon-like-song #{ (current_user.likes?(song) ? nil : 'text-muted') }"
     - if showalbum
       (#{ link_to song.album.title, song.album })
-    - if (can? :destroy, song) && !(%w[list favorites].include? params[:action])
-      %span.sec-links
-        = link_to t('shared.del'), [song.album, song], method: :delete, data: { confirm: t('shared.sure') }
+    .dropdown.sec-links.ml-3
+      .dropdown-toggle.text-muted{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        = fa_icon 'cog'
+      .dropdown-menu.dropdown-menu-right
+        = link_to download_album_song_path(song.album, song), target: '_blank', class: 'dropdown-item' do
+          = fa_icon 'download', text: t('shared.download')
+        - if (can? :destroy, song) && !(%w[list favorites].include? params[:action])
+          .dropdown-divider
+          = link_to [song.album, song], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+            = fa_icon :trash, text: t('shared.del')

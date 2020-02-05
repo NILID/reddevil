@@ -2,7 +2,7 @@
   .card-header
     .h3.float-left
       = table.title
-    - if can? :manage, table
+    - if (can? :manage, table) && params[:controller] == 'tables'
       .float-right
         %small
           = link_to t('shared.edit'), edit_table_path(table), class: 'btn btn-secondary btn-sm'

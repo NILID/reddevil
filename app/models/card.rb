@@ -13,6 +13,6 @@ class Card < ApplicationRecord
 #     doc.variant(resize: size).processed
 #    end
 #     doc.representation(crop: '400x400+0+0', resize: size).processed
-     doc.representation(resize: size).processed
+     doc.representation(resize: size, crop: '200x200+0+0').processed
   end
 end

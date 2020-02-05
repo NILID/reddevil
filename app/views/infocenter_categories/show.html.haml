@@ -21,16 +21,15 @@
       .col
         - case @object.show_type
         - when 'grid'
-          .row.row-cols-xl-5.row-cols-lg-4.row-cols-md-3.row-cols-sm-2.row-cols-1.justify-content-center
+          .row.row-cols-xl-5.row-cols-lg-4.row-cols-md-4.row-cols-sm-3.row-cols-2.justify-content-center
             = render @cards
-            = render partial: 'tables/grid_table', collection: @tables, as: :table
         - when 'single'
           - @cards.each do |card|
             = image_tag url_for(card.doc), class: 'img-fluid'
-          = render 'tables/inline_table', tables: @tables
         - when 'zoom'
           = render partial: 'cards/zoom_grid', collection: @cards, as: :card
-          = render 'tables/inline_table', tables: @tables
         - when 'vacations'
           = render 'vac'
-          = render 'tables/inline_table', tables: @tables
+    .row
+      .col
+        = render 'tables/inline_table', tables: @tables

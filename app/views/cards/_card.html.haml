@@ -1,19 +1,21 @@
-.col.mb-4
-  .card.h-100.bg-dark.text-white.border-secondary
-    - if card.doc.attached?
-      = link_to image_tag(card.doc.variable? ? url_for(card.preview) : asset_url('doc.png')),
-        url_for(card.doc),
-        class: 'fancybox card-img card-img-top-fixw'
+.col.mb-3
+  .card.bg-secondary.text-white.border-secondary
+    .row.no-gutters
+      .col-md-4
+        - if card.doc.attached?
+          = link_to image_tag(card.doc.variable? ? url_for(card.preview) : asset_url('doc.png'), class: 'img-fluid card-img'),
+            url_for(card.doc),
+            class: 'fancybox'
 
-    .card-title.p-2.bg-dark
-      .row
-        .col-8
-          %span.h6.float-left
-            = card.title
-        - if can? :manage, card
-          .col.text-right
-            %a.dropdown-toggle.text-white{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-              = fa_icon 'cog'
-            %ul.dropdown-menu
-              = link_to t('shared.edit'), edit_infocenter_category_card_path(@object, card), class: 'dropdown-item'
-              = link_to t('shared.del'), [@object, card], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
+      .col-md-8
+        .card-body.p-0.pl-2.m-2
+          .h6.card-title
+            = link_to card.title, url_for(card.doc), class: 'fancybox text-white'
+          - if can? :manage, card
+            %p.card-text
+              .dropdown
+                %a.dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                  = fa_icon 'cog'
+                %ul.dropdown-menu
+                  = link_to t('shared.edit'), edit_infocenter_category_card_path(@object, card), class: 'dropdown-item'
+                  = link_to t('shared.del'), [@object, card], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

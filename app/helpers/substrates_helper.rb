@@ -16,6 +16,7 @@ module SubstratesHelper
     color = case status
     when 'false' then 'danger'
     when 'true'  then 'success'
+    when 'waiting'  then 'primary'
     else
       'secondary'
     end

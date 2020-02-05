@@ -4,3 +4,4 @@ ru:
       true: Выполнено
       false: Не выполнено
       waiting: В работе
+      plan: План

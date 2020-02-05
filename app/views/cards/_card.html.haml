@@ -12,7 +12,7 @@
           .h6.card-title
             = link_to card.title, url_for(card.doc), class: 'fancybox text-white'
             - if can? :manage, card
-              .dropdown(style="position:absolute;right:5px;top:5px")
+              .dropdown.pl-1.pb-1.bg-secondary.card-cog
                 %a.pointer{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
                   = fa_icon 'cog'
                 %ul.dropdown-menu

@@ -4,9 +4,9 @@
   - elsif columnship.column.column_type == 'price'
     - number_to_currency(columnship.data, precision: 2, delimiter: ' ')
   - elsif columnship.column.column_type == 'one_reference'
-    - Member.where(id: columnship.data).first.surname
+    - Member.where(id: columnship.data).first.surname_init
   - elsif columnship.column.column_type == 'many_references'
-    - Member.where(id: columnship.data).order(:surname).map { |m| m.surname }
+    - Member.where(id: columnship.data).order(:surname).map { |m| m.surname_init }
   - elsif %w[boolean status].include? columnship.column.column_type
     - select_text(columnship.data)
   - else

@@ -20,6 +20,10 @@ class Member < ActiveRecord::Base
     "#{surname} #{name} #{patronymic}"
   end
 
+  def surname_init
+    "#{surname} #{name[0]}. #{patronymic[0]}."
+  end
+
   def surname_name
     "#{surname} #{name}"
   end

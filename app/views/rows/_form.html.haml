@@ -15,9 +15,9 @@
       - when 'string'
         = c.text_field :data, label: c.object.column.name
       - when 'one_reference'
-        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select'), label: c.object.column.name }
+        = c.select :data, options_from_collection_for_select(Member.order(:surname), :id, :fullname, c.object.data), { include_blank: t('shared.select'), label: c.object.column.name }
       - when 'many_references'
-        = c.select :data, options_from_collection_for_select(User.all.includes(:member), :id, :show_name, c.object.data), { include_blank: t('shared.select'), label: c.object.column.name }, { multiple: true }
+        = c.select :data, options_from_collection_for_select(Member.order(:surname), :id, :fullname, c.object.data), { include_blank: t('shared.select'), label: c.object.column.name }, { multiple: true }
       - when 'boolean'
         = c.select :data, {}, { include_blank: t('shared.select'), label: c.object.column.name }, { class: 'selectpicker' } do
           - ['true', 'false'].each do |s|

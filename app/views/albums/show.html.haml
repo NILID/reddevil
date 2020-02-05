@@ -1,18 +1,17 @@
-= content_tag_for(:ul, @album, class: 'breadcrumb') do
-  %li
-    = link_to t('shared.music'), albums_path
-    %span.dropdown-divider
-  - @album.ancestors.each do |a|
-    %li
-      = link_to a.title, a
-      %span.dropdown-divider
-  %li
-    = @album.title
-    = link_to like_album_path(@album), method: :post, remote: true do
-      = current_user.likes?(@album) ? fa_icon('star') : fa_icon('star')
-
 .card
   .card-body
+    %nav(aria-label='breadcrumb')
+      .row
+        .col
+          = content_tag_for(:ol, @album, class: 'breadcrumb h4') do
+            %li.breadcrumb-item= link_to t('shared.music'), albums_path
+            - @album.ancestors.each do |a|
+              %li.breadcrumb-item= link_to a.title, a
+            %li.breadcrumb-item
+              = @album.title
+              = link_to like_album_path(@album), method: :post, remote: true do
+                = current_user.likes?(@album) ? fa_icon('star') : fa_icon('star', class: 'text-muted')
+
     - @albums.each do |album|
       %p
         = link_to album.title, album
@@ -22,10 +21,10 @@
 
     %ul.playlist= render @album.songs, showalbum: false
 
-%ol.breadcrumb
-  %li= link_to t('shared.back'), albums_path
-  - if can? :manage, @album
-    %li= link_to t('shared.edit'), edit_album_path(@album)
-  - if can? :new, Song
-    %li= link_to t('songs.add'), new_album_song_path(@album)
-  %li= link_to t('albums.add'), new_album_path(parent_id: @album.id) if can? :new, Album
+  .card-footer
+    %ul.nav
+      - if can? :manage, @album
+        .nav-item= link_to t('shared.edit'), edit_album_path(@album), class: 'nav-link'
+      - if can? :new, Song
+        .nav-item= link_to t('songs.add'), new_album_song_path(@album), class: 'nav-link'
+      .nav-item= link_to t('albums.add'), new_album_path(parent_id: @album.id), class: 'nav-link' if can? :new, Album

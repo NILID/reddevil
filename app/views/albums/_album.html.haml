@@ -1,7 +1,7 @@
 = content_tag_for(:li, album) do
   %span.title
     = link_to like_album_path(album), method: :post, remote: true, class: 'icon-star-link' do
-      = current_user.likes?(album) ? fa_icon('star') : fa_icon('star')
+      = current_user.likes?(album) ? fa_icon('star') : fa_icon('star', class: 'text-muted')
     - unless album.songs.pluck(:id).empty?
       = link_to download_album_path(album), target: '_blank', data: { toggle: 'tooltip' }, title: t('shared.download') do
         = fa_icon 'download'

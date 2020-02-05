@@ -5,5 +5,5 @@
 <%elsif count_media == 0%>
   $(".favorites-panel").fadeOut();
 <%end%>
-$("#<%=dom_id @album%> i:first").toggleClass('fa-star fa-star-o');
+$("#<%=dom_id @album%> .fa-star:first").toggleClass('text-muted');
 $(".favorites-panel .likees-album-count").html("<%=j plural current_user.likees(Album).count, 'album'%>");

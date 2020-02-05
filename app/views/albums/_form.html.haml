@@ -1,10 +1,10 @@
-= bootstrap_form_for @album, layout: :horizontal, html: { multipart: true } do |f|
-  = f.hidden_field :parent_id
+= bootstrap_form_for @album, html: { multipart: true, class: 'card'} do |f|
+  .card-body
+    = f.hidden_field :parent_id
 
-  = f.text_field :title
-  = f.form_group do
-    = file_field_tag "songs[]", type: :file, multiple: true
-
-  = f.form_group do
+    = f.text_field :title
+    = f.form_group do
+      = file_field_tag "songs[]", type: :file, multiple: true
+  .card-footer
     = f.primary t('shared.save')
     = link_to t('shared.cancel'), :back, class: 'btn btn-secondary'

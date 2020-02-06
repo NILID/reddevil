@@ -2,11 +2,14 @@
   .card-header
     .h3.float-left
       = table.title
-    - if (can? :manage, table) && params[:controller] == 'tables'
+    - if (can? :manage, table)
       .float-right
         %small
-          = link_to t('shared.edit'), edit_table_path(table), class: 'btn btn-secondary btn-sm'
-          = link_to t('shared.del'), table, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+          - if params[:controller] == 'tables'
+            = link_to t('shared.edit'), edit_table_path(table), class: 'btn btn-secondary btn-sm'
+            = link_to t('shared.del'), table, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+          - else
+            = link_to fa_icon('chevron-circle-right 2x'), table, title: t('tables.goto'), data: { toggle: 'tooltip' }, class: 'text-muted'
     .clearfix
   .card-body
     .row.rows-table

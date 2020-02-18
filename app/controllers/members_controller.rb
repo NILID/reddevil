@@ -102,10 +102,11 @@ class MembersController < ApplicationController
                              :patronymic,
                              :work_phone,
                              :phone,
+                             :position,
                              :short_number,
                              :email,
                              :birth,
-                             { :vacations_attributes => %i[id startdate enddate _destroy] }
+                             { vacations_attributes: %i[id startdate enddate _destroy] }
                             ]
       list_params_allowed << [:archive_flag, :user_id, :group] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)

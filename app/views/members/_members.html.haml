@@ -10,7 +10,6 @@
             = fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all'), data: { toggle: 'tooltip' }
             = sort_link @q, :surname, Member.human_attribute_name(:surname)
           - unless params[:action] == 'archive'
-            %th.border-top-0= sort_link @q, :group, Member.human_attribute_name(:group)
             %th.border-top-0= Member.human_attribute_name(:work_phone)
             %th.border-top-0= Member.human_attribute_name(:short_number)
             %th.border-top-0= Member.human_attribute_name(:email)
@@ -22,10 +21,14 @@
             %td.text-muted= index+1
             %td
               %span.membername.pointer
-                = fa_icon 'chevron-down',
-                  class: "icon-padding-r icon-showicon #{(member.phone? || member.birth?) ? nil : 'invisible'}"
-
-                = member.fullname
+                .row
+                  .col-auto
+                    = fa_icon 'chevron-down',
+                      class: "icon-padding-r icon-showicon #{(member.phone? || member.birth?) ? nil : 'invisible'}"
+                  .col.pl-0
+                    = member.fullname
+                    - if member.position?
+                      .text-muted= member.position
               - if member.phone? || member.birth?
                 .hidden_info
                   - if member.phone?

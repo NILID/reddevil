@@ -10,17 +10,21 @@ module ApplicationHelper
      end
    end
 
-    def m(content)
-      sanitize(content, tag: %w[a em p strong])
-    end
+  def m(content)
+    sanitize(content, tag: %w[a em p strong])
+  end
 
-   def rus_month(time)
-     Russian.strftime(time, '%b')
-   end
+  def empty_tag
+    content_tag(:span, t('shared.empty'), class: 'text-muted')
+  end
 
-    def rus_dayname(time)
-      Russian.strftime(time, '%a')
-    end
+  def rus_month(time)
+    Russian.strftime(time, '%b')
+  end
+
+  def rus_dayname(time)
+    Russian.strftime(time, '%a')
+  end
 
    def short_date(time)
      Russian.strftime(time, '%d.%m.%Y')

@@ -125,6 +125,7 @@ ru:
         surname: Фамилия
         patronymic: Отчество
         birth: Дата рождения
+        position: Должность
         phone: Личный моб.телефон
         work_phone: Рабочий моб.телефон
         short_number: Доб. номер

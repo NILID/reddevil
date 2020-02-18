@@ -37,18 +37,21 @@
                     %span.badge.badge-primary= t "user.roles.#{role}"
 
               - if @member
-                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:group)
-                %dd.col-md-9.col-6= @member.group ? t("member.groups.#{@member.group}") : content_tag(:span, t('shared.empty'), class: 'text-muted')
-                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:work_phone)
-                %dd.col-md-9.col-6= @member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
-                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:short_number)
-                %dd.col-md-9.col-6= @member.short_number || content_tag(:span, t('shared.empty'), class: 'text-muted')
-                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:phone)
-                %dd.col-md-9.col-6= @member.phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
-                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:email)
-                %dd.col-md-9.col-6= @member.email || content_tag(:span, t('shared.empty'), class: 'text-muted')
-                %dt.col-md-3.col-6.text-right= Member.human_attribute_name(:birth)
-                %dd.col-md-9.col-6= @member.birth ? l(@member.birth, format: :short) : content_tag(:span, t('shared.empty'), class: 'text-muted')
+                - %i[group position work_phone short_number phone email].each do |attr|
+                  %dt.col-md-3.col-6.text-right
+                    = Member.human_attribute_name(attr)
+                  %dd.col-md-9.col-6
+                    - if @member[attr].present?
+                      - case attr
+                      - when :group
+                        = t("member.groups.#{@member[attr]}")
+                      - when :birth
+                        = l(@member[attr], format: :short)
+                      - else
+                        = @member[attr]
+                    - else
+                      = empty_tag
+
 
     - if current_user.member
       .card.mt-3

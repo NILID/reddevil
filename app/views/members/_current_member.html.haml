@@ -1,8 +1,8 @@
 .card
   .card-header
     = member.fullname
-    .btn-group.float-right(role="group")
-      %button.btn.btn-sm.btn-primary.dropdown-toggle#btnCurMember{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: "true", expanded: "false"} }
+    .btn-group.float-right(role='group')
+      %button.btn.btn-sm.btn-primary.dropdown-toggle#btnCurMember{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
         = fa_icon 'cog'
       .dropdown-menu.dropdown-menu-right{ aria: { labelledby: 'btnCurMember' } }
         = link_to t('shared.edit'), edit_member_path(member), class: 'dropdown-item'
@@ -10,15 +10,18 @@
 
   .card-body
     %dl.row.my-0
-      %dt.col-sm-3.text-right= Member.human_attribute_name(:group)
-      %dd.col-sm-9= member.group ? t("member.groups.#{member.group}") : content_tag(:span, t('shared.empty'), class: 'text-muted')
-      %dt.col-sm-3.text-right= Member.human_attribute_name(:work_phone)
-      %dd.col-sm-9= member.work_phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
-      %dt.col-sm-3.text-right= Member.human_attribute_name(:short_number)
-      %dd.col-sm-9= member.short_number || content_tag(:span, t('shared.empty'), class: 'text-muted')
-      %dt.col-sm-3.text-right= Member.human_attribute_name(:phone)
-      %dd.col-sm-9= member.phone || content_tag(:span, t('shared.empty'), class: 'text-muted')
-      %dt.col-sm-3.text-right= Member.human_attribute_name(:email)
-      %dd.col-sm-9= member.email || content_tag(:span, t('shared.empty'), class: 'text-muted')
-      %dt.col-sm-3.text-right= Member.human_attribute_name(:birth)
-      %dd.col-sm-9= l(member.birth,  format: :short) || content_tag(:span, t('shared.empty'), class: 'text-muted')
+      - if member
+        - %i[group position work_phone short_number phone email].each do |attr|
+          %dt.col-sm-3.text-right
+            = Member.human_attribute_name(attr)
+          %dd.col-sm-9
+            - if member[attr].present?
+              - case attr
+              - when :group
+                = t("member.groups.#{member[attr]}")
+              - when :birth
+                = l(member[attr], format: :short)
+              - else
+                = member[attr]
+            - else
+              = empty_tag

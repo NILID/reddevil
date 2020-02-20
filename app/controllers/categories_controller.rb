@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @object.update_attributes(category_params)
+      if @object.update_attributes(update_params)
         return_url = @object.class.name == 'Category' ? categories_url : @object
         format.html { redirect_to return_url, notice: t('flash.was_updated', item: @object.model_name.human) }
         format.json { head :no_content }
@@ -62,6 +62,12 @@ class CategoriesController < ApplicationController
 
   def category_params
     list_params_allowed = [:ancestry, :title, :parent_id, :hidden, :flag, :position, :show_type, :color, table_ids: [] ]
+    params.require(:category).permit(list_params_allowed)
+  end
+
+  def update_params
+    list_params_allowed = [:ancestry, :title, :parent_id, :hidden, :flag, :position, :show_type, :color, table_ids: [] ]
     params.require(@object.class.name.underscore.to_sym).permit(list_params_allowed)
   end
+
 end

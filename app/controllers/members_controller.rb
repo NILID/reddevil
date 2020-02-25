@@ -24,7 +24,6 @@ class MembersController < ApplicationController
     @q.group_eq = current_user.member.group if current_user.member && !params[:q] # TODO: check current_user and member
     @members = @q.result(distinct: true)
 
-
     @member_ages = []
     @members.with_birth.each {|m| @member_ages << m.age}
 

@@ -2,7 +2,6 @@ class MembersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @current_member = current_user.member
     @q = @members.includes(:user).shown.ransack(params[:q])
     @q.group_eq = current_user.member.group if current_user.member && !params[:q] # TODO: check current_user and member
     @q.sorts = 'surname' if @q.sorts.empty?

@@ -1,11 +1,9 @@
 - set_meta_tags title: t('member.title')
 
 .row
-  .col-12
-    = render 'current_member', member: @current_member if @current_member
   .col-12.py-2
     .card
       .card-header
         = render 'panel_top'
       = render 'search_form', url: members_path, only_select: false
-      = render 'members', members: (@members - [@current_member])
+      = render 'members', members: @members

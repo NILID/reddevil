@@ -37,14 +37,14 @@
                   - unless params[:action] == 'archive'
                     %td
                       .row
-                        - if member.work_phone?
-                          .col
+                        .col
+                          - if member.work_phone?
                             = fa_icon 'mobile-alt', class: 'text-muted mr-2', text: number_to_phone(member.work_phone, area_code: true)
-                        - if member.short_number?
-                          .col
+                        .col
+                          - if member.short_number?
                             = fa_icon 'phone', class: 'text-muted mr-2', text: member.short_number
-                        - if member.email?
-                          .col
+                        .col
+                          - if member.email?
                             = fa_icon 'envelope', class: 'text-muted mr-2', text: mail_to(member.email)
                   - if can? :manage, member
                     %td.text-right

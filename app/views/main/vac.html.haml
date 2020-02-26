@@ -44,4 +44,4 @@
               - if can? :manage_holidays, member
                 = link_to fa_icon('cog'), manage_holidays_member_path(member), class: 'float-right', title: t('vacations.edit'), data: { toggle: 'tooltip' } 
             - (1..days).each do |day|
-              %td{class: is_holiday(holidays, @current_date, day) ? 'bg-danger' : nil}
+              %td{ class: is_holiday(holidays, @current_date, day) }

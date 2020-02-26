@@ -18,5 +18,11 @@ RSpec.describe Vacation, type: :model do
       vacation.enddate = nil
       expect(vacation.valid?).to be false
     end
+
+    it 'have flag inclusion list FLAGS' do
+      vacation.flag = 'death'
+      expect(vacation.valid?).to be false
+      expect(vacation.errors[:flag]).not_to be_empty
+    end
   end
 end

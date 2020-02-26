@@ -14,10 +14,12 @@ class UsersController < ApplicationController
     @albums = @user.likees(Album)
     @current_vacations_soon = @user.member.vacations
       .where('startdate >= ?', now)
+      .where(flag: 'rest')
       .order(:startdate).first
     @current_vacation       = @user.member.vacations
       .where('startdate <= ?', now)
       .where('enddate >= ?',   now)
+      .where(flag: 'rest')
       .first
   end
 

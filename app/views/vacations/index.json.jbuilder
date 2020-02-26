@@ -1,10 +1,12 @@
 current_year = DateTime.now.year
 
-json.array!(@vacations) do |holiday|
-  json.title t('member.in_holiday', member: holiday.member.fullname)
-  json.tooltip t('member.in_holiday', member: holiday.member.fullname)
-  json.start holiday.startdate
-  json.end holiday.enddate+1.day
+json.array!(@vacations) do |vacation|
+  flag = vacation.flag
+
+  json.title t("member.in_#{flag}", member: vacation.member.fullname)
+  json.tooltip t("member.in_#{flag}", member: vacation.member.fullname)
+  json.start vacation.startdate
+  json.end vacation.enddate + 1.day
   json.allDay true
-  json.backgroundColor '#056fb9'
+  json.backgroundColor flag == 'sick' ? '#dc3545' : '#056fb9'
 end

@@ -83,6 +83,17 @@ class MembersController < ApplicationController
     end
   end
 
+  def update_sickdays
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        format.html { redirect_to manage_sickdays_member_url(@member), notice: t('vacations.sick_was_updated') }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'manage_sickdays' }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     @member.destroy
@@ -104,7 +115,7 @@ class MembersController < ApplicationController
                              :short_number,
                              :email,
                              :birth,
-                             { vacations_attributes: %i[id startdate enddate _destroy] }
+                             { vacations_attributes: %i[id flag startdate enddate _destroy] }
                             ]
       list_params_allowed << [:archive_flag, :user_id, :group] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)

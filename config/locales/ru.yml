@@ -86,15 +86,21 @@ ru:
   vacations:
     title: Отпуск
     index: Сейчас в отпуске
+    index_sick: Сейчас на больничном
     soon: Скоро в отпуск
     you_rest: У вас сейчас отпуск
     user_rest: У %{username} сейчас отпуск
     until: (отпуск до %{date})
+    until_sick: (больничный до %{date})
     start: (с %{date}, на %{diff})
     edit: Указать отпуск
+    edit_sick: Указать больничный
     add: Добавить отпуск
+    add_sick: Добавить больничный
     settings: Редактирование графика отпусков %{name}
+    settings_sick: Редактирование больничных %{name}
     show_old: Показать завершенные
+    sick_was_updated: Вы обновили больничные
     from: с
     to: до
     my: Мой отпуск
@@ -143,7 +149,8 @@ ru:
     other_text: Примечание
     archive: Здесь представлен список бывших сотрудников.
     vacation: График отпусков
-    in_holiday: '%{member} в отпуске'
+    in_rest: '%{member} в отпуске'
+    in_sick: '%{member} на больничном'
     download: Скачать список
     specify_format: Выберите формат
     showing: 'Отображать:'

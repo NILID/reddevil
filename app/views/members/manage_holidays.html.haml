@@ -8,11 +8,12 @@
             %li.breadcrumb-item= t 'vacations.settings', name: @member.petrovich_fullname
   .card-body
     = render 'error', object: @member
-    = f.fields_for :vacations, f.object.vacations.order(:startdate) do |vacation|
-      = render 'vacation_fields', f: vacation
+    = f.fields_for :vacations, f.object.vacations.where(flag: 'rest').order(:startdate) do |vacation|
+      = render 'vacation_fields', f: vacation, vacation_flag: 'rest'
     .form-group
-      = link_to_add_association f, :vacations, class: 'btn btn-secondary' do
+      = link_to_add_association f, :vacations, render_options: { locals: { vacation_flag: 'rest' } }, class: 'btn btn-secondary' do
         = fa_icon 'plus', text: t('vacations.add')
+
   .card-footer
     = f.submit t('shared.save'), class: 'btn btn-primary'
     = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'

@@ -106,6 +106,20 @@
                       date: Russian.strftime(v.startdate, "%e %B"),
                       diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
 
+    - if @sickdays.any?
+      .card
+        .card-header
+          = t 'vacations.index_sick'
+        .card-body
+          .row
+            .col-3.col-lg-2
+              = image_tag 'sick.png', class: 'img-fluid'
+            .col-9.col-lg-10
+              - @sickdays.each do |v|
+                .mb-2
+                  = v.member.fullname
+                  = t('vacations.until_sick', date: Russian.strftime(v.enddate, "%e %B"))
+
     - unless @docs.empty?
       .card
         .card-header= t 'docs.last_docs'

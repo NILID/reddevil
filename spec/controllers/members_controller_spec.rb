@@ -37,6 +37,18 @@ RSpec.describe MembersController, type: :controller do
         expect(response).to redirect_to(manage_holidays_member_url(member))
       end
 
+      it 'returns manage_sickdays' do
+        expect(@ability.can? :manage_sickdays, member).to be true
+        get :manage_sickdays, params: { id: member }
+        expect(response).to render_template(:manage_sickdays)
+      end
+
+      it 'updates sickdays the requested member' do
+        expect(@ability.can? :update_sickdays, member).to be true
+        put :update_sickdays, params: { id: member, member: { content: 'New content' } }
+        expect(response).to redirect_to(manage_sickdays_member_url(member))
+      end
+
       it 'destroys' do
         expect(@ability.can? :destroy, member).to be true
         expect{ delete :destroy, params: { id: member } }.to change(Member, :count).by(-1)
@@ -134,6 +146,18 @@ RSpec.describe MembersController, type: :controller do
       put :update_holidays, params: { id: @user.member, member: { content: 'New content' } }
       expect(response).to redirect_to(manage_holidays_member_url(@user.member))
     end
+
+    it 'returns own manage_sickdays' do
+      expect(@ability.can? :manage_sickdays, @user.member).to be true
+      get :manage_sickdays, params: { id: @user.member }
+      expect(response).to render_template(:manage_sickdays)
+    end
+
+    it 'updates sickdays own member' do
+      expect(@ability.can? :update_sickdays, @user.member).to be true
+      put :update_sickdays, params: { id: @user.member, member: { content: 'New content' } }
+      expect(response).to redirect_to(manage_sickdays_member_url(@user.member))
+    end
   end
 
   describe 'unreg user should' do
@@ -174,6 +198,10 @@ RSpec.describe MembersController, type: :controller do
 
     it 'not updates holidays' do
       expect{ put :update_holidays, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'not updates sickdays' do
+      expect{ put :update_sickdays, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do

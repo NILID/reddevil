@@ -1,11 +1,14 @@
 class Vacation < ActiveRecord::Base
   belongs_to :member
 
+  FLAGS = %w[rest sick].freeze
+
   validates :startdate,
             :enddate,
             presence: true
 
   validate :check_dates
+  validates_inclusion_of :flag, in: FLAGS
 
   scope :old,     lambda { where('enddate < ?',    DateTime.now) }
   scope :future,  lambda { where('startdate >= ?', DateTime.now) }

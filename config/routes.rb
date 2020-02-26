@@ -135,6 +135,9 @@ Rails.application.routes.draw do
     member do
       get :manage_holidays
       patch :update_holidays
+
+      get :manage_sickdays
+      patch :update_sickdays
     end
   end
 

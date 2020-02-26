@@ -18,12 +18,22 @@ class MainController < ApplicationController
 
       @vacations      = Vacation.where('startdate <= ?', now)
                                 .where('enddate >= ?',   now)
+                                .where(flag: 'rest')
                                 .order(:enddate)
                                 .includes(:member)
+
+      @sickdays      = Vacation.where('startdate <= ?', now)
+                                .where('enddate >= ?',   now)
+                                .where(flag: 'sick')
+                                .order(:enddate)
+                                .includes(:member)
+
       @vacations_soon = Vacation.where('startdate > ?',  DateTime.now)
                                 .where('startdate <= ?', DateTime.now + 7.days)
+                                .where(flag: 'rest')
                                 .order(:startdate)
                                 .includes(:member)
+
 
       @events      = current_user.events.where('start_date <= ?', now)
                                         .where('end_date >= ?',   now)
@@ -34,10 +44,12 @@ class MainController < ApplicationController
       if current_user.member
         @current_vacations_soon = current_user.member.vacations
                                       .where('startdate >= ?', now)
+                                      .where(flag: 'rest')
                                       .order(:startdate).first
         @current_vacation       = current_user.member.vacations
                                       .where('startdate <= ?', now)
                                       .where('enddate >= ?',   now)
+                                      .where(flag: 'rest')
                                       .first
       end
       @holidays_today    = Holidays.on(now,      :full_ru, :reddevil_ru)

@@ -1,18 +1,18 @@
-.card-body.bg-info.text-white#search-form-collapse{class: params[:q] ? '' : 'collapse' }
+.card-body.bg-info.text-white
   = search_form_for @q, url: url do |f|
     .row
       - unless only_select
         .col
-          .form-group.row
-            = f.label :name_or_surname_or_patronymic_or_email_cont,
+          .form-group.row.mb-0
+            = f.label :name_or_surname_or_patronymic_or_email_or_position_cont,
               t('shared.search'),
               class: 'col-sm-3 col-form-label'
             .col
-              = f.text_field :name_or_surname_or_patronymic_or_email_cont,
+              = f.text_field :name_or_surname_or_patronymic_or_email_or_position_cont,
                 placeholder: t('shared.search_text'),
                 class: 'form-control form-control-sm'
       .col
-        .form-group.row
+        .form-group.row.mb-0
           = f.label :group_eq,
             Member.human_attribute_name(:group),
             class: 'col-sm-3 col-form-label'
@@ -21,7 +21,7 @@
               - Member::GROUPS.each do |g|
                 = content_tag(:option, t("member.groups.#{g}"), value: g, selected: params[:q] && (params[:q][:group_eq] == g) )
       .col
-        .form-group.row.text-right
+        .form-group.row.text-right.mb-0
           .col
             = f.button class: 'btn btn-warning btn-sm btn-block' do
               = fa_icon 'search', text: t('shared.to_search')

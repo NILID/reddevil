@@ -10,9 +10,6 @@
       = link_to t('shared.add'),    new_member_path,       class: 'nav-link'
 
 .float-right
-  - if ['stat', 'index'].include? params[:action]
-    = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
-      = fa_icon 'filter', text: t('shared.filter')
   - if params[:action] == 'index'
     = link_to '#export_list', class: 'btn btn-sm btn-outline-secondary ', data: { toggle: 'modal', target: '#export_list' } do
       = fa_icon 'upload', text: t('member.download')

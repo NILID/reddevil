@@ -2,60 +2,60 @@
   .tab-pane.active
     - if params[:action] == 'archive'
       .alert.alert-info.px-10.my-0= t 'member.archive'
+    =# fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all'), data: { toggle: 'tooltip' }
     - if members.any?
-      %table.table.table-striped.my-0
-        %thead
-          %tr
-            %th.border-top-0
-            %th.border-top-0
-              = fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all'), data: { toggle: 'tooltip' }
-              = sort_link @q, :surname, Member.human_attribute_name(:surname)
-            - unless params[:action] == 'archive'
-              %th.border-top-0= Member.human_attribute_name(:group)
-              %th.border-top-0= Member.human_attribute_name(:work_phone)
-              %th.border-top-0= Member.human_attribute_name(:short_number)
-              %th.border-top-0= Member.human_attribute_name(:email)
-            - if can? :manage, Member
-              %th.border-top-0
+      %table.table.my-0
         %tbody
-          - members.each_with_index do |member, index|
-            = content_tag_for(:tr, member) do
-              %td.text-muted= index+1
-              %td
-                %span.membername.pointer
-                  .row
-                    .col-auto
-                      = fa_icon 'chevron-down',
-                        class: "icon-padding-r icon-showicon #{(member.phone? || member.birth?) ? nil : 'invisible'}"
-                    .col.pl-0
-                      = member.fullname
-                      - if member.position?
-                        .text-muted= member.position
-                - if member.phone? || member.birth?
-                  .hidden_info
-                    - if member.phone?
-                      %p.animated.flipInX
-                        = fa_icon 'phone', class: 'icon-padding-r', text: number_to_phone(member.phone, area_code: true)
-                    - if member.birth?
-                      %p.animated.flipInX
-                        = fa_icon 'gift', class: 'icon-padding-r', text: show_birth(member)
-              - unless params[:action] == 'archive'
-                %td= t("member.groups.#{member.group}") if member.group
-                %td
-                  - if member.work_phone?
-                    = number_to_phone(member.work_phone, area_code: true)
-                %td= member.short_number
-                %td= mail_to member.email
-              - if can? :manage, member
-                %td
-                  .btn-group
-                    %button.btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                      = fa_icon 'cog'
-                    %ul.dropdown-menu.dropdown-menu-right
-                      = link_to t('shared.edit'),     edit_member_path(member),            class: 'dropdown-item'
-                      = link_to t('member.vacation'), manage_holidays_member_path(member), class: 'dropdown-item'
-                      - if can? :destroy, member
-                        = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
+          - Member::GROUPS.each do |g|
+            - group_members = members.where(group: g)
+            - if group_members.any?
+              %tr.table-info
+                %td(colspan=6)
+                  .lead.text-dark.text-center.text-white
+                    = t("member.groups.#{g}")
+              - members.where(group: g).each_with_index do |member, index|
+                = content_tag_for(:tr, member) do
+                  %td.text-muted= index+1
+                  %td
+                    %span.membername.pointer
+                      .row
+                        .col-auto
+                          = fa_icon 'chevron-down',
+                            class: "icon-padding-r icon-showicon #{(member.phone? || member.birth?) ? nil : 'invisible'}"
+                        .col.pl-0
+                          = member.fullname
+                          - if member.position?
+                            .text-muted= member.position
+                    - if member.phone? || member.birth?
+                      .hidden_info
+                        - if member.phone?
+                          %p.animated.flipInX
+                            = fa_icon 'phone', class: 'icon-padding-r', text: number_to_phone(member.phone, area_code: true)
+                        - if member.birth?
+                          %p.animated.flipInX
+                            = fa_icon 'gift', class: 'icon-padding-r', text: show_birth(member)
+                  - unless params[:action] == 'archive'
+                    %td
+                      .row
+                        - if member.work_phone?
+                          .col
+                            = fa_icon 'mobile-alt', class: 'text-muted mr-2', text: number_to_phone(member.work_phone, area_code: true)
+                        - if member.short_number?
+                          .col
+                            = fa_icon 'phone', class: 'text-muted mr-2', text: member.short_number
+                        - if member.email?
+                          .col
+                            = fa_icon 'envelope', class: 'text-muted mr-2', text: mail_to(member.email)
+                  - if can? :manage, member
+                    %td.text-right
+                      .btn-group
+                        %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                          = fa_icon 'cog'
+                        %ul.dropdown-menu.dropdown-menu-right
+                          = link_to t('shared.edit'),     edit_member_path(member),            class: 'dropdown-item'
+                          = link_to t('member.vacation'), manage_holidays_member_path(member), class: 'dropdown-item'
+                          - if can? :destroy, member
+                            = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
     - else
       .text-center.my-5
         .h3.text-muted= t('shared.search_empty')

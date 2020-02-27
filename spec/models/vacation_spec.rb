@@ -19,6 +19,12 @@ RSpec.describe Vacation, type: :model do
       expect(vacation.valid?).to be false
     end
 
+#    it 'have not enddate if flag is sick' do
+#      vacation.flag = 'sick'
+#      vacation.enddate = nil
+#      expect(vacation.valid?).to be true
+#    end
+
     it 'have flag inclusion list FLAGS' do
       vacation.flag = 'death'
       expect(vacation.valid?).to be false

@@ -118,7 +118,7 @@
               - @sickdays.each do |v|
                 .mb-2
                   = v.member.fullname
-                  = t('vacations.until_sick', date: Russian.strftime(v.enddate, "%e %B"))
+                  = t('vacations.until_sick', date: Russian.strftime(v.startdate, "%e %B"))
 
     - unless @docs.empty?
       .card

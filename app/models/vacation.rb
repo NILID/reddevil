@@ -7,6 +7,10 @@ class Vacation < ActiveRecord::Base
             :enddate,
             presence: true
 
+#  validates :enddate,
+#            presence: true,
+#            if: -> { flag == 'rest' }
+
   validate :check_dates
   validates_inclusion_of :flag, in: FLAGS
 

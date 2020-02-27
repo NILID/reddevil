@@ -91,7 +91,7 @@ ru:
     you_rest: У вас сейчас отпуск
     user_rest: У %{username} сейчас отпуск
     until: (отпуск до %{date})
-    until_sick: (больничный до %{date})
+    until_sick: (больничный с %{date})
     start: (с %{date}, на %{diff})
     edit: Указать отпуск
     edit_sick: Указать больничный

@@ -53,11 +53,11 @@ ru:
         private: Ограниченный доступ
         user_ids: Участники
       vacation:
-        startdate: Дата начала отпуска
-        enddate: Дата завершения отпуска
+        startdate: Дата начала
+        enddate: Дата завершения
       vacations:
-        startdate: Дата начала отпуска
-        enddate: Дата завершения отпуска
+        startdate: Дата начала
+        enddate: Дата завершения
       message:
         title: Название
         content: Текст сообщения

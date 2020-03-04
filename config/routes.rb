@@ -138,6 +138,9 @@ Rails.application.routes.draw do
 
       get :manage_sickdays
       patch :update_sickdays
+
+      get :manage_trips
+      patch :update_trips
     end
   end
 

@@ -94,6 +94,19 @@ class MembersController < ApplicationController
     end
   end
 
+  def update_trips
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        format.html { redirect_to manage_trips_member_url(@member), notice: t('vacations.trip_was_updated') }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'manage_trips' }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def destroy
     @member.destroy
 

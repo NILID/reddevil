@@ -23,6 +23,7 @@ class MainController < ApplicationController
 
       @vacations      = all_vacations.where(flag: 'rest')
       @sickdays       = all_vacations.where(flag: 'sick')
+      @tripdays       = all_vacations.where(flag: 'trip')
 
       @vacations_soon = Vacation.where('startdate > ?',  DateTime.now)
                                 .where('startdate <= ?', DateTime.now + 7.days)

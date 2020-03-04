@@ -24,6 +24,10 @@
   .col
     %table.table.table-sm.table-bordered
       - days = Time.days_in_month(@current_date.month, @current_date.year)
+      %caption
+        %span.pr-4= fa_icon 'circle', class: 'text-primary', text: t('member.rest')
+        %span.pr-4= fa_icon 'circle', class: 'text-danger',  text: t('member.sick')
+        = fa_icon 'circle', class: 'text-warning'    ,  text: t('member.trip')
       %thead
         %tr
           %th= Member.human_attribute_name(:surname)
@@ -45,6 +49,7 @@
                   %ul.dropdown-menu
                     = link_to t('vacations.edit'), manage_holidays_member_path(member), class: 'dropdown-item'
                     = link_to t('vacations.edit_sick'), manage_sickdays_member_path(member), class: 'dropdown-item'
+                    = link_to t('vacations.edit_trip'), manage_trips_member_path(member), class: 'dropdown-item'
 
             - (1..days).each do |day|
               %td{ class: is_holiday(holidays, @current_date, day) }

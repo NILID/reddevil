@@ -48,6 +48,7 @@
                   %ul.dropdown-menu
                     = link_to t('vacations.edit'), manage_holidays_member_path(member), class: 'dropdown-item'
                     = link_to t('vacations.edit_sick'), manage_sickdays_member_path(member), class: 'dropdown-item'
+                    = link_to t('vacations.edit_trip'), manage_trips_member_path(member), class: 'dropdown-item'
 
             - (1..days).each do |day|
               %td{ class: is_holiday(holidays, @current_date, day) }

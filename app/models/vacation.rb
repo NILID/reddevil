@@ -1,7 +1,7 @@
 class Vacation < ActiveRecord::Base
   belongs_to :member
 
-  FLAGS = %w[rest sick].freeze
+  FLAGS = %w[rest sick trip].freeze
 
   validates :startdate,
             :enddate,

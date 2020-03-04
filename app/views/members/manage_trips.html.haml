@@ -1,0 +1,18 @@
+= form_for @member, url: update_trips_member_path, html: { class: 'card' } do |f|
+  .card-header
+    %nav(aria-label='breadcrumb')
+      .row
+        .col
+          %ol.breadcrumb.h4.m-0
+            %li.breadcrumb-item= link_to t('member.vacation'), vac_path, class: 'card-archive-link animated'
+            %li.breadcrumb-item= t 'vacations.settings_trip', name: @member.petrovich_fullname
+  .card-body
+    = render 'error', object: @member
+    = f.fields_for :vacations, f.object.vacations.where(flag: 'trip').order(:startdate) do |vacation|
+      = render 'vacation_fields', f: vacation, vacation_flag: 'trip'
+    .form-group
+      = link_to_add_association f, :vacations, render_options: { locals: { vacation_flag: 'trip' } }, class: 'btn btn-secondary' do
+        = fa_icon 'plus', text: t('vacations.add_trip')
+  .card-footer
+    = f.submit t('shared.save'), class: 'btn btn-primary'
+    = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'

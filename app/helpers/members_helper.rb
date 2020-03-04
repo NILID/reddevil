@@ -5,7 +5,15 @@ module MembersHelper
 
   def is_holiday(vacations, date, day)
     vacations.each do |v|
-      return (v.flag == 'rest' ? 'bg-primary' : 'bg-danger') if v.new_check_vac(date, day)
+      if v.new_check_vac(date, day)
+        if v.flag == 'rest'
+          return 'bg-primary'
+        elsif v.flag == 'trip'
+          return 'bg-warning'
+        else
+          return 'bg-danger'
+        end
+      end
     end
     nil
   end

@@ -94,7 +94,7 @@ Rails.application.configure do
 
   config.exceptions_app = self.routes
 
-  config.action_mailer.default_url_options = {:host => 'reddevil.luch.podolsk.ru', from: '"RedDevil" <reddevil@luch.podolsk.ru>'}
+  config.action_mailer.default_url_options = { host: 'reddevil.luch.podolsk.ru', from: '"RedDevil" <reddevil@luch.podolsk.ru>' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {

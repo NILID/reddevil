@@ -1,0 +1,12 @@
+%tr
+  %td
+    #{Russian.strftime(vacation.startdate, "%d.%m.%Y")} - #{Russian.strftime(vacation.enddate, "%d.%m.%Y")}
+  - if can? :manage, vacation
+    %td.text-right
+      .dropdown-toggle{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        = fa_icon 'cog'
+      %ul.dropdown-menu
+        = link_to edit_member_vacation_path(@member, vacation), class: 'dropdown-item' do
+          = fa_icon :edit, text: t('shared.edit')
+        = link_to [@member, vacation], method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+          = fa_icon :trash, text: t('shared.del')

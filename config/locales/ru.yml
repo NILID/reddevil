@@ -1,68 +1,4 @@
 ru:
-  shared:
-    title: Главная
-    music: Музыка
-    archive: Архив
-    close: Закрыть
-    more: дальше
-    more_info: Подробнее
-    tosort: Сортировать
-    send: Отправить
-    show: Показать
-    calendar: Календарь
-    back: Назад
-    info: Инфо
-    history: История изменений
-    copy: Дублировать
-    information: Общая информация
-    filter: Фильтровать
-    choose_file: Выберите файл
-    birthdays: Скоро дни рождения
-    birthday: Скоро день рождения
-    birthdays_today: Сегодня дни рождения
-    birthday_today: Сегодня день рождения
-    birthdays_tomorrow: Завтра день рождения
-    birthdays_yesterday: Вчера был день рождения
-    birthdays_prevyesterday: Позавчера был день рождения
-    download: Скачать
-    add_favorite: Добавить в избранное
-    errors: '%{error} допущена при заполнении формы:'
-    errors_done: '%{error} при заполнении формы:'
-    edit: Редактировать
-    media: Медиа
-    create: Создать
-    show_all: Показать всё
-    search_empty: Па вашему запросу ничего не найдено
-    empty: не указано
-    del: Удалить
-    sure: Вы уверены?
-    add: Добавить
-    sort: 'cортировать: '
-    save: Сохранить
-    waiting: подождите...
-    today: Сегодня
-    tomorrow: Завтра
-    repeat: Повторить
-    cancel: Отмена
-    up: вверх
-    search: Поиск
-    to_search: Искать
-    search_text: Введите текст
-    sport: Спорт
-    mid: среднее
-    select: Выбрать..
-    to_select: == Выберите ==
-    hidden: (скрыто)
-    saving: Сохранение...
-    rating: Рейтинг знатоков
-    building: Данный функционал находится в стадии разработки, возможны ошибки, недочеты и другие неожиданные пакости!
-    stat: Статистика
-    production: Производство
-    multiple_select_helper_html: Можно выделить несколько категорий, для этого достаточно при выборе зажать клавишу <span class="label label-info">Ctrl</span>
-    sort_by: Сортировать по
-    not_find: Поиск не дал результатов
-    already_exist: с такой же датой уже создан
-    editing_conflict: Другой участник уже внес изменения, пока вы заполняли форму. Перейдите на страницу заявки, дабы избежать конфликта, и увидеть изменения.
   flash:
     was_created: 'Вы создали: %{item}'
     was_updated: 'Вы обновили: %{item}'
@@ -83,34 +19,6 @@ ru:
     empty: Пустая папка
     empty_root: Пусто
     already_exist_in_folder: В текущей директории уже существует файл с таким названием.
-  vacations:
-    title: Отпуск
-    index: Сейчас в отпуске
-    index_sick: Сейчас на больничном
-    index_trip: Сейчас в командировке
-    soon: Скоро в отпуск
-    you_rest: У вас сейчас отпуск
-    user_rest: У %{username} сейчас отпуск
-    until: (отпуск до %{date})
-    until_sick: (больничный с %{date})
-    until_trip: (командировка с %{date})
-    start: (с %{date}, на %{diff})
-    edit: Указать отпуск
-    edit_sick: Указать больничный
-    edit_trip: Указать командировку
-    add: Добавить отпуск
-    add_sick: Добавить больничный
-    add_trip: Добавить командировку
-    settings: Редактирование графика отпусков %{name}
-    settings_sick: Редактирование больничных %{name}
-    settings_trip: Редактирование командировок %{name}
-    show_old: Показать завершенные
-    sick_was_updated: Вы обновили больничные
-    trip_was_updated: Вы обновили командировки
-    from: с
-    to: до
-    my: Мой отпуск
-    diff_days: До ближайшего отпуска %{till} %{count}
   devise:
     logout: Выйти
     login: Войти
@@ -133,46 +41,6 @@ ru:
     later: отложено
   types:
     title: Типы
-  member:
-    title: Сотрудники
-    title_list: Список сотрудников
-    add: Новый сотрудник
-    edit: Редактирование сотрудника
-    turn: исполняется
-    willturn: исполнится
-    turned: исполнилось
-    ages: Возраст
-    birth_count: Родились
-    min: минимальный
-    max: максимальный
-    total: общий
-    medium: средний
-    month_stat: Месяца рождения
-    dayname_stat: Дни рождения
-    birthday_of: День рождения %{name}
-    name_stat: Имена
-    fullname: ФИО
-    other_text: Примечание
-    archive: Здесь представлен список бывших сотрудников.
-    vacation: График отпусков
-    rest: отпуск
-    sick: больничный
-    trip: командировка
-    in_rest: '%{member} в отпуске'
-    in_sick: '%{member} на больничном'
-    in_trip: '%{member} в командировке'
-    download: Скачать список
-    specify_format: Выберите формат
-    showing: 'Отображать:'
-    groups:
-      lab193: 193 лаборатория
-      lab190: 190 Аппарат отделения ОиИТ
-      lab182: 182 лаборатория
-      lab181: 181 лаборатория
-      lab180: 180 производственный отдел
-      lab107: 107 отдел техн. контроля
-      lab252: 252 лаборатория
-      lab524: 524 отдел МТО
   users:
     title: Пользователи
     has_groups: Относится к группам
@@ -315,46 +183,6 @@ ru:
     formats:
       very_short: "%d %B"
       short: "%d %B %Y"
-  plural:
-    song_1: композиция
-    song_2: композиции
-    song_10: композиций
-    album_1: альбом
-    album_2: альбома
-    album_10: альбомов
-    day_1: день
-    day_2: дня
-    day_10: дней
-    till_1: остался
-    till_2: осталось
-    till_10: осталось
-    error_1: ошибка
-    error_2: ошибки
-    error_10: ошибок
-    error_done_1: ошибка допущена
-    error_done_2: ошибки допущены
-    error_done_10: ошибок допущено
-    match_1: матч
-    match_2: матча
-    match_10: матчей
-    forecast_1: прогноз
-    forecast_2: прогноза
-    forecast_10: прогнозов
-    user_1: участник
-    user_2: участника
-    user_10: участников
-    member_1: сотрудник
-    member_2: сотрудника
-    member_10: сотрудников
-    table_1: талица
-    table_2: таблицы
-    table_10: таблиц
-    row_1: строка
-    row_2: строки
-    row_10: строк
-    year_1: год
-    year_2: года
-    year_10: лет
   will_paginate:
     next_label: Следующее
     previous_label: Предыдущее

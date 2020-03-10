@@ -1,0 +1,65 @@
+ru:
+  shared:
+    title: Главная
+    music: Музыка
+    archive: Архив
+    close: Закрыть
+    more: дальше
+    more_info: Подробнее
+    tosort: Сортировать
+    send: Отправить
+    show: Показать
+    calendar: Календарь
+    back: Назад
+    info: Инфо
+    history: История изменений
+    copy: Дублировать
+    information: Общая информация
+    filter: Фильтровать
+    choose_file: Выберите файл
+    birthdays: Скоро дни рождения
+    birthday: Скоро день рождения
+    birthdays_today: Сегодня дни рождения
+    birthday_today: Сегодня день рождения
+    birthdays_tomorrow: Завтра день рождения
+    birthdays_yesterday: Вчера был день рождения
+    birthdays_prevyesterday: Позавчера был день рождения
+    download: Скачать
+    add_favorite: Добавить в избранное
+    errors: '%{error} допущена при заполнении формы:'
+    errors_done: '%{error} при заполнении формы:'
+    edit: Редактировать
+    media: Медиа
+    create: Создать
+    show_all: Показать всё
+    search_empty: Па вашему запросу ничего не найдено
+    empty: не указано
+    del: Удалить
+    sure: Вы уверены?
+    add: Добавить
+    sort: 'cортировать: '
+    save: Сохранить
+    waiting: подождите...
+    today: Сегодня
+    tomorrow: Завтра
+    repeat: Повторить
+    cancel: Отмена
+    up: вверх
+    search: Поиск
+    to_search: Искать
+    search_text: Введите текст
+    sport: Спорт
+    mid: среднее
+    select: Выбрать..
+    to_select: == Выберите ==
+    hidden: (скрыто)
+    saving: Сохранение...
+    rating: Рейтинг знатоков
+    building: Данный функционал находится в стадии разработки, возможны ошибки, недочеты и другие неожиданные пакости!
+    stat: Статистика
+    production: Производство
+    multiple_select_helper_html: Можно выделить несколько категорий, для этого достаточно при выборе зажать клавишу <span class="label label-info">Ctrl</span>
+    sort_by: Сортировать по
+    not_find: Поиск не дал результатов
+    already_exist: с такой же датой уже создан
+    editing_conflict: Другой участник уже внес изменения, пока вы заполняли форму. Перейдите на страницу заявки, дабы избежать конфликта, и увидеть изменения.

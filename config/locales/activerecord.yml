@@ -28,6 +28,7 @@ ru:
       table: таблица
       column: поле
       page: страница
+      vacation: событие
     attributes:
       album:
         title: Название

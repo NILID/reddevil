@@ -107,6 +107,7 @@ Rails.application.routes.draw do
     resources :folders do
       resources :datasets
     end
+
   end
 
   resources :albums do
@@ -132,15 +133,10 @@ Rails.application.routes.draw do
       get :stat
       get :days_birth
     end
-    member do
-      get :manage_holidays
-      patch :update_holidays
-
-      get :manage_sickdays
-      patch :update_sickdays
-
-      get :manage_trips
-      patch :update_trips
+    resources :vacations, except: %[show] do
+      collection do
+        get :list
+      end
     end
   end
 

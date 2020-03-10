@@ -43,7 +43,6 @@ class MembersController < ApplicationController
 
   def new; end
 
-  def manage_holidays; end
   def edit; end
 
   def create
@@ -70,43 +69,6 @@ class MembersController < ApplicationController
     end
   end
 
-  def update_holidays
-    respond_to do |format|
-      if @member.update_attributes(member_params)
-        format.html { redirect_to manage_holidays_member_url(@member), notice: t('flash.was_updated', item: t('member.vacation').downcase) }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'manage_holidays' }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update_sickdays
-    respond_to do |format|
-      if @member.update_attributes(member_params)
-        format.html { redirect_to manage_sickdays_member_url(@member), notice: t('vacations.sick_was_updated') }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'manage_sickdays' }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update_trips
-    respond_to do |format|
-      if @member.update_attributes(member_params)
-        format.html { redirect_to manage_trips_member_url(@member), notice: t('vacations.trip_was_updated') }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'manage_trips' }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-
   def destroy
     @member.destroy
 
@@ -126,8 +88,7 @@ class MembersController < ApplicationController
                              :position,
                              :short_number,
                              :email,
-                             :birth,
-                             { vacations_attributes: %i[id flag startdate enddate _destroy] }
+                             :birth
                             ]
       list_params_allowed << [:archive_flag, :user_id, :group] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)

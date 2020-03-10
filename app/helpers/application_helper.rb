@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def rus_month(time)
-    Russian.strftime(time, '%b')
+    Russian.strftime(time, '%B')
   end
 
   def rus_dayname(time)

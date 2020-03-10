@@ -1,0 +1,18 @@
+.card
+  .card-body
+    = render 'breadcrumb', title: t("vacations.title_member_html", member: link_to(@member.petrovich_fullname, @member.user))
+    .row
+      - %w[rest sick trip].each do |flag|
+        .col-12.col-lg-4.col-md-6.my-3
+          .lead.mb-3.text-center
+            = t "vacations.#{flag}"
+          .row
+            .col-3.col-lg-2
+              = image_tag "#{flag}.png", class: 'img-fluid'
+            .col-9.col-lg-10
+              %table.table.mb-0
+                = render(@vacations.where(flag: flag)) || content_tag(:span, t('shared.empty'), class: 'lead text-muted')
+                - if can? :new, @member => Vacation
+                  %tr
+                    %td(colspan='2')
+                      = link_to fa_icon(:plus), new_member_vacation_path(@member, flag: flag), class: 'btn btn-sm btn-outline-secondary'

@@ -1,0 +1,15 @@
+= bootstrap_form_for [@member, @vacation], layout: :horizontal, html: { class: 'card' } do |f|
+  .card-body
+    = render 'breadcrumb', title: formtitle
+    = f.hidden_field :flag, value: @vacation.flag
+    .form-group.input-daterange
+      = f.text_field :startdate,
+            value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate?),
+            label_text: nil,
+            class: 'form-control'
+      = f.text_field :enddate,
+            value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate?),
+            class: 'form-control'
+  .card-footer
+    = f.primary
+    = link_to t('shared.back'), [@member, Vacation], class: 'btn btn-secondary float-right'

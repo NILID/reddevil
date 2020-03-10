@@ -50,7 +50,9 @@ class Ability
 
     if user.role? :user
       can %i[stat archive days_birth], Member
-      can %i[update manage_holidays update_holidays manage_sickdays update_sickdays  manage_trips update_trips], Member, user: { id: user.id }
+      can :update, Member, user: { id: user.id }
+      can :list, Vacation
+      can :manage, Vacation, member: { user_id: user.id }
 
       can %i[destroy update], Forecast do |f|
         (f.round.deadline > DateTime.now) && (f.user_id == user.id)

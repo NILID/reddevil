@@ -132,8 +132,7 @@
               - @tripdays.each do |v|
                 .mb-2
                   = v.member.fullname
-                  = t('vacations.until_trip', date: Russian.strftime(v.startdate, "%e %B"))
-
+                  = trip_period(v.startdate, v.enddate)
 
     - if @docs.any?
       .card

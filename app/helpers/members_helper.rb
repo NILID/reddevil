@@ -17,4 +17,12 @@ module MembersHelper
     end
     nil
   end
+
+  def trip_period(startdate, enddate)
+    if startdate == enddate
+      t('vacations.trip_in', date: Russian.strftime(startdate, '%e %B'))
+    else
+      t('vacations.until_trip', date: Russian.strftime(enddate, '%e %B'))
+    end
+  end
 end

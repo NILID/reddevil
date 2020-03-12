@@ -14,6 +14,12 @@ RSpec.describe FoldersController, type: :controller do
           .to raise_error(CanCan:: AccessDenied)
       end
 
+      it 'returns show' do
+        expect(@ability.can? :show, folder).to be false
+        expect{ get :show, params: { id: folder, user_id: user } }
+          .to raise_error(CanCan:: AccessDenied)
+      end
+
       it 'returns edit' do
         expect(@ability.can? :edit, folder).to be false
         expect{ get :edit, params: { id: folder, user_id: user } }
@@ -41,42 +47,22 @@ RSpec.describe FoldersController, type: :controller do
     end
   end
 
-  describe 'user should' do
-    login_user(:user)
-
-    it 'not returns edit' do
-      expect(@ability.can? :edit, folder).to be false
-      expect{
-        get :edit, params: { id: folder, user_id: user }
-      }.to raise_error(CanCan:: AccessDenied)
-    end
-
-    it 'not destroys' do
-      expect(@ability.can? :destroy, folder).to be false
-      expect{
-        expect{ delete :destroy, params: { id: folder, user_id: user } }.to change(Folder, :count).by(0)
-      }.to raise_error(CanCan:: AccessDenied)
-    end
-
-    it 'not updates' do
-      expect(@ability.can? :update, folder).to be false
-      expect{
-        put :update, params: { id: folder, user_id: user, folder: { startdate: Date.today } }
-      }.to raise_error(CanCan:: AccessDenied)
-    end
-
-    it 'not returns new' do
-      expect(@ability.can? :new, user => Folder).to be false
-      expect{
-        get :new, params: { user_id: user }
-      }.to raise_error(CanCan:: AccessDenied)
-    end
-  end
-
   describe 'owner should' do
     before(:each) do
       sign_in user
       @ability = Ability.new(user)
+    end
+
+    it 'returns index' do
+      expect(@ability.can? :index, user => Folder).to be true
+      get :index, params: { user_id: user }
+      expect(response).to be_successful
+    end
+
+    it 'returns show' do
+      expect(@ability.can? :show, folder).to be true
+      get :show, params: { id: folder, user_id: user }
+      expect(response).to be_successful
     end
 
     it 'returns edit' do
@@ -112,6 +98,10 @@ RSpec.describe FoldersController, type: :controller do
 
     it 'get index' do
       get :index, params: { user_id: user }
+    end
+
+    it 'get show' do
+      get :show, params: { id: folder, user_id: user }
     end
 
     it 'returns edit' do

@@ -24,6 +24,10 @@ FactoryBot.define do
       after(:create) { |u| u.update_attribute(:roles_mask, 2)}
     end
 
+    trait(:moderator) do
+      after(:create) { |u| u.update_attribute(:roles_mask, 4)}
+    end
+
     trait(:testuser) do
       after(:create) { |u| u.update_attribute(:roles_mask, 16)}
     end

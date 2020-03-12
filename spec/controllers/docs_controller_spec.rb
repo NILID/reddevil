@@ -3,37 +3,39 @@ require 'rails_helper'
 RSpec.describe DocsController, type: :controller do
   let!(:doc) { create(:doc) }
 
-  describe 'admin should' do
-    login_user(:admin)
+  %i[admin moderator].each do |role|
+    describe "#{role} should" do
+      login_user(role)
 
-    it 'new' do
-      expect(@ability.can? :new, Doc).to be true
-      get :new
-      expect(response).to render_template(:new)
-    end
+      it 'new' do
+        expect(@ability.can? :new, Doc).to be true
+        get :new
+        expect(response).to render_template(:new)
+      end
 
-    it 'create' do
-      expect(@ability.can? :create, Doc).to be true
-      expect{ post :create, params: { doc: attributes_for(:doc) } }.to change(Doc, :count).by(1)
-      expect(response).to redirect_to(docs_url)
-    end
+      it 'create' do
+        expect(@ability.can? :create, Doc).to be true
+        expect{ post :create, params: { doc: attributes_for(:doc) } }.to change(Doc, :count).by(1)
+        expect(response).to redirect_to(docs_url)
+      end
 
-    it 'edit' do
-      expect(@ability.can? :edit, doc).to be true
-      get :edit, params: { id: doc }
-      expect(response).to render_template(:edit)
-    end
+      it 'edit' do
+        expect(@ability.can? :edit, doc).to be true
+        get :edit, params: { id: doc }
+        expect(response).to render_template(:edit)
+      end
 
-    it 'destroy' do
-      expect(@ability.can? :destroy, doc).to be true
-      expect{ delete :destroy, params: { id: doc } }.to change(Doc, :count).by(-1)
-      expect(response).to redirect_to(docs_url)
-    end
+      it 'destroy' do
+        expect(@ability.can? :destroy, doc).to be true
+        expect{ delete :destroy, params: { id: doc } }.to change(Doc, :count).by(-1)
+        expect(response).to redirect_to(docs_url)
+      end
 
-    it 'update' do
-      expect(@ability.can? :update, doc).to be true
-      put :update, params: { id: doc, doc: attributes_for(:doc) }
-      expect(response).to redirect_to(docs_url)
+      it 'update' do
+        expect(@ability.can? :update, doc).to be true
+        put :update, params: { id: doc, doc: attributes_for(:doc) }
+        expect(response).to redirect_to(docs_url)
+      end
     end
   end
 

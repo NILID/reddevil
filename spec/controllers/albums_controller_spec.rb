@@ -30,7 +30,7 @@ RSpec.describe AlbumsController, type: :controller do
     # TODO
     # rebuild with songs and without
 
-    it 'show' do
+    it 'download' do
       expect(@ability.can? :download, album).to be true
       get :download, params: { id: album }
       # expect(response).to render_template(:download)

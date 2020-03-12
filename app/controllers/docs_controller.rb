@@ -24,7 +24,7 @@ class DocsController < ApplicationController
       hidden = []
       Category.specific.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
 
-      @q = params[:q] ? Doc.ransack(params[:q]) : Doc.joins(:categories).where('categories.id' => hidden).search(params[:q])
+      @q = params[:q] ? Doc.ransack(params[:q]) : Doc.joins(:categories).where('categories.id' => hidden).ransack(params[:q])
       @docs = @q.result(distinct: true).includes(:categories, :categoryships).order(:title)
     end
     @categories = Category.specific.arrange(order: :title)

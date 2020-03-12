@@ -105,7 +105,7 @@ Rails.application.routes.draw do
     end
     resources :events
     resources :folders do
-      resources :datasets
+      resources :datasets, except: [:index, :show]
     end
 
   end

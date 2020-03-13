@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :events, only: %i[list] do
+  resources :events, only: [] do
     collection do
       get 'list'
     end

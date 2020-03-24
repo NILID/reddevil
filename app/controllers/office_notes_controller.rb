@@ -19,6 +19,7 @@ class OfficeNotesController < ApplicationController
   end
 
   def create
+    @office_note.user = current_user
     respond_to do |format|
       if @office_note.save
         format.html { redirect_to @office_note, notice: 'Office note was successfully created.' }

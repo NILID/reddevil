@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :subfiles
   has_many :substrates
   has_many :notes
+  has_many :office_notes
   has_many :rooms
   has_many :room_messages, dependent: :destroy
   has_one  :profile, dependent: :destroy

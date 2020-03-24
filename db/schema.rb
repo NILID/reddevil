@@ -280,8 +280,10 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
     t.string "num", null: false
     t.string "title", null: false
     t.string "whom", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_office_notes_on_user_id"
   end
 
   create_table "pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

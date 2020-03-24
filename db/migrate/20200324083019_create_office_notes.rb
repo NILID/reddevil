@@ -4,6 +4,7 @@ class CreateOfficeNotes < ActiveRecord::Migration[5.2]
       t.string :num,   null: false
       t.string :title, null: false
       t.string :whom,  null: false
+      t.belongs_to :user
 
       t.timestamps
     end

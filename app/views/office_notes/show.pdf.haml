@@ -3,11 +3,14 @@
   %head
     %meta{ charset: 'utf-8'}
     :css
-      body {font-size:12px;font-family: Geneva, Arial, Helvetica, sans-serif; color: #333}
+      body {font-size:12px;font-family: Arial;}
       .title {font-size:18px;text-align:center;margin-bottom:10px;}
       table {width:100%;border-collapse:collapse;}
       table, tr, td{border:1px solid #ddd;}
       tbody tr:nth-child(odd) {background:#eee}
       td{padding: 5px}
   %body
-    sdfsdf
+    = @office_note.title
+    = @office_note.num
+    = @office_note.whom
+    = @office_note.created_at

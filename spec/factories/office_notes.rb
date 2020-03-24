@@ -3,5 +3,6 @@ FactoryBot.define do
     num { "180/05-#{Faker::Number.number(digits: 10)}" }
     title { "Making machine" }
     whom { "Dmitry" }
+    user
   end
 end

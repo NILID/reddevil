@@ -41,4 +41,4 @@
         %ul.playlist.mt-3
           .endless= render @new_songs, showalbum: true
 
-        %div(hidden)= will_paginate @new_songs
+        .div-pagy(hidden)= will_paginate @new_songs

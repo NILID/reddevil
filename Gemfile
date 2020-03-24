@@ -98,7 +98,7 @@ gem 'yaml_db'
 
 gem 'nested_form'
 
-gem 'will_paginate-bootstrap'
+gem 'will_paginate-bootstrap4'
 
 gem 'paperclip'
 gem 'paperclip-i18n'

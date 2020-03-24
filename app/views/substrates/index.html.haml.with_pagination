@@ -76,4 +76,4 @@
 
       %tbody.endless
         = render @substrates
-      %div(hidden)= will_paginate @substrates
+      .div-pagy(hidden)= will_paginate @substrates

@@ -1,0 +1,14 @@
+.card
+  .card-body
+    = render 'breadcrumb', titles: ["#{@office_note.title} #{@office_note.num}"]
+
+    %p
+      %b= OfficeNote.human_attribute_name(:whom)
+      = @office_note.whom
+    %p
+      %b= OfficeNote.human_attribute_name(:created_at)
+      = short_date(@office_note.created_at)
+
+    = link_to t('shared.edit'), edit_office_note_path(@office_note)
+    \|
+    = link_to t('shared.back'), office_notes_path

@@ -1,0 +1,30 @@
+.card
+  .card-body
+    = render 'breadcrumb', titles: []
+    .mt-2.mb-4
+      = link_to new_office_note_path, class: 'btn btn-primary' do
+        = fa_icon :plus, text: t('shared.add')
+
+    %table.table
+      %thead
+        %tr
+          %th= OfficeNote.human_attribute_name(:num)
+          %th= OfficeNote.human_attribute_name(:created_at)
+          %th= OfficeNote.human_attribute_name(:title)
+          %th= OfficeNote.human_attribute_name(:whom)
+          %th
+
+      %tbody
+        - @office_notes.each do |office_note|
+          %tr
+            %td= link_to office_note.num, office_note
+            %td= short_date(office_note.created_at)
+            %td= office_note.title
+            %td= office_note.whom
+            %td.text-right
+              .btn-group
+                %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                  = fa_icon 'cog'
+                %ul.dropdown-menu.dropdown-menu-right
+                  = link_to t('shared.edit'),  edit_office_note_path(office_note),                                class: 'dropdown-item'
+                  = link_to t('shared.del'),   office_note, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

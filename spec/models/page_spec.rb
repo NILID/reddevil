@@ -16,6 +16,5 @@ RSpec.describe Page, type: :model do
       expect(page.valid?).to be false
       expect(page.errors[:content]).not_to be_empty
     end
-
   end
 end

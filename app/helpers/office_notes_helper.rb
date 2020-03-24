@@ -1,0 +1,2 @@
+module OfficeNotesHelper
+end

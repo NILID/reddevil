@@ -1,0 +1,17 @@
+
+
+= bootstrap_form_for @office_note, html: { class: 'card' } do |f|
+  .card-body
+    = render 'breadcrumb', titles: [formtitle]
+
+    = render 'error', object: @office_note
+
+    = f.text_field :num
+    = f.text_field :title
+    = f.text_field :whom
+    = f.text_field :created_at, class: 'datepicker',
+      value: (f.object.created_at.to_datetime.strftime('%d.%m.%Y') if f.object.created_at.present?)
+
+    = f.submit t('shared.save')
+    .float-right
+      = link_to t('shared.back'), office_notes_path, class: 'btn btn-outline-secondary'

@@ -35,6 +35,7 @@ class OfficeNote < ApplicationRecord
 
     def check_num
       year = created_at.year
-      errors.add(:num, "уже существует на #{year} год") if OfficeNote.current_year_notes(year).where(num: num).any?
+      notes = OfficeNote.current_year_notes(year).where(num: num) - [self]
+      errors.add(:num, "уже существует на #{year} год") if notes.any?
     end
 end

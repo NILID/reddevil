@@ -51,7 +51,7 @@ RSpec.describe OfficeNote, type: :model do
       end
 
       it 'have not uniq num if next year' do
-        new_note = OfficeNote.new(title: 'check', whom: 'Dmitry')
+        new_note = OfficeNote.new(title: 'check', whom: 'Dmitry', user: create(:user))
         new_note.num = note.num
         new_note.created_at = Date.today + 2.years
         expect(new_note.valid?).to be true

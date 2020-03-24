@@ -26,7 +26,7 @@ class OfficeNote < ApplicationRecord
 
   def self.last_num
     last_not = OfficeNote.current_year_notes.first
-    last_not.nil? ? 1: last_not.num.match(/[0-9]+\z/).to_a.first.to_i
+    last_not.nil? ? 0 : last_not.num.match(/[0-9]+\z/).to_a.first.to_i
   end
 
   private

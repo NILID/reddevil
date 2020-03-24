@@ -22,7 +22,8 @@ class OfficeNotesController < ApplicationController
     @office_note.user = current_user
     respond_to do |format|
       if @office_note.save
-        format.html { redirect_to @office_note, notice: 'Office note was successfully created.' }
+        format.html { redirect_to @office_note, notice: t('flash.was_created', item: OfficeNote.model_name.human) }
+
         format.json { render :show, status: :created, location: @office_note }
       else
         format.html { render :new }
@@ -34,7 +35,7 @@ class OfficeNotesController < ApplicationController
   def update
     respond_to do |format|
       if @office_note.update(office_note_params)
-        format.html { redirect_to @office_note, notice: 'Office note was successfully updated.' }
+        format.html { redirect_to @office_note, notice: t('flash.was_updated', item: OfficeNote.model_name.human) }
         format.json { render :show, status: :ok, location: @office_note }
       else
         format.html { render :edit }
@@ -46,7 +47,7 @@ class OfficeNotesController < ApplicationController
   def destroy
     @office_note.destroy
     respond_to do |format|
-      format.html { redirect_to office_notes_url, notice: 'Office note was successfully destroyed.' }
+      format.html { redirect_to office_notes_url, notice: t('flash.was_destroyed', item: OfficeNote.model_name.human) }
       format.json { head :no_content }
     end
   end

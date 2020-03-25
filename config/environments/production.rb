@@ -103,7 +103,7 @@ Rails.application.configure do
      port:                 25,
      authentication:       :login,
      user_name:            'reddevil@luch.podolsk.ru',
-     password:             Rails.application.credentials.mail_password,
+     password:             Rails.application.credentials.mail_password.to_s,
      openssl_verify_mode:  'none'
   }
 end

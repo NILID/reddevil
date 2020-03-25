@@ -22,7 +22,7 @@ class OfficeNotesController < ApplicationController
     @office_note.user = current_user
     respond_to do |format|
       if @office_note.save
-        format.html { redirect_to @office_note, notice: t('flash.was_created', item: OfficeNote.model_name.human) }
+        format.html { redirect_to office_notes_url, notice: t('flash.was_created', item: OfficeNote.model_name.human) }
 
         format.json { render :show, status: :created, location: @office_note }
       else

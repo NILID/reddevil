@@ -1,4 +1,4 @@
-class Doc < ActiveRecord::Base
+class Doc < ApplicationRecord
   has_many :categoryships, dependent: :destroy
   has_many :categories, through: :categoryships
 

@@ -1,4 +1,4 @@
-class Table < ActiveRecord::Base
+class Table < ApplicationRecord
   has_many :columns, inverse_of: :table
   has_many :rows, dependent: :destroy
   belongs_to :tableable, polymorphic: true, optional: true

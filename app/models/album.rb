@@ -1,4 +1,4 @@
-class Album < ActiveRecord::Base
+class Album < ApplicationRecord
   acts_as_likeable
 
   has_many :songs, dependent: :destroy

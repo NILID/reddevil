@@ -1,4 +1,4 @@
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   has_ancestry cache_depth: true
 
   has_many :categoryships

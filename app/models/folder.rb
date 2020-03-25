@@ -1,4 +1,4 @@
-class Folder < ActiveRecord::Base
+class Folder < ApplicationRecord
   has_ancestry cache_depth: true
 
   belongs_to :user

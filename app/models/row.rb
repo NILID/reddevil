@@ -1,4 +1,4 @@
-class Row < ActiveRecord::Base
+class Row < ApplicationRecord
   belongs_to :user
   belongs_to :table
 

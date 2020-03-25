@@ -1,4 +1,4 @@
-class Note < ActiveRecord::Base
+class Note < ApplicationRecord
   belongs_to :user, optional: true
 
   STATUS = %w[new failed done later].freeze

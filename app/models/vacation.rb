@@ -1,4 +1,4 @@
-class Vacation < ActiveRecord::Base
+class Vacation < ApplicationRecord
   belongs_to :member
 
   FLAGS = %w[rest sick trip].freeze

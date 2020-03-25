@@ -1,4 +1,4 @@
-class Dataset < ActiveRecord::Base
+class Dataset < ApplicationRecord
   belongs_to :user
   belongs_to :folder
 

@@ -1,4 +1,4 @@
-class Team < ActiveRecord::Base
+class Team < ApplicationRecord
   belongs_to :type
   # belongs_to :first_teams, class_name: 'Match'
 

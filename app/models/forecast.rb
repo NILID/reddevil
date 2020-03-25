@@ -1,4 +1,4 @@
-class Forecast < ActiveRecord::Base
+class Forecast < ApplicationRecord
   belongs_to :user
   belongs_to :match
   belongs_to :winner, class_name: 'Team'

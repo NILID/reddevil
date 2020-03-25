@@ -1,4 +1,4 @@
-class Match < ActiveRecord::Base
+class Match < ApplicationRecord
   after_update :check_guess
 
   belongs_to :team1,  class_name: 'Team'

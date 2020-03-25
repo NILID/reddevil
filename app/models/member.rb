@@ -1,4 +1,4 @@
-class Member < ActiveRecord::Base
+class Member < ApplicationRecord
   has_many :vacations, inverse_of: :member
   belongs_to :user, optional: true
 

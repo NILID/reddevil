@@ -1,4 +1,4 @@
-class Type < ActiveRecord::Base
+class Type < ApplicationRecord
   has_many :teams
   has_many :rounds
 

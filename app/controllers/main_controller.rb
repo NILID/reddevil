@@ -16,20 +16,22 @@ class MainController < ApplicationController
       @bdusers_tomorrow = @bduser.find_births_for(tomorrow).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
       @bdusers_month    = @bduser.find_births_for(tomorrow + 1.day, now + 30.days).group_by {|u| [(u.birth.month < DateTime.now.month ? 1 : 0), u.birth.strftime("%m"), u.birth.strftime("%d")]}
 
-      all_vacations     = Vacation.where('startdate <= ?', now)
+      all_vacations     = Vacation.includes(:member)
+                                  .where('startdate <= ?', now)
                                   .where('enddate >= ?',   now)
+                                  .where(members: { archive_flag: false })
                                   .order(:enddate)
-                                  .includes(:member)
 
       @vacations      = all_vacations.where(flag: 'rest')
       @sickdays       = all_vacations.where(flag: 'sick')
       @tripdays       = all_vacations.where(flag: 'trip')
 
-      @vacations_soon = Vacation.where('startdate > ?',  DateTime.now)
+      @vacations_soon = Vacation.includes(:member)
+                                .where('startdate > ?',  DateTime.now)
                                 .where('startdate <= ?', DateTime.now + 7.days)
                                 .where(flag: 'rest')
+                                .where(members: { archive_flag: false })
                                 .order(:startdate)
-                                .includes(:member)
 
 
       @events      = current_user.events.where('start_date <= ?', now)

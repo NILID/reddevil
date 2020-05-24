@@ -1,4 +1,4 @@
-class CreateSubstrates < ActiveRecord::Migration[5.2]
+class CreateSubstrates < ActiveRecord::Migration[4.2]
   def change
     create_table :substrates do |t|
       t.string :drawing
@@ -11,10 +11,10 @@ class CreateSubstrates < ActiveRecord::Migration[5.2]
       t.string :shipping_to
       t.text :shipping_base
       t.string :status
-      t.integer, :ready_count, default: 0
-      t.integer, :instock, default: 0
-      t.string, :wave_b
-      t.string, :corner_b
+      t.integer :ready_count, default: 0
+      t.integer :instock, default: 0
+      t.string :wave_b
+      t.string :corner_b
 
       t.references :user, foreign_key: true
 

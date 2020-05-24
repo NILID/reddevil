@@ -18,7 +18,7 @@
           = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
             = fa_icon 'plus', text: t('shared.add')
 
-  = render 'search_form'
+  = render 'substrates/search_form'
 
   - if @substrates.empty?
     .text-center.my-5

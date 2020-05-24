@@ -1,4 +1,4 @@
-class CreateCategoryships < ActiveRecord::Migration
+class CreateCategoryships < ActiveRecord::Migration[4.2]
   def change
     create_table :categoryships do |t|
       t.references :doc, index: true, foreign_key: true

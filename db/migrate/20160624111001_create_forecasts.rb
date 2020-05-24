@@ -1,4 +1,4 @@
-class CreateForecasts < ActiveRecord::Migration
+class CreateForecasts < ActiveRecord::Migration[4.2]
   def change
     create_table :forecasts do |t|
       t.references :user, index: true, foreign_key: true

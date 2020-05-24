@@ -1,4 +1,4 @@
-class CreateSubfiles < ActiveRecord::Migration[5.2]
+class CreateSubfiles < ActiveRecord::Migration[4.2]
   def change
     create_table :subfiles do |t|
       t.attachment :src

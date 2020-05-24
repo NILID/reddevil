@@ -12,15 +12,18 @@ class UsersController < ApplicationController
     @member = @user.member
     @songs  = @user.likees(Song)
     @albums = @user.likees(Album)
-    @current_vacations_soon = @user.member.vacations
-      .where('startdate >= ?', now)
-      .where(flag: 'rest')
-      .order(:startdate).first
-    @current_vacation       = @user.member.vacations
-      .where('startdate <= ?', now)
-      .where('enddate >= ?',   now)
-      .where(flag: 'rest')
-      .first
+
+    if @member
+      @current_vacations_soon = @member.vacations
+        .where('startdate >= ?', now)
+        .where(flag: 'rest')
+        .order(:startdate).first
+      @current_vacation       = @member.vacations
+        .where('startdate <= ?', now)
+        .where('enddate >= ?',   now)
+        .where(flag: 'rest')
+        .first
+    end
   end
 
   def edit; end

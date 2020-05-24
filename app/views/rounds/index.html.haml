@@ -2,8 +2,9 @@
 
 .row
   .col-md-6
-    .card.mb-3#rating
-      = render partial: 'rating', locals: { users: @users }
+    - if @users
+      .card.mb-3#rating
+        = render partial: 'rounds/rating', locals: { users: @users }
     .card
       .card-header
         = t 'shared.stat'

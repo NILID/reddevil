@@ -33,16 +33,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "activities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.integer "user_id"
-    t.date "deadline"
-    t.string "flag"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["user_id"], name: "fk_rails_7e11bb717f"
-  end
-
   create_table "albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "ancestry"
@@ -381,17 +371,17 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
     t.index ["album_id"], name: "index_songs_on_album_id"
   end
 
-  create_table "subfiles", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "subfiles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "src_file_name"
     t.string "src_content_type"
     t.bigint "src_file_size"
     t.datetime "src_updated_at"
-    t.bigint "substrate_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["substrate_id"], name: "index_subfiles_on_substrate_id"
-    t.index ["user_id"], name: "index_subfiles_on_user_id"
+    t.integer "substrate_id"
+    t.integer "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["substrate_id"], name: "fk_rails_4bec765169"
+    t.index ["user_id"], name: "fk_rails_1a9c5d750a"
   end
 
   create_table "subscribes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -406,7 +396,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
     t.datetime "updated_at"
   end
 
-  create_table "substrates", id: :bigint, default: nil, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "substrates", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "drawing"
     t.string "detail"
     t.integer "amount", default: 1
@@ -416,9 +406,13 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
     t.date "shipping_at"
     t.string "shipping_to"
     t.string "shipping_base"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "ready_count", default: 0
+    t.integer "instock", default: 0
+    t.string "wave_b"
+    t.string "corner_b"
+    t.integer "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string "priority", default: "normal"
     t.string "title"
     t.text "desc"
@@ -432,12 +426,8 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
     t.datetime "finished_at"
     t.datetime "future_shipping_at"
     t.string "coating_type_b", default: "нет"
-    t.string "wave_b"
-    t.string "corner_b"
-    t.integer "instock", default: 0
     t.integer "priorityx", default: 4, null: false
-    t.integer "ready_count", default: 0
-    t.index ["user_id"], name: "index_substrates_on_user_id"
+    t.index ["user_id"], name: "fk_rails_c96f9bb7b3"
   end
 
   create_table "substrates_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -553,7 +543,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "activities", "users"
   add_foreign_key "cards", "categories"
   add_foreign_key "categoryships", "categories"
   add_foreign_key "categoryships", "docs"
@@ -566,5 +555,8 @@ ActiveRecord::Schema.define(version: 2020_03_24_083019) do
   add_foreign_key "rooms", "users"
   add_foreign_key "rooms_users", "rooms"
   add_foreign_key "rooms_users", "users"
+  add_foreign_key "subfiles", "substrates"
+  add_foreign_key "subfiles", "users"
+  add_foreign_key "substrates", "users"
   add_foreign_key "vacations", "members"
 end

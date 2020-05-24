@@ -26,14 +26,15 @@
             = f.select :priorityx_eq, {}, { include_blank: '== Выберите приоритет ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - Substrate::NEW_PRIORITIES.each do |s|
                 = content_tag(:option, s, value: s, data: { content: new_priority_select_tag(s) }, selected: params[:q] && (params[:q][:priorityx_eq] == s.to_s) )
-        .form-group.row.mb-1
-          = f.label :user_id_eq,
-            Substrate.human_attribute_name(:user),
-            class: 'col-sm-4 col-form-label'
-          .col
-            = f.select :user_id_eq, {}, { include_blank: '== Выберите автора ==' }, { class: 'selectpicker form-control form-control-sm' } do
-              - @users.each do |u|
-                = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
+        - if @users.any?
+          .form-group.row.mb-1
+            = f.label :user_id_eq,
+              Substrate.human_attribute_name(:user),
+              class: 'col-sm-4 col-form-label'
+            .col
+              = f.select :user_id_eq, {}, { include_blank: '== Выберите автора ==' }, { class: 'selectpicker form-control form-control-sm' } do
+                - @users.each do |u|
+                  = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:user_id_eq] == u.id.to_s) )
         .form-group.row.mb-1
           = f.label :amount_gteq,
             Substrate.human_attribute_name(:amount_short),
@@ -232,14 +233,15 @@
                     class: 'datepicker form-control',
                     value: (params[:q][:shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_lteq].present?)
 
-        .form-group.row.mb-1
-          = f.label :users_id_eq,
-            t('substrates.followers'),
-            class: 'col-sm-4 col-form-label'
-          .col
-            = f.select :users_id_eq, {}, { include_blank: '== Выберите исполнителя ==' }, { class: 'selectpicker form-control form-control-sm' } do
-              - @users.each do |u|
-                = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:users_id_eq] == u.id.to_s) )
+        - if @users.any?
+          .form-group.row.mb-1
+            = f.label :users_id_eq,
+              t('substrates.followers'),
+              class: 'col-sm-4 col-form-label'
+            .col
+              = f.select :users_id_eq, {}, { include_blank: '== Выберите исполнителя ==' }, { class: 'selectpicker form-control form-control-sm' } do
+                - @users.each do |u|
+                  = content_tag(:option, u.surname_name, value: u.id, selected: params[:q] && (params[:q][:users_id_eq] == u.id.to_s) )
 
         .form-group.row.text-right
           .col.mt-5

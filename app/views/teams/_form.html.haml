@@ -1,11 +1,12 @@
-.page-header
-  %h4= formtitle
-
-= bootstrap_form_for @team, layout: :horizontal do |f|
-  = f.text_field :title
-  = f.text_field :content
-  = f.select(:type_id, Type.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
-  = f.file_field :flag
-  = f.form_group do
-    = f.primary
-    = link_to t('shared.cancel'), teams_path, :class => 'btn btn-secondary'
+= bootstrap_form_for @team, layout: :horizontal, html: { class: 'card' } do |f|
+  .card-header
+    %h4= formtitle
+  .card-body
+    = f.text_field :title
+    = f.text_field :content
+    = f.select(:type_id, Type.order(:title).collect {|t| [ "#{t.title}",  t.id]}, { include_blank: t('categories.select_category') } )
+    = f.file_field :flag
+  .card-footer
+    = f.form_group do
+      = f.primary
+      = link_to t('shared.cancel'), teams_path, :class => 'btn btn-secondary'

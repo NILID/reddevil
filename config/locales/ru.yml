@@ -40,7 +40,9 @@ ru:
     done: выполнено
     later: отложено
   types:
-    title: Типы
+    title: Виды спорта
+    editing: Редактирование вида спорта
+    creating: Создание вида спорта
   users:
     title: Пользователи
     has_groups: Относится к группам

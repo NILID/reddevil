@@ -29,6 +29,7 @@ ru:
       column: поле
       office_note: служебки
       page: страница
+      type: вид спорта
       vacation: событие
     attributes:
       album:
@@ -79,7 +80,7 @@ ru:
         close: Скрытность
         content: Описание
         draw: Ничья
-        type_id: Тип
+        type_id: Вид спорта
         deadline: Дэдлайн
         tag_list: Тэг чемпионата
         empty_match: Пустые матчи
@@ -101,7 +102,7 @@ ru:
       team:
         title: Название
         content: Описание
-        type_id: Тип
+        type_id: Вид спорта
         flag: Флаг
       category:
         title: Название
@@ -139,6 +140,8 @@ ru:
         archive_flag: Архив
         group: Отдел
         user_id: Пользователь
+      type:
+        title: Название
       user:
         password: Пароль
         password_confirmation: Повторите пароль

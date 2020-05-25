@@ -2,6 +2,8 @@
   .card-header
     = formtitle
   = bootstrap_form_for @round, layout: :horizontal do |f|
+    = render 'error', object: @round
+
     .card-body
       = f.text_field :title
       = f.text_field :content

@@ -1,5 +1,9 @@
-= bootstrap_form_for [@user, @folder, @dataset], layout: :horizontal do |f|
-  = f.file_field :src
-  = f.form_group do
-    = f.primary submit_title
-    = link_to t('shared.cancel'), [@user, @folder], class: 'btn btn-secondary'
+= bootstrap_form_for [@user, @folder, @dataset], layout: :horizontal, html: { class: 'card' } do |f|
+  .card-header
+    %h3= formtitle
+  .card-body
+    = f.file_field :src
+  .card-footer
+    = f.form_group do
+      = f.primary submit_title
+      = link_to t('shared.cancel'), [@user, @folder], class: 'btn btn-secondary'

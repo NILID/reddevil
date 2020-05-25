@@ -1,12 +1,14 @@
-.page-header
-  %h1= @team.title
+.card
+  .card-header
+    %h4= @team.title
 
-%p= @team.content
-%p= @team.type.title
-%p= image_tag @team.flag(:thumb)
+  .card-body
+    %p= @team.content
+    %p= @team.type.title
+    %p= image_tag @team.flag(:thumb)
 
-.form-group
-  = link_to t('.back', :default => t("helpers.links.back")), teams_path, :class => 'btn btn-secondary'
-  - if can? :manage, @team
-    = link_to t('shared.edit'), edit_team_path(@team), :class => 'btn btn-secondary'
-    = link_to t('shared.del'), team_path(@team), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
+  .card-footer
+    = link_to t('.back', :default => t("helpers.links.back")), teams_path, :class => 'btn btn-secondary'
+    - if can? :manage, @team
+      = link_to t('shared.edit'), edit_team_path(@team), :class => 'btn btn-secondary'
+      = link_to t('shared.del'), team_path(@team), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

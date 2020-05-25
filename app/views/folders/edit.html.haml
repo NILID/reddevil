@@ -1,3 +1,1 @@
-.page-header
-  %h3= t 'folder.edit_title'
-= render partial: 'form', locals: { submit_title: t('shared.save') }
+= render 'form', submit_title: t('shared.save'), formtitle: t('folder.edit_title')

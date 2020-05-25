@@ -2,26 +2,30 @@
 
 .card
   .card-header
-    = t 'teams.title'
-    - if can? :manage, Team
-      %small.float-right
-        = link_to t('shared.add'), new_team_path, class: 'btn btn-primary btn-sm'
-  %table.table.table-striped
-    %thead
-      %tr
-        %th= model_class.human_attribute_name(:title)
-        %th= model_class.human_attribute_name(:type_id)
-        %th= model_class.human_attribute_name(:flag_file_name)
-        %th= t '.actions', :default => t("helpers.actions")
-    %tbody
-      - @teams.each do |team|
+    %h4
+      = t 'teams.title'
+      - if can? :manage, Team
+        %small.float-right
+          = link_to t('shared.add'), new_team_path, class: 'btn btn-primary btn-sm'
+  - if @teams.any?
+    %table.table.table-striped
+      %thead
         %tr
-          %td= link_to team.title, team_path(team)
-          %td= team.type.title if team.type
-          %td= image_tag team.flag(:thumb)
-          - if can? :manage, team
-            %td
-              = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-secondary btn-sm'
-              = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
-
-
+          %th= model_class.human_attribute_name(:title)
+          %th= model_class.human_attribute_name(:type_id)
+          %th= model_class.human_attribute_name(:flag)
+          %th= t '.actions', :default => t("helpers.actions")
+      %tbody
+        - @teams.each do |team|
+          %tr
+            %td= link_to team.title, team_path(team)
+            %td= team.type.title if team.type
+            %td= image_tag team.flag(:thumb)
+            - if can? :manage, team
+              %td
+                = link_to t('shared.edit'), edit_team_path(team), class: 'btn btn-secondary btn-sm'
+                = link_to t('shared.del'), team_path(team), :method => :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+  - else
+    .text-center.my-5
+      .h3.text-muted
+        = t('shared.nothing')

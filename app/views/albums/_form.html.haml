@@ -1,4 +1,6 @@
 = bootstrap_form_for @album, html: { multipart: true, class: 'card'} do |f|
+  .card-header
+    %h3= formtitle
   .card-body
     = f.hidden_field :parent_id
 

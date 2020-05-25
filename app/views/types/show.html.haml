@@ -1,13 +1,7 @@
-- model_class = Type
-.page-header
-  %h1= t '.title', :default => model_class.model_name.human.titleize
-
-%p
-  %strong= model_class.human_attribute_name(:title) + ':'
-  %br
-  = @type.title
-
-.form-group
-  = link_to t('.back', :default => t("helpers.links.back")), types_path, class: 'btn btn-secondary'
-  = link_to t('shared.edit'), edit_type_path(@type), class: 'btn btn-secondary'
-  = link_to t('shared.del'), type_path(@type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
+.card
+  .card-body
+    %h4= @type.title
+  .card-footer
+    = link_to t('.back', :default => t("helpers.links.back")), types_path, class: 'btn btn-secondary'
+    = link_to t('shared.edit'), edit_type_path(@type), class: 'btn btn-secondary'
+    = link_to t('shared.del'), type_path(@type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

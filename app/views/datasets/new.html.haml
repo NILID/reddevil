@@ -1,3 +1,1 @@
-.page-header
-  %h3= t 'dataset.new_title'
-= render partial: 'form', locals: { submit_title: t('shared.create') }
+= render 'form', submit_title: t('shared.create'), formtitle: t('dataset.new_title')

@@ -14,12 +14,6 @@ RSpec.describe MessagesController, type: :controller do
         expect(response).to render_template(:index)
       end
 
-      it 'show' do
-        expect(@ability.can? :show, message).to be true
-        get :show, params: { id: message }
-        expect(response).to render_template(:show)
-      end
-
       it 'new' do
         expect(@ability.can? :new, Message).to be true
         get :new
@@ -29,7 +23,7 @@ RSpec.describe MessagesController, type: :controller do
       it 'create' do
         expect(@ability.can? :create, Message).to be true
         expect{ post :create, params: { message: attributes_for(:message) } }.to change(Message, :count).by(1)
-        expect(response).to redirect_to(assigns(:message))
+        expect(response).to redirect_to(messages_url)
       end
 
       it 'edit' do
@@ -47,7 +41,7 @@ RSpec.describe MessagesController, type: :controller do
       it 'update' do
         expect(@ability.can? :update, message).to be true
         put :update, params: { id: message, message: attributes_for(:message) }
-        expect(response).to redirect_to(assigns(:message))
+        expect(response).to redirect_to(messages_url)
       end
     end
   end
@@ -58,11 +52,6 @@ RSpec.describe MessagesController, type: :controller do
     it 'returns index' do
       expect(@ability.can? :index, Message).to be false
       expect{ get :index }.to raise_error(CanCan:: AccessDenied)
-    end
-
-    it 'show' do
-      expect(@ability.can? :show, message).to be false
-      expect{ get :show, params: { id: message } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'returns new' do
@@ -100,7 +89,6 @@ RSpec.describe MessagesController, type: :controller do
 
     it('index')    { get :index }
     it('new')      { get :new }
-    it('show')     { get :show, params: { id: message } }
     it('edit')     { get :edit, params: { id: message } }
     it('updates')  { put :update, params: { id: message, message: attributes_for(:message) } }
 

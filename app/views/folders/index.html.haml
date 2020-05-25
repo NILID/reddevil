@@ -1,19 +1,20 @@
 - set_meta_tags title: t('dataset.title')
 
 = content_for :sidebar do
-  .well
-    %p.text-muted= t 'dataset.help'
+  .bg-white.p-3.text-muted
+    = t 'dataset.help'
 
-.page-header
-  %h2= t 'dataset.title'
+.card
+  .card-header
+    %h4= t 'dataset.title'
 
-%p
-  = link_to new_user_folder_path(@user), class: 'btn btn-secondary' do
-    = fa_icon 'folder-open', text: t('folder.new')
+  .card-body
+    %p
+      = link_to new_user_folder_path(@user), class: 'btn btn-secondary' do
+        = fa_icon 'folder-open', text: t('folder.new')
 
-.well
-  - unless @folders.empty?
-    = render @folders.roots
-  - else
-    %h6.text-muted.text-center= t 'dataset.empty_root'
-  .clearfix
+    .bg-white.p-3
+      - unless @folders.empty?
+        = render @folders.roots
+      - else
+        %h6.text-muted.text-center= t 'dataset.empty_root'

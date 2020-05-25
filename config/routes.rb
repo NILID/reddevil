@@ -75,7 +75,7 @@ Rails.application.routes.draw do
     post 'rebuild_results' => 'results#rebuild'
   end
 
-  resources :messages
+  resources :messages, except: [:show]
 
   %w[404 422 500].each do |code|
     get code, to: 'errors#show', code: code

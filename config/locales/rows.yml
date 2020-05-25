@@ -7,8 +7,6 @@ ru:
   columns:
     add: Добавить столбец
     remove: Удалить столбец
-  types:
-    title: Типы
   tables:
     title: Таблицы
     editing: Редактирование таблицы

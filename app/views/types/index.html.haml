@@ -2,23 +2,26 @@
 
 .card
   .card-header
-    = t '.title', default: model_class.model_name.human.pluralize.titleize
+    = t 'types.title'
     - if can? :new, Type
       %small= link_to t('shared.add'), new_type_path, class: 'float-right btn btn-primary btn-sm'
-  %table.table.table-striped
-    %thead
-      %tr
-        %th= model_class.human_attribute_name(:id)
-        %th= model_class.human_attribute_name(:title)
-        %th
-    %tbody
-      - @types.each do |type|
+  - if @types.any?
+    %table.table.table-striped
+      %thead
         %tr
-          %td= link_to type.id, type_path(type)
-          %td= type.title
-          - if can? :manage, type
-            %td
-              = link_to t('shared.edit'), edit_type_path(type), :class => 'btn btn-secondary btn-sm'
-              = link_to t('shared.del'), type_path(type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
-
-
+          %th= model_class.human_attribute_name(:id)
+          %th= model_class.human_attribute_name(:title)
+          %th
+      %tbody
+        - @types.each do |type|
+          %tr
+            %td= link_to type.id, type_path(type)
+            %td= type.title
+            - if can? :manage, type
+              %td
+                = link_to t('shared.edit'), edit_type_path(type), :class => 'btn btn-secondary btn-sm'
+                = link_to t('shared.del'), type_path(type), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+  - else
+    .text-center.my-5
+      .h3.text-muted
+        = t('shared.nothing')

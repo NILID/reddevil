@@ -1,7 +1,11 @@
-= bootstrap_form_for [@user, @folder], layout: :horizontal do |f|
-  - if params[:parent_id] || params[:folder]
-    = f.hidden_field :parent_id, value: params[:parent_id] || params[:folder][:parent_id]
-  = f.text_field :title
-  = f.form_group do
-    = f.primary submit_title
-    = link_to t('shared.cancel'), [@user, Folder], class: 'btn btn-secondary'
+= bootstrap_form_for [@user, @folder], layout: :horizontal, html: { class: 'card' } do |f|
+  .card-header
+    %h3=formtitle
+  .card-body
+    - if params[:parent_id] || params[:folder]
+      = f.hidden_field :parent_id, value: params[:parent_id] || params[:folder][:parent_id]
+    = f.text_field :title
+  .card-footer
+    = f.form_group do
+      = f.primary submit_title
+      = link_to t('shared.cancel'), [@user, Folder], class: 'btn btn-secondary'

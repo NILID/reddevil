@@ -1,5 +1,9 @@
-= bootstrap_form_for @type, layout: :horizontal do |f|
-  = f.text_field :title
-  = f.form_group do
-    = f.primary
-    = link_to t('shared.cancel'), types_path, class: 'btn btn-secondary'
+= bootstrap_form_for @type, layout: :horizontal, html: { class: 'card' } do |f|
+  .card-header
+    %h4= formtitle
+  .card-body
+    = f.text_field :title
+  .card-footer
+    = f.form_group do
+      = f.primary
+      = link_to t('shared.cancel'), types_path, class: 'btn btn-secondary'

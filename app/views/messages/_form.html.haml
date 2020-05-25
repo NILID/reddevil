@@ -1,8 +1,12 @@
-= bootstrap_form_for @message, layout: :horizontal do |f|
-  = f.text_field :title
-  = f.text_area :content
-  = f.form_group do
-    = f.check_box :close, custom: :switch
-  = f.form_group do
-    = f.primary
-    = link_to t('shared.cancel'), messages_path, class: 'btn btn-secondary'
+= bootstrap_form_for @message, layout: :horizontal, html: { class: 'card' } do |f|
+  .card-header
+    %h4= formtitle
+  .card-body
+    = f.text_field :title
+    = f.text_area :content
+    = f.form_group do
+      = f.check_box :close, custom: :switch
+  .card-footer
+    = f.form_group do
+      = f.primary
+      = link_to t('shared.cancel'), messages_path, class: 'btn btn-secondary'

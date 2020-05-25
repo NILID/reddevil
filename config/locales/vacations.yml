@@ -19,18 +19,18 @@ ru:
     edit: Указать отпуск
     edit_sick: Указать больничный
     edit_trip: Указать командировку
-    creating_rest_html: Добавление отпуска %{member}
-    creating_trip_html: Добавление коммандировки %{member}
-    creating_sick_html: Добавление больничного %{member}
-    editing_rest_html: Редактирование отпуска %{member}
-    editing_trip_html: Редактирование коммандировки %{member}
-    editing_sick_html: Редактирование больничного %{member}
+    creating_rest_html: Добавление отпуска&nbsp;%{member}
+    creating_trip_html: Добавление коммандировки&nbsp;%{member}
+    creating_sick_html: Добавление больничного&nbsp;%{member}
+    editing_rest_html: Редактирование отпуска&nbsp;%{member}
+    editing_trip_html: Редактирование коммандировки&nbsp;%{member}
+    editing_sick_html: Редактирование больничного&nbsp;%{member}
     add: Добавить отпуск
     add_sick: Добавить больничный
     add_trip: Добавить командировку
-    settings: Редактирование графика отпусков %{name}
-    settings_sick: Редактирование больничных %{name}
-    settings_trip: Редактирование командировок %{name}
+    settings: Редактирование графика отпусков&nbsp;%{name}
+    settings_sick: Редактирование больничных&nbsp;%{name}
+    settings_trip: Редактирование командировок&nbsp;%{name}
     show_old: Показать завершенные
     sick_was_updated: Вы обновили больничные
     trip_was_updated: Вы обновили командировки

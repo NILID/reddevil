@@ -1,6 +1,6 @@
 .card
   .card-body
-    = render 'breadcrumb', title: t("vacations.title_member_html", member: link_to(@member.petrovich_fullname, @member.user))
+    = render 'vacations/breadcrumb', title: t("vacations.title_member_html", member: link_to(@member.petrovich_fullname, @member.user))
     .row
       - %w[rest sick trip].each do |flag|
         .col-12.col-lg-4.col-md-6.my-3

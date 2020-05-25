@@ -4,7 +4,7 @@ ru:
     rest: Отпуск
     trip: Командировки
     title: Отпуск
-    title_member_html: События %{member}
+    title_member_html: События&nbsp;%{member}
     index: Сейчас в отпуске
     index_sick: Сейчас на больничном
     index_trip: Сейчас в командировке

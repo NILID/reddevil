@@ -12,7 +12,7 @@
         { multiple: true, size: 10 }
 
       = f.form_group do
-        = f.check_box :show_last_flag, label: t('docs.show_inlast')
+        = f.check_box :show_last_flag, custom: :switch, label: t('docs.show_inlast')
 
     .card-footer
       = f.primary

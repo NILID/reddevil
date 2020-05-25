@@ -7,7 +7,7 @@
       = f.hidden_field :parent_id
       = f.text_field :title, autofocus: true
       = f.form_group do
-        = f.check_box :hidden, label: t('categories.hide')
+        = f.check_box :hidden, custom: :switch, label: t('categories.hide')
 
     .card-footer
       = f.primary t('shared.save')

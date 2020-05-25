@@ -13,13 +13,9 @@
       = f.datetime_select :deadline
 
       = f.form_group do
-        .checkbox= f.check_box :close
-
-      = f.form_group do
-        .checkbox= f.check_box :empty_match
-
-      = f.form_group do
-        .checkbox= f.check_box :draw
+        = f.check_box :close,       custom: :switch
+        = f.check_box :empty_match, custom: :switch
+        = f.check_box :draw,        custom: :switch
 
       .nested-fields
         = f.fields_for :matches do |match|

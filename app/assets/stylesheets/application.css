@@ -26,6 +26,6 @@
  *= require tooltipster.bundle
  *= require plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css
  *= require font_awesome5
- *= require bootstrap.min
+ *= require bootstrap
  *= require_tree .
  */

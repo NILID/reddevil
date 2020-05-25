@@ -16,7 +16,7 @@ RSpec.describe OfficeNotesController, type: :controller do
       it 'create' do
         expect(@ability.can? :create, OfficeNote).to be true
         expect{ post :create, params: { office_note: attributes_for(:office_note) } }.to change(OfficeNote, :count).by(1)
-        expect(response).to redirect_to(assigns(:office_note))
+        expect(response).to redirect_to(office_notes_url)
       end
 
       it 'edit' do

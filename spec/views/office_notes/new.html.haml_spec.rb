@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "office_notes/new", type: :view do
   before(:each) do
-    assign(:office_note, OfficeNote.new(
-      :num => "MyString",
-      :title => "MyString",
-      :whom => "MyString"
-    ))
+    assign(:office_note, build(:office_note))
   end
 
   it "renders new office_note form" do

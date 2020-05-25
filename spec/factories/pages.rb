@@ -1,9 +1,8 @@
 FactoryBot.define do
   factory :page do
-    temp = Faker::Lorem.unique.word
-    title { temp }
+    title { Faker::Lorem.unique.word }
     content { "MyText" }
-    slug { temp }
+    # slug { Faker::Lorem.unique.word }
     user
   end
 end

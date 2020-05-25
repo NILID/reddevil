@@ -2,9 +2,9 @@
 
 = bootstrap_form_for @page, html: { class: 'card' } do |f|
   .card-body
-    = render 'breadcrumb', titles: formtitle
+    = render 'pages/breadcrumb', titles: formtitle
 
-    = render 'error', object: @page
+    = render 'application/error', object: @page
     .field
       = f.text_field :title
     .field

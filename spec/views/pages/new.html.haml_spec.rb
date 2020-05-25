@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "pages/new", type: :view do
   before(:each) do
-    assign(:page, Page.new(
-      :title => "MyString",
-      :content => "MyText",
-      :slug => "MyString",
-      :user => nil
-    ))
+    assign(:page, build(:page))
   end
 
   it "renders new page form" do
@@ -18,10 +13,6 @@ RSpec.describe "pages/new", type: :view do
       assert_select "input[name=?]", "page[title]"
 
       assert_select "textarea[name=?]", "page[content]"
-
-      assert_select "input[name=?]", "page[slug]"
-
-      assert_select "input[name=?]", "page[user_id]"
     end
   end
 end

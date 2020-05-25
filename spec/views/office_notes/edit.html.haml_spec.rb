@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "office_notes/edit", type: :view do
   before(:each) do
-    @office_note = assign(:office_note, OfficeNote.create!(
-      :num => "MyString",
-      :title => "MyString",
-      :whom => "MyString"
-    ))
+    @office_note = assign(:office_note, create(:office_note))
   end
 
   it "renders the edit office_note form" do

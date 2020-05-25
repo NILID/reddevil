@@ -5,9 +5,9 @@
     .row
       .col
         - if params[:action] == 'changes'
-          = render 'breadcrumb', titles: [link_to(@substrate.title, @substrate), t('shared.history')]
+          = render 'substrates/breadcrumb', titles: [link_to(@substrate.title, @substrate), t('shared.history')]
         - else
-          = render 'breadcrumb', titles: [t('shared.history')]
+          = render 'substrates/breadcrumb', titles: [t('shared.history')]
 
     .row
       .col
@@ -25,6 +25,6 @@
                 %th Действие
                 %th Изменения
             %tbody
-              = render(partial: 'version', collection: @versions)
+              = render(partial: 'substrates/version', collection: @versions)
 
           = will_paginate @versions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

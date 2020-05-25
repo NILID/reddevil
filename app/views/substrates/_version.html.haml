@@ -2,7 +2,9 @@
   %td
     .text-muted= l(version.created_at, format: "%-d.%m.%Y %H:%M:%S")
   %td
-    = link_to version.actor.surname_name, version.actor if version.actor
+    - if version.actor
+      = link_to version.actor do
+        = version.actor.member ? version.actor.surname_name : version.actor.email
   %td
     - if version.event == 'create'
       Создание: #{link_to version.item.title, version.item}

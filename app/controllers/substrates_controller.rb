@@ -13,11 +13,11 @@ class SubstratesController < ApplicationController
   end
 
   def history
-    @versions = PaperTrail::Version.where(item_type: 'Substrate').includes(:item).order('created_at DESC').paginate(page: params[:page], per_page: 20)
+    @versions = PaperTrail::Version.where(item_type: 'Substrate').includes(:item).order(created_at: :desc).paginate(page: params[:page], per_page: 20)
   end
 
   def changes
-    @versions = @substrate.versions.reverse
+    @versions = @substrate.versions.reorder(created_at: :desc).paginate(page: params[:page], per_page: 20)
     render 'history'
   end
 

@@ -5,22 +5,26 @@
       - if can? :new, Table
         .float-right
           %small= link_to t('shared.add'), new_table_path, class: 'btn btn-sm btn-primary'
-  %table.table
-    %thead
-      %tr
-        %th.border-top-0= Table.human_attribute_name(:title)
-        %th.border-top-0 Размер
-        %th.border-top-0 Привязка
-    %tbody
-      - @tables.each do |table|
+  - if @tables.any?
+    %table.table
+      %thead
         %tr
-          %td
-            = link_to table.title, table
-          %td
-            = plural(table.rows.pluck(:id).count, 'row')
-          %td
-            - if table.tableable
-              = link_to table.tableable.title,
-                (table.tableable_type == 'Category') ? infocenter_category_path(table.tableable) : table.tableable
-            - else
-              %span.text-muted= t 'shared.empty'
+          %th.border-top-0= Table.human_attribute_name(:title)
+          %th.border-top-0 Размер
+          %th.border-top-0 Привязка
+      %tbody
+        - @tables.each do |table|
+          %tr
+            %td
+              = link_to table.title, table
+            %td
+              = plural(table.rows.pluck(:id).count, 'row')
+            %td
+              - if table.tableable
+                = link_to table.tableable.title,
+                  (table.tableable_type == 'Category') ? infocenter_category_path(table.tableable) : table.tableable
+              - else
+                %span.text-muted= t 'shared.empty'
+  - else
+    .text-center.my-5
+      .h3.text-muted= t('shared.nothing')

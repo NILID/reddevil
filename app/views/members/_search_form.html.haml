@@ -4,9 +4,6 @@
       - unless only_select
         .col
           .form-group.row.mb-0
-            = f.label :name_or_surname_or_patronymic_or_email_or_position_cont,
-              t('shared.search'),
-              class: 'col-sm-3 col-form-label'
             .col
               = f.text_field :name_or_surname_or_patronymic_or_email_or_position_cont,
                 placeholder: t('shared.search_text'),
@@ -15,7 +12,7 @@
         .form-group.row.mb-0
           = f.label :group_eq,
             Member.human_attribute_name(:group),
-            class: 'col-sm-3 col-form-label'
+            class: 'col-sm-3 col-form-label text-right'
           .col
             = f.select :group_eq, {}, { include_blank: '== Выберите отдел ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - Member::GROUPS.each do |g|

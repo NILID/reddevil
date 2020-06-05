@@ -5,6 +5,7 @@ class Member < ApplicationRecord
   GROUPS = %w[lab107 lab180 lab181 lab182 lab190 lab193 lab252 lab524]
 
   validates :surname, :name, :patronymic, presence: true
+  validate :check_birth
 
   accepts_nested_attributes_for :vacations, reject_if: :all_blank, allow_destroy: true
 
@@ -63,5 +64,12 @@ class Member < ApplicationRecord
         csv << [index+1, member.fullname]
       end
     end
+  end
+
+
+  private
+
+  def check_birth
+    errors.add(:birth, I18n.t('member.validates.failed_birth'))   if (Date.today.year - birth.year) < 16
   end
 end

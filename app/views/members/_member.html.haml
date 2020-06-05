@@ -4,4 +4,5 @@
   = l member.birth,  format: :very_short
   \ -
   = member.fullname
-  (#{turntext + ' ' + plural((member.age + (should_be_age ? 1 : 0)), 'year')})
+  - unless member.hide_year
+    (#{turntext + ' ' + plural((member.age + (should_be_age ? 1 : 0)), 'year')})

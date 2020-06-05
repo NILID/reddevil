@@ -88,7 +88,8 @@ class MembersController < ApplicationController
                              :position,
                              :short_number,
                              :email,
-                             :birth
+                             :birth,
+                             :hide_year
                             ]
       list_params_allowed << [:archive_flag, :user_id, :group] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)

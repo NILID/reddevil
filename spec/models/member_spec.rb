@@ -35,5 +35,12 @@ RSpec.describe Member, type: :model do
       expect(member.valid?).to be false
       expect(member.errors[:birth]).not_to be_empty
     end
+
+    it 'be skip validate 16 year if hide_year' do
+      member.birth = "19.09.#{Date.today.year - 15}"
+      member.hide_year = true
+      expect(member.valid?).to be true
+      expect(member.errors[:birth]).to be_empty
+    end
   end
 end

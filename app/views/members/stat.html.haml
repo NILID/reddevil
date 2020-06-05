@@ -21,7 +21,7 @@
                   %span.badge.badge-light
                     = plural(total / @member_ages.length, 'year')
 
-              - a = @members.reorder(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
+              - a = @members.with_birth.reorder(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
               = bar_chart a, height: '700px', label: t('member.ages')
 
             %hr.py-4

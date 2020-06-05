@@ -13,7 +13,7 @@ class Member < ApplicationRecord
 
   scope :shown,      -> { where(archive_flag: false) }
   scope :archive,    -> { where(archive_flag: true) }
-  scope :with_birth, -> { where.not(birth: nil) }
+  scope :with_birth, -> { where(hide_year: false).where.not(birth: nil) }
 
   # validate birth
 
@@ -70,6 +70,6 @@ class Member < ApplicationRecord
   private
 
   def check_birth
-    errors.add(:birth, I18n.t('member.validates.failed_birth'))   if (Date.today.year - birth.year) < 16
+    errors.add(:birth, I18n.t('member.validates.failed_birth'))  if !hide_year && (Date.today.year - birth.year) < 16
   end
 end

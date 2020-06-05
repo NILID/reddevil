@@ -139,6 +139,7 @@ ru:
         short_number: Доб. номер
         archive_flag: Архив
         group: Отдел
+        hide_year: Скрыть год
         user_id: Пользователь
       type:
         title: Название

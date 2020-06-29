@@ -70,6 +70,6 @@ class Member < ApplicationRecord
   private
 
   def check_birth
-    errors.add(:birth, I18n.t('member.validates.failed_birth'))  if !hide_year && (Date.today.year - birth.year) < 16
+    errors.add(:birth, I18n.t('member.validates.failed_birth'))  if birth && !hide_year && (Date.today.year - birth.year) < 16
   end
 end

@@ -1,6 +1,8 @@
 class OfficeNote < ApplicationRecord
   belongs_to :user
 
+  has_one_attached :document
+
   after_initialize :generate_data, on: [:create]
 
   validates :num, :whom, :title, presence: true

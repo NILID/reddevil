@@ -54,6 +54,6 @@ class OfficeNotesController < ApplicationController
 
   private
     def office_note_params
-      params.require(:office_note).permit(:num, :title, :whom, :created_at)
+      params.require(:office_note).permit(:num, :title, :whom, :document, :created_at)
     end
 end

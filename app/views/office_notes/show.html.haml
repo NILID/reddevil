@@ -9,6 +9,15 @@
       %b= OfficeNote.human_attribute_name(:created_at)
       = short_date(@office_note.created_at)
 
+    - if @office_note.document.attached?
+      %p
+        %b= OfficeNote.human_attribute_name(:document)
+        = link_to fa_icon('file 2x'),
+          url_for(@office_note.document),
+          class: 'fancybox'
+
+
+  .card-footer
     = link_to t('shared.edit'), edit_office_note_path(@office_note)
-    \|
-    = link_to t('shared.back'), office_notes_path
+    .float-right
+      = link_to t('shared.back'), office_notes_path

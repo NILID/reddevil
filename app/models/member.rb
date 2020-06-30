@@ -2,7 +2,7 @@ class Member < ApplicationRecord
   has_many :vacations, inverse_of: :member
   belongs_to :user, optional: true
 
-  GROUPS = %w[lab107 lab180 lab181 lab182 lab190 lab193 lab252 lab524]
+  GROUPS = %w[lab107 lab180 lab181 lab182 lab190 lab193 lab252 lab524 cleaning]
 
   validates :surname, :name, :patronymic, presence: true
   validate :check_birth

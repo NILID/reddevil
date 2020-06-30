@@ -85,6 +85,13 @@ RSpec.describe Substrate, type: :model do
         expect(substrate.errors[:coating_type]).to be_empty
       end
 
+      it 'have rad_strength inclusion list RAD_STRENGTHS' do
+        substrate.rad_strength = nil
+        expect(substrate.valid?).to be false
+        expect(substrate.errors[:rad_strength]).not_to be_empty
+      end
+
+
       it 'have sides inclusion list SIDES' do
         substrate.sides = 'C'
         expect(substrate.valid?).to be false

@@ -182,6 +182,7 @@ ru:
         wave_b: Длина волны Б
         corner: Угол А
         corner_b: Угол Б
+        rad_strength: Лучевая прочность
         propotions: Размер
         frame: Наличие оправы
         finished_at: Завершено

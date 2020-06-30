@@ -49,6 +49,8 @@
       .col-6.col-md-4
         = f.number_field :ready_count, min: 0
 
+      .col-6.col-md-4
+        = f.select :rad_strength, Substrate::RAD_STRENGTHS.map { |r| r }, {}, { class: 'selectpicker' }
     .row
       .col-6.col-md-3
         = f.select :sides, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do

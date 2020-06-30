@@ -49,27 +49,34 @@
         .h5.text-muted= t('shared.information')
         %hr
       .col
-        %dl.row
-          %dt.col-sm-4= Substrate.human_attribute_name(:drawing)
-          %dd.col-sm-8= @substrate.drawing
-          %dt.col-sm-4= Substrate.human_attribute_name(:detail)
-          %dd.col-sm-8= @substrate.detail
-          %dt.col-sm-4= Substrate.human_attribute_name(:amount)
-          %dd.col-sm-8
-            %div
-              %span.text-muted= t('substrates.instock_search')
-              %strong= @substrate.instock
-            %div
-              %span.text-muted= t('substrates.amount_search')
-              %strong= @substrate.amount
-          %dt.col-sm-4= Substrate.human_attribute_name(:ready_count)
-          %dd.col-sm-8
-            %strong= @substrate.ready_count
-
-          %dt.col-sm-4= Substrate.human_attribute_name(:propotions)
-          %dd.col-sm-8= @substrate.propotions
-          %dt.col-sm-4= Substrate.human_attribute_name(:frame)
-          %dd.col-sm-8= t("substrates.frame_#{@substrate.frame}")
+        %table.table.table-striped.table-sm
+          %tr
+            %th(scope="row")= Substrate.human_attribute_name(:drawing)
+            %td= @substrate.drawing
+          %tr
+            %th(scope="row")= Substrate.human_attribute_name(:detail)
+            %td= @substrate.detail
+          %tr
+            %th(scope="row")= Substrate.human_attribute_name(:amount)
+            %td
+              %div
+                %span.text-muted= t('substrates.instock_search')
+                %strong= @substrate.instock
+              %div
+                %span.text-muted= t('substrates.amount_search')
+                %strong= @substrate.amount
+          %tr
+            %th(scope="row")= Substrate.human_attribute_name(:ready_count)
+            %td= @substrate.ready_count
+          %tr
+            %th(scope="row")= Substrate.human_attribute_name(:propotions)
+            %td= @substrate.propotions
+          %tr
+            %th(scope="row")= Substrate.human_attribute_name(:frame)
+            %td= t("substrates.frame_#{@substrate.frame}")
+          %tr
+            %th(scope="row")= Substrate.human_attribute_name(:rad_strength)
+            %td= @substrate.rad_strength
 
         %p
           %table.table

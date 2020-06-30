@@ -121,7 +121,7 @@ class SubstratesController < ApplicationController
                                         :wave, :wave_b, :corner, :corner_b, :frame, :priorityx, :drawing,
                                         :detail, :amount, :contract, :propotions, :instock,
                                         :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
-                                        :status, :user_id, :future_shipping_at,
+                                        :status, :user_id, :future_shipping_at, :rad_strength,
                                         { subfiles_attributes: %i[id src user_id _destroy] }
                                         )
     end

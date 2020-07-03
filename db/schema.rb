@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_151730) do
+ActiveRecord::Schema.define(version: 2020_07_03_150303) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -129,6 +129,12 @@ ActiveRecord::Schema.define(version: 2020_06_30_151730) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "docs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "desc"
@@ -239,9 +245,10 @@ ActiveRecord::Schema.define(version: 2020_06_30_151730) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "user_id"
-    t.string "group"
     t.string "position"
     t.boolean "hide_year", default: false
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_members_on_department_id"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
@@ -561,6 +568,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_151730) do
   add_foreign_key "categoryships", "docs"
   add_foreign_key "forecasts", "matches"
   add_foreign_key "forecasts", "users"
+  add_foreign_key "members", "departments"
   add_foreign_key "members", "users"
   add_foreign_key "pages", "users"
   add_foreign_key "room_messages", "rooms"

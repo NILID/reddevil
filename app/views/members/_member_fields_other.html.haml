@@ -7,6 +7,6 @@
 = f.check_box :hide_year, { custom: :switch }
 
 - if (current_user.role? :admin)
-  = f.select :group, Member::GROUPS.map{|m| [t("member.groups.#{m}"), m]}, { include_blank: t('shared.to_select'),  control_col: 'col-8', label_col: 'col' }
+  = f.select :department_id, @departments.map{|d| [d.title, d.id] },      { include_blank: t('shared.to_select'),  control_col: 'col-8', label_col: 'col' }
   = f.select :user_id, (User.order(:email).collect { |u| [u.email, u.id]}), { include_blank: t('shared.to_select'), control_col: 'col-8', label_col: 'col' }
   = f.check_box :archive_flag, { custom: :switch }

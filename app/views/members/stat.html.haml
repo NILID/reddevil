@@ -1,30 +1,31 @@
-- set_meta_tags title: t('member.stat')
+- set_meta_tags title: t('shared.stat')
 
 .row
   .col-md-12
     .card
       .card-header
         = render 'panel_top'
-      = render 'search_form', url: stat_members_path, only_select: true
+      = render 'search_form', url: stat_members_path, only_select: true, departments: @departments
       .tab-content.m-4
         - unless @members.pluck(:id).empty?
           .tab-pane.active
-            .stat-ages
-              %h3= t 'member.ages'
-              %p
-                %button.btn.btn-info.btn-sm
-                  = t 'member.total'
-                  %span.badge.badge-light
-                    = plural(total = @member_ages.inject(:+), 'year')
-                %button.btn.btn-info.btn-sm
-                  = t 'member.medium'
-                  %span.badge.badge-light
-                    = plural(total / @member_ages.length, 'year')
+            - if @member_ages.any?
+              .stat-ages
+                %h3= t 'member.ages'
+                %p
+                  %button.btn.btn-info.btn-sm
+                    = t 'member.total'
+                    %span.badge.badge-light
+                      = plural(total = @member_ages.inject(:+), 'year')
+                  %button.btn.btn-info.btn-sm
+                    = t 'member.medium'
+                    %span.badge.badge-light
+                      = plural(total / @member_ages.length, 'year')
 
-              - a = @members.with_birth.reorder(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
-              = bar_chart a, height: '700px', label: t('member.ages')
+                - a = @members.with_birth.reorder(birth: :desc).collect { |m| ["#{m.surname} #{m.name}", m.age]}
+                = bar_chart a, height: '700px', label: t('member.ages')
 
-            %hr.py-4
+              %hr.py-4
 
             .stat-days
               %h3= t 'member.dayname_stat'

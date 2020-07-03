@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   load_and_authorize_resource
+  before_action :set_departments, only: [:index, :stat, :edit, :update, :new, :create]
 
   def index
     @q = @members.shown.ransack(params[:q])
@@ -20,7 +21,7 @@ class MembersController < ApplicationController
 
   def stat
     @q = @members.shown.ransack(params[:q])
-    @q.group_eq = current_user.member.group if current_user.member && !params[:q] # TODO: check current_user and member
+    @q.department_id_eq = current_user.member.department_id if current_user.member && !params[:q] # TODO: check current_user and member
     @members = @q.result(distinct: true)
 
     @member_ages = []
@@ -79,6 +80,10 @@ class MembersController < ApplicationController
   end
 
   private
+    def set_departments
+      @departments = Department.order(:title).includes(:members)
+    end
+
     def member_params
       list_params_allowed = [:surname,
                              :name,
@@ -91,7 +96,7 @@ class MembersController < ApplicationController
                              :birth,
                              :hide_year
                             ]
-      list_params_allowed << [:archive_flag, :user_id, :group] if (current_user&.role? :admin)
+      list_params_allowed << [:archive_flag, :user_id, :department_id] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)
     end
 end

@@ -5,5 +5,5 @@
     .card
       .card-header
         = render 'panel_top'
-      = render 'search_form', url: members_path, only_select: false
+      = render 'search_form', url: members_path, only_select: false, departments: @departments
       = render 'members', members: @members

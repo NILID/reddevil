@@ -6,14 +6,14 @@
     - if members.any?
       %table.table.my-0
         %tbody
-          - Member::GROUPS.each do |g|
-            - group_members = members.where(group: g)
-            - if group_members.any?
+          - @departments.each do |department|
+            - depart_members = department.members
+            - if depart_members.any?
               %tr.table-info
                 %td(colspan=6)
                   .lead.text-dark.text-center.text-white
-                    = t("member.groups.#{g}")
-              - members.where(group: g).each_with_index do |member, index|
+                    = department.title
+              - depart_members.each_with_index do |member, index|
                 = content_tag_for(:tr, member) do
                   %td.text-muted= index+1
                   %td

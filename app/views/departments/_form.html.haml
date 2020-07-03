@@ -1,0 +1,10 @@
+= bootstrap_form_for @department, html: { class: 'card'} do |f|
+  .card-body
+    = render 'error', object: @department
+
+    = f.text_field :title
+
+  .card-footer
+    = f.primary
+    .float-right
+      = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :departments
   resources :office_notes
 
   resources :pages, path: 'wiki'

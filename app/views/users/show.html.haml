@@ -37,14 +37,16 @@
                     %span.badge.badge-primary= t "user.roles.#{role}"
 
               - if @member
-                - %i[group position work_phone short_number phone email].each do |attr|
+                %dt.col-md-3.col-6.text-right
+                  = Member.human_attribute_name(:department_id)
+                %dd.col-md-9.col-6
+                  = @member.department.title
+                - %i[position work_phone short_number phone email].each do |attr|
                   %dt.col-md-3.col-6.text-right
                     = Member.human_attribute_name(attr)
                   %dd.col-md-9.col-6
                     - if @member[attr].present?
                       - case attr
-                      - when :group
-                        = t("member.groups.#{@member[attr]}")
                       - when :birth
                         = l(@member[attr], format: :short)
                       - else

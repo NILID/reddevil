@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
+  before_action :set_departments, only: [:edit, :update]
+
   def index
     @q = @users.includes(:profile, :member).ransack(params[:q])
     @users = @q.result(distinct: true)
@@ -57,11 +59,15 @@ class UsersController < ApplicationController
     def user_params
       profile_params = %i[avatar crop_x crop_y crop_w crop_h background_color total_result id]
       member_params  = %i[position surname name patronymic work_phone phone short_number email birth id hide_year]
-      member_params << %i[archive_flag user_id] if (current_user&.role? :admin)
+      member_params << %i[archive_flag user_id department_id] if (current_user&.role? :admin)
 
       list_params_allowed = [ { profile_attributes: profile_params }, { member_attributes:  member_params } ]
       list_params_allowed << [:roles_mask, :sport_flag, roles: [], groups: []] if (current_user&.role? :admin)
 
       params.require(:user).permit(list_params_allowed)
+    end
+
+    def set_departments
+      @departments = Department.order(:title).includes(:members)
     end
 end

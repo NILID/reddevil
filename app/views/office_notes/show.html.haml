@@ -9,12 +9,14 @@
       %b= OfficeNote.human_attribute_name(:created_at)
       = short_date(@office_note.created_at)
 
-    - if @office_note.document.attached?
+    - if @office_note.documents.attached?
       %p
-        %b= OfficeNote.human_attribute_name(:document)
-        = link_to fa_icon('file 2x'),
-          url_for(@office_note.document),
-          class: 'fancybox'
+        %b= OfficeNote.human_attribute_name(:documents)
+        - @office_note.documents.each do |document|
+          = link_to fa_icon('file 2x'),
+            url_for(document),
+            class: 'fancybox'
+          = document.filename
 
 
   .card-footer

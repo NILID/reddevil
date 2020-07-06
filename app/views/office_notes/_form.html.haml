@@ -10,7 +10,7 @@
     = f.text_field :created_at, class: 'datepicker',
       value: (f.object.created_at.to_datetime.strftime('%d.%m.%Y') if f.object.created_at.present?)
 
-    = f.file_field :document
+    = f.file_field :documents, multiple: true
 
   .card-footer
     = f.submit t('shared.save')

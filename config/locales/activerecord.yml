@@ -56,7 +56,7 @@ ru:
         created_at: Дата
         title: Название
         whom: Кому
-        document: Документ
+        documents: Документы
       room:
         name: Название
         private: Ограниченный доступ

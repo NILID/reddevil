@@ -7,7 +7,7 @@
       %table.table.my-0
         %tbody
           - @departments.each do |department|
-            - depart_members = department.members.order(:surname)
+            - depart_members = @members.select { |member| member.department_id == department.id }
             - if depart_members.any?
               %tr.table-info
                 %td(colspan=6)

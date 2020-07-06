@@ -1,7 +1,7 @@
 class OfficeNote < ApplicationRecord
   belongs_to :user
 
-  has_one_attached :document
+  has_many_attached :documents
 
   after_initialize :generate_data, on: [:create]
 

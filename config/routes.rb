@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :departments
-  resources :office_notes
+  resources :office_notes do
+    member do
+      delete :delete_document
+    end
+  end
 
   resources :pages, path: 'wiki'
 

@@ -32,6 +32,14 @@ class OfficeNotesController < ApplicationController
     end
   end
 
+  def delete_document
+    @document = ActiveStorage::Blob.find_signed(params[:document_id])
+    # Check valid method to destroy attachment
+    @document.attachments.first.purge
+
+    redirect_to @office_note
+  end
+
   def update
     respond_to do |format|
       if @office_note.update(office_note_params)

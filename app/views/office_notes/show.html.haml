@@ -19,7 +19,8 @@
                 = index
               %td
                 = link_to document.filename, document, target: '_blank'
-
+              %td
+                = link_to t('shared.del'), delete_document_office_note_url(@office_note, document_id: document.signed_id), method: :delete, data: { confirm: t('shared.sure') }
 
   .card-footer
     = link_to t('shared.edit'), edit_office_note_path(@office_note)

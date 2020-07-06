@@ -10,13 +10,15 @@
       = short_date(@office_note.created_at)
 
     - if @office_note.documents.attached?
-      %p
-        %b= OfficeNote.human_attribute_name(:documents)
-        - @office_note.documents.each do |document|
-          = link_to fa_icon('file 2x'),
-            url_for(document),
-            class: 'fancybox'
-          = document.filename
+      %hr
+        %h4= OfficeNote.human_attribute_name(:documents)
+        %table.table.table.table-sm
+          - @office_note.documents.each.with_index(1) do |document, index|
+            %tr
+              %td
+                = index
+              %td
+                = link_to document.filename, document, target: '_blank'
 
 
   .card-footer

@@ -16,6 +16,7 @@
             %th= OfficeNote.human_attribute_name(:created_at)
             %th= OfficeNote.human_attribute_name(:title)
             %th= OfficeNote.human_attribute_name(:whom)
+            %th= OfficeNote.human_attribute_name(:documents)
             %th
 
         %tbody
@@ -25,6 +26,7 @@
               %td= short_date(office_note.created_at)
               %td= office_note.title
               %td= office_note.whom
+              %td= office_note.documents.size
               %td.text-right
                 .btn-group
                   %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

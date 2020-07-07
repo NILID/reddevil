@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_150303) do
+ActiveRecord::Schema.define(version: 2020_07_06_162448) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -446,6 +446,11 @@ ActiveRecord::Schema.define(version: 2020_07_03_150303) do
     t.integer "priorityx", default: 4, null: false
     t.integer "ready_count", default: 0
     t.string "rad_strength", default: "нет"
+    t.string "shape"
+    t.float "diameter"
+    t.float "thickness"
+    t.float "width"
+    t.float "height"
     t.index ["user_id"], name: "index_substrates_on_user_id"
   end
 

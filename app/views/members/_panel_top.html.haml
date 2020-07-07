@@ -5,31 +5,32 @@
     = link_to t('shared.stat'),     stat_members_path,     class: "nav-link #{params[:action] == 'stat' ?     'active' : nil}"
   %li.nav-item
     = link_to t('shared.archive'),  archive_members_path,  class: "nav-link #{params[:action] == 'archive' ?  'active' : nil}"
-  - if can? :create, Member
-    %li.nav-item
-      = link_to t('shared.add'),    new_member_path,       class: 'nav-link'
 
 .float-right
+  - if can? :create, Member
+    = link_to new_member_path, class: 'btn btn-sm btn-outline-primary mr-3' do
+      = fa_icon :plus, text: t('member.adding')
+
   - if params[:action] == 'index'
     = link_to '#export_list', class: 'btn btn-sm btn-outline-secondary ', data: { toggle: 'modal', target: '#export_list' } do
       = fa_icon 'upload', text: t('member.download')
 
-  .modal.fade#export_list(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exportListLabel" aria-hidden="true")
-    .modal-dialog
-      = bootstrap_form_for :members, url: members_path, method: :get, layout: :horizontal, html: { class: 'modal-content' } do |f|
-        .modal-header
-          .lead= t 'member.specify_format'
-        .modal-body
-          .form-group
-            = t 'member.showing'
-          - %i[birth phone work_phone short_number other_text].each do |field|
+    .modal.fade#export_list(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exportListLabel" aria-hidden="true")
+      .modal-dialog
+        = bootstrap_form_for :members, url: members_path, method: :get, layout: :horizontal, html: { class: 'modal-content' } do |f|
+          .modal-header
+            .lead= t 'member.specify_format'
+          .modal-body
             .form-group
-              = check_box_tag "showing_#{field}"
-              = label_tag (field == :other_text) ? t('member.other_text') : Member.human_attribute_name(field)
-          .btn-group.btn-group-toggle{ data: { toggle: 'buttons' } }
-            - %i[pdf xls].each do |format|
-              %label.btn.btn-outline-primary{ class: format == :pdf ? 'active' : false }
-                = radio_button_tag :format, format, format == :pdf ,disabled: false, autocomplete: 'off'
-                = fa_icon "file-#{format == :xls ? 'excel' : format}", text: (format == :xls ? 'Excel' : 'PDF')
-        .modal-footer
-          = f.primary t('shared.download')
+              = t 'member.showing'
+            - %i[birth phone work_phone short_number other_text].each do |field|
+              .form-group
+                = check_box_tag "showing_#{field}"
+                = label_tag (field == :other_text) ? t('member.other_text') : Member.human_attribute_name(field)
+            .btn-group.btn-group-toggle{ data: { toggle: 'buttons' } }
+              - %i[pdf xls].each do |format|
+                %label.btn.btn-outline-primary{ class: format == :pdf ? 'active' : false }
+                  = radio_button_tag :format, format, format == :pdf ,disabled: false, autocomplete: 'off'
+                  = fa_icon "file-#{format == :xls ? 'excel' : format}", text: (format == :xls ? 'Excel' : 'PDF')
+          .modal-footer
+            = f.primary t('shared.download')

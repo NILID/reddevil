@@ -24,6 +24,10 @@ ru:
     instock_short: налич
     archive: Архив
     empty: Пока здесь пусто...
+    shapes:
+      square: Прямоугольник
+      circle: Круг
+      border_style: Другое
     statuses:
       opened: Открыто
       finished: Готово

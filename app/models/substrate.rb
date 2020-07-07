@@ -20,7 +20,9 @@ class Substrate < ApplicationRecord
 
   NEW_PRIORITIES = [1, 2, 3, 4].freeze
 
-  RAD_STRENGTHS = %w[нет непрерывная импульсная]
+  SHAPES = %w[circle square border_style].freeze # play => other
+
+  RAD_STRENGTHS = %w[нет непрерывная импульсная].freeze
 
   COATINGS = %w[нет зеркальное просветляющее светоделительное поляризующее фильтрующее другое].freeze
   SIDES = %w[a b ab].freeze
@@ -29,9 +31,17 @@ class Substrate < ApplicationRecord
   validates :drawing, uniqueness: true, allow_blank: true
   validates_inclusion_of :rad_strength,   in: RAD_STRENGTHS
   validates_inclusion_of :priorityx,      in: NEW_PRIORITIES
+  validates_inclusion_of :shape,          in: SHAPES, allow_blank: true
   validates_inclusion_of :coating_type,
                          :coating_type_b, in: COATINGS
   validates_inclusion_of :sides,          in: SIDES, allow_blank: true
+
+  validates :diameter,
+            :width,
+            :height,
+            :thickness,
+            numericality: { greater_than_or_equal_to: 0 },
+            allow_nil: true
 
   scope :archive,     lambda { where(statuses_mask: 6) }
   scope :not_archive, lambda { where.not(statuses_mask: 6) }

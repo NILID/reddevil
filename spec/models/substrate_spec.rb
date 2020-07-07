@@ -91,6 +91,17 @@ RSpec.describe Substrate, type: :model do
         expect(substrate.errors[:rad_strength]).not_to be_empty
       end
 
+      it 'have shape inclusion list SHAPES' do
+        substrate.shape = 'quatro'
+        expect(substrate.valid?).to be false
+        expect(substrate.errors[:shape]).not_to be_empty
+      end
+
+      it 'have shape equal nil' do
+        substrate.shape = nil
+        expect(substrate.valid?).to be true
+        expect(substrate.errors[:shape]).to be_empty
+      end
 
       it 'have sides inclusion list SIDES' do
         substrate.sides = 'C'
@@ -102,6 +113,54 @@ RSpec.describe Substrate, type: :model do
         substrate.title = nil
         expect(substrate.valid?).to be false
         expect(substrate.errors[:title]).not_to be_empty
+      end
+
+      it 'allow width be nil' do
+        substrate.width = nil
+        expect(substrate.valid?).to be true
+        expect(substrate.errors[:width]).to be_empty
+      end
+
+      it 'have width greater 0' do
+        substrate.width = -1
+        expect(substrate.valid?).to be false
+        expect(substrate.errors[:width]).not_to be_empty
+      end
+
+      it 'allow height be nil' do
+        substrate.height = nil
+        expect(substrate.valid?).to be true
+        expect(substrate.errors[:height]).to be_empty
+      end
+
+      it 'have height greater 0' do
+        substrate.height = -1
+        expect(substrate.valid?).to be false
+        expect(substrate.errors[:height]).not_to be_empty
+      end
+
+      it 'allow thickness be nil' do
+        substrate.thickness = nil
+        expect(substrate.valid?).to be true
+        expect(substrate.errors[:thickness]).to be_empty
+      end
+
+      it 'have thickness greater 0' do
+        substrate.thickness = -1
+        expect(substrate.valid?).to be false
+        expect(substrate.errors[:thickness]).not_to be_empty
+      end
+
+      it 'allow diameter be nil' do
+        substrate.diameter = nil
+        expect(substrate.valid?).to be true
+        expect(substrate.errors[:diameter]).to be_empty
+      end
+
+      it 'have diameter greater 0' do
+        substrate.diameter = -1
+        expect(substrate.valid?).to be false
+        expect(substrate.errors[:diameter]).not_to be_empty
       end
     end
   end

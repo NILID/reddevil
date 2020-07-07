@@ -53,3 +53,24 @@ $ ->
 
   $('body').on 'onload change paste input keyup propertychange', '.new_substrate input#substrate_instock', ->
     selectpicker_init_status(this)
+
+
+
+  selectpicker_init_shape = (select_tag = 'select#substrate_shape') ->
+    $('option:selected', select_tag).each ->
+      if $(this).val() == 'circle'
+        $('#shape_diameter').show()
+        $('#substrate_width').val('')
+        $('#substrate_height').val('')
+        $('#shape_width').hide()
+        $('#shape_height').hide()
+      else
+        $('#substrate_diameter').val('')
+        $('#shape_diameter').hide()
+        $('#shape_width').show()
+        $('#shape_height').show()
+
+  selectpicker_init_shape()
+
+  $('body').on 'onload change paste input keyup propertychange', 'select#substrate_shape', ->
+    selectpicker_init_shape(this)

@@ -78,6 +78,32 @@
     .row
       .col-6.col-md-3
         .mb-4
+          = f.select :shape, {}, {}, { class: 'selectpicker' } do
+            - Substrate::SHAPES.each do |shape|
+              = content_tag :option,
+                t("substrates.shapes.#{shape}"),
+                value: shape,
+                data: { icon: "fa fa-#{shape.dasherize} fa-w-16 mr-3" },
+                selected: (f.object.shape == shape)
+      .col-6.col-md-3#shape_diameter
+        .mb-4
+          = f.number_field :diameter, step: 0.01, min: 0
+
+      .col-6.col-md-3#shape_width
+        .mb-4
+          = f.number_field :width, step: 0.01, min: 0
+
+      .col-6.col-md-3#shape_height
+        .mb-4
+          = f.number_field :height, step: 0.01, min: 0
+
+      .col-6.col-md-3
+        .mb-4
+          = f.number_field :thickness, step: 0.01, min: 0
+
+    .row
+      .col-6.col-md-3
+        .mb-4
           = f.check_box :frame, custom: :switch
     .row
       .col

@@ -196,5 +196,10 @@ ru:
         statuses_mask: Статус
         created_at: Дата создания
         sides: Сторона
+        shape: Форма
+        diameter: Диаметр
+        thickness: Толщина
+        width: Длина
+        height: Ширина
       subfiles:
         src: Файл документа

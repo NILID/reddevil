@@ -1,7 +1,7 @@
 .card-body.bg-info.text-white#search-form-collapse{class: params[:q] ? '' : 'collapse' }
   = search_form_for @q do |f|
     .row
-      .col
+      .col-12.col-md
         .form-group.row.mb-1
           = f.label :title_or_desc_or_drawing_or_detail_or_propotions_or_contract_or_arrival_from_or_shipping_to_or_shipping_base_cont,
             t('shared.search'),
@@ -84,7 +84,7 @@
                     .input-group-text до
                   = f.number_field :ready_count_lteq, class: 'form-control', min: 0
 
-      .col
+      .col-12.col-md
         .form-group.row.mb-1
           = f.label :wave_gteq,
             Substrate.human_attribute_name(:wave),
@@ -148,7 +148,59 @@
           .col
             = f.select :coating_type_b_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
 
-      .col
+        .form-group.row.mb-1
+          = f.label :width_or_diameter_gteq,
+            Substrate.human_attribute_name(:width),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row.pr-0
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.number_field :width_or_diameter_gteq, class: 'form-control', step: 0.01, min: 0
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.number_field :width_or_diameter_lteq, class: 'form-control', step: 0.01, min: 0
+
+        .form-group.row.mb-1
+          = f.label :height_or_diameter_gteq,
+            Substrate.human_attribute_name(:height),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row.pr-0
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.number_field :height_or_diameter_gteq, class: 'form-control', step: 0.01, min: 0
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.number_field :height_or_diameter_lteq, class: 'form-control', step: 0.01, min: 0
+
+        .form-group.row.mb-1
+          = f.label :thickness_gteq,
+            Substrate.human_attribute_name(:thickness),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row.pr-0
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.number_field :thickness_gteq, class: 'form-control', step: 0.01, min: 0
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.number_field :thickness_lteq, class: 'form-control', step: 0.01, min: 0
+
+
+      .col-12.col-md
         .form-group.row.mb-1
           = f.label :created_at_gteq,
             t('substrates.created_at'),
@@ -211,7 +263,6 @@
                     class: 'datepicker form-control',
                     value: (params[:q][:future_shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:future_shipping_at_lteq].present?)
 
-
         .form-group.row.mb-1
           = f.label :shipping_at_gteq,
             t('substrates.shipping.title'),
@@ -245,5 +296,6 @@
 
         .form-group.row.text-right
           .col.mt-5
-            = f.button class: 'btn btn-warning btn-sm btn-block' do
-              = fa_icon 'search', text: t('shared.to_search')
+            .mt-5
+              = f.button class: 'btn btn-warning btn-sm btn-block' do
+                = fa_icon 'search', text: t('shared.to_search')

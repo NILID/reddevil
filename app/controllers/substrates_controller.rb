@@ -4,6 +4,11 @@ class SubstratesController < ApplicationController
   def index
     @q = @substrates.not_archive
     get_ransack
+
+    respond_to do |format|
+      format.html
+      format.xls{ send_data @substrates.to_xls }
+    end
   end
 
   def archive

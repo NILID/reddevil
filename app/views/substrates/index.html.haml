@@ -12,6 +12,8 @@
           = fa_icon 'filter', text: t('shared.filter')
         = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm' do
           = fa_icon 'history', text: t('shared.history')
+        = link_to substrates_path(format: 'xls'), class: 'btn btn-secondary btn-sm', target: '_blank' do
+          = fa_icon 'file-pdf', text: t('shared.download')
     - if !check_archive
       .row
         .col

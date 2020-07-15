@@ -64,6 +64,44 @@ class Substrate < ApplicationRecord
     Arel.sql("date(created_at)")
   end
 
+  def self.to_xls(options = {})
+    CSV.generate(options) do |csv|
+      csv << ['№'] + (Substrate.sort_column_names.map{ |column| Substrate.human_attribute_name(column) })
+      all.order(:id).each_with_index do |substrate, index|
+        csv << [index+1] + (Substrate.sort_column_names.map { |column| substrate.get_attr(column) })
+      end
+    end
+  end
+
+  def self.sort_column_names
+    [:title] + (column_names - [:title])
+  end
+
+  def get_attr(column)
+    if try(column)
+      case column
+      when 'created_at', 'updated_at', 'future_shipping_at'
+        I18n.l created_at, format: :long
+      when 'shape'
+        I18n.t("substrates.shapes.#{try(column)}")
+      when 'frame'
+        I18n.t("substrates.frame_#{try(column)}")
+      when 'user_id'
+        author
+      when 'priority'
+        I18n.t("substrates.priorities.#{try(column)}")
+      when 'statuses_mask'
+        I18n.t("substrates.statuses.#{try(:status)}")
+      when 'sides'
+        unless self.try(column).empty?
+          I18n.t("substrates.sides.#{try(column)}")
+        end
+      else
+        try(column)
+      end
+    end
+  end
+
   private
 
   def init_finished_at

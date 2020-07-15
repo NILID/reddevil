@@ -173,7 +173,7 @@ ru:
         detail_short: № детали
         amount: Количество
         amount_short: Кол-во
-        instоck: Кол-во в наличии
+        instock: Кол-во в наличии
         ready_count: Кол-во готовых
         contract: Договор
         coating_type: Тип покрытия A

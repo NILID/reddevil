@@ -64,17 +64,9 @@ class Substrate < ApplicationRecord
     Arel.sql("date(created_at)")
   end
 
-  def self.to_xls(options = {})
-    CSV.generate(options) do |csv|
-      csv << ['№'] + (Substrate.sort_column_names.map{ |column| Substrate.human_attribute_name(column) })
-      all.order(:id).each_with_index do |substrate, index|
-        csv << [index+1] + (Substrate.sort_column_names.map { |column| substrate.get_attr(column) })
-      end
-    end
-  end
-
   def self.sort_column_names
-    [:title] + (column_names - [:title])
+    columns = %w[priority statuses_mask title]
+    columns + (column_names - columns)
   end
 
   def get_attr(column)

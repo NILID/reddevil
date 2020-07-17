@@ -14,9 +14,9 @@ module SubstratesHelper
 
   def select_text(status)
     color = case status
-    when 'false' then 'danger'
-    when 'true'  then 'success'
-    when 'waiting'  then 'primary'
+    when 'false'   then 'danger'
+    when 'true'    then 'success'
+    when 'waiting' then 'primary'
     else
       'secondary'
     end
@@ -25,18 +25,23 @@ module SubstratesHelper
     content_tag(:span, text, class: "badge badge-#{color}")
   end
 
-  def status_style(status, tag = :badge)
-    color = case status
-    when 'opened'   then 'danger'
-    when 'false'    then 'danger'
-    when 'finished' then 'success'
-    when 'true'     then 'success'
+  def status_color(status)
+    case status
+    when 'opened',
+         'false'    then 'danger'
     when 'worked'   then 'primary'
     when 'shipped'  then 'violet'
     else
       'secondary'
     end
+  end
+
+  def status_style(status, tag = :badge)
+    color = status_color(status)
     tag == :badge ? "badge badge-#{color}" : "table-#{color}"
+  end
+
+  def status_style_xls
   end
 
   # remove

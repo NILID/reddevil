@@ -101,6 +101,7 @@ class MainController < ApplicationController
     @q = Member.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @q.department_id_eq = current_user.member.department_id if current_user.member && !params[:q] # TODO: check current_user and member
+    @departments = Department.order(:title).includes(:members)
     @members = @q.result(distinct: true)
 
     @current_date = params[:date] ? DateTime.parse(params[:date]) : DateTime.now

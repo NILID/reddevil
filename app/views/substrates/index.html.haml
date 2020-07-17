@@ -8,12 +8,12 @@
       .col
         = render 'breadcrumb', titles: [link_to_if(!check_archive, content_tag(:span, t('substrates.archive'), class: 'card-index-link animated'), archive_substrates_path)]
       .col-6.text-right
-        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
+        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
           = fa_icon 'filter', text: t('shared.filter')
-        = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm' do
+        = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm mx-2' do
           = fa_icon 'history', text: t('shared.history')
-        = link_to substrates_path(format: 'xls'), class: 'btn btn-secondary btn-sm', target: '_blank' do
-          = fa_icon 'file-pdf', text: t('shared.download')
+        = link_to substrates_path(format: 'xlsx'), class: 'btn btn-outline-success btn-sm', target: '_blank' do
+          = fa_icon 'file-excel', text: t('shared.download')
     - if !check_archive
       .row
         .col

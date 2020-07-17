@@ -7,7 +7,7 @@ class SubstratesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xls{ send_data @substrates.to_xls }
+      format.xlsx
     end
   end
 

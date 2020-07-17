@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  thin_border = { style: :thin, color: '000000' }
+  heading = style.add_style(b: true, border: thin_border)
+  grey_row = style.add_style(bg_color: 'ccc', border: thin_border)
+
+  opened_row  = style.add_style(bg_color: 'f5c6cb', border: thin_border)
+  false_row   = style.add_style(bg_color: 'f5c6cb', border: thin_border)
+  worked_row  = style.add_style(bg_color: 'b8daff', border: thin_border)
+  shipped_row = style.add_style(bg_color: 'ffd5ff', border: thin_border)
+  simple_row  = style.add_style(bg_color: 'd6d8db', border: thin_border)
+
+  only_border = style.add_style(border: thin_border)
+
+  wb.add_worksheet(name: 'Подложки') do |sheet|
+
+    sheet.add_row (['№'] + (Substrate.sort_column_names.map{ |column| Substrate.human_attribute_name(column) })), style: heading
+
+    @substrates.each_with_index do |substrate, index|
+      substrate_row = case substrate.status
+      when 'opened',
+           'false'    then opened_row
+      when 'worked'   then worked_row
+      when 'shipped'  then shipped_row
+      else
+        simple_row
+      end
+
+      sheet.add_row [index+1] + (Substrate.sort_column_names.map { |column| substrate.get_attr(column) }), style: substrate_row
+    end
+  end
+
+end

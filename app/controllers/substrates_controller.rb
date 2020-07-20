@@ -2,7 +2,7 @@ class SubstratesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @q = @substrates.not_archive
+    @substrates = @substrates.not_archive
     get_ransack
 
     respond_to do |format|
@@ -12,7 +12,7 @@ class SubstratesController < ApplicationController
   end
 
   def archive
-    @q = @substrates.archive
+    @substrates = @substrates.archive
     get_ransack
     render 'index'
   end

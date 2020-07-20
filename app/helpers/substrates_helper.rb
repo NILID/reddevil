@@ -29,6 +29,8 @@ module SubstratesHelper
     case status
     when 'opened',
          'false'    then 'danger'
+    when 'finished',
+         'true'     then 'success'
     when 'worked'   then 'primary'
     when 'shipped'  then 'violet'
     else

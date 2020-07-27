@@ -6,16 +6,18 @@
   %li.nav-item
     = link_to t('shared.archive'),  archive_members_path,  class: "nav-link #{params[:action] == 'archive' ?  'active' : nil}"
 
-.float-right
-  - if can? :create, Member
-    = link_to new_member_path, class: 'btn btn-sm btn-outline-primary mr-3' do
-      = fa_icon :plus, text: t('member.adding')
+- if params[:action] == 'index'
 
-  - if can? :manage, Department
-    = link_to departments_path, class: 'btn btn-sm btn-outline-info mr-3' do
-      = t('departments.title')
+  .float-right
+    - if can? :create, Member
+      = link_to new_member_path, class: 'btn btn-sm btn-outline-primary mr-3' do
+        = fa_icon :plus, text: t('member.adding')
 
-  - if params[:action] == 'index'
+    - if can? :manage, Department
+      = link_to departments_path, class: 'btn btn-sm btn-outline-info mr-3' do
+        = t('departments.title')
+
+
     = link_to '#export_list', class: 'btn btn-sm btn-outline-secondary ', data: { toggle: 'modal', target: '#export_list' } do
       = fa_icon 'upload', text: t('member.download')
 

@@ -9,6 +9,7 @@
           .col
             = f.text_field :title_or_desc_or_drawing_or_detail_or_propotions_or_contract_or_arrival_from_or_shipping_to_or_shipping_base_cont,
               placeholder: t('shared.search_text'),
+              autofocus: true,
               class: 'form-control form-control-sm'
         .form-group.row.mb-1
           = f.label :statuses_mask_eq,

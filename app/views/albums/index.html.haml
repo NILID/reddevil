@@ -6,7 +6,10 @@
       .input-group
         .input-group-prepend
           .input-group-text= fa_icon 'search'
-        = f.search_field :file_file_name_cont, placeholder: t('shared.search'), class: 'form-control'
+        = f.search_field :file_file_name_cont,
+          placeholder: t('shared.search'),
+          autofocus: true,
+          class: 'form-control'
 
 .card
   .card-body

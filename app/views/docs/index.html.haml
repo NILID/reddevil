@@ -45,8 +45,10 @@
             .input-group-prepend
               .input-group-text
                 = fa_icon 'search'
-            = f.search_field :title_cont, placeholder: t('shared.search'), class: 'form-control form-control-sm'
-
+            = f.search_field :title_cont,
+              placeholder: t('shared.search'),
+              autofocus: true,
+              class: 'form-control form-control-sm'
 
 #doc-list
   = render @docs

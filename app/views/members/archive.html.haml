@@ -5,4 +5,11 @@
     .card
       .card-header
         = render 'panel_top'
-      = render 'members', members: @members
+      - if @members.any?
+        %table.table.my-0
+          %tbody
+            = render partial: 'members/tr_member', collection: @members, as: :member
+      - else
+        .text-center.my-5
+          .h3.text-muted
+            = t('shared.search_empty')

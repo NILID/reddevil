@@ -6,4 +6,20 @@
       .card-header
         = render 'panel_top'
       = render 'search_form', url: members_path, only_select: false, departments: @departments
-      = render 'members', members: @members
+      .tab-content
+        .tab-pane.active
+          =# fa_icon 'chevron-down', class: 'pointer icon-padding-r', id: 'show_all_members', title: t('shared.show_all'), data: { toggle: 'tooltip' }
+          - if @members.any?
+            %table.table.my-0
+              %tbody
+                - @departments.each do |department|
+                  - depart_members = @members.select { |member| member.department_id == department.id }
+                  - if depart_members.any?
+                    %tr.table-info
+                      %td(colspan=6)
+                        .lead.text-dark.text-center.text-white
+                          = department.title
+                    = render partial: 'members/tr_member', collection: depart_members, as: :member
+          - else
+            .text-center.my-5
+              .h3.text-muted= t('shared.search_empty')

@@ -4,6 +4,10 @@ RSpec.describe SubstratesController, type: :controller do
   let!(:substrate) { create(:substrate) }
   let(:user)      { create(:user) }
 
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   %i[admin from_lab182].each do |role|
     describe "#{role} should" do
       login_user(role)

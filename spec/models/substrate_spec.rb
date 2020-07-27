@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Substrate, type: :model do
 
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   describe 'creating substrate' do
     let(:substrate) { create(:substrate, drawing: "specific#{rand}") }
 

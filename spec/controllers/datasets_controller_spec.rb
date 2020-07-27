@@ -5,6 +5,10 @@ RSpec.describe DatasetsController, type: :controller do
   let!(:folder)  { create(:folder, user: user) }
   let!(:dataset) { create(:dataset, folder: folder) }
 
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   %i[admin user].each do |role|
     describe "#{role} should" do
       login_user(role)

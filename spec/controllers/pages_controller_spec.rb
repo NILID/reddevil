@@ -4,6 +4,10 @@ RSpec.describe PagesController, type: :controller do
   let!(:testuser) { create(:user) }
   let!(:page) { create(:page, user: testuser) }
 
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   describe 'admin should' do
     login_user(:admin)
 

@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Member, type: :model do
   let(:member) { build_stubbed(:member) }
 
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   context 'should' do
     it 'have fullname' do
       expect(member.valid?).to be true

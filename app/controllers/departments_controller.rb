@@ -4,9 +4,6 @@ class DepartmentsController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
@@ -16,7 +13,7 @@ class DepartmentsController < ApplicationController
   def create
     respond_to do |format|
       if @department.save
-        format.html { redirect_to @department, notice: 'Department was successfully created.' }
+        format.html { redirect_to departments_url, notice: t('flash.was_created', item: Dataset.model_name.human) }
         format.json { render :show, status: :created, location: @department }
       else
         format.html { render :new }
@@ -28,7 +25,7 @@ class DepartmentsController < ApplicationController
   def update
     respond_to do |format|
       if @department.update(department_params)
-        format.html { redirect_to @department, notice: 'Department was successfully updated.' }
+        format.html { redirect_to departments_url, notice: t('flash.was_updated', item: Dataset.model_name.human) }
         format.json { render :show, status: :ok, location: @department }
       else
         format.html { render :edit }
@@ -40,7 +37,7 @@ class DepartmentsController < ApplicationController
   def destroy
     @department.destroy
     respond_to do |format|
-      format.html { redirect_to departments_url, notice: 'Department was successfully destroyed.' }
+      format.html { redirect_to departments_url, notice: t('flash.was_destroyed', item: Dataset.model_name.human) }
       format.json { head :no_content }
     end
   end

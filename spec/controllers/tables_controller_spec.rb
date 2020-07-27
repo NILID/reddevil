@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe TablesController, type: :controller do
   let!(:table) { create(:table) }
 
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   describe 'admin should' do
     login_user(:admin)
 

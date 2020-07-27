@@ -3,6 +3,7 @@ ru:
     models:
       album: альбом
       card: карточка
+      department: подразделение
       song: песня
       event: событие
       member: сотрудник
@@ -41,6 +42,8 @@ ru:
       column:
         name: Название
         column_type: Тип
+      department:
+        title: Наименование
       row:
         user_id: Исполнитель
       columnship:

@@ -1,21 +1,22 @@
-%h1 Listing departments
+.card
+  .card-header
+    %h3
+      = t 'departments.title'
+      - if can? :new, Table
+        .float-right
+          %small= link_to t('shared.add'), new_department_path, class: 'btn btn-sm btn-primary'
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th
-      %th
-      %th
+  %table.table
+    %tbody
+      - @departments.each do |department|
+        %tr
+          %td= department.title
 
-  %tbody
-    - @departments.each do |department|
-      %tr
-        %td= department.title
-        %td= link_to 'Show', department
-        %td= link_to 'Edit', edit_department_path(department)
-        %td= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Department', new_department_path
+          - if can? :manage, department
+            %td.text-right
+              .btn-group
+                %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                  = fa_icon 'cog'
+                %ul.dropdown-menu.dropdown-menu-right
+                  = link_to t('shared.edit'), edit_department_path(department), class: 'dropdown-item'
+                  = link_to t('shared.del'), department, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

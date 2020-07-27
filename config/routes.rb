@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :departments
+  resources :departments, except: [:show]
+
   resources :office_notes do
     member do
       delete :delete_document

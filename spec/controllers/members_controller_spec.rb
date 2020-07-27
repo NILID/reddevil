@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe MembersController, type: :controller do
   let!(:member) { create(:member) }
 
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   %i[admin manager].each do |role|
     describe "#{role} should" do
       login_user(role)
@@ -13,7 +17,7 @@ RSpec.describe MembersController, type: :controller do
         expect(response).to render_template(:new)
       end
 
-      it 'not creates a new Member' do
+      it 'creates a new Member' do
         expect(@ability.can? :create, Member).to be true
         expect{ post :create, params: { member: attributes_for(:member) } }.to change(Member, :count).by(1)
         expect(response).to redirect_to(Member)

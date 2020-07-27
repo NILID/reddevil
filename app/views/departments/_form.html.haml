@@ -1,4 +1,7 @@
 = bootstrap_form_for @department, html: { class: 'card'} do |f|
+  .card-header
+    %h3= formtitle
+
   .card-body
     = render 'error', object: @department
 
@@ -7,4 +10,4 @@
   .card-footer
     = f.primary
     .float-right
-      = link_to t('shared.cancel'), members_path, class: 'btn btn-secondary'
+      = link_to t('shared.cancel'), departments_path, class: 'btn btn-secondary'

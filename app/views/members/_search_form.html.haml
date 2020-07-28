@@ -2,24 +2,15 @@
   = search_form_for @q, url: url do |f|
     .row
       - unless only_select
-        .col
-          .form-group.row.mb-0
-            .col
-              = f.text_field :name_or_surname_or_patronymic_or_email_or_position_cont,
-                placeholder: t('shared.search_text'),
-                autofocus: true,
-                class: 'form-control form-control-sm'
-      .col
-        .form-group.row.mb-0
-          = f.label :deoartment_id_eq,
-            Member.human_attribute_name(:department_id),
-            class: 'col-sm-3 col-form-label text-right'
-          .col
-            = f.select :department_id_eq, {}, { include_blank: '== Выберите отдел ==' }, { class: 'selectpicker form-control form-control-sm' } do
-              - @departments.each do |d|
-                = content_tag(:option, d.title, value: d.id, selected: params[:q] && (params[:q][:department_id_eq] == d.to_param) )
-      .col
-        .form-group.row.text-right.mb-0
-          .col
-            = f.button class: 'btn btn-warning btn-sm btn-block' do
-              = fa_icon 'search', text: t('shared.to_search')
+        .col-12.col-sm.mb-2.mb-sm-0
+          = f.text_field :name_or_surname_or_patronymic_or_email_or_position_cont,
+            placeholder: t('shared.search_text'),
+            autofocus: true,
+            class: 'form-control form-control-sm'
+      .col-12.col-sm.mb-2.mb-sm-0
+        = f.select :department_id_eq, {}, { include_blank: '== Выберите отдел ==' }, { class: 'selectpicker form-control form-control-sm' } do
+          - @departments.each do |d|
+            = content_tag(:option, d.title, value: d.id, selected: params[:q] && (params[:q][:department_id_eq] == d.to_param) )
+      .col-12.col-sm
+        = f.button class: 'btn btn-warning btn-sm btn-block' do
+          = fa_icon 'search', text: t('shared.to_search')

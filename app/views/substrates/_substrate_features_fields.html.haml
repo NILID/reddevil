@@ -1,0 +1,16 @@
+.nested-fields.mb-3
+  .input-group
+    = f.number_field :length, wrapper: false, min: 0, placeholder: SubstrateFeature.human_attribute_name(:length)
+    = f.select :sign, {}, { wrapper: false }, { class: 'selectpicker' } do
+      - SubstrateFeature::SIGNS.each do |sign|
+        = content_tag :option,
+          nil,
+          value: sign,
+          data: { icon: "fa fa-#{sign} fa-w-16 mr-3" },
+          selected: (f.object.sign == sign)
+
+    = f.number_field :feature, wrapper: false, step: 0.1, min: 0, placeholder: SubstrateFeature.human_attribute_name(:feature)
+
+    .input-group-append
+      = link_to_remove_association f, class: 'btn btn-outline-secondary', data: { confirm: t('shared.sure') } do
+        = fa_icon :times

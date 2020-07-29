@@ -40,13 +40,22 @@
             %br/
             = sort_link @q, :detail,         Substrate.human_attribute_name(:detail_short)
           %th
-            = sort_link @q, :sides,          Substrate.human_attribute_name(:sides)
-            %br
-            = sort_link @q, :coating_type,   Substrate.human_attribute_name(:coating_type)
-            %br
-            = sort_link @q, :coating_type_b, Substrate.human_attribute_name(:coating_type_b)
-          %th= sort_link @q, :wave,          t('substrates.wave_short_html')
-          %th= sort_link @q, :corner,        t('substrates.corner')
+            .row
+              .col.text-nowrap
+                = sort_link @q, :sides,          Substrate.human_attribute_name(:sides)
+                %br
+                = sort_link @q, :coating_type,   Substrate.human_attribute_name(:coating_type)
+                %br
+                = sort_link @q, :coating_type_b, Substrate.human_attribute_name(:coating_type_b)
+              .col
+                = sort_link @q, :corner,        t('substrates.corner')
+              .col
+                = sort_link @q, :wave,          t('substrates.wave_short_html')
+                %br/
+                %span{title: t('shared.old'), data: { toggle: 'tooltip' } }
+                  = fa_icon :question_circle, class: 'text-info', size: 'lg'
+              .col
+                = t('substrates.spectr_chars')
           %th.text-nowrap
             = Substrate.human_attribute_name(:amount_short)
             %br/

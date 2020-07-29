@@ -102,6 +102,28 @@
                   .input-group-prepend
                     .input-group-text до
                   = f.text_field :wave_lteq, class: 'form-control'
+
+
+
+        .form-group.row.mb-1
+          = f.label :substrate_features_length_gteq,
+            t('substrates.waves'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row.pr-0
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text от
+                  = f.text_field :substrate_features_length_gteq, class: 'form-control'
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :substrate_features_length_lteq, class: 'form-control'
+
+
+
         .form-group.row.mb-1
           = f.label :corner_gteq,
             Substrate.human_attribute_name(:corner),

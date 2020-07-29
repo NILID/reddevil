@@ -6,6 +6,9 @@ $ ->
   soundManager.defaultOptions =
     loops: 1
 
+  $.fn.selectpicker.defaults =
+    style: 'border btn btn-secondary-light'
+
   $('.tip').each (i) ->
     $(this).tooltipster
       content: $(this).find(".tip-text").html()

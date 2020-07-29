@@ -16,6 +16,11 @@ ru:
     followers_manage_full: Редактирование списка исполнителей
     coating_type: Тип покрытия
     wave: Длина волны
+    waves: Длины волн
+    spectr_chars: Спектр. хар-ки
+    spectr_chars_full: Спектр. харaктеристики
+    side_a: Сторона А
+    side_b: Сторона Б
     corner: Угол
     instock: Количество в наличии
     instock_search: В наличии

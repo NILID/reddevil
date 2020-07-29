@@ -2,7 +2,7 @@ class SubstratesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @substrates = @substrates.not_archive
+    @substrates = @substrates.includes(:substrate_features).not_archive
     get_ransack
 
     respond_to do |format|
@@ -12,7 +12,7 @@ class SubstratesController < ApplicationController
   end
 
   def archive
-    @substrates = @substrates.archive
+    @substrates = @substrates.includes(:substrate_features).archive
     get_ransack
     render 'index'
   end
@@ -44,6 +44,9 @@ class SubstratesController < ApplicationController
     @subfiles = @substrate.subfiles.includes(:user).order(created_at: :desc)
     @followers = @substrate.users.includes(:member).order('members.surname')
     @users = User.with_group(:lab182).includes(:member).order('members.surname') - @followers
+    substrate_features = @substrate.substrate_features
+    @substrate_features_a = substrate_features.select { |s| s.wave == 'A' }
+    @substrate_features_b = substrate_features.select { |s| s.wave == 'B' }
 
     respond_to do |format|
       format.html
@@ -128,7 +131,9 @@ class SubstratesController < ApplicationController
                                         :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
                                         :status, :user_id, :future_shipping_at, :rad_strength, :shape,
                                         :width, :height, :thickness, :diameter,
-                                        { subfiles_attributes: %i[id src user_id _destroy] }
+                                        { subfiles_attributes: %i[id src user_id _destroy] },
+                                        { substrate_features_a_attributes: %i[id length sign feature _destroy] },
+                                        { substrate_features_b_attributes: %i[id length sign feature _destroy] }
                                         )
     end
 end

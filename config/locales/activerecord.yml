@@ -164,6 +164,8 @@ ru:
       song:
         title: Название
         file: Файл
+      subfiles:
+        src: Файл документа
       substrate:
         title: Наименование
         desc: Описание
@@ -204,5 +206,15 @@ ru:
         thickness: Толщина
         width: Длина
         height: Ширина
-      subfiles:
-        src: Файл документа
+      substrate_feature:
+        length: Длина
+        sign: Знак
+        feature: Требования
+      substrate_features_b:
+        length: Длина
+        sign: Знак
+        feature: Требования
+      substrate_features_a:
+        length: Длина
+        sign: Знак
+        feature: Требования

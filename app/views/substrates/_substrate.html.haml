@@ -17,21 +17,37 @@
     = substrate.drawing
     - if substrate.detail?
       .text-muted= substrate.detail
-  %td.text-nowrap= raw substrate_sides(substrate, true)
-  %td
-    &nbsp;
-    = substrate.wave
-    - if substrate.wave_b?
-      %hr.my-1
-      &nbsp;
-      = substrate.wave_b
-  %td
-    &nbsp;
-    = substrate.corner
+  %td.text-nowrap
+    .row
+      .col
+        = substrate_sides(substrate, :a)
+      .col
+        = substrate.corner
+      .col
+        = substrate.wave
+      .col
+        - features = substrate.substrate_features
+        - features.select{|f| f.wave == 'A'}.each do |feature|
+          %p
+            = feature.length
+            = fa_icon feature.sign
+            = feature.feature
+
     - if substrate.corner_b?
-      %hr.my-1
-      &nbsp;
-      = substrate.corner_b
+      .row
+        .col
+          = substrate_sides(substrate, :b)
+        .col
+          = substrate.corner_b
+        .col
+          = substrate.wave_b
+        .col
+          - features.select{|f| f.wave == 'B'}.each do |feature|
+            %p
+              = feature.length
+              = fa_icon feature.sign
+              = feature.feature
+
   %td
     = substrate.instock
     %span.text-muted /

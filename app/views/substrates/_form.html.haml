@@ -51,6 +51,7 @@
 
       .col-6.col-md-4
         = f.select :rad_strength, Substrate::RAD_STRENGTHS.map { |r| r }, {}, { class: 'selectpicker' }
+
     .row
       .col-6.col-md-3
         = f.select :sides, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
@@ -60,21 +61,41 @@
               value: s,
               selected: (f.object.sides == s)
       .col
-        .row#substrate_block_a
-          .col-6.col-md-4
-            = f.select :coating_type,   Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
-          .col-6.col-md-4
-            = f.text_field :wave
-          .col-6.col-md-4
-            = f.text_field :corner
-        .row#substrate_block_b
-          .col-6.col-md-4
-            = f.select :coating_type_b, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
-          .col-6.col-md-4
-            = f.text_field :wave_b
-          .col-6.col-md-4
-            = f.text_field :corner_b
+        .card.mt-2#substrate_block_a.mb-3.bg-light
+          .card-header
+            = t 'substrates.side_a'
+          .card-body
+            .row
+              .col-6.col-md-4
+                = f.select :coating_type,   Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
+              .col-6.col-md-4
+                = f.text_field :corner
+              .col-6.col-md-4#substrate_features_a
+                = t 'substrates.spectr_chars_full'
+                .mt-2.selectpicker-refresh
+                  = f.fields_for :substrate_features_a do |feature|
+                    = render 'substrate_features_fields', f: feature
+                  .links
+                    = link_to_add_association f, :substrate_features_a, partial: 'substrate_features_fields' do
+                      = fa_icon 'plus', text: t('shared.add')
 
+        .card.mt-2#substrate_block_b.mb-3.bg-light
+          .card-header
+            = t 'substrates.side_b'
+          .card-body
+            .row
+              .col-6.col-md-4
+                = f.select :coating_type_b, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
+              .col-6.col-md-4
+                = f.text_field :corner_b
+              .col-6.col-md-4#substrate_features_b
+                = t 'substrates.spectr_chars_full'
+                .mt-2.selectpicker-refresh
+                  = f.fields_for :substrate_features_b do |feature|
+                    = render 'substrate_features_fields', f: feature
+                  .links
+                    = link_to_add_association f, :substrate_features_b, partial: 'substrate_features_fields' do
+                      = fa_icon 'plus', text: t('shared.add')
     .row
       .col-6.col-md-3
         .mb-4

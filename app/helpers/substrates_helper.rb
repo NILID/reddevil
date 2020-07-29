@@ -98,14 +98,15 @@ module SubstratesHelper
     Substrate::STATUSES.index(status)
   end
 
-  def substrate_sides(substrate, short=false)
+  def substrate_sides(substrate, side, short=false)
     sides = substrate.sides
-    if sides
-      result = []
-      result << "A (#{substrate.coating_type})"   if ['a', 'ab'].include? substrate.sides
-      result << "Б (#{substrate.coating_type_b})" if ['b', 'ab'].include? substrate.sides
-      razd = short ? '<hr class="my-1"/>' : ' | '
-      result.join(razd)
+    if side == :a
+      literal = 'А'
+      type = substrate.coating_type
+    else
+      literal = 'Б'
+      type = substrate.coating_type_b
     end
+    "#{literal} (#{type})"   if ['a', 'ab'].include? substrate.sides
   end
 end

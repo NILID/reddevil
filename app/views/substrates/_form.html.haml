@@ -99,7 +99,7 @@
     .row
       .col-6.col-md-3
         .mb-4
-          = f.select :shape, {}, {}, { class: 'selectpicker' } do
+          = f.select :shape, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
             - Substrate::SHAPES.each do |shape|
               = content_tag :option,
                 t("substrates.shapes.#{shape}"),

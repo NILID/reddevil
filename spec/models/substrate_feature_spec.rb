@@ -52,7 +52,22 @@ RSpec.describe SubstrateFeature, type: :model do
         expect(substrate_feature.valid?).to be true
         expect(substrate_feature.errors[:sign]).to be_empty
       end
+
+      it 'have litera' do
+        substrate_feature.litera = nil
+        expect(substrate_feature.valid?).to be false
+        expect(substrate_feature.errors[:litera]).not_to be_empty
+      end
+
+      it 'have litera from list' do
+        substrate_feature.litera = 'X'
+        expect(substrate_feature.valid?).to be false
+        expect(substrate_feature.errors[:litera]).not_to be_empty
+
+        substrate_feature.litera = 'R'
+        expect(substrate_feature.valid?).to be true
+        expect(substrate_feature.errors[:litera]).to be_empty
+      end
     end
   end
-
 end

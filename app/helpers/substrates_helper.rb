@@ -94,6 +94,12 @@ module SubstratesHelper
     end
   end
 
+  def substrate_feature(feature)
+    length = feature.length? ? "#{feature.length} нм; " : ''
+    litera = feature.litera? ? "<strong>#{feature.litera}</strong> " : ''
+    [length, litera, fa_icon(feature.sign), ' ', feature.feature].join.html_safe
+  end
+
   def status_index(status)
     Substrate::STATUSES.index(status)
   end

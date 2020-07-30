@@ -112,10 +112,8 @@
                 %td= @substrate.wave
                 %td
                   - @substrate_features_a.each do |feature|
-                    %p
-                      = feature.length
-                      = fa_icon feature.sign
-                      = feature.feature
+                    %p= substrate_feature(feature)
+
               %tr
                 %td
                   %strong Б
@@ -124,10 +122,7 @@
                 %td= @substrate.wave_b
                 %td
                   - @substrate_features_b.each do |feature|
-                    %p
-                      = feature.length
-                      = fa_icon feature.sign
-                      = feature.feature
+                    %p= substrate_feature(feature)
 
       .col
         %dl.row

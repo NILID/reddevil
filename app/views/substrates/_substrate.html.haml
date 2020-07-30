@@ -28,10 +28,7 @@
       .col
         - features = substrate.substrate_features
         - features.select{|f| f.wave == 'A'}.each do |feature|
-          %p
-            = feature.length
-            = fa_icon feature.sign
-            = feature.feature
+          %p= substrate_feature(feature)
 
     - if substrate.corner_b?
       .row
@@ -43,10 +40,7 @@
           = substrate.wave_b
         .col
           - features.select{|f| f.wave == 'B'}.each do |feature|
-            %p
-              = feature.length
-              = fa_icon feature.sign
-              = feature.feature
+            %p= substrate_feature(feature)
 
   %td
     = substrate.instock

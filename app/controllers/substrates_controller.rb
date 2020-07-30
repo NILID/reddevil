@@ -132,8 +132,8 @@ class SubstratesController < ApplicationController
                                         :status, :user_id, :future_shipping_at, :rad_strength, :shape,
                                         :width, :height, :thickness, :diameter,
                                         { subfiles_attributes: %i[id src user_id _destroy] },
-                                        { substrate_features_a_attributes: %i[id length sign feature _destroy] },
-                                        { substrate_features_b_attributes: %i[id length sign feature _destroy] }
+                                        { substrate_features_a_attributes: %i[id length sign litera feature _destroy] },
+                                        { substrate_features_b_attributes: %i[id length sign litera feature _destroy] }
                                         )
     end
 end

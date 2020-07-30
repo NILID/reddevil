@@ -88,7 +88,7 @@
       .col-12.col-md
         .form-group.row.mb-1
           = f.label :substrate_features_length_gteq,
-            t('substrates.waves'),
+            t('substrates.wave'),
             class: 'col-sm-4 col-form-label'
           .col
             .row.pr-0
@@ -103,11 +103,9 @@
                     .input-group-text до
                   = f.text_field :substrate_features_length_lteq, class: 'form-control'
 
-
-
         .form-group.row.mb-1
-          = f.label :corner_gteq,
-            Substrate.human_attribute_name(:corner),
+          = f.label :corner_or_corner_b_gteq,
+            t('substrates.corner'),
             class: 'col-sm-4 col-form-label'
           .col
             .row
@@ -115,12 +113,13 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text от
-                  = f.text_field :corner_gteq, class: 'form-control'
+                  = f.text_field :corner_or_corner_b_gteq, class: 'form-control'
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :corner_lteq, class: 'form-control'
+                  = f.text_field :corner_or_corner_b_lteq, class: 'form-control'
+
         .form-group.row.mb-1
           = f.label :frame_eq,
             t('substrates.frame'),
@@ -140,17 +139,20 @@
                 = content_tag(:option, t("substrates.sides.#{s}"), value: s, selected: params[:q] && (params[:q][:sides_eq] == s.to_s) )
         .form-group.row.mb-1
           = f.label :coating_type_eq,
-            Substrate.human_attribute_name(:coating_type),
+            t('substrates.coating_type'),
             class: 'col-sm-4 col-form-label'
           .col
-            = f.select :coating_type_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
-
-        .form-group.row.mb-1
-          = f.label :coating_type_b_eq,
-            Substrate.human_attribute_name(:coating_type_b),
-            class: 'col-sm-4 col-form-label'
-          .col
-            = f.select :coating_type_b_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
+            .row.pr-0
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text A
+                  = f.select :coating_type_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text Б
+                  = f.select :coating_type_b_eq, Substrate::COATINGS.map { |c| c }, { include_blank: '== Выберите тип ==' }, { class: 'selectpicker form-control form-control-sm' }
 
         .form-group.row.mb-1
           = f.label :width_or_diameter_gteq,

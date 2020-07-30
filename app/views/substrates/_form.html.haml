@@ -90,11 +90,11 @@
             = t 'substrates.side_a'
           .card-body
             .row
-              .col-6.col-md-4
+              .col-6.col-md-3
                 = f.select :coating_type,   Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
-              .col-6.col-md-4
+              .col-6.col-md-3
                 = f.text_field :corner
-              .col-6.col-md-4#substrate_features_a
+              .col-6.col-md-6#substrate_features_a
                 = t 'substrates.spectr_chars_full'
                 .mt-2.selectpicker-refresh
                   = f.fields_for :substrate_features_a do |feature|
@@ -108,11 +108,11 @@
             = t 'substrates.side_b'
           .card-body
             .row
-              .col-6.col-md-4
+              .col-6.col-md-3
                 = f.select :coating_type_b, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
-              .col-6.col-md-4
+              .col-6.col-md-3
                 = f.text_field :corner_b
-              .col-6.col-md-4#substrate_features_b
+              .col-6.col-md-6#substrate_features_b
                 = t 'substrates.spectr_chars_full'
                 .mt-2.selectpicker-refresh
                   = f.fields_for :substrate_features_b do |feature|

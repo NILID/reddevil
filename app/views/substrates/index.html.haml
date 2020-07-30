@@ -72,7 +72,8 @@
             %p
               .font-weight-normal= sort_link @q, :arrival_from, t('substrates.arrival.who')
               .font-weight-normal= sort_link @q, :arrival_at, t('substrates.arrival.date')
-          %th.font-weight-normal= sort_link @q, :future_shipping_to, Substrate.human_attribute_name(:future_shipping_at)
+          %th.font-weight-normal
+            = sort_link @q, :future_shipping_to, t('substrates.future_shipping_at_html')
           %th
             %p= t('substrates.shipping.title')
             %p

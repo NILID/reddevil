@@ -25,6 +25,7 @@ ru:
     side_a: Сторона А
     side_b: Сторона Б
     ready_count_html: Кол-во<br/>готовых
+    future_shipping_at_html: План.<br/>время<br/>отгрузки
     corner: Угол
     instock: Количество в наличии
     instock_search: В наличии

@@ -127,7 +127,7 @@ class SubstratesController < ApplicationController
       params.require(:substrate).permit(:title, :ready_count,
                                         :desc, :coating_type, :coating_type_b, :sides,
                                         :wave, :wave_b, :corner, :corner_b, :frame, :priorityx, :drawing,
-                                        :detail, :amount, :contract, :propotions, :instock,
+                                        :detail, :amount, :contract, :instock,
                                         :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
                                         :status, :user_id, :future_shipping_at, :rad_strength, :shape,
                                         :width, :height, :thickness, :diameter,

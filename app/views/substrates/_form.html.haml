@@ -30,13 +30,10 @@
               selected: (f.object.priorityx == s)
 
     .row
-      .col-6.col-md-4
+      .col
         = f.text_field :drawing
-      .col-6.col-md-4
+      .col
         = f.text_field :detail
-      .col-6.col-md-4
-        = f.text_field :propotions
-
     .row
       .col-6.col-md-4
         = f.label :amount
@@ -51,6 +48,33 @@
 
       .col-6.col-md-4
         = f.select :rad_strength, Substrate::RAD_STRENGTHS.map { |r| r }, {}, { class: 'selectpicker' }
+
+    .row
+      .col-6.col-md-3
+        .mb-4
+          = f.select :shape, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
+            - Substrate::SHAPES.each do |shape|
+              = content_tag :option,
+                t("substrates.shapes.#{shape}"),
+                value: shape,
+                data: { icon: "fa fa-#{shape.dasherize} fa-w-16 mr-3" },
+                selected: (f.object.shape == shape)
+      .col-6.col-md-3#shape_diameter
+        .mb-4
+          = f.number_field :diameter, step: 0.01, min: 0
+
+      .col-6.col-md-3#shape_width
+        .mb-4
+          = f.number_field :width, step: 0.01, min: 0
+
+      .col-6.col-md-3#shape_height
+        .mb-4
+          = f.number_field :height, step: 0.01, min: 0
+
+      .col-6.col-md-3
+        .mb-4
+          = f.number_field :thickness, step: 0.01, min: 0
+
 
     .row
       .col-6.col-md-3
@@ -96,31 +120,6 @@
                   .links
                     = link_to_add_association f, :substrate_features_b, partial: 'substrate_features_fields' do
                       = fa_icon 'plus', text: t('shared.add')
-    .row
-      .col-6.col-md-3
-        .mb-4
-          = f.select :shape, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
-            - Substrate::SHAPES.each do |shape|
-              = content_tag :option,
-                t("substrates.shapes.#{shape}"),
-                value: shape,
-                data: { icon: "fa fa-#{shape.dasherize} fa-w-16 mr-3" },
-                selected: (f.object.shape == shape)
-      .col-6.col-md-3#shape_diameter
-        .mb-4
-          = f.number_field :diameter, step: 0.01, min: 0
-
-      .col-6.col-md-3#shape_width
-        .mb-4
-          = f.number_field :width, step: 0.01, min: 0
-
-      .col-6.col-md-3#shape_height
-        .mb-4
-          = f.number_field :height, step: 0.01, min: 0
-
-      .col-6.col-md-3
-        .mb-4
-          = f.number_field :thickness, step: 0.01, min: 0
 
     .row
       .col-6.col-md-3

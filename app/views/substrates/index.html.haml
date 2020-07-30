@@ -63,8 +63,8 @@
             %span.text-muted /
             = sort_link @q, :amount,        t('substrates.amount_short')
           %th= sort_link @q, :ready_count,  Substrate.human_attribute_name(:ready_count)
-          %th= sort_link @q, :shape,        Substrate.human_attribute_name(:shape)
-          %th= sort_link @q, :propotions,   Substrate.human_attribute_name(:propotions)
+          %th.text-nowrap
+            = t('substrates.size')
           %th= sort_link @q, :frame,        t('substrates.frame_short_html')
           %th= sort_link @q, :contract,     Substrate.human_attribute_name(:contract)
           %th

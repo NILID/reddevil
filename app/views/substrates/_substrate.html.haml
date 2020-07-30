@@ -54,21 +54,13 @@
     = substrate.amount
   %td= substrate.ready_count
   %td
-    - if substrate.shape?
-      .mb-2
-        %span.text-muted
-        - if substrate.diameter?
-          &empty; #{substrate.diameter}
-    .mb-2
-      %strong
-        - if substrate.width? || substrate.height?
-          = fa_icon :ruler_combined, text: "#{substrate.width} x #{substrate.height}"
+    - if substrate.shape? && substrate.diameter?
+      &empty; #{substrate.diameter}
+    - if substrate.width? || substrate.height?
+      #{substrate.width} x #{substrate.height}
     - if substrate.thickness?
-      .d-block
-        %span.text-muted= Substrate.human_attribute_name(:thickness)
-        = substrate.thickness
+      * #{ substrate.thickness }
 
-  %td= substrate.propotions
   %td= t("substrates.frame_#{substrate.frame}")
   %td= substrate.contract
   %td

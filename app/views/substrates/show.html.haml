@@ -68,7 +68,7 @@
             %th(scope="row")= Substrate.human_attribute_name(:ready_count)
             %td= @substrate.ready_count
           %tr
-            %th(scope="row")= Substrate.human_attribute_name(:shape)
+            %th(scope="row")= t('substrates.size')
             %td
               - if @substrate.shape?
                 .text-muted.mb-2
@@ -84,9 +84,6 @@
                 .d-block
                   %span.text-muted= Substrate.human_attribute_name(:thickness)
                   = @substrate.thickness
-          %tr
-            %th(scope="row")= Substrate.human_attribute_name(:propotions)
-            %td= @substrate.propotions
           %tr
             %th(scope="row")= Substrate.human_attribute_name(:frame)
             %td= t("substrates.frame_#{@substrate.frame}")

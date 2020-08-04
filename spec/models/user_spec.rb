@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Note, type: :model do
+RSpec.describe User, type: :model do
 
   describe 'simple user' do
     let(:user) { create(:user) }

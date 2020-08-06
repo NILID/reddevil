@@ -6,7 +6,6 @@ RSpec.describe "Pages", type: :request do
   end
 
 
-
   describe "GET /pages" do
     it "works! (now write some real specs)" do
       get pages_path

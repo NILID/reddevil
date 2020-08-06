@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "departments/new", type: :view do
   before(:each) do
-    assign(:department, Department.new(
-      :title => "MyString"
-    ))
+    assign(:department, build(:department))
   end
 
   it "renders new department form" do

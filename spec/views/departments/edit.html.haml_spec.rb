@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "departments/edit", type: :view do
   before(:each) do
-    @department = assign(:department, Department.create!(
-      :title => "MyString"
-    ))
+    @department = assign(:department, create(:department))
   end
 
   it "renders the edit department form" do

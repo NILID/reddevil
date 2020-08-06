@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "departments/index", type: :view do
   before(:each) do
-    assign(:departments, [
-      Department.create!(
-        :title => "Title"
-      ),
-      Department.create!(
-        :title => "Title"
-      )
-    ])
+    assign(:departments, create_list(:department, 2))
   end
 
   it "renders a list of departments" do

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :department do
-    title { Faker::Lorem.unique.word }
+    title { Faker::Company.unique.name }
   end
 end

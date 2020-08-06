@@ -1,4 +1,24 @@
 module SubstratesHelper
+  def rad_icon(rad, styles = nil, full = false)
+    case rad
+    when 'нет'
+      full ? rad : nil
+    else
+      full ? (fa_icon rad_icon_name(rad), text: rad) : "fa fa-#{rad_icon_name(rad)} #{styles}"
+    end
+  end
+
+  def rad_icon_name(name)
+    case name
+    when 'непрерывная'
+      'slash'
+    when 'импульсная'
+      'wave-square'
+    else
+      return nil
+    end
+  end
+
   def status_text(status, editable=false)
     unless status.empty?
       if editable

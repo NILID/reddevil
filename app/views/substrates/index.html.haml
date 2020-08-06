@@ -56,6 +56,8 @@
                   = fa_icon :question_circle, class: 'text-info', size: 'lg'
               .col
                 = t('substrates.spectr_chars')
+          %th
+            = sort_link @q, :rad_strength,  t('substrates.rad_strength_html')
           %th.text-nowrap
             = Substrate.human_attribute_name(:amount_short)
             %br/

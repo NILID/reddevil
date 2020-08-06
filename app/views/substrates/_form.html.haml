@@ -47,7 +47,13 @@
         = f.number_field :ready_count, min: 0
 
       .col-6.col-md-4
-        = f.select :rad_strength, Substrate::RAD_STRENGTHS.map { |r| r }, {}, { class: 'selectpicker' }
+        = f.select :rad_strength, {}, {}, { class: 'selectpicker' } do
+          - Substrate::RAD_STRENGTHS.each do |rad|
+            = content_tag :option,
+              rad,
+              value: rad,
+              data: { icon: rad_icon(rad, 'fa-w-16 mr-3') },
+              selected: (f.object.rad_strength == rad)
 
     .row
       .col-6.col-md-3

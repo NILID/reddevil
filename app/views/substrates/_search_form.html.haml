@@ -204,7 +204,14 @@
                   .input-group-prepend
                     .input-group-text до
                   = f.number_field :thickness_lteq, class: 'form-control', step: 0.01, min: 0
-
+        .form-group.row.mb-1
+          = f.label :rad_strength_eq,
+            Substrate.human_attribute_name(:rad_strength,),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :rad_strength_eq, {}, { include_blank: '== Выберите ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - Substrate::RAD_STRENGTHS.each do |rad|
+                = content_tag :option, rad, value: rad, data: {content: rad_icon(rad, nil, true)}, selected: params[:q] && (params[:q][:rad_strength_eq] == rad)
 
       .col-12.col-md
         .form-group.row.mb-1

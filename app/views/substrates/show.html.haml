@@ -89,7 +89,7 @@
             %td= t("substrates.frame_#{@substrate.frame}")
           %tr
             %th(scope="row")= Substrate.human_attribute_name(:rad_strength)
-            %td= @substrate.rad_strength
+            %td= rad_icon(@substrate.rad_strength, nil, true)
 
         %p
           %table.table

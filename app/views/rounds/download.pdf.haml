@@ -28,9 +28,8 @@
               %div= match.team1.title
               %div= match.team2.title
             %td.match-ending(style="width:4px;")
-              - unless match.ending == 'basic'
-                - unless match.team1 == match.winner
-                  %br/
+              - if match.ending != 'basic' && match.team1 != match.winner
+                %br/
             - @users.each do |user|
               - f = user.forecasts.where(match_id: match.id).first
               - if f

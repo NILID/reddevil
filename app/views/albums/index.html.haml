@@ -32,7 +32,7 @@
     .tab-content
       - if params[:q]
         .tab-pane.fade.show.active#find-songs(role='tabpanel' aria-labelledby='find-songs-tab')
-          - unless @songs.empty?
+          - if @songs.any?
             %ul.playlist.mt-3
               = render @songs, showalbum: true
           - else

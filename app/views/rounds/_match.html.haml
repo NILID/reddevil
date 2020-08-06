@@ -41,7 +41,7 @@
   - if @round.check_finish?
     %td
       - f = Forecast.where(match_id: match)
-      - unless f.empty?
+      - if f.any?
         %a.btn.btn-outline-primary.btn-sm{ href: '#', data: { toggle: 'tooltip', placement: 'left' }, title: "#{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}" }
           #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
   - else

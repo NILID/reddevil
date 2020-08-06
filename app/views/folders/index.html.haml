@@ -14,7 +14,7 @@
         = fa_icon 'folder-open', text: t('folder.new')
 
     .bg-white.p-3
-      - unless @folders.empty?
+      - if @folders.any?
         = render @folders.roots
       - else
         %h6.text-muted.text-center= t 'dataset.empty_root'

@@ -26,7 +26,7 @@
                 = fa_icon 'trash', text: t('shared.del')
 
       .float-right
-        - unless doc.categories.empty?
+        - if doc.categories.any?
           - doc.categories.each do |g|
             = link_to(docs_path(by_category: g.id), remote: true) do
               %span.badge.badge-secondary.label-pad><= g.title

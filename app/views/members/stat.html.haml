@@ -7,7 +7,7 @@
         = render 'panel_top'
       = render 'search_form', url: stat_members_path, only_select: true, departments: @departments
       .tab-content.m-4
-        - unless @members.pluck(:id).empty?
+        - if @members.pluck(:id).any?
           .tab-pane.active
             .row
               - if @member_ages.any?

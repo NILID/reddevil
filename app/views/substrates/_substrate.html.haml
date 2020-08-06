@@ -73,7 +73,7 @@
       = short_date substrate.created_at
   %td
     - followers = substrate.users.includes(:member)
-    - unless followers.empty?
+    - if followers.any?
       %ul.list-unstyled.mb-0
         - followers.each do |user|
           %li= user.surname

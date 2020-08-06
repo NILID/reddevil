@@ -43,7 +43,7 @@
     - @round.matches.each do |match|
       %td
         - f = Forecast.where(match_id: match)
-        - unless f.empty?
+        - if f.any?
           .tip
             %b #{(f.sum(:team1goal)/f.count.to_f).round} : #{(f.sum(:team2goal)/f.count.to_f).round}
             .tip-text #{(f.sum(:team1goal)/f.count.to_f).round(1)} : #{(f.sum(:team2goal)/f.count.to_f).round(1)}

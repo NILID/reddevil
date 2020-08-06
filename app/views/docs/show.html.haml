@@ -4,7 +4,7 @@
     = @doc.title
 
     %small
-      - unless @doc.categories.empty?
+      - if @doc.categories.any?
         - @doc.categories.each do |g|
           %span.badge.badge-info><= g.title
 

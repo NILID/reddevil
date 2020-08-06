@@ -12,7 +12,7 @@
     .dropdown-toggle.text-muted{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
       = fa_icon 'cog'
     .dropdown-menu.dropdown-menu-right
-      - unless album.songs.pluck(:id).empty?
+      - if album.songs.pluck(:id).any?
         = link_to download_album_path(album), target: '_blank', class: 'dropdown-item' do
           = fa_icon 'download', text: t('albums.download')
       - if can? :manage, album

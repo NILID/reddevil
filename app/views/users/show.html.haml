@@ -62,7 +62,7 @@
           current_vacations_soon: @current_vacations_soon,
           member: @member
 
-    - unless @albums.empty? || @songs.empty?
+    - if @albums.any? || @songs.any?
       .card.mt-3
         .card-header
           = t 'albums.my_favorites'

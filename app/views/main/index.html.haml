@@ -111,7 +111,7 @@
               .col-3.col-lg-2
                 = image_tag 'rest.png', class: 'img-fluid'
               .col-9.col-lg-10
-                - @vacations_soon[0..2].each do |v|
+                - @vacations_soon[0..5].each do |v|
                   .mb-2
                     = v.member.fullname
                     = t('vacations.start',

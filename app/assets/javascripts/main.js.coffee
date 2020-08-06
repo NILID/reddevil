@@ -104,4 +104,7 @@ $ ->
     url: $(this).data('url')
     on: 'grab'
 
+  $('.collapse-vacations').on 'show.bs.collapse hide.bs.collapse', ->
+    $(this).next('.collapse-toggle').find('svg').toggleClass('fa-chevron-down fa-chevron-up')
+
   jQuery('.best_in_place').best_in_place()

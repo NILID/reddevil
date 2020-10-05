@@ -11,7 +11,7 @@
             %th.border-top-0
             %th.border-top-0(scope='col')= t 'member.fullname'
             %th.border-top-0(scope='col')
-              = sort_link @q, :updated_at, User.human_attribute_name(:updated_at)
+              = sort_link @q, :updated_at, User.human_attribute_name(:updated_at), default_order: :desc
         %tbody
           - @users.each do |user|
             %tr

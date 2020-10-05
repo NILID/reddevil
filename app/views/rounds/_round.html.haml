@@ -6,7 +6,7 @@
     = link_to round.title, round, class: check_deadline ? nil : 'text-white'
     - if can? :manage, round
       .btn-group.float-right.dropleft
-        .dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        %button.btn.btn-sm.btn-light.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
           = fa_icon 'cog'
         %ul.dropdown-menu
           = link_to edit_round_path(round), class: 'dropdown-item' do

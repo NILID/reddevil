@@ -57,8 +57,8 @@
               = fa_icon 'file-pdf', text: t('rounds.download')
 
           - if can? :manage, @round
-            = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-secondary btn-sm' do
-              = fa_icon 'refresh', text: t('results.rebuild')
+            = link_to rebuild_results_path(round: @round.id), remote: true, method: :post, class: 'btn btn-secondary btn-sm ' do
+              = fa_icon 'calculator', text: t('results.rebuild')
 
-            = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-secondary btn-sm'
+            = link_to t('shared.edit'), edit_round_path(@round), class: 'btn btn-secondary btn-sm ml-2'
             = link_to t('shared.del'), round_path(@round), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger btn-sm'

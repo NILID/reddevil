@@ -39,6 +39,17 @@ li.sm2_playing {
   .badge {color: #666 !important}
 }
 
+ul.playlist {
+  li.sm2_playing,
+  li.sm2_paused,
+  li.sm2_playing {
+    .dropdown,
+    .dropdown a {
+      color:#666;
+    }
+  }
+}
+
 .repeat-link{
   .fa-repeat {
     @include opacity(0);

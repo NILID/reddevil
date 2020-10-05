@@ -1,5 +1,5 @@
 .card-body.bg-info.text-white#search-form-collapse{class: params[:q] ? '' : 'collapse' }
-  = search_form_for @q do |f|
+  = search_form_for @q, url: request.original_url do |f|
     .row
       .col-12.col-md
         .form-group.row.mb-1

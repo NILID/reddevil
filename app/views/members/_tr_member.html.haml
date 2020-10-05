@@ -1,3 +1,5 @@
+- check_phone_birth = member.phone? || member.birth?
+
 = content_tag_for(:tr, member) do
   %td.text-muted= member_counter+1
   %td
@@ -5,12 +7,12 @@
       .row
         .col-auto
           = fa_icon 'chevron-down',
-            class: "icon-padding-r icon-showicon #{(member.phone? || member.birth?) ? nil : 'invisible'}"
+            class: "icon-padding-r icon-showicon #{check_phone_birth ? nil : 'invisible'}"
         .col.pl-0
           = member.fullname
           - if member.position?
             .text-muted= member.position
-    - if member.phone? || member.birth?
+    - if check_phone_birth
       .hidden_info
         - if member.phone?
           %p.animated.flipInX

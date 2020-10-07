@@ -1,14 +1,17 @@
 - label_css_classes = { new: 'info', done: 'success', failed: 'danger', later: 'warning' }
 - model_class = Note
 
-- if @note.screenshot?
-  - content_for :sidebar do
-    = link_to image_tag(@note.screenshot.url(:medium), class: 'img-thumbnail'), @note.screenshot.url(:original), class: 'fancybox thumnbail'
 
 .page-header
   %h4
     = t '.title', :default => model_class.model_name.human.titleize
     %span.badge{class: "badge-#{label_css_classes[@note.status.to_sym]}"}= t "notes.#{@note.status}"
+
+- if @note.screenshot.attached?
+  .d-block
+    = link_to @note.screenshot, class: 'fancybox' do
+      = image_tag @note.screenshot.variant(resize: '100x100'), class: 'img-thumbnail'
+
 
 - if @note.user && current_user.role?(:admin)
   %strong= @note.user.surname_name + ':'

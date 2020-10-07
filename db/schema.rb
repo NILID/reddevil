@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_110413) do
+ActiveRecord::Schema.define(version: 2020_10_07_155716) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -264,10 +264,6 @@ ActiveRecord::Schema.define(version: 2020_07_30_110413) do
     t.text "content"
     t.string "status", default: "new"
     t.text "review"
-    t.string "screenshot_file_name"
-    t.string "screenshot_content_type"
-    t.bigint "screenshot_file_size"
-    t.datetime "screenshot_updated_at"
     t.integer "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

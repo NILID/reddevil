@@ -35,8 +35,8 @@
         %tr{ class: label_css_classes[note.status.to_sym] }
           %td= link_to note.id, note
           %td
-            - if note.screenshot?
-              = link_to note.screenshot.url(:medium), class: 'fancybox thumnbail' do
+            - if note.screenshot.attached?
+              = link_to note.screenshot, class: 'fancybox thumnbail' do
                 = fa_icon 'image'
           %td
             - if note.user && current_user.role?(:admin)

@@ -37,6 +37,8 @@ gem 'mini_magick', '~> 4.8'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'image_processing', '~> 1.2'
+
 gem 'animate-rails'
 
 gem 'active_storage_validations'

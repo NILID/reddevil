@@ -4,7 +4,6 @@ class CreateNotes < ActiveRecord::Migration[4.2]
       t.text :content
       t.string :status, default: 'new'
       t.text :review
-      t.attachment :screenshot
       t.integer :user_id, default: nil
 
       t.timestamps

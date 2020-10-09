@@ -17,12 +17,10 @@ class DocsController < ApplicationController
     elsif params[:no_category]
       @q = Doc.ransack(params[:q])
       docs = @q.result(distinct: true).order(:title)
-      @docs = []
-      docs.map { |d| @docs << d if d.categories.empty? }
+      @docs = docs.collect { |doc| doc if doc.categories.empty? }
       @nocat = true
     else
-      hidden = []
-      Category.specific.each {|c| hidden << c.id if !(c.root.hidden? || c.hidden?)}
+      hidden = Category.specific.collect {|category| category.id if !(category.root.hidden? || category.hidden?)}
 
       @q = params[:q] ? Doc.ransack(params[:q]) : Doc.joins(:categories).where('categories.id' => hidden).ransack(params[:q])
       @docs = @q.result(distinct: true).includes(:categories, :categoryships).order(:title)

@@ -53,5 +53,9 @@
           %td.col-md-2= Russian.strftime(note.created_at, "%d %B")
           - if can? :manage, Note
             %td
-              = link_to t('shared.edit'), edit_note_path(note), class: 'btn btn-secondary btn-sm'
-              = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-sm btn-danger'
+              .btn-group
+                %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                  = fa_icon 'cog'
+                .dropdown-menu.dropdown-menu-right
+                  = link_to t('shared.edit'), edit_note_path(note), class: 'dropdown-item'
+                  = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

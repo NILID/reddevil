@@ -29,4 +29,10 @@ module MembersHelper
   def member_remote_link(member)
     member.remote_flag ? I18n.t('member.del_remote') : I18n.t('member.add_remote')
   end
+
+  def remote_status(member)
+    if member.remote_flag?
+      content_tag(:span, t('member.remote'), class: 'badge badge-secondary')
+    end
+  end
 end

@@ -70,6 +70,15 @@ class MembersController < ApplicationController
     end
   end
 
+  def toggle_remote
+    if @member.toggle!(:remote_flag)
+      flash[:success] = t('flash.was_updated', item: Member.model_name.human)
+      redirect_to members_url
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @member.destroy
 
@@ -96,7 +105,7 @@ class MembersController < ApplicationController
                              :birth,
                              :hide_year
                             ]
-      list_params_allowed << [:archive_flag, :user_id, :department_id] if (current_user&.role? :admin)
+      list_params_allowed << [:archive_flag, :user_id, :toggle_flag, :department_id] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)
     end
 end

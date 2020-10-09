@@ -25,4 +25,8 @@ module MembersHelper
       t('vacations.until_trip', date: Russian.strftime(enddate, '%e %B'))
     end
   end
+
+  def member_remote_link(member)
+    member.remote_flag ? I18n.t('member.del_remote') : I18n.t('member.add_remote')
+  end
 end

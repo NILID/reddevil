@@ -161,6 +161,19 @@
                   = v.member.fullname
                   = trip_period(v.startdate, v.enddate)
 
+    - if @remote_members.any?
+      .card
+        .card-header
+          = t 'member.in_remote'
+        .card-body
+          .row
+            .col-3.col-lg-2
+              = image_tag 'remote.png', class: 'img-fluid'
+            .col-9.col-lg-10
+              - @remote_members.each do |member|
+                .mb-2
+                  = member.fullname
+
     - if @docs.any?
       .card
         .card-header= t 'docs.last_docs'

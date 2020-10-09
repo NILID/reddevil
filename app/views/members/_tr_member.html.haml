@@ -38,7 +38,8 @@
         %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
           = fa_icon 'cog'
         %ul.dropdown-menu.dropdown-menu-right
-          = link_to t('shared.edit'),     edit_member_path(member),            class: 'dropdown-item'
-          = link_to t('member.vacation'), list_member_vacations_path(member),  class: 'dropdown-item'
+          = link_to t('shared.edit'),           edit_member_path(member),           class: 'dropdown-item'
+          = link_to member_remote_link(member), toggle_remote_member_path(member),  class: 'dropdown-item'
+          = link_to t('member.vacation'),       list_member_vacations_path(member), class: 'dropdown-item'
           - if can? :destroy, member
             = link_to t('shared.del'), member_path(member), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

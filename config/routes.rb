@@ -141,6 +141,9 @@ Rails.application.routes.draw do
       get :stat
       get :days_birth
     end
+    member do
+      get :toggle_remote
+    end
     resources :vacations, except: %[show] do
       collection do
         get :list

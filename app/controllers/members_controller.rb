@@ -24,15 +24,14 @@ class MembersController < ApplicationController
     @q.department_id_eq = current_user.member.department_id if current_user.member && !params[:q] # TODO: check current_user and member
     @members = @q.result(distinct: true)
 
-    @member_ages = []
-    @members.with_birth.each {|m| @member_ages << m.age}
+    @members_with_birth = @members.with_birth
 
-    members_birth_months = []
-    @members.with_birth.each {|m| members_birth_months << m.birth.strftime('%m')}
+    @member_ages = @members_with_birth.collect {|m| m.age}
+
+    members_birth_months = @members_with_birth.collect {|m| m.birth.strftime('%m')}
     @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
 
-    members_birth_days = []
-    @members.with_birth.each {|m| members_birth_days << m.birth.strftime('%w')}
+    members_birth_days = @members_with_birth.collect {|m| m.birth.strftime('%w')}
     @members_birth_days = (members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
   end
 

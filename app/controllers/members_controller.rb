@@ -29,10 +29,10 @@ class MembersController < ApplicationController
     @member_ages = @members_with_birth.collect {|m| m.age}
 
     members_birth_months = @members_with_birth.collect {|m| m.birth.strftime('%m')}
-    @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
+    @members_birth_months = (members_birth_months.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse.first(3)
 
     members_birth_days = @members_with_birth.collect {|m| m.birth.strftime('%w')}
-    @members_birth_days = (members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse!.slice(0, 3)
+    @members_birth_days = (members_birth_days.inject(Hash.new(0)) {|h,e| h[e] +=1 ; h}).sort_by{|_key, value| value}.reverse.first(3)
   end
 
   def archive

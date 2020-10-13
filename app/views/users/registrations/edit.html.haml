@@ -1,20 +1,23 @@
 %h2
   Edit #{resource_name.to_s.humanize}
 = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), layout: :horizontal, html: { method: :put }) do |f|
-  = f.email_field :email, autofocus: true, autocomplete: 'email'
+  = f.email_field :email, autofocus: true, autocomplete: 'email', control_col: 'col-8', label_col: 'col'
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   %i (leave blank if you don't want to change it)
   = f.password_field :password,
     autocomplete: 'new-password',
-    help: (@minimum_password_length ? "#{t('devise.password_min', count: @minimum_password_length)}": nil)
-  = f.password_field :password_confirmation, autocomplete: 'new-password'
-  %i (we need your current password to confirm your changes)
-  = f.password_field :current_password, autocomplete: 'current-password'
-  = f.form_group do
-    = f.primary "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+    help: (@minimum_password_length ? "#{t('devise.password_min', count: @minimum_password_length)}": nil),
+    control_col: 'col-8', label_col: 'col'
+  = f.password_field :password_confirmation, autocomplete: 'new-password', control_col: 'col-8', label_col: 'col'
+  = f.password_field :current_password,
+    autocomplete: 'current-password',
+    control_col: 'col-8',
+    label_col: 'col',
+    help: 'we need your current password to confirm your changes'
+  = f.primary "Update"
+
+.mt-5
+  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: t('shared.sure') }, method: :delete
+  = link_to t('shared.back'), :back

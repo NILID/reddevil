@@ -9,10 +9,10 @@ class MainController < ApplicationController
       yesterday = DateTime.yesterday.beginning_of_day
 
       @bduser                = Member.shown.find_births_for(now, now + 30.days)
-      @bdusers_yesterday     = Member.shown.find_births_for(yesterday).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
+      @bdusers_yesterday     = Member.shown.find_births_for(yesterday).group_by         {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
       @bdusers_prevyesterday = Member.shown.find_births_for(yesterday - 1.day).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
 
-      @bdusers_today    = @bduser.birth_today.group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
+      @bdusers_today    = @bduser.birth_today.group_by               {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
       @bdusers_tomorrow = @bduser.find_births_for(tomorrow).group_by {|u| [u.birth.strftime("%m"), u.birth.strftime("%d")]}
       @bdusers_month    = @bduser.find_births_for(tomorrow + 1.day, now + 30.days).group_by {|u| [(u.birth.month < DateTime.now.month ? 1 : 0), u.birth.strftime("%m"), u.birth.strftime("%d")]}
 
@@ -65,38 +65,19 @@ class MainController < ApplicationController
     end
   end
 
-  def infocenter
-  end
-
-  def operative
-  end
+  def infocenter; end
+  def operative;  end
+  def problem;    end
+  def security;   end
+  def quality;    end
+  def orders;     end
+  def personal;   end
+  def products;   end
+  def strength;   end
+  def salary;     end
 
   def project
     @cards = Card.where(category: 'project')
-  end
-
-  def problem
-  end
-
-  def security
-  end
-
-  def quality
-  end
-
-  def orders
-  end
-
-  def personal
-  end
-
-  def products
-  end
-
-  def strength
-  end
-
-  def salary
   end
 
   def vac

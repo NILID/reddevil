@@ -19,12 +19,4 @@ class Doc < ApplicationRecord
   def category_tokens
     category_ids
   end
-
-  # def self.search(search)
-  #   if search
-  #     where('title LIKE ?', "%#{search}%")
-  #   else
-  #     scoped
-  #   end
-  # end
 end

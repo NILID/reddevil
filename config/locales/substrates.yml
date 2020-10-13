@@ -34,7 +34,6 @@ ru:
     amount_short: общ
     instock_short: налич
     archive: Архив
-    empty: Пока здесь пусто...
     shapes:
       square: Прямоугольник
       circle: Круг

@@ -22,7 +22,7 @@
 
   - if @substrates.empty?
     .text-center.my-5
-      .h3.text-muted= t('substrates.empty')
+      .h3.text-muted= t('shared.search_empty')
   - else
     %table.table.table-substrates.table-hover.table-sm.mb-0
       %thead

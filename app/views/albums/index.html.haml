@@ -1,18 +1,19 @@
 - set_meta_tags title: t('shared.music')
 
-= content_for :sidebar do
-  = search_form_for(@q, url: albums_path, html: { method: :get }) do |f|
-    .form-group
-      .input-group
-        .input-group-prepend
-          .input-group-text= fa_icon 'search'
-        = f.search_field :file_file_name_cont,
-          placeholder: t('shared.search'),
-          autofocus: true,
-          class: 'form-control'
+= render 'application/fav_songs'
 
 .card
   .card-body
+    = search_form_for(@q, url: albums_path, html: { method: :get }) do |f|
+      .form-group
+        .input-group
+          .input-group-prepend
+            .input-group-text= fa_icon 'search'
+          = f.search_field :file_file_name_cont,
+            placeholder: t('shared.search'),
+            autofocus: true,
+            class: 'form-control'
+
     %ul.nav.nav-tabs.float-left(role='tablist')
       - if params[:q]
         %li.nav-item

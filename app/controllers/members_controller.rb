@@ -2,6 +2,8 @@ class MembersController < ApplicationController
   load_and_authorize_resource
   before_action :set_departments, only: %i[index stat edit update new create archive]
 
+  layout 'user'
+
   def index
     @q = @members.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?

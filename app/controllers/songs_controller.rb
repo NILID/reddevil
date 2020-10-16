@@ -2,7 +2,7 @@ class SongsController < ApplicationController
   load_and_authorize_resource :album, find_by: :slug
   load_and_authorize_resource :song, through: :album
 
-  layout 'withside'
+  layout 'user'
 
   def new; end
 

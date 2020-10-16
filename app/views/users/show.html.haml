@@ -1,6 +1,6 @@
 - set_meta_tags title: (@member.fullname if @member)
 
-.row.mt-4
+.row
   .col-md-3.col-sm-4
     .card
       .card-body
@@ -13,7 +13,7 @@
             - if can? :edit_roles, @user
               = link_to t('users.to_edit_roles'), edit_roles_user_path(@user), class: 'btn btn-outline-info btn-sm btn-block'
 
-  .col-md-9.col-sm-8
+  .col
     .card.mt-2.mt-md-0
       .card-header
         .row
@@ -54,18 +54,9 @@
                     - else
                       = empty_tag
 
-
     - if current_user.member
       .card.mt-3
         = render 'vacations/current_vacations',
           current_vacation: @current_vacation,
           current_vacations_soon: @current_vacations_soon,
           member: @member
-
-    - if @albums.any? || @songs.any?
-      .card.mt-3
-        .card-header
-          = t 'albums.my_favorites'
-        .card-body
-          %ul.mainlist= render @albums
-          %ul.playlist= render @songs, showalbum: true

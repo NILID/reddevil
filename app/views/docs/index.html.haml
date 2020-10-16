@@ -1,54 +1,56 @@
 - set_meta_tags title: t('docs.title')
 
-- content_for :sidebar do
-  .card
-    .card-header
-      = link_to t('categories.title'), docs_path
-      - if can? :manage, Category
-        = link_to categories_path, class: 'btn btn-secondary btn-sm float-right' do
-          = fa_icon 'cog'
+.row
+  .col-md-3
+    .card
+      .card-header
+        = link_to t('categories.title'), docs_path
+        - if can? :manage, Category
+          = link_to categories_path, class: 'btn btn-secondary btn-sm float-right' do
+            = fa_icon 'cog'
 
-    = arranged_tree_as_list(@categories) do |category|
-      = link_to category.title,
-        docs_path(by_category: category.id),
-        remote: true,
-        id: dom_id(category),
-        class: "#{category.hidden? || category.parent&.hidden? ? ' hide' : nil}"
-
-      - if category.children.size > 0
-        = link_to '#', class: 'slide-link float-right' do
-          = fa_icon 'arrow-down'
-
-    .nav-reddevil.list-group.list-group-flush
-      = link_to t('docs.no_cats'),
-          docs_path(no_category: true),
+      = arranged_tree_as_list(@categories) do |category|
+        = link_to category.title,
+          docs_path(by_category: category.id),
           remote: true,
-          id: 'categories_hidden',
-          class: 'slide-link list-group-item'
+          id: dom_id(category),
+          class: "#{category.hidden? || category.parent&.hidden? ? ' hide' : nil}"
 
-.card
-  .card-body
-    .row
-      .col-8
-        = t 'docs.title'
-        %small
-          %span.category-info
-            = t('docs.in_category', category: @cat.title) if @cat
-          %span.badge.badge-pill.badge-secondary#docs-count
-            = @docs.count
-        - if can? :manage, Doc
-          = link_to t('shared.add'), new_doc_path, class: 'btn btn-primary btn-sm'
+        - if category.children.size > 0
+          = link_to '#', class: 'slide-link float-right' do
+            = fa_icon 'arrow-down'
 
-      .col-4
-        = search_form_for(@q, url: docs_path, html: { method: :get }) do |f|
-          .input-group
-            .input-group-prepend
-              .input-group-text
-                = fa_icon 'search'
-            = f.search_field :title_cont,
-              placeholder: t('shared.search'),
-              autofocus: true,
-              class: 'form-control form-control-sm'
+      .nav-reddevil.list-group.list-group-flush
+        = link_to t('docs.no_cats'),
+            docs_path(no_category: true),
+            remote: true,
+            id: 'categories_hidden',
+            class: 'slide-link list-group-item'
 
-#doc-list
-  = render @docs
+  .col-md-9
+    .card
+      .card-body
+        .row
+          .col-8
+            = t 'docs.title'
+            %small
+              %span.category-info
+                = t('docs.in_category', category: @cat.title) if @cat
+              %span.badge.badge-pill.badge-secondary#docs-count
+                = @docs.count
+            - if can? :manage, Doc
+              = link_to t('shared.add'), new_doc_path, class: 'btn btn-primary btn-sm'
+
+          .col-4
+            = search_form_for(@q, url: docs_path, html: { method: :get }) do |f|
+              .input-group
+                .input-group-prepend
+                  .input-group-text
+                    = fa_icon 'search'
+                = f.search_field :title_cont,
+                  placeholder: t('shared.search'),
+                  autofocus: true,
+                  class: 'form-control form-control-sm'
+
+    #doc-list
+      = render @docs

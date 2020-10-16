@@ -1,6 +1,6 @@
 class DocsController < ApplicationController
   load_and_authorize_resource
-  layout 'withside', except: %i[edit new]
+  layout 'user'
 
   before_action :set_categories, only: %i[edit new create update]
 
@@ -30,6 +30,19 @@ class DocsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+    end
+  end
+
+  def archive
+    @docs = Doc.where(archive: true)
+  end
+
+  def toggle_remote
+    if @member.toggle!(:archive)
+      flash[:success] = t('flash.was_updated', item: Member.model_name.human)
+      redirect_to members_url
+    else
+      render :edit
     end
   end
 

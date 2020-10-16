@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
   load_and_authorize_resource
 
+  layout 'user'
+
   # Loads:
   # @rooms = all rooms
   # @room = current room when applicable

@@ -1,6 +1,8 @@
 class TypesController < ApplicationController
   load_and_authorize_resource
 
+  layout 'user'
+
   def index; end
   def show;  end
   def new;   end

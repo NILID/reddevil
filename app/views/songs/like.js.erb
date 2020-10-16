@@ -1,9 +1,9 @@
 <% count_media = current_user.likees(Song).count + current_user.likees(Album).count%>
 
 <%if count_media == 1%>
-  $(".favorites-panel").fadeIn();
+  $(".favorites-panel").slideDown();
 <%elsif count_media == 0%>
-  $(".favorites-panel").fadeOut();
+  $(".favorites-panel").slideUp();
 <%end%>
 $("#<%=dom_id @song%> .icon-like-song").toggleClass('text-muted');
 $(".favorites-panel .likees-count").html("<%=j plural current_user.likees(Song).count, 'song'%>");

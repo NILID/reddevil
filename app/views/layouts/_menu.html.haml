@@ -7,46 +7,5 @@
 
   .collapse.navbar-collapse#reddevil-collapse
     %ul.navbar-nav.mr-auto
-      - if can? :read, Member
-        %li.mr-3.nav-item{class: (params[:controller] == 'members') ? 'active' : nil}
-          = link_to members_path, class: 'nav-link' do
-            = fa_icon 'users', text: t('member.title')
-      %li.mr-3.nav-item{class: (%w(main calendar).include? params[:action]) ? 'active' : nil}
-        = link_to calendar_path, class: 'nav-link' do
-          = fa_icon 'calendar-alt', text: t('shared.calendar')
-      %li.mr-3.nav-item{class: (params[:controller] == 'docs') ? 'active' : nil}
-        = link_to docs_path, class: 'nav-link' do
-          = fa_icon 'book', text: t('docs.title')
-      %li.mr-3.nav-item{class: (params[:controller] == 'main' && params[:action] == 'infocenter') ? 'active' : nil}
-        = link_to infocenter_path, class: 'nav-link' do
-          = fa_icon 'info-circle', text: t('infocenter.title')
-
-      - if can? :read, Substrate
-        %li.mr-3.nav-item{class: (params[:controller] == 'substrates') ? 'active' : nil}
-          = link_to substrates_path, class: 'nav-link' do
-            = fa_icon 'wrench', text: t('substrates.title')
-
-      - if can? :read, Room
-        %li.mr-3.nav-item{class: (params[:controller] == 'rooms') ? 'active' : nil}
-          = link_to rooms_path, class: 'nav-link' do
-            = fa_icon 'comments', text: t('chat.title')
-
-      - if (can? :read, Round) || (can? :read, Album)
-        %li.nav-item.dropdown
-          = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, id: 'dropmedia' do
-            %i.fa.fa-list
-            = t 'shared.media'
-          .dropdown-menu(aria-labelledby='dropmedia')
-            - if can? :read, Album
-              = link_to albums_path, class: 'nav-link' do
-                = fa_icon 'music', text: t('shared.music')
-
-            - if can? :read, Round
-              = link_to rounds_path, class: 'nav-link' do
-                = fa_icon 'futbol', text: t('shared.sport')
-            - if can? :show, [current_user, Folder]
-              = link_to [current_user, Folder], class: 'nav-link' do
-                = fa_icon 'hdd', text: t('dataset.title')
-
     %ul.nav.navbar-nav.navbar-right
       = render 'users/userbar'

@@ -104,7 +104,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :docs
+  resources :docs do
+    collection do
+      get :archive
+    end
+    member do
+      put :toggle_archive
+    end
+  end
 
   resources :users, only: %i[index show edit update] do
     member do

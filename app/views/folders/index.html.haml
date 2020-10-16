@@ -1,13 +1,11 @@
 - set_meta_tags title: t('dataset.title')
 
-= content_for :sidebar do
-  .bg-white.p-3.text-muted
-    = t 'dataset.help'
+.card.mb-3
+  .card-body
+    .bg-white.p-3.text-muted
+      = t 'dataset.help'
 
 .card
-  .card-header
-    %h4= t 'dataset.title'
-
   .card-body
     %p
       = link_to new_user_folder_path(@user), class: 'btn btn-secondary' do

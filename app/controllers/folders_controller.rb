@@ -2,7 +2,7 @@ class FoldersController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :folder, through: :user
 
-  layout 'withside'
+  layout 'user'
 
   def index
     @folders = @folders.roots.order(:title)

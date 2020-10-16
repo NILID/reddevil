@@ -1,0 +1,9 @@
+.card.favorites-panel.mb-3{ class: (current_user.likees(Song).count + current_user.likees(Album).count) == 0 ? 'hidden' : nil }
+  .card-body
+    = link_to favorites_albums_path do
+      = t 'albums.favorites'
+      (
+      %span.likees-album-count><= plural current_user.likees(Album).count, 'album'
+      ,
+      %span.likees-count= plural current_user.likees(Song).count, 'song'
+      )

@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   load_and_authorize_resource find_by: :slug
 
-  layout 'withside'
+  layout 'user'
 
   def index
     @albums = @albums.order(:title).roots

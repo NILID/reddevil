@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   before_action :set_departments, only: [:edit, :update]
 
+  layout 'user'
+
   def index
     @q = @users.includes(:profile, :member).ransack(params[:q])
     @users = @q.result(distinct: true)
@@ -10,11 +12,7 @@ class UsersController < ApplicationController
 
   def show
     now     = DateTime.now.beginning_of_day
-
     @member = @user.member
-    @songs  = @user.likees(Song)
-    @albums = @user.likees(Album)
-
     if @member
       @current_vacations_soon = @member.vacations
         .where('startdate >= ?', now)

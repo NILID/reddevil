@@ -1,0 +1,53 @@
+!!!
+%html{ lang: 'ru' }
+  = render 'layouts/header'
+
+  %body
+    = render 'layouts/menu'
+    %main.pt-4.mt-5(role='main')
+      .container-fluid
+        = render 'messages/messages'
+      .container-fluid
+        - if flash_messages
+          .row
+            .col= flash_messages
+
+        .row.mt-4
+          .col-4.col-md-2
+            .btn-group-vertical.btn-block
+              = link_to current_user, class: "btn btn-light text-left #{ (params[:controller] == 'users' && params[:id] == current_user.to_param) ? 'active' : nil }" do
+                = fa_icon 'user', text: 'Профиль'
+              = link_to members_path, class: "btn btn-light text-left #{ (params[:controller] == 'members') ? 'active' : nil }" do
+                = fa_icon 'users', text: t('member.title')
+              = link_to docs_path, class: "btn btn-light text-left #{ (params[:controller] == 'docs') ? 'active' : nil }" do
+                = fa_icon 'book', text: t('docs.title')
+              = link_to infocenter_path, class: "btn btn-light text-left #{ (params[:controller] == 'main' && params[:action] == 'infocenter') ? 'active' : nil }" do
+                = fa_icon 'info-circle', text: t('infocenter.title')
+              = link_to list_member_vacations_path(current_user.member),
+                class: "btn btn-light text-left #{ (params[:controller] == 'vacations') ? 'active' : nil }" do
+                = fa_icon 'umbrella', text: 'Отпуск'
+              - if can? :read, Album
+                = link_to albums_path, class: "btn btn-light text-left #{ (%w[albums songs].include? params[:controller]) ? 'active' : nil }" do
+                  = fa_icon 'music', text: t('shared.music')
+              - if can? :read, Round
+                = link_to rounds_path, class: "btn btn-light text-left #{ (%w[rounds].include? params[:controller]) ? 'active' : nil }" do
+                  = fa_icon 'futbol', text: t('shared.sport')
+              = link_to calendar_path, class: "btn btn-light text-left #{ (%w[calendar].include? params[:action]) ? 'active' : nil }" do
+                = fa_icon 'calendar-alt', text: t('shared.calendar')
+              - if can? :read, Room
+                = link_to rooms_path, class: "btn btn-light text-left #{ (params[:controller] == 'rooms') ? 'active' : nil }" do
+                  = fa_icon 'comments', text: t('chat.title')
+                  %sup beta
+              - if can? :show, [current_user, Folder]
+                = link_to [current_user, Folder], class: "btn btn-light text-left #{ (%w[datasets folders].include? params[:controller]) ? 'active' : nil }" do
+                  = fa_icon 'hdd', text: t('dataset.title')
+                  %sup alpha
+            .btn-group-vertical.btn-block
+              - if can? :read, Substrate
+                = link_to substrates_path, class: "btn btn-light text-left #{ (params[:controller] == 'substrates') ? 'active' : nil }" do
+                  = fa_icon 'wrench', text: t('substrates.title')
+
+          .col-8.col-md-10
+            = yield
+
+    = render 'layouts/footer'

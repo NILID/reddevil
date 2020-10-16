@@ -1,6 +1,8 @@
 class RoundsController < ApplicationController
   load_and_authorize_resource
 
+  layout 'user'
+
   before_action :get_teams, only: %i[new edit create update]
   before_action :get_users, only: %i[show download]
 

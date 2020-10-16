@@ -1,8 +1,9 @@
 class VacationsController < ApplicationController
   load_and_authorize_resource only: [:index]
-
   load_and_authorize_resource :member, except: [:index]
   load_and_authorize_resource :vacation, through: :member, except: [:index]
+
+  layout 'user'
 
   def index; end
 

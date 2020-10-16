@@ -1,6 +1,8 @@
 class InfocenterCategoriesController < CategoriesController
   before_action :init_tab_categories, only: [:show]
 
+  layout 'user'
+
   def show
     if @object.show_type == 'vacations'
       @q = Member.shown.ransack(params[:q])

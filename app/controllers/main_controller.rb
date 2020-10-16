@@ -2,6 +2,8 @@ class MainController < ApplicationController
   before_action :authenticate_user!, only: :calendar
   layout :get_layout, only: :index
 
+  layout 'user', only: %w[calendar infocenter]
+
   def index
     if current_user
       now       = DateTime.now.beginning_of_day

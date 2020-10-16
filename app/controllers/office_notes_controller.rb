@@ -1,6 +1,8 @@
 class OfficeNotesController < ApplicationController
   load_and_authorize_resource
 
+  layout 'user'
+
   def index
     @office_notes = @office_notes.order(:created_at)
   end
@@ -12,11 +14,8 @@ class OfficeNotesController < ApplicationController
     end
   end
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     @office_note.user = current_user

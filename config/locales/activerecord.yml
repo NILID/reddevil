@@ -15,7 +15,7 @@ ru:
       doc: документ
       category: категория
       note: заметка
-      message: сообщение
+      message: заметка
       match: матч
       round: раунд
       team: команда
@@ -72,7 +72,7 @@ ru:
         enddate: Дата завершения
       message:
         title: Название
-        content: Текст сообщения
+        content: Текст заметки
         close: Скрытие
       dataset:
         title: Название

@@ -13,6 +13,19 @@
             - if can? :edit_roles, @user
               = link_to t('users.to_edit_roles'), edit_roles_user_path(@user), class: 'btn btn-outline-info btn-sm btn-block'
 
+    .card.mt-3
+      .card-header
+        = link_to users_path, class: 'text-muted' do
+          = t 'users.title'
+          .float-right
+            = fa_icon 'user', text: content_tag(:span, @online_users.size, class: 'user-online-counter')
+      - if @users.any?
+        .card-body
+          .row.row-cols-3
+            - @users.each do |user|
+              = link_to user, class: 'col mb-2' do
+                .card
+                  = image_tag user.avatar.url(:thumb), class: 'card-img-top'
   .col
     .card.mt-2.mt-md-0
       .card-header

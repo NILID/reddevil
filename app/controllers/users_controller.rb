@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   def show
     now     = DateTime.now.beginning_of_day
     @member = @user.member
+    @users  = (User.all - [current_user]).sample(6)
+    @online_users = User.online
     if @member
       @current_vacations_soon = @member.vacations
         .where('startdate >= ?', now)

@@ -1,8 +1,4 @@
 - if user_signed_in?
-  %li.nav-item.mr-5
-    = link_to users_path, class: 'nav-link', title: t('users.title'), data: { toggle: 'tooltip' } do
-      = fa_icon 'user', class: 'mr-1',
-        text: content_tag(:span, User.online.size, class: 'user-online-counter')
   %li.nav-item.dropdown
     = link_to '#', class: 'dropdown-toggle nav-link', role: 'button', data: { toggle: 'dropdown' }, id: 'userbar' do
       = image_tag current_user.avatar(:thumb), class: 'img-fluid user-avatar rounded mr-2'
@@ -11,18 +7,6 @@
     .dropdown-menu.dropdown-menu-right(aria-labelledby='userbar')
       = link_to current_user, class: 'nav-link' do
         = fa_icon 'user-circle', text: t('profiles.my')
-      - if current_user.role? :admin
-        .dropdown-divider
-        %a.nav-link.disabled.text-muted(href="#" tabindex="-1" aria-disabled="true") Админ
-        = link_to messages_path, class: 'nav-link' do
-          = fa_icon 'envelope', text: t('message.title')
-        = link_to tables_path, class: 'nav-link' do
-          = fa_icon 'table', text: t('tables.title')
-        = link_to office_notes_path, class: 'nav-link' do
-          = fa_icon 'file-alt', text: t('office_notes.title')
       .dropdown-divider
       = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
         = fa_icon 'sign-out-alt', text: t('devise.logout')
-- else
-  %li.nav-item= link_to t('devise.login'),  new_user_session_path,      class: 'nav-link'
-  %li.nav-item= link_to t('devise.signup'), new_user_registration_path, class: 'nav-link'

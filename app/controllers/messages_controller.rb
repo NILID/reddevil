@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   load_and_authorize_resource
 
-  layout 'withside'
+  layout 'user'
 
   def index; end
   def new;   end

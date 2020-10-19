@@ -1,8 +1,9 @@
 class MainController < ApplicationController
   before_action :authenticate_user!, only: :calendar
-  layout :get_layout, only: :index
+
 
   layout 'user', only: %w[calendar infocenter]
+  layout :get_layout, only: :index
 
   def index
     if current_user

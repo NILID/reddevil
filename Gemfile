@@ -56,6 +56,8 @@ gem 'cocoon'
 gem 'paper_trail'
 gem 'paper_trail-globalid'
 
+gem 'public_activity'
+
 gem 'petrovich', '~> 1.0'
 
 gem 'wicked_pdf'

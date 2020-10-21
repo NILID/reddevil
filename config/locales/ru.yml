@@ -96,7 +96,6 @@ ru:
     rebuild: Пересчитать
   docs:
     title: Документы
-    last_docs: Последние документы
     download: Просмотреть
     about: О документе
     all: Весь список

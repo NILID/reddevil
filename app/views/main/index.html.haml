@@ -1,181 +1,204 @@
 - set_meta_tags title: t('shared.title')
 
-.row
-  .col.card-columns.main-blocks
+.row.mb-3
+  .col
     - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?)
-      .card
-        - if @bdusers_prevyesterday.any?
-          .card-header
-            = t 'shared.birthdays_prevyesterday'
-          .card-body
-            - @bdusers_prevyesterday.keys.sort.each do |u|
-              = render @bdusers_prevyesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
-
-        - if @bdusers_yesterday.any?
-          .card-header
-            = t 'shared.birthdays_yesterday'
-          .card-body
-            - @bdusers_yesterday.keys.sort.each do |u|
-              = render @bdusers_yesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
-
-        - if @bdusers_today.any?
-          .card-header
-            = @bdusers_today.keys.count > 1 ? t('shared.birthdays_today') : t('shared.birthday_today')
-          .card-body.animated.rubberBand
-            - @bdusers_today.keys.sort.each do |u|
-              = render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
-
-        - if @bdusers_tomorrow.any?
-          .card-header
-            = t 'shared.birthdays_tomorrow'
-          .card-body
-            - @bdusers_tomorrow.keys.sort.each do |u|
-              = render @bdusers_tomorrow[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
-
-        - if @bdusers_month.any?
-          .card-header
-            = @bdusers_month.keys.count > 1 ? t('shared.birthdays') : t('shared.birthday')
-          .card-body
-            - @bdusers_month.keys.sort.each do |u|
-              = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
-    - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
-      .card
-        - if @holidays_today.any?
-          .card-header
-            = t 'shared.today'
-            %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
-          .card-body
-            - @holidays_today.each do |holiday|
-              .text-success.mb-2= holiday[:name]
-        - if @holidays_tomorrow.any?
-          .card-header
-            = t 'shared.tomorrow'
-            %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
-          .card-body
-            - @holidays_tomorrow.each do |holiday|
-              .mb-2= holiday[:name]
-
-      - if @events.any? && @events_soon.any?
+      .accordion#accordionBdays
         .card
-          - if @events.any?
-            .card-header
-              = link_to t('events.list'), [current_user, Event]
-            .card-body
-              .row
-                .col-12= render partial: 'events/event_mini', collection: @events, locals: { diff_dates: false }
+          - if @bdusers_yesterday.any?
+            .card-header#headingBdYesterday
+              .d-block{ data: {toggle: 'collapse', target: '#collapseBdYesterday'}, aria: { expanded: 'false', controls: 'collapseBdYesterday' } }
+                = t 'shared.birthdays_prev'
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+            .collapse#collapseBdYesterday(aria-labelledby="headingBdYesterday" data-parent="#accordionBdays")
+              .card-body
+                - @bdusers_yesterday.keys.sort.each do |u|
+                  = render @bdusers_yesterday[u], bdclass: nil, turntext: t('member.turned'), should_be_age: false
 
-          - if @events_soon.any?
-            .card-header
-              = t 'events.future'
-            .card-body
-              .row
-                .col-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }
+          - if @bdusers_today.any?
+            .card-header#headingBdToday
+              .d-block{ data: {toggle: 'collapse', target: '#collapseBdToday'}, aria: { expanded: 'false', controls: 'collapseBdToday' } }
+                = @bdusers_today.keys.count > 1 ? t('shared.birthdays_today') : t('shared.birthday_today')
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+            .collapse.show#collapseBdToday(aria-labelledby="headingBdToday" data-parent="#accordionBdays")
+              .card-body.animated.rubberBand
+                - @bdusers_today.keys.sort.each do |u|
+                  = render @bdusers_today[u], bdclass: 'alert alert-success', turntext: t('member.turn'), should_be_age: false
 
-    - if @vacations.any? || @vacations_soon.any? || @current_vacation || @current_vacations_soon
-      .card
-        - if current_user.member
-          = render 'vacations/current_vacations',
-            current_vacation: @current_vacation,
-            current_vacations_soon: @current_vacations_soon,
-            member: current_user.member
-        - if @vacations.any?
-          .card-header
-            = t 'vacations.index'
-          .card-body
-            .row
-              .col-3.col-lg-2
-                = image_tag 'umbrella.png', class: 'img-fluid'
-              .col-9.col-lg-10
-                - @vacations[0..4].each do |v|
-                  .mb-2
-                    = v.member.fullname
-                    = t('vacations.until', date: Russian.strftime(v.enddate, "%e %B"))
+          - if @bdusers_tomorrow.any?
+            .card-header#headingBdTomorrow
+              .d-block{ data: {toggle: 'collapse', target: '#collapseBdTomorrow'}, aria: { expanded: 'false', controls: 'collapseBdTomorrow' } }
+                = t 'shared.birthdays_tomorrow'
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+            .collapse.show#collapseBdTomorrow(aria-labelledby="headingBdTomorrow" data-parent="#accordionBdays")
+              .card-body
+                - @bdusers_tomorrow.keys.sort.each do |u|
+                  = render @bdusers_tomorrow[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
 
-                - if @vacations[5..]
-                  .collapse.collapse-vacations#vacations_present
-                    - @vacations[5..].each do |v|
+          - if @bdusers_month.any?
+            .card-header#headingBdSoon
+              .d-block{ data: {toggle: 'collapse', target: '#collapseBdSoon'}, aria: { expanded: 'false', controls: 'collapseBdSoon' } }
+                = @bdusers_month.keys.count > 1 ? t('shared.birthdays') : t('shared.birthday')
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+            .collapse#collapseBdSoon(aria-labelledby="headingBdSoon" data-parent="#accordionBdays")
+              .card-body
+                - @bdusers_month.keys.sort.each do |u|
+                  = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
+
+
+  .col
+    - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
+      .accordion#accordionHolidays
+        - if @holidays_today.any?
+          .card
+            .card-header#headingToday
+              .d-block{ data: {toggle: 'collapse', target: '#collapseToday'}, aria: { expanded: 'false', controls: 'collapseToday' } }
+                = t 'shared.today'
+                %span.text-muted= Russian.strftime(DateTime.now, '%d %B')
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+            .collapse.show#collapseToday(aria-labelledby="headingToday" data-parent="#accordionHolidays")
+              .card-body
+                - @holidays_today.each do |holiday|
+                  .text-success.mb-2= holiday[:name]
+        - if @holidays_tomorrow.any?
+          .card
+            .card-header#headingTomorrow
+              .d-block{ data: {toggle: 'collapse', target: '#collapseTomorrow'}, aria: { expanded: 'false', controls: 'collapseTomorrow' } }
+                = t 'shared.tomorrow'
+                %span.text-muted= Russian.strftime(DateTime.tomorrow, '%d %B')
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+            .collapse#collapseTomorrow(aria-labelledby="headingTomorrow" data-parent="#accordionHolidays")
+              .card-body
+                - @holidays_tomorrow.each do |holiday|
+                  .mb-2= holiday[:name]
+
+  - if @vacations.any? || @vacations_soon.any? || @current_vacation || @current_vacations_soon
+    .col
+      .accordion#accordionVacations
+        .card
+          - if current_user.member
+            = render 'vacations/current_vacations',
+              current_vacation: @current_vacation,
+              current_vacations_soon: @current_vacations_soon,
+              member: current_user.member
+          - if @vacations.any?
+            .card-header#headingVacations
+              .d-block{ data: {toggle: 'collapse', target: '#collapseVacations'}, aria: { expanded: 'false', controls: 'collapseVacations' } }
+                = t 'vacations.index'
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+
+            .collapse#collapseVacations(aria-labelledby="headingVacations" data-parent="#accordionVacations")
+              .card-body
+                .row
+                  .col-3.col-lg-2
+                    = image_tag 'umbrella.png', class: 'img-fluid'
+                  .col-9.col-lg-10
+                    - @vacations[0..4].each do |v|
                       .mb-2
                         = v.member.fullname
                         = t('vacations.until', date: Russian.strftime(v.enddate, "%e %B"))
-                  = link_to '#more',
-                    data: { toggle: 'collapse', target: '#vacations_present' },
-                    aria: { expanded: 'false', controls: 'vacations_present' },
-                    class: 'collapse-toggle text-muted' do
-                    = fa_icon 'chevron-down', text: t('shared.show_more')
 
-        - if @vacations_soon.any?
-          .card-header
-            = t 'vacations.soon'
-          .card-body
-            .row
-              .col-3.col-lg-2
-                = image_tag 'rest.png', class: 'img-fluid'
-              .col-9.col-lg-10
-                - @vacations_soon[0..4].each do |v|
-                  .mb-2
-                    = v.member.fullname
-                    = t('vacations.start',
-                      date: Russian.strftime(v.startdate, "%e %B"),
-                      diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
+                    - if @vacations[5..]
+                      .collapse.collapse-vacations#vacations_present
+                        - @vacations[5..].each do |v|
+                          .mb-2
+                            = v.member.fullname
+                            = t('vacations.until', date: Russian.strftime(v.enddate, "%e %B"))
 
-                - if @vacations_soon[5..]
-                  .collapse.collapse-vacations#vacations_soon
-                    - @vacations_soon[5..].each do |v|
+                      = link_to '#more',
+                        data: { toggle: 'collapse', target: '#vacations_present' },
+                        aria: { expanded: 'false', controls: 'vacations_present' },
+                        class: 'collapse-toggle text-muted' do
+                        = fa_icon 'chevron-down', text: t('shared.show_more')
+
+
+          - if @vacations_soon.any?
+            .card-header#headingVacationsSoon
+              .d-block{ data: {toggle: 'collapse', target: '#collapseVacationsSoon'}, aria: { expanded: 'false', controls: 'collapseVacationsSoon' } }
+                = t 'vacations.soon'
+                .float-right
+                  = fa_icon 'caret-down', class: 'text-muted'
+
+            .collapse#collapseVacationsSoon(aria-labelledby="headingVacationsSoon" data-parent="#accordionVacations")
+              .card-body
+                .row
+                  .col-3.col-lg-2
+                    = image_tag 'rest.png', class: 'img-fluid'
+                  .col-9.col-lg-10
+                    - @vacations_soon[0..4].each do |v|
                       .mb-2
                         = v.member.fullname
                         = t('vacations.start',
                           date: Russian.strftime(v.startdate, "%e %B"),
                           diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
-                  = link_to '#more',
-                    data: { toggle: 'collapse', target: '#vacations_soon' },
-                    aria: { expanded: 'false', controls: 'vacations_soon' },
-                    class: 'collapse-toggle text-muted' do
-                    = fa_icon 'chevron-down', text: t('shared.show_more')
+
+                    - if @vacations_soon[5..]
+                      .collapse.collapse-vacations#vacations_soon
+                        - @vacations_soon[5..].each do |v|
+                          .mb-2
+                            = v.member.fullname
+                            = t('vacations.start',
+                              date: Russian.strftime(v.startdate, "%e %B"),
+                              diff: plural(TimeDifference.between(v.enddate + 1.day, v.startdate).in_days.to_i, 'day'))
+
+                      = link_to '#more',
+                        data: { toggle: 'collapse', target: '#vacations_soon' },
+                        aria: { expanded: 'false', controls: 'vacations_soon' },
+                        class: 'collapse-toggle text-muted' do
+                        = fa_icon 'chevron-down', text: t('shared.show_more')
 
 
+
+.row.mb-3
+  .col.card-columns.main-blocks
     - if @sickdays.any?
       .card
-        .card-header
-          = t 'vacations.index_sick'
-        .card-body
-          .row
-            .col-3.col-lg-2
-              = image_tag 'sick.png', class: 'img-fluid'
-            .col-9.col-lg-10
-              - @sickdays.each do |v|
-                .mb-2
-                  = v.member.fullname
-                  = t('vacations.until_sick', date: Russian.strftime(v.startdate, "%e %B"))
-
+        .row.no-gutters.bg-darkblue
+          .col-3.col-lg-2.align-self-center
+            = image_tag 'sick.png', class: 'card-img'
+          .col-9.col-lg-10.bg-white
+            .card-body
+              %h5.card-title= t 'vacations.index_sick'
+              .card-text
+                - @sickdays.each do |v|
+                  .mt-1
+                    = v.member.fullname
+                    = t('vacations.until_sick', date: Russian.strftime(v.startdate, "%e %B"))
     - if @tripdays.any?
       .card
-        .card-header
-          = t 'vacations.index_trip'
-        .card-body
-          .row
-            .col-3.col-lg-2
-              = image_tag 'trip.png', class: 'img-fluid'
-            .col-9.col-lg-10
-              - @tripdays.each do |v|
-                .mb-2
-                  = v.member.fullname
-                  = trip_period(v.startdate, v.enddate)
-
+        .row.no-gutters.bg-salat
+          .col-3.col-lg-2.align-self-center
+            = image_tag 'trip.png', class: 'card-img'
+          .col-9.col-lg-10.bg-white
+            .card-body
+              %h5.card-title= t 'vacations.index_trip'
+              .card-text
+                - @tripdays.each do |v|
+                  .mt-1
+                    = v.member.fullname
+                    = trip_period(v.startdate, v.enddate)
     - if @remote_members.any?
       .card
-        .card-header
-          = t 'member.in_remote'
-        .card-body
-          .row
-            .col-3.col-lg-2
-              = image_tag 'remote.png', class: 'img-fluid'
-            .col-9.col-lg-10
-              - @remote_members.each do |member|
-                .mb-2
-                  = member.fullname
+        .row.no-gutters.bg-blue
+          .col-3.col-lg-2.align-self-center
+            = image_tag 'remote.png', class: 'card-img'
+          .col-9.col-lg-10.bg-white
+            .card-body
+              %h5.card-title= t 'member.in_remote'
+              .card-text
+                - @remote_members.each do |member|
+                  .mt-1
+                    = member.fullname
 
-    - if @docs.any?
-      .card
-        .card-header= t 'docs.last_docs'
-        .card-body
-          .row= render partial: 'docs/mini_doc', collection: @docs
+
+
+%table.table.table-hover.bg-light
+  %tbody
+    = render_activities(@activities)

@@ -1,4 +1,11 @@
 class Doc < ApplicationRecord
+  after_destroy :clean_activities
+
+  include PublicActivity::Model
+  tracked  :params => {
+              :summary => proc { |controller, model| model.title }
+           }
+
   has_many :categoryships, dependent: :destroy
   has_many :categories, through: :categoryships
 
@@ -19,4 +26,11 @@ class Doc < ApplicationRecord
   def category_tokens
     category_ids
   end
+
+  private
+
+  def clean_activities
+    self.activities.destroy_all
+  end
+
 end

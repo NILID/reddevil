@@ -1,0 +1,17 @@
+.row
+  .col.card-columns.main-blocks
+    - if @events.any? && @events_soon.any?
+      .card
+        - if @events.any?
+          .card-header
+            = link_to t('events.list'), [current_user, Event]
+          .card-body
+            .row
+              .col-12= render partial: 'events/event_mini', collection: @events, locals: { diff_dates: false }
+
+        - if @events_soon.any?
+          .card-header
+            = t 'events.future'
+          .card-body
+            .row
+              .col-12= render partial: 'events/event_mini', collection: @events_soon, locals: { diff_dates: true }

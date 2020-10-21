@@ -34,6 +34,9 @@ module ApplicationHelper
      Russian.strftime(time, '%A, %d.%m.%Y')
    end
 
+   def fulltime(time)
+     Russian.strftime(time, '%d.%m.%Y %H:%M')
+   end
    def deadline(time)
      Russian.strftime(time, '%d %B %Y %H:%M (%A)')
    end
@@ -50,5 +53,23 @@ module ApplicationHelper
        end)
      end
      nil
+  end
+
+  # Check if object still exists in the database and display a link to it,
+  # otherwise display a proper message about it.
+  # This is used in activities that can refer to
+  # objects which no longer exist, like removed posts.
+  def link_to_trackable(object, object_type, title=nil)
+    translate_model_type = I18n.t("activerecord.models.#{object_type.downcase}")
+    if object
+      if title
+        link = link_to title, object
+        [translate_model_type, link].join(' ').html_safe
+      else
+        link_to translate_model_type, object
+      end
+    else
+      "#{translate_model_type} который (-ая) больше не существует"
+    end
   end
 end

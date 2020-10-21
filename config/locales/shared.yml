@@ -23,8 +23,7 @@ ru:
     birthdays_today: Сегодня дни рождения
     birthday_today: Сегодня день рождения
     birthdays_tomorrow: Завтра день рождения
-    birthdays_yesterday: Вчера был день рождения
-    birthdays_prevyesterday: Позавчера был день рождения
+    birthdays_prev: Недавно был день рождения
     download: Скачать
     add_favorite: Добавить в избранное
     errors: '%{error} допущена при заполнении формы:'

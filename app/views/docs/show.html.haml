@@ -1,20 +1,22 @@
-- model_class = Doc
-.page-header
-  %h2
-    = @doc.title
+.card
+  .card-header
+    %h2
+      = @doc.title
 
+  .card-body
     %small
       - if @doc.categories.any?
         - @doc.categories.each do |g|
           %span.badge.badge-info><= g.title
 
-- if @doc.desc?
-  .save-wspace.well
-    %p= @doc.desc
-%p= link_to t('docs.download'), @doc.file.url, class: 'btn btn-primary', target: '_blank'
+    - if @doc.desc?
+      .save-wspace.well
+        %p= @doc.desc
+    %p= link_to t('docs.download'), @doc.file.url, class: 'btn btn-primary', target: '_blank'
 
-- if can? :manage, @doc
-  .form-group
-    = link_to t('.back', default: t("helpers.links.back")), docs_path, class: 'btn btn-secondary'
-    = link_to t('shared.edit'), edit_doc_path(@doc), class: 'btn btn-secondary'
-    = link_to t('shared.del'), doc_path(@doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
+  .card-footer
+    .form-group
+      = link_to t('.back', default: t("helpers.links.back")), docs_path, class: 'btn btn-secondary'
+      - if can? :manage, @doc
+        = link_to t('shared.edit'), edit_doc_path(@doc), class: 'btn btn-secondary'
+        = link_to t('shared.del'), doc_path(@doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'

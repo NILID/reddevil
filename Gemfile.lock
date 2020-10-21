@@ -178,6 +178,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    ledermann-rails-settings (2.5.0)
+      activerecord (>= 4.2)
     libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -438,6 +440,7 @@ DEPENDENCIES
   jcrop-rails-v2
   jquery-rails
   jquery-ui-rails
+  ledermann-rails-settings
   listen (>= 3.0.5, < 3.2)
   meta-tags
   mini_magick (~> 4.8)

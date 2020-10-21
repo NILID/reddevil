@@ -7,11 +7,6 @@
 
 .card-header
   = title
-  = link_to fa_icon(:list),
-    list_member_vacations_path(member),
-    class: 'float-right text-muted',
-    data: { toggle: 'tooltip' },
-    title: t('shared.edit')
 
 - if current_vacation
   .card-body= current_rest_title

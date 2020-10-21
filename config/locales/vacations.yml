@@ -6,14 +6,14 @@ ru:
     title: Отпуск
     title_member_html: События&nbsp;%{member}
     index: Сейчас в отпуске
-    index_sick: Сейчас на больничном
-    index_trip: Сейчас в командировке
+    index_sick: На больничном
+    index_trip: В командировке
     soon: Скоро в отпуск
     you_rest: У вас сейчас отпуск
     user_rest: У %{username} сейчас отпуск
-    until: (отпуск до %{date})
-    until_sick: (больничный с %{date})
-    until_trip: (командировка до %{date})
+    until: (до %{date})
+    until_sick: (с %{date})
+    until_trip: (до %{date})
     trip_in: (командировка %{date})
     start: (с %{date}, на %{diff})
     edit: Указать отпуск

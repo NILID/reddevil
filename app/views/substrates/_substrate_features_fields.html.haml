@@ -1,6 +1,10 @@
 .nested-fields.mb-3
   .input-group
-    = f.text_field :length, wrapper: false, placeholder: [SubstrateFeature.human_attribute_name(:length), '(нм)'].join(' ')
+    = f.text_field :length,
+      wrapper: false,
+      placeholder: [SubstrateFeature.human_attribute_name(:length), '(нм)'].join(' '),
+      title: t('substrates.length_help_html'),
+      data: { toggle: 'tooltip', html: 'true' }
     = f.select :litera, %w[R T], { include_blank: t('shared.select'), wrapper: false }
 
     = f.select :sign, {}, { wrapper: false }, { class: 'selectpicker' } do

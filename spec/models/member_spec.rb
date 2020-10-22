@@ -46,5 +46,15 @@ RSpec.describe Member, type: :model do
       expect(member.valid?).to be true
       expect(member.errors[:birth]).to be_empty
     end
+
+    it 'have length as number' do
+      member.number = 'five'
+      expect(member.valid?).to be false
+      expect(member.errors[:number]).not_to be_empty
+
+      member.number = 5
+      expect(member.valid?).to be true
+      expect(member.errors[:number]).to be_empty
+    end
   end
 end

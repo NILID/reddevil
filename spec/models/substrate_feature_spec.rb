@@ -11,16 +11,6 @@ RSpec.describe SubstrateFeature, type: :model do
         expect(substrate_feature.errors[:length]).not_to be_empty
       end
 
-      it 'have length as number' do
-        substrate_feature.length = 'five'
-        expect(substrate_feature.valid?).to be false
-        expect(substrate_feature.errors[:length]).not_to be_empty
-
-        substrate_feature.length = 5
-        expect(substrate_feature.valid?).to be true
-        expect(substrate_feature.errors[:length]).to be_empty
-      end
-
       it 'have feature' do
         substrate_feature.feature = nil
         expect(substrate_feature.valid?).to be false

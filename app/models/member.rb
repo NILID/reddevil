@@ -7,6 +7,9 @@ class Member < ApplicationRecord
 
   validates :surname, :name, :patronymic, presence: true
   validate :check_birth
+  validates :number,
+    numericality: { greater_than_or_equal_to: 0 },
+    allow_blank: true
 
   accepts_nested_attributes_for :vacations, reject_if: :all_blank, allow_destroy: true
 

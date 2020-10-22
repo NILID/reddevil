@@ -16,6 +16,8 @@
         %tr
           %td №
           %td= t 'member.fullname'
+          - if params[:showing_position]
+            %td= Member.human_attribute_name(:position)
           - if params[:showing_birth]
             %td= Member.human_attribute_name(:birth)
           - if params[:showing_phone]
@@ -31,6 +33,9 @@
           %tr
             %td= index + 1
             %td= member.fullname
+            - if params[:showing_position]
+              %td
+                = member.position
             - if params[:showing_birth]
               %td
                 - if member.birth

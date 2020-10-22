@@ -19,10 +19,10 @@
           = t 'users.title'
           .float-right
             = fa_icon 'user', text: content_tag(:span, @online_users.size, class: 'user-online-counter')
-      - if @users.any?
+      - if @online_users_without_current.any?
         .card-body
           .row.row-cols-3
-            - @users.each do |user|
+            - @online_users_without_current.each do |user|
               = link_to user, class: 'col mb-2' do
                 .card
                   = image_tag user.avatar.url(:thumb), class: 'card-img-top'

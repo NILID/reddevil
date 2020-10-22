@@ -84,7 +84,7 @@ class DocsController < ApplicationController
   end
 
   def grab
-    @doc.grab_doc
+    @doc.grab_doc(params[:url])
   end
 
   private

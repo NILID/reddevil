@@ -31,8 +31,8 @@ class Doc < ApplicationRecord
     category_ids
   end
 
-  def grab_doc
-    downloaded_image = open('http://localhost:3000/' + self.file.url)
+  def grab_doc(url)
+    downloaded_image = open(url)
     self.document.attach(io: downloaded_image  , filename: self.file_file_name)
   end
 

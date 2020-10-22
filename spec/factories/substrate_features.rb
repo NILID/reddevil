@@ -3,7 +3,7 @@ FactoryBot.define do
     sign { "equals" }
     feature { 1.5 }
     litera { 'R' }
-    length { '180..190' }
+    length { '180...190' }
     substrate
   end
 end

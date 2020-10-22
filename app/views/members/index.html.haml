@@ -20,6 +20,12 @@
                         .lead.text-dark.text-center.text-white
                           = department.title
                     = render partial: 'members/tr_member', collection: depart_members, as: :member
+                - if @members_orphans.any?
+                  %tr.table-warning
+                    %td(colspan=6)
+                      .lead.text-dark.text-center.text-white
+                        = t 'member.orphans'
+                  = render partial: 'members/tr_member', collection: @members_orphans, as: :member
           - else
             .text-center.my-5
               .h3.text-muted= t('shared.search_empty')

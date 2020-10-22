@@ -8,6 +8,7 @@ class MembersController < ApplicationController
     @q = @members.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @members = @q.result(distinct: true)
+    @members_orphans = @members.select{ |m| m if m.department_id == nil}
 
     respond_to do |format|
       format.html

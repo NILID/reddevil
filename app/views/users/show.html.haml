@@ -53,7 +53,7 @@
                 %dt.col-md-3.col-6.text-right
                   = Member.human_attribute_name(:department_id)
                 %dd.col-md-9.col-6
-                  = @member.department.title
+                  = link_to @member.department.title, members_path(q: {department_id_eq: @member.department_id })
                 - %i[number position work_phone short_number phone email].each do |attr|
                   %dt.col-md-3.col-6.text-right
                     = Member.human_attribute_name(attr)

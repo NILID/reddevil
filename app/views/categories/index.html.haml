@@ -4,4 +4,10 @@
     %span.float-right
       = link_to t('shared.add'), new_category_path, class: 'btn btn-primary btn-sm'
   .card-body
-    %ol= render partial: 'categories/category', collection: @root_categories
+    - if @root_categories.any?
+      %ol
+        = render @root_categories
+    - else
+      .text-center.my-5
+        .h3.text-muted
+          = t('shared.nothing')

@@ -83,6 +83,10 @@ class DocsController < ApplicationController
     end
   end
 
+  def grab
+    @doc.grab_doc
+  end
+
   private
 
   def ancestry_options(items, &block)
@@ -105,6 +109,7 @@ class DocsController < ApplicationController
                             :desc,
                             :title,
                             :file,
+                            :document,
                             :show_last_flag,
                             { category_tokens: [] }
                            ]

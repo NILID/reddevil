@@ -12,7 +12,8 @@
     - if @doc.desc?
       .save-wspace.well
         %p= @doc.desc
-    %p= link_to t('docs.download'), @doc.file.url, class: 'btn btn-primary', target: '_blank'
+    - if @doc.document.attached?
+      %p= link_to t('docs.download'), @doc.document, class: 'btn btn-primary', target: '_blank'
 
   .card-footer
     .form-group

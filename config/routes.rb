@@ -109,6 +109,7 @@ Rails.application.routes.draw do
       get :archive
     end
     member do
+      get :grab
       put :toggle_archive
     end
   end

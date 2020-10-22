@@ -6,6 +6,7 @@
       = f.text_field :title, autofocus: true
       = f.text_area :desc, rows: 4
       = f.file_field :file
+      = f.file_field :document
       = f.select :category_tokens,
         @categories,
         { include_blank: t('categories.select_category'), help: t('shared.multiple_select_helper_html') },

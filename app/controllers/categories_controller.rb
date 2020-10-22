@@ -3,6 +3,8 @@ class CategoriesController < ApplicationController
   before_action :init_objects, only:   [:index, :manage]
   before_action :init_object,  except: [:index, :manage]
 
+  layout 'user'
+
   def index
     @root_categories = @objects.specific.roots.order(:title)
   end

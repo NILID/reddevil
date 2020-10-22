@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Doc < ApplicationRecord
   after_destroy :clean_activities
 
@@ -8,6 +10,8 @@ class Doc < ApplicationRecord
 
   has_many :categoryships, dependent: :destroy
   has_many :categories, through: :categoryships
+
+  has_one_attached :document
 
   has_attached_file :file,
       path: ":rails_root/public/system/docs/:attachment/:id/:style/:filename",
@@ -25,6 +29,11 @@ class Doc < ApplicationRecord
 
   def category_tokens
     category_ids
+  end
+
+  def grab_doc
+    downloaded_image = open('http://localhost:3000/' + self.file.url)
+    self.document.attach(io: downloaded_image  , filename: self.file_file_name)
   end
 
   private

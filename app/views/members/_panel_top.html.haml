@@ -17,16 +17,19 @@
       = link_to departments_path, class: 'btn btn-sm btn-outline-info mr-3' do
         = t('departments.title')
 
-
     = link_to '#export_list', class: 'btn btn-sm btn-outline-secondary ', data: { toggle: 'modal', target: '#export_list' } do
       = fa_icon 'upload', text: t('member.download')
 
     .modal.fade#export_list(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exportListLabel" aria-hidden="true")
       .modal-dialog
-        = bootstrap_form_for :members, url: members_path, method: :get, layout: :horizontal, html: { class: 'modal-content' } do |f|
+        = search_form_for @q, method: :get, layout: :horizontal, html: { class: 'modal-content' } do |f|
           .modal-header
             .lead= t 'member.specify_format'
           .modal-body
+            .form-group
+              = f.select :department_id_eq, {}, { include_blank: '== Выберите отдел ==' }, { class: 'selectpicker form-control form-control-sm' } do
+                - @departments.each do |d|
+                  = content_tag(:option, d.title, value: d.id, selected: params[:q] && (params[:q][:department_id_eq] == d.to_param) ) 
             .form-group
               = t 'member.showing'
             - %i[birth phone work_phone short_number other_text].each do |field|
@@ -39,4 +42,4 @@
                   = radio_button_tag :format, format, format == :pdf ,disabled: false, autocomplete: 'off'
                   = fa_icon "file-#{format == :xls ? 'excel' : format}", text: (format == :xls ? 'Excel' : 'PDF')
           .modal-footer
-            = f.primary t('shared.download')
+            = f.submit t('shared.download')

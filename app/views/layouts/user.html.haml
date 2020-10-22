@@ -51,7 +51,7 @@
                   = fa_icon 'file-alt', text: t('office_notes.title')
             - if can? :read, Substrate
               .btn-group-vertical.btn-block
-                = link_to substrates_path, class: "btn btn-light text-left #{ (params[:controller] == 'substrates') ? 'active' : nil }" do
+                = link_to substrates_path, class: "btn btn-success text-left #{ (params[:controller] == 'substrates') ? 'active' : nil }" do
                   = fa_icon 'wrench', text: t('substrates.title')
 
           .col-8.col-md-10

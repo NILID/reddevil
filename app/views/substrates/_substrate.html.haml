@@ -62,11 +62,6 @@
   %td
     = substrate.arrival_from
     .text-muted= short_date substrate.arrival_at if substrate.arrival_at
-  %td.text-muted
-    = short_date substrate.future_shipping_at if substrate.future_shipping_at
-  %td{ data: { toggle: 'tooltip' }, title: substrate.shipping_base }
-    = substrate.shipping_to
-    .text-muted= short_date substrate.shipping_at if substrate.shipping_at
   %td
     = substrate.author
     .text-muted{title: l(substrate.created_at, format: :long), data: { toggle: 'tooltip' }}

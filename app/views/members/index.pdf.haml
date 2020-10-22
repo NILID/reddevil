@@ -15,6 +15,8 @@
       %thead
         %tr
           %td №
+          - if params[:showing_number]
+            %td= Member.human_attribute_name(:number)
           %td= t 'member.fullname'
           - if params[:showing_position]
             %td= Member.human_attribute_name(:position)
@@ -31,8 +33,13 @@
       %tbody
         - @members.each_with_index do |member, index|
           %tr
-            %td= index + 1
-            %td= member.fullname
+            %td
+              = index + 1
+            - if params[:showing_number]
+              %td
+                = member.number
+            %td
+              = member.fullname
             - if params[:showing_position]
               %td
                 = member.position

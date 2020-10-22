@@ -1,3 +1,5 @@
 = f.text_field :surname, control_col: 'col-8', label_col: 'col'
 = f.text_field :name, control_col: 'col-8', label_col: 'col'
 = f.text_field :patronymic, control_col: 'col-8', label_col: 'col'
+= f.text_field :birth, class: 'datepicker', value: (f.object.birth.to_datetime.strftime('%d.%m.%Y') if f.object.birth.present?), control_col: 'col-8', label_col: 'col'
+= f.check_box :hide_year, { custom: :switch }

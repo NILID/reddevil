@@ -32,7 +32,7 @@
                   = content_tag(:option, d.title, value: d.id, selected: params[:q] && (params[:q][:department_id_eq] == d.to_param) ) 
             .form-group
               = t 'member.showing'
-            - %i[position birth phone work_phone short_number other_text].each do |field|
+            - %i[number position birth phone work_phone short_number other_text].each do |field|
               .form-group
                 = check_box_tag "showing_#{field}"
                 = label_tag (field == :other_text) ? t('member.other_text') : Member.human_attribute_name(field)

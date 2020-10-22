@@ -136,6 +136,7 @@ ru:
         name: Имя
         surname: Фамилия
         patronymic: Отчество
+        number: Табельный номер
         birth: Дата рождения
         position: Должность
         phone: Личный моб.телефон

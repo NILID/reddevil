@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_131941) do
+ActiveRecord::Schema.define(version: 2020_10_22_114935) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -259,6 +259,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_131941) do
     t.boolean "hide_year", default: false
     t.bigint "department_id"
     t.boolean "remote_flag", default: false
+    t.integer "number"
     t.index ["department_id"], name: "index_members_on_department_id"
     t.index ["user_id"], name: "index_members_on_user_id"
   end

@@ -34,7 +34,7 @@ ru:
     amount_short: общ
     instock_short: налич
     archive: Архив
-    length_help_html: 'формат:<br/>180,<br/>180...181,<br/>180-181'
+    length_help: 'формат: 180, 180...181 или 180-181'
     shapes:
       square: Прямоугольник
       circle: Круг

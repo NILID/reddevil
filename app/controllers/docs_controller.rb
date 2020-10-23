@@ -83,10 +83,6 @@ class DocsController < ApplicationController
     end
   end
 
-  def grab
-    @doc.grab_doc(params[:url])
-  end
-
   private
 
   def ancestry_options(items, &block)
@@ -108,7 +104,6 @@ class DocsController < ApplicationController
     list_params_allowed = [
                             :desc,
                             :title,
-                            :file,
                             :document,
                             :show_last_flag,
                             { category_tokens: [] }

@@ -13,13 +13,7 @@ class Doc < ApplicationRecord
 
   has_one_attached :document
 
-  has_attached_file :file,
-      path: ":rails_root/public/system/docs/:attachment/:id/:style/:filename",
-      url: "/system/docs/:attachment/:id/:style/:filename"
-
-  validates :title, presence: true
-  validates_attachment :file, presence: true
-  do_not_validate_attachment_file_type :file
+  validates :title, :document, presence: true
 
   attr_reader :category_tokens
 
@@ -29,11 +23,6 @@ class Doc < ApplicationRecord
 
   def category_tokens
     category_ids
-  end
-
-  def grab_doc(url)
-    downloaded_image = open(url)
-    self.document.attach(io: downloaded_image  , filename: self.file_file_name)
   end
 
   private

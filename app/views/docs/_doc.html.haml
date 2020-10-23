@@ -12,8 +12,6 @@
       .float-left
         - if doc.document.attached?
           = link_to t('docs.download'), doc.document, class: 'btn btn-sm btn-primary', target: '_blank'
-        - else
-          = link_to 'grab', grab_doc_path(doc, url: (root_url + doc.file.url)), class: 'btn btn-sm btn-primary', remote: true unless doc.document.attached?
         - if doc.desc?
           = link_to "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }, class: 'btn btn-sm btn-secondary' do
             = t('docs.about')

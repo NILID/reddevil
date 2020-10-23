@@ -25,7 +25,7 @@
                 = fa_icon 'info-circle', text: t('infocenter.title')
               = link_to list_member_vacations_path(current_user.member),
                 class: "btn btn-light text-left #{ (params[:controller] == 'vacations') ? 'active' : nil }" do
-                = fa_icon 'umbrella', text: 'Отпуск'
+                = fa_icon 'umbrella-beach', text: 'Отпуск'
               - if can? :read, Album
                 = link_to albums_path, class: "btn btn-light text-left #{ (%w[albums songs].include? params[:controller]) ? 'active' : nil }" do
                   = fa_icon 'music', text: t('shared.music')

@@ -10,7 +10,6 @@ class CreateSubstrates < ActiveRecord::Migration[4.2]
       t.datetime :shipping_at
       t.string :shipping_to
       t.text :shipping_base
-      t.string :status
       t.integer :ready_count, default: 0
       t.integer :instock, default: 0
       t.string :wave_b

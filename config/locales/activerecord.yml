@@ -117,7 +117,7 @@ ru:
       doc:
         title: Название
         desc: Описание
-        file: Документ
+        document: Документ
         category_tokens: Категории
       page:
         title: Название

@@ -3,6 +3,18 @@ require 'rails_helper'
 RSpec.describe DocsController, type: :controller do
   let!(:doc) { create(:doc) }
 
+  %i[moderator].each do |role|
+    describe "#{role} should" do
+      login_user(role)
+
+      it 'not create without attaching document' do
+        expect(@ability.can? :create, Doc).to be true
+        expect{ post :create, params: { doc: { title: 'title' } } }.to change(Doc, :count).by(0)
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+
   %i[admin moderator].each do |role|
     describe "#{role} should" do
       login_user(role)

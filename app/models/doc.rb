@@ -13,7 +13,8 @@ class Doc < ApplicationRecord
 
   has_one_attached :document
 
-  validates :title, :document, presence: true
+  validates :title, presence: true
+  validates :document, attached: true
 
   attr_reader :category_tokens
 

@@ -8,6 +8,9 @@
         - if can? :manage, Category
           = link_to categories_path, class: 'btn btn-secondary btn-sm float-right' do
             = fa_icon 'cog'
+      .nav-reddevil.list-group.list-group-flush.list-favorites{class: (current_user.favorites_docs_count > 0 ? nil : 'hidden')}
+        = link_to docs_path(favorites: true), remote: true, id: 'categories_favorites', class: 'slide-link list-group-item' do
+          %strong= t('shared.favorites')
 
       = arranged_tree_as_list(@categories) do |category|
         = link_to category.title,

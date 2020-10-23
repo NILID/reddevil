@@ -19,6 +19,9 @@ class DocsController < ApplicationController
       docs = @q.result(distinct: true).order(:title)
       @docs = docs.collect { |doc| doc if doc.categories.empty? }
       @nocat = true
+    elsif params[:favorites]
+      @docs = current_user.followables(Doc)
+      @fav = true
     else
       hidden = Category.specific.collect {|category| category.id if !(category.root.hidden? || category.hidden?)}
 
@@ -49,6 +52,11 @@ class DocsController < ApplicationController
   def show; end
   def new;  end
   def edit; end
+
+  def follow
+    current_user.toggle_follow!(@doc)
+    current_user.build_favorites_docs_count!
+  end
 
   def create
     respond_to do |format|

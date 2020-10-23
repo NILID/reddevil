@@ -1,6 +1,5 @@
-require 'open-uri'
-
 class Doc < ApplicationRecord
+  acts_as_followable
   after_destroy :clean_activities
 
   include PublicActivity::Model

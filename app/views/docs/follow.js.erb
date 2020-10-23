@@ -1,0 +1,9 @@
+star = $('#doc_<%=@doc.id%> .fa-star:first')
+
+star.attr('data-prefix', (star.data('prefix') === 'fas' ? 'far' : 'fas'));
+
+<% if current_user.favorites_docs_count == 0 %>
+  $('.list-favorites').addClass('hidden')
+<% elsif current_user.favorites_docs_count == 1%>
+  $('.list-favorites').removeClass('hidden')
+<% end %>

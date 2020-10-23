@@ -25,6 +25,7 @@ ru:
     birthdays_tomorrow: Завтра день рождения
     birthdays_prev: Недавно был день рождения
     download: Скачать
+    favorites: Избранное
     add_favorite: Добавить в избранное
     errors: '%{error} допущена при заполнении формы:'
     errors_done: '%{error} при заполнении формы:'

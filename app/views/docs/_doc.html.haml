@@ -10,6 +10,8 @@
 
     .card-body
       .float-left
+        = link_to follow_doc_path(doc), class: 'btn btn-sm btn-light mr-2 favorite-link', remote: true, method: :post, target: '_blank', title: t('shared.add_favorite'), data: { toggle: 'tooltip' } do
+          = fa_icon :star, type: (doc.followed_by?(current_user) ? nil : :regular)
         - if doc.document.attached?
           = link_to t('docs.download'), doc.document, class: 'btn btn-sm btn-primary', target: '_blank'
         - if doc.desc?

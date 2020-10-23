@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_080419) do
+ActiveRecord::Schema.define(version: 2020_10_23_142553) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -565,6 +565,7 @@ ActiveRecord::Schema.define(version: 2020_10_23_080419) do
     t.integer "win_forecasts_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "favorites_docs_count", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

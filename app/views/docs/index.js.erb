@@ -2,12 +2,16 @@ $('#doc-list').html('<%= j render @docs%>');
 $('#docs-count').html('<%= @docs.size%>');
 <% if @cat %>
   $('.category-info').html('<%= j I18n.t('docs.in_category', category: @cat.title)%>');
-  $('.nav-reddevil li').removeClass('active');
-  $("#category_<%=@cat.id%>").closest('li').addClass('active');
+  $('.nav-reddevil a').removeClass('active');
+  $("#category_<%=@cat.id%>").closest('a').addClass('active');
+<% elsif @fav %>
+  $('.category-info').html('<%= j I18n.t('shared.favorites') %>');
+  $('.nav-reddevil a').removeClass('active');
+  $("#categories_favorites").closest('a').addClass('active');
 <% elsif @nocat %>
   $('.category-info').html('<%= j I18n.t('docs.no_cats')%>');
-  $('.nav-reddevil li').removeClass('active');
-  $("#categories_hidden").closest('li').addClass('active');
+  $('.nav-reddevil a').removeClass('active');
+  $("#categories_hidden").closest('a').addClass('active');
 <% else %>
   $('.category-info').html();
 <% end %>

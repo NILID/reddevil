@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   acts_as_liker
+  acts_as_follower
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -125,6 +126,10 @@ class User < ApplicationRecord
     else
       member.fullname
     end
+  end
+
+  def build_favorites_docs_count!
+    self.update_attribute(:favorites_docs_count, self.followables(Doc).count)
   end
 
   private

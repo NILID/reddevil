@@ -55,18 +55,26 @@ RSpec.describe DocsController, type: :controller do
     describe "#{role} should" do
       login_user(role)
 
-        it 'returns index' do
-          expect(@ability.can? :index, Doc).to be true
-          get :index
-          expect(response).to be_successful
-          expect(response).to render_template(:index)
-        end
+      it 'returns index' do
+        expect(@ability.can? :index, Doc).to be true
+        get :index
+        expect(response).to be_successful
+        expect(response).to render_template(:index)
+      end
 
-        it 'show' do
-          expect(@ability.can? :show, doc).to be true
-          get :show, params: { id: doc }
-          expect(response).to render_template(:show)
-        end
+      it 'show' do
+        expect(@ability.can? :show, doc).to be true
+        get :show, params: { id: doc }
+        expect(response).to render_template(:show)
+      end
+
+      it 'follow' do
+        expect(@ability.can? :follow, doc).to be true
+        expect(@user.follows? doc).to be false
+        post :follow, params: { id: doc }, format: 'js', xhr: true
+        expect(response).to render_template(:follow)
+        expect(@user.follows? doc).to be true
+      end
     end
   end
 

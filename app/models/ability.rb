@@ -38,6 +38,7 @@ class Ability
       cannot %i[manage read], [Room, Substrate, Table]
       can %i[create], [Note, Page]
       can %i[update destroy], Page, user: { id: user.id }
+      can :follow, Doc
     end
 
     if (user.role? :admin) || (user.role? :testuser)

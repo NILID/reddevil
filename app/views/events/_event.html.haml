@@ -6,6 +6,6 @@
   - if can? :manage, [event.user, Event]
     .card-footer
       = link_to t('shared.edit'), edit_user_event_path(event.user, event)
-      = link_to t('shared.del'), [event.user, event], method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to t('shared.del'), [event.user, event], method: :delete, data: { confirm: t('shared.sure') }
 
 

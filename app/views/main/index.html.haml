@@ -1,7 +1,7 @@
 - set_meta_tags title: t('shared.title')
 
-.row.mb-3
-  .col
+.row
+  .col.card-columns.main-blocks
     - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?)
       .accordion#accordionBdays
         .card
@@ -50,7 +50,6 @@
                   = render @bdusers_month[u], bdclass: nil, turntext: t('member.willturn'), should_be_age: ((DateTime.now.year + 1.month) > DateTime.now.year) ? true : false
 
 
-  .col
     - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
       .accordion#accordionHolidays
         - if @holidays_today.any?
@@ -78,8 +77,7 @@
                 - @holidays_tomorrow.each do |holiday|
                   .mb-2= holiday[:name]
 
-  - if @vacations.any? || @vacations_soon.any? || @current_vacation || @current_vacations_soon
-    .col
+    - if @vacations.any? || @vacations_soon.any? || @current_vacation || @current_vacations_soon
       .accordion#accordionVacations
         .card
           - if current_user.member
@@ -156,8 +154,6 @@
 
 
 
-.row.mb-3
-  .col.card-columns.main-blocks
     - if @sickdays.any?
       .card
         .row.no-gutters.bg-darkblue

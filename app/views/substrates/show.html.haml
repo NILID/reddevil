@@ -156,7 +156,7 @@
       .col
         .my-3= render partial: 'subfiles/form', locals: { substrate: @substrate, subfile: Subfile.new }
 
-    %table.table.table-striped.table-hover.table-sm
+    %table.table.table-hover.table-sm
       = content_tag_for(:tr, @subfiles) do |subfile|
         %td
           = link_to subfile.src_file_name, subfile.src.url, target: '_blank'
@@ -172,26 +172,27 @@
       = t 'substrates.manage_otk'
       %small
         = otk_status_text(@substrate.otk_status)
-        = link_to manage_otk_substrate_path(@substrate), class: 'btn btn-primary btn-sm float-right' do
-          = t('shared.edit')
+        - if can? :manage_otk, Substrate
+          = link_to manage_otk_substrate_path(@substrate), class: 'btn btn-primary btn-sm float-right' do
+            = t('shared.edit')
   - if @substrate.otk_desc?
     .card-body
       %p
         = @substrate.otk_desc
       - if @substrate.otk_documents.attached?
-        %hr
         %h4
           = OfficeNote.human_attribute_name(:documents)
-        %table.table.table.table-sm
+        %table.table.table-hover.table-sm
           - @substrate.otk_documents.each.with_index(1) do |document, index|
             %tr
               %td
-                = index
+                = [index, '.'].join()
               %td
                 = link_to document.filename, document, target: '_blank'
-              %td
-                = link_to delete_document_substrate_path(@substrate, document_id: document.signed_id), class: 'btn btn-sm btn-danger float-right', method: :delete, data: { confirm: t('shared.sure') } do
-                  = fa_icon 'trash'
+              - if can? :delete_document, Substrate
+                %td
+                  = link_to delete_document_substrate_path(@substrate, document_id: document.signed_id), class: 'btn btn-sm btn-danger float-right', method: :delete, data: { confirm: t('shared.sure') } do
+                    = fa_icon 'trash'
 
 .modal.fade#manage_followers(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
   .modal-dialog

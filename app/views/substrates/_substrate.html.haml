@@ -12,7 +12,7 @@
     - if can? :manage_otk, Substrate
       = link_to otk_status_icon(substrate.otk_status), manage_otk_substrate_path(substrate)
     - else
-      = otk_status_text(substrate.otk_status)
+      = otk_status_icon(substrate.otk_status)
   %td.text-nowrap{ title: substrate.desc, data: {toggle: 'tooltip'}}
     = link_to(substrate.title, substrate)
     - if substrate.desc?

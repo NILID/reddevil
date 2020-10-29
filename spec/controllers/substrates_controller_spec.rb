@@ -96,6 +96,21 @@ RSpec.describe SubstratesController, type: :controller do
     end
   end
 
+  %i[from_lab182].each do |role|
+    describe "#{role} should" do
+      login_user(role)
+
+      it 'not manage otk' do
+        expect(@ability.can? :manage_otk, substrate).to be false
+        expect{ get :manage_otk, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+      end
+
+      it 'not returns delete document' do
+        expect(@ability.can? :delete_document, substrate).to be false
+      end
+    end
+  end
+
   describe 'user should' do
     login_user(:user)
 
@@ -104,7 +119,7 @@ RSpec.describe SubstratesController, type: :controller do
       expect{ get :index}.to raise_error(CanCan:: AccessDenied)
     end
 
-    it 'not returns index' do
+    it 'not returns archive' do
       expect(@ability.can? :archive, Substrate).to be false
       expect{ get :archive }.to raise_error(CanCan:: AccessDenied)
     end

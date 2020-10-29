@@ -94,6 +94,7 @@ class Ability
 
     if user.has_group? :lab182
       can %i[manage read], [Substrate, Subfile]
+      cannot %i[manage_otk delete_document], [Substrate, Subfile]
     end
   end
 end

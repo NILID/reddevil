@@ -52,8 +52,8 @@
 
     - if !@holidays_today.empty? || !@holidays_tomorrow.empty?
       .accordion#accordionHolidays
-        - if @holidays_today.any?
-          .card
+        .card
+          - if @holidays_today.any?
             .card-header#headingToday
               .d-block{ data: {toggle: 'collapse', target: '#collapseToday'}, aria: { expanded: 'false', controls: 'collapseToday' } }
                 = t 'shared.today'
@@ -64,8 +64,7 @@
               .card-body
                 - @holidays_today.each do |holiday|
                   .text-success.mb-2= holiday[:name]
-        - if @holidays_tomorrow.any?
-          .card
+          - if @holidays_tomorrow.any?
             .card-header#headingTomorrow
               .d-block{ data: {toggle: 'collapse', target: '#collapseTomorrow'}, aria: { expanded: 'false', controls: 'collapseTomorrow' } }
                 = t 'shared.tomorrow'

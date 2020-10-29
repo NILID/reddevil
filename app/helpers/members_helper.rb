@@ -31,7 +31,7 @@ module MembersHelper
   end
 
   def remote_status(member)
-    if member&:remote_flag?
+    if member && member.remote_flag?
       content_tag(:span, t('member.remote'), class: 'badge badge-secondary')
     end
   end

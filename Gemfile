@@ -173,6 +173,7 @@ group :development do
   gem 'bullet'
 
   # gem 'rails_best_practices'
+  gem 'rack-mini-profiler'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

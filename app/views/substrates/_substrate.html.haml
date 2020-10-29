@@ -8,7 +8,7 @@
         collection: Substrate::STATUSES.map { |s| [s, status_text(s, true)] },
         data: { place_success: substrate.id },
         display_with: lambda { |v| status_text(v) }
-  %td.text-center{ title: substrate.otk_desc, data: {toggle: 'tooltip'}}
+  %td.text-center{ title: substrate.otk_desc, data: { toggle: 'tooltip' }}
     - if can? :manage_otk, Substrate
       = link_to otk_status_icon(substrate.otk_status), manage_otk_substrate_path(substrate)
     - else

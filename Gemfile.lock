@@ -239,6 +239,8 @@ GEM
     public_suffix (4.0.3)
     puma (3.12.6)
     rack (2.2.3)
+    rack-mini-profiler (2.2.0)
+      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.4)
@@ -455,6 +457,7 @@ DEPENDENCIES
   petrovich (~> 1.0)
   public_activity
   puma (~> 3.11)
+  rack-mini-profiler
   rails (~> 5.2.3)
   rails-controller-testing
   rails-i18n

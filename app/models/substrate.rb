@@ -14,6 +14,8 @@ class Substrate < ApplicationRecord
   has_many :substrate_features_a, -> {where(wave: 'A')}, inverse_of: :substrate, class_name: 'SubstrateFeature'
   has_many :substrate_features_b, -> {where(wave: 'B')}, inverse_of: :substrate, class_name: 'SubstrateFeature'
 
+  has_many_attached :otk_documents
+
   before_save :init_finished_at
 
   STATUSES = %w[missing opened worked finished delayed canceled shipped].freeze
@@ -28,6 +30,8 @@ class Substrate < ApplicationRecord
 
   RAD_STRENGTHS = %w[нет непрерывная импульсная].freeze
 
+  OTK_STATUSES = %w[empty failed passed].freeze
+
   COATINGS = %w[нет зеркальное просветляющее светоделительное поляризующее фильтрующее другое].freeze
   SIDES = %w[a b ab].freeze
 
@@ -41,6 +45,7 @@ class Substrate < ApplicationRecord
   validates :title, :statuses_mask, :coating_type, :priorityx, presence: true
   validates :drawing, uniqueness: true, allow_blank: true
   validates_inclusion_of :rad_strength,   in: RAD_STRENGTHS
+  validates_inclusion_of :otk_status,     in: OTK_STATUSES
   validates_inclusion_of :priorityx,      in: NEW_PRIORITIES
   validates_inclusion_of :shape,          in: SHAPES, allow_blank: true
   validates_inclusion_of :coating_type,

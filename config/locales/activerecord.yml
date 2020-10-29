@@ -171,6 +171,9 @@ ru:
         title: Наименование
         desc: Описание
         user: Автор
+        otk_status: Статус
+        otk_desc: Примечание
+        otk_documents: Документы
         priority: Приоритет
         priorityx: Приоритет
         drawing: Номер чертежа

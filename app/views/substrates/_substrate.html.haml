@@ -8,6 +8,11 @@
         collection: Substrate::STATUSES.map { |s| [s, status_text(s, true)] },
         data: { place_success: substrate.id },
         display_with: lambda { |v| status_text(v) }
+  %td.text-center{ title: substrate.otk_desc, data: {toggle: 'tooltip'}}
+    - if can? :manage_otk, Substrate
+      = link_to otk_status_icon(substrate.otk_status), manage_otk_substrate_path(substrate)
+    - else
+      = otk_status_text(substrate.otk_status)
   %td.text-nowrap{ title: substrate.desc, data: {toggle: 'tooltip'}}
     = link_to(substrate.title, substrate)
     - if substrate.desc?
@@ -81,6 +86,9 @@
       .dropdown-menu.dropdown-menu-right
         = link_to edit_substrate_path(substrate), class: 'dropdown-item' do
           = fa_icon 'edit', text: t('shared.edit')
+        - if can? :manage_otk, Substrate
+          = link_to manage_otk_substrate_path(substrate), class: 'dropdown-item' do
+            = fa_icon 'calendar', text: t('substrates.manage_otk')
         = link_to copy_substrate_path(substrate), class: 'dropdown-item' do
           = fa_icon 'copy', text: t('shared.copy')
         = link_to substrate, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do

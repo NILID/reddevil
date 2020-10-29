@@ -35,6 +35,17 @@ RSpec.describe Substrate, type: :model do
     let(:substrate) { build_stubbed(:substrate) }
 
     context 'should' do
+      it 'have default otk status' do
+        expect(substrate.otk_status).to eq('empty')
+      end
+
+      it 'have otk_status inclusion list OTK statuses' do
+        substrate.otk_status = 'good'
+        expect(substrate.valid?).to be false
+        expect(substrate.errors[:otk_status]).not_to be_empty
+      end
+
+
       it 'have empty drawing' do
         substrate.drawing = nil
         expect(substrate.valid?).to be true

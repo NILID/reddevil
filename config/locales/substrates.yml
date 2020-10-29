@@ -35,10 +35,16 @@ ru:
     instock_short: налич
     archive: Архив
     length_help: 'формат: 180, 180...181 или 180-181'
+    manage_otk: Контроль ОТК
+    otk: ОТК
     shapes:
       square: Прямоугольник
       circle: Круг
       border_style: Другое
+    otk_statuses:
+      empty: Не рассмотрено
+      failed: Отказ
+      passed: Пройдено
     statuses:
       opened: Открыто
       finished: Готово

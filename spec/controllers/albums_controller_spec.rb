@@ -229,15 +229,15 @@ RSpec.describe AlbumsController, type: :controller do
       expect(response).to redirect_to(root_path)
     end
 
-    it('index')    { get :index }
-    it('favorites')   { get :favorites }
-    it('new')      { get :new }
-    it('like')     { get :like, params: { id: album }, format: 'js', xhr: true }
-    it('download') { get :download, params: { id: album } }
-    it('list')     { get :list, params: { id: album } }
-    it('show')     { get :show, params: { id: album } }
-    it('edit')     { get :edit, params: { id: album } }
-    it('updates')  { put :update, params: { id: album, album: attributes_for(:album) } }
+    it('index')     { get :index }
+    it('favorites') { get :favorites }
+    it('new')       { get :new }
+    it('like')      { get :like, params: { id: album }, format: 'js', xhr: true }
+    it('download')  { get :download, params: { id: album } }
+    it('list')      { get :list, params: { id: album } }
+    it('show')      { get :show, params: { id: album } }
+    it('edit')      { get :edit, params: { id: album } }
+    it('updates')   { put :update, params: { id: album, album: attributes_for(:album) } }
 
     it 'create' do
       post :create, params: { album: attributes_for(:album) }

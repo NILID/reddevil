@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       post :follow
       get :copy
       get :changes
+      get :manage_otk
+      delete :delete_document
     end
     collection do
       get :history

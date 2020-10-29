@@ -98,6 +98,14 @@ class SubstratesController < ApplicationController
     end
   end
 
+  def delete_document
+    @document = ActiveStorage::Blob.find_signed(params[:document_id])
+    # Check valid method to destroy attachment
+    @document.attachments.first.purge
+
+    redirect_to @substrate
+  end
+
   def destroy
     @substrate.destroy
     respond_to do |format|
@@ -124,16 +132,20 @@ class SubstratesController < ApplicationController
 
     def substrate_params
       # params.require(:substrate).permit(:lock_version,
-      params.require(:substrate).permit(:title, :ready_count,
-                                        :desc, :coating_type, :coating_type_b, :sides,
-                                        :wave, :wave_b, :corner, :corner_b, :frame, :priorityx, :drawing,
-                                        :detail, :amount, :contract, :instock,
-                                        :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
-                                        :status, :user_id, :future_shipping_at, :rad_strength, :shape,
-                                        :width, :height, :thickness, :diameter,
-                                        { subfiles_attributes: %i[id src user_id _destroy] },
-                                        { substrate_features_a_attributes: %i[id length sign litera feature _destroy] },
-                                        { substrate_features_b_attributes: %i[id length sign litera feature _destroy] }
-                                        )
+      substrate_params = [:title, :ready_count,
+                          :desc, :coating_type, :coating_type_b, :sides,
+                          :wave, :wave_b, :corner, :corner_b, :frame, :priorityx, :drawing,
+                          :detail, :amount, :contract, :instock,
+                          :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
+                          :status, :user_id, :future_shipping_at, :rad_strength, :shape,
+                          :width, :height, :thickness, :diameter,
+                          { subfiles_attributes: %i[id src user_id _destroy] },
+                          { substrate_features_a_attributes: %i[id length sign litera feature _destroy] },
+                          { substrate_features_b_attributes: %i[id length sign litera feature _destroy] }
+                         ]
+
+      substrate_params << [:otk_status, :otk_desc, otk_documents: []] if (current_user&.role? :admin) || (current_user&.has_group? :otk)
+
+      params.require(:substrate).permit(substrate_params)
     end
 end

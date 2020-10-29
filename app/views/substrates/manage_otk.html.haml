@@ -1,0 +1,23 @@
+- formtitle = t('substrates.manage_otk')
+- set_meta_tags title: formtitle
+
+= bootstrap_form_for @substrate, html: { class: 'card' } do |f|
+  .card-body
+    = render 'breadcrumb', titles: [link_to(@substrate.title, @substrate), formtitle]
+    = render 'error', object: @substrate
+
+    .row
+      .col
+        = f.select :otk_status, {}, {}, { class: 'selectpicker' } do
+          - Substrate::OTK_STATUSES.each do |s|
+            = content_tag(:option, s, value: s, data: { content: otk_status_text(s) }, selected: s == f.object.otk_status )
+    .row
+      .col
+        = f.text_area :otk_desc
+
+    .row
+      .col
+        = f.file_field :otk_documents, multiple: true
+
+  .card-footer
+    = f.submit t('shared.save')

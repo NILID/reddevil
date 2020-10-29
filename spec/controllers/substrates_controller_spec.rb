@@ -80,66 +80,91 @@ RSpec.describe SubstratesController, type: :controller do
     end
   end
 
+  %i[admin from_otk].each do |role|
+    describe "#{role} should" do
+      login_user(role)
+
+      it 'returns manage_otk' do
+        expect(@ability.can? :manage_otk, substrate).to be true
+        get :manage_otk, params: { id: substrate }
+        expect(response).to render_template(:manage_otk)
+      end
+
+      it 'returns delete document' do
+        expect(@ability.can? :delete_document, substrate).to be true
+      end
+    end
+  end
+
   describe 'user should' do
     login_user(:user)
 
     it 'not returns index' do
-      expect(@ability.cannot? :index, Substrate).to be true
+      expect(@ability.can? :index, Substrate).to be false
       expect{ get :index}.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns index' do
-      expect(@ability.cannot? :archive, Substrate).to be true
+      expect(@ability.can? :archive, Substrate).to be false
       expect{ get :archive }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns history' do
-      expect(@ability.cannot? :history, Substrate).to be true
+      expect(@ability.can? :history, Substrate).to be false
       expect{ get :history}.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns new' do
-      expect(@ability.cannot? :new, Substrate).to be true
+      expect(@ability.can? :new, Substrate).to be false
       expect{ get :new }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not creates a new Substrate' do
-      expect(@ability.cannot? :create, Substrate).to be true
+      expect(@ability.can? :create, Substrate).to be false
       expect{ post :create, params: { substrate: attributes_for(:substrate) } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Substrate, :count).by(0)
     end
 
     it 'not follow' do
-      expect(@ability.cannot? :follow, substrate).to be true
+      expect(@ability.can? :follow, substrate).to be false
       expect{ post :follow, params: { id: substrate, user_id: @user.id }, format: 'js', xhr: true }
         .to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change{ substrate.users.count }.by(0)
     end
 
     it 'not copy substrate' do
-      expect(@ability.cannot? :copy, substrate).to be true
+      expect(@ability.can? :copy, substrate).to be false
       expect{ post :copy, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change{ Substrate.count}.by(0)
     end
 
     it 'not edit' do
-      expect(@ability.cannot? :edit, substrate).to be true
+      expect(@ability.can? :edit, substrate).to be false
       expect{ get :edit, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not changes' do
-      expect(@ability.cannot? :changes, substrate).to be true
+      expect(@ability.can? :changes, substrate).to be false
       expect{ get :changes, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
     end
 
+    it 'not manage otk' do
+      expect(@ability.can? :manage_otk, substrate).to be false
+      expect{ get :manage_otk, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+    end
+
     it 'not destroy' do
-      expect(@ability.cannot? :destroy, substrate).to be true
+      expect(@ability.can? :destroy, substrate).to be false
       expect{ delete :destroy, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Substrate, :count).by(0)
     end
 
+    it 'not returns delete document' do
+      expect(@ability.can? :delete_document, substrate).to be false
+    end
+
     it 'not update' do
-      expect(@ability.cannot? :update, substrate).to be true
+      expect(@ability.can? :update, substrate).to be false
       expect{ put :update, params: { id: substrate, substrate: attributes_for(:substrate) } }.to raise_error(CanCan:: AccessDenied)
     end
   end
@@ -184,12 +209,20 @@ RSpec.describe SubstratesController, type: :controller do
       get :edit, params: { id: substrate }
     end
 
+    it 'not manage otk' do
+      get :manage_otk, params: { id: substrate }
+    end
+
     it 'not changes' do
       get :changes, params: { id: substrate }
     end
 
     it 'not updates' do
       put :update, params: { id: substrate, substrate: attributes_for(:substrate) }
+    end
+
+    it 'not returns delete document' do
+      get :delete_document, params: { id: substrate }
     end
 
     it 'not destroy' do

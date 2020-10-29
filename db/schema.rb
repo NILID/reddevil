@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_142553) do
+ActiveRecord::Schema.define(version: 2020_10_28_130800) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -477,6 +477,8 @@ ActiveRecord::Schema.define(version: 2020_10_23_142553) do
     t.float "thickness"
     t.float "width"
     t.float "height"
+    t.string "otk_status", default: "empty"
+    t.text "otk_desc"
     t.index ["user_id"], name: "fk_rails_c96f9bb7b3"
   end
 

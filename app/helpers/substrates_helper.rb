@@ -26,11 +26,45 @@ module SubstratesHelper
       else
         text = t("substrates.statuses.#{status}")
       end
+      content_tag(:span, text.html_safe, class: otk_status_style(status))
+    else
+      nil
+    end
+  end
+
+  def otk_status_text(status)
+    unless status.empty?
+      icon = case status
+        when 'empty'
+          'calendar-minus'
+        when 'failed'
+          'calendar-times'
+        else
+          'calendar-check'
+        end
+      text = fa_icon('angle-down', text: t("substrates.otk_statuses.#{status}"), right: true, class: 'ml-2')
       content_tag(:span, text.html_safe, class: status_style(status))
     else
       nil
     end
   end
+
+  def otk_status_icon(status)
+    unless status.empty?
+      icon = case status
+        when 'empty'
+          'calendar-minus'
+        when 'failed'
+          'calendar-times'
+        else
+          'calendar-check'
+        end
+      fa_icon(icon, type: :far, class: "fa-2x text-#{status_color(status)}")
+    else
+      nil
+    end
+  end
+
 
   def select_text(status)
     color = case status
@@ -48,8 +82,10 @@ module SubstratesHelper
   def status_color(status)
     case status
     when 'opened',
-         'false'    then 'danger'
+         'false',
+         'failed'   then 'danger'
     when 'finished',
+         'passed',
          'true'     then 'success'
     when 'worked'   then 'primary'
     when 'shipped'  then 'violet'
@@ -62,6 +98,12 @@ module SubstratesHelper
     color = status_color(status)
     tag == :badge ? "badge badge-#{color}" : "table-#{color}"
   end
+
+  def otk_status_style(status, tag = :badge)
+    color = status_color(status)
+    tag == :badge ? "badge badge-#{color}" : "table-#{color}"
+  end
+
 
   def status_style_xls
   end
@@ -122,6 +164,10 @@ module SubstratesHelper
 
   def status_index(status)
     Substrate::STATUSES.index(status)
+  end
+
+  def otk_status_index(status)
+    Substrate::OTK_STATUSES.index(status)
   end
 
   def substrate_sides(substrate, side, short=false)

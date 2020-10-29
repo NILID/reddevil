@@ -43,11 +43,12 @@
               %b= Substrate.human_attribute_name(:finished_at)
               = short_date @substrate.finished_at
 
+.card.mt-3
+  .card-header
+    .h4.text-muted
+      = t('shared.information')
+  .card-body
     .row
-      .col-12
-        %hr
-        .h5.text-muted= t('shared.information')
-        %hr
       .col
         %table.table.table-striped.table-sm
           %tr
@@ -143,29 +144,54 @@
           %dt.col-sm-4= Substrate.human_attribute_name(:user)
           %dd.col-sm-8= link_to @substrate.author, @substrate.user
 
-    .row
+.card.mt-3
+  .card-header
+    .h4.text-muted
+      = t 'subfiles.title'
+      %small
+        .float-right.btn.btn-sm.btn-primary(data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample")
+          = fa_icon 'file', text: t('subfiles.add'), class: 'mr-2'
+  .card-body
+    .row.collapse#collapseExample
       .col
+        .my-3= render partial: 'subfiles/form', locals: { substrate: @substrate, subfile: Subfile.new }
+
+    %table.table.table-striped.table-hover.table-sm
+      = content_tag_for(:tr, @subfiles) do |subfile|
+        %td
+          = link_to subfile.src_file_name, subfile.src.url, target: '_blank'
+        %td
+          = link_to subfile.user.surname_name, subfile.user
+        %td
+          = link_to [@substrate, subfile], method: :delete, remote: true, class: 'btn btn-sm btn-danger float-right', data: { confirm: t('shared.sure') } do
+            = fa_icon 'trash'
+
+.card.mt-3
+  .card-header
+    .h4.text-muted
+      = t 'substrates.manage_otk'
+      %small
+        = otk_status_text(@substrate.otk_status)
+        = link_to manage_otk_substrate_path(@substrate), class: 'btn btn-primary btn-sm float-right' do
+          = t('shared.edit')
+  - if @substrate.otk_desc?
+    .card-body
+      %p
+        = @substrate.otk_desc
+      - if @substrate.otk_documents.attached?
         %hr
-        .h4.text-muted
-          = t 'subfiles.title'
-          %small
-            .btn.btn-sm.btn-outline-secondary(data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample")
-              = fa_icon 'file', text: t('subfiles.add'), class: 'mr-2'
-
-        .row.collapse#collapseExample
-          .col
-            .my-3= render partial: 'subfiles/form', locals: { substrate: @substrate, subfile: Subfile.new }
-
-        %table.table.table-striped.table-hover.table-sm
-          = content_tag_for(:tr, @subfiles) do |subfile|
-            %td
-              = link_to subfile.src_file_name, subfile.src.url, target: '_blank'
-            %td
-              = link_to subfile.user.surname_name, subfile.user
-            %td
-              = link_to [@substrate, subfile], method: :delete, remote: true, class: 'btn btn-sm btn-danger', data: { confirm: t('shared.sure') } do
-                = fa_icon 'trash'
-
+        %h4
+          = OfficeNote.human_attribute_name(:documents)
+        %table.table.table.table-sm
+          - @substrate.otk_documents.each.with_index(1) do |document, index|
+            %tr
+              %td
+                = index
+              %td
+                = link_to document.filename, document, target: '_blank'
+              %td
+                = link_to delete_document_substrate_path(@substrate, document_id: document.signed_id), class: 'btn btn-sm btn-danger float-right', method: :delete, data: { confirm: t('shared.sure') } do
+                  = fa_icon 'trash'
 
 .modal.fade#manage_followers(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
   .modal-dialog

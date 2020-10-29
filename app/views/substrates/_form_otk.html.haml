@@ -1,0 +1,151 @@
+- set_meta_tags title: formtitle
+
+= bootstrap_form_for @substrate, html: { class: 'card' } do |f|
+  .card-body
+    - if params[:action] == 'edit'
+      = render 'breadcrumb', titles: [link_to(@substrate.title, @substrate), formtitle]
+    - else
+      = render 'breadcrumb', titles: [formtitle]
+
+
+    = render 'error', object: @substrate
+    =# f.hidden_field :lock_version
+
+    .row
+      .col
+        = f.text_field :title
+
+      .col
+        = f.select :status, {}, {}, { class: 'selectpicker' } do
+          - Substrate::STATUSES.each do |s|
+            = content_tag(:option, s, value: s, data: { content: status_text(s) }, selected: s == f.object.status )
+
+      .col
+        = f.select :priorityx, {}, {}, { class: 'selectpicker' } do
+          - Substrate::NEW_PRIORITIES.each do |s|
+            = content_tag :option,
+              t("substrates.priorities.#{s}"),
+              value: s,
+              data: { content: new_priority_select_tag(s) },
+              selected: (f.object.priorityx == s)
+
+    .row
+      .col
+        = f.text_field :drawing
+      .col
+        = f.text_field :detail
+    .row
+      .col-6.col-md-4
+        = f.label :amount
+        .row
+          .col.pr-0
+            = f.number_field :instock, prepend: t('substrates.instock_short'), wrapper: false, min: 0
+          .col.pl-0
+            = f.number_field :amount, prepend: t('substrates.amount_short'), wrapper: false, min: 0
+
+      .col-6.col-md-4
+        = f.number_field :ready_count, min: 0
+
+      .col-6.col-md-4
+        = f.select :rad_strength, {}, {}, { class: 'selectpicker' } do
+          - Substrate::RAD_STRENGTHS.each do |rad|
+            = content_tag :option,
+              rad,
+              value: rad,
+              data: { icon: rad_icon(rad, 'fa-w-16 mr-3') },
+              selected: (f.object.rad_strength == rad)
+
+    .row
+      .col-6.col-md-3
+        .mb-4
+          = f.select :shape, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
+            - Substrate::SHAPES.each do |shape|
+              = content_tag :option,
+                t("substrates.shapes.#{shape}"),
+                value: shape,
+                data: { icon: "fa fa-#{shape.dasherize} fa-w-16 mr-3" },
+                selected: (f.object.shape == shape)
+      .col-6.col-md-3#shape_diameter
+        .mb-4
+          = f.number_field :diameter, step: 0.01, min: 0
+
+      .col-6.col-md-3#shape_width
+        .mb-4
+          = f.number_field :width, step: 0.01, min: 0
+
+      .col-6.col-md-3#shape_height
+        .mb-4
+          = f.number_field :height, step: 0.01, min: 0
+
+      .col-6.col-md-3
+        .mb-4
+          = f.number_field :thickness, step: 0.01, min: 0
+
+
+    .row
+      .col-6.col-md-3
+        = f.select :sides, {}, { include_blank: t('shared.to_select') }, { class: 'selectpicker' } do
+          - Substrate::SIDES.each do |s|
+            = content_tag :option,
+              t("substrates.sides.#{s}"),
+              value: s,
+              selected: (f.object.sides == s)
+      .col
+        .card.mt-2#substrate_block_a.mb-3.bg-light
+          .card-header
+            = t 'substrates.side_a'
+          .card-body
+            .row
+              .col-6.col-md-3
+                = f.select :coating_type,   Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
+              .col-6.col-md-3
+                = f.text_field :corner
+              .col-6.col-md-6#substrate_features_a
+                = t 'substrates.spectr_chars_full'
+                .mt-2.selectpicker-refresh
+                  = f.fields_for :substrate_features_a do |feature|
+                    = render 'substrate_features_fields', f: feature
+                  .links
+                    = link_to_add_association f, :substrate_features_a, partial: 'substrate_features_fields' do
+                      = fa_icon 'plus', text: t('shared.add')
+
+        .card.mt-2#substrate_block_b.mb-3.bg-light
+          .card-header
+            = t 'substrates.side_b'
+          .card-body
+            .row
+              .col-6.col-md-3
+                = f.select :coating_type_b, Substrate::COATINGS.map { |c| c }, {}, { class: 'selectpicker' }
+              .col-6.col-md-3
+                = f.text_field :corner_b
+              .col-6.col-md-6#substrate_features_b
+                = t 'substrates.spectr_chars_full'
+                .mt-2.selectpicker-refresh
+                  = f.fields_for :substrate_features_b do |feature|
+                    = render 'substrate_features_fields', f: feature
+                  .links
+                    = link_to_add_association f, :substrate_features_b, partial: 'substrate_features_fields' do
+                      = fa_icon 'plus', text: t('shared.add')
+
+    .row
+      .col-6.col-md-3
+        .mb-4
+          = f.check_box :frame, custom: :switch
+    .row
+      .col
+        = f.text_field :arrival_at, class: 'datepicker',
+          value: (f.object.arrival_at.to_datetime.strftime('%d.%m.%Y') if f.object.arrival_at.present?)
+        = f.text_field :arrival_from
+        = f.text_field :contract
+      .col
+        = f.text_field :future_shipping_at, class: 'datepicker',
+          value: (f.object.future_shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.future_shipping_at.present?)
+        = f.text_field :shipping_at, class: 'datepicker',
+          value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
+        = f.text_field :shipping_to
+        = f.text_field :shipping_base
+    .row
+      .col
+        = f.text_area :desc
+  .card-footer
+    = f.submit t('shared.save')

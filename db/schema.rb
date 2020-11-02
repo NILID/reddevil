@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_130800) do
+ActiveRecord::Schema.define(version: 2020_11_02_144909) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -568,6 +568,7 @@ ActiveRecord::Schema.define(version: 2020_10_28_130800) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "favorites_docs_count", default: 0
+    t.datetime "online_at", default: "2020-11-02 14:53:18", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

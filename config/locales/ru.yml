@@ -48,7 +48,7 @@ ru:
     has_groups: Относится к группам
     has_roles: Имеет роли
     to_edit_roles: Настроить доступ
-    edit_roles: Настройка доступа пользователя %{username}
+    edit_roles_html: Настройка доступа пользователя %{username}
     roles: Роли
     groups: Группы
     online: онлайн

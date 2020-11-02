@@ -59,6 +59,6 @@ class ApplicationController < ActionController::Base
   # end
 
   def user_activity
-    current_user.try :touch
+    current_user.try :touch, :online_at
   end
 end

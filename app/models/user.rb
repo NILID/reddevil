@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   validates :roles, presence: true
 
-  scope :online,     lambda { where('updated_at > ?', 10.minutes.ago) }
+  scope :online,     lambda { where('online_at > ?', 10.minutes.ago) }
   scope :with_group, lambda { |group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }
   scope :with_role,  lambda { |role|  where('roles_mask & ? > 0',  2**ROLES.index(role.to_s)) }
 
@@ -87,7 +87,7 @@ class User < ApplicationRecord
   end
 
   def online?
-    updated_at > 10.minutes.ago
+    online_at > 10.minutes.ago
   end
 
   def ratio(match_finished, users)

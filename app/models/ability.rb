@@ -78,9 +78,6 @@ class Ability
       can :manage, Member
     end
 
-    if user.has_group? :otk
-      can %i[manage_otk delete_document], Substrate
-    end
 
     if user.has_group? :lab193
       can %i[manage read download], [Song, Album]
@@ -96,5 +93,10 @@ class Ability
       can %i[manage read], [Substrate, Subfile]
       cannot %i[manage_otk delete_document], [Substrate, Subfile]
     end
+
+    if user.has_group? :otk
+      can %i[manage_otk delete_document], Substrate
+    end
+
   end
 end

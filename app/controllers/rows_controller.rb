@@ -2,6 +2,8 @@ class RowsController < ApplicationController
   load_and_authorize_resource :table
   load_and_authorize_resource :row, through: :table, except: %i[new_form]
 
+  layout 'user'
+
   # TODO
   # Why not working?
   # after_action :find_last_redaction, only: [:index, :update]

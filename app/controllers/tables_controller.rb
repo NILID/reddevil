@@ -1,6 +1,8 @@
 class TablesController < ApplicationController
   load_and_authorize_resource
 
+  layout 'user'
+
   def index
     @tables = @tables.includes(:tableable)
   end

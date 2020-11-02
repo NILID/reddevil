@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   load_and_authorize_resource
 
-  layout 'withside', only: 'index'
+  layout 'user'
 
   def index
     @notes_all_count = @notes.group(:status).count

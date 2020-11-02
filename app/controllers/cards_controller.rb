@@ -2,11 +2,10 @@ class CardsController < ApplicationController
   load_and_authorize_resource :infocenter_category
   load_and_authorize_resource :card, through: :infocenter_category
 
-  def new
-  end
+  layout 'user'
 
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     respond_to do |format|

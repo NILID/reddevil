@@ -3,59 +3,60 @@
 - label_css_classes = { new: 'info', done: 'success', failed: 'danger', later: 'warning' }
 - model_class = Note
 
-- content_for :sidebar do
-  .card
-    .card-body
-      - label_css_classes.each do |k,v|
-        .mb-2
-          = link_to notes_path(q: { status_eq: k }) do
-            %span.badge{ class: "badge-#{v}" }
-              %b= @notes_all_count[k.to_s] || '0'
-              = t "notes.#{k}"
+.row
+  .col-3
+    .card
+      .card-body
+        - label_css_classes.each do |k,v|
+          .mb-2
+            = link_to notes_path(q: { status_eq: k }) do
+              %span.badge{ class: "badge-#{v}" }
+                %b= @notes_all_count[k.to_s] || '0'
+                = t "notes.#{k}"
 
-
-.card
-  .card-header
-    = t 'notes.title'
-    %small.float-right
-      = link_to(new_note_path, class: 'btn btn-primary btn-sm') do
-        = fa_icon 'plus inverse'
-  %table.table.table-striped.table-sm.my-0
-    %thead
-      %tr
-        %th
-        %th
-        %th= model_class.human_attribute_name(:content)
-        %th= model_class.human_attribute_name(:status)
-        %th= model_class.human_attribute_name(:created_at)
-        - if can? :manage, Note
-          %th= t '.actions', default: t('helpers.actions')
-    %tbody
-      - @notes.each do |note|
-        %tr{ class: label_css_classes[note.status.to_sym] }
-          %td= link_to note.id, note
-          %td
-            - if note.screenshot.attached?
-              = link_to note.screenshot, class: 'fancybox thumnbail' do
-                = fa_icon 'image'
-          %td
-            - if note.user && current_user.role?(:admin)
-              %strong
-                - if note.user.member
-                  = note.user.surname_name + ':'
-                - else
-                  = note.user.email
-            = simple_format truncate(note.content, length: 200, omission: '...')
-            - if note.review?
-              .well.well-small= simple_format note.review
-          %td
-            %span.badge{class: "badge-#{label_css_classes[note.status.to_sym]}"}= t "notes.#{note.status}"
-          %td.col-md-2= Russian.strftime(note.created_at, "%d %B")
-          - if can? :manage, Note
-            %td
-              .btn-group
-                %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                  = fa_icon 'cog'
-                .dropdown-menu.dropdown-menu-right
-                  = link_to t('shared.edit'), edit_note_path(note), class: 'dropdown-item'
-                  = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'
+  .col
+    .card
+      .card-header
+        = t 'notes.title'
+        %small.float-right
+          = link_to(new_note_path, class: 'btn btn-primary btn-sm') do
+            = fa_icon 'plus inverse'
+      %table.table.table-striped.table-sm.my-0
+        %thead
+          %tr
+            %th
+            %th
+            %th= model_class.human_attribute_name(:content)
+            %th= model_class.human_attribute_name(:status)
+            %th= model_class.human_attribute_name(:created_at)
+            - if can? :manage, Note
+              %th= t '.actions', default: t('helpers.actions')
+        %tbody
+          - @notes.each do |note|
+            %tr{ class: label_css_classes[note.status.to_sym] }
+              %td= link_to note.id, note
+              %td
+                - if note.screenshot.attached?
+                  = link_to note.screenshot, class: 'fancybox thumnbail' do
+                    = fa_icon 'image'
+              %td
+                - if note.user && current_user.role?(:admin)
+                  %strong
+                    - if note.user.member
+                      = note.user.surname_name + ':'
+                    - else
+                      = note.user.email
+                = simple_format truncate(note.content, length: 200, omission: '...')
+                - if note.review?
+                  .well.well-small= simple_format note.review
+              %td
+                %span.badge{class: "badge-#{label_css_classes[note.status.to_sym]}"}= t "notes.#{note.status}"
+              %td.col-md-2= Russian.strftime(note.created_at, "%d %B")
+              - if can? :manage, Note
+                %td
+                  .btn-group
+                    %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                      = fa_icon 'cog'
+                    .dropdown-menu.dropdown-menu-right
+                      = link_to t('shared.edit'), edit_note_path(note), class: 'dropdown-item'
+                      = link_to t('shared.del'), note_path(note), method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item'

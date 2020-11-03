@@ -32,17 +32,13 @@ module SubstratesHelper
     end
   end
 
-  def otk_status_text(status)
+  def otk_status_text(status, angle=true)
     unless status.empty?
-      icon = case status
-        when 'empty'
-          'calendar-minus'
-        when 'failed'
-          'calendar-times'
+      text = if angle
+          fa_icon('angle-down', text: t("substrates.otk_statuses.#{status}"), right: true, class: 'ml-2')
         else
-          'calendar-check'
+          t("substrates.otk_statuses.#{status}")
         end
-      text = fa_icon('angle-down', text: t("substrates.otk_statuses.#{status}"), right: true, class: 'ml-2')
       content_tag(:span, text.html_safe, class: status_style(status))
     else
       nil
@@ -51,20 +47,24 @@ module SubstratesHelper
 
   def otk_status_icon(status)
     unless status.empty?
-      icon = case status
-        when 'empty'
-          'calendar-minus'
-        when 'failed'
-          'calendar-times'
-        else
-          'calendar-check'
-        end
-      fa_icon(icon, type: :far, class: "fa-2x text-#{status_color(status)}")
+      fa_icon(otk_icon(status), type: :far, class: "fa-2x text-#{status_color(status)}")
     else
       nil
     end
   end
 
+  def otk_icon(status)
+    case status
+    when 'empty'
+      'calendar-minus'
+    when 'failed'
+      'calendar-times'
+    when 'approval'
+      'calendar'
+    else
+      'calendar-check'
+    end
+  end
 
   def select_text(status)
     color = case status
@@ -87,7 +87,8 @@ module SubstratesHelper
     when 'finished',
          'passed',
          'true'     then 'success'
-    when 'worked'   then 'primary'
+    when 'worked',
+         'approval' then 'primary'
     when 'shipped'  then 'violet'
     else
       'secondary'

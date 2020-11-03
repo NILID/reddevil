@@ -30,7 +30,7 @@ class Substrate < ApplicationRecord
 
   RAD_STRENGTHS = %w[нет непрерывная импульсная].freeze
 
-  OTK_STATUSES = %w[empty failed passed].freeze
+  OTK_STATUSES = %w[empty failed passed approval].freeze
 
   COATINGS = %w[нет зеркальное просветляющее светоделительное поляризующее фильтрующее другое].freeze
   SIDES = %w[a b ab].freeze

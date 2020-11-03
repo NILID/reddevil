@@ -45,6 +45,7 @@ ru:
       empty: Не рассмотрено
       failed: Отказ
       passed: Пройдено
+      approval: На согласовании
     statuses:
       opened: Открыто
       finished: Готово

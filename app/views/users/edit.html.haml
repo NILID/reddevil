@@ -2,12 +2,12 @@
   .card-header
     = t 'profiles.editing'
 
-  = bootstrap_form_for @user, layout: :horizontal do |f|
+  = bootstrap_form_for(@user, layout: :horizontal, label_col: 'col', control_col: 'col-8') do |f|
     .card-body
       .row
         .col-xs-12.col-md-6
           = f.fields_for :profile do |p|
-            = p.file_field :avatar, control_col: 'col-8', label_col: 'col'
+            = p.file_field :avatar
             #changecolor.colorpicker-component
               = p.text_field :background_color,
                 value: @user.background_color,

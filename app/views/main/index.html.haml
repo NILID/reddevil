@@ -2,7 +2,7 @@
 
 .row
   .col.card-columns.main-blocks
-    - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty? || !@bdusers_prevyesterday.empty?)
+    - if (can? :read, Member) && (!@bduser.empty? || !@bdusers_yesterday.empty?)
       .accordion#accordionBdays
         .card
           - if @bdusers_yesterday.any?

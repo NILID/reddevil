@@ -47,6 +47,7 @@ class SubstratesController < ApplicationController
     substrate_features = @substrate.substrate_features
     @substrate_features_a = substrate_features.select { |s| s.wave == 'A' }
     @substrate_features_b = substrate_features.select { |s| s.wave == 'B' }
+    @otk_documents= @substrate.otk_documents.includes(:blob)
 
     respond_to do |format|
       format.html

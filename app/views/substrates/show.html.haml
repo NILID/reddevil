@@ -175,24 +175,24 @@
         - if can? :manage_otk, Substrate
           = link_to manage_otk_substrate_path(@substrate), class: 'btn btn-primary btn-sm float-right' do
             = t('shared.edit')
-  - if @substrate.otk_desc?
-    .card-body
+  .card-body
+    - if @substrate.otk_desc?
       %p
         = @substrate.otk_desc
-      - if @substrate.otk_documents.attached?
-        %h4
-          = OfficeNote.human_attribute_name(:documents)
-        %table.table.table-hover.table-sm
-          - @substrate.otk_documents.each.with_index(1) do |document, index|
-            %tr
+    - if @substrate.otk_documents.attached?
+      %h4
+        = OfficeNote.human_attribute_name(:documents)
+      %table.table.table-hover.table-sm
+        - @otk_documents.each.with_index(1) do |document, index|
+          %tr
+            %td
+              = [index, '.'].join()
+            %td
+              = link_to document.filename, document, target: '_blank'
+            - if can? :delete_document, Substrate
               %td
-                = [index, '.'].join()
-              %td
-                = link_to document.filename, document, target: '_blank'
-              - if can? :delete_document, Substrate
-                %td
-                  = link_to delete_document_substrate_path(@substrate, document_id: document.signed_id), class: 'btn btn-sm btn-danger float-right', method: :delete, data: { confirm: t('shared.sure') } do
-                    = fa_icon 'trash'
+                = link_to delete_document_substrate_path(@substrate, document_id: document.signed_id), class: 'btn btn-sm btn-danger float-right', method: :delete, data: { confirm: t('shared.sure') } do
+                  = fa_icon 'trash'
 
 .modal.fade#manage_followers(role='dialog' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
   .modal-dialog

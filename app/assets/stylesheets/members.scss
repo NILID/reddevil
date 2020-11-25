@@ -18,3 +18,7 @@
 }
 
 .icon-padding-r{margin-right: 10px;}
+
+.bg-danger.bg-primary {
+  background: repeating-linear-gradient(45deg, #dc3545, #dc3545 10px, #007bff 10px, #007bff 20px);
+}

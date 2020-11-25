@@ -4,19 +4,23 @@ module MembersHelper
   end
 
   def is_holiday(vacations, date, day)
+    arr = []
     vacations.each do |v|
       if v.new_check_vac(date, day)
         if v.flag == 'rest'
-          return 'bg-primary'
+          arr << 'bg-primary'
         elsif v.flag == 'trip'
-          return 'bg-warning'
+          arr << 'bg-warning'
         else
-          return 'bg-danger'
+          arr << 'bg-danger'
         end
       end
     end
-    nil
+    arr.empty? ? nil : arr
   end
+
+
+
 
   def trip_period(startdate, enddate)
     if startdate == enddate

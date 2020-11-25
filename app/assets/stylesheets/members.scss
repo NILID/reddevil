@@ -22,3 +22,11 @@
 .bg-danger.bg-primary {
   background: repeating-linear-gradient(45deg, #dc3545, #dc3545 10px, #007bff 10px, #007bff 20px);
 }
+
+.bg-danger.bg-info {
+  background: repeating-linear-gradient(45deg, #dc3545, #dc3545 10px, #17a2b8 10px, #17a2b8 20px);
+}
+
+.bg-danger.bg-info.bg-primary {
+  background: repeating-linear-gradient(45deg, #dc3545, #dc3545 10px, #17a2b8 10px, #17a2b8 20px, #007bff 20px, #007bff 30px);
+}

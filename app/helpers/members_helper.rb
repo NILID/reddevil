@@ -11,6 +11,8 @@ module MembersHelper
           arr << 'bg-primary'
         elsif v.flag == 'trip'
           arr << 'bg-warning'
+        elsif v.flag == 'remote'
+          arr << 'bg-info'
         else
           arr << 'bg-danger'
         end

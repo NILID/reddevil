@@ -100,7 +100,7 @@ class MembersController < ApplicationController
 
   private
     def set_departments
-      @departments = Department.order(:title).includes(:members)
+      @departments = Department.order(:title)
     end
 
     def member_params

@@ -11,6 +11,7 @@
           = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
             = fa_icon 'filter', text: t('shared.filter')
     = render 'members/search_form', url: vac_path, only_select: false
+
     .row.mt-2
       .col
         = link_to vac_path(date: (@current_date - 1.month).strftime("%Y-%m-%d"), q: (params[:q] ? params[:q].permit! : nil)), class: 'btn btn-primary' do
@@ -25,16 +26,16 @@
         = link_to vac_path(date: (@current_date + 1.month).strftime("%Y-%m-%d"), q: (params[:q] ? params[:q].permit! : nil)), class: 'btn btn-primary' do
           = rus_month(@current_date+1.month)
           = fa_icon(:arrow_right)
+
     %table.table.table-sm.table-bordered
-      - days = Time.days_in_month(@current_date.month, @current_date.year)
       %thead
         %tr
           %th= Member.human_attribute_name(:surname)
-          - (1..days).each do |day|
-            - dayname = rus_dayname(@current_date.change(day: day))
-            %th{ class: (%w[Сб Вс].include? dayname) ? 'bg-red-10' : nil }
+          - daynames_and_color = daynames_and_color(@month_days_count, @current_date)
+          - (1..@month_days_count).each do |day|
+            %th{ class: holiday_color(daynames_and_color[day-1][1]) }
               = ((1..9).to_a.include? day) ? raw("&nbsp;#{day}") : day
-              .text-muted.small= dayname
+              .text-muted.small= daynames_and_color[day-1][2]
       %tbody
         - @members.each do |member|
           - holidays = member.vacations.where('startdate <= ?', @current_date).or(member.vacations.where('enddate >= ?', @current_date))
@@ -43,5 +44,17 @@
               = member.surname
               = link_to fa_icon(:list), list_member_vacations_path(member), class: 'float-right text-muted'
 
-            - (1..days).each do |day|
-              %td{ class: is_holiday(holidays, @current_date, day) }
+            - (1..@month_days_count).each do |day|
+              %td{ class: is_holiday(holidays, @current_date, day, daynames_and_color[day-1][1]) }
+
+    .row.mt-2
+      .col
+        %span.mr-5
+          = fa_icon :circle, class: 'text-primary'
+          = t 'member.rest'
+        %span.mr-5
+          = fa_icon :circle, class: 'text-danger'
+          = t 'member.sick'
+        %span.mr-5
+          = fa_icon :circle, class: 'text-warning'
+          = t 'member.trip'

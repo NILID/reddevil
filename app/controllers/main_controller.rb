@@ -58,7 +58,7 @@ class MainController < ApplicationController
       render template: 'main/index_unreg', layout: 'devise'
     end
 
-    @activities = PublicActivity::Activity.all.order(created_at: :desc)
+    @activities = PublicActivity::Activity.all.includes(:trackable).order(created_at: :desc)
   end
 
   def infocenter; end
@@ -80,9 +80,11 @@ class MainController < ApplicationController
     @q = Member.shown.ransack(params[:q])
     @q.sorts = 'surname' if @q.sorts.empty?
     @q.department_id_eq = current_user.member.department_id if current_user.member && !params[:q] # TODO: check current_user and member
-    @departments = Department.order(:title).includes(:members)
+    @departments = Department.order(:title)
     @members = @q.result(distinct: true)
 
     @current_date = params[:date] ? DateTime.parse(params[:date]) : DateTime.now
+
+    @month_days_count = Time.days_in_month(@current_date.month, @current_date.year)
   end
 end

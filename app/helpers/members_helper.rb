@@ -3,7 +3,7 @@ module MembersHelper
     l object.birth, format: :short
   end
 
-  def is_holiday(vacations, date, day)
+  def is_holiday(vacations, date, day, check_holiday)
     arr = []
     vacations.each do |v|
       if v.new_check_vac(date, day)
@@ -16,11 +16,21 @@ module MembersHelper
         end
       end
     end
-    arr.empty? ? nil : arr
+    return arr.empty? ? holiday_color(check_holiday) : arr
   end
 
+  def holiday_color(boolean_flag)
+    boolean_flag ? 'bg-red-10' : nil
+  end
 
-
+  def daynames_and_color(days_count, current_date)
+    collection = []
+    (1..days_count).each do |day|
+      dayname = rus_dayname(current_date.change(day: day))
+      collection << [day, (%w[Сб Вс].include? dayname), dayname]
+    end
+    return collection
+  end
 
   def trip_period(startdate, enddate)
     if startdate == enddate

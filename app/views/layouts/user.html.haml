@@ -14,7 +14,7 @@
 
         .row.mt-4
           .col-4.col-md-2
-            .btn-group-vertical.btn-block
+            .btn-group-vertical.btn-block.main-menu
               = link_to current_user, class: "btn btn-light text-left #{ (params[:controller] == 'users' && params[:id] == current_user.to_param) ? 'active' : nil }" do
                 = fa_icon 'user', text: t('profiles.my')
               = link_to members_path, class: "btn btn-light text-left #{ (params[:controller] == 'members') ? 'active' : nil }" do
@@ -46,11 +46,11 @@
                   = fa_icon 'hdd', text: t('dataset.title')
                   %sup alpha
             - if current_user.role? :admin
-              .btn-group-vertical.btn-block
+              .btn-group-vertical.btn-block.main-menu
                 = link_to office_notes_path, class: "btn btn-light text-left #{ (params[:controller] == 'office_notes') ? 'active' : nil }" do
                   = fa_icon 'file-alt', text: t('office_notes.title')
             - if can? :read, Substrate
-              .btn-group-vertical.btn-block
+              .btn-group-vertical.btn-block.main-menu
                 = link_to substrates_path, class: "btn btn-success text-left #{ (params[:controller] == 'substrates') ? 'active' : nil }" do
                   = fa_icon 'wrench', text: t('substrates.title')
 

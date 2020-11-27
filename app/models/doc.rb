@@ -17,6 +17,10 @@ class Doc < ApplicationRecord
 
   attr_reader :category_tokens
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
   def category_tokens=(tokens)
     self.category_ids = tokens
   end

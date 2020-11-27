@@ -2,6 +2,18 @@
   .card
     .card-header(role='tab' id="collapse_list_#{doc.id}")
       = link_to doc.title, "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }
+      = fa_icon :link, class: 'float-right text-muted', data: { toggle: 'modal', target: "#modal_#{doc.id}_url" }
+      .modal.fade{id: "modal_#{doc.id}_url", role: 'dialog', tabindex: '-1', aria: { hidden: 'true', labelledby: "modal_#{doc.id}_url_label" }}
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5= t 'docs.copy_url'
+              %button.close(type='button' data-dismiss='modal' aria-label="Close")
+                %span(aria-hidden="true") &times;
+            .model-body
+              .m-3.mt-0
+                = text_field_tag 'url', doc_url(doc), class: 'form-control'
+
     - if doc.desc?
       .panel-collapse.collapse{id: "collapse_#{doc.id}", style: 'height:0px', role: 'tabpanel', aria: { labelledby: "collapse_#{doc.id}", expanded: 'false' }}
         .card-body
@@ -17,7 +29,6 @@
         - if doc.desc?
           = link_to "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }, class: 'btn btn-sm btn-secondary' do
             = t('docs.about')
-
         - if can? :manage, Doc
           .btn-group.ml-1
             .btn.btn-sm.btn-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

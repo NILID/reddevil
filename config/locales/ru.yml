@@ -104,6 +104,7 @@ ru:
     in_category: в категории "%{category}"
     show_inlast: 'Показывать в "Последних документах"'
     no_cats: без категории
+    copy_url: Ссылка на документ
   teams:
     title: Команды
     add: Добавить команду

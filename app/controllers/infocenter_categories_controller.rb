@@ -7,12 +7,13 @@ class InfocenterCategoriesController < CategoriesController
     if @object.show_type == 'vacations'
       @q = Member.shown.ransack(params[:q])
       @q.sorts = 'surname' if @q.sorts.empty?
-      @departments = Department.order(:title).includes(:members)
+      @departments = Department.order(:title)
       @q.department_id_eq = current_user.member.department_id if current_user.member && !params[:q] # TODO: check current_user and member
       @members = @q.result(distinct: true)
 
       @current_date = params[:date] ? DateTime.parse(params[:date]) : DateTime.now
 
+      @month_days_count = Time.days_in_month(@current_date.month, @current_date.year)
     else
       @cards = @object.cards.includes(doc_attachment: [:blob])
     end

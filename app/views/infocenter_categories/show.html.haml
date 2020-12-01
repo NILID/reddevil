@@ -29,7 +29,7 @@
         - when 'zoom'
           = render partial: 'cards/zoom_grid', collection: @cards, as: :card
         - when 'vacations'
-          = render 'vac', locals: { object: @object }
+          = render 'infocenter_categories/vac', locals: { object: @object }
     .row
       .col
         = render 'tables/inline_table', tables: @tables

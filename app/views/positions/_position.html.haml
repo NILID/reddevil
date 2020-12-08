@@ -8,11 +8,12 @@
 %li.position-item
   %span.text-primary= position.position
   %span.float-right.text-primary= position.moved_at
-  %div.text-right
-    .btn-group
-      %button.btn.btn-sm.btn-light.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-        = fa_icon 'ellipsis-v'
-      %ul.dropdown-menu.dropdown-menu-right
-        = link_to fa_icon(:edit,  text: t('shared.edit')), edit_member_position_path(@member, position),  class: 'dropdown-item'
-        = link_to fa_icon(:trash, text: t('shared.del')), [@member, position], method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item'
+  - if can? :manage, position
+    %div.text-right
+      .btn-group
+        %button.btn.btn-sm.btn-light.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+          = fa_icon 'ellipsis-v'
+        %ul.dropdown-menu.dropdown-menu-right
+          = link_to fa_icon(:edit,  text: t('shared.edit')), edit_member_position_path(@member, position),  class: 'dropdown-item'
+          = link_to fa_icon(:trash, text: t('shared.del')), [@member, position], method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item'
 

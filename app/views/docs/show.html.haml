@@ -22,7 +22,7 @@
       = link_to t('shared.del'), doc_path(@doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
 
     .btn.btn-outline-success.float-right{ data: { toggle: 'modal', target: "#modal_#{@doc.id}_url" } }
-      = fa_icon :link, text: 'Получить ссылку'
+      = fa_icon :link, text: t('shared.get_link')
     .modal.fade{id: "modal_#{@doc.id}_url", role: 'dialog', tabindex: '-1', aria: { hidden: 'true', labelledby: "modal_#{@doc.id}_url_label" }}
       .modal-dialog
         .modal-content

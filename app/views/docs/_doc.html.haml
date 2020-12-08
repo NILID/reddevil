@@ -2,7 +2,7 @@
   .card
     .card-header(role='tab' id="collapse_list_#{doc.id}")
       = link_to doc.title, "#collapse_#{doc.id}", role: 'button', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: "collapse_#{doc.id}" }
-      = fa_icon :link, class: 'float-right text-muted', data: { toggle: 'modal', target: "#modal_#{doc.id}_url" }
+      = fa_icon :link, class: 'float-right text-success pointer', title: t('shared.get_link'), data: { toggle: 'modal', target: "#modal_#{doc.id}_url" }
       .modal.fade{id: "modal_#{doc.id}_url", role: 'dialog', tabindex: '-1', aria: { hidden: 'true', labelledby: "modal_#{doc.id}_url_label" }}
         .modal-dialog
           .modal-content
@@ -12,7 +12,7 @@
                 %span(aria-hidden="true") &times;
             .model-body
               .m-3.mt-0
-                = text_field_tag 'url', doc_url(doc), class: 'form-control'
+                = text_field_tag 'url', open_doc_url(doc), class: 'form-control'
 
     - if doc.desc?
       .panel-collapse.collapse{id: "collapse_#{doc.id}", style: 'height:0px', role: 'tabpanel', aria: { labelledby: "collapse_#{doc.id}", expanded: 'false' }}

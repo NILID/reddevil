@@ -1,0 +1,12 @@
+= bootstrap_form_for [@member, @position], html: { class: 'card' }  do |f|
+  .card-header= formtitle
+
+  .card-body
+    = render 'error', object: @position
+
+    = f.text_field :position
+    = f.select :department_id, @departments.map{|d| [d.title, d.id] }, { include_blank: t('shared.to_select') }
+    = f.date_select :moved_at
+  .card-footer
+    = f.submit t('shared.create')
+    .float-right= link_to t('shared.back'), [@member, Position], class: 'btn btn-secondary'

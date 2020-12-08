@@ -36,6 +36,10 @@ class DocsController < ApplicationController
     end
   end
 
+  def open
+    redirect_to @doc.document
+  end
+
   def archive
     @docs = Doc.where(archive: true)
   end

@@ -32,6 +32,7 @@ ru:
       page: страница
       type: вид спорта
       vacation: событие
+      position: профессиональная запись
     attributes:
       album:
         title: Название
@@ -122,6 +123,10 @@ ru:
       page:
         title: Название
         content: Описание
+      position:
+        position: Должность
+        moved_at: Дата записи
+        department_id: Отдел
       note:
         content: Описание
         status: Статус

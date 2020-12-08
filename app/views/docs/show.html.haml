@@ -16,8 +16,20 @@
       %p= link_to t('docs.download'), @doc.document, class: 'btn btn-primary', target: '_blank'
 
   .card-footer
-    .form-group
-      = link_to t('.back', default: t("helpers.links.back")), docs_path, class: 'btn btn-secondary'
-      - if can? :manage, @doc
-        = link_to t('shared.edit'), edit_doc_path(@doc), class: 'btn btn-secondary'
-        = link_to t('shared.del'), doc_path(@doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
+    = link_to t('.back', default: t("helpers.links.back")), docs_path, class: 'btn btn-secondary'
+    - if can? :manage, @doc
+      = link_to t('shared.edit'), edit_doc_path(@doc), class: 'btn btn-secondary'
+      = link_to t('shared.del'), doc_path(@doc), method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-danger'
+
+    .btn.btn-outline-success.float-right{ data: { toggle: 'modal', target: "#modal_#{@doc.id}_url" } }
+      = fa_icon :link, text: 'Получить ссылку'
+    .modal.fade{id: "modal_#{@doc.id}_url", role: 'dialog', tabindex: '-1', aria: { hidden: 'true', labelledby: "modal_#{@doc.id}_url_label" }}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %h5= t 'docs.copy_url'
+            %button.close(type='button' data-dismiss='modal' aria-label="Close")
+              %span(aria-hidden="true") &times;
+          .model-body
+            .m-3.mt-0
+              = text_field_tag 'url', open_doc_url(@doc), class: 'form-control'

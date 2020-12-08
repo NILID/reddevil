@@ -5,7 +5,8 @@ class Doc < ApplicationRecord
   include PublicActivity::Model
   tracked  :params => {
               :summary => proc { |controller, model| model.title }
-           }
+           },
+           only: :create
 
   has_many :categoryships, dependent: :destroy
   has_many :categories, through: :categoryships

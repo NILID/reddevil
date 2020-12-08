@@ -7,6 +7,7 @@ class Ability
 
     # everybody
     cannot %[manage read], :all
+    can :open, Doc
 
     if user.role? :admin
       can :read, Forecast do |f|

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :departments, except: [:show]
 
   resources :office_notes do
@@ -113,6 +112,7 @@ Rails.application.routes.draw do
     member do
       post :follow
       put :toggle_archive
+      get :open
     end
   end
 
@@ -154,6 +154,8 @@ Rails.application.routes.draw do
     member do
       get :toggle_remote
     end
+
+    resources :positions, except: %[show]
     resources :vacations, except: %[show] do
       collection do
         get :list

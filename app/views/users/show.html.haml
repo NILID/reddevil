@@ -50,11 +50,17 @@
                     %span.badge.badge-primary= t "user.roles.#{role}"
 
               - if @member
+                - if @member.department_id?
+                  %dt.col-md-3.col-6.text-right
+                    = Member.human_attribute_name(:department_id)
+                  %dd.col-md-9.col-6
+                    = link_to @member.department.title, members_path(q: {department_id_eq: @member.department_id })
                 %dt.col-md-3.col-6.text-right
-                  = Member.human_attribute_name(:department_id)
+                  = Member.human_attribute_name(:position)
                 %dd.col-md-9.col-6
-                  = link_to @member.department.title, members_path(q: {department_id_eq: @member.department_id })
-                - %i[number position work_phone short_number phone email].each do |attr|
+                  = link_to position_link_text(@member.position), [@member, Position]
+
+                - %i[number work_phone short_number phone email].each do |attr|
                   %dt.col-md-3.col-6.text-right
                     = Member.human_attribute_name(attr)
                   %dd.col-md-9.col-6

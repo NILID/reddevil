@@ -8,6 +8,5 @@ FactoryBot.define do
     short_number { Faker::PhoneNumber.subscriber_number(length: 4) }
     work_phone   { Faker::PhoneNumber.subscriber_number(length: 4) }
     email        { Faker::Internet.unique.email }
-    department
   end
 end

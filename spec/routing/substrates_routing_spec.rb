@@ -19,7 +19,6 @@ RSpec.describe SubstratesController, type: :routing do
       expect(:get => "/substrates/1/edit").to route_to("substrates#edit", :id => "1")
     end
 
-
     it "routes to #create" do
       expect(:post => "/substrates").to route_to("substrates#create")
     end

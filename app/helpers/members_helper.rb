@@ -49,4 +49,8 @@ module MembersHelper
       content_tag(:span, t('member.remote'), class: 'badge badge-secondary')
     end
   end
+
+  def position_link_text(position)
+    position || t('shared.empty')
+  end
 end

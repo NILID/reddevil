@@ -1,11 +1,9 @@
 = f.number_field :number
-= f.text_field :position
 = f.text_field :work_phone
 = f.text_field :short_number
 = f.text_field :phone
 = f.email_field :email
 
 - if (current_user.role? :admin)
-  = f.select :department_id, @departments.map{|d| [d.title, d.id] },        { include_blank: t('shared.to_select') }
   = f.select :user_id, (User.order(:email).collect { |u| [u.email, u.id]}), { include_blank: t('shared.to_select') }
   = f.check_box :archive_flag, { custom: :switch }

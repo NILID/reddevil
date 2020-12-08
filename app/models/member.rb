@@ -1,5 +1,6 @@
 class Member < ApplicationRecord
   has_many :vacations, inverse_of: :member
+  has_many :positions, inverse_of: :member
   belongs_to :department, optional: true
   belongs_to :user,       optional: true
 
@@ -37,6 +38,11 @@ class Member < ApplicationRecord
     Petrovich(lastname: surname, firstname: name,  middlename: patronymic).to(:genitive).to_s
   end
 
+  def petrovich_surname_name
+    Petrovich(lastname: surname, firstname: name).to(:genitive).to_s
+  end
+
+
   def mday
     self.birth.strftime('%d')
   end
@@ -70,6 +76,14 @@ class Member < ApplicationRecord
     end
   end
 
+
+  def last_position
+    self.positions.order(moved_at: :desc).first
+  end
+
+  def update_position(position=nil, department=nil)
+    self.update_attributes( position: position, department_id: department )
+  end
 
   private
 

@@ -109,13 +109,12 @@ class MembersController < ApplicationController
                              :patronymic,
                              :work_phone,
                              :phone,
-                             :position,
                              :short_number,
                              :email,
                              :birth,
                              :hide_year
                             ]
-      list_params_allowed << [:archive_flag, :user_id, :toggle_flag, :department_id] if (current_user&.role? :admin)
+      list_params_allowed << [:archive_flag, :user_id, :toggle_flag] if (current_user&.role? :admin)
       params.require(:member).permit(list_params_allowed)
     end
 end

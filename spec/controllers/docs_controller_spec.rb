@@ -109,6 +109,15 @@ RSpec.describe DocsController, type: :controller do
     end
   end
 
+  describe 'unreg user should' do
+    it 'open' do
+      get :open, params: { id: doc }
+      expect{ response }.not_to raise_error
+      expect(response).to redirect_to(doc.document)
+    end
+  end
+
+
   describe 'unreg user should not' do
     after(:each) do
       expect(response).to redirect_to(root_path)

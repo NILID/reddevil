@@ -58,7 +58,7 @@ class MainController < ApplicationController
       render template: 'main/index_unreg', layout: 'devise'
     end
 
-    @activities = PublicActivity::Activity.all.includes(:trackable).order(created_at: :desc)
+    @activities = PublicActivity::Activity.all.where('created_at >= ?', DateTime.now - 10.days).includes(:trackable).order(created_at: :desc)
   end
 
   def infocenter; end

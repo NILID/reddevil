@@ -1,10 +1,28 @@
-.card
-  .card-body
-    .row
-      .col-12
-        = image_tag user.avatar(:original), class: 'img-fluid'
-      .col-12.mt-3
-        - if can? :edit, user
-          = link_to t('profiles.edit'), edit_user_path(user), class: 'btn btn-outline-secondary btn-sm btn-block'
-        - if can? :edit_roles, user
-          = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'btn btn-outline-info btn-sm btn-block'
+- if user
+  .col-md-3.col-sm-4
+    .card
+      .card-body
+        .row
+          .col-12
+            = image_tag user.avatar(:original), class: 'img-fluid'
+          .col-12.mt-3
+            - if can? :edit, user
+              = link_to t('profiles.edit'), edit_user_path(user), class: 'btn btn-outline-secondary btn-sm btn-block'
+            - if can? :edit_roles, user
+              = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'btn btn-outline-info btn-sm btn-block'
+
+
+    - if params[:controller] == 'users'
+      .card.mt-3
+        .card-header
+          = link_to users_path, class: 'text-muted' do
+            = t 'users.title'
+            .float-right
+              = fa_icon 'user', text: content_tag(:span, @online_users.size, class: 'user-online-counter')
+          - if @online_users_without_current.any?
+            .card-body
+              .row.row-cols-3
+                - @online_users_without_current.each do |user|
+                  = link_to user, class: 'col mb-2' do
+                    .card
+                      = image_tag user.avatar.url(:thumb), class: 'card-img-top'

@@ -1,6 +1,5 @@
 .row
-  .col-md-3.col-sm-4
-    = render 'users/user_sideblock', user: @member.user
+  = render 'users/user_sideblock', user: @member.user
   .col
     = bootstrap_form_for [@member, @position], html: { class: 'card' }  do |f|
       .card-header

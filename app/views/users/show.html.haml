@@ -1,22 +1,7 @@
 - set_meta_tags title: (@member.fullname if @member)
 
 .row
-  .col-md-3.col-sm-4
-    = render 'users/user_sideblock', user: @user
-
-    .card.mt-3
-      .card-header
-        = link_to users_path, class: 'text-muted' do
-          = t 'users.title'
-          .float-right
-            = fa_icon 'user', text: content_tag(:span, @online_users.size, class: 'user-online-counter')
-      - if @online_users_without_current.any?
-        .card-body
-          .row.row-cols-3
-            - @online_users_without_current.each do |user|
-              = link_to user, class: 'col mb-2' do
-                .card
-                  = image_tag user.avatar.url(:thumb), class: 'card-img-top'
+  = render 'users/user_sideblock', user: @user
   .col
     .card.mt-2.mt-md-0
       .card-header

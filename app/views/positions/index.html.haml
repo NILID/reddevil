@@ -1,6 +1,7 @@
 .row
-  .col-md-3.col-sm-4
-    = render 'users/user_sideblock', user: @member.user
+  - if @member.user
+    .col-md-3.col-sm-4
+      = render 'users/user_sideblock', user: @member.user
 
   .col
     .card

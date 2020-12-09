@@ -4,7 +4,7 @@ class PositionsController < ApplicationController
 
   before_action :set_departments, only: %i[edit update new create]
 
-  layout 'user'
+  layout 'user_with_side'
 
   def index
     @positions = @positions.order(moved_at: :desc).includes(:department)

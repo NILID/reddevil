@@ -17,6 +17,9 @@
             = render 'layouts/vertical_menu'
 
           .col-8.col-md-10
-            = yield
+            .row
+              = render 'users/user_sideblock', user: @user || @member.user
+              .col
+                = yield
 
     = render 'layouts/footer'

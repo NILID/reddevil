@@ -3,11 +3,12 @@ class UsersController < ApplicationController
 
   before_action :set_departments, only: [:edit, :update]
 
-  layout 'user'
+  layout 'user_with_side'
 
   def index
     @q = @users.includes(:profile, :member).ransack(params[:q])
     @users = @q.result(distinct: true)
+    render layout: 'user'
   end
 
   def show

@@ -1,57 +1,69 @@
 - set_meta_tags title: (@member.fullname if @member)
 
-.row
-  = render 'users/user_sideblock', user: @user
-  .col
-    .card.mt-2.mt-md-0
-      .card-header
-        .row
-          .col
-            .h3.mb-0= @user.show_name
-          .col-3.text-right
-            = last_seen(@user)
-            = remote_status(@member)
-      .card-body
-        .row
-          .col-md-12
-            %dl.row
-              - if (current_user.role? :admin)
-                %dt.col-md-3.col-6.text-right= t 'users.has_groups'
-                %dd.col-md-9.col-6
-                  - @user.groups.each do |group|
-                    %span.badge.badge-primary= t "user.groups.#{group}"
-                %dt.col-md-3.col-6.text-right= t 'users.has_roles'
-                %dd.col-md-9.col-6
-                  - @user.roles.each do |role|
-                    %span.badge.badge-primary= t "user.roles.#{role}"
+= content_for :bottom_block do
+  .card.mt-3
+    .card-header
+      = link_to users_path, class: 'text-muted' do
+        = t 'users.title'
+        .float-right
+          = fa_icon 'user', text: content_tag(:span, @online_users.size, class: 'user-online-counter')
+      - if @online_users_without_current.any?
+        .card-body
+          .row.row-cols-3
+            - @online_users_without_current.each do |user|
+              = link_to user, class: 'col mb-2' do
+                .card
+                  = image_tag user.avatar.url(:thumb), class: 'card-img-top'
 
-              - if @member
-                - if @member.department_id?
-                  %dt.col-md-3.col-6.text-right
-                    = Member.human_attribute_name(:department_id)
-                  %dd.col-md-9.col-6
-                    = link_to @member.department.title, members_path(q: {department_id_eq: @member.department_id })
-                %dt.col-md-3.col-6.text-right
-                  = Member.human_attribute_name(:position)
-                %dd.col-md-9.col-6
-                  = link_to position_link_text(@member.position), [@member, Position]
+.card.mt-2.mt-md-0
+  .card-header
+    .row
+      .col
+        .h3.mb-0= @user.show_name
+      .col-3.text-right
+        = last_seen(@user)
+        = remote_status(@member)
+  .card-body
+    .row
+      .col-md-12
+        %dl.row
+          - if (current_user.role? :admin)
+            %dt.col-md-3.col-6.text-right= t 'users.has_groups'
+            %dd.col-md-9.col-6
+              - @user.groups.each do |group|
+                %span.badge.badge-primary= t "user.groups.#{group}"
+            %dt.col-md-3.col-6.text-right= t 'users.has_roles'
+            %dd.col-md-9.col-6
+              - @user.roles.each do |role|
+                %span.badge.badge-primary= t "user.roles.#{role}"
 
-                - %i[number work_phone short_number phone email].each do |attr|
-                  %dt.col-md-3.col-6.text-right
-                    = Member.human_attribute_name(attr)
-                  %dd.col-md-9.col-6
-                    - if @member[attr].present?
-                      - case attr
-                      - when :birth
-                        = l(@member[attr], format: :short)
-                      - else
-                        = @member[attr]
-                    - else
-                      = empty_tag
+          - if @member
+            - if @member.department_id?
+              %dt.col-md-3.col-6.text-right
+                = Member.human_attribute_name(:department_id)
+              %dd.col-md-9.col-6
+                = link_to @member.department.title, members_path(q: {department_id_eq: @member.department_id })
+            %dt.col-md-3.col-6.text-right
+              = Member.human_attribute_name(:position)
+            %dd.col-md-9.col-6
+              = link_to position_link_text(@member.position), [@member, Position]
 
-    - if current_user.member
-      .card.mt-3
-        = render 'vacations/current_vacations',
-          current_vacation: @current_vacation,
-          current_vacations_soon: @current_vacations_soon,
-          member: @member
+            - %i[number work_phone short_number phone email].each do |attr|
+              %dt.col-md-3.col-6.text-right
+                = Member.human_attribute_name(attr)
+              %dd.col-md-9.col-6
+                - if @member[attr].present?
+                  - case attr
+                  - when :birth
+                    = l(@member[attr], format: :short)
+                  - else
+                    = @member[attr]
+                - else
+                  = empty_tag
+
+- if current_user.member
+  .card.mt-3
+    = render 'vacations/current_vacations',
+      current_vacation: @current_vacation,
+      current_vacations_soon: @current_vacations_soon,
+      member: @member

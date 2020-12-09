@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :manufactures do
+    member do
+      get :manage_otk
+    end
+  end
+
   resources :departments, except: [:show]
 
   resources :office_notes do

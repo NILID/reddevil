@@ -1,0 +1,27 @@
+.card
+  .card-header
+    %span.h2= t('shared.items_list')
+    .float-right
+      = link_to fa_icon(:plus, text: t('shared.add')), new_manufacture_path, class: 'btn btn-primary'
+
+  .card-body
+    - if @manufactures.empty?
+      .text-center.my-5
+        .h3.text-muted= t('shared.search_empty')
+    - else
+      %table.table.table-hover
+        %thead
+          %tr
+            %th= Manufacture.human_attribute_name(:title)
+            %th= Manufacture.human_attribute_name(:drawing)
+            %th= Manufacture.human_attribute_name(:contract)
+            %th= Manufacture.human_attribute_name(:material)
+            %th= Manufacture.human_attribute_name(:user)
+            %th= Manufacture.human_attribute_name(:machine)
+            %th= Manufacture.human_attribute_name(:operation)
+            %th= Manufacture.human_attribute_name(:otk)
+            %th= Manufacture.human_attribute_name(:priority)
+            %th
+
+        %tbody
+          = render @manufactures

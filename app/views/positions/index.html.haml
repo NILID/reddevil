@@ -1,13 +1,18 @@
-.card
-  .card-body
-    .row
-      .col-md-6.offset-md-3
-        %h2.mb-5.text-center
-          = t 'positions.title'
-          = link_to @member.petrovich_surname_name, @member.user
-        .mb-5.text-center
-          = link_to new_member_position_path(@member), class: 'btn btn-outline-primary' do
-            = fa_icon :plus, text: t('positions.new')
+.row
+  .col-md-3.col-sm-4
+    = render 'users/user_sideblock', user: @member.user
 
-        %ul.timeline
-          = render @positions
+  .col
+    .card
+      .card-body
+        .row
+          .col-md-6.offset-md-3
+            %h2.mb-5.text-center
+              = t 'positions.title'
+              = link_to @member.petrovich_surname_name, @member.user
+            .mb-5.text-center
+              = link_to new_member_position_path(@member), class: 'btn btn-outline-primary' do
+                = fa_icon :plus, text: t('positions.new')
+
+            %ul.timeline
+              = render @positions

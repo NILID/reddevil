@@ -65,6 +65,7 @@ class MainController < ApplicationController
     @docs = (Doc.where('updated_at >= ?', now - 10.days).
           or(Doc.where('created_at >= ?', now - 10.days)))
           .where(show_last_flag: true)
+          .includes(document_attachment: [:blob])
           .order(updated_at: :desc)
   end
 

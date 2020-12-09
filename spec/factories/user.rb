@@ -1,8 +1,8 @@
 # ROLES = %w(admin user moderator editor testuser manager guest)
 #              1    2       4       8      16      32      64
 
-# GROUPS = %w[luch lab193 test lab182 otk]
-#               1    2     4     8     16
+# GROUPS = %w[luch lab193 test lab182 otk lab181]
+#               1    2     4     8     16   32
 
 FactoryBot.define do
   factory :user do
@@ -47,5 +47,10 @@ FactoryBot.define do
     trait(:from_otk) do
       after(:create) { |u| u.update_attribute(:groups_mask, 16)}
     end
+
+    trait(:from_lab181) do
+      after(:create) { |u| u.update_attribute(:groups_mask, 32)}
+    end
+
   end
 end

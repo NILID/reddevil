@@ -1,0 +1,19 @@
+%tr
+  %td= link_to manufacture.title, manufacture
+  %td= manufacture.drawing
+  %td= manufacture.contract
+  %td= manufacture.material
+  %td= manufacture.user
+  %td= manufacture.machine
+  %td= manufacture.operation
+  %td= manufacture.otk
+  %td= manufacture.priority
+  %td
+    .btn-group.float-right
+      %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        = fa_icon 'cog'
+      .dropdown-menu.dropdown-menu-right
+        = link_to edit_manufacture_path(manufacture), class: 'dropdown-item' do
+          = fa_icon 'edit', text: t('shared.edit')
+        = link_to manufacture, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+          = fa_icon 'trash', text: t('shared.del')

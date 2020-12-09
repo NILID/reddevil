@@ -1,0 +1,13 @@
+- formtitle = t('substrates.manage_otk')
+- set_meta_tags title: formtitle
+
+= bootstrap_form_for @manufacture, html: { class: 'card' } do |f|
+  .card-body
+    = render 'error', object: @manufacture
+
+    .row
+      .col
+        = f.text_area :otk
+
+  .card-footer
+    = f.submit t('shared.save')

@@ -49,10 +49,16 @@
               .btn-group-vertical.btn-block.main-menu
                 = link_to office_notes_path, class: "btn btn-light text-left #{ (params[:controller] == 'office_notes') ? 'active' : nil }" do
                   = fa_icon 'file-alt', text: t('office_notes.title')
+            - if can? :read, Manufacture
+              .btn-group-vertical.btn-block.main-menu
+                = link_to manufactures_path, class: "btn btn-success text-left #{ (params[:controller] == 'manufactures') ? 'active' : nil }" do
+                  = fa_icon 'hammer', text: t('manufactures.title_with')
+                  %sup alpha
             - if can? :read, Substrate
               .btn-group-vertical.btn-block.main-menu
                 = link_to substrates_path, class: "btn btn-success text-left #{ (params[:controller] == 'substrates') ? 'active' : nil }" do
                   = fa_icon 'wrench', text: t('substrates.title_with')
+
 
           .col-8.col-md-10
             = yield

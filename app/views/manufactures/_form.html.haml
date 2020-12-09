@@ -1,0 +1,20 @@
+= bootstrap_form_for @manufacture, html: { class: 'card' } do |f|
+  .card-header
+    = formtitle
+  .card-body
+    = render 'error', object: @manufacture
+
+    = f.text_field :title
+    = f.text_field :drawing
+    = f.text_field :contract
+    = f.text_field :material
+    = f.text_field :user
+    = f.text_field :machine
+    = f.text_area :operation
+    = f.text_field :otk
+    = f.text_field :priority
+  .card-footer
+    = f.submit t('shared.save')
+    .float-right
+      = link_to t('shared.back'), manufactures_path, class: 'btn btn-outline-secondary'
+

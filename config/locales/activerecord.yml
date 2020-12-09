@@ -4,9 +4,10 @@ ru:
       album: альбом
       card: карточка
       department: подразделение
-      song: песня
       event: событие
       member: сотрудник
+      manufacture: изделие
+      song: песня
       user: пользователь
       comment: сообщение
       profile: профиль
@@ -45,6 +46,16 @@ ru:
         column_type: Тип
       department:
         title: Наименование
+      manufacture:
+        title: Наименование
+        drawing: Чертеж
+        contract: Договор
+        material: Материал
+        user: Исполнитель
+        machine: Станок
+        operation: Операция
+        otk: ОТК
+        priority: Приоритет
       row:
         user_id: Исполнитель
       columnship:

@@ -1,0 +1,10 @@
+.card
+  .card-body
+    .row
+      .col-12
+        = image_tag user.avatar(:original), class: 'img-fluid'
+      .col-12.mt-3
+        - if can? :edit, user
+          = link_to t('profiles.edit'), edit_user_path(user), class: 'btn btn-outline-secondary btn-sm btn-block'
+        - if can? :edit_roles, user
+          = link_to t('users.to_edit_roles'), edit_roles_user_path(user), class: 'btn btn-outline-info btn-sm btn-block'

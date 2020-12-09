@@ -52,7 +52,7 @@
             - if can? :read, Substrate
               .btn-group-vertical.btn-block.main-menu
                 = link_to substrates_path, class: "btn btn-success text-left #{ (params[:controller] == 'substrates') ? 'active' : nil }" do
-                  = fa_icon 'wrench', text: t('substrates.title')
+                  = fa_icon 'wrench', text: t('substrates.title_with')
 
           .col-8.col-md-10
             = yield

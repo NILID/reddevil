@@ -58,7 +58,14 @@ class MainController < ApplicationController
       render template: 'main/index_unreg', layout: 'devise'
     end
 
-    @activities = PublicActivity::Activity.all.where('created_at >= ?', DateTime.now - 10.days).includes(:trackable).order(created_at: :desc)
+    # set activities with PublicActivity
+    #
+    # @activities = PublicActivity::Activity.all.where('created_at >= ?', DateTime.now - 10.days).includes(:trackable).order(created_at: :desc)
+
+    @docs = (Doc.where('updated_at >= ?', now - 10.days).
+          or(Doc.where('created_at >= ?', now - 10.days)))
+          .where(show_last_flag: true)
+          .order(updated_at: :desc)
   end
 
   def infocenter; end

@@ -1,0 +1,8 @@
+- doc = mini_doc
+- if doc.document.attached?
+  %tr
+    %td
+      %span.text-muted.mr-4
+        = l doc.updated_at, format: :short
+      В библиотеку добавлен
+      = link_to doc.title, open_doc_path(doc), target: '_blank'

@@ -18,7 +18,7 @@
 
           .col-8.col-md-10
             .row
-              = render 'users/user_sideblock', user: @user || @member.user
+              = render 'users/user_sideblock', user: @user || @member&.user
               .col
                 = yield
 

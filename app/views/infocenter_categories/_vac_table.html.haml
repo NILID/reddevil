@@ -20,12 +20,7 @@
 
 .row.mt-2
   .col
-    %span.mr-5
-      = fa_icon :circle, class: 'text-primary'
-      = t 'member.rest'
-    %span.mr-5
-      = fa_icon :circle, class: 'text-danger'
-      = t 'member.sick'
-    %span.mr-5
-      = fa_icon :circle, class: 'text-warning'
-      = t 'member.trip'
+    - { rest: :primary, sick: :danger, trip: :warning }.each do |vac, style|
+      %span.mr-5
+        = fa_icon :circle, class: "text-#{style}"
+        = t "member.#{vac}"

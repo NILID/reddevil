@@ -1,4 +1,4 @@
-current_year = DateTime.now.year
+current_year = Date.today.year
 
 json.array!(@vacations) do |vacation|
   flag = vacation.flag

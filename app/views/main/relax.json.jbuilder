@@ -1,6 +1,8 @@
-current_year = DateTime.now.year
+today = Date.today
+prev_month = today.prev_month
+next_month = today.next_month
 
-json.array!(Holidays.between(Date.civil(current_year, 1, 1), Date.civil(current_year, 12, 31), :full_ru, :reddevil_ru)) do |holiday|
+json.array!(Holidays.between(Date.civil(prev_month.year, prev_month.month, 1), Date.civil(next_month.year, next_month.month, 31), :full_ru, :reddevil_ru)) do |holiday|
   holiday_date = holiday[:date]
   holiday_name = holiday[:name]
   json.title holiday_name

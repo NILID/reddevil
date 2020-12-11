@@ -1,4 +1,4 @@
-current_year = DateTime.now.year
+current_year = Date.today.year
 
 json.array!(@members.select{|m| m.birth?}) do |member|
   birth_date = member.birth.change(year: current_year)

@@ -5,13 +5,19 @@
     = render 'error', object: @manufacture
 
     = f.text_field :title
-    = f.text_field :drawing
-    = f.text_field :contract
-    = f.select :material, Manufacture::MATERIALS.map { |c| [c, c] }, { include_blank: t('shared.to_select') }, { class: 'selectpicker' }
-    = f.text_field :user
-    = f.text_field :machine
-    = f.text_area :operation
-    = f.text_field :priority
+    .row
+      .col
+        = f.text_field :drawing
+        = f.select :material, Manufacture::MATERIALS.map { |c| [c, c] }, { include_blank: t('shared.to_select') }, { class: 'selectpicker' }
+      .col
+        = f.text_field :contract
+        = f.text_field :machine
+    = f.text_field :operation
+    .row
+      .col
+        = f.text_field :user
+      .col
+        = f.text_field :priority
   .card-footer
     = f.submit t('shared.save')
     .float-right

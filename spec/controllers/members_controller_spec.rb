@@ -20,7 +20,7 @@ RSpec.describe MembersController, type: :controller do
       it 'creates a new Member' do
         expect(@ability.can? :create, Member).to be true
         expect{ post :create, params: { member: attributes_for(:member) } }.to change(Member, :count).by(1)
-        expect(response).to redirect_to(Member)
+        expect(response).to redirect_to(members_url(anchor: "member_#{assigns(:member).id}"))
       end
 
       it 'returns edit' do
@@ -33,7 +33,7 @@ RSpec.describe MembersController, type: :controller do
         expect(@ability.can? :toggle_remote, member).to be true
         expect(member.remote_flag).to be false
         get :toggle_remote, params: { id: member }
-        expect(response).to redirect_to(Member)
+        expect(response).to redirect_to(members_url(anchor: "member_#{assigns(:member).id}"))
         expect(assigns(:member).remote_flag).to be true
       end
 
@@ -46,7 +46,7 @@ RSpec.describe MembersController, type: :controller do
       it 'updates' do
         expect(@ability.can? :update, member).to be true
         put :update, params: { id: member, member: { content: 'New content' } }
-        expect(response).to redirect_to(members_url)
+        expect(response).to redirect_to(members_url(anchor: "member_#{assigns(:member).id}"))
       end
     end
   end
@@ -110,7 +110,7 @@ RSpec.describe MembersController, type: :controller do
     it 'update own member' do
       expect(@ability.can? :update, @user.member).to be true
       put :update, params: { id: @user.member, member: { content: 'New content' } }
-      expect(response).to redirect_to(members_url)
+      expect(response).to redirect_to(members_url(anchor: "member_#{assigns(:member).id}"))
     end
 
     it 'not returns toggle remote' do

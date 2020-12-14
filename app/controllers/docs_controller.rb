@@ -44,15 +44,6 @@ class DocsController < ApplicationController
     @docs = Doc.where(archive: true)
   end
 
-  def toggle_remote
-    if @member.toggle!(:archive)
-      flash[:success] = t('flash.was_updated', item: Member.model_name.human)
-      redirect_to members_url
-    else
-      render :edit
-    end
-  end
-
   def show; end
   def new;  end
   def edit; end

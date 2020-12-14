@@ -59,7 +59,7 @@ class MembersController < ApplicationController
   def create
     respond_to do |format|
       if @member.save
-        format.html { redirect_to members_url, notice: t('flash.was_created', item: Member.model_name.human) }
+        format.html { redirect_to members_url(anchor: "member_#{@member.id}"), notice: t('flash.was_created', item: Member.model_name.human) }
         format.json { render json: @member, status: :created, location: @member }
       else
         format.html { render action: 'new' }
@@ -71,7 +71,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update_attributes(member_params)
-        format.html { redirect_to members_url, notice: t('flash.was_updated', item: Member.model_name.human) }
+        format.html { redirect_to members_url(anchor: "member_#{@member.id}"), notice: t('flash.was_updated', item: Member.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -83,7 +83,7 @@ class MembersController < ApplicationController
   def toggle_remote
     if @member.toggle!(:remote_flag)
       flash[:success] = t('flash.was_updated', item: Member.model_name.human)
-      redirect_to members_url
+      redirect_to members_url(anchor: "member_#{@member.id}")
     else
       render :edit
     end

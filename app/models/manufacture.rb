@@ -3,6 +3,7 @@ class Manufacture < ApplicationRecord
 
   OTK_STATUSES = %w[empty failed passed approval].freeze
   MATERIALS    = %w[карбид кварц кремний ситалл].freeze
+  PRIORITIES   = %w[normal high].freeze
 
   validates :title, :material, presence: true
   validates_inclusion_of :otk_status, in: OTK_STATUSES

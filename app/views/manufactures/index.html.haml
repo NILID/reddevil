@@ -2,9 +2,12 @@
   .card-header
     %span.h2= t('shared.items_list')
     .float-right
-      = link_to fa_icon(:plus, text: t('shared.add')), new_manufacture_path, class: 'btn btn-primary'
+      = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
+        = fa_icon 'filter', text: t('shared.filter')
+      = link_to fa_icon(:plus, text: t('shared.add')), new_manufacture_path, class: 'btn btn-primary btn-sm  ml-2'
 
   .card-body
+    = render 'manufactures/search_form'
     - if @manufactures.empty?
       .text-center.my-5
         .h3.text-muted= t('shared.search_empty')
@@ -12,15 +15,15 @@
       %table.table.table-hover
         %thead
           %tr
-            %th= t('substrates.otk')
-            %th= Manufacture.human_attribute_name(:title)
-            %th= Manufacture.human_attribute_name(:drawing)
-            %th= Manufacture.human_attribute_name(:contract)
-            %th= Manufacture.human_attribute_name(:material)
-            %th= Manufacture.human_attribute_name(:user)
-            %th= Manufacture.human_attribute_name(:machine)
-            %th= Manufacture.human_attribute_name(:operation)
-            %th= Manufacture.human_attribute_name(:priority)
+            %th= sort_link @q, :otk_status, t('substrates.otk')
+            %th= sort_link @q, :title,      Manufacture.human_attribute_name(:title)
+            %th= sort_link @q, :drawing,    Manufacture.human_attribute_name(:drawing)
+            %th= sort_link @q, :contract,   Manufacture.human_attribute_name(:contract)
+            %th= sort_link @q, :material,   Manufacture.human_attribute_name(:material)
+            %th= sort_link @q, :user,       Manufacture.human_attribute_name(:user)
+            %th= sort_link @q, :machine,    Manufacture.human_attribute_name(:machine)
+            %th= sort_link @q, :operation,  Manufacture.human_attribute_name(:operation)
+            %th= sort_link @q, :priority,   Manufacture.human_attribute_name(:priority)
             %th
 
         %tbody

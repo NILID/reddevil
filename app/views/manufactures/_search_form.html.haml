@@ -1,0 +1,64 @@
+.card-body.bg-info.text-white#search-form-collapse{class: params[:q] ? '' : 'collapse' }
+  = search_form_for @q, url: request.original_url do |f|
+    .row
+      .col-12.col-md
+        .form-group.row.mb-1
+          = f.label :title_or_drawing_or_contract_cont,
+            t('shared.search'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.text_field :title_or_drawing_or_contract_cont,
+              placeholder: t('shared.search_text'),
+              autofocus: true,
+              class: 'form-control form-control-sm'
+        .form-group.row.mb-1
+          = f.label :priority_eq,
+            Manufacture.human_attribute_name(:priority),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :priority_eq, {}, { include_blank: '== Выберите приоритет ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - Manufacture::PRIORITIES.each do |s|
+                = content_tag(:option, s, value: s, data: { content: new_priority_select_tag(s) }, selected: params[:q] && (params[:q][:priorityx_eq] == s.to_s) )
+        .form-group.row.mb-1
+          = f.label :otk_status_eq,
+            t('substrates.otk'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :otk_status_eq, {}, { include_blank: '== Выберите статус ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - Manufacture::OTK_STATUSES.each do |s|
+                = content_tag(:option, s, value: s, data: { content: otk_status_text(s) }, selected: params[:q] && (params[:q][:otk_status_eq] == s) )
+      .col-12.col-md
+        .form-group.row.mb-1
+          = f.label :material_eq,
+            Manufacture.human_attribute_name(:material),
+            class: 'col-sm-4 col-form-label'
+          .col
+            = f.select :material_eq, {}, { include_blank: '== Выберите материал ==' }, { class: 'selectpicker form-control form-control-sm' } do
+              - Manufacture::MATERIALS.each do |material|
+                = content_tag(:option, material, value: material, data: { content: material }, selected: params[:q] && (params[:q][:material_eq] == material) )
+
+        .form-group.row.mb-1
+          = f.label :created_at_gteq,
+            t('substrates.created_at'),
+            class: 'col-sm-4 col-form-label'
+          .col
+            .row
+              .col.pr-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text c
+                  = f.text_field :created_at_gteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:created_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_gteq].present?)
+              .col.pl-0
+                .input-group.input-group-sm
+                  .input-group-prepend
+                    .input-group-text до
+                  = f.text_field :created_at_lteq,
+                    class: 'datepicker form-control',
+                    value: (params[:q][:created_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_lteq].present?)
+
+        .form-group.row.text-right
+          .col
+            = f.button class: 'btn btn-warning btn-sm btn-block' do
+              = fa_icon 'search', text: t('shared.to_search')

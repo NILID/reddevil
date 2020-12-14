@@ -4,6 +4,8 @@ class ManufacturesController < ApplicationController
   layout 'user'
 
   def index
+    @q = @manufactures.ransack(params[:q])
+    @manufactures = @q.result(distinct: true).order(created_at: :desc)
   end
 
   def show

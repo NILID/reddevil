@@ -5,7 +5,6 @@
         .col-12.col-sm.mb-2.mb-sm-0
           = f.text_field :name_or_surname_or_patronymic_or_email_or_position_cont,
             placeholder: t('shared.search_text'),
-            autofocus: true,
             class: 'form-control form-control-sm'
       .col-12.col-sm.mb-2.mb-sm-0
         = f.select :department_id_eq, {}, { include_blank: '== Выберите отдел ==' }, { class: 'selectpicker form-control form-control-sm' } do

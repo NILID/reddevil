@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :manufactures do
     member do
       get :manage_otk
+      delete :delete_document
     end
   end
 

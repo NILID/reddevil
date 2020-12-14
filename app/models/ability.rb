@@ -97,13 +97,11 @@ class Ability
 
     if user.has_group? :lab181
       can %i[manage read], Manufacture
-      cannot :manage_otk, Manufacture
+      cannot %i[manage_otk delete_document], Manufacture
     end
 
     if user.has_group? :otk
-      can :manage_otk, [Manufacture, Substrate]
-      can :delete_document, Substrate
+      can [:manage_otk, :delete_document], [Manufacture, Substrate]
     end
-
   end
 end

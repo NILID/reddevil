@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_110950) do
+ActiveRecord::Schema.define(version: 2020_12_14_143934) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -229,10 +229,11 @@ ActiveRecord::Schema.define(version: 2020_12_09_110950) do
     t.string "user"
     t.string "machine"
     t.text "operation"
-    t.string "otk"
     t.string "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "otk_status", default: "empty"
+    t.text "otk_desc"
   end
 
   create_table "matches", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -23,11 +23,10 @@
       %b=Manufacture.human_attribute_name(:operation)
       = @manufacture.operation
     %p
-      %b=Manufacture.human_attribute_name(:otk)
-      = @manufacture.otk
-    %p
       %b=Manufacture.human_attribute_name(:priority)
       = @manufacture.priority
+
+    = render 'manufactures/otk_block', manufacture: @manufacture
 
   .card-footer
     .float-right

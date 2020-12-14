@@ -54,7 +54,9 @@ ru:
         user: Исполнитель
         machine: Станок
         operation: Операция
-        otk: ОТК
+        otk_status: Статус
+        otk_desc: Примечание
+        otk_documents: Документы
         priority: Приоритет
       row:
         user_id: Исполнитель

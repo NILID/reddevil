@@ -1,4 +1,10 @@
 %tr
+  %td.text-center{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
+    - if can? :manage_otk, Manufacture
+      = link_to otk_status_icon(manufacture.otk_status), manage_otk_substrate_path(manufacture)
+    - else
+      = otk_status_icon(manufacture.otk_status)
+
   %td= link_to manufacture.title, manufacture
   %td= manufacture.drawing
   %td= manufacture.contract
@@ -6,7 +12,6 @@
   %td= manufacture.user
   %td= manufacture.machine
   %td= manufacture.operation
-  %td= manufacture.otk
   %td= manufacture.priority
   %td
     .btn-group.float-right

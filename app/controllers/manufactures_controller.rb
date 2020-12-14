@@ -7,6 +7,7 @@ class ManufacturesController < ApplicationController
   end
 
   def show
+    @otk_documents = @manufacture.otk_documents.includes(:blob)
   end
 
   def new
@@ -39,6 +40,13 @@ class ManufacturesController < ApplicationController
     end
   end
 
+  def delete_document
+    @document = ActiveStorage::Blob.find_signed(params[:document_id])
+    # Check valid method to destroy attachment
+    @document.attachments.first.purge
+    redirect_to @manufacture
+  end
+
   def destroy
     @manufacture.destroy
     respond_to do |format|
@@ -49,8 +57,8 @@ class ManufacturesController < ApplicationController
 
   private
     def manufacture_params
-      manufacture_params = [:title, :drawing, :contract, :material, :user, :machine, :operation, :otk, :priority]
-      manufacture_params << [:otk] if (current_user&.role? :admin) || (current_user&.has_group? :otk)
+      manufacture_params = [:title, :drawing, :contract, :material, :user, :machine, :operation, :priority]
+      manufacture_params << [:otk_status, :otk_desc, otk_documents: []] if (current_user&.role? :admin) || (current_user&.has_group? :otk)
       params.require(:manufacture).permit(manufacture_params)
     end
 end

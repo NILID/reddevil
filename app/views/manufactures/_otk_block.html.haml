@@ -1,0 +1,27 @@
+.card.mt-3
+  .card-header
+    .h4.text-muted
+      = t 'substrates.manage_otk'
+      %small
+        = otk_status_text(manufacture.otk_status, false)
+        - if can? :manage_otk, Manufacture
+          = link_to manage_otk_manufacture_path(manufacture), class: 'btn btn-primary btn-sm float-right' do
+            = t('shared.edit')
+  .card-body
+    - if manufacture.otk_desc?
+      %p
+        = manufacture.otk_desc
+    - if manufacture.otk_documents.attached?
+      %h4
+        = OfficeNote.human_attribute_name(:documents)
+      %table.table.table-hover.table-sm
+        - @otk_documents.each.with_index(1) do |document, index|
+          %tr
+            %td
+              = [index, '.'].join()
+            %td
+              = link_to document.filename, document, target: '_blank'
+            - if can? :delete_document, Manufacture
+              %td
+                = link_to delete_document_manufacture_path(manufacture, document_id: document.signed_id), class: 'btn btn-sm btn-danger float-right', method: :delete, data: { confirm: t('shared.sure') } do
+                  = fa_icon 'trash'

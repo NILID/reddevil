@@ -3,11 +3,10 @@ FactoryBot.define do
     title { "MyString" }
     drawing { "MyString" }
     contract { "MyString" }
-    material { "MyString" }
+    material { "кварц" }
     user { "MyString" }
     machine { "MyString" }
     operation { "MyText" }
-    otk { "MyString" }
     priority { "MyString" }
   end
 end

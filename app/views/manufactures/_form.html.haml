@@ -7,11 +7,10 @@
     = f.text_field :title
     = f.text_field :drawing
     = f.text_field :contract
-    = f.text_field :material
+    = f.select :material, Manufacture::MATERIALS.map { |c| [c, c] }, { include_blank: t('shared.to_select') }, { class: 'selectpicker' }
     = f.text_field :user
     = f.text_field :machine
     = f.text_area :operation
-    = f.text_field :otk
     = f.text_field :priority
   .card-footer
     = f.submit t('shared.save')

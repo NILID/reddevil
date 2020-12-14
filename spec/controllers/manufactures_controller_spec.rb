@@ -59,6 +59,10 @@ RSpec.describe ManufacturesController, type: :controller do
         get :manage_otk, params: { id: manufacture }
         expect(response).to render_template(:manage_otk)
       end
+
+      it 'returns delete document' do
+        expect(@ability.can? :delete_document, manufacture).to be true
+      end
     end
   end
 
@@ -69,6 +73,10 @@ RSpec.describe ManufacturesController, type: :controller do
       it 'not manage otk' do
         expect(@ability.can? :manage_otk, manufacture).to be false
         expect{ get :manage_otk, params: { id: manufacture } }.to raise_error(CanCan:: AccessDenied)
+      end
+
+      it 'returns delete document' do
+        expect(@ability.can? :delete_document, manufacture).to be false
       end
     end
   end
@@ -100,6 +108,10 @@ RSpec.describe ManufacturesController, type: :controller do
     it 'not manage otk' do
       expect(@ability.can? :manage_otk, manufacture).to be false
       expect{ get :manage_otk, params: { id: manufacture } }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'not returns delete document' do
+      expect(@ability.can? :delete_document, manufacture).to be false
     end
 
     it 'not destroy' do
@@ -138,6 +150,10 @@ RSpec.describe ManufacturesController, type: :controller do
 
     it 'not manage otk' do
       get :manage_otk, params: { id: manufacture }
+    end
+
+    it 'not returns delete document' do
+      get :delete_document, params: { id: manufacture }
     end
 
     it 'not updates' do

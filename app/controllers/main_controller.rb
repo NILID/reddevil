@@ -54,19 +54,23 @@ class MainController < ApplicationController
       end
       @holidays_today    = Holidays.on(now,      :full_ru, :reddevil_ru)
       @holidays_tomorrow = Holidays.on(tomorrow, :full_ru, :reddevil_ru)
+
+      @docs = (Doc.where('updated_at >= ?', now - 10.days).
+        or(Doc.where('created_at >= ?', now - 10.days)))
+        .where(show_last_flag: true)
+        .includes(document_attachment: [:blob])
+        .order(updated_at: :desc)
+
+
     else
       render template: 'main/index_unreg', layout: 'devise'
     end
 
+
+
     # set activities with PublicActivity
     #
     # @activities = PublicActivity::Activity.all.where('created_at >= ?', DateTime.now - 10.days).includes(:trackable).order(created_at: :desc)
-
-    @docs = (Doc.where('updated_at >= ?', now - 10.days).
-          or(Doc.where('created_at >= ?', now - 10.days)))
-          .where(show_last_flag: true)
-          .includes(document_attachment: [:blob])
-          .order(updated_at: :desc)
   end
 
   def infocenter; end

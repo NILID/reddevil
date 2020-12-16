@@ -10,6 +10,7 @@ FactoryBot.define do
     password              { 'password' }
     password_confirmation { 'password' }
     confirmed_at          { DateTime.now }
+    online_at             { DateTime.now - 1.month }
 
     after(:build) do |u|
       u.profile = build(:profile)

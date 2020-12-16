@@ -2,10 +2,11 @@ require 'cancan/matchers'
 
 module ControllerMacros
 
-  def login_user(role=:user)
+  def login_user(user)
+    user = (user == :user) ? nil : user
     before(:each) do
       #@request.env["devise.mapping"] = Devise.mappings[:admin]
-      @user = (role == :user) ? create(:user) : create(:user, role)
+      @user = create(:user, user)
       sign_in(@user)
       @ability = Ability.new(@user)
     end

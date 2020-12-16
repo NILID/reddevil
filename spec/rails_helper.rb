@@ -27,6 +27,7 @@ PublicActivity.enabled = false
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
+# for file upload
 FactoryBot::SyntaxRunner.class_eval do
   include ActionDispatch:: TestProcess
 end
@@ -37,9 +38,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::ControllerHelpers, type: :view
-  config.include Devise::Test::ControllerHelpers, type: :request
   config.include FactoryBot::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

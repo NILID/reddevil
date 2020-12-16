@@ -4,7 +4,7 @@
 = bootstrap_form_for @manufacture, html: { class: 'card' } do |f|
   .card-body
     = render 'breadcrumb', titles: [link_to(@manufacture.title, @manufacture), formtitle]
-    = render 'error', object: @manufacture
+    = render 'application/error', object: @manufacture
 
     .row
       .col

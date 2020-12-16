@@ -3,7 +3,7 @@
     %h3= formtitle
 
   .card-body
-    = render 'error', object: @position
+    = render 'application/error', object: @position
 
     = f.text_field :position
     = f.select :department_id, @departments.map{|d| [d.title, d.id] }, { include_blank: t('shared.to_select') }

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ManufacturesController, type: :controller do
   let!(:manufacture) { create(:manufacture) }
-  let(:user)      { create(:user) }
+  let(:user)         { create(:user) }
 
   before(:each) do
     Faker::UniqueGenerator.clear

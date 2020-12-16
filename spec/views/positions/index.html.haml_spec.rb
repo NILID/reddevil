@@ -2,24 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "positions/index", type: :view do
   before(:each) do
-    assign(:positions, [
-      Position.create!(
-        :position => "Position",
-        :department => nil,
-        :member => nil
-      ),
-      Position.create!(
-        :position => "Position",
-        :department => nil,
-        :member => nil
-      )
-    ])
+    @member = create(:member)
+    assign(:positions, create_list(:position, 2, member: @member))
   end
 
   it "renders a list of positions" do
     render
-    assert_select "tr>td", :text => "Position".to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
+    assert_select "h2", :text => "Профессиональный путь #{@member.petrovich_surname_name}".to_s, :count => 1
   end
 end

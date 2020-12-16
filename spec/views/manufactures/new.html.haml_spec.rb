@@ -2,17 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "manufactures/new", type: :view do
   before(:each) do
-    assign(:manufacture, Manufacture.new(
-      :title => "MyString",
-      :drawing => "MyString",
-      :contract => "MyString",
-      :material => "MyString",
-      :user => "MyString",
-      :machine => "MyString",
-      :operation => "MyText",
-      :otk => "MyString",
-      :priority => "MyString"
-    ))
+    @manufacture = assign(:manufacture, build(:manufacture))
   end
 
   it "renders new manufacture form" do
@@ -26,15 +16,13 @@ RSpec.describe "manufactures/new", type: :view do
 
       assert_select "input[name=?]", "manufacture[contract]"
 
-      assert_select "input[name=?]", "manufacture[material]"
+      assert_select "select[name=?]", "manufacture[material]"
 
       assert_select "input[name=?]", "manufacture[user]"
 
       assert_select "input[name=?]", "manufacture[machine]"
 
-      assert_select "textarea[name=?]", "manufacture[operation]"
-
-      assert_select "input[name=?]", "manufacture[otk]"
+      assert_select "input[name=?]", "manufacture[operation]"
 
       assert_select "input[name=?]", "manufacture[priority]"
     end

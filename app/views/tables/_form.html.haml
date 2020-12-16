@@ -2,7 +2,8 @@
   .card-header= formtitle
 
   .card-body
-    = render 'error', object: @table
+    = render 'application/error', object: @table
+
     = f.text_field :title
 
     #columns

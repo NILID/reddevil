@@ -1,12 +1,13 @@
 FactoryBot.define do
   factory :manufacture do
-    title { "MyString" }
-    drawing { "MyString" }
-    contract { "MyString" }
+    title { "MyTitle" }
+    drawing { "MyDrawing" }
+    contract { "MyContract" }
     material { "кварц" }
     user { "MyString" }
-    machine { "MyString" }
-    operation { "MyText" }
-    priority { "MyString" }
+    machine { "MyMachine" }
+    operation { "MyOperation" }
+    priority { "MyPriority" }
+    otk_status { "empty" }
   end
 end

@@ -1,5 +1,5 @@
 = bootstrap_form_for [@infocenter_category, @card] do |f|
-  = render 'error', object: @card
+  = render 'application/error', object: @card
 
   = f.text_field :title
   = f.file_field :doc

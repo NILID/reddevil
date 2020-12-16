@@ -4,7 +4,7 @@
 = bootstrap_form_for @substrate, html: { class: 'card' } do |f|
   .card-body
     = render 'breadcrumb', titles: [link_to(@substrate.title, @substrate), formtitle]
-    = render 'error', object: @substrate
+    = render 'application/error', object: @substrate
 
     .row
       .col

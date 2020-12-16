@@ -3,8 +3,7 @@
     .row
       .col
         %h2.mb-5.text-center
-          = t 'positions.title'
-          = link_to @member.petrovich_surname_name, @member.user
+          #{t 'positions.title'} #{link_to_if @member_user, @member.petrovich_surname_name, @member.user}
     .row
       .col-md-6.offset-md-3
         .mb-5.text-center

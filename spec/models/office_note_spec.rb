@@ -40,7 +40,7 @@ RSpec.describe OfficeNote, type: :model do
   end
 
   describe 'simple user' do
-    let(:note) { create(:office_note) }
+    let!(:note) { create(:office_note) }
 
     context 'should' do
       it 'have uniq num' do

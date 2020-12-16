@@ -9,7 +9,7 @@ class RoomMessagesController < ApplicationController
       RoomChannel.broadcast_to @room, @room_message
       render body: nil
     else
-      render body: nil, status: :fail
+      render body: nil, status: :bad_request
     end
   end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SubstratesController, type: :controller do
+RSpec.describe 'Substrates', type: :request do
   let!(:substrate) { create(:substrate) }
   let(:user)      { create(:user) }
 
@@ -14,67 +14,67 @@ RSpec.describe SubstratesController, type: :controller do
 
       it 'returns index' do
         expect(@ability.can? :index, Substrate).to be true
-        get :index
+        get substrates_path
         expect(response).to render_template(:index)
       end
 
       it 'returns archive' do
         expect(@ability.can? :archive, Substrate).to be true
-        get :archive
+        get archive_substrates_path
         expect(response).to render_template(:index)
       end
 
       it 'returns history' do
         expect(@ability.can? :history, Substrate).to be true
-        get :history
+        get history_substrates_path
         expect(response).to render_template(:history)
       end
 
       it 'returns new' do
         expect(@ability.can? :new, Substrate).to be true
-        get :new
+        get new_substrate_path
         expect(response).to render_template(:new)
       end
 
       it 'create a new Substrate' do
         expect(@ability.can? :create, Substrate).to be true
-        expect{ post :create, params: { substrate: attributes_for(:substrate) } }.to change(Substrate, :count).by(1)
+        expect{ post substrates_path(substrate: attributes_for(:substrate))}.to change(Substrate, :count).by(1)
         expect(response).to redirect_to(assigns(:substrate))
       end
 
       it 'copy substrate' do
         expect(@ability.can? :copy, substrate).to be true
-        expect{ post :copy, params: { id: substrate } }.to change(Substrate, :count).by(1)
+        expect{ get copy_substrate_path(substrate) }.to change(Substrate, :count).by(1)
         expect(response).to redirect_to(substrates_url)
       end
 
       it 'follow' do
         expect(@ability.can? :follow, substrate).to be true
-        expect{ post :follow, params: { id: substrate, user_id: @user.id }, format: 'js', xhr: true }
+        expect{ post follow_substrate_path(substrate, user_id: @user.id), xhr: true }
           .to change{ substrate.users.count }.by(1)
       end
 
       it 'returns edit' do
         expect(@ability.can? :edit, substrate).to be true
-        get :edit, params: { id: substrate }
+        get edit_substrate_path(substrate)
         expect(response).to render_template(:edit)
       end
 
       it 'returns changes' do
         expect(@ability.can? :changes, substrate).to be true
-        get :changes, params: { id: substrate }
+        get changes_substrate_path(substrate)
         expect(response).to render_template(:history)
       end
 
       it 'destroys' do
         expect(@ability.can? :destroy, substrate).to be true
-        expect{ delete :destroy, params: { id: substrate } }.to change(Substrate, :count).by(-1)
+        expect{ delete substrate_path(substrate) }.to change(Substrate, :count).by(-1)
         expect(response).to redirect_to(substrates_url)
       end
 
       it 'updates' do
         expect(@ability.can? :update, substrate).to be true
-        put :update, params: { id: substrate, substrate: attributes_for(:substrate) }
+        put substrate_path(substrate, substrate: attributes_for(:substrate))
         expect(response).to redirect_to(assigns(:substrate))
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe SubstratesController, type: :controller do
 
       it 'returns manage_otk' do
         expect(@ability.can? :manage_otk, substrate).to be true
-        get :manage_otk, params: { id: substrate }
+        get manage_otk_substrate_path(substrate)
         expect(response).to render_template(:manage_otk)
       end
 
@@ -102,7 +102,7 @@ RSpec.describe SubstratesController, type: :controller do
 
       it 'not manage otk' do
         expect(@ability.can? :manage_otk, substrate).to be false
-        expect{ get :manage_otk, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+        expect{ get manage_otk_substrate_path(substrate) }.to raise_error(CanCan:: AccessDenied)
       end
 
       it 'not returns delete document' do
@@ -116,61 +116,61 @@ RSpec.describe SubstratesController, type: :controller do
 
     it 'not returns index' do
       expect(@ability.can? :index, Substrate).to be false
-      expect{ get :index}.to raise_error(CanCan:: AccessDenied)
+      expect{ get substrates_path }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns archive' do
       expect(@ability.can? :archive, Substrate).to be false
-      expect{ get :archive }.to raise_error(CanCan:: AccessDenied)
+      expect{ get archive_substrates_path }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns history' do
       expect(@ability.can? :history, Substrate).to be false
-      expect{ get :history}.to raise_error(CanCan:: AccessDenied)
+      expect{ get history_substrates_path}.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns new' do
       expect(@ability.can? :new, Substrate).to be false
-      expect{ get :new }.to raise_error(CanCan:: AccessDenied)
+      expect{ get new_substrate_path }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not creates a new Substrate' do
       expect(@ability.can? :create, Substrate).to be false
-      expect{ post :create, params: { substrate: attributes_for(:substrate) } }.to raise_error(CanCan:: AccessDenied)
+      expect{ post substrates_path(substrate: attributes_for(:substrate)) }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Substrate, :count).by(0)
     end
 
     it 'not follow' do
       expect(@ability.can? :follow, substrate).to be false
-      expect{ post :follow, params: { id: substrate, user_id: @user.id }, format: 'js', xhr: true }
+      expect{ post follow_substrate_path(substrate, user_id: @user.id), xhr: true }
         .to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change{ substrate.users.count }.by(0)
     end
 
     it 'not copy substrate' do
       expect(@ability.can? :copy, substrate).to be false
-      expect{ post :copy, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+      expect{ get copy_substrate_path(substrate) }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change{ Substrate.count}.by(0)
     end
 
     it 'not edit' do
       expect(@ability.can? :edit, substrate).to be false
-      expect{ get :edit, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+      expect{ get edit_substrate_path(substrate) }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not changes' do
       expect(@ability.can? :changes, substrate).to be false
-      expect{ get :changes, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+      expect{ get changes_substrate_path(substrate) }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not manage otk' do
       expect(@ability.can? :manage_otk, substrate).to be false
-      expect{ get :manage_otk, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+      expect{ get manage_otk_substrate_path(substrate) }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do
       expect(@ability.can? :destroy, substrate).to be false
-      expect{ delete :destroy, params: { id: substrate } }.to raise_error(CanCan:: AccessDenied)
+      expect{ delete substrate_path(substrate) }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Substrate, :count).by(0)
     end
 
@@ -180,7 +180,7 @@ RSpec.describe SubstratesController, type: :controller do
 
     it 'not update' do
       expect(@ability.can? :update, substrate).to be false
-      expect{ put :update, params: { id: substrate, substrate: attributes_for(:substrate) } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put substrate_path(substrate, substrate: attributes_for(:substrate)) }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -190,58 +190,58 @@ RSpec.describe SubstratesController, type: :controller do
     end
 
     it 'returns index' do
-      get :index
+      get substrates_path
     end
 
     it 'returns history' do
-      get :history
+      get history_substrates_path
     end
 
     it 'returns archive' do
-      get :archive
+      get archive_substrates_path
     end
 
     it 'returns new' do
-      get :new
+      get new_substrate_path
     end
 
     it 'creates a new Substrate' do
-      post :create, params: { substrate: attributes_for(:substrate) }
+      post substrates_path(substrate: attributes_for(:substrate))
       expect{ response }.to change(Substrate, :count).by(0)
     end
 
     it 'not follow' do
-      post :follow, params: { id: substrate, user_id: user.id }, format: 'js', xhr: true
+      post follow_substrate_path(substrate, user_id: user.id), xhr: true
       expect{ response }.to change{ substrate.users.count }.by(0)
     end
 
     it 'not copy substrate' do
-      post :copy, params: { id: substrate }
+      get copy_substrate_path(substrate)
       expect{ response }.to change{ Substrate.count}.by(0)
     end
 
     it 'not edit' do
-      get :edit, params: { id: substrate }
+      get edit_substrate_path(substrate)
     end
 
     it 'not manage otk' do
-      get :manage_otk, params: { id: substrate }
+      get manage_otk_substrate_path(substrate)
     end
 
     it 'not changes' do
-      get :changes, params: { id: substrate }
+      get changes_substrate_path(substrate)
     end
 
     it 'not updates' do
-      put :update, params: { id: substrate, substrate: attributes_for(:substrate) }
+      put substrate_path(substrate, substrate: attributes_for(:substrate))
     end
 
     it 'not returns delete document' do
-      get :delete_document, params: { id: substrate }
+      delete delete_document_substrate_path(substrate)
     end
 
     it 'not destroy' do
-      delete :destroy, params: { id: substrate }
+      delete substrate_path(substrate)
       expect{ response }.to change(Substrate, :count).by(0)
     end
   end

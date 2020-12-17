@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TablesController, type: :controller do
+RSpec.describe 'Tables', type: :request do
   let!(:table) { create(:table) }
 
   before(:each) do
@@ -12,46 +12,46 @@ RSpec.describe TablesController, type: :controller do
 
     it 'returns index' do
       expect(@ability.can? :index, Table).to be true
-      get :index
+      get tables_path
       expect(response).to be_successful
       expect(response).to render_template(:index)
     end
 
     it 'returns edit' do
       expect(@ability.can? :edit, table).to be true
-      get :edit, params: { id: table }
+      get edit_table_path(table)
       expect(response).to render_template(:edit)
     end
 
     it 'destroys the requested table' do
       expect(@ability.can? :destroy, table).to be true
-      expect{ delete :destroy, params: { id: table } }.to change(Table, :count).by(-1)
+      expect{ delete table_path(table) }.to change(Table, :count).by(-1)
       expect(response).to redirect_to(tables_url)
     end
 
     it 'updates the requested table' do
       expect(@ability.can? :update, table).to be true
-      put :update, params: { id: table, table: { title: 'New title' } }
-      table.reload
-      expect(response).to redirect_to(table)
+      put table_path(table, table: { title: 'New title' })
+      expect(response).to redirect_to(assigns(:table))
     end
 
     it 'returns show' do
       expect(@ability.can? :show, table).to be true
-      get :show, params: { id: table }
+      get table_path(table)
       expect(response).to be_successful
       expect(response).to render_template(:show)
     end
 
     it 'returns new' do
       expect(@ability.can? :new, Table).to be true
-      get :new
+      get new_table_path
       expect(response).to be_successful
+      expect(response).to render_template(:new)
     end
 
-    it 'creates a new Category' do
+    it 'creates' do
       expect(@ability.can? :create, Table).to be true
-      expect{ post :create, params: { table: attributes_for(:table) } }.to change(Table, :count).by(1)
+      expect{ post tables_path(table: attributes_for(:table)) }.to change(Table, :count).by(1)
       expect(response).to redirect_to(assigns(:table))
     end
   end
@@ -61,39 +61,39 @@ RSpec.describe TablesController, type: :controller do
 
     it 'returns index' do
       expect(@ability.can? :index, Table).to be false
-      expect{ get :index }.to raise_error(CanCan:: AccessDenied)
+      expect{ get tables_path }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'returns show' do
       expect(@ability.can? :show, table).to be false
-      expect{ get :show, params: { id: table } }.to raise_error(CanCan:: AccessDenied)
+      expect{ get table_path(table) }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'returns new' do
       expect(@ability.can? :new, Table).to be false
-      expect{ get :new }.to raise_error(CanCan:: AccessDenied)
+      expect{ get new_table_path }.to raise_error(CanCan:: AccessDenied)
     end
 
-    it 'creates a new Category' do
+    it 'creates' do
       expect(@ability.can? :create, Table).to be false
-      expect{ post :create, params: { table: attributes_for(:table) } }.to raise_error(CanCan:: AccessDenied)
+      expect{ post tables_path(table: attributes_for(:table)) }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Table, :count).by(0)
     end
 
     it 'edit' do
       expect(@ability.cannot? :edit, table).to be true
-      expect{ get :edit, params: { id: table } }.to raise_error(CanCan:: AccessDenied)
+      expect{ get edit_table_path(table) }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'destroy' do
       expect(@ability.cannot? :destroy, table).to be true
-      expect{ delete :destroy, params: { id: table } }.to raise_error(CanCan:: AccessDenied)
+      expect{ delete table_path(table) }.to raise_error(CanCan:: AccessDenied)
       expect{ response }.to change(Table, :count).by(0)
     end
 
     it 'updates' do
       expect(@ability.cannot? :update, table).to be true
-      expect{ put :update, params: { id: table, table: { title: 'New title' } } }.to raise_error(CanCan:: AccessDenied)
+      expect{ put table_path(table, table: { title: 'New title' }) }.to raise_error(CanCan:: AccessDenied)
     end
   end
 
@@ -103,31 +103,31 @@ RSpec.describe TablesController, type: :controller do
     end
 
     it 'returns index' do
-      get :index
+      get tables_path
     end
 
     it 'returns show' do
-      get :show, params: { id: table }
+      get table_path(table)
     end
 
     it 'returns new' do
-      get :new
+      get new_table_path
     end
 
-    it 'creates a new Category' do
-      expect{ post :create, params: { table: attributes_for(:table) } }.to change(Table, :count).by(0)
+    it 'creates' do
+      expect{ post tables_path(table: attributes_for(:table)) }.to change(Table, :count).by(0)
     end
 
     it 'not edit' do
-      get :edit, params: { id: table }
+      get edit_table_path(table)
     end
 
     it 'not updates' do
-      put :update, params: { id: table, table: { title: 'New title' } }
+      put table_path(table, table: { title: 'New title' })
     end
 
     it 'not destroy' do
-      expect{ delete :destroy, params: { id: table } }.to change(Table, :count).by(0)
+      expect{ delete table_path(table) }.to change(Table, :count).by(0)
     end
   end
 end

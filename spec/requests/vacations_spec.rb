@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe VacationsController, type: :controller do
+RSpec.describe 'Vacations', type: :request do
   let!(:user)     { create(:user) }
   let!(:member)   { create(:member, user: user) }
   let!(:vacation) { create(:vacation, member: member) }
@@ -10,27 +10,28 @@ RSpec.describe VacationsController, type: :controller do
 
     it 'returns edit' do
       expect(@ability.can? :edit, vacation).to be true
-      get :edit, params: { id: vacation, member_id: member }
+      get edit_member_vacation_path(member, vacation)
       expect(response).to render_template(:edit)
     end
 
     it 'destroys the requested row' do
       expect(@ability.can? :destroy, vacation).to be true
-      expect{ delete :destroy, params: { id: vacation, member_id: member } }.to change(Vacation, :count).by(-1)
+      expect{ delete member_vacation_path(member, vacation) }.to change(Vacation, :count).by(-1)
       expect(response).to redirect_to(list_member_vacations_path(member))
     end
 
     it 'updates the requested row' do
       expect(@ability.can? :update, vacation).to be true
-      put :update, params: { id: vacation, member_id: member, vacation: { startdate: Date.today } }
+      put member_vacation_path(member, vacation, vacation: { startdate: Date.today })
       vacation.reload
       expect(response).to redirect_to(list_member_vacations_path(member))
     end
 
     it 'returns new' do
       expect(@ability.can? :new, member => Vacation).to be true
-      get :new, params: { member_id: member }
+      get new_member_vacation_path(member)
       expect(response).to be_successful
+      expect(response).to render_template(:new)
     end
   end
 
@@ -40,14 +41,14 @@ RSpec.describe VacationsController, type: :controller do
 
       it 'returns index' do
         expect(@ability.can? :index, Vacation).to be true
-        get :index, format: :json
+        get vacations_path, headers: { 'ACCEPT' => 'application/json' }
         expect(response).to be_successful
         expect(response).to render_template(:index)
       end
 
       it 'returns list' do
         expect(@ability.can? :list, member => Vacation).to be true
-        get :list, params: { member_id: member }
+        get list_member_vacations_path(member)
         expect(response).to be_successful
         expect(response).to render_template(:list)
       end
@@ -60,28 +61,28 @@ RSpec.describe VacationsController, type: :controller do
     it 'not returns edit' do
       expect(@ability.can? :edit, vacation).to be false
       expect{
-        get :edit, params: { id: vacation, member_id: member }
+        get edit_member_vacation_path(member, vacation)
       }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroys' do
       expect(@ability.can? :destroy, vacation).to be false
       expect{
-        expect{ delete :destroy, params: { id: vacation, member_id: member } }.to change(Vacation, :count).by(0)
+        expect{ delete member_vacation_path(member, vacation) }.to change(Vacation, :count).by(0)
       }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not updates' do
       expect(@ability.can? :update, vacation).to be false
       expect{
-        put :update, params: { id: vacation, member_id: member, vacation: { startdate: Date.today } }
+        put member_vacation_path(member, vacation, vacation: { startdate: Date.today })
       }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not returns new' do
       expect(@ability.can? :new, member => Vacation).to be false
       expect{
-        get :new, params: { member_id: member }
+        get new_member_vacation_path(member)
       }.to raise_error(CanCan:: AccessDenied)
     end
   end
@@ -94,27 +95,28 @@ RSpec.describe VacationsController, type: :controller do
 
     it 'returns edit' do
       expect(@ability.can? :edit, vacation).to be true
-      get :edit, params: { id: vacation, member_id: member }
+      get edit_member_vacation_path(member, vacation)
       expect(response).to render_template(:edit)
     end
 
     it 'destroys the requested row' do
       expect(@ability.can? :destroy, vacation).to be true
-      expect{ delete :destroy, params: { id: vacation, member_id: member } }.to change(Vacation, :count).by(-1)
+      expect{ delete member_vacation_path(member, vacation) }.to change(Vacation, :count).by(-1)
       expect(response).to redirect_to(list_member_vacations_path(member))
     end
 
     it 'updates the requested row' do
       expect(@ability.can? :update, vacation).to be true
-      put :update, params: { id: vacation, member_id: member, vacation: { startdate: Date.today } }
+      put member_vacation_path(member, vacation, vacation: { startdate: Date.today })
       vacation.reload
       expect(response).to redirect_to(list_member_vacations_path(member))
     end
 
     it 'returns new' do
       expect(@ability.can? :new, member => Vacation).to be true
-      get :new, params: { member_id: member }
+      get new_member_vacation_path(member)
       expect(response).to be_successful
+      expect(response).to render_template(:new)
     end
   end
 
@@ -124,27 +126,27 @@ RSpec.describe VacationsController, type: :controller do
     end
 
     it 'get index' do
-      get :index
+      get vacations_path, headers: { 'ACCEPT' => 'application/json' }
     end
 
     it 'get list' do
-      get :list, params: { member_id: member }
+      get list_member_vacations_path(member)
     end
 
     it 'returns edit' do
-      get :edit, params: { id: vacation, member_id: member }
+      get edit_member_vacation_path(member, vacation)
     end
 
     it 'destroys the requested row' do
-      expect{ delete :destroy, params: { id: vacation, member_id: member } }.to change(Vacation, :count).by(0)
+      expect{ delete member_vacation_path(member, vacation) }.to change(Vacation, :count).by(0)
     end
 
     it 'updates the requested row' do
-      put :update, params: { id: vacation, member_id: member, vacation: { startdate: Date.today } }
+      put member_vacation_path(member, vacation, vacation: { startdate: Date.today })
     end
 
     it 'returns new' do
-      get :new, params: { member_id: member }
+      get new_member_vacation_path(member)
     end
   end
 end

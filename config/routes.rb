@@ -152,6 +152,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :positions, only: [] do
+    collection do
+      get :career
+    end
+  end
+
   resources :members, except: %i[show] do
     collection do
       get :archive

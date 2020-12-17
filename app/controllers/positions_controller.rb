@@ -1,6 +1,8 @@
 class PositionsController < ApplicationController
-  load_and_authorize_resource :member
-  load_and_authorize_resource :position, through: :member
+  load_and_authorize_resource only: [:career]
+
+  load_and_authorize_resource :member, except: [:career]
+  load_and_authorize_resource :position, through: :member, except: [:career]
 
   before_action :set_departments, only: %i[edit update new create]
 
@@ -8,6 +10,21 @@ class PositionsController < ApplicationController
 
   def index
     @positions = @positions.order(moved_at: :desc).includes(:department)
+  end
+
+  def career
+    @q = @positions.ransack(params[:q])
+
+    @positions = @q.result(distinct: true)
+                   .includes(:member, :department)
+                   .order(moved_at: :desc)
+
+    @members = (@positions.includes(:member, :department).collect {|p| p.member}).uniq
+
+    if !params[:q]
+      redirect_to career_positions_path(q: { moved_at_gteq: Russian.strftime(DateTime.now.beginning_of_month, '%d.%m.%Y'),
+                                             moved_at_lteq: Russian.strftime(DateTime.now.end_of_month,       '%d.%m.%Y') })
+    end
   end
 
   def new;   end

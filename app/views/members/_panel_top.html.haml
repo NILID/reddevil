@@ -1,12 +1,18 @@
 %ul.nav.nav-tabs.card-header-tabs#member_info.float-left
   %li.nav-item
-    = link_to t('member.title'),    members_path,          class: "nav-link #{params[:action] == 'index' ?    'active' : nil}"
+    = link_to members_path, class: "nav-link #{params[:action] == 'index' ? 'active' : nil}" do
+      = fa_icon :users, text: t('member.title')
   %li.nav-item
-    = link_to t('shared.stat'),     stat_members_path,     class: "nav-link #{params[:action] == 'stat' ?     'active' : nil}"
+    = link_to stat_members_path, class: "nav-link #{params[:action] == 'stat' ? 'active' : nil}" do
+      = fa_icon :chart_bar, text: t('shared.stat')
   %li.nav-item
-    = link_to t('shared.archive'),  archive_members_path,  class: "nav-link #{params[:action] == 'archive' ?  'active' : nil}"
+    = link_to career_positions_path, class: "nav-link #{params[:action] == 'career' ? 'active' : nil}" do
+      = fa_icon :user_tie, text: t('shared.career')
+  %li.nav-item
+    = link_to archive_members_path,   class: "nav-link #{params[:action] == 'archive' ?   'active' : nil}" do
+      = fa_icon :archive, text: t('shared.archive')
 
-- if params[:action] == 'index'
+- if params[:action] == 'index' && params[:controller] == 'members'
 
   .float-right
     - if can? :create, Member

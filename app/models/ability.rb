@@ -40,6 +40,8 @@ class Ability
       can %i[create], [Note, Page]
       can %i[update destroy], Page, user: { id: user.id }
       can :follow, Doc
+
+      can :career, Position
     end
 
     if (user.role? :admin) || (user.role? :testuser)

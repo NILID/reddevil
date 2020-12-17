@@ -1,0 +1,15 @@
+%tr
+  %td
+    %span.text-muted= short_date(position.moved_at)
+    %span.ml-4
+      = position.position
+      (#{link_to position.department.title, members_path(q: {department_id_eq: position.department_id })})
+    - if can? :manage, position
+      .float-right.text-right
+        .btn-group
+          %button.btn.btn-sm.btn-light.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+            = fa_icon 'ellipsis-v'
+          %ul.dropdown-menu.dropdown-menu-right
+            = link_to fa_icon(:edit,  text: t('shared.edit')), edit_member_position_path(position.member, position),  class: 'dropdown-item'
+            = link_to fa_icon(:trash, text: t('shared.del')), [position.member, position], method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item'
+

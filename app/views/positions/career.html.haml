@@ -1,0 +1,23 @@
+- set_meta_tags title: t('member.archive')
+
+.row
+  .col-md-12
+    .card
+      .card-header
+        = render 'members/panel_top'
+      = render 'search_form'
+      - if @members.any?
+        %table.table.my-0
+          %tbody
+            - @members.each do |member|
+              %tr
+                %td.table-info(colspan=2)
+                  .lead
+                    = link_to [member, Position] do
+                      = fa_icon :bars, text: member.surname_name
+              - @positions.select {|p| p.member == member}.each do |position|
+                = render 'positions/position_item', position: position
+      - else
+        .text-center.my-5
+          .h3.text-muted
+            = t('shared.search_empty')

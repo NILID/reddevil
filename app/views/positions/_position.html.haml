@@ -6,8 +6,10 @@
           = position.department.title
 
 %li.position-item
-  %span.text-primary= position.position
-  %span.float-right.text-primary= position.moved_at
+  %span.text-primary
+    = position.position
+  %span.float-right.text-primary
+    = short_date position.moved_at
   - if can? :manage, position
     %div.text-right
       .btn-group

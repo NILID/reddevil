@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EventsController, type: :controller do
+RSpec.describe 'Events', type: :request do
   let!(:user)   { create(:user) }
   let!(:event) { create(:event, user: user) }
 
@@ -10,45 +10,46 @@ RSpec.describe EventsController, type: :controller do
 
       it 'returns index' do
         expect(@ability.can? :index, user => Event).to be false
-        expect{ get :index, params: { user_id: user } }
+        expect{ get user_events_path(user) }
           .to raise_error(CanCan:: AccessDenied)
       end
 
       it 'returns list' do
         expect(@ability.can? :list, Event).to be true
-        get :list, format: :json
+        get list_events_path(user), headers: { 'ACCEPT' => 'application/json' }
+
         expect(response).to be_successful
       end
 
 
       it 'returns show' do
         expect(@ability.can? :show, event).to be false
-        expect{ get :show, params: { id: event, user_id: user } }
+        expect{ get user_event_path(user, event) }
           .to raise_error(CanCan:: AccessDenied)
       end
 
       it 'returns edit' do
         expect(@ability.can? :edit, event).to be false
-        expect{ get :edit, params: { id: event, user_id: user } }
+        expect{ get edit_user_event_path(user, event) }
           .to raise_error(CanCan:: AccessDenied)
       end
 
       it 'destroys the requested row' do
         expect(@ability.can? :destroy, event).to be false
-        expect{ delete :destroy, params: { id: event, user_id: user } }
+        expect{ delete user_event_path(user, event) }
           .to raise_error(CanCan:: AccessDenied)
         expect{ response }.to change(Event, :count).by(0)
       end
 
       it 'updates the requested row' do
         expect(@ability.can? :update, event).to be false
-        expect{ put :update, params: { id: event, user_id: user, event: { startdate: Date.today } } }
+        expect{ put user_event_path(user, event, event: { startdate: Date.today }) }
           .to raise_error(CanCan:: AccessDenied)
       end
 
       it 'returns new' do
         expect(@ability.can? :new, user => Event).to be false
-        expect{ get :new, params: { user_id: user } }
+        expect{ get new_user_event_path(user) }
           .to raise_error(CanCan:: AccessDenied)
       end
     end
@@ -62,38 +63,37 @@ RSpec.describe EventsController, type: :controller do
 
     it 'returns index' do
       expect(@ability.can? :index, user => Event).to be true
-      get :index, params: { user_id: user }
+      get user_events_path(user)
       expect(response).to be_successful
     end
 
     it 'returns show' do
       expect(@ability.can? :show, event).to be true
-      get :show, params: { id: event, user_id: user }
+      get user_event_path(user, event)
       expect(response).to be_successful
     end
 
     it 'returns edit' do
       expect(@ability.can? :edit, event).to be true
-      get :edit, params: { id: event, user_id: user }
+      get edit_user_event_path(user, event)
       expect(response).to render_template(:edit)
     end
 
     it 'destroys the requested row' do
       expect(@ability.can? :destroy, event).to be true
-      expect{ delete :destroy, params: { id: event, user_id: user } }.to change(Event, :count).by(-1)
+      expect{ delete user_event_path(user, event)  }.to change(Event, :count).by(-1)
       expect(response).to redirect_to(user_events_path(user))
     end
 
     it 'updates the requested row' do
       expect(@ability.can? :update, event).to be true
-      put :update, params: { id: event, user_id: user, event: { startdate: Date.today } }
-      event.reload
+      put user_event_path(user, event, event: { startdate: Date.today })
       expect(response).to redirect_to(user_event_path(user, assigns(:event)))
     end
 
     it 'returns new' do
       expect(@ability.can? :new, user => Event).to be true
-      get :new, params: { user_id: user }
+      get new_user_event_path(user)
       expect(response).to be_successful
     end
   end
@@ -104,31 +104,31 @@ RSpec.describe EventsController, type: :controller do
     end
 
     it 'get index' do
-      get :index, params: { user_id: user }
+      get user_events_path(user)
     end
 
     it 'get list' do
-      get :list, params: { user_id: user }, format: :json
+      get list_events_path(user), headers: { 'ACCEPT' => 'application/json' }
     end
 
     it 'get show' do
-      get :show, params: { id: event, user_id: user }
+      get user_event_path(user, event)
     end
 
     it 'returns edit' do
-      get :edit, params: { id: event, user_id: user }
+      get edit_user_event_path(user, event)
     end
 
     it 'destroys the requested row' do
-      expect{ delete :destroy, params: { id: event, user_id: user } }.to change(Event, :count).by(0)
+      expect{ delete user_event_path(user, event)  }.to change(Event, :count).by(0)
     end
 
     it 'updates the requested row' do
-      put :update, params: { id: event, user_id: user, event: { startdate: Date.today } }
+      put user_event_path(user, event, event: { startdate: Date.today })
     end
 
     it 'returns new' do
-      get :new, params: { user_id: user }
+      get new_user_event_path(user)
     end
   end
 end

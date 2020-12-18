@@ -80,15 +80,6 @@ class MembersController < ApplicationController
     end
   end
 
-  def toggle_remote
-    if @member.toggle!(:remote_flag)
-      flash[:success] = t('flash.was_updated', item: Member.model_name.human)
-      redirect_to members_url(anchor: "member_#{@member.id}")
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @member.destroy
 

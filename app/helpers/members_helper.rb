@@ -11,6 +11,8 @@ module MembersHelper
           arr << 'bg-primary'
         elsif v.flag == 'trip'
           arr << 'bg-warning'
+        elsif v.flag == 'remote'
+          arr << 'bg-success'
         else
           arr << 'bg-danger'
         end
@@ -40,13 +42,13 @@ module MembersHelper
     end
   end
 
-  def member_remote_link(member)
-    member.remote_flag ? I18n.t('member.del_remote') : I18n.t('member.add_remote')
-  end
-
   def remote_status(member)
-    if member && member.remote_flag?
-      content_tag(:span, t('member.remote'), class: 'badge badge-secondary')
+    if member
+      now = DateTime.now.beginning_of_day
+      vacations = member.vacations.where('startdate <= ?', now)
+                                  .where('enddate >= ?', now)
+                                  .where(flag: 'remote')
+      vacations.any? ? content_tag(:span, t('member.remote'), class: 'badge badge-secondary') : nil
     end
   end
 

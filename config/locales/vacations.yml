@@ -3,11 +3,13 @@ ru:
     sick: Больничные
     rest: Отпуск
     trip: Командировки
+    remote: Удалённая работа
     title: Отпуск
     title_member_html: События&nbsp;%{member}
     index: Сейчас в отпуске
     index_sick: На больничном
     index_trip: В командировке
+    index_remote: На удалённой работе
     soon: Скоро в отпуск
     you_rest: У вас сейчас отпуск
     user_rest: У %{username} сейчас отпуск
@@ -19,21 +21,27 @@ ru:
     edit: Указать отпуск
     edit_sick: Указать больничный
     edit_trip: Указать командировку
+    edit_remote: Указать удалённую работу
     creating_rest_html: Добавление отпуска&nbsp;%{member}
     creating_trip_html: Добавление коммандировки&nbsp;%{member}
     creating_sick_html: Добавление больничного&nbsp;%{member}
+    creating_remote_html: Добавление удалённой работы&nbsp;%{member}
     editing_rest_html: Редактирование отпуска&nbsp;%{member}
     editing_trip_html: Редактирование коммандировки&nbsp;%{member}
     editing_sick_html: Редактирование больничного&nbsp;%{member}
+    editing_remote_html: Редактирование удалённой работы&nbsp;%{member}
     add: Добавить отпуск
     add_sick: Добавить больничный
     add_trip: Добавить командировку
+    add_trip: Указать удалённую работу
     settings: Редактирование графика отпусков&nbsp;%{name}
     settings_sick: Редактирование больничных&nbsp;%{name}
     settings_trip: Редактирование командировок&nbsp;%{name}
+    settings_remote: Редактирование удалённой работы&nbsp;%{name}
     show_old: Показать завершенные
     sick_was_updated: Вы обновили больничные
     trip_was_updated: Вы обновили командировки
+    remote_was_updated: Вы обновили удалённую работу
     from: с
     to: до
     my: Мой отпуск

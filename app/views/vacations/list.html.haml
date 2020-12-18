@@ -2,8 +2,8 @@
   .card-body
     = render 'vacations/breadcrumb', title: t("vacations.title_member_html", member: link_to(@member.petrovich_fullname, @member.user))
     .row
-      - %w[rest sick trip].each do |flag|
-        .col-12.col-lg-4.col-md-6.my-3
+      - Vacation::FLAGS.each do |flag|
+        .col-12.col-lg-6.my-3
           .lead.mb-3.text-center
             = t "vacations.#{flag}"
           .row

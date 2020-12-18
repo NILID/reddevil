@@ -29,14 +29,6 @@ RSpec.describe MembersController, type: :controller do
         expect(response).to render_template(:edit)
       end
 
-      it 'returns toggle remote' do
-        expect(@ability.can? :toggle_remote, member).to be true
-        expect(member.remote_flag).to be false
-        get :toggle_remote, params: { id: member }
-        expect(response).to redirect_to(members_url(anchor: "member_#{assigns(:member).id}"))
-        expect(assigns(:member).remote_flag).to be true
-      end
-
       it 'destroys' do
         expect(@ability.can? :destroy, member).to be true
         expect{ delete :destroy, params: { id: member } }.to change(Member, :count).by(-1)
@@ -113,12 +105,6 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to redirect_to(members_url(anchor: "member_#{assigns(:member).id}"))
     end
 
-    it 'not returns toggle remote' do
-      expect(@ability.can? :toggle_remote, member).to be false
-      expect{ get :toggle_remote, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
-      expect{ response }.to change(Member.where(remote_flag: true), :count).by(0)
-    end
-
     it 'not update' do
       expect(@ability.cannot? :update, member).to be true
       expect{ put :update, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
@@ -159,10 +145,6 @@ RSpec.describe MembersController, type: :controller do
 
     it 'not updates' do
       expect{ put :update, params: { id: member, member: { content: 'New content' } } }.to raise_error(CanCan:: AccessDenied)
-    end
-
-    it 'not returns toggle remote' do
-      expect{ get :toggle_remote, params: { id: member } }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'not destroy' do

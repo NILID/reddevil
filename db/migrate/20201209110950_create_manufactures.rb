@@ -8,7 +8,6 @@ class CreateManufactures < ActiveRecord::Migration[5.2]
       t.string :user
       t.string :machine
       t.text :operation
-      t.string :otk
       t.string :priority
 
       t.timestamps

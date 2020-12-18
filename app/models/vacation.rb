@@ -1,7 +1,7 @@
 class Vacation < ApplicationRecord
   belongs_to :member
 
-  FLAGS = %w[rest sick trip].freeze
+  FLAGS = %w[rest sick trip remote].freeze
 
   validates :startdate,
             :enddate,

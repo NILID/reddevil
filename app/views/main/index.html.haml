@@ -166,6 +166,19 @@
                   .mt-1
                     = v.member.fullname
                     = t('vacations.until_sick', date: Russian.strftime(v.startdate, "%e %B"))
+    - if @remotedays.any?
+      .card
+        .row.no-gutters.bg-darkblue
+          .col-3.col-lg-2.align-self-center
+            = image_tag 'remote.png', class: 'card-img'
+          .col-9.col-lg-10.bg-white
+            .card-body
+              %h5.card-title= t 'vacations.index_remote'
+              .card-text
+                - @remotedays.each do |v|
+                  .mt-1
+                    = v.member.fullname
+
     - if @tripdays.any?
       .card
         .row.no-gutters.bg-salat
@@ -179,18 +192,6 @@
                   .mt-1
                     = v.member.fullname
                     = trip_period(v.startdate, v.enddate)
-    - if @remote_members.any?
-      .card
-        .row.no-gutters.bg-blue
-          .col-3.col-lg-2.align-self-center
-            = image_tag 'remote.png', class: 'card-img'
-          .col-9.col-lg-10.bg-white
-            .card-body
-              %h5.card-title= t 'member.in_remote'
-              .card-text
-                - @remote_members.each do |member|
-                  .mt-1
-                    = member.fullname
 
 - if @docs.any?
   .card

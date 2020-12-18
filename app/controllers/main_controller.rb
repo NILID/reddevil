@@ -24,8 +24,7 @@ class MainController < ApplicationController
       @vacations      = all_vacations.where(flag: 'rest')
       @sickdays       = all_vacations.where(flag: 'sick')
       @tripdays       = all_vacations.where(flag: 'trip')
-
-      @remote_members = Member.where(remote_flag: true).order(:surname)
+      @remotedays     = all_vacations.where(flag: 'remote')
 
       @vacations_soon = Vacation.includes(:member)
                                 .where('startdate > ?',  DateTime.now)

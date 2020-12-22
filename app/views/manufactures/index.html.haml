@@ -15,6 +15,7 @@
       %table.table.table-hover
         %thead
           %tr
+            %th= sort_link @q, :priority,   Manufacture.human_attribute_name(:priority)
             %th= sort_link @q, :otk_status, t('substrates.otk')
             %th= sort_link @q, :title,      Manufacture.human_attribute_name(:title)
             %th= sort_link @q, :drawing,    Manufacture.human_attribute_name(:drawing)
@@ -23,7 +24,6 @@
             %th= sort_link @q, :user,       Manufacture.human_attribute_name(:user)
             %th= sort_link @q, :machine,    Manufacture.human_attribute_name(:machine)
             %th= sort_link @q, :operation,  Manufacture.human_attribute_name(:operation)
-            %th= sort_link @q, :priority,   Manufacture.human_attribute_name(:priority)
             %th
 
         %tbody

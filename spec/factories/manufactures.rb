@@ -7,7 +7,7 @@ FactoryBot.define do
     user { "MyString" }
     machine { "MyMachine" }
     operation { "MyOperation" }
-    priority { "MyPriority" }
+    priority { 4 }
     otk_status { "empty" }
   end
 end

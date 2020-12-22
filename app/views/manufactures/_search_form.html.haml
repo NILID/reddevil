@@ -18,7 +18,7 @@
           .col
             = f.select :priority_eq, {}, { include_blank: '== Выберите приоритет ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - Manufacture::PRIORITIES.each do |s|
-                = content_tag(:option, s, value: s, data: { content: new_priority_select_tag(s) }, selected: params[:q] && (params[:q][:priorityx_eq] == s.to_s) )
+                = content_tag(:option, s, value: s, data: { content: new_priority_select_tag(s) }, selected: params[:q] && (params[:q][:priority_eq] == s.to_s) )
         .form-group.row.mb-1
           = f.label :otk_status_eq,
             t('substrates.otk'),
@@ -62,3 +62,6 @@
           .col
             = f.button class: 'btn btn-warning btn-sm btn-block' do
               = fa_icon 'search', text: t('shared.to_search')
+          .col-4
+            = link_to manufactures_path, class: 'btn btn-outline-warning btn-sm btn-block' do
+              = fa_icon :undo_alt, text: t('shared.reset')

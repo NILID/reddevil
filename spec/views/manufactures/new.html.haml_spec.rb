@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "manufactures/new", type: :view do
   before(:each) do
+    create_list(:user, 2, :from_lab181)
     @manufacture = assign(:manufacture, build(:manufacture))
   end
 

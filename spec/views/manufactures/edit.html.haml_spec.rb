@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "manufactures/edit", type: :view do
 
   before(:each) do
+    create_list(:user, 2, :from_lab181)
     @manufacture = assign(:manufacture, create(:manufacture))
   end
 

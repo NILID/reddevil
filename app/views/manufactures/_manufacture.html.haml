@@ -1,4 +1,6 @@
 %tr
+  %td
+    = new_priority_tag manufacture.priority
   %td.text-center{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
     - if can? :manage_otk, Manufacture
       = link_to otk_status_icon(manufacture.otk_status), manage_otk_substrate_path(manufacture)
@@ -12,7 +14,6 @@
   %td= manufacture.user
   %td= manufacture.machine
   %td= manufacture.operation
-  %td= manufacture.priority
   %td
     .btn-group.float-right
       %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

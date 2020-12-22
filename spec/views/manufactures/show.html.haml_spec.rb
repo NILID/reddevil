@@ -14,6 +14,6 @@ RSpec.describe "manufactures/show", type: :view do
     # expect(rendered).to match(/User/)
     expect(rendered).to match(/MyMachine/)
     expect(rendered).to match(/MyOperation/)
-    expect(rendered).to match(/MyPriority/)
+    expect(rendered).to match(/4/)
   end
 end

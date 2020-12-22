@@ -5,6 +5,10 @@
       = link_to t('shared.edit'), edit_manufacture_path(@manufacture), class: 'btn btn-primary'
   .card-body
     %p
+      %b=Manufacture.human_attribute_name(:priority)
+      = new_priority_tag @manufacture.priority
+
+    %p
       %b=Manufacture.human_attribute_name(:drawing)
       = @manufacture.drawing
     %p
@@ -22,9 +26,6 @@
     %p
       %b=Manufacture.human_attribute_name(:operation)
       = @manufacture.operation
-    %p
-      %b=Manufacture.human_attribute_name(:priority)
-      = @manufacture.priority
 
     = render 'manufactures/otk_block', manufacture: @manufacture
 

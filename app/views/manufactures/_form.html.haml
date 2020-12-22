@@ -15,9 +15,21 @@
     = f.text_field :operation
     .row
       .col
-        = f.text_field :user
+        = f.select :user, {}, {}, { class: 'selectpicker' } do
+          - User.with_group(:lab181).each do |user|
+            = content_tag :option,
+              user.surname_name,
+              value: user.id,
+              selected: (f.object.user == user)
       .col
-        = f.text_field :priority
+        = f.select :priority, {}, {}, { class: 'selectpicker' } do
+          - Manufacture::PRIORITIES.each do |p|
+            = content_tag :option,
+              t("substrates.priorities.#{p}"),
+              value: p,
+              data: { content: new_priority_select_tag(p) },
+              selected: (f.object.priority == p)
+
   .card-footer
     = f.submit t('shared.save')
     .float-right

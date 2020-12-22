@@ -45,6 +45,7 @@ class VacationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to list_member_vacations_url(@member), notice: t('flash.was_destroyed', item: Vacation.model_name.human) }
       format.json { head :no_content }
+      format.js
     end
   end
 

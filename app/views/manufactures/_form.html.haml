@@ -15,12 +15,7 @@
     = f.text_field :operation
     .row
       .col
-        = f.select :user, {}, {}, { class: 'selectpicker' } do
-          - User.with_group(:lab181).each do |user|
-            = content_tag :option,
-              user.surname_name,
-              value: user.id,
-              selected: (f.object.user == user)
+        = f.text_field :user
       .col
         = f.select :priority, {}, {}, { class: 'selectpicker' } do
           - Manufacture::PRIORITIES.each do |p|

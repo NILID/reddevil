@@ -3,7 +3,7 @@
     = render 'vacations/breadcrumb', title: t("vacations.title_member_html", member: link_to(@member.petrovich_fullname, @member.user))
     .row
       - Vacation::FLAGS.each do |flag|
-        .col-12.col-lg-6.my-3
+        .col-12.col-lg-6.my-3{ class: "#{flag}-block"}
           .lead.mb-3.text-center
             = t "vacations.#{flag}"
           .row
@@ -14,5 +14,6 @@
                 = render(@vacations.where(flag: flag)) || content_tag(:span, t('shared.empty'), class: 'lead text-muted')
                 - if can? :new, @member => Vacation
                   %tr
-                    %td(colspan='2')
-                      = link_to fa_icon(:plus), new_member_vacation_path(@member, flag: flag), class: 'btn btn-sm btn-outline-secondary'
+                    %td.text-center(colspan='2')
+                      = link_to new_member_vacation_path(@member, flag: flag), class: 'btn btn-sm btn-outline-secondary' do
+                        = fa_icon :plus, text: t('shared.add')

@@ -1,0 +1,4 @@
+$("#<%=dom_id @vacation%>").fadeOut();
+<% if @member.vacations.where(flag: @vacation.flag).pluck(:id).empty? %>
+  $(".<%=@vacation.flag%>-block table").prepend("<span class='lead text-muted'><%=t('shared.empty')%></span>")
+<% end %>

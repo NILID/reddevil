@@ -194,7 +194,7 @@
                     = trip_period(v.startdate, v.enddate)
 
 - if @docs.any?
-  .card
+  .card#docs
     .card-header= t 'docs.last_docs'
     %table.table.table-hover.table-borderless.mb-0
       = render partial: 'docs/mini_doc', collection: @docs

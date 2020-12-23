@@ -1,6 +1,6 @@
 - doc = mini_doc
 - if doc.document.attached?
-  %tr
+  %tr{id: dom_id(doc)}
     %td
       %span.text-muted.mr-4
         = l doc.updated_at, format: :short

@@ -4,7 +4,7 @@ development:
   channel_prefix: rails-chat-tutorial_development
 
 test:
-  adapter: async
+  adapter: test
 
 production:
   adapter: redis

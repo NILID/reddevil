@@ -56,6 +56,8 @@ class DocsController < ApplicationController
   def create
     respond_to do |format|
       if @doc.save
+        DocsChannel.broadcast(@doc)
+
         format.html { redirect_to docs_url, notice: t('flash.was_created', item: Doc.model_name.human) }
         format.json { render json: @doc, status: :created, location: @doc }
       else
@@ -79,10 +81,12 @@ class DocsController < ApplicationController
 
   def destroy
     @doc.destroy
+    DocsRemoveChannel.broadcast(@doc)
 
     respond_to do |format|
       format.html { redirect_to docs_url, notice: t('flash.was_destroyed', item: Doc.model_name.human) }
       format.json { head :no_content }
+      format.js   { head :no_content }
     end
   end
 

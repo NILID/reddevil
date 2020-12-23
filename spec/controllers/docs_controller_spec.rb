@@ -43,6 +43,11 @@ RSpec.describe DocsController, type: :controller do
         expect(response).to redirect_to(docs_url)
       end
 
+      it 'destroy with js' do
+        expect(@ability.can? :destroy, doc).to be true
+        expect{ delete :destroy, params: { id: doc }, format: 'js', xhr: true }.to change(Doc, :count).by(-1)
+      end
+
       it 'update' do
         expect(@ability.can? :update, doc).to be true
         put :update, params: { id: doc, doc: attributes_for(:doc) }

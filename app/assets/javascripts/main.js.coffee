@@ -70,10 +70,8 @@ $ ->
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
-  $('#simple-changecolor').colorpicker()
-
-  $('#changecolor').colorpicker().on 'colorpickerChange colorpickerCreate', (e) ->
-    $('body').css 'background', 'url(' + $(this).data('bg-url') + ') ' + e.color
+  $('#user_profile_attributes_background_color').on 'change', ->
+    $('body').css 'background', 'url(' + $(this).data('bg-url') + ') ' + $(this).val()
 
   $('#datetimepicker1 input').datepicker
     locale: "ru"

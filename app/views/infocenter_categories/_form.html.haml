@@ -10,9 +10,7 @@
       = f.select :table_ids,
         Table.all.map { |t| [t.title, t.id] }, { include_blank: t('shared.select') }, { class: 'selectpicker' }
 
-      #simple-changecolor.colorpicker-component
-        = f.text_field :color,
-          prepend: content_tag(:span, content_tag(:i), class: 'colorpicker-input-addon')
+      = f.color_field :color
 
     .card-footer
       = f.primary t('shared.save')

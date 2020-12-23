@@ -1,8 +1,7 @@
-- if @messages
-  .row
-    .col-md-12
-      - @messages.each do |message|
-        .alert.alert-primary(role='alert')
-          - if message.title?
-            %h4.alert-heading= message.title
-          = message.content
+.row
+  .col-md-12
+    - @messages.each do |message|
+      .alert.alert-primary.mb-0(role='alert')
+        - if message.title?
+          %h4.alert-heading= message.title
+        = message.content

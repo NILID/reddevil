@@ -5,8 +5,9 @@
   %body
     = render 'layouts/menu'
     %main.pt-4.mt-5(role='main')
-      .container-fluid
-        = render 'messages/messages'
+      - if @messages
+        .container-fluid
+          = render 'messages/messages'
       .container-fluid
         - if flash_messages
           .row

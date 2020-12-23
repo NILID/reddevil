@@ -8,7 +8,7 @@
         .col-xs-12.col-md-6
           = f.fields_for :profile do |p|
             = p.file_field :avatar
-            #changecolor.colorpicker-component
+            #changecolor.colorpicker-component{ data: { bg_url: asset_url('greydots.png') } }
               = p.text_field :background_color,
                 value: @user.background_color,
                 control_col: 'col-8',

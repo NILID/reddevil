@@ -73,7 +73,7 @@ $ ->
   $('#simple-changecolor').colorpicker()
 
   $('#changecolor').colorpicker().on 'colorpickerChange colorpickerCreate', (e) ->
-    $('body').css 'background', e.color
+    $('body').css 'background', 'url(' + $(this).data('bg-url') + ') ' + e.color
 
   $('#datetimepicker1 input').datepicker
     locale: "ru"

@@ -5,7 +5,8 @@ html {
 }
 
 body {
-  background: rgba(0, 68, 189, 0.23) asset-url('greydots.png') repeat;
+  background: asset-url('greydots.png') rgba(0, 68, 189, 0.23);
+  background-repeat: repeat;
 }
 
 .nowrap {white-space: nowrap}

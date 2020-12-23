@@ -7,7 +7,8 @@
 
     %main.pt-4.mt-5(role='main')
       .container-fluid.main-content
-        = render 'messages/messages'
+        - if @messages
+          = render 'messages/messages'
         .row
           .col-12= flash_messages
         .row

@@ -51,6 +51,16 @@ class User < ApplicationRecord
   scope :with_group, lambda { |group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }
   scope :with_role,  lambda { |role|  where('roles_mask & ? > 0',  2**ROLES.index(role.to_s)) }
 
+  def self.merge_arrays(array, name)
+    groups = array.sort
+    tr_groups = array.map{|g| I18n.t("user.#{name}.#{g}")}
+    hash_groups = {}
+    groups.each_with_index do |g, index|
+      hash_groups[g] = tr_groups[index]
+    end
+    hash_groups
+  end
+
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end

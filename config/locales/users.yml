@@ -13,4 +13,5 @@ ru:
       moderator: Модератор
       editor: Редактор
       manager: Менеджер
-      test: Тестовая
+      testuser: Тестовый
+      guest: Гость

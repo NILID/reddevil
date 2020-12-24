@@ -5,9 +5,9 @@
     .card-body
       .row
         .col
-          = f.collection_check_boxes :roles,  User::ROLES.sort, :to_s,  :to_s, custom: :switch
+          = f.collection_check_boxes :roles, User.merge_arrays(User::ROLES, :roles), :first, :last, custom: :switch
         .col
-          = f.collection_check_boxes :groups, User::GROUPS.sort, :to_s, :to_s, custom: :switch
+          = f.collection_check_boxes :groups, User.merge_arrays(User::GROUPS, :groups), :first, :last, custom: :switch
       %hr
       = f.check_box :sport_flag, custom: :switch
 

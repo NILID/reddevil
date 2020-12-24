@@ -1,8 +1,8 @@
 .card
   .card-header
-    %span.h1= @manufacture.title
-    .float-right
-      = link_to t('shared.edit'), edit_manufacture_path(@manufacture), class: 'btn btn-primary'
+    = render 'application/breadcrumb', titles: [@manufacture.title], class_name: Manufacture do
+      .float-right
+        = link_to t('shared.edit'), edit_manufacture_path(@manufacture), class: 'btn btn-primary'
   .card-body
     %p
       %b=Manufacture.human_attribute_name(:priority)
@@ -27,7 +27,7 @@
       %b=Manufacture.human_attribute_name(:operation)
       = @manufacture.operation
 
-    = render 'manufactures/otk_block', manufacture: @manufacture
+  = render 'manufactures/otk_block', manufacture: @manufacture
 
   .card-footer
     .float-right

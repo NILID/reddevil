@@ -1,14 +1,12 @@
 - set_meta_tags title: t('shared.history')
 
 .card
+  .card-header
+    - if params[:action] == 'changes'
+      = render 'application/breadcrumb', titles: [link_to(@substrate.title, @substrate), t('shared.history')], class_name: Substrate
+    - else
+      = render 'application/breadcrumb', titles: [t('shared.history')], class_name: Substrate
   .card-body
-    .row
-      .col
-        - if params[:action] == 'changes'
-          = render 'substrates/breadcrumb', titles: [link_to(@substrate.title, @substrate), t('shared.history')]
-        - else
-          = render 'substrates/breadcrumb', titles: [t('shared.history')]
-
     .row
       .col
         - if @versions.empty?

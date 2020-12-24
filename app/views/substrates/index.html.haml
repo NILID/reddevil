@@ -3,22 +3,18 @@
 - set_meta_tags title: check_archive ? t('substrates.archive') : t('substrates.title')
 
 .card{ class: check_archive ? 'card-archive' : 'card-index' }
-  .card-body
-    .row
-      .col
-        = render 'breadcrumb', titles: [link_to_if(!check_archive, content_tag(:span, t('substrates.archive'), class: 'card-index-link animated'), archive_substrates_path)]
-      .col-6.text-right
-        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
-          = fa_icon 'filter', text: t('shared.filter')
-        = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm mx-2' do
-          = fa_icon 'history', text: t('shared.history')
-        = link_to substrates_path(format: 'xlsx'), class: 'btn btn-outline-success btn-sm', target: '_blank' do
-          = fa_icon 'file-excel', text: t('shared.download')
-    - if !check_archive
-      .row
-        .col
+  .card-header
+    = render 'application/breadcrumb', titles: [link_to_if(!check_archive, content_tag(:span, t('substrates.archive')), archive_substrates_path)], class_name: Substrate do
+      .float-right
+        - if !check_archive
           = link_to new_substrate_path, class: 'btn btn-primary btn-sm' do
             = fa_icon 'plus', text: t('shared.add')
+        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm ml-2' do
+          = fa_icon 'filter', text: t('shared.filter')
+        = link_to history_substrates_path, class: 'btn btn-outline-primary btn-sm ml-2' do
+          = fa_icon 'history', text: t('shared.history')
+        = link_to substrates_path(format: 'xlsx'), class: 'btn btn-outline-success btn-sm ml-2', target: '_blank' do
+          = fa_icon 'file-excel', text: t('shared.download')
 
   = render 'substrates/search_form'
 

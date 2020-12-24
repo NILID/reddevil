@@ -1,0 +1,7 @@
+%ul.list-inline.h4.d-inline-block
+  %li.list-inline-item= link_to t("#{class_name.table_name}.title"), class_name
+  - titles.each do |title|
+    %li.list-inline-item.text-muted /
+    %li.list-inline-item= title
+
+= yield

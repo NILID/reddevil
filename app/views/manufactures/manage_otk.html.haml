@@ -2,8 +2,10 @@
 - set_meta_tags title: formtitle
 
 = bootstrap_form_for @manufacture, html: { class: 'card' } do |f|
+  .card-header
+    = render 'application/breadcrumb', titles: [link_to(@manufacture.title, @manufacture), formtitle], class_name: Manufacture
   .card-body
-    = render 'breadcrumb', titles: [link_to(@manufacture.title, @manufacture), formtitle]
+
     = render 'application/error', object: @manufacture
 
     .row

@@ -1,10 +1,10 @@
 .card
   .card-header
-    %span.h2= t('shared.items_list')
-    .float-right
-      = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
-        = fa_icon 'filter', text: t('shared.filter')
-      = link_to fa_icon(:plus, text: t('shared.add')), new_manufacture_path, class: 'btn btn-primary btn-sm  ml-2'
+    = render 'application/breadcrumb', titles: [], class_name: Manufacture do
+      .float-right
+        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
+          = fa_icon 'filter', text: t('shared.filter')
+        = link_to fa_icon(:plus, text: t('shared.add')), new_manufacture_path, class: 'btn btn-primary btn-sm  ml-2'
 
   .card-body
     = render 'manufactures/search_form'

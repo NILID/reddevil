@@ -1,6 +1,9 @@
 = bootstrap_form_for @manufacture, html: { class: 'card' } do |f|
   .card-header
-    = formtitle
+    - if params[:action] == 'edit'
+      = render 'application/breadcrumb', titles: [link_to(@manufacture.title, @manufacture), formtitle], class_name: Manufacture
+    - else
+      = render 'application/breadcrumb', titles: [formtitle], class_name: Manufacture
   .card-body
     = render 'application/error', object: @manufacture
 

@@ -6,7 +6,7 @@
   .card-body
     .row
       .col
-        = render 'breadcrumb', titles: [link_to_if(!check_archive, content_tag(:span, t('substrates.archive'), class: 'card-index-link animated'), archive_substrates_path)]
+        = render 'application/breadcrumb', titles: [link_to_if(!check_archive, content_tag(:span, t('substrates.archive')), archive_substrates_path)], class_name: Substrate
       .col-6.text-right
         = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm mr-2' do
           = fa_icon 'filter', text: t('shared.filter')

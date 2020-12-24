@@ -1,13 +1,13 @@
 - set_meta_tags title: formtitle
 
 = bootstrap_form_for @substrate, html: { class: 'card' } do |f|
-  .card-body
+  .card-header
     - if params[:action] == 'edit'
-      = render 'breadcrumb', titles: [link_to(@substrate.title, @substrate), formtitle]
+      = render 'application/breadcrumb', titles: [link_to(@substrate.title, @substrate), formtitle], class_name: Substrate
     - else
-      = render 'breadcrumb', titles: [formtitle]
+      = render 'application/breadcrumb', titles: [formtitle], class_name: Substrate
 
-
+  .card-body
     = render 'application/error', object: @substrate
     =# f.hidden_field :lock_version
 

@@ -115,6 +115,15 @@ module SubstratesHelper
     "badge rounded-circle shadow-lg substrate-priority px-2 #{color}"
   end
 
+  def new_priority_color(priority)
+    color = case priority
+    when 4 then 'table-success'
+    when 3 then 'table-yellow'
+    when 2 then 'table-warning'
+    when 1 then 'table-danger'
+    end
+    "#{color}"
+  end
 
   def new_priority_select_tag(priority)
     content_tag(:span, class: 'select-priority') do

@@ -26,7 +26,7 @@
             = content_tag :option,
               t("substrates.priorities.#{s}"),
               value: s,
-              data: { content: new_priority_select_tag(s) },
+              data: { content: priority_select_tag(s) },
               selected: (f.object.priorityx == s)
 
     .row

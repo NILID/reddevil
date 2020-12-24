@@ -1,6 +1,6 @@
 = content_tag_for(:tr, substrate, class: status_style(substrate.status, :table)) do
   %td.text-center
-    = new_priority_tag substrate.priorityx
+    = priority_tag substrate.priorityx
     %br/
     = best_in_place substrate, :status,
         as: :select,

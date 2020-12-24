@@ -25,7 +25,7 @@
             = content_tag :option,
               t("substrates.priorities.#{p}"),
               value: p,
-              data: { content: new_priority_select_tag(p) },
+              data: { content: priority_select_tag(p) },
               selected: (f.object.priority == p)
 
   .card-footer

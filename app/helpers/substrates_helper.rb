@@ -105,7 +105,7 @@ module SubstratesHelper
     tag == :badge ? "badge badge-#{color}" : "table-#{color}"
   end
 
-  def new_priority_style(priority)
+  def priority_style(priority)
     color = case priority
     when 4 then 'bg-success text-white'
     when 3 then 'bg-yellow'
@@ -115,7 +115,7 @@ module SubstratesHelper
     "badge rounded-circle shadow-lg substrate-priority px-2 #{color}"
   end
 
-  def new_priority_color(priority)
+  def priority_color(priority)
     color = case priority
     when 4 then 'table-success'
     when 3 then 'table-yellow'
@@ -125,15 +125,15 @@ module SubstratesHelper
     "#{color}"
   end
 
-  def new_priority_select_tag(priority)
+  def priority_select_tag(priority)
     content_tag(:span, class: 'select-priority') do
-      content_tag(:span, priority, class: new_priority_style(priority))
+      content_tag(:span, priority, class: priority_style(priority))
     end
   end
 
-  def new_priority_tag(priority)
+  def priority_tag(priority)
     if priority
-      content_tag(:span, priority, class: new_priority_style(priority))
+      content_tag(:span, priority, class: priority_style(priority))
     end
   end
 

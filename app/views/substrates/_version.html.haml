@@ -30,6 +30,6 @@
                   - when 'statuses_mask'
                     = t("substrates.statuses.#{Substrate::STATUSES[changeitem[1][1]]}")
                   - when 'priorityx'
-                    = new_priority_tag changeitem[1][1]
+                    = priority_tag changeitem[1][1]
                   - else
                     = changeitem[1][1]

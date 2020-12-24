@@ -26,7 +26,7 @@
           .col
             = f.select :priorityx_eq, {}, { include_blank: '== Выберите приоритет ==' }, { class: 'selectpicker form-control form-control-sm' } do
               - Substrate::NEW_PRIORITIES.each do |s|
-                = content_tag(:option, s, value: s, data: { content: new_priority_select_tag(s) }, selected: params[:q] && (params[:q][:priorityx_eq] == s.to_s) )
+                = content_tag(:option, s, value: s, data: { content: priority_select_tag(s) }, selected: params[:q] && (params[:q][:priorityx_eq] == s.to_s) )
         .form-group.row.mb-1
           = f.label :otk_status_eq,
             t('substrates.otk'),

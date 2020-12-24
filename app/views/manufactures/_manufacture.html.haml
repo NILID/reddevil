@@ -1,6 +1,6 @@
-%tr{class: new_priority_color(manufacture.priority)}
+%tr{class: priority_color(manufacture.priority)}
   %td{ title: Manufacture.human_attribute_name(:priority) }
-    = new_priority_tag(manufacture.priority)
+    = priority_tag(manufacture.priority)
   %td.text-center{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
     - if can? :manage_otk, Manufacture
       = link_to otk_status_icon(manufacture.otk_status), manage_otk_substrate_path(manufacture)

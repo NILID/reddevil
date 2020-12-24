@@ -6,8 +6,7 @@
   .card-body
     %p
       %b=Manufacture.human_attribute_name(:priority)
-      = new_priority_tag @manufacture.priority
-
+      = priority_tag @manufacture.priority
     %p
       %b=Manufacture.human_attribute_name(:drawing)
       = @manufacture.drawing

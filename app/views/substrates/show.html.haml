@@ -14,7 +14,7 @@
       .col
         %dl.row
           %dt.col-sm-3= Substrate.human_attribute_name(:priorityx)
-          %dd.col-sm-9= new_priority_tag @substrate.priorityx
+          %dd.col-sm-9= priority_tag @substrate.priorityx
           %dt.col-sm-3= Substrate.human_attribute_name(:status)
           %dd.col-sm-9= status_text(@substrate.status)
           %dt.col-sm-3= t('substrates.created_at')

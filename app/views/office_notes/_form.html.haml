@@ -1,7 +1,7 @@
 = bootstrap_form_for @office_note, html: { class: 'card' } do |f|
+  .card-header
+    = render 'application/breadcrumb', titles: [formtitle], class_name: OfficeNote
   .card-body
-    = render 'office_notes/breadcrumb', titles: [formtitle]
-
     = render 'application/error', object: @office_note
 
     = f.text_field :num

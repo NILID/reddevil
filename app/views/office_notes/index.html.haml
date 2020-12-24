@@ -1,10 +1,11 @@
 .card
-  .card-body
-    = render 'breadcrumb', titles: []
-    .mt-2.mb-4
-      = link_to new_office_note_path, class: 'btn btn-primary' do
-        = fa_icon :plus, text: t('shared.add')
+  .card-header
+    = render 'application/breadcrumb', titles: [], class_name: OfficeNote do
+      .float-right
+        = link_to new_office_note_path, class: 'btn btn-primary' do
+          = fa_icon :plus, text: t('shared.add')
 
+  .card-body
     - if @office_notes.empty?
       .text-center.my-5
         .h3.text-muted= t('shared.nothing')

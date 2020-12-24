@@ -1,7 +1,7 @@
 .card
+  .card-header
+    = render 'application/breadcrumb', titles: ["#{@office_note.title} #{@office_note.num}"], class_name: OfficeNote
   .card-body
-    = render 'breadcrumb', titles: ["#{@office_note.title} #{@office_note.num}"]
-
     %p
       %b= OfficeNote.human_attribute_name(:whom)
       = @office_note.whom

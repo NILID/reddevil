@@ -1,9 +1,9 @@
 = javascript_include_tag Ckeditor.cdn_url
 
 = bootstrap_form_for @page, html: { class: 'card' } do |f|
+  .card-header
+    = render 'application/breadcrumb', titles: formtitle, class_name: Page
   .card-body
-    = render 'pages/breadcrumb', titles: formtitle
-
     = render 'application/error', object: @page
     .field
       = f.text_field :title

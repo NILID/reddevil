@@ -1,8 +1,9 @@
 .card
+  .card-header
+    = render 'application/breadcrumb', titles: [], class_name: Page do
+      .float-right
+        = link_to fa_icon(:plus), new_page_path, class: 'btn btn-primary'
   .card-body
-    = render 'breadcrumb', titles: []
-    = link_to fa_icon(:plus), new_page_path, class: 'btn btn-primary'
-
     .row.mt-4
       - @pages.each do |page|
         .col-12

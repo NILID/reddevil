@@ -17,7 +17,7 @@ class InfocenterCategoriesController < CategoriesController
     else
       @cards = @object.cards.includes(doc_attachment: [:blob])
     end
-    @tables = @object.tables.includes(:columns, rows: [columnships: [:column]])
+    @tables = @object.tables.includes(:columns, rows: [columnships: [:column]]).order(created_at: :desc)
   end
 
   def manage; end

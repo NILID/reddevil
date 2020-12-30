@@ -6,7 +6,7 @@ FactoryBot.define do
     material { "кварц" }
     user { "MyString" }
     machine { "MyMachine" }
-    priority { 4 }
+    priority { 3 }
     otk_status { "empty" }
 
     factory :manufacture_with_operations do

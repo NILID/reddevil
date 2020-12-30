@@ -30,6 +30,7 @@ ru:
       table: таблица
       column: поле
       office_note: служебки
+      operation: операция
       page: страница
       type: вид спорта
       vacation: событие
@@ -58,6 +59,16 @@ ru:
         otk_desc: Примечание
         otk_documents: Документы
         priority: Приоритет
+        deadline: Сроки
+        tech_params: Технологичекие требования
+      manufacture_operation:
+        operation: Операция
+        started_at: Начало работ
+        finished_at: Завершение работ
+        member_id: Исполнитель
+        operation_id: Операция
+        notes: Примечания
+        tech_params: Технологичекие требования
       row:
         user_id: Исполнитель
       columnship:
@@ -133,6 +144,8 @@ ru:
         desc: Описание
         document: Документ
         category_tokens: Категории
+      operation:
+        title: Название
       page:
         title: Название
         content: Описание

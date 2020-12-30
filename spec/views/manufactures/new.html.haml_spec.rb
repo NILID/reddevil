@@ -23,8 +23,6 @@ RSpec.describe "manufactures/new", type: :view do
 
       assert_select "input[name=?]", "manufacture[machine]"
 
-      assert_select "input[name=?]", "manufacture[operation]"
-
       assert_select "select[name=?]", "manufacture[priority]"
     end
   end

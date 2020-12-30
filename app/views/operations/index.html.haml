@@ -1,0 +1,23 @@
+.card
+  .card-header
+    = render 'application/breadcrumb', titles: [t('operations.title')], class_name: Manufacture do
+      - if can? :create, Operation
+        .float-right
+          = link_to new_operation_path, class: 'btn btn-primary' do
+            = fa_icon :plus, text: t('shared.add')
+
+  .card-body
+    %table
+      %thead
+        %tr
+          %th Title
+          %th
+          %th
+
+      %tbody
+        - @operations.each do |operation|
+          %tr
+            %td= link_to operation.title, operation
+            - if can? :manage, operation
+              %td= link_to t('shared.edit'), edit_operation_path(operation)
+              %td= link_to t('shared.del'), operation, method: :delete, data: { confirm: t('shared.sure') }

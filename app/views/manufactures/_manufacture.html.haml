@@ -11,9 +11,12 @@
   %td= manufacture.drawing
   %td= manufacture.contract
   %td= manufacture.material
-  %td= manufacture.user
   %td= manufacture.machine
-  %td= manufacture.operation
+  %td
+    - last_operations = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }
+    - if last_operations.any?
+      = last_operations.first.operation.title
+      (#{last_operations.first.member.surname_name})
   %td
     .btn-group.float-right
       %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

@@ -5,18 +5,22 @@ class ManufacturesController < ApplicationController
 
   def index
     @q = @manufactures.ransack(params[:q])
-    @manufactures = @q.result(distinct: true).order(created_at: :desc)
+    @manufactures = @q.result(distinct: true)
+                      .order(created_at: :desc)
+    @last_operations = ManufactureOperation.where(id: @manufactures.map{ |m| m.last_operation_id }.compact)
+                                           .includes(:operation, :member)
   end
 
   def show
-    @otk_documents = @manufacture.otk_documents.includes(:blob)
+    @otk_documents = @manufacture.otk_documents
+                                 .includes(:blob)
+    @operations    = @manufacture.manufacture_operations
+                                 .includes(:operation, :member)
+                                 .order(:started_at)
   end
 
-  def new
-  end
-
-  def edit
-  end
+  def new;  end
+  def edit; end
 
   def create
     respond_to do |format|
@@ -59,7 +63,8 @@ class ManufacturesController < ApplicationController
 
   private
     def manufacture_params
-      manufacture_params = [:title, :drawing, :contract, :material, :user, :machine, :operation, :priority]
+      manufacture_params = [:title, :drawing, :contract, :material, :user, :machine, :priority,
+                            { manufacture_operations_attributes: %i[id member_id operation_id started_at finished_at tech_params notes _destroy] } ]
       manufacture_params << [:otk_status, :otk_desc, otk_documents: []] if (current_user&.role? :admin) || (current_user&.has_group? :otk)
       params.require(:manufacture).permit(manufacture_params)
     end

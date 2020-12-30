@@ -1,0 +1,11 @@
+.card
+  = bootstrap_form_for @operation do |f|
+    .card-header
+      = formtitle
+    .card-body
+      = render 'application/error', object: @operation
+      = f.text_field :title
+    .card-footer
+      = f.submit t('shared.save')
+      .float-right
+        = yield

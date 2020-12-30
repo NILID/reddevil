@@ -30,6 +30,10 @@ module ApplicationHelper
      Russian.strftime(time, '%d.%m.%Y')
    end
 
+   def short_date_with_month(time)
+     Russian.strftime(time, '%d %B %Y')
+   end
+
    def arttime(time)
      Russian.strftime(time, '%A, %d.%m.%Y')
    end

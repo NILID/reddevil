@@ -5,6 +5,7 @@
         = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
           = fa_icon 'filter', text: t('shared.filter')
         = link_to fa_icon(:plus, text: t('shared.add')), new_manufacture_path, class: 'btn btn-primary btn-sm  ml-2'
+        = link_to fa_icon(:stream, text: t('operations.title')), operations_path, class: 'btn btn-success btn-sm  ml-2'
 
   .card-body
     = render 'manufactures/search_form'
@@ -12,7 +13,7 @@
       .text-center.my-5
         .h3.text-muted= t('shared.search_empty')
     - else
-      %table.table.table-hover
+      %table.table.table-hover.table-sm.table-bordered
         %thead
           %tr
             %th{ title: Manufacture.human_attribute_name(:priority) }
@@ -22,9 +23,13 @@
             %th= sort_link @q, :drawing,    Manufacture.human_attribute_name(:drawing)
             %th= sort_link @q, :contract,   Manufacture.human_attribute_name(:contract)
             %th= sort_link @q, :material,   Manufacture.human_attribute_name(:material)
-            %th= sort_link @q, :user,       Manufacture.human_attribute_name(:user)
             %th= sort_link @q, :machine,    Manufacture.human_attribute_name(:machine)
-            %th= sort_link @q, :operation,  Manufacture.human_attribute_name(:operation)
+            %th
+              =# sort_link @q, 'manufacture_operations_operation_title',  Manufacture.human_attribute_name(:operation)
+              = Manufacture.human_attribute_name(:operation)
+              \ /
+              =# sort_link @q, :manufacture_operations_operation_member_id,       Manufacture.human_attribute_name(:user)
+              = Manufacture.human_attribute_name(:user)
             %th
 
         %tbody

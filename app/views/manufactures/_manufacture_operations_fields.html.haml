@@ -1,0 +1,17 @@
+.row.nested-fields.mb-3
+  .col
+    .input-group
+      = f.date_field :started_at,  { wrapper: false }
+      = f.date_field :finished_at, { wrapper: false }
+  .col
+    = f.select :operation_id, Operation.all.map{ |o| [o.title, o.id]}, { include_blank: t('shared.select'), wrapper: false }
+  .col
+    = f.text_area :tech_params, { wrapper: false, placeholder: ManufactureOperation.human_attribute_name(:tech_params) }
+  .col
+    = f.select :member_id, Member.all.map{ |m| [m.surname_name, m.id]}, { include_blank: t('shared.select'), wrapper: false }
+  .col
+    = f.text_area :notes, { wrapper: false, placeholder: ManufactureOperation.human_attribute_name(:notes) }
+  .col-1
+    .input-group-append
+      = link_to_remove_association f, class: 'btn btn-outline-secondary', data: { confirm: t('shared.sure') } do
+        = fa_icon :times

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :operations
   resources :manufactures do
     member do
       get :manage_otk

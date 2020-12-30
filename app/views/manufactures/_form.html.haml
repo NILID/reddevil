@@ -15,7 +15,6 @@
       .col
         = f.text_field :contract
         = f.text_field :machine
-    = f.text_field :operation
     .row
       .col
         = f.text_field :user
@@ -27,9 +26,18 @@
               value: p,
               data: { content: priority_select_tag(p) },
               selected: (f.object.priority == p)
+  .card-header
+    = t 'operations.title'
+  .card-body
+    .row
+      .col
+        = f.fields_for :manufacture_operations do |operation|
+          = render 'manufacture_operations_fields', f: operation
+        .links
+          = link_to_add_association f, :manufacture_operations, partial: 'manufacture_operations_fields' do
+            = fa_icon 'plus', text: t('shared.add')
 
   .card-footer
     = f.submit t('shared.save')
     .float-right
       = link_to t('shared.back'), manufactures_path, class: 'btn btn-outline-secondary'
-

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_21_110032) do
+ActiveRecord::Schema.define(version: 2020_12_29_144514) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -221,6 +221,19 @@ ActiveRecord::Schema.define(version: 2020_12_21_110032) do
     t.index ["liker_id", "liker_type"], name: "fk_likes"
   end
 
+  create_table "manufacture_operations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "manufacture_id"
+    t.bigint "operation_id"
+    t.integer "member_id"
+    t.date "started_at"
+    t.date "finished_at"
+    t.text "tech_params"
+    t.text "notes"
+    t.index ["manufacture_id"], name: "index_manufacture_operations_on_manufacture_id"
+    t.index ["member_id"], name: "index_manufacture_operations_on_member_id"
+    t.index ["operation_id"], name: "index_manufacture_operations_on_operation_id"
+  end
+
   create_table "manufactures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "drawing"
@@ -228,12 +241,12 @@ ActiveRecord::Schema.define(version: 2020_12_21_110032) do
     t.string "material"
     t.string "user"
     t.string "machine"
-    t.text "operation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "otk_status", default: "empty"
     t.text "otk_desc"
     t.integer "priority", default: 4, null: false
+    t.integer "last_operation_id"
   end
 
   create_table "matches", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -310,6 +323,12 @@ ActiveRecord::Schema.define(version: 2020_12_21_110032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_office_notes_on_user_id"
+  end
+
+  create_table "operations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

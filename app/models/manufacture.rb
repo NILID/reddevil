@@ -4,7 +4,7 @@ class Manufacture < ApplicationRecord
 
   OTK_STATUSES = %w[empty failed passed approval].freeze
   MATERIALS    = %w[карбид кварц кремний ситалл].freeze
-  PRIORITIES = [1, 2, 3, 4].freeze
+  PRIORITIES = [1, 2, 3].freeze
 
 
   validates_inclusion_of :priority,   in: PRIORITIES

@@ -107,8 +107,7 @@ module SubstratesHelper
 
   def priority_style(priority)
     color = case priority
-    when 4 then 'bg-success text-white'
-    when 3 then 'bg-yellow'
+    when 3 then 'bg-success text-white'
     when 2 then 'bg-warning'
     when 1 then 'bg-danger text-white'
     end
@@ -117,8 +116,7 @@ module SubstratesHelper
 
   def priority_color(priority)
     color = case priority
-    when 4 then 'table-success'
-    when 3 then 'table-yellow'
+    when 3 then 'table-success'
     when 2 then 'table-warning'
     when 1 then 'table-danger'
     end

@@ -16,8 +16,6 @@
       %table.table.table-hover.table-sm.table-bordered
         %thead
           %tr
-            %th{ title: Manufacture.human_attribute_name(:priority) }
-              = sort_link @q, :priority,   fa_icon(:clock, type: :far)
             %th= sort_link @q, :otk_status, t('substrates.otk')
             %th= sort_link @q, :title,      Manufacture.human_attribute_name(:title)
             %th= sort_link @q, :drawing,    Manufacture.human_attribute_name(:drawing)

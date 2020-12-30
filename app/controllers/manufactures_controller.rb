@@ -9,6 +9,7 @@ class ManufacturesController < ApplicationController
                       .order(created_at: :desc)
     @last_operations = ManufactureOperation.where(id: @manufactures.map{ |m| m.last_operation_id }.compact)
                                            .includes(:operation, :member)
+    @operations = Operation.order(:title)
   end
 
   def show

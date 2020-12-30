@@ -37,15 +37,12 @@
               - Manufacture::MATERIALS.each do |material|
                 = content_tag(:option, material, value: material, data: { content: material }, selected: params[:q] && (params[:q][:material_eq] == material) )
 
-
         .form-group.row.mb-1
           = f.label :manufacture_operations_operation_id_eq,
             Manufacture.human_attribute_name(:operation),
             class: 'col-sm-4 col-form-label'
           .col
-            = f.select :manufacture_operations_operation_id_eq, {}, { include_blank: '== Выберите операцию ==' }, { class: 'selectpicker form-control form-control-sm' } do
-              - Operation.order(:title).each do |operation|
-                = content_tag(:option, operation.id, value: operation.id, data: { content: operation.title }, selected: params[:q] && (params[:q][:manufacture_operations_operation_id_eq] == operation.id.to_s) )
+            = f.select :manufacture_operations_operation_id_eq, @operations.map { |m| [m.title, m.id] }, { include_blank: '== Выберите операцию ==' }, { class: 'selectpicker form-control form-control-sm' }
 
 
         .form-group.row.mb-1

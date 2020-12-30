@@ -22,10 +22,11 @@
     %p
       %b=Manufacture.human_attribute_name(:machine)
       = @manufacture.machine
-  .card-header
-    %h4.text-muted
-      = t 'operations.title'
   - if @operations.any?
+    .card-header
+      %h4.text-muted
+        = t 'operations.title'
+
     %table.table.mb-0.table-hover.table-bordered
       %thead
         %tr

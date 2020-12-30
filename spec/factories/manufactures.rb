@@ -8,5 +8,15 @@ FactoryBot.define do
     machine { "MyMachine" }
     priority { 4 }
     otk_status { "empty" }
+
+    factory :manufacture_with_operations do
+      transient do
+        manufacture_operations_count { 2 }
+      end
+
+      after(:create) do |manufacture, evaluator|
+        create_list(:manufacture_operation, evaluator.manufacture_operations_count, manufacture: manufacture)
+      end
+    end
   end
 end

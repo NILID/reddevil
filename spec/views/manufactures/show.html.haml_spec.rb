@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "manufactures/show", type: :view do
   before(:each) do
-    @manufacture = assign(:manufacture, create(:manufacture))
+    assign(:manufacture, create(:manufacture_with_operations))
   end
 
   it "renders attributes in <p>" do

@@ -1,0 +1,38 @@
+.navbar-xmas {
+  background: #a80d1a asset_url('xmas_bg.png') center bottom no-repeat;
+  border-radius:0;
+  border: none;
+  z-index: 1;
+
+  &:after {
+    position:absolute;
+    bottom:0;
+    left:0;
+    height:55px;
+    content: '';
+    width:100%;
+    background:asset_url('snowing.gif') 0 0 repeat-x;
+    z-index: -1
+  }
+
+  & .navbar-nav > li > a,
+  .navbar-brand {
+    color: #ffa4ad;
+
+    &:hover,
+    &:visited {
+      color: #fff;
+    }
+  }
+
+  .navbar-nav .nav-link {
+    color: #aaa;
+  }
+
+
+  .navbar-brand {
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(168, 13, 26, 80);
+    background: asset_url('logo_christmas.png') center no-repeat;
+  }
+}

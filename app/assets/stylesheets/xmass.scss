@@ -3,6 +3,8 @@
   border-radius:0;
   border: none;
   z-index: 1;
+  padding-top: 0;
+  padding-bottom: 0;
 
   &:after {
     position:absolute;
@@ -29,10 +31,10 @@
     color: #aaa;
   }
 
-
   .navbar-brand {
     color: #fff;
     text-shadow: 1px 1px 5px rgba(168, 13, 26, 80);
     background: asset_url('logo_christmas.png') center no-repeat;
+    padding-top: 10px;
   }
 }

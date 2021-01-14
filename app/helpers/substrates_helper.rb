@@ -114,6 +114,16 @@ module SubstratesHelper
     "badge rounded-circle shadow-lg substrate-priority px-2 #{color}"
   end
 
+  def priority_color2(priority)
+    color = case priority
+    when 3 then 'bg-success text-white'
+    when 2 then 'bg-warning'
+    when 1 then 'bg-danger text-white'
+    end
+    color
+  end
+
+
   def priority_color(priority)
     color = case priority
     when 3 then 'table-success'

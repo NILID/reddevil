@@ -13,22 +13,19 @@
       .text-center.my-5
         .h3.text-muted= t('shared.search_empty')
     - else
-      %table.table.table-hover.table-sm.table-bordered
-        %thead
-          %tr
-            %th= sort_link @q, :otk_status, t('substrates.otk')
-            %th= sort_link @q, :title,      Manufacture.human_attribute_name(:title)
-            %th= sort_link @q, :drawing,    Manufacture.human_attribute_name(:drawing)
-            %th= sort_link @q, :contract,   Manufacture.human_attribute_name(:contract)
-            %th= sort_link @q, :material,   Manufacture.human_attribute_name(:material)
-            %th= sort_link @q, :machine,    Manufacture.human_attribute_name(:machine)
-            %th
-              =# sort_link @q, 'manufacture_operations_operation_title',  Manufacture.human_attribute_name(:operation)
-              = Manufacture.human_attribute_name(:operation)
-              \ /
-              =# sort_link @q, :manufacture_operations_operation_member_id,       Manufacture.human_attribute_name(:user)
-              = Manufacture.human_attribute_name(:user)
-            %th
+      .row
+        .col-1
+          .p-2= sort_link @q, :otk_status, t('substrates.otk')
+        .col
+          .p-2= sort_link @q, :title, Manufacture.human_attribute_name(:title)
+        .col
+          .p-2
+            =# sort_link @q, 'manufacture_operations_operation_title',  Manufacture.human_attribute_name(:operation)
+            = Manufacture.human_attribute_name(:operation)
+        .col
+          .p-2
+            =# sort_link @q, :manufacture_operations_operation_member_id,  Manufacture.human_attribute_name(:user)
+            = Manufacture.human_attribute_name(:user)
 
-        %tbody
-          = render @manufactures
+      .accordion.manufactures#accordionManufacture
+        = render @manufactures

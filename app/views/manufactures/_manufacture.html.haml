@@ -1,26 +1,45 @@
-%tr{class: priority_color(manufacture.priority)}
-  %td.text-center{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
-    - if can? :manage_otk, Manufacture
-      = link_to otk_status_icon(manufacture.otk_status), manage_otk_substrate_path(manufacture)
-    - else
-      = otk_status_icon(manufacture.otk_status)
+- manufacture_id = dom_id manufacture
+- last_operations = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }
 
-  %td= link_to manufacture.title, manufacture
-  %td= manufacture.drawing
-  %td= manufacture.contract
-  %td= manufacture.material
-  %td= manufacture.machine
-  %td
-    - last_operations = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }
-    - if last_operations.any?
-      = last_operations.first.operation.title
-      (#{last_operations.first.member.surname_name})
-  %td
-    .btn-group.float-right
-      %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-        = fa_icon 'cog'
-      .dropdown-menu.dropdown-menu-right
-        = link_to edit_manufacture_path(manufacture), class: 'dropdown-item' do
-          = fa_icon 'edit', text: t('shared.edit')
-        = link_to manufacture, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
-          = fa_icon 'trash', text: t('shared.del')
+.card
+  .card-header.p-0{id: manufacture_id, class: priority_color2(manufacture.priority)}
+    %button.btn.btn-link.btn-block.text-white.text-left{data: { toggle: 'collapse', target: "#collapse_#{manufacture_id}"}, aria: { expander: 'true', controls: "collapse_#{manufacture_id}" }}
+      .row
+        .col-1{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
+          = otk_status_icon(manufacture.otk_status)
+        .col= manufacture.title
+        .col
+          - if last_operations.any?
+            = last_operations.first.operation.title
+        .col
+          - if last_operations.any?
+            = last_operations.first.member.surname_name
+
+  .collapse{ id: "collapse_#{manufacture_id}", aria: { labelledby: "#{manufacture_id}" }, data: { parent: '#accordionManufacture' } }
+    .p-3
+      .row
+        .col
+          %table.table.table-striped.table-sm
+            %tr
+              %th(scope="row")= Manufacture.human_attribute_name(:drawing)
+              %td.col-9= manufacture.drawing
+            %tr
+              %th(scope="row")= Manufacture.human_attribute_name(:contract)
+              %td.col-9= manufacture.contract
+            %tr
+              %th(scope="row")= Manufacture.human_attribute_name(:material)
+              %td.col-9= manufacture.material
+            %tr
+              %th(scope="row")=Manufacture.human_attribute_name(:machine)
+              %td.col-9= manufacture.machine
+          = render 'manufactures/otk_block', manufacture: manufacture
+        .col
+          = render 'manufactures/manufacture_operations', operations: manufacture.manufacture_operations.includes(:operation, :member).order(:started_at)
+        .col-3.text-right
+          .btn-group-vertical
+            = link_to t('manufactures.goto'), manufacture, class: 'btn btn-outline-success'
+            .btn-group
+              = link_to edit_manufacture_path(manufacture), class: 'btn btn-outline-primary' do
+                = fa_icon 'edit', text: t('shared.edit')
+              = link_to manufacture, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-outline-danger' do
+                = fa_icon 'trash', text: t('shared.del')

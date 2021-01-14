@@ -1,0 +1,22 @@
+- if operations.any?
+  %table.table.mb-0.table-hover.table-bordered
+    %thead
+      %tr
+        %th= Manufacture.human_attribute_name(:deadline)
+        %th= Manufacture.human_attribute_name(:operation)
+        %th= Manufacture.human_attribute_name(:user)
+    %tbody
+      - operations.each do |o|
+        %tr
+          %td
+            = short_date_with_month o.started_at
+            \-
+            = short_date_with_month o.finished_at
+          %td
+            = o.operation.title
+          %td
+            = o.member.surname_name
+- else
+  .text-center.my-5
+    .h3.text-muted
+      = t('manufactures.operations_empty')

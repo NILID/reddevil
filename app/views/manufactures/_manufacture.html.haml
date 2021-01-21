@@ -37,6 +37,9 @@
             %tr
               %th(scope="row")=Manufacture.human_attribute_name(:machine)
               %td.col-9= manufacture.machine
+            %tr
+              %th(scope="row")=Manufacture.human_attribute_name(:content)
+              %td.col-9= manufacture.content
         .col
           = render 'manufactures/manufacture_operations', operations: manufacture.manufacture_operations.includes(:operation, :member).order(:started_at)
           = render 'manufactures/otk_block', manufacture: manufacture

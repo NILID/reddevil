@@ -51,6 +51,7 @@ ru:
       manufacture:
         title: Наименование
         drawing: Чертеж
+        content: Примечания
         material: Материал
         user: Исполнитель
         machine: Участок
@@ -66,6 +67,7 @@ ru:
       manufacture_group:
         title: Наименование
         contract: Договор
+        limit_at: Срок
       manufacture_operation:
         operation: Операция
         started_at: Принял

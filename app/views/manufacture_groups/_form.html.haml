@@ -1,16 +1,17 @@
 = bootstrap_form_for @manufacture_group, html: { class: 'card' } do |f|
   .card-header
-    - if params[:action] == 'edit'
-      = render 'application/breadcrumb', titles: [link_to(@manufacture.title, @manufacture), formtitle], class_name: ManufactureGroup
-    - else
-      = render 'application/breadcrumb', titles: [formtitle], class_name: Manufacture
+    = render 'application/breadcrumb', titles: [formtitle], class_name: Manufacture
   .card-body
     = render 'application/error', object: @manufacture_group
     .row
       .col
         = f.text_field :title
+    .row
       .col
         = f.text_field :contract
+      .col
+        = f.text_field :limit_at, class: 'datepicker',
+                  value: (f.object.limit_at.to_datetime.strftime('%d.%m.%Y') if f.object.limit_at.present?)
 
   .card-footer
     = f.submit t('shared.save')

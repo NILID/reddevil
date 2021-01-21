@@ -19,6 +19,10 @@
     %p
       %b=Manufacture.human_attribute_name(:machine)
       = @manufacture.machine
+    %p
+      %b=Manufacture.human_attribute_name(:content)
+      = @manufacture.content
+
   - if @operations.any?
     .card-header
       %h4.text-muted
@@ -47,5 +51,3 @@
   = render 'manufactures/otk_block', manufacture: @manufacture
 
   .card-footer
-    .float-right
-      = link_to t('shared.back'), manufactures_path

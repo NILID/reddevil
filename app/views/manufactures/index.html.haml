@@ -19,7 +19,9 @@
           .p-2= ManufactureGroup.human_attribute_name(:title)
         .col
           .p-2= ManufactureGroup.human_attribute_name(:contract)
-        .col-1
+        .col
+          .p-2= ManufactureGroup.human_attribute_name(:limit_at)
+        .col-2
 
       .accordion.manufactures#accordionGroups
         - @groups.each_with_index do |group, index|
@@ -32,8 +34,14 @@
                       .lead= group.title
                     .col
                       .lead= group.contract
-                .col-1.text-right
-                  = link_to fa_icon(:plus), new_manufacture_path(manufacture_group_id: group), class: 'btn btn-outline-primary btn-sm ml-2', title: t('manufactures.add')
+                    .col
+                      .lead= short_date_with_month(group.limit_at) if group.limit_at
+                .col-2.text-right
+                  = link_to new_manufacture_path(manufacture_group_id: group), class: 'btn btn-outline-primary btn-sm ml-2' do
+                    = fa_icon :plus, text: Manufacture.model_name.human
+                  = link_to edit_manufacture_group_path(group), class: 'btn btn-outline-primary btn-sm ml-2' do
+                    = fa_icon :cog
+
             .collapse{ id: "collapse_group_#{index}", aria: { labelledby: "group_#{index}" }, data: { parent: '#accordionGroups' } }
               .accordion{ id: "accordion_groups_#{index}" }
 

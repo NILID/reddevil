@@ -36,7 +36,7 @@ class Ability
 
     if (user.role? :moderator) || (user.role? :editor) || (user.role? :user)
       can :rebuild, Result
-      cannot %i[manage read], [Room, Manufacture, Substrate, Table, Operation]
+      cannot %i[manage read], [Room, Manufacture, ManufactureGroup, Substrate, Table, Operation]
       can %i[create], [Note, Page]
       can %i[update destroy], Page, user: { id: user.id }
       can :follow, Doc
@@ -98,7 +98,7 @@ class Ability
     end
 
     if user.has_group? :lab181
-      can %i[manage read], [Manufacture, Operation, ManufactureOperation]
+      can %i[manage read], [Manufacture, ManufactureGroup, Operation, ManufactureOperation]
       cannot %i[manage_otk delete_document], Manufacture
     end
 

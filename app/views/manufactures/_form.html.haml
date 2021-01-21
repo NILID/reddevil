@@ -11,7 +11,10 @@
       .col
         = f.text_field :title
       .col
-        = f.select :manufacture_group_id, ManufactureGroup.order(:title).map { |group| [group.title, group.id] }, { include_blank: t('shared.to_select'), selected: params[:manufacture_group_id] || @manufacture.manufacture_group_id }, { class: 'selectpicker' }
+        = f.select :manufacture_group_id,
+          ManufactureGroup.order(:title).map { |group| [group.title, group.id] },
+          { help: t('manufactures.need_group'), include_blank: t('shared.to_select'), selected: params[:manufacture_group_id] || @manufacture.manufacture_group_id },
+          { class: 'selectpicker' }
     .row
       .col
         = f.text_field :drawing
@@ -29,6 +32,9 @@
               value: p,
               data: { content: priority_select_tag(p) },
               selected: (f.object.priority == p)
+    .row
+      .col
+        = f.text_area :content
   .card-header
     = t 'operations.title'
   .card-body

@@ -68,6 +68,7 @@ ru:
         title: Наименование
         contract: Договор
         limit_at: Срок
+        without_contract: Без договора
       manufacture_operation:
         operation: Операция
         started_at: Принял

@@ -10,6 +10,9 @@
       .col
         = f.text_field :contract
       .col
+        .mt-4= f.check_box :without_contract, custom: :switch
+    .row
+      .col
         = f.text_field :limit_at, class: 'datepicker',
                   value: (f.object.limit_at.to_datetime.strftime('%d.%m.%Y') if f.object.limit_at.present?)
 

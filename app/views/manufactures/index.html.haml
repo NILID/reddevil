@@ -35,7 +35,11 @@
                     .col
                       .lead= group.title
                     .col
-                      .lead= group.contract
+                      - if group.without_contract
+                        .lead.text-muted
+                          = ManufactureGroup.human_attribute_name(:without_contract)
+                      - else
+                        .lead= group.contract
                     .col-3
                       .lead= short_date_with_month(group.limit_at) if group.limit_at
                 .col-2.text-right
@@ -62,7 +66,4 @@
                   .col
                     .p-2= ManufactureOperation.human_attribute_name(:finished_at)
 
-
                 = render group.manufactures, index: index
-      .accordion.mt-3{ id: "accordion_groups_0" }
-        = render Manufacture.where(manufacture_group_id: nil), index: 0

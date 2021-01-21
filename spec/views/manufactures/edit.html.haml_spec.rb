@@ -16,8 +16,6 @@ RSpec.describe "manufactures/edit", type: :view do
 
       assert_select "input[name=?]", "manufacture[drawing]"
 
-      assert_select "input[name=?]", "manufacture[contract]"
-
       assert_select "select[name=?]", "manufacture[material]"
 
       assert_select "input[name=?]", "manufacture[user]"

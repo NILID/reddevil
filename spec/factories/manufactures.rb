@@ -2,7 +2,6 @@ FactoryBot.define do
   factory :manufacture do
     title { "MyTitle" }
     drawing { "MyDrawing" }
-    contract { "MyContract" }
     material { "кварц" }
     user { "MyString" }
     machine { "MyMachine" }

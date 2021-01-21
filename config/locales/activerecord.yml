@@ -51,7 +51,6 @@ ru:
       manufacture:
         title: Наименование
         drawing: Чертеж
-        contract: Договор
         material: Материал
         user: Исполнитель
         machine: Участок

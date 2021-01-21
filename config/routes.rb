@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :manufacture_groups
+
   resources :operations
   resources :manufactures do
     member do

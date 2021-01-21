@@ -7,6 +7,7 @@ ru:
       event: событие
       member: сотрудник
       manufacture: изделие
+      manufacture_group: группа изделий
       song: песня
       user: пользователь
       comment: сообщение
@@ -61,10 +62,15 @@ ru:
         priority: Приоритет
         deadline: Сроки
         tech_params: Технологичекие требования
+        manufacture_group_id: Группа изделий
+        manufacture_group: Группа изделий
+      manufacture_group:
+        title: Наименование
+        contract: Договор
       manufacture_operation:
         operation: Операция
-        started_at: Начало работ
-        finished_at: Завершение работ
+        started_at: Принял
+        finished_at: Сдал
         member_id: Исполнитель
         operation_id: Операция
         notes: Примечания

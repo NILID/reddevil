@@ -4,28 +4,53 @@
       .float-right
         = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
           = fa_icon 'filter', text: t('shared.filter')
-        = link_to fa_icon(:plus, text: t('shared.add')), new_manufacture_path, class: 'btn btn-primary btn-sm  ml-2'
         = link_to fa_icon(:stream, text: t('operations.title')), operations_path, class: 'btn btn-success btn-sm  ml-2'
 
   .card-body
     = render 'manufactures/search_form'
+    = link_to new_manufacture_group_path, class: 'btn btn-outline-primary mb-2' do
+      = fa_icon(:plus, text: t('manufacture_groups.add'))
     - if @manufactures.empty?
       .text-center.my-5
         .h3.text-muted= t('shared.search_empty')
     - else
-      .row
+      .row.text-muted
+        .col
+          .p-2= ManufactureGroup.human_attribute_name(:title)
+        .col
+          .p-2= ManufactureGroup.human_attribute_name(:contract)
         .col-1
-          .p-2= sort_link @q, :otk_status, t('substrates.otk')
-        .col
-          .p-2= sort_link @q, :title, Manufacture.human_attribute_name(:title)
-        .col
-          .p-2
-            =# sort_link @q, 'manufacture_operations_operation_title',  Manufacture.human_attribute_name(:operation)
-            = Manufacture.human_attribute_name(:operation)
-        .col
-          .p-2
-            =# sort_link @q, :manufacture_operations_operation_member_id,  Manufacture.human_attribute_name(:user)
-            = Manufacture.human_attribute_name(:user)
 
-      .accordion.manufactures#accordionManufacture
-        = render @manufactures
+      .accordion.manufactures#accordionGroups
+        - @groups.each_with_index do |group, index|
+          .card.bg-light
+            .card-header{id: "group_#{index}" }
+              .row
+                .col
+                  .row.pointer{data: { toggle: 'collapse', target: "#collapse_group_#{index}"}, aria: { expander: 'true', controls: "collapse_group_#{index}" }}
+                    .col
+                      .lead= group.title
+                    .col
+                      .lead= group.contract
+                .col-1.text-right
+                  = link_to fa_icon(:plus), new_manufacture_path(manufacture_group_id: group), class: 'btn btn-outline-primary btn-sm ml-2', title: t('manufactures.add')
+            .collapse{ id: "collapse_group_#{index}", aria: { labelledby: "group_#{index}" }, data: { parent: '#accordionGroups' } }
+              .accordion{ id: "accordion_groups_#{index}" }
+
+                .row.text-muted
+                  .col-1
+                  .col-1
+                    .p-2= t('substrates.otk')
+                  .col
+                    .p-2= Manufacture.human_attribute_name(:title)
+                  .col
+                    .p-2= Manufacture.human_attribute_name(:operation)
+                  .col
+                    .p-2= Manufacture.human_attribute_name(:user)
+                  .col
+                    .p-2= ManufactureOperation.human_attribute_name(:started_at)
+                  .col
+                    .p-2= ManufactureOperation.human_attribute_name(:finished_at)
+
+
+                = render group.manufactures, index: index

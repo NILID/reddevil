@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_144514) do
+ActiveRecord::Schema.define(version: 2021_01_21_101618) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -221,6 +221,15 @@ ActiveRecord::Schema.define(version: 2020_12_29_144514) do
     t.index ["liker_id", "liker_type"], name: "fk_likes"
   end
 
+  create_table "manufacture_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "contract"
+    t.date "limit_at"
+    t.boolean "actual", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "manufacture_operations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "manufacture_id"
     t.bigint "operation_id"
@@ -247,6 +256,8 @@ ActiveRecord::Schema.define(version: 2020_12_29_144514) do
     t.text "otk_desc"
     t.integer "priority", default: 4, null: false
     t.integer "last_operation_id"
+    t.bigint "manufacture_group_id"
+    t.index ["manufacture_group_id"], name: "index_manufactures_on_manufacture_group_id"
   end
 
   create_table "matches", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -646,6 +657,7 @@ ActiveRecord::Schema.define(version: 2020_12_29_144514) do
   add_foreign_key "categoryships", "docs"
   add_foreign_key "forecasts", "matches"
   add_foreign_key "forecasts", "users"
+  add_foreign_key "manufactures", "manufacture_groups"
   add_foreign_key "members", "departments"
   add_foreign_key "members", "users"
   add_foreign_key "pages", "users"

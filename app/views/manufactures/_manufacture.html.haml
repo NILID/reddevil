@@ -2,20 +2,28 @@
 - last_operations = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }
 
 .card
-  .card-header.p-0{id: manufacture_id, class: priority_color2(manufacture.priority)}
-    %button.btn.btn-link.btn-block.text-white.text-left{data: { toggle: 'collapse', target: "#collapse_#{manufacture_id}"}, aria: { expander: 'true', controls: "collapse_#{manufacture_id}" }}
+  .card-header.p-0{id: manufacture_id}
+    %button.btn.btn-link.btn-block.text-left{data: { toggle: 'collapse', target: "#collapse_#{manufacture_id}"}, aria: { expander: 'true', controls: "collapse_#{manufacture_id}" }}
       .row
+        .col-1
+          = priority_tag(manufacture.priority)
         .col-1{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
-          = otk_status_icon(manufacture.otk_status)
+          = otk_status_icon(manufacture.otk_status, 'fa-lg')
         .col= manufacture.title
-        .col
-          - if last_operations.any?
+        - if last_operations.any?
+          .col
             = last_operations.first.operation.title
-        .col
-          - if last_operations.any?
+          .col
             = last_operations.first.member.surname_name
+          .col
+            = short_date_with_month last_operations.first.started_at
+          .col
+            = short_date_with_month last_operations.first.finished_at
+        - else
+          .col-4
 
-  .collapse{ id: "collapse_#{manufacture_id}", aria: { labelledby: "#{manufacture_id}" }, data: { parent: '#accordionManufacture' } }
+
+  .collapse{ id: "collapse_#{manufacture_id}", aria: { labelledby: "#{manufacture_id}" }, data: { parent: "#accordion_groups_#{index}" } }
     .p-3
       .row
         .col

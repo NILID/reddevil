@@ -2,7 +2,11 @@ ru:
   manufactures:
     title: Список изделий
     title_with: Подложки 181
+    add: Добавить новое изделие
     new: Новое изделие
     editing: Редактирование изделия
     goto: Перейти на страницу изделия
     operations_empty: Нет текущих операций
+  manufacture_groups:
+    new: Новая группа изделий
+    add: Создать группу изделий

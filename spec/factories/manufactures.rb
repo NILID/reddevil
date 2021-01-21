@@ -9,6 +9,8 @@ FactoryBot.define do
     priority { 3 }
     otk_status { "empty" }
 
+    manufacture_group_id { create(:manufacture_group).id }
+
     factory :manufacture_with_operations do
       transient do
         manufacture_operations_count { 2 }

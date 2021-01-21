@@ -45,9 +45,9 @@ module SubstratesHelper
     end
   end
 
-  def otk_status_icon(status)
+  def otk_status_icon(status, size='fa-2x')
     unless status.empty?
-      fa_icon(otk_icon(status), type: :far, class: "fa-2x text-#{status_color(status)}")
+      fa_icon(otk_icon(status), type: :far, class: "#{size} text-#{status_color(status)}")
     else
       nil
     end
@@ -108,21 +108,11 @@ module SubstratesHelper
   def priority_style(priority)
     color = case priority
     when 3 then 'bg-success text-white'
-    when 2 then 'bg-warning'
+    when 2 then 'bg-warning text-white'
     when 1 then 'bg-danger text-white'
     end
     "badge rounded-circle shadow-lg substrate-priority px-2 #{color}"
   end
-
-  def priority_color2(priority)
-    color = case priority
-    when 3 then 'bg-success text-white'
-    when 2 then 'bg-warning'
-    when 1 then 'bg-danger text-white'
-    end
-    color
-  end
-
 
   def priority_color(priority)
     color = case priority
@@ -130,7 +120,7 @@ module SubstratesHelper
     when 2 then 'table-warning'
     when 1 then 'table-danger'
     end
-    "#{color}"
+    color
   end
 
   def priority_select_tag(priority)

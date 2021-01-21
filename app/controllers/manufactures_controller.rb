@@ -4,8 +4,10 @@ class ManufacturesController < ApplicationController
   layout 'user'
 
   def index
+    @groups = ManufactureGroup.order(created_at: :desc).includes([:manufactures])
     @q = @manufactures.ransack(params[:q])
     @manufactures = @q.result(distinct: true)
+                      .includes([:otk_documents_attachments])
                       .order(created_at: :desc)
     @last_operations = ManufactureOperation.where(id: @manufactures.map{ |m| m.last_operation_id }.compact)
                                            .includes(:operation, :member)
@@ -64,7 +66,7 @@ class ManufacturesController < ApplicationController
 
   private
     def manufacture_params
-      manufacture_params = [:title, :drawing, :contract, :material, :user, :machine, :priority,
+      manufacture_params = [:title, :drawing, :contract, :material, :user, :machine, :priority, :manufacture_group_id,
                             { manufacture_operations_attributes: %i[id member_id operation_id started_at finished_at tech_params notes _destroy] } ]
       manufacture_params << [:otk_status, :otk_desc, otk_documents: []] if (current_user&.role? :admin) || (current_user&.has_group? :otk)
       params.require(:manufacture).permit(manufacture_params)

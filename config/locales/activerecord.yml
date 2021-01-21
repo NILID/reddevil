@@ -54,7 +54,7 @@ ru:
         contract: Договор
         material: Материал
         user: Исполнитель
-        machine: Станок
+        machine: Участок
         operation: Операция
         otk_status: Статус
         otk_desc: Примечание

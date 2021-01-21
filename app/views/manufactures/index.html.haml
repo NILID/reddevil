@@ -54,3 +54,5 @@
 
 
                 = render group.manufactures, index: index
+      .accordion.mt-3{ id: "accordion_groups_0" }
+        = render Manufacture.where(manufacture_group_id: nil), index: 0

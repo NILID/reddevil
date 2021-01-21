@@ -16,11 +16,13 @@
     - else
       .row.text-muted
         .col
-          .p-2= ManufactureGroup.human_attribute_name(:title)
-        .col
-          .p-2= ManufactureGroup.human_attribute_name(:contract)
-        .col
-          .p-2= ManufactureGroup.human_attribute_name(:limit_at)
+          .row
+            .col
+              .p-2= ManufactureGroup.human_attribute_name(:title)
+            .col
+              .p-2= ManufactureGroup.human_attribute_name(:contract)
+            .col-3
+              .p-2= ManufactureGroup.human_attribute_name(:limit_at)
         .col-2
 
       .accordion.manufactures#accordionGroups
@@ -34,7 +36,7 @@
                       .lead= group.title
                     .col
                       .lead= group.contract
-                    .col
+                    .col-3
                       .lead= short_date_with_month(group.limit_at) if group.limit_at
                 .col-2.text-right
                   = link_to new_manufacture_path(manufacture_group_id: group), class: 'btn btn-outline-primary btn-sm ml-2' do

@@ -18,7 +18,9 @@
           .col
             = short_date_with_month last_operations.first.started_at
           .col
-            = short_date_with_month last_operations.first.finished_at
+            - last_operation_date = last_operations.first.finished_at
+            - if last_operation_date
+              = short_date_with_month last_operation_date
         - else
           .col-4
 
@@ -26,7 +28,7 @@
   .collapse{ id: "collapse_#{manufacture_id}", aria: { labelledby: "#{manufacture_id}" }, data: { parent: "#accordion_groups_#{index}" } }
     .p-3
       .row
-        .col
+        .col-3
           %table.table.table-striped.table-sm
             %tr
               %th(scope="row")= Manufacture.human_attribute_name(:drawing)

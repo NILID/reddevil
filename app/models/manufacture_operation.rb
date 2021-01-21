@@ -7,7 +7,7 @@ class ManufactureOperation < ApplicationRecord
 
   validate :check_dates
 
-  validates :operation_id, :member_id, :started_at, :finished_at, presence: true
+  validates :operation_id, :member_id, :started_at, presence: true
 
   private
 

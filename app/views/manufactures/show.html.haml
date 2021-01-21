@@ -39,8 +39,9 @@
           %tr
             %td
               = short_date_with_month o.started_at
-              \-
-              = short_date_with_month o.finished_at
+              - if o.finished_at
+                \-
+                = short_date_with_month o.finished_at
             %td
               = o.operation.title
             %td

@@ -1,4 +1,2 @@
-= render 'form', formtitle: 'Editing operation' do
-  = link_to 'Show', @operation
-  \|
-  = link_to 'Back', operations_path
+= render 'form', formtitle: t('operations.edit') do
+  = link_to t('shared.back'), operations_path, class: 'btn btn-outline-secondary'

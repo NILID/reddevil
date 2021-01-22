@@ -6,18 +6,29 @@
           = link_to new_operation_path, class: 'btn btn-primary' do
             = fa_icon :plus, text: t('shared.add')
 
-  .card-body
-    %table
-      %thead
-        %tr
-          %th Title
-          %th
-          %th
+  %table.table.table-hover
+    %thead
+      %tr
+        %th #
+        %th= Operation.human_attribute_name(:title)
+        %th
 
-      %tbody
-        - @operations.each do |operation|
-          %tr
-            %td= link_to operation.title, operation
+    %tbody
+      - @operations.each.with_index(1) do |operation, index|
+        %tr
+          %td.col-1= index
+          %td= operation.title
+          %td.col-1
             - if can? :manage, operation
-              %td= link_to t('shared.edit'), edit_operation_path(operation)
-              %td= link_to t('shared.del'), operation, method: :delete, data: { confirm: t('shared.sure') }
+              .btn-group.float-right
+                %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                  = fa_icon 'cog'
+                .dropdown-menu.dropdown-menu-right
+                  = link_to edit_operation_path(operation), class: 'dropdown-item' do
+                    = fa_icon 'edit', text: t('shared.edit')
+                  = link_to operation, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+                    = fa_icon 'trash', text: t('shared.del')
+
+  .card-footer
+    .float-right
+      = link_to t('shared.back'), manufactures_path, class: 'btn btn-outline-secondary'

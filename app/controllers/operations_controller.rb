@@ -3,15 +3,17 @@ class OperationsController < ApplicationController
 
   layout 'user'
 
-  def index; end
-  def show;  end
+  def index
+    @operations = @operations.order(:title)
+  end
+
   def new;   end
   def edit;  end
 
   def create
     respond_to do |format|
       if @operation.save
-        format.html { redirect_to @operation, notice: 'Operation was successfully created.' }
+        format.html { redirect_to @operation, notice: t('flash.was_created', item: Operation.model_name.human) }
         format.json { render :show, status: :created, location: @operation }
       else
         format.html { render :new }
@@ -23,7 +25,7 @@ class OperationsController < ApplicationController
   def update
     respond_to do |format|
       if @operation.update(operation_params)
-        format.html { redirect_to @operation, notice: 'Operation was successfully updated.' }
+        format.html { redirect_to @operation, notice: t('flash.was_updated', item: Operation.model_name.human) }
         format.json { render :show, status: :ok, location: @operation }
       else
         format.html { render :edit }
@@ -35,7 +37,7 @@ class OperationsController < ApplicationController
   def destroy
     @operation.destroy
     respond_to do |format|
-      format.html { redirect_to operations_url, notice: 'Operation was successfully destroyed.' }
+      format.html { redirect_to operations_url, notice:  t('flash.was_destroyed', item: OfficeNote.model_name.human) }
       format.json { head :no_content }
     end
   end

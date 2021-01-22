@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :manufacture_groups, except: [:index]
 
-  resources :operations
+  resources :operations, except: [:show]
   resources :manufactures do
     member do
       get :manage_otk

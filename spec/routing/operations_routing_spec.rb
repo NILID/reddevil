@@ -10,10 +10,6 @@ RSpec.describe OperationsController, type: :routing do
       expect(get: "/operations/new").to route_to("operations#new")
     end
 
-    it "routes to #show" do
-      expect(get: "/operations/1").to route_to("operations#show", id: "1")
-    end
-
     it "routes to #edit" do
       expect(get: "/operations/1/edit").to route_to("operations#edit", id: "1")
     end

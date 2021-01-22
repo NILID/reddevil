@@ -44,7 +44,7 @@
               %td.col-9= manufacture.content
         .col
           = render 'manufactures/manufacture_operations', operations: manufacture.manufacture_operations.includes(:operation, :member).order(:started_at)
-          = render 'manufactures/otk_block', manufacture: manufacture
+          = render 'manufactures/otk_block', manufacture: manufacture, documents: manufacture.otk_documents.includes(:blob)
         .col-2.text-left
           .btn-group-vertical
             = link_to manufacture, class: 'btn btn-outline-success text-left' do

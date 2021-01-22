@@ -1,6 +1,6 @@
 class Manufacture < ApplicationRecord
   has_many_attached :otk_documents
-  has_many :manufacture_operations
+  has_many :manufacture_operations, dependent: :destroy
   belongs_to :manufacture_group
 
   OTK_STATUSES = %w[empty failed passed approval].freeze

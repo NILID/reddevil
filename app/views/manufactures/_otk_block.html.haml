@@ -7,16 +7,16 @@
         = link_to manage_otk_manufacture_path(manufacture), class: 'btn btn-primary btn-sm float-right' do
           = t('shared.edit')
 
-- if manufacture.otk_desc? || manufacture.otk_documents.attached?
+- if manufacture.otk_desc? || documents.any?
   .card-body
     - if manufacture.otk_desc?
       %p
         = manufacture.otk_desc
-    - if manufacture.otk_documents.attached?
+    - if documents.any?
       %h4
         = OfficeNote.human_attribute_name(:documents)
       %table.table.table-hover.table-sm
-        - @otk_documents.each.with_index(1) do |document, index|
+        - documents.each.with_index(1) do |document, index|
           %tr
             %td
               = [index, '.'].join()

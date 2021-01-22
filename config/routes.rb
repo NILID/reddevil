@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :manufacture_groups
+  resources :manufacture_groups, except: [:index]
 
   resources :operations
   resources :manufactures do

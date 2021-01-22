@@ -49,6 +49,8 @@
             %td
 
 
-  = render 'manufactures/otk_block', manufacture: @manufacture
+  = render 'manufactures/otk_block', manufacture: @manufacture, documents: @otk_documents
 
   .card-footer
+    .float-right
+      = link_to t('shared.back'), manufactures_path, class: 'btn btn-outline-secondary'

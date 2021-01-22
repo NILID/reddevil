@@ -179,7 +179,7 @@
     - if @substrate.otk_desc?
       %p
         = @substrate.otk_desc
-    - if @substrate.otk_documents.attached?
+    - if @otk_documents.any?
       %h4
         = OfficeNote.human_attribute_name(:documents)
       %table.table.table-hover.table-sm

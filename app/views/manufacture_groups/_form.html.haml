@@ -16,6 +16,18 @@
         = f.text_field :limit_at, class: 'datepicker',
                   value: (f.object.limit_at.to_datetime.strftime('%d.%m.%Y') if f.object.limit_at.present?)
 
+  - if %w[new create].include? params[:action]
+    .card-header
+      .lead= t 'manufactures.title_simple'
+    .card-body
+      .row
+        .col
+          .nested-fields.selectpicker-refresh
+            = f.fields_for :manufactures do |match|
+              = render 'manufacture_fields', f: match
+            = link_to_add_association f, :manufactures, class: 'btn btn-outline-secondary btn-sm' do
+              = fa_icon :plus, text: t('shared.add')
+
   .card-footer
     = f.submit t('shared.save')
     .float-right

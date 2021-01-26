@@ -1,0 +1,20 @@
+.nested-fields.mb-3
+  = f.form_group do
+    .row
+      .col
+        = f.text_field :title
+      .col
+        = f.select :material, Manufacture::MATERIALS.map { |c| [c, c] }, { include_blank: t('shared.to_select') }, { class: 'selectpicker' }
+      .col-2
+        = f.select :priority, {}, {}, { class: 'selectpicker' } do
+          - Manufacture::PRIORITIES.each do |p|
+            = content_tag :option,
+              t("substrates.priorities.#{p}"),
+              value: p,
+              data: { content: priority_select_tag(p) },
+              selected: (f.object.priority == p)
+      .col-2
+        = f.number_field :multi, min: 1, value: (f.object.multi == '' ? 1 : f.object.multi)
+      .col-1
+        = link_to_remove_association f, class: 'btn btn-outline-danger mt-4', data: { confirm: t('shared.sure') } do
+          = fa_icon :times

@@ -35,7 +35,8 @@ class ManufactureGroupsController < ApplicationController
 
   private
     def manufacture_group_params
-      manufacture_group_params = %i[title contract actual limit_at without_contract]
+      manufacture_group_params = [:title, :contract, :actual, :limit_at, :without_contract,
+                                  { manufactures_attributes: %i[id title priority material multi _destroy] }]
       params.require(:manufacture_group).permit(manufacture_group_params)
     end
 end

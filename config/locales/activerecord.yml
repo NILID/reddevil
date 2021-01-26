@@ -64,6 +64,11 @@ ru:
         tech_params: Технологичекие требования
         manufacture_group_id: Группа изделий
         manufacture_group: Группа изделий
+        multi: Число копий
+      manufactures:
+        title: Название изделий
+        material: Материал изделий
+        priority: Приоритет изделий
       manufacture_group:
         title: Наименование
         contract: Договор

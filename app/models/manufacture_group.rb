@@ -21,7 +21,7 @@ class ManufactureGroup < ApplicationRecord
         if manufacture.multi.to_i > 1
           manufacture.update_attribute(:title, (title + " № 1"))
           (manufacture.multi.to_i-1).times do |i|
-            self.manufactures.create! title: title + " № #{i+2}",  priority: manufacture.priority, material: manufacture.material
+            self.manufactures.create! title: title + " № #{i+2}",  priority: manufacture.priority, material: manufacture.material, drawing: manufacture.drawing
           end
         end
       end

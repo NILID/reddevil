@@ -4,6 +4,8 @@
       .col
         = f.text_field :title
       .col
+        = f.text_field :drawing
+      .col
         = f.select :material, Manufacture::MATERIALS.map { |c| [c, c] }, { include_blank: t('shared.to_select') }, { class: 'selectpicker' }
       .col-2
         = f.select :priority, {}, {}, { class: 'selectpicker' } do
@@ -14,7 +16,7 @@
               data: { content: priority_select_tag(p) },
               selected: (f.object.priority == p)
       .col-2
-        = f.number_field :multi, min: 1, value: (f.object.multi == '' ? 1 : f.object.multi)
+        = f.number_field :multi, min: 1, value: (f.object.multi == '' ? 1 : f.object.multi), prepend: fa_icon(:times)
       .col-1
         = link_to_remove_association f, class: 'btn btn-outline-danger mt-4', data: { confirm: t('shared.sure') } do
           = fa_icon :times

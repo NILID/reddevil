@@ -28,20 +28,20 @@
       .accordion.manufactures#accordionGroups
         - @groups.each_with_index do |group, index|
           .card.bg-light
-            .card-header{id: "group_#{index}" }
+            .card-header.p-1.pl-3.pt-2{id: "group_#{index}" }
               .row
                 .col
                   .row.pointer{data: { toggle: 'collapse', target: "#collapse_group_#{index}"}, aria: { expander: 'true', controls: "collapse_group_#{index}" }}
                     .col
-                      .lead= group.title
+                      = group.title
                     .col
                       - if group.without_contract
-                        .lead.text-muted
+                        .text-muted
                           = ManufactureGroup.human_attribute_name(:without_contract)
                       - else
-                        .lead= group.contract
+                        = group.contract
                     .col-3
-                      .lead= short_date_with_month(group.limit_at) if group.limit_at
+                      = short_date_with_month(group.limit_at) if group.limit_at
                 .col-2.text-right
                   = link_to new_manufacture_path(manufacture_group_id: group), class: 'btn btn-outline-primary btn-sm ml-2' do
                     = fa_icon :plus, text: Manufacture.model_name.human

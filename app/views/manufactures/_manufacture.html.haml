@@ -6,7 +6,8 @@
     %button.btn.btn-link.btn-block.text-left{data: { toggle: 'collapse', target: "#collapse_#{manufacture_id}"}, aria: { expander: 'true', controls: "collapse_#{manufacture_id}" }}
       .row
         .col-1
-          = priority_tag(manufacture.priority)
+          %span.text-muted.pr-3.border-right= manufacture_counter + 1
+          %span.text-muted.pl-3= priority_tag(manufacture.priority)
         .col-1{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
           = otk_status_icon(manufacture.otk_status, 'fa-lg')
         .col= manufacture.title
@@ -28,7 +29,7 @@
   .collapse{ id: "collapse_#{manufacture_id}", aria: { labelledby: "#{manufacture_id}" }, data: { parent: "#accordion_groups_#{index}" } }
     .p-3
       .row
-        .col-3
+        .col
           %table.table.table-striped.table-sm
             %tr
               %th(scope="row")= Manufacture.human_attribute_name(:drawing)
@@ -42,9 +43,6 @@
             %tr
               %th(scope="row")=Manufacture.human_attribute_name(:content)
               %td.col-9= manufacture.content
-        .col
-          = render 'manufactures/manufacture_operations', operations: manufacture.manufacture_operations.includes(:operation, :member).order(:started_at)
-          = render 'manufactures/otk_block', manufacture: manufacture, documents: manufacture.otk_documents.includes(:blob)
         .col-2.text-left
           .btn-group-vertical
             = link_to manufacture, class: 'btn btn-outline-success text-left' do

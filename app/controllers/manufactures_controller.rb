@@ -4,10 +4,9 @@ class ManufacturesController < ApplicationController
   layout 'user'
 
   def index
-    @groups = ManufactureGroup.order(created_at: :desc).includes([:manufactures])
+    @groups = ManufactureGroup.order(:title).includes([:manufactures])
     @q = @manufactures.ransack(params[:q])
     @manufactures = @q.result(distinct: true)
-                      .includes([:otk_documents_attachments])
                       .order(created_at: :desc)
     @last_operations = ManufactureOperation.where(id: @manufactures.map{ |m| m.last_operation_id }.compact)
                                            .includes(:operation, :member)

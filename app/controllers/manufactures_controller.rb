@@ -1,8 +1,6 @@
 class ManufacturesController < ApplicationController
   load_and_authorize_resource
 
-  layout 'user'
-
   def index
     @groups = ManufactureGroup.order(:title).includes([:manufactures])
     @q = @manufactures.ransack(params[:q])

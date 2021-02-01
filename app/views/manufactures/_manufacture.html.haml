@@ -6,8 +6,7 @@
     %button.btn.btn-link.btn-block.text-left{data: { toggle: 'collapse', target: "#collapse_#{manufacture_id}"}, aria: { expander: 'true', controls: "collapse_#{manufacture_id}" }}
       .row
         .col-1
-          %span.text-muted.pr-3.border-right= manufacture_counter + 1
-          %span.text-muted.pl-3= priority_tag(manufacture.priority)
+          = priority_tag(manufacture.priority)
         .col-1{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
           = otk_status_icon(manufacture.otk_status, 'fa-lg')
         .col= manufacture.title

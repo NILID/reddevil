@@ -17,6 +17,7 @@
       .row.text-muted
         .col
           .row
+            .col-1
             .col
               .p-2= ManufactureGroup.human_attribute_name(:title)
             .col
@@ -32,6 +33,8 @@
               .row
                 .col
                   .row.pointer{data: { toggle: 'collapse', target: "#collapse_group_#{index}"}, aria: { expander: 'true', controls: "collapse_group_#{index}" }}
+                    .col-1.text-muted
+                      = index + 1
                     .col
                       = group.title
                     .col

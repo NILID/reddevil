@@ -1,0 +1,53 @@
+head = ['#']
+
+if params[:showing_number]
+  head << Member.human_attribute_name(:number)
+end
+
+head << t('member.fullname')
+if params[:showing_position]
+  head << Member.human_attribute_name(:position)
+end
+if params[:showing_birth]
+  head << Member.human_attribute_name(:birth)
+end
+if params[:showing_phone]
+  head << Member.human_attribute_name(:phone)
+end
+if params[:showing_work_phone]
+  head << Member.human_attribute_name(:work_phone)
+end
+if params[:showing_short_number]
+  head << Member.human_attribute_name(:short_number)
+end
+if params[:showing_other_text]
+  head << t('member.other_text')
+end
+
+wb = xlsx_package.workbook
+wb.add_worksheet(name: t('member.title_list')) do |sheet|
+  sheet.add_row head
+  @members.each_with_index do |member, index|
+    main_row = [(index + 1)]
+    if params[:showing_number]
+      main_row << member.number
+    end
+    main_row << member.fullname
+    if params[:showing_position]
+      main_row << member.position
+    end
+    if params[:showing_birth]
+      main_row << (member.birth ? show_birth(member) : '')
+    end
+    if params[:showing_phone]
+      main_row << (member.phone? ? number_to_phone(member.phone, area_code: true) : '')
+    end
+    if params[:showing_work_phone]
+      main_row << (member.work_phone? ? number_to_phone(member.work_phone, area_code: true) : '')
+    end
+    if params[:showing_short_number]
+      main_row << member.short_number
+    end
+    sheet.add_row main_row
+  end
+end

@@ -67,16 +67,6 @@ class Member < ApplicationRecord
     end
   end
 
-  def self.to_xls(options = {})
-    CSV.generate(options) do |csv|
-      csv << [I18n.t('symbols.number'), Member.human_attribute_name(:number), I18n.t('member.fullname'), Member.human_attribute_name(:position)]
-      all.each_with_index do |member, index|
-        csv << [index+1, number, member.fullname, member.position]
-      end
-    end
-  end
-
-
   def last_position
     self.positions.order(moved_at: :desc).first
   end

@@ -53,6 +53,18 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to render_template(:index)
     end
 
+    it 'returns index in pdf' do
+      get :index, format: :pdf
+      expect(response).to be_successful
+      expect(response).to render_template(:index)
+    end
+
+    it 'returns index  in xls' do
+      get :index, format: :xlsx
+      expect(response).to be_successful
+      expect(response).to render_template(:index)
+    end
+
     it 'returns archive' do
       expect(@ability.can? :archive, Member).to be true
       get :archive

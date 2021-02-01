@@ -3,9 +3,6 @@ class Manufacture < ApplicationRecord
   has_many :manufacture_operations, dependent: :destroy
   belongs_to :manufacture_group
 
-#  before_create :create_multi_manufactures
-
-
   OTK_STATUSES = %w[empty failed passed approval].freeze
   MATERIALS    = %w[карбид кварц кремний ситалл].freeze
   PRIORITIES = [1, 2, 3].freeze
@@ -21,11 +18,4 @@ class Manufacture < ApplicationRecord
                       allow_destroy: true
 
   attr_accessor :multi
-
-  private
-      def create_multi_manufactures
-            byebug
-                  self
-                      end
-                      
 end

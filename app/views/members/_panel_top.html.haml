@@ -9,7 +9,7 @@
     = link_to career_positions_path, class: "nav-link #{params[:action] == 'career' ? 'active' : nil}" do
       = fa_icon :user_tie, text: t('shared.career')
   %li.nav-item
-    = link_to archive_members_path,   class: "nav-link #{params[:action] == 'archive' ?   'active' : nil}" do
+    = link_to archive_members_path, class: "nav-link #{params[:action] == 'archive' ? 'active' : nil}" do
       = fa_icon :archive, text: t('shared.archive')
 
 - if params[:action] == 'index' && params[:controller] == 'members'
@@ -35,17 +35,17 @@
             .form-group
               = f.select :department_id_eq, {}, { include_blank: '== Выберите отдел ==' }, { class: 'selectpicker form-control form-control-sm' } do
                 - @departments.each do |d|
-                  = content_tag(:option, d.title, value: d.id, selected: params[:q] && (params[:q][:department_id_eq] == d.to_param) ) 
+                  = content_tag(:option, d.title, value: d.id, selected: params[:q] && (params[:q][:department_id_eq] == d.to_param) )
             .form-group
               = t 'member.showing'
             - %i[number position birth phone work_phone short_number other_text].each do |field|
               .form-group
-                = check_box_tag "showing_#{field}"
-                = label_tag (field == :other_text) ? t('member.other_text') : Member.human_attribute_name(field)
+                = check_box_tag "showing_#{field}", custom: :switch
+                = label_tag "showing_#{field}", ((field == :other_text) ? t('member.other_text') : Member.human_attribute_name(field))
             .btn-group.btn-group-toggle{ data: { toggle: 'buttons' } }
-              - %i[pdf xls].each do |format|
+              - %i[pdf xlsx].each do |format|
                 %label.btn.btn-outline-primary{ class: format == :pdf ? 'active' : false }
-                  = radio_button_tag :format, format, format == :pdf ,disabled: false, autocomplete: 'off'
-                  = fa_icon "file-#{format == :xls ? 'excel' : format}", text: (format == :xls ? 'Excel' : 'PDF')
+                  = radio_button_tag :format, format, format == :pdf, disabled: false, autocomplete: 'off'
+                  = fa_icon "file-#{format == :xlsx ? 'excel' : format}", text: (format == :xlsx ? 'Excel' : 'PDF')
           .modal-footer
-            = f.submit t('shared.download')
+            = f.submit t('shared.download'), class: 'btn btn-primary'

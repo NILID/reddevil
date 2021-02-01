@@ -13,7 +13,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.xls{ send_data @members.to_xls }
+      format.xlsx
       format.pdf{ render pdf: 'Members' }
     end
   end

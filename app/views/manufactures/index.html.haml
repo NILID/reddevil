@@ -63,17 +63,17 @@
 
                 .row.text-muted
                   .col-1
-                  .col-1
-                    .p-2= t('substrates.otk')
-                  .col
+                    .p-2.ml-5.pl-4= t('substrates.otk')
+                  .col-2
                     .p-2= Manufacture.human_attribute_name(:title)
-                  .col
+                  .col-2
                     .p-2= Manufacture.human_attribute_name(:operation)
-                  .col
+                  .col-2
                     .p-2= Manufacture.human_attribute_name(:user)
-                  .col
+                  .col-2
                     .p-2= ManufactureOperation.human_attribute_name(:started_at)
-                  .col
+                  .col-2
                     .p-2= ManufactureOperation.human_attribute_name(:finished_at)
+                  .col-1
 
                 = render group.manufactures, index: index

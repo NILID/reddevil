@@ -2,51 +2,53 @@
 - last_operations = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }
 
 .card
-  .card-header.p-0{id: manufacture_id}
-    %button.btn.btn-link.btn-block.text-left{data: { toggle: 'collapse', target: "#collapse_#{manufacture_id}"}, aria: { expander: 'true', controls: "collapse_#{manufacture_id}" }}
-      .row
-        .col-1
-          = priority_tag(manufacture.priority)
-        .col-1{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
+  .card-header{id: manufacture_id}
+    .row
+      .col-1
+        = priority_tag(manufacture.priority)
+        %span.pl-4{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
           = otk_status_icon(manufacture.otk_status, 'fa-lg')
-        .col= manufacture.title
-        - if last_operations.any?
-          .col
-            = last_operations.first.operation.title
-          .col
-            = last_operations.first.member.surname_name
-          .col
-            = short_date_with_month last_operations.first.started_at
-          .col
-            - last_operation_date = last_operations.first.finished_at
-            - if last_operation_date
-              = short_date_with_month last_operation_date
-        - else
-          .col-4
+      .col-2
+        = link_to manufacture.title, manufacture
+        %span.tip.text-muted.ml-2
+          = fa_icon 'question-circle lg'
+          .tip-text
+            %table.table.table-striped.table-sm.table-bordered
+              %tr
+                %th(scope="row")= Manufacture.human_attribute_name(:drawing)
+                %td.col-9= manufacture.drawing
+              %tr
+                %th(scope="row")= Manufacture.human_attribute_name(:material)
+                %td.col-9= manufacture.material
+              %tr
+                %th(scope="row")=Manufacture.human_attribute_name(:machine)
+                %td.col-9= manufacture.machine
+              %tr
+                %th(scope="row")=Manufacture.human_attribute_name(:content)
+                %td.col-9= manufacture.content
 
 
-  .collapse{ id: "collapse_#{manufacture_id}", aria: { labelledby: "#{manufacture_id}" }, data: { parent: "#accordion_groups_#{index}" } }
-    .p-3
-      .row
-        .col
-          %table.table.table-striped.table-sm
-            %tr
-              %th(scope="row")= Manufacture.human_attribute_name(:drawing)
-              %td.col-9= manufacture.drawing
-            %tr
-              %th(scope="row")= Manufacture.human_attribute_name(:material)
-              %td.col-9= manufacture.material
-            %tr
-              %th(scope="row")=Manufacture.human_attribute_name(:machine)
-              %td.col-9= manufacture.machine
-            %tr
-              %th(scope="row")=Manufacture.human_attribute_name(:content)
-              %td.col-9= manufacture.content
-        .col-2.text-left
-          .btn-group-vertical
-            = link_to manufacture, class: 'btn btn-outline-success text-left' do
+      - if last_operations.any?
+        .col-2
+          = last_operations.first.operation.title
+        .col-2
+          = last_operations.first.member.surname_name
+        .col-2
+          = short_date_with_month last_operations.first.started_at
+        .col-2
+          - last_operation_date = last_operations.first.finished_at
+          - if last_operation_date
+            = short_date_with_month last_operation_date
+      - else
+        .col-8
+      .col-1.text-right
+        .btn-group
+          %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+            = fa_icon 'cog'
+          .dropdown-menu.dropdown-menu-right
+            = link_to manufacture, class: 'dropdown-item' do
               = fa_icon 'chevron-circle-right', text: t('manufactures.goto')
-            = link_to edit_manufacture_path(manufacture), class: 'btn btn-outline-primary text-left' do
+            = link_to edit_manufacture_path(manufacture), class: 'dropdown-item' do
               = fa_icon 'edit', text: t('shared.edit')
-            = link_to manufacture, method: :delete, data: { confirm: t('shared.sure') }, class: 'btn btn-outline-danger text-left' do
+            = link_to manufacture, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
               = fa_icon 'trash', text: t('shared.del')

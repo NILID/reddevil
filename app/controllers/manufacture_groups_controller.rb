@@ -1,6 +1,5 @@
 class ManufactureGroupsController < ApplicationController
   load_and_authorize_resource
-  layout 'user'
 
   def new;  end
   def edit; end

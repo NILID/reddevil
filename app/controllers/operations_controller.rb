@@ -1,8 +1,6 @@
 class OperationsController < ApplicationController
   load_and_authorize_resource
 
-  layout 'user'
-
   def index
     @operations = @operations.order(:title)
   end

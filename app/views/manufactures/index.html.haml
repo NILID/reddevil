@@ -67,7 +67,9 @@
                   .col-2
                     .p-2= Manufacture.human_attribute_name(:title)
                   .col-2
-                    .p-2= Manufacture.human_attribute_name(:operation)
+                    .p-2
+                      = Manufacture.human_attribute_name(:operation)
+                      (#{ManufactureOperation.human_attribute_name(:machine)})
                   .col-2
                     .p-2= Manufacture.human_attribute_name(:user)
                   .col-2

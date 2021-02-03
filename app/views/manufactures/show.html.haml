@@ -32,7 +32,8 @@
       %thead
         %tr
           %th= Manufacture.human_attribute_name(:deadline)
-          %th= Manufacture.human_attribute_name(:operation)
+          %th= Manufacture.human_attribute_name(:machine)
+          %th= ManufactureOperation.human_attribute_name(:operation)
           %th= Manufacture.human_attribute_name(:user)
       %tbody
         - @operations.each do |o|
@@ -42,6 +43,8 @@
               - if o.finished_at
                 \-
                 = short_date_with_month o.finished_at
+            %td
+              = o.machine
             %td
               = o.operation.title
             %td

@@ -19,8 +19,6 @@
       .col
         = f.text_field :drawing
         = f.select :material, Manufacture::MATERIALS.map { |c| [c, c] }, { include_blank: t('shared.to_select') }, { class: 'selectpicker' }
-      .col-6
-        = f.text_field :machine
     .row
       .col
         = f.text_field :user

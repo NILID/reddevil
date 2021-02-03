@@ -64,7 +64,7 @@ class ManufacturesController < ApplicationController
   private
     def manufacture_params
       manufacture_params = [:title, :drawing, :content, :material, :user, :machine, :priority, :manufacture_group_id,
-                            { manufacture_operations_attributes: %i[id member_id operation_id started_at finished_at tech_params notes _destroy] } ]
+                            { manufacture_operations_attributes: %i[id member_id machine operation_id started_at finished_at tech_params notes _destroy] } ]
       manufacture_params << [:otk_status, :otk_desc, otk_documents: []] if (current_user&.role? :admin) || (current_user&.has_group? :otk)
       params.require(:manufacture).permit(manufacture_params)
     end

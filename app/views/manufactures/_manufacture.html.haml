@@ -1,5 +1,5 @@
 - manufacture_id = dom_id manufacture
-- last_operations = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }
+- last_operation = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }.first
 
 .card
   .card-header{id: manufacture_id}
@@ -21,22 +21,20 @@
                 %th(scope="row")= Manufacture.human_attribute_name(:material)
                 %td.col-9= manufacture.material
               %tr
-                %th(scope="row")=Manufacture.human_attribute_name(:machine)
-                %td.col-9= manufacture.machine
-              %tr
                 %th(scope="row")=Manufacture.human_attribute_name(:content)
                 %td.col-9= manufacture.content
 
-
-      - if last_operations.any?
+      - if last_operation
         .col-2
-          = last_operations.first.operation.title
+          = last_operation.operation.title
+          - if last_operation.machine?
+            (#{last_operation.machine})
         .col-2
-          = last_operations.first.member.surname_name
+          = last_operation.member.surname_name
         .col-2
-          = short_date_with_month last_operations.first.started_at
+          = short_date_with_month last_operation.started_at
         .col-2
-          - last_operation_date = last_operations.first.finished_at
+          - last_operation_date = last_operation.finished_at
           - if last_operation_date
             = short_date_with_month last_operation_date
       - else

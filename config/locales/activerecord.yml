@@ -54,7 +54,6 @@ ru:
         content: Примечания
         material: Материал
         user: Исполнитель
-        machine: Участок
         operation: Операция
         otk_status: Статус
         otk_desc: Примечание
@@ -78,6 +77,7 @@ ru:
         operation: Операция
         started_at: Принял
         finished_at: Сдал
+        machine: Участок
         member_id: Исполнитель
         operation_id: Операция
         notes: Примечания

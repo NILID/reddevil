@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_21_155523) do
+ActiveRecord::Schema.define(version: 2021_02_03_102907) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -239,6 +239,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_155523) do
     t.date "finished_at"
     t.text "tech_params"
     t.text "notes"
+    t.string "machine", default: ""
     t.index ["manufacture_id"], name: "index_manufacture_operations_on_manufacture_id"
     t.index ["member_id"], name: "index_manufacture_operations_on_member_id"
     t.index ["operation_id"], name: "index_manufacture_operations_on_operation_id"

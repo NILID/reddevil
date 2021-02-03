@@ -4,7 +4,6 @@ FactoryBot.define do
     drawing { "MyDrawing" }
     material { "кварц" }
     user { "MyString" }
-    machine { "MyMachine" }
     priority { 3 }
     otk_status { "empty" }
 

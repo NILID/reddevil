@@ -13,7 +13,6 @@ RSpec.describe "manufactures/index", type: :view do
     assert_select "tr>td", :text => "MyContract".to_s, :count => 2
     assert_select "tr>td", :text => "кварц".to_s, :count => 2
     # assert_select "tr>td", :text => "MyUser".to_s, :count => 2
-    assert_select "tr>td", :text => "MyMachine".to_s, :count => 2
     assert_select "tr>td", :text => "MyOperation".to_s, :count => 2
     # assert_select "tr>td", :text => "OTK".to_s, :count => 2
     assert_select "tr>td", :text => "4".to_s, :count => 2

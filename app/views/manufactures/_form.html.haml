@@ -18,7 +18,12 @@
     .row
       .col
         = f.text_field :drawing
+
+    .row
+      .col
         = f.select :material, Manufacture::MATERIALS.map { |c| [c, c] }, { include_blank: t('shared.to_select') }, { class: 'selectpicker' }
+      .col
+        = f.text_field :material_info
     .row
       .col
         = f.text_field :user

@@ -58,6 +58,7 @@ ru:
         otk_status: Статус
         otk_desc: Примечание
         otk_documents: Документы
+        material_info: Примечания о материале
         priority: Приоритет
         deadline: Сроки
         tech_params: Технологичекие требования

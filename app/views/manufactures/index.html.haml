@@ -2,15 +2,15 @@
   .card-header
     = render 'application/breadcrumb', titles: [], class_name: Manufacture do
       .float-right
-        = link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
-          = fa_icon 'filter', text: t('shared.filter')
+        =# link_to '#search-form-collapse', data: { toggle: params[:q] ? '' : 'collapse' }, class: 'btn btn-outline-primary btn-sm' do
+        =### fa_icon 'filter', text: t('shared.filter')
         = link_to fa_icon(:stream, text: t('operations.title')), operations_path, class: 'btn btn-success btn-sm  ml-2'
 
   .card-body
-    = render 'manufactures/search_form'
+    =# render 'manufactures/search_form'
     = link_to new_manufacture_group_path, class: 'btn btn-outline-primary mb-2' do
       = fa_icon(:plus, text: t('manufacture_groups.add'))
-    - if @manufactures.empty?
+    - if @groups.empty?
       .text-center.my-5
         .h3.text-muted= t('shared.search_empty')
     - else
@@ -19,11 +19,11 @@
           .row
             .col-1
             .col
-              .p-2= ManufactureGroup.human_attribute_name(:title)
+              .p-2= sort_link @q, :title, ManufactureGroup.human_attribute_name(:title), default_order: :desc
             .col
-              .p-2= ManufactureGroup.human_attribute_name(:contract)
+              .p-2= sort_link @q, :contract, ManufactureGroup.human_attribute_name(:contract)
             .col-3
-              .p-2= ManufactureGroup.human_attribute_name(:limit_at)
+              .p-2= sort_link @q, :limit_at, ManufactureGroup.human_attribute_name(:limit_at)
         .col-2
 
       .accordion.manufactures#accordionGroups

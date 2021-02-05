@@ -2,13 +2,14 @@ class ManufacturesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @groups = ManufactureGroup.order(:title).includes([:manufactures])
-    @q = @manufactures.ransack(params[:q])
-    @manufactures = @q.result(distinct: true)
-                      .order(created_at: :desc)
+    @q = ManufactureGroup.ransack(params[:q])
+    @groups = @q.result(distinct: true)
+                .order(:title)
+                .includes(:manufactures)
     @last_operations = ManufactureOperation.where(id: @manufactures.map{ |m| m.last_operation_id }.compact)
                                            .includes(:operation, :member)
-    @operations = Operation.order(:title)
+    # need_for search form
+    # @operations = Operation.order(:title)
   end
 
   def show

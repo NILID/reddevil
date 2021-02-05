@@ -64,18 +64,19 @@
                 .row.text-muted
                   .col-1.text-right
                     .p-2= t('substrates.otk')
-                  .col-2
+                  .col-3
                     .p-2= Manufacture.human_attribute_name(:title)
-                  .col-2
+                  .col-3
                     .p-2
                       = Manufacture.human_attribute_name(:operation)
                       (#{ManufactureOperation.human_attribute_name(:machine)})
                   .col-2
                     .p-2= Manufacture.human_attribute_name(:user)
                   .col-2
-                    .p-2= ManufactureOperation.human_attribute_name(:started_at)
-                  .col-2
-                    .p-2= ManufactureOperation.human_attribute_name(:finished_at)
+                    .p-2
+                      = ManufactureOperation.human_attribute_name(:started_at)
+                      \ /
+                      = ManufactureOperation.human_attribute_name(:finished_at)
                   .col-1
 
                 = render group.manufactures, index: index

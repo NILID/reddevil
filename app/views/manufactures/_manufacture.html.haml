@@ -8,7 +8,7 @@
         = priority_tag(manufacture.priority)
         %span.pl-4{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
           = otk_status_icon(manufacture.otk_status, 'fa-lg')
-      .col-2
+      .col-3
         = link_to manufacture.title, manufacture
         %span.tip.text-muted.ml-2
           = fa_icon 'question-circle lg'
@@ -28,7 +28,7 @@
                 %td.col-9= manufacture.content
 
       - if last_operation
-        .col-2
+        .col-3
           = last_operation.operation.title
           - if last_operation.machine?
             (#{last_operation.machine})
@@ -36,9 +36,9 @@
           = last_operation.member.surname_name
         .col-2
           = short_date_with_month last_operation.started_at
-        .col-2
           - last_operation_date = last_operation.finished_at
           - if last_operation_date
+            \ /
             = short_date_with_month last_operation_date
       - else
         .col-8

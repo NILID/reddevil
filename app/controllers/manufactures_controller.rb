@@ -6,7 +6,6 @@ class ManufacturesController < ApplicationController
     @q = ManufactureGroup.ransack(params[:q])
     @groups = @q.result(distinct: true)
                 .order(:title)
-                .includes(:manufactures)
     @last_operations = ManufactureOperation.where(id: @manufactures.map{ |m| m.last_operation_id }.compact)
                                            .includes(:operation, :member)
     # need_for search form

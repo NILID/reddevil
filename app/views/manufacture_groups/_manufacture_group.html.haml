@@ -18,7 +18,7 @@
             = short_date_with_month(manufacture_group.limit_at) if manufacture_group.limit_at
           .col-1.actual-date
             %small
-              = link_to actual_manufacture_group_path(manufacture_group), remote: true do
+              = link_to actual_manufacture_group_path(manufacture_group), remote: true, data: { confirm: t('shared.sure_actual') } do
                 = fa_icon :check_circle, text: short_date(manufacture_group.updated_at), class: 'text-success'
       .col-2.text-right
         = link_to new_manufacture_path(manufacture_group_id: manufacture_group), class: 'btn btn-outline-primary btn-sm ml-2' do
@@ -55,4 +55,4 @@
           %p.mt-2
             %small= t('shared.actual')
         .col-1
-      = render manufacture_group.manufactures, index: manufacture_group_counter
+      = render manufacture_group.manufactures.includes(:updated_user), index: manufacture_group_counter

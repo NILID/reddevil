@@ -1,5 +1,6 @@
 class ManufacturesController < ApplicationController
   load_and_authorize_resource
+  after_action :touch_updated, only: %i[create updated actual]
 
   def index
     @q = ManufactureGroup.ransack(params[:q])
@@ -11,6 +12,8 @@ class ManufacturesController < ApplicationController
     # need_for search form
     # @operations = Operation.order(:title)
   end
+
+  def actual; end
 
   def show
     @otk_documents = @manufacture.otk_documents
@@ -63,6 +66,10 @@ class ManufacturesController < ApplicationController
   end
 
   private
+    def touch_updated
+      @manufacture.touch_updated(current_user)
+    end
+
     def manufacture_params
       manufacture_params = [:title, :drawing, :content, :material, :user, :priority, :manufacture_group_id, :material_info,
                             { manufacture_operations_attributes: %i[id member_id machine operation_id started_at finished_at tech_params notes _destroy] } ]

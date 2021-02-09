@@ -13,6 +13,11 @@ class ManufactureGroup < ApplicationRecord
                 reject_if: :all_blank,
             allow_destroy: true
 
+  def touch_updated(user)
+    self.touch
+    self.manufactures.each{ |m| m.touch_updated(user) }
+  end
+
 
   private
     def create_multi_manufactures

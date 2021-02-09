@@ -8,7 +8,7 @@
         = priority_tag(manufacture.priority)
         %span.pl-4{ title: manufacture.otk_desc, data: { toggle: 'tooltip' }}
           = otk_status_icon(manufacture.otk_status, 'fa-lg')
-      .col-3
+      .col-2
         = link_to manufacture.title, manufacture
         %span.tip.text-muted.ml-2
           = fa_icon 'question-circle lg'
@@ -24,7 +24,7 @@
                 %th(scope="row")= Manufacture.human_attribute_name(:material_info)
                 %td.col-9= manufacture.material_info
               %tr
-                %th(scope="row")=Manufacture.human_attribute_name(:content)
+                %th(scope="row")= Manufacture.human_attribute_name(:content)
                 %td.col-9= manufacture.content
 
       - if last_operation
@@ -41,7 +41,11 @@
             \ /
             = short_date_with_month last_operation_date
       - else
-        .col-8
+        .col-7
+      .col-1.actual-date
+        .small{data: { toggle: 'tooltip' }, title: manufacture.updated_user ? manufacture.updated_user.surname : '' }
+          = link_to actual_manufacture_path(manufacture), remote: true do
+            = fa_icon :check_circle, text: short_date(manufacture.updated_at), class: 'text-success'
       .col-1.text-right
         .btn-group
           %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }

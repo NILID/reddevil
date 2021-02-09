@@ -1,6 +1,7 @@
 class Manufacture < ApplicationRecord
   has_many_attached :otk_documents
   has_many :manufacture_operations, dependent: :destroy
+  belongs_to :updated_user, class_name: 'User', optional: true
   belongs_to :manufacture_group
 
   OTK_STATUSES = %w[empty failed passed approval].freeze
@@ -18,4 +19,8 @@ class Manufacture < ApplicationRecord
                       allow_destroy: true
 
   attr_accessor :multi
+
+  def touch_updated(user)
+    self.update_attribute(:updated_user_id, user.id)
+  end
 end

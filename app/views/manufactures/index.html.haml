@@ -17,66 +17,17 @@
       .row.text-muted
         .col
           .row
-            .col-1
             .col
               .p-2= sort_link @q, :title, ManufactureGroup.human_attribute_name(:title), default_order: :desc
             .col
               .p-2= sort_link @q, :contract, ManufactureGroup.human_attribute_name(:contract)
             .col-3
               .p-2= sort_link @q, :limit_at, ManufactureGroup.human_attribute_name(:limit_at)
+            .col-1
+              .p-2
+                %small= sort_link @q, :updated_at, t('shared.actual')
+
         .col-2
 
       .accordion.manufactures#accordionGroups
-        - @groups.each_with_index do |group, index|
-          .card.bg-light
-            .card-header.p-1.pl-3.pt-2{id: "group_#{index}" }
-              .row
-                .col
-                  .row.pointer{data: { toggle: 'collapse', target: "#collapse_group_#{index}"}, aria: { expander: 'true', controls: "collapse_group_#{index}" }}
-                    .col-1.text-muted
-                      = index + 1
-                    .col.manufacture-group-title
-                      = group.title
-                    .col.manufacture-group-contract
-                      - if group.without_contract
-                        .text-muted
-                          = ManufactureGroup.human_attribute_name(:without_contract)
-                      - else
-                        = group.contract
-                    .col-3.manufacture-group-limit-at
-                      = short_date_with_month(group.limit_at) if group.limit_at
-                .col-2.text-right
-                  = link_to new_manufacture_path(manufacture_group_id: group), class: 'btn btn-outline-primary btn-sm ml-2' do
-                    = fa_icon :plus, text: Manufacture.model_name.human
-
-                  .btn-group.ml-2
-                    %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-                      = fa_icon 'cog'
-                    .dropdown-menu.dropdown-menu-right
-                      = link_to edit_manufacture_group_path(group), class: 'dropdown-item' do
-                        = fa_icon 'edit', text: t('shared.edit')
-                      = link_to group, method: :delete, data: { confirm: t('manufacture_groups.sure') }, class: 'dropdown-item' do
-                        = fa_icon 'trash', text: t('shared.del')
-
-            .collapse{ id: "collapse_group_#{index}", aria: { labelledby: "group_#{index}" }, data: { parent: '#accordionGroups' } }
-              .accordion{ id: "accordion_groups_#{index}" }
-
-                .row.text-muted
-                  .col-1.text-right
-                    .p-2= t('substrates.otk')
-                  .col-3
-                    .p-2= Manufacture.human_attribute_name(:title)
-                  .col-3
-                    .p-2
-                      = Manufacture.human_attribute_name(:operation)
-                      (#{ManufactureOperation.human_attribute_name(:machine)})
-                  .col-2
-                    .p-2= Manufacture.human_attribute_name(:user)
-                  .col-2
-                    .p-2
-                      = ManufactureOperation.human_attribute_name(:started_at)
-                      \ /
-                      = ManufactureOperation.human_attribute_name(:finished_at)
-                  .col-1
-
-                = render group.manufactures, index: index
+        = render @groups

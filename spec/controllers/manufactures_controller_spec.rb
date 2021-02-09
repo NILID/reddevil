@@ -36,6 +36,12 @@ RSpec.describe ManufacturesController, type: :controller do
         expect(response).to render_template(:edit)
       end
 
+      it 'returns actual' do
+        expect(@ability.can? :actual, manufacture).to be true
+        get :actual, params: { id: manufacture }, xhr: true
+        expect(response).to render_template(:actual)
+      end
+
       it 'destroys' do
         expect(@ability.can? :destroy, manufacture).to be true
         expect{ delete :destroy, params: { id: manufacture } }.to change(Manufacture, :count).by(-1)
@@ -94,6 +100,11 @@ RSpec.describe ManufacturesController, type: :controller do
       expect{ get :new }.to raise_error(CanCan:: AccessDenied)
     end
 
+    it 'returns actual' do
+      expect(@ability.can? :actual, manufacture).to be false
+      expect{ get :actual, params: { id: manufacture }, xhr: true }.to raise_error(CanCan:: AccessDenied)
+    end
+
     it 'not creates a new Manufacture' do
       expect(@ability.can? :create, Manufacture).to be false
       expect{ post :create, params: { manufacture: attributes_for(:manufacture) } }.to raise_error(CanCan:: AccessDenied)
@@ -146,6 +157,10 @@ RSpec.describe ManufacturesController, type: :controller do
 
     it 'not edit' do
       get :edit, params: { id: manufacture }
+    end
+
+    it 'not returns actual' do
+      get :actual, params: { id: manufacture }, xhr: true
     end
 
     it 'not manage otk' do

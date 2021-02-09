@@ -1,0 +1,58 @@
+= div_for(manufacture_group, class: 'card bg-light') do
+  .card-header.p-1.pl-3.pt-2{id: "group_#{manufacture_group_counter}" }
+    .row
+      .col
+        .row.pointer{data: { toggle: 'collapse', target: "#collapse_group_#{manufacture_group_counter}"}, aria: { expander: 'true', controls: "collapse_group_#{manufacture_group_counter}" }}
+          .col
+            %span.text-muted.mr-4
+              = manufacture_group_counter + 1
+            %span.manufacture-group-title
+              = manufacture_group.title
+          .col.manufacture-group-contract
+            - if manufacture_group.without_contract
+              .text-muted
+                = ManufactureGroup.human_attribute_name(:without_contract)
+            - else
+              = manufacture_group.contract
+          .col-3.manufacture-group-limit-at
+            = short_date_with_month(manufacture_group.limit_at) if manufacture_group.limit_at
+          .col-1.actual-date
+            %small
+              = link_to actual_manufacture_group_path(manufacture_group), remote: true do
+                = fa_icon :check_circle, text: short_date(manufacture_group.updated_at), class: 'text-success'
+      .col-2.text-right
+        = link_to new_manufacture_path(manufacture_group_id: manufacture_group), class: 'btn btn-outline-primary btn-sm ml-2' do
+          = fa_icon :plus, text: Manufacture.model_name.human
+
+        .btn-group.ml-2
+          %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+            = fa_icon 'cog'
+          .dropdown-menu.dropdown-menu-right
+            = link_to edit_manufacture_group_path(manufacture_group), class: 'dropdown-item' do
+              = fa_icon 'edit', text: t('shared.edit')
+            = link_to manufacture_group, method: :delete, data: { confirm: t('manufacture_groups.sure') }, class: 'dropdown-item' do
+              = fa_icon 'trash', text: t('shared.del')
+
+  .collapse{ id: "collapse_group_#{manufacture_group_counter}", aria: { labelledby: "group_#{manufacture_group_counter}" }, data: { parent: '#accordionGroups' } }
+    .accordion{ id: "accordion_groups_#{manufacture_group_counter}" }
+      .row.text-muted
+        .col-1.text-right
+          .p-2= t('substrates.otk')
+        .col-2
+          .p-2= Manufacture.human_attribute_name(:title)
+        .col-3
+          .p-2
+            = Manufacture.human_attribute_name(:operation)
+            (#{ManufactureOperation.human_attribute_name(:machine)})
+        .col-2
+          .p-2= Manufacture.human_attribute_name(:user)
+        .col-2
+          .p-2
+            = ManufactureOperation.human_attribute_name(:started_at)
+            \ /
+            = ManufactureOperation.human_attribute_name(:finished_at)
+        .col-1
+          %p.mt-2
+            %small= t('shared.actual')
+        .col-1
+      = render manufacture_group.manufactures, index: manufacture_group_counter

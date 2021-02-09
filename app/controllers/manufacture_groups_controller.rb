@@ -1,8 +1,11 @@
 class ManufactureGroupsController < ApplicationController
   load_and_authorize_resource
 
-  def new;  end
-  def edit; end
+  after_action :touch_updated, only: %i[create actual]
+
+  def new;    end
+  def edit;   end
+  def actual; end
 
   def create
     respond_to do |format|
@@ -33,6 +36,10 @@ class ManufactureGroupsController < ApplicationController
   end
 
   private
+    def touch_updated
+      @manufacture_group.touch_updated(current_user)
+    end
+
     def manufacture_group_params
       manufacture_group_params = [:title, :contract, :actual, :limit_at, :without_contract,
                                   { manufactures_attributes: %i[id title priority material drawing multi _destroy] }]

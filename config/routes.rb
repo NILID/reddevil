@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  resources :manufacture_groups, except: [:index]
+  resources :manufacture_groups, except: [:index] do
+    member do
+      get :actual
+    end
+  end
 
   resources :operations, except: [:show]
   resources :manufactures do
     member do
+      get :actual
       get :manage_otk
       delete :delete_document
     end

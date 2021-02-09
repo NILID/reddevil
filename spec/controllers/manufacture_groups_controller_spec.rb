@@ -29,6 +29,12 @@ RSpec.describe ManufactureGroupsController, type: :controller do
         expect(response).to render_template(:edit)
       end
 
+      it 'returns actual' do
+        expect(@ability.can? :actual, manufacture_group).to be true
+        get :actual, params: { id: manufacture_group }, xhr: true
+        expect(response).to render_template(:actual)
+      end
+
       it 'destroys' do
         expect(@ability.can? :destroy, manufacture_group).to be true
         expect{ delete :destroy, params: { id: manufacture_group } }.to change(ManufactureGroup, :count).by(-1)
@@ -62,6 +68,11 @@ RSpec.describe ManufactureGroupsController, type: :controller do
       expect{ get :edit, params: { id: manufacture_group } }.to raise_error(CanCan:: AccessDenied)
     end
 
+    it 'returns actual' do
+      expect(@ability.can? :actual, manufacture_group).to be false
+      expect{ get :actual, params: { id: manufacture_group }, xhr: true }.to raise_error(CanCan:: AccessDenied)
+    end
+
     it 'not destroy' do
       expect(@ability.can? :destroy, manufacture_group).to be false
       expect{ delete :destroy, params: { id: manufacture_group } }.to raise_error(CanCan:: AccessDenied)
@@ -90,6 +101,10 @@ RSpec.describe ManufactureGroupsController, type: :controller do
 
     it 'not edit' do
       get :edit, params: { id: manufacture_group }
+    end
+
+    it 'not returns actual' do
+      get :actual, params: { id: manufacture_group }, xhr: true
     end
 
     it 'not updates' do

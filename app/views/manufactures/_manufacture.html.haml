@@ -55,5 +55,5 @@
               = fa_icon 'chevron-circle-right', text: t('manufactures.goto')
             = link_to edit_manufacture_path(manufacture), class: 'dropdown-item' do
               = fa_icon 'edit', text: t('shared.edit')
-            = link_to manufacture, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item' do
+            = link_to manufacture, method: :delete, data: { confirm: t('shared.sure') }, class: 'dropdown-item', remote: true do
               = fa_icon 'trash', text: t('shared.del')

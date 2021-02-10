@@ -33,6 +33,7 @@ class ManufactureGroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to Manufacture, notice: t('flash.was_destroyed', item: ManufactureGroup.model_name.human) }
       format.json { head :no_content }
+      format.js
     end
   end
 

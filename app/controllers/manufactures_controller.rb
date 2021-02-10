@@ -62,6 +62,7 @@ class ManufacturesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to manufactures_url, notice: t('flash.was_destroyed', item: Manufacture.model_name.human) }
       format.json { head :no_content }
+      format.js
     end
   end
 

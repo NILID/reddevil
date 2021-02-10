@@ -30,7 +30,7 @@
           .dropdown-menu.dropdown-menu-right
             = link_to edit_manufacture_group_path(manufacture_group), class: 'dropdown-item' do
               = fa_icon 'edit', text: t('shared.edit')
-            = link_to manufacture_group, method: :delete, data: { confirm: t('manufacture_groups.sure') }, class: 'dropdown-item' do
+            = link_to manufacture_group, method: :delete, data: { confirm: t('manufacture_groups.sure') }, class: 'dropdown-item', remote: true do
               = fa_icon 'trash', text: t('shared.del')
 
   .collapse{ id: "collapse_group_#{manufacture_group_counter}", aria: { labelledby: "group_#{manufacture_group_counter}" }, data: { parent: '#accordionGroups' } }

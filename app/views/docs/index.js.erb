@@ -1,5 +1,5 @@
-$('#doc-list').html('<%= j render @docs%>');
-$('#docs-count').html('<%= @docs.size%>');
+$('#doc-list').html('<%= j render @docs %>');
+$('#docs-count').html('<%= @docs.size %>');
 <% if @cat %>
   $('.category-info').html('<%= j I18n.t('docs.in_category', category: @cat.title)%>');
   $('.nav-reddevil a').removeClass('active');
@@ -15,5 +15,3 @@ $('#docs-count').html('<%= @docs.size%>');
 <% else %>
   $('.category-info').html();
 <% end %>
-
-

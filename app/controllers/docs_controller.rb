@@ -17,7 +17,7 @@ class DocsController < ApplicationController
     elsif params[:no_category]
       @q = Doc.ransack(params[:q])
       docs = @q.result(distinct: true).order(:title)
-      @docs = docs.collect { |doc| doc if doc.categories.empty? }
+      @docs = docs.select { |doc| doc.categories.empty? }
       @nocat = true
     elsif params[:favorites]
       @docs = current_user.followables(Doc)

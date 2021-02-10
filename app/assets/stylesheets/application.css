@@ -15,17 +15,16 @@
  *= require bootstrap-datepicker3
  *= require bootstrap-datetimepicker
  *= require rails_bootstrap_forms
- *= require page-player
- *= require demo
+ *= require ./styles/page-player
+ *= require ./styles/demo
  *= require animate
  *= require jquery-ui
  *= require fullcalendar
  *= require simple_calendar
- *= require optional-annotations
- *= require optional-themes
+ *= require ./styles/optional-annotations
+ *= require ./styles/optional-themes
  *= require tooltipster.bundle
  *= require plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css
  *= require font_awesome5
- *= require bootstrap
- *= require_tree .
+ *= require_tree ./styles
  */

@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       member_params  = %i[number position surname name patronymic work_phone phone short_number email birth id hide_year]
       member_params << %i[archive_flag user_id department_id] if (current_user&.role? :admin)
 
-      list_params_allowed = [ { profile_attributes: profile_params }, { member_attributes:  member_params } ]
+      list_params_allowed = [ :theme, { profile_attributes: profile_params }, { member_attributes:  member_params } ]
       list_params_allowed << [:roles_mask, :sport_flag, roles: [], groups: []] if (current_user&.role? :admin)
 
       params.require(:user).permit(list_params_allowed)

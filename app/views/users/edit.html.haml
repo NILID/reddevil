@@ -6,6 +6,7 @@
     .card-body
       .row
         .col-xs-12.col-md-6
+          = f.select :theme, (THEMES.collect { |t| [t.to_s, t.to_s]})
           = f.fields_for :profile do |p|
             = p.file_field :avatar
             = p.color_field :background_color,

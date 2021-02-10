@@ -46,6 +46,7 @@ class User < ApplicationRecord
   #             1    2     4     8
 
   validates :roles, presence: true
+  validates_inclusion_of :theme, in: THEMES
 
   scope :online,     lambda { where('online_at > ?', 10.minutes.ago) }
   scope :with_group, lambda { |group| where('groups_mask & ? > 0', 2**GROUPS.index(group.to_s)) }

@@ -34,25 +34,27 @@
               = fa_icon 'trash', text: t('shared.del')
 
   .collapse{ id: "collapse_group_#{manufacture_group_counter}", aria: { labelledby: "group_#{manufacture_group_counter}" }, data: { parent: '#accordionGroups' } }
-    .accordion{ id: "accordion_groups_#{manufacture_group_counter}" }
-      .row.text-muted
-        .col-1.text-right
-          .p-2= t('substrates.otk')
-        .col-2
-          .p-2= Manufacture.human_attribute_name(:title)
-        .col-3
-          .p-2
-            = Manufacture.human_attribute_name(:operation)
-            (#{ManufactureOperation.human_attribute_name(:machine)})
-        .col-2
-          .p-2= Manufacture.human_attribute_name(:user)
-        .col-2
-          .p-2
-            = ManufactureOperation.human_attribute_name(:started_at)
-            \ /
-            = ManufactureOperation.human_attribute_name(:finished_at)
-        .col-1
-          %p.mt-2
-            %small= t('shared.actual')
-        .col-1
-      = render manufacture_group.manufactures.includes(:updated_user), index: manufacture_group_counter
+    .row.text-muted
+      .col-1.text-right
+        .p-2= t('substrates.otk')
+      .col-2
+        .p-2= Manufacture.human_attribute_name(:title)
+      .col-3
+        .p-2
+          = Manufacture.human_attribute_name(:operation)
+          (#{ManufactureOperation.human_attribute_name(:machine)})
+      .col-2
+        .p-2= Manufacture.human_attribute_name(:user)
+      .col-2
+        .p-2
+          = ManufactureOperation.human_attribute_name(:started_at)
+          \ /
+          = ManufactureOperation.human_attribute_name(:finished_at)
+      .col-1
+        %p.mt-2
+          %small= t('shared.actual')
+      .col-1
+    .row
+      .col-12
+        .border-top
+          = render manufacture_group.manufactures.includes(:updated_user), index: manufacture_group_counter

@@ -1,8 +1,8 @@
 - manufacture_id = dom_id manufacture
 - last_operation = @last_operations.select{ |o| o if o.manufacture_id == manufacture.id }.first
 
-.card
-  .card-header{id: manufacture_id}
+.card.border-0{id: manufacture_id}
+  .card-header
     .row
       .col-1
         = priority_tag(manufacture.priority)

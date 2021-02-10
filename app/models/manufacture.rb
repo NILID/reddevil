@@ -21,6 +21,6 @@ class Manufacture < ApplicationRecord
   attr_accessor :multi
 
   def touch_updated(user)
-    self.update_attribute(:updated_user_id, user.id)
+    self.update_attributes(updated_user_id: user.id, updated_at: DateTime.now)
   end
 end

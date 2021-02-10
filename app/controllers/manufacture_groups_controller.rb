@@ -1,7 +1,8 @@
 class ManufactureGroupsController < ApplicationController
   load_and_authorize_resource
 
-  after_action :touch_updated, only: %i[create actual]
+  after_action  :touch_updated, only: %i[create]
+  before_action :touch_updated, only: %i[actual]
 
   def new;    end
   def edit;   end

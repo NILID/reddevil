@@ -1,6 +1,7 @@
 class ManufacturesController < ApplicationController
   load_and_authorize_resource
-  after_action :touch_updated, only: %i[create updated actual]
+  after_action  :touch_updated, only: %i[create updated]
+  before_action :touch_updated, only: %i[actual]
 
   def index
     @q = ManufactureGroup.ransack(params[:q])

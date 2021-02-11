@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     collection do
       get :history
       get :archive
+      get :search
     end
   end
 

@@ -17,6 +17,12 @@ class SubstratesController < ApplicationController
     render 'index'
   end
 
+  def search
+    @substrates = @substrates.includes(:substrate_features)
+    get_ransack
+    render 'index'
+  end
+
   def history
     @versions = PaperTrail::Version.where(item_type: 'Substrate').includes(:item).order(created_at: :desc).paginate(page: params[:page], per_page: 20)
   end

@@ -24,6 +24,12 @@ RSpec.describe 'Substrates', type: :request do
         expect(response).to render_template(:index)
       end
 
+      it 'returns search' do
+        expect(@ability.can? :search, Substrate).to be true
+        get search_substrates_path
+        expect(response).to render_template(:index)
+      end
+
       it 'returns history' do
         expect(@ability.can? :history, Substrate).to be true
         get history_substrates_path
@@ -119,6 +125,11 @@ RSpec.describe 'Substrates', type: :request do
       expect{ get substrates_path }.to raise_error(CanCan:: AccessDenied)
     end
 
+    it 'not returns search' do
+      expect(@ability.can? :search, Substrate).to be false
+      expect{ get search_substrates_path }.to raise_error(CanCan:: AccessDenied)
+    end
+
     it 'not returns archive' do
       expect(@ability.can? :archive, Substrate).to be false
       expect{ get archive_substrates_path }.to raise_error(CanCan:: AccessDenied)
@@ -195,6 +206,10 @@ RSpec.describe 'Substrates', type: :request do
 
     it 'returns history' do
       get history_substrates_path
+    end
+
+    it 'returns search' do
+      get search_substrates_path
     end
 
     it 'returns archive' do

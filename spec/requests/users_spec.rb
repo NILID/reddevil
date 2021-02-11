@@ -31,6 +31,13 @@ RSpec.describe 'Users', type: :request do
       expect(response).to render_template(:edit)
     end
 
+    it 'get decor' do
+      expect(@ability.can? :decor, user).to be true
+      get decor_user_path(user)
+      expect(response).to be_successful
+      expect(response).to render_template(:decor)
+    end
+
     it 'updates' do
       expect(@ability.can? :update, user).to be true
       put user_path(user, user: attributes_for(:user))
@@ -66,8 +73,13 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'cannot get edit not own' do
-      expect(@ability.cannot? :edit, user).to be true
+      expect(@ability.can? :edit, user).to be false
       expect{ get edit_user_path(user) }.to raise_error(CanCan:: AccessDenied)
+    end
+
+    it 'cannot get decor not own' do
+      expect(@ability.can? :decor, user).to be false
+      expect{ get decor_user_path(user) }.to raise_error(CanCan:: AccessDenied)
     end
 
     it 'get edit own' do
@@ -77,8 +89,15 @@ RSpec.describe 'Users', type: :request do
       expect(response).to render_template(:edit)
     end
 
+    it 'get decor own' do
+      expect(@ability.can? :decor, @user).to be true
+      get decor_user_path(@user)
+      expect(response).to be_successful
+      expect(response).to render_template(:decor)
+    end
+
     it 'not updates' do
-      expect(@ability.cannot? :update, user).to be true
+      expect(@ability.can? :update, user).to be false
       expect{ put user_path(user, user: attributes_for(:user)) }
         .to raise_error(CanCan:: AccessDenied)
     end
@@ -116,6 +135,10 @@ RSpec.describe 'Users', type: :request do
 
     it 'not returns edit' do
       get edit_user_path(user)
+    end
+
+    it 'not returns edit' do
+      get decor_user_path(user)
     end
 
     it 'not updates' do

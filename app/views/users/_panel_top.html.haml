@@ -1,0 +1,7 @@
+%ul.nav.nav-tabs.card-header-tabs#member_info.float-left
+  %li.nav-item
+    = link_to edit_user_path(@user), class: "nav-link #{params[:action] == 'edit' ? 'active' : nil}" do
+      = fa_icon :user_cog, text: t('profiles.editing')
+  %li.nav-item
+    = link_to decor_user_path(@user), class: "nav-link #{params[:action] == 'decor' ? 'active' : nil}" do
+      = fa_icon :palette, text: t('decor.title')

@@ -5,14 +5,16 @@
   = bootstrap_form_for(@user, layout: :horizontal, label_col: 'col', control_col: 'col-8') do |f|
     .card-body
       .row
-        .col-xs-12.col-md-6
+        .col
+          = f.select :theme, (THEMES.collect { |t| [t.to_s, t.to_s]})
+      .row
+        .col
           = f.fields_for :profile do |p|
-            = p.file_field :avatar
-          = f.fields_for :member do |m|
-            = render 'members/member_fields_names', f: m
-        .col-xs-12.col-md-6
-          = f.fields_for :member do |m|
-            = render 'members/member_fields_other', f: m
+            = p.color_field :background_color,
+              value: @user.background_color,
+              control_col: 'col-8',
+              label_col: 'col',
+              data: { bg_url: asset_url('greydots.png') }
     .card-footer
       = f.primary t('profiles.save')
       .float-right= link_to t('shared.back'), @user, class: 'btn btn-secondary'

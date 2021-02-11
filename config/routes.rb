@@ -133,6 +133,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show edit update] do
     member do
+      get 'decor'
       post 'make_role'
       get 'edit_roles'
     end

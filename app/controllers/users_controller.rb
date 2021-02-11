@@ -29,6 +29,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def decor; end
+
   def edit; end
 
   def update

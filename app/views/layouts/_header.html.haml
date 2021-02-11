@@ -7,7 +7,7 @@
   = csp_meta_tag
   = favicon_link_tag
   - if current_user
-    = stylesheet_link_tag "bootstrap/#{current_user.theme}/bootstrap.min"
+    = stylesheet_link_tag "bootstrap/#{current_user.theme}/bootstrap.min", id: 'custom_user_theme'
   - else
     = stylesheet_link_tag 'bootstrap/default/bootstrap.min'
   = stylesheet_link_tag    'application', media: 'all'

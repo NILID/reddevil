@@ -6,7 +6,7 @@
     .card-body
       .row
         .col
-          = f.select :theme, (THEMES.collect { |t| [t.to_s, t.to_s]})
+          = f.select :theme, THEMES.collect{ |theme| [theme, theme, { data: { url: asset_url("bootstrap/#{theme}/bootstrap.min.css") }} ] }
       .row
         .col
           = f.fields_for :profile do |p|
@@ -16,5 +16,5 @@
               label_col: 'col',
               data: { bg_url: asset_url('greydots.png') }
     .card-footer
-      = f.primary t('profiles.save')
+      = f.primary t('decor.save')
       .float-right= link_to t('shared.back'), @user, class: 'btn btn-secondary'

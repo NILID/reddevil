@@ -19,7 +19,8 @@
     %hr.py-3
 
     - if @folder.has_children? || !@folder.datasets.empty?
-      = render @folder_children
-      = render @folder_datasets
+      .row
+        = render @folder_children
+        = render @folder_datasets
     - else
       %h6.text-muted.text-center= t 'dataset.empty'

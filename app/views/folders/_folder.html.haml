@@ -1,3 +1,4 @@
-.folder.text-center{ title: folder.title, data: { toggle: 'tooltip' } }
-  = link_to '', [@user, folder], class: 'i-folder'
-  = truncate folder.title, length: 15, separator: ' ', omission: '...'
+.col-xl-2.col-md-3.col-xs-12.col-sm-6.text-center
+  = link_to [@user, folder], title: folder.title, data: { toggle: 'tooltip' }, class: 'text-muted' do
+    .d-block= fa_icon 'folder 4x'
+    = truncate folder.title, length: 15, separator: ' ', omission: '...'

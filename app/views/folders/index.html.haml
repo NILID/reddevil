@@ -13,6 +13,7 @@
 
     .bg-white.p-3
       - if @folders.any?
-        = render @folders.roots
+        .row
+          = render @folders.roots
       - else
         %h6.text-muted.text-center= t 'dataset.empty_root'

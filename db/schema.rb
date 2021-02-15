@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_160458) do
+ActiveRecord::Schema.define(version: 2021_02_15_094837) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -641,6 +641,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_160458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "flag", null: false
+    t.integer "viceuser_id"
     t.index ["member_id"], name: "index_vacations_on_member_id"
   end
 

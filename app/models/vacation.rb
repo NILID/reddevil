@@ -1,5 +1,6 @@
 class Vacation < ApplicationRecord
   belongs_to :member
+  belongs_to :viceuser, class_name: 'Member', optional: true
 
   FLAGS = %w[rest sick trip remote].freeze
 
@@ -7,9 +8,9 @@ class Vacation < ApplicationRecord
             :enddate,
             presence: true
 
-#  validates :enddate,
-#            presence: true,
-#            if: -> { flag == 'rest' }
+  #  validates :enddate,
+  #            presence: true,
+  #            if: -> { flag == 'rest' }
 
   validate :check_dates
   validates_inclusion_of :flag, in: FLAGS

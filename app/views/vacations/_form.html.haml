@@ -3,13 +3,12 @@
     = render 'breadcrumb', title: formtitle
     = f.hidden_field :flag, value: @vacation.flag
     .form-group.input-daterange
-      = f.text_field :startdate,
-            value: (f.object.startdate.to_datetime.strftime('%d.%m.%Y') if f.object.startdate?),
+      - [:startdate, :enddate].each do |date_field|
+        = f.text_field date_field,
+            value: (f.object[date_field].to_datetime.strftime('%d.%m.%Y') if f.object[date_field]),
             label_text: nil,
-            class: 'form-control'
-      = f.text_field :enddate,
-            value: (f.object.enddate.to_datetime.strftime('%d.%m.%Y') if f.object.enddate?),
-            class: 'form-control'
+            class: 'form-control text-left'
+    = f.select :viceuser_id, Member.order(:surname).map{ |m| [m.surname_name, m.id]}, { include_blank: t('shared.select') }
   .card-footer
     = f.primary
-    = link_to t('shared.back'), [@member, Vacation], class: 'btn btn-secondary float-right'
+    = link_to t('shared.back'), list_member_vacations_path(@member), class: 'btn btn-secondary float-right'

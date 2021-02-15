@@ -106,6 +106,7 @@ ru:
       vacation:
         startdate: Дата начала
         enddate: Дата завершения
+        viceuser_id: Заместитель
       vacations:
         startdate: Дата начала
         enddate: Дата завершения

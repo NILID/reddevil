@@ -10,7 +10,7 @@
   .col
     = f.text_area :tech_params, { wrapper: false, placeholder: ManufactureOperation.human_attribute_name(:tech_params) }
   .col
-    = f.select :member_id, Member.all.map{ |m| [m.surname_name, m.id]}, { include_blank: t('shared.select'), wrapper: false }
+    = f.select :member_id, Member.order(:surname).map{ |m| [m.surname_name, m.id]}, { include_blank: t('shared.select'), wrapper: false }
   .col
     = f.text_area :notes, { wrapper: false, placeholder: ManufactureOperation.human_attribute_name(:notes) }
   .col-1

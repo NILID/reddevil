@@ -14,9 +14,13 @@ ru:
     you_rest: У вас сейчас отпуск
     user_rest: У %{username} сейчас отпуск
     until: (до %{date})
+    until_viceuser: (до %{date}, замещает %{vice})
     until_sick: (с %{date})
+    until_sick_vice: (с %{date}, замещает %{vice})
     until_trip: (до %{date})
+    until_trip_viceuser: (до %{date}, замещает %{vice})
     trip_in: (командировка %{date})
+    trip_in_viceuser: (командировка %{date}, замещает %{vice})
     start: (с %{date}, на %{diff})
     edit: Указать отпуск
     edit_sick: Указать больничный

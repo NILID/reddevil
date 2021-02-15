@@ -34,12 +34,15 @@ module MembersHelper
     return collection
   end
 
-  def trip_period(startdate, enddate)
+  def trip_period(startdate, enddate, viceuser)
     if startdate == enddate
-      t('vacations.trip_in', date: Russian.strftime(startdate, '%e %B'))
+      title = viceuser ? 'vacations.trip_in_viceuser' : 'vacations.trip_in'
+      get_date = startdate
     else
-      t('vacations.until_trip', date: Russian.strftime(enddate, '%e %B'))
+      title = viceuser ? 'vacations.until_trip_viceuser' : 'vacations.until_trip'
+      get_date = enddate
     end
+    t(title, date: Russian.strftime(get_date, '%e %B'), vice: viceuser&.surname_name)
   end
 
   def remote_status(member)

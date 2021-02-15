@@ -19,7 +19,7 @@ gem 'ledermann-rails-settings'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
-gem 'nokogiri', '1.10.10'
+gem 'nokogiri', '1.11.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

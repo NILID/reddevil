@@ -19,6 +19,8 @@ gem 'ledermann-rails-settings'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+gem 'nokogiri', '1.10.10'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_094837) do
+ActiveRecord::Schema.define(version: 2021_02_16_155806) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -511,7 +511,6 @@ ActiveRecord::Schema.define(version: 2021_02_15_094837) do
     t.string "shipping_base"
     t.integer "ready_count", default: 0
     t.integer "instock", default: 0
-    t.string "wave_b"
     t.string "corner_b"
     t.integer "user_id"
     t.datetime "created_at"
@@ -520,7 +519,6 @@ ActiveRecord::Schema.define(version: 2021_02_15_094837) do
     t.string "title"
     t.text "desc"
     t.string "coating_type", default: "нет"
-    t.string "wave"
     t.string "corner"
     t.boolean "frame", default: false
     t.integer "statuses_mask", default: 0

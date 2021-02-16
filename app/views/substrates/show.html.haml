@@ -99,10 +99,6 @@
                 %th= Substrate.human_attribute_name(:sides)
                 %th= t('substrates.coating_type')
                 %th= t('substrates.corner')
-                %th
-                  = t('substrates.wave')
-                  %span{title: t('shared.old'), data: { toggle: 'tooltip' } }
-                    = fa_icon :question_circle, class: 'text-info'
                 %th= t('substrates.spectr_chars_full')
             %tbody
               %tr
@@ -110,7 +106,6 @@
                   %strong А
                 %td= @substrate.coating_type
                 %td= @substrate.corner
-                %td= @substrate.wave
                 %td
                   - @substrate_features_a.each do |feature|
                     %p= substrate_feature(feature)
@@ -120,7 +115,6 @@
                   %strong Б
                 %td= @substrate.coating_type_b
                 %td= @substrate.corner_b
-                %td= @substrate.wave_b
                 %td
                   - @substrate_features_b.each do |feature|
                     %p= substrate_feature(feature)

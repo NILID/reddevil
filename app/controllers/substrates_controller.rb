@@ -141,7 +141,7 @@ class SubstratesController < ApplicationController
       # params.require(:substrate).permit(:lock_version,
       substrate_params = [:title, :ready_count,
                           :desc, :coating_type, :coating_type_b, :sides,
-                          :wave, :wave_b, :corner, :corner_b, :frame, :priorityx, :drawing,
+                          :corner, :corner_b, :frame, :priorityx, :drawing,
                           :detail, :amount, :contract, :instock,
                           :arrival_at, :arrival_from, :shipping_at, :shipping_to, :shipping_base,
                           :status, :user_id, :future_shipping_at, :rad_strength, :shape,

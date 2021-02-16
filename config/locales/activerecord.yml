@@ -235,8 +235,6 @@ ru:
         contract: Договор
         coating_type: Тип покрытия A
         coating_type_b: Тип покрытия Б
-        wave: Длина волны А
-        wave_b: Длина волны Б
         corner: Угол А
         corner_b: Угол Б
         rad_strength: Лучевая прочность

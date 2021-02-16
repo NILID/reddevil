@@ -48,11 +48,6 @@
               .col
                 = sort_link @q, :corner,        t('substrates.corner')
               .col
-                = sort_link @q, :wave,          t('substrates.wave_short_html')
-                %br/
-                %span{title: t('shared.old'), data: { toggle: 'tooltip' } }
-                  = fa_icon :question_circle, class: 'text-info', size: 'lg'
-              .col
                 = t('substrates.spectr_chars')
           %th
             = sort_link @q, :rad_strength,  t('substrates.rad_strength_html')

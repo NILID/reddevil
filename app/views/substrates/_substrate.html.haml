@@ -22,26 +22,22 @@
     - if substrate.detail?
       .text-muted= substrate.detail
   %td.text-nowrap
-    .row
+    .row.bg-red
       .col
         = substrate_sides(substrate, :a)
       .col
         = substrate.corner
-      .col
-        = substrate.wave
       .col
         - features = substrate.substrate_features
         - features.select{|f| f.wave == 'A'}.each do |feature|
           %p= substrate_feature(feature)
 
     - if substrate.corner_b?
-      .row
+      .row.bg-white
         .col
           = substrate_sides(substrate, :b)
         .col
           = substrate.corner_b
-        .col
-          = substrate.wave_b
         .col
           - features.select{|f| f.wave == 'B'}.each do |feature|
             %p= substrate_feature(feature)

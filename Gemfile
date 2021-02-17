@@ -131,6 +131,8 @@ gem 'will_paginate', '~> 3.0'
 # gem 'jquery-turbolinks'
 # gem 'faye-rails', '~> 2.0'
 
+gem 'momentjs-rails', '>= 2.9.0'
+
 group :production do
   gem 'passenger', '6.0.4'
 end

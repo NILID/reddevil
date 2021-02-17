@@ -2,18 +2,21 @@
 
 = content_for :bottom_block do
   .card.mt-3
-    .card-header
+    .card-body.py-3
       = link_to users_path, class: 'text-muted' do
         = t 'users.title'
         .float-right
           = fa_icon 'user', text: content_tag(:span, @online_users.size, class: 'user-online-counter')
       - if @online_users_without_current.any?
-        .card-body
-          .row.row-cols-3
-            - @online_users_without_current.each do |user|
-              = link_to user, class: 'col mb-2' do
-                .card
-                  = image_tag user.avatar.url(:thumb), class: 'card-img-top'
+        .row.row-cols-3.my-3
+          - @online_users_without_current.each do |user|
+            = link_to user, class: 'col mb-2' do
+              .card
+                = image_tag user.avatar.url(:thumb), class: 'card-img-top'
+  - if can? :show, @user => Folder
+    .card.mt-3
+      = link_to [@user, Folder], class: 'text-muted card-body py-3' do
+        = fa_icon 'hdd', text: t('dataset.title')
 
 .card.mt-2.mt-md-0
   .card-header

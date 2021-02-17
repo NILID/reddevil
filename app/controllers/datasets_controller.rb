@@ -3,7 +3,7 @@ class DatasetsController < ApplicationController
   load_and_authorize_resource :folder
   load_and_authorize_resource :dataset, through: :folder
 
-  layout 'user'
+  layout 'user_with_side'
 
   def new;   end
   def edit;  end

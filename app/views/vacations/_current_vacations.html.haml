@@ -6,7 +6,11 @@
   - current_rest_title = t('vacations.you_rest')
 
 .card-header
-  = title
+  = fa_icon 'umbrella-beach', text: title
+
+  .float-right
+    = link_to t('shared.edit'), list_member_vacations_path(current_user.member), class: 'btn btn-primary btn-sm'
+
 
 - if current_vacation
   .card-body= current_rest_title

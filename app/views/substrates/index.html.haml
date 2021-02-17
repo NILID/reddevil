@@ -47,7 +47,7 @@
                 = sort_link @q, :coating_type_b, Substrate.human_attribute_name(:coating_type_b)
               .col-2
                 = sort_link @q, :corner,        t('substrates.corner')
-              .col-6
+              .col-6.text-center
                 = t('substrates.spectr_chars')
           %th
             = sort_link @q, :rad_strength,  t('substrates.rad_strength_html')

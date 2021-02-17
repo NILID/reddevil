@@ -42,7 +42,7 @@
         .col-6
           .row
             - features.select{|f| f.wave == 'B'}.each do |feature|
-              %p= substrate_feature(feature)
+              = substrate_feature(feature)
   %td
     = rad_icon_name(substrate.rad_strength) ? fa_icon(rad_icon_name substrate.rad_strength) : substrate.rad_strength
 

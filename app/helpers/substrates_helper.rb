@@ -136,10 +136,9 @@ module SubstratesHelper
   end
 
   def substrate_feature(feature)
-    length = col_feature('col-5 text-right', "#{feature.length} нм;")
-    litera = col_feature('col-2', "<strong>#{feature.litera}</strong> #{fa_icon(feature.sign)}")
-    feat   = col_feature('col-5', feature.feature)
-    [length, litera, ' ', feat].join.html_safe
+    length = col_feature('col-6 text-right mr-0 pr-2', "#{feature.length} нм;")
+    litera = col_feature('col-6 ml-0 pl-0', "<strong class='mr-2'>#{feature.litera} #{fa_icon(feature.sign)}</strong>  #{feature.feature}")
+    [length, litera].join.html_safe
   end
 
   def col_feature(css_class, text)

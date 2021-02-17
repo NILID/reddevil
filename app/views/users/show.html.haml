@@ -12,7 +12,7 @@
           - @online_users_without_current.each do |user|
             = link_to user, class: 'col mb-2' do
               .card
-                = image_tag user.avatar.url(:thumb), class: 'card-img-top'
+                = image_tag user.avatar.url(:medium), class: 'card-img-top'
   - if @user == current_user
     .card.mt-3
       = link_to [@user, Folder], class: 'text-muted card-body py-3' do

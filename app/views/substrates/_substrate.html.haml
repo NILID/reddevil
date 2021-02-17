@@ -29,8 +29,9 @@
         = substrate.corner
       .col-6
         - features = substrate.substrate_features
-        - features.select{|f| f.wave == 'A'}.each do |feature|
-          %p= substrate_feature(feature)
+        .row
+          - features.select{|f| f.wave == 'A'}.each do |feature|
+            = substrate_feature(feature)
 
     - if substrate.corner_b?
       .row
@@ -39,8 +40,9 @@
         .col-2
           = substrate.corner_b
         .col-6
-          - features.select{|f| f.wave == 'B'}.each do |feature|
-            %p= substrate_feature(feature)
+          .row
+            - features.select{|f| f.wave == 'B'}.each do |feature|
+              %p= substrate_feature(feature)
   %td
     = rad_icon_name(substrate.rad_strength) ? fa_icon(rad_icon_name substrate.rad_strength) : substrate.rad_strength
 

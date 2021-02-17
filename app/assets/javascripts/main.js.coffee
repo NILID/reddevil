@@ -60,11 +60,6 @@ $ ->
     fff1 = fff.replace(/\.[^/.]+$/, "")
     $('form input.title_auto').val(fff1)
 
-  $.extend $.fn.datepicker.defaults,
-    format: 'yyyy-mm-dd'
-    language: "ru"
-    firstDate: 1
-
   $('#sortable').sortable
     handle: '.handle'
     update: ->
@@ -72,19 +67,6 @@ $ ->
 
   $('#user_profile_attributes_background_color').on 'change', ->
     $('body').css 'background', 'url(' + $(this).data('bg-url') + ') ' + $(this).val()
-
-  $('#datetimepicker1 input').datepicker
-    locale: "ru"
-    daysOfWeekDisabled: '0,2,3,4,6'
-    startDate: new Date()
-
-  $('body').delegate 'input[type=text].datepicker', 'focusin', ->
-    $(this).datepicker
-      language: "ru"
-      isRTL: false
-      showMonthAfterYear: false
-      yearSuffix: ''
-      autoclose: true
 
   $('.dropdown-submenu > a').on 'click', (e) ->
     submenu = $(this)

@@ -7,7 +7,7 @@
 
     = f.text_field :position
     = f.select :department_id, @departments.map{|d| [d.title, d.id] }, { include_blank: t('shared.to_select') }
-    = f.text_field :moved_at, class: 'datepicker', value: (f.object.moved_at.to_datetime.strftime('%d.%m.%Y') if f.object.moved_at.present?)
+    = f.date_field :moved_at
   .card-footer
     = f.submit t('shared.create')
     .float-right= link_to t('shared.back'), [@member, Position], class: 'btn btn-secondary'

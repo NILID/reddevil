@@ -2,12 +2,8 @@
   .card-body
     = render 'breadcrumb', title: formtitle
     = f.hidden_field :flag, value: @vacation.flag
-    .form-group.input-daterange
-      - [:startdate, :enddate].each do |date_field|
-        = f.text_field date_field,
-            value: (f.object[date_field].to_datetime.strftime('%d.%m.%Y') if f.object[date_field]),
-            label_text: nil,
-            class: 'form-control text-left'
+    = f.date_field :startdate
+    = f.date_field :enddate
     = f.select :viceuser_id, Member.order(:surname).map{ |m| [m.surname_name, m.id]}, { include_blank: t('shared.select') }
   .card-footer
     = f.primary

@@ -133,15 +133,12 @@
           = f.check_box :frame, custom: :switch
     .row
       .col
-        = f.text_field :arrival_at, class: 'datepicker',
-          value: (f.object.arrival_at.to_datetime.strftime('%d.%m.%Y') if f.object.arrival_at.present?)
+        = f.date_field :arrival_at
         = f.text_field :arrival_from
         = f.text_field :contract
       .col
-        = f.text_field :future_shipping_at, class: 'datepicker',
-          value: (f.object.future_shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.future_shipping_at.present?)
-        = f.text_field :shipping_at, class: 'datepicker',
-          value: (f.object.shipping_at.to_datetime.strftime('%d.%m.%Y') if f.object.shipping_at.present?)
+        = f.date_field :future_shipping_at
+        = f.date_field :shipping_at
         = f.text_field :shipping_to
         = f.text_field :shipping_base
     .row

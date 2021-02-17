@@ -26,12 +26,5 @@ $ ->
     defaultView: 'month'
     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source'
 
-  $('body').delegate '.input-daterange', 'focusin', ->
-    $(this).datepicker
-      language: "ru"
-      isRTL: false
-      showMonthAfterYear: false
-      yearSuffix: ''
-
   $('#user_theme').on 'change', ->
     $('link#custom_user_theme').attr('href', $(this).children('option:selected').data('url'))

@@ -9,16 +9,12 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text c
-                  = f.text_field :moved_at_gteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:moved_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:moved_at_gteq].present?)
+                  = f.date_field :moved_at_gteq, class: 'form-control'
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :moved_at_lteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:moved_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:moved_at_lteq].present?)
+                  = f.text_field :moved_at_lteq, class: 'form-control'
               .col
                 = f.button class: 'btn btn-warning btn-sm btn-block' do
                   = fa_icon 'search', text: t('shared.to_search')

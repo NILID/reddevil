@@ -7,9 +7,7 @@
     = f.text_field :num
     = f.text_field :title
     = f.text_field :whom
-    = f.text_field :created_at, class: 'datepicker',
-      value: (f.object.created_at.to_datetime.strftime('%d.%m.%Y') if f.object.created_at.present?)
-
+    = f.date_field :created_at
     = f.file_field :documents, multiple: true
 
   .card-footer

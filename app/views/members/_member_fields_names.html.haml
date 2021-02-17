@@ -1,5 +1,5 @@
 = f.text_field :surname
 = f.text_field :name
 = f.text_field :patronymic
-= f.text_field :birth, class: 'datepicker', value: (f.object.birth.to_datetime.strftime('%d.%m.%Y') if f.object.birth.present?)
+= f.date_field :birth
 = f.check_box :hide_year, { custom: :switch }

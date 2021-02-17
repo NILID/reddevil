@@ -9,9 +9,7 @@
       - when 'price'
         = c.number_field :data, label: c.object.column.name, step: 0.01, min: 0
       - when 'datetime'
-        = c.text_field :data, value: (c.object.data.to_datetime.strftime('%d.%m.%Y') if c.object.data.present?),
-          label: c.object.column.name,
-          class: 'datepicker'
+        = c.date_field :data, label: c.object.column.name
       - when 'string'
         = c.text_field :data, label: c.object.column.name
       - when 'one_reference'

@@ -55,16 +55,12 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text c
-                  = f.text_field :created_at_gteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:created_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_gteq].present?)
+                  = f.date_field :created_at_gteq, class: 'form-control'
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :created_at_lteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:created_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_lteq].present?)
+                  = f.text_field :created_at_lteq, class: 'form-control'
 
         .form-group.row.text-right
           .col

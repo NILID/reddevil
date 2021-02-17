@@ -25,13 +25,8 @@
 //= require soundmanager2-nodebug-jsmin
 //= require page-player
 //= require optional-page-player-metadata
-//= require moment
-//= require moment/ru
 //= require fullcalendar
 //= require fullcalendar/lang/ru
-//= require bootstrap-datetimepicker
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require Chart.bundle
 //= require chartkick
 //= require tooltipster.bundle

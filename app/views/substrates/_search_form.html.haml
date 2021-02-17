@@ -232,16 +232,12 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text c
-                  = f.text_field :created_at_gteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:created_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_gteq].present?)
+                  = f.date_field :created_at_gteq, class: 'form-control'
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :created_at_lteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:created_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:created_at_lteq].present?)
+                  = f.date_field :created_at_lteq, class: 'form-control'
         .form-group.row.mb-1
           = f.label :arrival_at_gteq,
             t('substrates.arrival.title'),
@@ -252,16 +248,12 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text c
-                  = f.text_field :arrival_at_gteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:arrival_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:arrival_at_gteq].present?)
+                  = f.date_field :arrival_at_gteq, class: 'form-control'
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :arrival_at_lteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:arrival_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:arrival_at_lteq].present?)
+                  = f.date_field :arrival_at_lteq, class: 'form-control'
 
         .form-group.row.mb-1
           = f.label :future_shipping_at_gteq,
@@ -273,16 +265,12 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text c
-                  = f.text_field :future_shipping_at_gteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:future_shipping_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:future_shipping_at_gteq].present?)
+                  = f.date_field :future_shipping_at_gteq, class: 'form-control'
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :future_shipping_at_lteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:future_shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:future_shipping_at_lteq].present?)
+                  = f.date_field :future_shipping_at_lteq, class: 'form-control'
 
         .form-group.row.mb-1
           = f.label :shipping_at_gteq,
@@ -294,16 +282,12 @@
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text c
-                  = f.text_field :shipping_at_gteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:shipping_at_gteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_gteq].present?)
+                  = f.date_field :shipping_at_gteq, class: 'form-control'
               .col.pl-0
                 .input-group.input-group-sm
                   .input-group-prepend
                     .input-group-text до
-                  = f.text_field :shipping_at_lteq,
-                    class: 'datepicker form-control',
-                    value: (params[:q][:shipping_at_lteq].to_datetime.strftime('%d.%m.%Y') if params[:q] && params[:q][:shipping_at_lteq].present?)
+                  = f.date_field :shipping_at_lteq, class: 'form-control'
 
         - if @users.any?
           .form-group.row.mb-1

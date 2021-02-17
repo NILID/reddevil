@@ -13,8 +13,7 @@
         .mt-4= f.check_box :without_contract, custom: :switch
     .row
       .col
-        = f.text_field :limit_at, class: 'datepicker',
-                  value: (f.object.limit_at.to_datetime.strftime('%d.%m.%Y') if f.object.limit_at.present?)
+        = f.date_field :limit_at
 
   - if %w[new create].include? params[:action]
     .card-header

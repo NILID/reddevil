@@ -99,7 +99,8 @@
                 %th= Substrate.human_attribute_name(:sides)
                 %th= t('substrates.coating_type')
                 %th= t('substrates.corner')
-                %th= t('substrates.spectr_chars_full')
+                %th.text-center
+                  = t('substrates.spectr_chars_full')
             %tbody
               %tr
                 %td
@@ -107,8 +108,9 @@
                 %td= @substrate.coating_type
                 %td= @substrate.corner
                 %td
-                  - @substrate_features_a.each do |feature|
-                    %p= substrate_feature(feature)
+                  .row
+                    - @substrate_features_a.each do |feature|
+                      = substrate_feature(feature)
 
               %tr
                 %td
@@ -116,8 +118,9 @@
                 %td= @substrate.coating_type_b
                 %td= @substrate.corner_b
                 %td
-                  - @substrate_features_b.each do |feature|
-                    %p= substrate_feature(feature)
+                  .row
+                    - @substrate_features_b.each do |feature|
+                      = substrate_feature(feature)
 
       .col
         %dl.row

@@ -22,7 +22,7 @@
     - if substrate.detail?
       .text-muted= substrate.detail
   %td.text-nowrap
-    .row.bg-red
+    .row
       .col-4
         = substrate_sides(substrate, :a)
       .col-2
@@ -34,7 +34,7 @@
             = substrate_feature(feature)
 
     - if substrate.corner_b?
-      .row
+      .row.border-top.pt-1.mt-1.border-secondary
         .col-4
           = substrate_sides(substrate, :b)
         .col-2

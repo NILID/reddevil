@@ -22,47 +22,53 @@
   .card-header
     .row
       .col
-        .h3.mb-0= @user.show_name
+        .lead= @user.show_name
       .col-3.text-right
         = last_seen(@user)
         = remote_status(@member)
   .card-body
-    .row
-      .col-md-12
-        %dl.row
-          - if (current_user.role? :admin)
-            %dt.col-md-3.col-6.text-right= t 'users.has_groups'
-            %dd.col-md-9.col-6
-              - @user.groups.each do |group|
-                %span.badge.badge-primary= t "user.groups.#{group}"
-            %dt.col-md-3.col-6.text-right= t 'users.has_roles'
-            %dd.col-md-9.col-6
-              - @user.roles.each do |role|
-                %span.badge.badge-primary= t "user.roles.#{role}"
+    - if (current_user.role? :admin)
+      .row.py-1
+        .col-xl-3.col-md-4.col-12.text-muted
+          = t 'users.has_groups'
+        .col-xl-9.col-md-8.col-12
+          - @user.groups.each do |group|
+            %span.badge.badge-primary= t "user.groups.#{group}"
 
-          - if @member
-            - if @member.department_id?
-              %dt.col-md-3.col-6.text-right
-                = Member.human_attribute_name(:department_id)
-              %dd.col-md-9.col-6
-                = link_to @member.department.title, members_path(q: {department_id_eq: @member.department_id })
-            %dt.col-md-3.col-6.text-right
-              = Member.human_attribute_name(:position)
-            %dd.col-md-9.col-6
-              = link_to position_link_text(@member.position), [@member, Position]
+      .row.py-1
+        .col-xl-3.col-md-4.col-12.text-muted
+          = t 'users.has_roles'
+        .col-xl-9.col-md-8.col-12
+          - @user.roles.each do |role|
+            %span.badge.badge-primary= t "user.roles.#{role}"
 
-            - %i[number work_phone short_number phone email].each do |attr|
-              %dt.col-md-3.col-6.text-right
-                = Member.human_attribute_name(attr)
-              %dd.col-md-9.col-6
-                - if @member[attr].present?
-                  - case attr
-                  - when :birth
-                    = l(@member[attr], format: :short)
-                  - else
-                    = @member[attr]
-                - else
-                  = empty_tag
+    - if @member
+      - if @member.department_id?
+        .row.py-1
+          .col-xl-3.col-md-4.col-12.text-muted
+            = Member.human_attribute_name(:department_id)
+          .col-xl-9.col-md-8.col-12
+            = link_to @member.department.title, members_path(q: {department_id_eq: @member.department_id })
+
+      .row.py-1
+        .col-xl-3.col-md-4.col-12.text-muted
+          = Member.human_attribute_name(:position)
+        .col-xl-9.col-md-8.col-12
+          = link_to position_link_text(@member.position), [@member, Position]
+
+      - %i[number work_phone short_number phone email].each do |attr|
+        .row.py-1
+          .col-xl-3.col-md-4.col-12.text-muted
+            = Member.human_attribute_name(attr)
+          .col-xl-9.col-md-8.col-12
+            - if @member[attr].present?
+              - case attr
+              - when :birth
+                = l(@member[attr], format: :short)
+              - else
+                = @member[attr]
+            - else
+              = empty_tag
 
 - if current_user.member
   .card.mt-3

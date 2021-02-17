@@ -54,6 +54,11 @@ $ ->
     selectpicker_init_status(this)
 
 
+  $('.substrate-edit').hover (->
+    $(this).find('.fa-cog').addClass 'fa-spin text-dark'
+  ), ->
+    $(this).find('.fa-cog').removeClass 'fa-spin text-dark'
+
 
   selectpicker_init_shape = (select_tag = 'select#substrate_shape') ->
     $('option:selected', select_tag).each ->

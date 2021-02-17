@@ -77,9 +77,9 @@
     .text-muted
       = short_date substrate.finished_at if substrate.finished_at?
   %td
-    .btn-group
-      %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
-        = fa_icon 'cog'
+    .btn-group.d-inline-block.pointer.mx-1.substrate-edit
+      .text-muted{ data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+        = fa_icon 'cog lg'
       .dropdown-menu.dropdown-menu-right
         = link_to edit_substrate_path(substrate), class: 'dropdown-item' do
           = fa_icon 'edit', text: t('shared.edit')

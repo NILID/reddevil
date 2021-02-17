@@ -34,8 +34,8 @@ class SubstratesController < ApplicationController
 
   def copy
     substrate = @substrate.dup
-    substrate.title = substrate.title + ' (копия)'
-    substrate.drawing = ''
+    substrate.title   = substrate.title   + ' (копия)'
+    substrate.drawing = substrate.drawing + ' (копия)'
 
     respond_to do |format|
       if substrate.save

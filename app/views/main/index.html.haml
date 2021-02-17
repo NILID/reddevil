@@ -76,7 +76,7 @@
                 - @holidays_tomorrow.each do |holiday|
                   .mb-2= holiday[:name]
 
-    - if @vacations.any? || @vacations_soon.any? || @current_vacation || @current_vacations_soon
+    - if @vacations.any? || @vacations_soon.any?
       .accordion#accordionVacations
         .card
           - if @vacations.any?

@@ -1,6 +1,7 @@
 ru:
   flash:
     was_created: 'Вы создали: %{item}'
+    was_cloned: 'Вы дублировали: %{item}'
     was_updated: 'Вы обновили: %{item}'
     was_destroyed: 'Вы удалили: %{item}'
   folder:

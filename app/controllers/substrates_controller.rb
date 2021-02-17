@@ -33,13 +33,13 @@ class SubstratesController < ApplicationController
   end
 
   def copy
-    substrate = @substrate.dup
+    substrate = @substrate.deep_clone include: %i[substrate_features users]
     substrate.title   = substrate.title   + ' (копия)'
     substrate.drawing = substrate.drawing + ' (копия)'
 
     respond_to do |format|
       if substrate.save
-        format.html { redirect_to substrates_url, notice: t('flash.was_created', item: Substrate.model_name.human) }
+        format.html { redirect_to substrates_url, notice: t('flash.was_cloned', item: Substrate.model_name.human) }
       else
         format.html { redirect_to substrates_url, error: 'Duplicate failed' }
       end

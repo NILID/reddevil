@@ -11,7 +11,6 @@
   .float-right
     = link_to t('shared.edit'), list_member_vacations_path(current_user.member), class: 'btn btn-primary btn-sm'
 
-
 - if current_vacation
   .card-body= current_rest_title
 - elsif current_vacations_soon

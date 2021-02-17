@@ -79,11 +79,6 @@
     - if @vacations.any? || @vacations_soon.any? || @current_vacation || @current_vacations_soon
       .accordion#accordionVacations
         .card
-          - if current_user.member
-            = render 'vacations/current_vacations',
-              current_vacation: @current_vacation,
-              current_vacations_soon: @current_vacations_soon,
-              member: current_user.member
           - if @vacations.any?
             .card-header#headingVacations
               .d-block{ data: {toggle: 'collapse', target: '#collapseVacations'}, aria: { expanded: 'false', controls: 'collapseVacations' } }

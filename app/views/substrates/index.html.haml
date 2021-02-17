@@ -24,12 +24,12 @@
 - else
   %table.table.table-substrates.table-hover.table-sm.mb-0.table-bordered.bg-white
     %thead
-      %tr
-        %th.text-center
+      %tr.text-center
+        %th
           = sort_link @q, :priority,       Substrate.human_attribute_name(:priority)
           %br/
           = sort_link @q, :status,         Substrate.human_attribute_name(:status)
-        %th.text-center
+        %th
           = sort_link @q, :otk_status,     t('substrates.otk')
         %th.text-nowrap
           = sort_link @q, :title,          Substrate.human_attribute_name(:title)
@@ -38,7 +38,7 @@
           %br/
           = sort_link @q, :detail,         Substrate.human_attribute_name(:detail_short)
         %th
-          .row.align-items-end
+          .row.align-items-end.text-left
             .col-4.text-nowrap
               = sort_link @q, :sides,          Substrate.human_attribute_name(:sides)
               %br

@@ -44,14 +44,15 @@
           .row
             - features.select{|f| f.wave == 'B'}.each do |feature|
               = substrate_feature(feature)
-  %td
+  %td.text-center
     = rad_icon_name(substrate.rad_strength) ? fa_icon(rad_icon_name substrate.rad_strength) : substrate.rad_strength
 
-  %td
+  %td.text-center
     = substrate.instock
     %span.text-muted /
     = substrate.amount
-  %td= substrate.ready_count
+  %td.text-center
+    = substrate.ready_count
   %td
     - if substrate.shape? && substrate.diameter?
       &empty; #{substrate.diameter}
@@ -60,7 +61,8 @@
     - if substrate.thickness?
       * #{ substrate.thickness }
 
-  %td= t("substrates.frame_#{substrate.frame}")
+  %td.text-center
+    = t("substrates.frame_#{substrate.frame}")
   %td= substrate.contract
   %td
     = substrate.arrival_from

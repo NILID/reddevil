@@ -59,16 +59,16 @@ RSpec.describe SubstrateFeature, type: :model do
         expect(substrate_feature.errors[:litera]).to be_empty
       end
 
-      it 'have format of length invalid' do
-        ['180...', '...180', '180....181', '180..181', 'asdasd', '180..1123q'].each do |str|
-          substrate_feature.length = str
-          expect(substrate_feature.valid?).to be false
-          expect(substrate_feature.errors[:length]).not_to be_empty
-        end
-      end
+      # it 'have format of length invalid' do
+      #   ['180...', '...180', '180....181', '180..181', 'asdasd', '180..1123q'].each do |str|
+      #      substrate_feature.length = str
+      #      expect(substrate_feature.valid?).to be false
+      #      expect(substrate_feature.errors[:length]).not_to be_empty
+      #    end
+      # end
 
       it 'have valid format of length' do
-        ['2', '180', '190...300', '300-301'].each do |str|
+        ['2', '180', '190...300', '300-301', 'other values'].each do |str|
           substrate_feature.length = str
           expect(substrate_feature.valid?).to be true
           expect(substrate_feature.errors[:length]).to be_empty
